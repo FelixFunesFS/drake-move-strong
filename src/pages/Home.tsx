@@ -3,10 +3,19 @@ import CTASection from "@/components/CTASection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle2, Users, Trophy, Target, TrendingUp, Heart } from "lucide-react";
-import heroImage from "@/assets/hero-main.jpg";
-import outdoorTraining from "@/assets/outdoor-training.jpg";
-import davidOutside from "@/assets/david-outside.jpg";
-import coachNick from "@/assets/coach-nick.jpg";
+import heroImage from "@/assets/david-double-kb-storefront.jpg";
+import heroImage2 from "@/assets/david-plank-row-outdoor.jpg";
+import heroImage3 from "@/assets/kettlebell-artistic-floor.jpg";
+import outdoorTraining from "@/assets/david-renegade-row-outdoor.jpg";
+import davidCoach from "@/assets/david-goblet-squat-kb-rack.jpg";
+import coachNick from "@/assets/nick-sandbag-lunge.jpg";
+import kbCollection from "@/assets/kettlebell-collection.jpg";
+import maceTraining from "@/assets/david-mace-training.jpg";
+import communityMoment from "@/assets/community-gym-moment.jpg";
+import memberYoga from "@/assets/member-yoga-pose.jpg";
+import Marquee from "@/components/Marquee";
+import OptimizedImage from "@/components/OptimizedImage";
+import AnimatedSection from "@/components/AnimatedSection";
 
 const Home = () => {
   return (
@@ -20,7 +29,8 @@ const Home = () => {
         subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last."
         primaryCTA={{ text: "Book Your Free Movement Assessment", link: "/contact" }}
         secondaryCTA={{ text: "See Class Schedule", link: "/schedule" }}
-        backgroundImage={heroImage}
+        backgroundImages={[heroImage, heroImage2, heroImage3]}
+        autoRotate={true}
       />
 
       <section className="py-16 md:py-24 bg-background">
@@ -43,13 +53,14 @@ const Home = () => {
                 <Link to="/about">Meet the Team</Link>
               </Button>
             </div>
-            <div className="relative">
-              <img
+            <AnimatedSection animation="scaleIn" delay={0.2}>
+              <OptimizedImage
                 src={outdoorTraining}
-                alt="Outdoor functional training"
+                alt="Outdoor functional training with kettlebells"
                 className="rounded-lg shadow-2xl"
+                aspectRatio="video"
               />
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -220,36 +231,42 @@ const Home = () => {
             Coaching Rooted in Experience, Expertise & Care
           </p>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div className="bg-card p-6 rounded-lg shadow-lg border border-border">
-              <img
-                src={davidOutside}
-                alt="David Drake"
-                className="w-full h-64 object-cover rounded-lg mb-4"
-              />
-              <h3 className="text-2xl font-bold mb-2">David Drake</h3>
-              <p className="text-primary font-semibold mb-3">Owner & Head Coach</p>
-              <p className="text-muted-foreground mb-4">
-                With more than 25 years of training experience, a degree in Health and Exercise Science, and a career recognized early as Charleston's Best Personal Trainer, David is a master of movement and functional strength.
-              </p>
-              <Button asChild variant="outline" className="w-full">
-                <Link to="/about">Learn More About David</Link>
-              </Button>
-            </div>
-            <div className="bg-card p-6 rounded-lg shadow-lg border border-border">
-              <img
-                src={coachNick}
-                alt="Coach Nick"
-                className="w-full h-64 object-cover rounded-lg mb-4"
-              />
-              <h3 className="text-2xl font-bold mb-2">Coach Nick Poppa</h3>
-              <p className="text-primary font-semibold mb-3">Holistic Movement Specialist</p>
-              <p className="text-muted-foreground mb-4">
-                Nick bridges the gap between rehabilitation and performance. His approach helps clients improve posture, stability, mobility, and strength through sustainable lifestyle and movement habits.
-              </p>
-              <Button asChild variant="outline" className="w-full">
-                <Link to="/about">Learn More About Nick</Link>
-              </Button>
-            </div>
+            <AnimatedSection animation="fadeInUp" delay={0.1}>
+              <div className="bg-card p-6 rounded-lg shadow-lg border border-border hover:shadow-xl transition-shadow">
+                <OptimizedImage
+                  src={davidCoach}
+                  alt="David Drake coaching kettlebell technique"
+                  className="w-full rounded-lg mb-4"
+                  aspectRatio="video"
+                />
+                <h3 className="text-2xl font-bold mb-2">David Drake</h3>
+                <p className="text-primary font-semibold mb-3">Owner & Head Coach</p>
+                <p className="text-muted-foreground mb-4">
+                  With more than 25 years of training experience, a degree in Health and Exercise Science, and a career recognized early as Charleston's Best Personal Trainer, David is a master of movement and functional strength.
+                </p>
+                <Button asChild variant="outline" className="w-full">
+                  <Link to="/about">Learn More About David</Link>
+                </Button>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection animation="fadeInUp" delay={0.2}>
+              <div className="bg-card p-6 rounded-lg shadow-lg border border-border hover:shadow-xl transition-shadow">
+                <OptimizedImage
+                  src={coachNick}
+                  alt="Coach Nick Poppa demonstrating sandbag training"
+                  className="w-full rounded-lg mb-4"
+                  aspectRatio="video"
+                />
+                <h3 className="text-2xl font-bold mb-2">Coach Nick Poppa</h3>
+                <p className="text-primary font-semibold mb-3">Holistic Movement Specialist</p>
+                <p className="text-muted-foreground mb-4">
+                  Nick bridges the gap between rehabilitation and performance. His approach helps clients improve posture, stability, mobility, and strength through sustainable lifestyle and movement habits.
+                </p>
+                <Button asChild variant="outline" className="w-full">
+                  <Link to="/about">Learn More About Nick</Link>
+                </Button>
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -289,6 +306,53 @@ const Home = () => {
             </Button>
           </div>
         </div>
+      </section>
+
+      <section className="py-16 bg-muted overflow-hidden">
+        <div className="container mx-auto px-4 mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">
+            Inside <span className="text-primary">Drake Fitness</span>
+          </h2>
+          <p className="text-center text-muted-foreground">Real training. Real results. Real community.</p>
+        </div>
+        <Marquee speed="slow" pauseOnHover={true}>
+          <OptimizedImage
+            src={kbCollection}
+            alt="Kettlebell collection at Drake Fitness"
+            className="h-64 w-96 rounded-lg mx-2"
+            aspectRatio="auto"
+          />
+          <OptimizedImage
+            src={maceTraining}
+            alt="David Drake demonstrating mace training"
+            className="h-64 w-96 rounded-lg mx-2"
+            aspectRatio="auto"
+          />
+          <OptimizedImage
+            src={communityMoment}
+            alt="Community training moment at Drake Fitness"
+            className="h-64 w-96 rounded-lg mx-2"
+            aspectRatio="auto"
+          />
+          <OptimizedImage
+            src={memberYoga}
+            alt="Member practicing yoga pose"
+            className="h-64 w-96 rounded-lg mx-2"
+            aspectRatio="auto"
+          />
+          <OptimizedImage
+            src={davidCoach}
+            alt="David coaching kettlebell technique"
+            className="h-64 w-96 rounded-lg mx-2"
+            aspectRatio="auto"
+          />
+          <OptimizedImage
+            src={outdoorTraining}
+            alt="Outdoor kettlebell training session"
+            className="h-64 w-96 rounded-lg mx-2"
+            aspectRatio="auto"
+          />
+        </Marquee>
       </section>
 
       <CTASection

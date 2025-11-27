@@ -3,11 +3,20 @@ import CTASection from "@/components/CTASection";
 import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
-import { Target, Heart, TrendingUp, Users } from "lucide-react";
+import { Target, Heart, TrendingUp, Users, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
-import davidCoachingForm from "@/assets/david-coaching-form.jpg";
-import coachNick from "@/assets/coach-nick.jpg";
-import oneOnOne from "@/assets/one-on-one.jpg";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import heroImage from "@/assets/david-mace-training.jpg";
+import davidImage from "@/assets/david-double-kb-storefront.jpg";
+import davidImage2 from "@/assets/david-goblet-squat-kb-rack.jpg";
+import nickImage from "@/assets/nick-sandbag-lunge.jpg";
+import kbCollection from "@/assets/kettlebell-collection.jpg";
+import communityMoment from "@/assets/community-gym-moment.jpg";
+import memberYoga from "@/assets/member-yoga-pose.jpg";
+import outdoorKb from "@/assets/outdoor-kettlebell.jpg";
+import coachingSession from "@/assets/coaching-session.jpg";
+import ImageGallery from "@/components/ImageGallery";
 
 const About = () => {
   return (
@@ -20,7 +29,7 @@ const About = () => {
           </>
         }
         subtitle="To help adults move better, feel stronger, and stay pain-free for life."
-        backgroundImage={oneOnOne}
+        backgroundImage={heroImage}
       />
 
       <AnimatedSection animation="fadeInUp">
@@ -101,14 +110,24 @@ const About = () => {
           <div className="max-w-6xl mx-auto space-y-16">
             <AnimatedSection animation="fadeInUp">
               <div className="grid md:grid-cols-2 gap-8 items-start">
-                <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
-                  <OptimizedImage
-                    src={davidCoachingForm}
-                    alt="David Drake coaching proper form at Drake Fitness"
-                    aspectRatio="video"
-                    className="shadow-2xl"
-                  />
-                </motion.div>
+                <div className="space-y-4">
+                  <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
+                    <OptimizedImage
+                      src={davidImage}
+                      alt="David Drake in front of Drake Fitness studio"
+                      aspectRatio="portrait"
+                      className="shadow-2xl rounded-lg"
+                    />
+                  </motion.div>
+                  <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
+                    <OptimizedImage
+                      src={davidImage2}
+                      alt="David Drake demonstrating goblet squat with kettlebells"
+                      aspectRatio="video"
+                      className="shadow-2xl rounded-lg"
+                    />
+                  </motion.div>
+                </div>
                 <div>
                   <h3 className="text-3xl font-bold mb-2">David Drake</h3>
                   <p className="text-xl text-primary font-semibold mb-4">
@@ -147,6 +166,9 @@ const About = () => {
                       ))}
                     </ul>
                   </div>
+                  <Button asChild className="mt-6">
+                    <Link to="/coaching">1:1 Personal Training with David</Link>
+                  </Button>
                 </div>
               </div>
             </AnimatedSection>
@@ -155,10 +177,10 @@ const About = () => {
               <div className="grid md:grid-cols-2 gap-8 items-start">
                 <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }} className="md:order-2">
                   <OptimizedImage
-                    src={coachNick}
-                    alt="Coach Nick Poppa at Drake Fitness"
-                    aspectRatio="video"
-                    className="shadow-2xl"
+                    src={nickImage}
+                    alt="Coach Nick Poppa demonstrating sandbag training"
+                    aspectRatio="portrait"
+                    className="shadow-2xl rounded-lg"
                   />
                 </motion.div>
                 <div className="md:order-1">
@@ -198,6 +220,9 @@ const About = () => {
                       ))}
                     </ul>
                   </div>
+                  <Button asChild className="mt-6">
+                    <Link to="/coaching">1:1 Personal Training with Nick</Link>
+                  </Button>
                 </div>
               </div>
             </AnimatedSection>
@@ -208,52 +233,34 @@ const About = () => {
       <AnimatedSection animation="fadeInUp">
         <section className="py-16 md:py-24 bg-muted">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              What Drives <span className="text-primary">Everything We Do</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+              Inside the <span className="text-primary">Studio</span>
             </h2>
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {[
-                {
-                  icon: <Users className="w-12 h-12" />,
-                  title: "Community",
-                  description: "A supportive group of people cheering for your success, not competing against you.",
-                },
-                {
-                  icon: <Target className="w-12 h-12" />,
-                  title: "Safety",
-                  description: "Expert coaching that structures your journey and longevity over heavy weights and ego.",
-                },
-                {
-                  icon: <TrendingUp className="w-12 h-12" />,
-                  title: "Results",
-                  description: "Sustainable progress you can feel in your daily life, not just see in the mirror.",
-                },
-              ].map((value, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
-                  whileHover={{ y: -5 }}
-                  className="text-center p-6"
-                >
-                  <div className="text-primary mb-4 flex justify-center">{value.icon}</div>
-                  <h3 className="text-2xl font-bold mb-3">{value.title}</h3>
-                  <p className="text-muted-foreground">{value.description}</p>
-                </motion.div>
-              ))}
-            </div>
+            <p className="text-xl text-center text-muted-foreground mb-12">
+              See where the magic happens — authentic training, expert coaching, and a supportive community.
+            </p>
+            <ImageGallery
+              images={[
+                { src: kbCollection, alt: "Drake Fitness kettlebell collection" },
+                { src: communityMoment, alt: "Community training moment at Drake Fitness" },
+                { src: memberYoga, alt: "Member practicing mobility and yoga" },
+                { src: outdoorKb, alt: "Outdoor kettlebell training session" },
+                { src: coachingSession, alt: "Personal coaching session at Drake Fitness" },
+                { src: davidImage2, alt: "David Drake coaching kettlebell technique" },
+                { src: davidImage, alt: "Drake Fitness studio front" },
+                { src: nickImage, alt: "Coach Nick demonstrating functional training" },
+              ]}
+            />
           </div>
         </section>
       </AnimatedSection>
 
       <CTASection
-        title="Ready to Feel Stronger, Move Better, and Train Smarter?"
-        subtitle="Join us for a free movement assessment."
-        ctaText="Book Now"
+        title="Ready to Experience the Drake Fitness Difference?"
+        subtitle="Book a free movement assessment and discover how we can help you move better, feel stronger, and live pain-free."
+        ctaText="Book Free Assessment"
         ctaLink="/contact"
-        variant="dark"
+        variant="gold"
       />
     </main>
   );
