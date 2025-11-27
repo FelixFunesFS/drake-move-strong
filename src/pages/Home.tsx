@@ -57,8 +57,8 @@ const Home = () => {
               <OptimizedImage
                 src={outdoorTraining}
                 alt="Outdoor functional training with kettlebells"
-                className="rounded-lg shadow-2xl"
-                aspectRatio="video"
+                className="rounded-lg shadow-2xl h-full min-h-[500px]"
+                aspectRatio="auto"
               />
             </AnimatedSection>
           </div>
