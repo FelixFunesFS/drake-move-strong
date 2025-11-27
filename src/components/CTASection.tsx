@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-
 interface CTASectionProps {
   title: string;
   subtitle?: string;
@@ -10,48 +9,45 @@ interface CTASectionProps {
   eyebrow?: string;
   slanted?: boolean;
 }
-
-const CTASection = ({ title, subtitle, ctaText, ctaLink, variant = "primary", eyebrow, slanted = false }: CTASectionProps) => {
+const CTASection = ({
+  title,
+  subtitle,
+  ctaText,
+  ctaLink,
+  variant = "primary",
+  eyebrow,
+  slanted = false
+}: CTASectionProps) => {
   const bgClasses = {
     primary: "bg-primary",
     gold: "bg-drake-gold",
-    dark: "bg-drake-dark",
+    dark: "bg-drake-dark"
   };
-
   const textClasses = {
     primary: "text-white",
     gold: "text-drake-dark",
-    dark: "text-white",
+    dark: "text-white"
   };
-
   const buttonClasses = {
     primary: "bg-drake-gold hover:bg-drake-gold/90 text-drake-dark",
     gold: "bg-drake-dark hover:bg-drake-dark/90 text-white",
-    dark: "bg-drake-gold hover:bg-drake-gold/90 text-drake-dark",
+    dark: "bg-drake-gold hover:bg-drake-gold/90 text-drake-dark"
   };
-
-  return (
-    <section className={`${bgClasses[variant]} py-16 md:py-20 ${slanted ? 'section-slant-top' : ''}`}>
-      <div className="container mx-auto px-4 text-center">
-        {eyebrow && (
-          <p className={`section-eyebrow ${variant === "gold" ? "text-drake-dark/70" : "text-gray-400"} mb-2`}>
+  return <section className={`${bgClasses[variant]} py-16 md:py-20 ${slanted ? 'section-slant-top' : ''}`}>
+      <div className="container mx-auto px-4 text-center text-primary-foreground">
+        {eyebrow && <p className={`section-eyebrow ${variant === "gold" ? "text-drake-dark/70" : "text-gray-400"} mb-2`}>
             {eyebrow}
-          </p>
-        )}
+          </p>}
         <h2 className={`text-3xl md:text-4xl font-bold mb-4 uppercase ${textClasses[variant]}`}>
           {title}
         </h2>
-        {subtitle && (
-          <p className={`text-lg md:text-xl mb-8 max-w-2xl mx-auto ${variant === "gold" ? "text-drake-dark/80" : "text-gray-200"}`}>
+        {subtitle && <p className={`text-lg md:text-xl mb-8 max-w-2xl mx-auto ${variant === "gold" ? "text-drake-dark/80" : "text-gray-200"}`}>
             {subtitle}
-          </p>
-        )}
+          </p>}
         <Button asChild size="lg" className={`${buttonClasses[variant]} font-semibold text-lg px-8 py-6`}>
           <Link to={ctaLink}>{ctaText}</Link>
         </Button>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default CTASection;
