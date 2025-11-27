@@ -80,24 +80,24 @@ const Coaching = () => {
             </p>
             <div className="max-w-4xl mx-auto">
               <p className="text-lg text-center mb-12">1:1 coaching is perfect if you:</p>
-              <div className="grid md:grid-cols-2 gap-6">
-                {reasons.map((reason, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.02 }}
-                    className="flex items-start space-x-4 p-6 bg-white rounded-xl border border-border shadow-card"
-                  >
-                    <div className="text-primary flex-shrink-0">{reason.icon}</div>
-                    <div>
-                      <h3 className="font-bold text-lg mb-2">{reason.title}</h3>
-                      <p className="text-muted-foreground">{reason.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+              {reasons.map((reason, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02 }}
+                  className="flex items-start space-x-3 md:space-x-4 p-5 md:p-6 bg-white rounded-xl border border-border shadow-card"
+                >
+                  <div className="text-primary flex-shrink-0">{reason.icon}</div>
+                  <div>
+                    <h3 className="font-bold text-base md:text-lg mb-2">{reason.title}</h3>
+                    <p className="text-sm md:text-base text-muted-foreground">{reason.description}</p>
+                  </div>
+                </motion.div>
+              ))}
               </div>
             </div>
           </div>
@@ -131,7 +131,7 @@ const Coaching = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
               What to <span className="text-primary">Expect</span>
             </h2>
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
               {whatToExpect.map((item, index) => (
                 <motion.div
                   key={index}
@@ -140,11 +140,11 @@ const Coaching = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 }}
                   whileHover={{ y: -5 }}
-                  className="text-center p-6 bg-white rounded-xl border border-border shadow-card"
+                  className="text-center p-5 md:p-6 bg-white rounded-xl border border-border shadow-card"
                 >
                   <div className="text-primary mb-4 flex justify-center">{item.icon}</div>
-                  <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.description}</p>
+                  <h3 className="text-lg md:text-xl font-bold mb-3">{item.title}</h3>
+                  <p className="text-sm md:text-base text-muted-foreground">{item.description}</p>
                 </motion.div>
               ))}
             </div>

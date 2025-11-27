@@ -105,8 +105,8 @@ const About = () => {
 
           <div className="max-w-6xl mx-auto space-y-16">
             <AnimatedSection animation="fadeInUp">
-              <div className="grid md:grid-cols-2 gap-8 items-start">
-                <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start">
+                <div className="space-y-4 md:space-y-4">
                   <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
                   <OptimizedImage
                     src={davidImage}
@@ -125,15 +125,15 @@ const About = () => {
                   </motion.div>
                 </div>
                 <div>
-                  <h3 className="text-3xl font-bold mb-2">David Drake</h3>
-                  <p className="text-xl text-primary font-semibold mb-4">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-2">David Drake</h3>
+                  <p className="text-lg md:text-xl text-primary font-semibold mb-4">
                     Owner • Head Coach • Mobility & Strength Specialist
                   </p>
-                  <p className="text-sm text-muted-foreground mb-4">
+                  <p className="text-xs md:text-sm text-muted-foreground mb-4">
                     B.S. Health & Exercise Science, Furman University<br />
                     Charleston's Best Personal Trainer (City Paper)
                   </p>
-                  <div className="space-y-4 text-muted-foreground">
+                  <div className="space-y-3 md:space-y-4 text-sm md:text-base text-muted-foreground">
                     <p>
                       For more than <strong>25 years</strong>, David has been helping people rediscover proper movement, reduce pain, and build functional strength that lasts. With a strong educational foundation and deep experience in corrective exercise, mobility training, and StrongFirst-inspired kettlebell work, David has developed a coaching style that is rooted in precision, progression, and sustainable results.
                     </p>
@@ -170,7 +170,7 @@ const About = () => {
             </AnimatedSection>
 
             <AnimatedSection animation="fadeInUp" delay={0.2}>
-              <div className="grid md:grid-cols-2 gap-8 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start">
                 <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }} className="md:order-2">
                   <OptimizedImage
                     src={nickImage}
@@ -180,14 +180,14 @@ const About = () => {
                   />
                 </motion.div>
                 <div className="md:order-1">
-                  <h3 className="text-3xl font-bold mb-2">Nick Poppa</h3>
-                  <p className="text-xl text-primary font-semibold mb-4">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-2">Nick Poppa</h3>
+                  <p className="text-lg md:text-xl text-primary font-semibold mb-4">
                     Holistic Health & Movement Specialist
                   </p>
-                  <p className="text-sm text-muted-foreground mb-4">
+                  <p className="text-xs md:text-sm text-muted-foreground mb-4">
                     Posture • Stability • Mobility • Strength
                   </p>
-                  <div className="space-y-4 text-muted-foreground">
+                  <div className="space-y-3 md:space-y-4 text-sm md:text-base text-muted-foreground">
                     <p>
                       Originally from Long Island, Nick's own journey through football injuries, a torn labrum, concussions, chronic back pain, and gut issues led him to discover a deeper world of human movement, lifestyle balance, and functional wellness.
                     </p>

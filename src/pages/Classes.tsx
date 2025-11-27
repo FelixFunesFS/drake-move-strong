@@ -136,9 +136,9 @@ const Classes = () => {
       />
 
       <AnimatedSection animation="fadeInUp">
-        <section className="py-16 md:py-24 bg-background">
+        <section className="py-12 md:py-16 lg:py-24 bg-background">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {classTypes.map((classItem, index) => (
                 <motion.div
                   key={index}
@@ -158,15 +158,15 @@ const Classes = () => {
                       />
                     </div>
                   )}
-                  <div className="p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-2xl font-bold">{classItem.name}</h3>
-                      <Badge variant={classItem.badgeVariant} className="shrink-0 ml-2">
+                   <div className="p-5 md:p-6">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 gap-2">
+                      <h3 className="text-xl md:text-2xl font-bold">{classItem.name}</h3>
+                      <Badge variant={classItem.badgeVariant} className="shrink-0 self-start sm:ml-2 text-xs">
                         {classItem.badge}
                       </Badge>
                     </div>
-                    <p className="text-muted-foreground mb-4">{classItem.description}</p>
-                    <p className="text-sm text-foreground">{classItem.details}</p>
+                    <p className="text-sm md:text-base text-muted-foreground mb-4">{classItem.description}</p>
+                    <p className="text-xs md:text-sm text-foreground">{classItem.details}</p>
                     <Button asChild className="w-full mt-4" variant="outline">
                       <Link to="/schedule">View Times</Link>
                     </Button>
@@ -179,14 +179,14 @@ const Classes = () => {
       </AnimatedSection>
 
       <AnimatedSection animation="fadeIn">
-        <section className="py-16 md:py-24 bg-muted section-slant-top">
+        <section className="py-12 md:py-16 lg:py-24 bg-muted section-slant-top">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto mb-12">
+            <div className="max-w-4xl mx-auto mb-8 md:mb-12">
               <p className="section-eyebrow text-primary text-center">SEE IT IN ACTION</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 uppercase">
                 Our <span className="text-primary">Classes</span> in Action
               </h2>
-              <p className="text-xl text-center text-muted-foreground mb-8">
+              <p className="text-base md:text-lg lg:text-xl text-center text-muted-foreground mb-6 md:mb-8">
                 Watch a typical class session
               </p>
               <YouTubeEmbed
