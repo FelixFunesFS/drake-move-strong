@@ -14,6 +14,14 @@ import kbCollection from "@/assets/kettlebell-collection.jpg";
 import maceTraining from "@/assets/david-mace-training.jpg";
 import communityMoment from "@/assets/community-gym-moment.jpg";
 import memberYoga from "@/assets/member-yoga-pose.jpg";
+import coachingSession from "@/assets/coaching-session.jpg";
+import oneOnOneCoaching from "@/assets/one-on-one-coaching.jpg";
+import kettlebellFormCheck from "@/assets/kettlebell-form-check.jpg";
+import groupTraining from "@/assets/group-training.jpg";
+import mobilityClass from "@/assets/mobility-class.jpg";
+import outdoorTrainingNew from "@/assets/outdoor-training.jpg";
+import davidOutside from "@/assets/david-outside.jpg";
+import oneOnOne from "@/assets/one-on-one.jpg";
 import Marquee from "@/components/Marquee";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -319,12 +327,14 @@ const Home = () => {
           <p className="text-center text-muted-foreground">Real training. Real results. Real community.</p>
         </div>
         <Marquee speed="slow" pauseOnHover={true}>
-          <OptimizedImage src={kbCollection} alt="Kettlebell collection at Drake Fitness" className="h-64 w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={maceTraining} alt="David Drake demonstrating mace training" className="h-64 w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={communityMoment} alt="Community training moment at Drake Fitness" className="h-64 w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={memberYoga} alt="Member practicing yoga pose" className="h-64 w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={davidCoach} alt="David coaching kettlebell technique" className="h-64 w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={outdoorTraining} alt="Outdoor kettlebell training session" className="h-64 w-96 rounded-lg mx-2" aspectRatio="auto" />
+          <OptimizedImage src={coachingSession} alt="Battle rope training with personal coaching" className="h-64 w-96 rounded-lg mx-2" aspectRatio="auto" />
+          <OptimizedImage src={oneOnOneCoaching} alt="One-on-one coaching session at Drake Fitness" className="h-64 w-96 rounded-lg mx-2" aspectRatio="auto" />
+          <OptimizedImage src={kettlebellFormCheck} alt="Form check during sled training" className="h-64 w-96 rounded-lg mx-2" aspectRatio="auto" />
+          <OptimizedImage src={groupTraining} alt="Group training class at Drake Fitness studio" className="h-64 w-96 rounded-lg mx-2" aspectRatio="auto" />
+          <OptimizedImage src={mobilityClass} alt="Mobility and recovery equipment at Drake Fitness" className="h-64 w-96 rounded-lg mx-2" aspectRatio="auto" />
+          <OptimizedImage src={outdoorTrainingNew} alt="Outdoor group training session" className="h-64 w-96 rounded-lg mx-2" aspectRatio="auto" />
+          <OptimizedImage src={davidOutside} alt="David Drake outdoor functional training" className="h-64 w-96 rounded-lg mx-2" aspectRatio="auto" />
+          <OptimizedImage src={oneOnOne} alt="Member with kettlebells at Drake Fitness" className="h-64 w-96 rounded-lg mx-2" aspectRatio="auto" />
         </Marquee>
       </section>
 
