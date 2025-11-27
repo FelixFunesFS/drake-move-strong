@@ -191,13 +191,13 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-drake-dark text-white section-slant-top">
         <div className="container mx-auto px-4">
-          <p className="section-eyebrow text-primary text-center">OUR PROGRAMS</p>
+          <p className="section-eyebrow text-drake-gold text-center">OUR PROGRAMS</p>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-            Classes Designed to Help You <span className="text-primary">Move and Feel Your Best</span>
+            Classes Designed to Help You <span className="text-drake-gold">Move and Feel Your Best</span>
           </h2>
-          <p className="text-xl text-center text-muted-foreground mb-12">
+          <p className="text-xl text-center text-gray-300 mb-12">
             Better Movement. Better Strength. Better Life.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
@@ -209,21 +209,21 @@ const Home = () => {
               { name: "Weekend Warrior™", description: "Saturday strength & conditioning" },
               { name: "Functional Flow Online™", description: "Train live from anywhere" },
             ].map((classItem, index) => (
-              <div key={index} className="bg-card p-6 rounded-lg border border-border hover:shadow-lg transition-shadow">
+              <div key={index} className="bg-drake-dark-muted p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-colors">
                 <h3 className="text-xl font-bold mb-2">{classItem.name}</h3>
-                <p className="text-muted-foreground">{classItem.description}</p>
+                <p className="text-gray-300">{classItem.description}</p>
               </div>
             ))}
           </div>
           <div className="text-center">
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
+            <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark">
               <Link to="/classes">Explore All Classes</Link>
             </Button>
           </div>
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-muted section-slant-top">
+      <section className="py-16 md:py-24 bg-muted section-slant-top-reverse">
         <div className="container mx-auto px-4">
           <p className="section-eyebrow text-primary text-center">MEET THE TEAM</p>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
