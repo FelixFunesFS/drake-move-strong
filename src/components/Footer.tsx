@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, Youtube } from "lucide-react";
 import drakeLogo from "@/assets/drake-logo.png";
-
 const Footer = () => {
-  return (
-    <footer className="bg-drake-dark text-white">
+  return <footer className="bg-drake-dark text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <img src={drakeLogo} alt="Drake Fitness" className="h-12 w-auto mb-4 brightness-200" />
             <p className="text-sm text-gray-300 mb-4">
-              Mobility-first functional strength training in West Ashley, Charleston. Move better, live stronger.
+              Mobility-first functional strength training in, Charleston. Move better, live stronger.     
             </p>
             <div className="flex space-x-4">
               <a href="https://www.instagram.com/drakefitnesschs/" target="_blank" rel="noopener noreferrer" className="text-drake-teal-light hover:text-drake-gold transition-colors" aria-label="Instagram">
@@ -76,8 +74,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
