@@ -3,7 +3,7 @@ import CTASection from "@/components/CTASection";
 import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
-import { Target, Heart, TrendingUp, Users, CheckCircle2 } from "lucide-react";
+import { Target, Heart, TrendingUp, Users, CheckCircle2, Activity, Shield } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -23,7 +23,11 @@ const About = () => {
     <main>
       <Hero
         eyebrow="OUR PURPOSE"
-        title="Why Drake Fitness Exists"
+        title={
+          <>
+            Why We <span className="text-primary">Exist</span>
+          </>
+        }
         subtitle="To help adults move better, feel stronger, and stay pain-free for life."
         backgroundImage={heroImage}
       />
@@ -31,43 +35,71 @@ const About = () => {
       <AnimatedSection animation="fadeInUp">
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <p className="section-eyebrow text-primary text-center">OUR PHILOSOPHY</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 uppercase">
-                Movement First. <span className="text-primary">Strength for Life.</span>
-              </h2>
-              <div className="prose prose-lg max-w-none">
-                <p className="text-lg text-muted-foreground mb-6">
-                  We don't chase intensity, trends, or exhaustion.<br />
-                  We chase <strong>movement quality</strong>, <strong>joint health</strong>, and <strong>sustainable strength</strong>.
-                </p>
-                <p className="text-lg mb-6">Everything we do is grounded in:</p>
-                <ul className="space-y-3 mb-8">
-                  {[
-                    "Mobility",
-                    "Functional movement patterns",
-                    "Kettlebell and calisthenic strength",
-                    "Longevity",
-                    "Injury prevention",
-                    "Smart coaching",
-                    "Real-world performance",
-                  ].map((principle, index) => (
-                    <motion.li
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                {/* Left Column - Text Content */}
+                <div>
+                  <p className="section-eyebrow text-primary">THE DRAKE FITNESS PHILOSOPHY</p>
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase leading-tight">
+                    Movement First.<br />
+                    Strength For <span className="text-primary">Life</span>.
+                  </h2>
+                  <p className="text-base md:text-lg text-muted-foreground mb-8 border-l-4 border-drake-gold pl-6">
+                    We don't chase intensity, trends, or exhaustion. We chase <strong>movement quality</strong>, <strong>joint health</strong>, and <strong>sustainable strength</strong> that helps you feel better and perform better in real life.
+                  </p>
+                  
+                  {/* Info Boxes Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      className="flex items-center text-lg"
+                      transition={{ delay: 0.1 }}
+                      className="bg-card border border-border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
                     >
-                      <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
-                      {principle}
-                    </motion.li>
-                  ))}
-                </ul>
-                <p className="text-xl font-semibold text-center text-primary mt-8">
-                  If you can move better, you can live better.
-                </p>
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <Heart className="w-6 h-6 text-primary" />
+                      </div>
+                      <h3 className="text-lg font-bold mb-2">Feel Better</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Reduce pain and stiffness through intelligent movement and mobility work
+                      </p>
+                    </motion.div>
+                    
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 }}
+                      className="bg-card border border-border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+                    >
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <Activity className="w-6 h-6 text-primary" />
+                      </div>
+                      <h3 className="text-lg font-bold mb-2">Move Better</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Restore natural range of motion and functional movement patterns
+                      </p>
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Right Column - Image with Gold Accent */}
+                <motion.div
+                  initial={{ opacity: 0, x: 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="relative"
+                >
+                  <div className="absolute -top-8 -left-8 w-full h-full bg-drake-gold/20 rounded-lg transform rotate-3 -z-10 hidden lg:block"></div>
+                  <OptimizedImage
+                    src={kbCollection}
+                    alt="Drake Fitness kettlebell collection and training equipment"
+                    aspectRatio="square"
+                    className="shadow-lg rounded-lg"
+                  />
+                </motion.div>
               </div>
             </div>
           </div>
@@ -94,137 +126,249 @@ const About = () => {
         </section>
       </AnimatedSection>
 
-      <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
+      {/* Meet David Section - Dark Theme with Clip Slant */}
+      <section className="py-16 md:py-24 bg-drake-dark text-white section-slant-top">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
-            <p className="section-eyebrow text-primary text-center">THE TEAM</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
+            <p className="section-eyebrow text-drake-gold text-center">THE TEAM</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 uppercase">
               Meet Your <span className="text-primary">Coaches</span>
             </h2>
           </AnimatedSection>
 
-          <div className="max-w-6xl mx-auto space-y-16">
+          <div className="max-w-7xl mx-auto">
             <AnimatedSection animation="fadeInUp">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start">
-                <div className="space-y-4 md:space-y-4">
-                  <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
-                  <OptimizedImage
-                    src={davidImage}
-                    alt="David Drake in front of Drake Fitness studio"
-                    aspectRatio="portrait"
-                    className="shadow-card rounded-lg"
-                  />
-                  </motion.div>
-                  <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
-                  <OptimizedImage
-                    src={davidImage2}
-                    alt="David Drake demonstrating goblet squat with kettlebells"
-                    aspectRatio="video"
-                    className="shadow-card rounded-lg"
-                  />
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+                {/* Image Column with Overlay */}
+                <div className="lg:col-span-5">
+                  <motion.div
+                    initial={{ opacity: 0, x: -40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="relative group"
+                  >
+                    <div className="relative overflow-hidden rounded-lg border-4 border-primary shadow-2xl">
+                      <OptimizedImage
+                        src={davidImage}
+                        alt="David Drake - Owner and Head Coach at Drake Fitness"
+                        aspectRatio="portrait"
+                        className=""
+                      />
+                      {/* Gradient Overlay with Name */}
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-drake-dark via-drake-dark/80 to-transparent p-6">
+                        <h3 className="text-2xl md:text-3xl font-bold text-white">David Drake</h3>
+                        <p className="text-drake-gold font-semibold">Owner & Head Coach</p>
+                      </div>
+                    </div>
                   </motion.div>
                 </div>
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-2">David Drake</h3>
-                  <p className="text-lg md:text-xl text-primary font-semibold mb-4">
-                    Owner • Head Coach • Mobility & Strength Specialist
-                  </p>
-                  <p className="text-xs md:text-sm text-muted-foreground mb-4">
-                    B.S. Health & Exercise Science, Furman University<br />
-                    Charleston's Best Personal Trainer (City Paper)
-                  </p>
-                  <div className="space-y-3 md:space-y-4 text-sm md:text-base text-muted-foreground">
-                    <p>
-                      For more than <strong>25 years</strong>, David has been helping people rediscover proper movement, reduce pain, and build functional strength that lasts. With a strong educational foundation and deep experience in corrective exercise, mobility training, and StrongFirst-inspired kettlebell work, David has developed a coaching style that is rooted in precision, progression, and sustainable results.
-                    </p>
-                    <p>
-                      He describes himself as a <strong>body mechanic</strong> — someone who understands how the human body is built to move and how to restore that movement when life, injuries, or habits disrupt it.
-                    </p>
-                    <p>
-                      David believes strength is a skill, mobility is the foundation, and proper movement unlocks lasting health. Whether coaching beginners or advanced clients, David helps every member move better, feel better, and train smarter.
-                    </p>
-                  </div>
-                  <div className="mt-6">
-                    <h4 className="font-bold mb-2">Specialties:</h4>
-                    <ul className="space-y-2 text-sm">
-                      {[
-                        "Mobility & joint restoration",
-                        "Corrective exercise",
-                        "Kettlebell training (StrongFirst influence)",
-                        "Movement mechanics",
-                        "Holistic wellness (mental, physical, nutritional)",
-                        "1:1 & small-group coaching",
-                      ].map((specialty, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2 mt-2 flex-shrink-0"></span>
-                          <span>{specialty}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <Button asChild className="mt-6">
-                    <Link to="/coaching">1:1 Personal Training with David</Link>
-                  </Button>
-                </div>
-              </div>
-            </AnimatedSection>
 
-            <AnimatedSection animation="fadeInUp" delay={0.2}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start">
-                <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }} className="md:order-2">
-                  <OptimizedImage
-                    src={nickImage}
-                    alt="Coach Nick Poppa demonstrating sandbag training"
-                    aspectRatio="portrait"
-                    className="shadow-card rounded-lg"
-                  />
-                </motion.div>
-                <div className="md:order-1">
-                  <h3 className="text-2xl md:text-3xl font-bold mb-2">Nick Poppa</h3>
-                  <p className="text-lg md:text-xl text-primary font-semibold mb-4">
-                    Holistic Health & Movement Specialist
-                  </p>
-                  <p className="text-xs md:text-sm text-muted-foreground mb-4">
-                    Posture • Stability • Mobility • Strength
-                  </p>
-                  <div className="space-y-3 md:space-y-4 text-sm md:text-base text-muted-foreground">
-                    <p>
-                      Originally from Long Island, Nick's own journey through football injuries, a torn labrum, concussions, chronic back pain, and gut issues led him to discover a deeper world of human movement, lifestyle balance, and functional wellness.
+                {/* Content Column */}
+                <div className="lg:col-span-7 space-y-6">
+                  <motion.div
+                    initial={{ opacity: 0, x: 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                  >
+                    <p className="text-xs md:text-sm text-drake-gold mb-4">
+                      B.S. Health & Exercise Science, Furman University<br />
+                      Charleston's Best Personal Trainer (City Paper)
                     </p>
-                    <p>
-                      His approach bridges the gap between <strong>rehabilitation and performance</strong>, helping clients improve posture, stability, mobility, and functional strength through corrective exercise and holistic lifestyle coaching.
-                    </p>
-                    <p>
-                      Nick's philosophy centers on meeting clients exactly where they are, helping them fine-tune their body, habits, and movement patterns to support their <strong>Functional Lifestyle of Wellness (FLOW)</strong>.
-                    </p>
-                  </div>
-                  <div className="mt-6">
-                    <h4 className="font-bold mb-2">Specialties:</h4>
-                    <ul className="space-y-2 text-sm">
-                      {[
-                        "Corrective exercise",
-                        "Functional training",
-                        "Posture & stability",
-                        "Mobility restoration",
-                        "Lifestyle coaching",
-                        "Bridging rehab → performance",
-                      ].map((specialty, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2 mt-2 flex-shrink-0"></span>
-                          <span>{specialty}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <Button asChild className="mt-6">
-                    <Link to="/coaching">1:1 Personal Training with Nick</Link>
-                  </Button>
+                    <div className="space-y-4 text-sm md:text-base text-gray-300">
+                      <p>
+                        For more than <strong className="text-white">25 years</strong>, David has been helping people rediscover proper movement, reduce pain, and build functional strength that lasts. With a strong educational foundation and deep experience in corrective exercise, mobility training, and StrongFirst-inspired kettlebell work, David has developed a coaching style that is rooted in precision, progression, and sustainable results.
+                      </p>
+                      <p>
+                        He describes himself as a <strong className="text-white">body mechanic</strong> — someone who understands how the human body is built to move and how to restore that movement when life, injuries, or habits disrupt it.
+                      </p>
+                    </div>
+
+                    {/* Specialties Card - Semi-transparent */}
+                    <div className="bg-white/5 border border-white/10 rounded-lg p-6 backdrop-blur-sm mt-6">
+                      <h4 className="font-bold text-white mb-4 text-lg">Specialties</h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {[
+                          "Mobility & joint restoration",
+                          "Corrective exercise",
+                          "Kettlebell training (StrongFirst)",
+                          "Movement mechanics",
+                          "Holistic wellness",
+                          "1:1 & small-group coaching",
+                        ].map((specialty, index) => (
+                          <div key={index} className="flex items-start">
+                            <CheckCircle2 className="w-4 h-4 text-drake-gold mr-2 mt-0.5 flex-shrink-0" />
+                            <span className="text-sm text-gray-300">{specialty}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Blockquote */}
+                    <blockquote className="border-l-4 border-drake-gold pl-6 py-4 mt-6 italic text-gray-300">
+                      "Strength is a skill, mobility is the foundation, and proper movement unlocks lasting health."
+                    </blockquote>
+
+                    <Button asChild className="mt-6 bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold">
+                      <Link to="/coaching">1:1 Personal Training with David</Link>
+                    </Button>
+                  </motion.div>
                 </div>
               </div>
             </AnimatedSection>
           </div>
         </div>
       </section>
+
+      {/* Meet Nick Section - Gray Theme with Decorative Skew */}
+      <section className="py-16 md:py-24 bg-muted relative overflow-hidden section-slant-top-reverse">
+        {/* Decorative Skewed Element */}
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-white/50 transform skew-x-12 translate-x-1/2 hidden lg:block"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-7xl mx-auto">
+            <AnimatedSection animation="fadeInUp">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+                {/* Content Column - LEFT on desktop */}
+                <div className="lg:col-span-7 space-y-6">
+                  <motion.div
+                    initial={{ opacity: 0, x: -40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <h3 className="text-2xl md:text-3xl font-bold mb-2">Nick Poppa</h3>
+                    <p className="text-lg md:text-xl text-primary font-semibold mb-4">
+                      Holistic Health & Movement Specialist
+                    </p>
+                    <p className="text-xs md:text-sm text-muted-foreground mb-4">
+                      Posture • Stability • Mobility • Strength
+                    </p>
+                    <div className="space-y-4 text-sm md:text-base text-muted-foreground">
+                      <p>
+                        Originally from Long Island, Nick's own journey through football injuries, a torn labrum, concussions, chronic back pain, and gut issues led him to discover a deeper world of human movement, lifestyle balance, and functional wellness.
+                      </p>
+                      <p>
+                        His approach bridges the gap between <strong className="text-foreground">rehabilitation and performance</strong>, helping clients improve posture, stability, mobility, and functional strength through corrective exercise and holistic lifestyle coaching.
+                      </p>
+                    </div>
+
+                    {/* Team Callout Box */}
+                    <div className="bg-white border-l-4 border-primary rounded-lg p-6 shadow-sm mt-6">
+                      <p className="text-sm md:text-base text-muted-foreground">
+                        <strong className="text-foreground">David and Nick work together</strong> to create personalized training programs that combine mobility, corrective movement, and functional strength — meeting you exactly where you are and guiding you toward sustainable results.
+                      </p>
+                    </div>
+
+                    <Button asChild className="mt-6">
+                      <Link to="/schedule">Try a Class This Week</Link>
+                    </Button>
+                  </motion.div>
+                </div>
+
+                {/* Image Column - RIGHT on desktop */}
+                <div className="lg:col-span-5 lg:order-last">
+                  <motion.div
+                    initial={{ opacity: 0, x: 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="relative group"
+                  >
+                    <div className="relative overflow-hidden rounded-lg shadow-xl">
+                      <OptimizedImage
+                        src={nickImage}
+                        alt="Coach Nick Poppa demonstrating functional training"
+                        aspectRatio="portrait"
+                        className=""
+                      />
+                      {/* White/Frosted Bottom Overlay with Name */}
+                      <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6 border-t border-gray-200">
+                        <h3 className="text-xl md:text-2xl font-bold text-drake-dark">Coach Nick</h3>
+                        <p className="text-primary font-semibold text-sm">Group & 1:1 Trainer</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <AnimatedSection animation="fadeInUp">
+        <section className="py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <p className="section-eyebrow text-primary text-center">OUR VALUES</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+                What We <span className="text-primary">Stand For</span>
+              </h2>
+              <p className="text-lg text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+                Our commitment to quality coaching, safe training environments, and real results.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                {/* Community Card */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                  whileHover={{ y: -8 }}
+                  className="bg-card rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-border"
+                >
+                  <div className="w-16 h-16 bg-drake-gold rounded-full flex items-center justify-center mb-6 mx-auto">
+                    <Users className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-center mb-4 uppercase">Community</h3>
+                  <p className="text-sm md:text-base text-muted-foreground text-center">
+                    We foster a supportive, ego-free environment where everyone is welcomed, encouraged, and celebrated for their progress.
+                  </p>
+                </motion.div>
+
+                {/* Safety Card */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                  whileHover={{ y: -8 }}
+                  className="bg-card rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-border"
+                >
+                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 mx-auto">
+                    <Shield className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-center mb-4 uppercase">Safety</h3>
+                  <p className="text-sm md:text-base text-muted-foreground text-center">
+                    Proper form, intelligent programming, and injury prevention guide every movement and every session we coach.
+                  </p>
+                </motion.div>
+
+                {/* Results Card */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                  whileHover={{ y: -8 }}
+                  className="bg-card rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-border"
+                >
+                  <div className="w-16 h-16 bg-drake-dark rounded-full flex items-center justify-center mb-6 mx-auto">
+                    <Target className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-center mb-4 uppercase">Results</h3>
+                  <p className="text-sm md:text-base text-muted-foreground text-center">
+                    We deliver measurable improvements in mobility, strength, and quality of life through proven methods and expert coaching.
+                  </p>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
 
       <AnimatedSection animation="fadeInUp">
         <section className="py-16 md:py-24 bg-muted section-slant-top">
@@ -258,7 +402,7 @@ const About = () => {
         subtitle="Book a free movement assessment and discover how we can help you move better, feel stronger, and live pain-free."
         ctaText="Book Free Assessment"
         ctaLink="/contact"
-        variant="gold"
+        variant="primary"
         slanted={true}
       />
     </main>
