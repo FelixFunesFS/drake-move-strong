@@ -222,7 +222,7 @@ const Home = () => {
             description: "Beginner-friendly, mobility-first"
           }, {
             name: "Functional Strength™",
-            description: "Our core program"
+            description: "Our core program for sustainable strength and better movement."
           }, {
             name: "KB Strong™",
             description: "Advanced strength & kettlebell technique"
