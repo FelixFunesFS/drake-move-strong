@@ -51,19 +51,15 @@ const Contact = () => {
                     <MapPin className="w-5 h-5 mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-semibold mb-1">Visit Us</p>
-                      <p className="text-sm">123 West Ashley Blvd<br />Charleston, SC 29407</p>
+                      <p className="text-sm">2 Avondale Ave<br />Charleston, SC 29407</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <Mail className="w-5 h-5 mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-semibold mb-1">Email Us</p>
-                      <a href="mailto:hello@drakefitness.com" className="text-sm hover:text-drake-gold transition-colors">
-                        hello@drakefitness.com
-                      </a>
-                      <br />
-                      <a href="mailto:support@drakefitness.com" className="text-sm hover:text-drake-gold transition-colors">
-                        support@drakefitness.com
+                      <a href="mailto:ddrake311@gmail.com" className="text-sm hover:text-drake-gold transition-colors">
+                        ddrake311@gmail.com
                       </a>
                     </div>
                   </div>
@@ -71,8 +67,8 @@ const Contact = () => {
                     <Phone className="w-5 h-5 mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-semibold mb-1">Call Us</p>
-                      <a href="tel:8435550199" className="text-sm hover:text-drake-gold transition-colors">
-                        (843) 555-0199
+                      <a href="tel:8438175420" className="text-sm hover:text-drake-gold transition-colors">
+                        (843) 817-5420
                       </a>
                     </div>
                   </div>
@@ -81,13 +77,13 @@ const Contact = () => {
                 <div className="mt-8 pt-8 border-t border-white/20">
                   <p className="font-semibold mb-3">Follow Us</p>
                   <div className="flex space-x-4">
-                    <a href="#" className="hover:text-drake-gold transition-colors" aria-label="Instagram">
+                    <a href="https://www.instagram.com/drakefitnesschs/" target="_blank" rel="noopener noreferrer" className="hover:text-drake-gold transition-colors" aria-label="Instagram">
                       <Instagram size={24} />
                     </a>
-                    <a href="#" className="hover:text-drake-gold transition-colors" aria-label="Facebook">
+                    <a href="https://www.facebook.com/profile.php?id=100063722011333" target="_blank" rel="noopener noreferrer" className="hover:text-drake-gold transition-colors" aria-label="Facebook">
                       <Facebook size={24} />
                     </a>
-                    <a href="#" className="hover:text-drake-gold transition-colors" aria-label="YouTube">
+                    <a href="https://www.youtube.com/@drakefitnesschs" target="_blank" rel="noopener noreferrer" className="hover:text-drake-gold transition-colors" aria-label="YouTube">
                       <Youtube size={24} />
                     </a>
                   </div>

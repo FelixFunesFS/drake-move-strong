@@ -33,7 +33,7 @@ const Navigation = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-md text-sm font-medium font-body transition-colors ${
                   isActive(link.path)
                     ? "text-primary"
                     : "text-foreground hover:text-primary"
@@ -45,7 +45,7 @@ const Navigation = () => {
           </div>
 
           <div className="hidden lg:block">
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
+            <Button asChild size="lg" variant="gold">
               <Link to="/contact">Book Assessment</Link>
             </Button>
           </div>
@@ -77,7 +77,7 @@ const Navigation = () => {
                 {link.name}
               </Link>
             ))}
-            <Button asChild className="w-full bg-primary hover:bg-primary/90 mt-4">
+            <Button asChild variant="gold" className="w-full mt-4">
               <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
                 Book Assessment
               </Link>

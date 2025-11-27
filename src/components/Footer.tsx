@@ -13,13 +13,13 @@ const Footer = () => {
               Mobility-first functional strength training in West Ashley, Charleston. Move better, live stronger.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-drake-teal-light hover:text-drake-gold transition-colors" aria-label="Instagram">
+              <a href="https://www.instagram.com/drakefitnesschs/" target="_blank" rel="noopener noreferrer" className="text-drake-teal-light hover:text-drake-gold transition-colors" aria-label="Instagram">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-drake-teal-light hover:text-drake-gold transition-colors" aria-label="Facebook">
+              <a href="https://www.facebook.com/profile.php?id=100063722011333" target="_blank" rel="noopener noreferrer" className="text-drake-teal-light hover:text-drake-gold transition-colors" aria-label="Facebook">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-drake-teal-light hover:text-drake-gold transition-colors" aria-label="YouTube">
+              <a href="https://www.youtube.com/@drakefitnesschs" target="_blank" rel="noopener noreferrer" className="text-drake-teal-light hover:text-drake-gold transition-colors" aria-label="YouTube">
                 <Youtube size={20} />
               </a>
             </div>
@@ -52,16 +52,16 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-lg mb-4">Connect</h3>
             <ul className="space-y-2 text-sm text-gray-300">
-              <li>123 West Ashley Blvd</li>
+              <li>2 Avondale Ave</li>
               <li>Charleston, SC 29407</li>
               <li className="pt-2">
-                <a href="mailto:hello@drakefitness.com" className="hover:text-drake-gold transition-colors">
-                  hello@drakefitness.com
+                <a href="mailto:ddrake311@gmail.com" className="hover:text-drake-gold transition-colors">
+                  ddrake311@gmail.com
                 </a>
               </li>
               <li>
-                <a href="tel:8435550199" className="hover:text-drake-gold transition-colors">
-                  (843) 555-0199
+                <a href="tel:8438175420" className="hover:text-drake-gold transition-colors">
+                  (843) 817-5420
                 </a>
               </li>
             </ul>
