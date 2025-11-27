@@ -1,5 +1,9 @@
 import Hero from "@/components/Hero";
 import CTASection from "@/components/CTASection";
+import communityImage from "@/assets/community-gym-moment.jpg";
+import memberYoga from "@/assets/member-yoga-pose.jpg";
+import OptimizedImage from "@/components/OptimizedImage";
+import AnimatedSection from "@/components/AnimatedSection";
 
 const SuccessStories = () => {
   const testimonials = [
@@ -62,6 +66,7 @@ const SuccessStories = () => {
           </>
         }
         subtitle="Stories of everyday adults who improved mobility, reduced pain, and built strength that changed their lives."
+        backgroundImage={communityImage}
       />
 
       <section className="py-16 md:py-24 bg-background">
@@ -86,6 +91,32 @@ const SuccessStories = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-muted">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            Join Our <span className="text-primary">Community</span>
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <AnimatedSection animation="scaleIn">
+              <OptimizedImage
+                src={memberYoga}
+                alt="Drake Fitness member practicing yoga and mobility"
+                aspectRatio="portrait"
+                className="rounded-lg shadow-xl"
+              />
+            </AnimatedSection>
+            <AnimatedSection animation="scaleIn" delay={0.2}>
+              <OptimizedImage
+                src={communityImage}
+                alt="Drake Fitness community training together"
+                aspectRatio="portrait"
+                className="rounded-lg shadow-xl"
+              />
+            </AnimatedSection>
           </div>
         </div>
       </section>

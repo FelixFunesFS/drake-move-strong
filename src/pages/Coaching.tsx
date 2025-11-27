@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Target, Heart, Dumbbell, TrendingUp, User } from "lucide-react";
 import oneOnOneCoaching from "@/assets/one-on-one-coaching.jpg";
-import davidCoachingForm from "@/assets/david-coaching-form.jpg";
-import coachNick from "@/assets/coach-nick.jpg";
+import davidCoach from "@/assets/david-double-kb-storefront.jpg";
+import nickCoach from "@/assets/nick-sandbag-lunge.jpg";
 
 const Coaching = () => {
   const reasons = [
@@ -197,10 +197,10 @@ const Coaching = () => {
                 className="bg-card p-6 rounded-lg shadow-lg border border-border"
               >
                 <OptimizedImage
-                  src={davidCoachingForm}
-                  alt="David Drake coaching at Drake Fitness"
+                  src={davidCoach}
+                  alt="David Drake in front of Drake Fitness studio"
                   aspectRatio="video"
-                  className="mb-4"
+                  className="mb-4 rounded-lg"
                 />
                 <h3 className="text-2xl font-bold mb-2">David Drake</h3>
                 <p className="text-primary font-semibold mb-3">Owner & Head Coach</p>
@@ -216,10 +216,10 @@ const Coaching = () => {
                 className="bg-card p-6 rounded-lg shadow-lg border border-border"
               >
                 <OptimizedImage
-                  src={coachNick}
-                  alt="Coach Nick Poppa at Drake Fitness"
+                  src={nickCoach}
+                  alt="Coach Nick Poppa demonstrating sandbag training"
                   aspectRatio="video"
-                  className="mb-4"
+                  className="mb-4 rounded-lg"
                 />
                 <h3 className="text-2xl font-bold mb-2">Coach Nick</h3>
                 <p className="text-primary font-semibold mb-3">Holistic Movement Specialist</p>
