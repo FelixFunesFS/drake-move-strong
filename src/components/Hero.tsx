@@ -1,14 +1,23 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ReactNode } from "react";
+import { motion } from "framer-motion";
+import { useState, useEffect, ReactNode } from "react";
+import { cn } from "@/lib/utils";
+
+interface HeroCTA {
+  text: string;
+  link: string;
+}
 
 interface HeroProps {
   title: string | ReactNode;
   subtitle: string;
-  primaryCTA?: { text: string; link: string };
-  secondaryCTA?: { text: string; link: string };
+  primaryCTA?: HeroCTA;
+  secondaryCTA?: HeroCTA;
   backgroundImage?: string;
-  overlay?: boolean;
+  backgroundImages?: string[];
+  autoRotate?: boolean;
+  className?: string;
   eyebrow?: string;
 }
 
@@ -18,43 +27,92 @@ const Hero = ({
   primaryCTA,
   secondaryCTA,
   backgroundImage,
-  overlay = true,
+  backgroundImages,
+  autoRotate = true,
+  className,
   eyebrow,
 }: HeroProps) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const images = backgroundImages || (backgroundImage ? [backgroundImage] : []);
+  const hasMultipleImages = images.length > 1;
+
+  useEffect(() => {
+    if (!hasMultipleImages || !autoRotate) return;
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 8000);
+
+    return () => clearInterval(interval);
+  }, [hasMultipleImages, images.length, autoRotate]);
+
   return (
-    <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
-      {backgroundImage && (
-        <>
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${backgroundImage})` }}
-          />
-          {overlay && <div className="absolute inset-0 bg-drake-dark/75" />}
-        </>
-      )}
-      {!backgroundImage && (
+    <section className={cn("relative min-h-[600px] md:min-h-[700px] flex items-center overflow-hidden", className)}>
+      {/* Background Images with Ken Burns Effect */}
+      {images.length > 0 ? (
+        <div className="absolute inset-0 z-0">
+          {images.map((img, index) => (
+            <motion.div
+              key={img}
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: index === currentImageIndex ? 1 : 0,
+              }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              <div
+                className="absolute inset-0 bg-cover bg-center animate-ken-burns"
+                style={{ backgroundImage: `url(${img})` }}
+              />
+            </motion.div>
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-r from-drake-dark/90 via-drake-dark/70 to-drake-dark/50" />
+        </div>
+      ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-drake-dark via-drake-dark-muted to-primary/20" />
       )}
 
+      {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center text-white">
           {eyebrow && (
-            <p className="text-drake-gold font-semibold text-sm uppercase tracking-wide mb-4">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-drake-gold font-semibold text-sm uppercase tracking-wide mb-4"
+            >
               {eyebrow}
-            </p>
+            </motion.p>
           )}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+          >
             {title}
-          </h1>
-          <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-lg md:text-xl mb-8 text-gray-200 leading-relaxed max-w-3xl mx-auto"
+          >
             {subtitle}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
             {primaryCTA && (
               <Button
                 asChild
                 size="lg"
-                className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-lg px-8 py-6"
+                className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-lg px-8 py-6 shadow-[var(--shadow-gold)] hover:scale-105 transition-transform"
               >
                 <Link to={primaryCTA.link}>{primaryCTA.text}</Link>
               </Button>
@@ -62,16 +120,35 @@ const Hero = ({
             {secondaryCTA && (
               <Button
                 asChild
-                variant="outline"
                 size="lg"
+                variant="outline"
                 className="border-2 border-white text-white hover:bg-white hover:text-drake-dark font-semibold text-lg px-8 py-6"
               >
                 <Link to={secondaryCTA.link}>{secondaryCTA.text}</Link>
               </Button>
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
+
+      {/* Image Indicators */}
+      {hasMultipleImages && (
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentImageIndex(index)}
+              className={cn(
+                "w-2 h-2 rounded-full transition-all duration-300",
+                index === currentImageIndex
+                  ? "bg-drake-gold w-8"
+                  : "bg-white/50 hover:bg-white/80"
+              )}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 };

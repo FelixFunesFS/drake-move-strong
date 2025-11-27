@@ -96,4 +96,61 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  /* Marquee Animation */
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee var(--duration, 40s) linear infinite;
+  }
+
+  /* Ken Burns Effect */
+  @keyframes ken-burns {
+    0% {
+      transform: scale(1) translateX(0) translateY(0);
+    }
+    50% {
+      transform: scale(1.1) translateX(-2%) translateY(-2%);
+    }
+    100% {
+      transform: scale(1) translateX(0) translateY(0);
+    }
+  }
+
+  .animate-ken-burns {
+    animation: ken-burns 20s ease-in-out infinite;
+  }
+
+  /* Hover Scale */
+  .hover-scale {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
