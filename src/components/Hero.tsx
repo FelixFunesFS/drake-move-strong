@@ -75,7 +75,7 @@ const Hero = ({
 
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center text-white">
+        <div className="max-w-2xl text-left text-white">
           {eyebrow && (
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -90,7 +90,7 @@ const Hero = ({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight uppercase"
+            className="font-hero text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[0.95] tracking-tighter uppercase"
           >
             {title}
           </motion.h1>
@@ -98,7 +98,7 @@ const Hero = ({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg md:text-xl mb-8 text-gray-200 leading-relaxed max-w-3xl mx-auto"
+            className="text-base md:text-lg mb-8 text-gray-200 leading-relaxed max-w-xl"
           >
             {subtitle}
           </motion.p>
@@ -106,7 +106,7 @@ const Hero = ({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4"
           >
             {primaryCTA && (
               <Button
