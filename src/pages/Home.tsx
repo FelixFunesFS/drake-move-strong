@@ -3,7 +3,7 @@ import CTASection from "@/components/CTASection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle2, Users, Trophy, Target, TrendingUp, Heart } from "lucide-react";
-import heroImage from "@/assets/hero-training-session.png";
+import heroImage from "@/assets/hero-kettlebell-training.jpg";
 import heroImage2 from "@/assets/hero-barbell-deadlift.jpg";
 import heroImage3 from "@/assets/hero-coaching-session.jpg";
 import outdoorTraining from "@/assets/david-outdoor-dumbbell.jpg";
