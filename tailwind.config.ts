@@ -9,10 +9,15 @@ export default {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1240px",
       },
     },
     extend: {
+      fontFamily: {
+        heading: ['Montserrat', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -52,8 +57,13 @@ export default {
           "teal-light": "hsl(var(--drake-teal-light))",
           gold: "hsl(var(--drake-gold))",
           dark: "hsl(var(--drake-dark))",
-          "dark-muted": "hsl(var(--drake-dark-muted))",
+          light: "hsl(var(--drake-light))",
+          "cool-gray": "hsl(var(--drake-cool-gray))",
+          "slate-gray": "hsl(var(--drake-slate-gray))",
         },
+      },
+      boxShadow: {
+        card: '0 4px 12px rgba(0, 0, 0, 0.08)',
       },
       borderRadius: {
         lg: "var(--radius)",

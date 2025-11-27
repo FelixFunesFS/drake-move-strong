@@ -9,41 +9,43 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 220 15% 20%;
+    --foreground: 0 0% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 15% 20%;
+    --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 20%;
+    --popover-foreground: 0 0% 10%;
 
-    --primary: 185 85% 30%;
+    --primary: 184 80% 18%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 15% 96%;
-    --secondary-foreground: 220 15% 20%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
 
-    --muted: 220 15% 96%;
-    --muted-foreground: 220 10% 50%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 42%;
 
-    --accent: 42 90% 60%;
-    --accent-foreground: 220 15% 20%;
+    --accent: 40 87% 61%;
+    --accent-foreground: 0 0% 10%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 90%;
-    --input: 220 15% 90%;
-    --ring: 185 85% 30%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 184 80% 18%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    /* Drake Fitness Brand Colors */
-    --drake-teal: 185 85% 30%;
-    --drake-teal-light: 185 70% 45%;
-    --drake-gold: 42 90% 60%;
-    --drake-dark: 220 20% 10%;
-    --drake-dark-muted: 220 15% 25%;
+    /* Drake Fitness Brand Colors - Exact Hex Values */
+    --drake-teal: 184 80% 18%;        /* #0B4A52 */
+    --drake-teal-light: 182 78% 28%;  /* #10757E */
+    --drake-gold: 40 87% 61%;         /* #F2B544 */
+    --drake-dark: 0 0% 10%;           /* #1A1A1A */
+    --drake-light: 0 0% 96%;          /* #F4F4F4 */
+    --drake-cool-gray: 204 12% 87%;   /* #DDE1E4 */
+    --drake-slate-gray: 0 0% 42%;     /* #6A6A6A */
     
     /* Hero & Feature Backgrounds */
     --hero-gradient: linear-gradient(135deg, hsl(220, 20%, 10%) 0%, hsl(185, 40%, 20%) 100%);
@@ -123,8 +125,12 @@ All colors MUST be HSL.
 
   /* Section Eyebrow Styling */
   .section-eyebrow {
-    @apply text-xs md:text-sm uppercase tracking-[0.15em] font-bold mb-3;
-    letter-spacing: 0.15em;
+    @apply text-xs md:text-sm uppercase tracking-[0.08em] font-bold mb-3;
+  }
+
+  /* ALL CAPS Headings - Tighter Letter Spacing */
+  .heading-caps {
+    @apply uppercase tracking-[0.02em];
   }
 
   /* Marquee Animation */
