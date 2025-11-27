@@ -83,7 +83,7 @@ const Home = () => {
               This isn't a gym. It's a studio built around joint health, mobility, and sustainable strength.
             </p>
           </AnimatedSection>
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[{
             icon: <CheckCircle2 className="w-6 h-6" />,
             title: "Mobility before intensity",
