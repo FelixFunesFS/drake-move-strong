@@ -9,6 +9,7 @@ import heroImage3 from "@/assets/kettlebell-artistic-floor.jpg";
 import outdoorTraining from "@/assets/david-outdoor-dumbbell.jpg";
 import davidCoach from "@/assets/david-goblet-squat-kb-rack.jpg";
 import coachNick from "@/assets/nick-holistic-coaching.jpg";
+import startHereImage from "@/assets/outdoor-sandbag-training.jpg";
 import kbCollection from "@/assets/kettlebell-collection.jpg";
 import maceTraining from "@/assets/david-mace-training.jpg";
 import communityMoment from "@/assets/community-gym-moment.jpg";
@@ -140,12 +141,12 @@ const Home = () => {
                 </Button>
               </div>
               <div className="relative h-full min-h-[400px] md:min-h-[600px]">
-                <OptimizedImage 
-                  src={coachNick} 
-                  alt="Personal coaching session at Drake Fitness" 
-                  className="h-full w-full" 
-                  aspectRatio="auto" 
-                />
+              <OptimizedImage 
+                src={startHereImage} 
+                alt="Personal coaching session at Drake Fitness" 
+                className="h-full w-full" 
+                aspectRatio="auto" 
+              />
               </div>
             </div>
           </div>
