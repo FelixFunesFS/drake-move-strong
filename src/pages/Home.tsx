@@ -18,7 +18,7 @@ import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
 const Home = () => {
   return <main>
-      <Hero title="Move Better. Live Stronger. Stay Pain-Free." subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
+      <Hero title={<>Move Better. <span className="text-accent">Live Stronger.</span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
       text: "Book Your Free Movement Assessment",
       link: "/contact"
     }} secondaryCTA={{
