@@ -125,12 +125,17 @@ All colors MUST be HSL.
 
   /* Section Eyebrow Styling */
   .section-eyebrow {
-    @apply text-xs md:text-sm uppercase tracking-[0.08em] font-bold mb-3;
+    @apply text-xs md:text-sm uppercase tracking-[0.05em] font-bold mb-3;
   }
 
   /* ALL CAPS Headings - Tighter Letter Spacing */
   .heading-caps {
     @apply uppercase tracking-[0.02em];
+  }
+
+  /* Apply font-heading and tight tracking to all headings */
+  h1, h2, h3 {
+    @apply font-heading tracking-tight;
   }
 
   /* Marquee Animation */

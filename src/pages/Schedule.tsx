@@ -83,7 +83,7 @@ const Schedule = () => {
                   {schedule[day as keyof typeof schedule].map((session, index) => (
                     <div
                       key={index}
-                      className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow"
+                      className="bg-white border border-border rounded-xl p-6 shadow-card hover:shadow-lg transition-shadow"
                     >
                       <div className="grid md:grid-cols-12 gap-4 items-center">
                         <div className="md:col-span-2">
@@ -153,7 +153,7 @@ const Schedule = () => {
               { badge: "Live Zoom", desc: "Join remotely from anywhere with real-time coaching." },
               { badge: "Community Strength", desc: "Saturday group session with dynamic energy." },
             ].map((type, index) => (
-              <div key={index} className="bg-card p-4 rounded-lg border border-border">
+              <div key={index} className="bg-white p-4 rounded-xl border border-border shadow-card">
                 <Badge variant={getBadgeVariant(type.badge)} className="mb-2">
                   {type.badge}
                 </Badge>

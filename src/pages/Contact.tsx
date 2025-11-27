@@ -92,7 +92,7 @@ const Contact = () => {
             </div>
 
             <div className="md:col-span-2">
-              <div className="bg-card border border-border rounded-lg p-8 shadow-lg">
+              <div className="bg-white border border-border rounded-xl p-8 shadow-card">
                 <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
@@ -200,7 +200,7 @@ const Contact = () => {
                 a: "The best way is to book a Free Movement Assessment or start our 14-Day Intro Experience.",
               },
             ].map((faq, index) => (
-              <div key={index} className="bg-card p-6 rounded-lg border border-border">
+              <div key={index} className="bg-white p-6 rounded-xl border border-border shadow-card">
                 <h3 className="font-bold text-lg mb-2">{faq.q}</h3>
                 <p className="text-muted-foreground">{faq.a}</p>
               </div>

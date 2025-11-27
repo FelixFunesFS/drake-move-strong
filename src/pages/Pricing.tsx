@@ -154,7 +154,7 @@ const Pricing = () => {
           </p>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {membershipOptions.map((option, index) => (
-              <Card key={index} className={`relative ${option.popular ? "border-primary border-2 shadow-xl" : ""}`}>
+              <Card key={index} className={`relative ${option.popular ? "border-primary border-2 shadow-card" : "shadow-card"}`}>
                 {option.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                     <span className="bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold">
@@ -199,7 +199,7 @@ const Pricing = () => {
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {otherOptions.map((option, index) => (
-              <Card key={index}>
+              <Card key={index} className="shadow-card">
                 <CardHeader>
                   <div className="text-primary mb-2">{option.icon}</div>
                   <CardTitle className="text-xl">{option.name}</CardTitle>
@@ -239,7 +239,7 @@ const Pricing = () => {
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="space-y-4">
               {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="bg-card border border-border rounded-lg px-6">
+                <AccordionItem key={index} value={`item-${index}`} className="bg-white border border-border rounded-xl px-6 shadow-card">
                   <AccordionTrigger className="text-lg font-semibold hover:no-underline">
                     {faq.question}
                   </AccordionTrigger>

@@ -70,7 +70,7 @@ const SuccessStories = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-card p-8 rounded-lg shadow-lg border border-border">
+              <div key={index} className="bg-white p-8 rounded-xl shadow-card border border-border">
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <span key={i} className="text-drake-gold text-xl">★</span>

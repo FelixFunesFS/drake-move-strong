@@ -128,7 +128,7 @@ const FAQ = () => {
                     <AccordionItem
                       key={qIndex}
                       value={`${catIndex}-${qIndex}`}
-                      className="bg-card border border-border rounded-lg px-6"
+                      className="bg-white border border-border rounded-xl px-6 shadow-card"
                     >
                       <AccordionTrigger className="text-lg font-semibold hover:no-underline text-left">
                         {faq.q}
