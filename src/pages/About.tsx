@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/david-mace-training.jpg";
 import davidImage from "@/assets/david-double-kb-storefront.jpg";
 import davidImage2 from "@/assets/david-goblet-squat-kb-rack.jpg";
-import nickImage from "@/assets/nick-sandbag-lunge.jpg";
+import nickImage from "@/assets/coach-nick-portrait.jpg";
 import kbCollection from "@/assets/group-kettlebell-training.jpg";
 import communityMoment from "@/assets/community-gym-moment.jpg";
 import memberYoga from "@/assets/member-yoga-pose.jpg";
