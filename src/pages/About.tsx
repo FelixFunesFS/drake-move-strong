@@ -108,20 +108,20 @@ const About = () => {
               <div className="grid md:grid-cols-2 gap-8 items-start">
                 <div className="space-y-4">
                   <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
-                    <OptimizedImage
-                      src={davidImage}
-                      alt="David Drake in front of Drake Fitness studio"
-                      aspectRatio="portrait"
-                      className="shadow-2xl rounded-lg"
-                    />
+                  <OptimizedImage
+                    src={davidImage}
+                    alt="David Drake in front of Drake Fitness studio"
+                    aspectRatio="portrait"
+                    className="shadow-card rounded-lg"
+                  />
                   </motion.div>
                   <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
-                    <OptimizedImage
-                      src={davidImage2}
-                      alt="David Drake demonstrating goblet squat with kettlebells"
-                      aspectRatio="video"
-                      className="shadow-2xl rounded-lg"
-                    />
+                  <OptimizedImage
+                    src={davidImage2}
+                    alt="David Drake demonstrating goblet squat with kettlebells"
+                    aspectRatio="video"
+                    className="shadow-card rounded-lg"
+                  />
                   </motion.div>
                 </div>
                 <div>
@@ -176,7 +176,7 @@ const About = () => {
                     src={nickImage}
                     alt="Coach Nick Poppa demonstrating sandbag training"
                     aspectRatio="portrait"
-                    className="shadow-2xl rounded-lg"
+                    className="shadow-card rounded-lg"
                   />
                 </motion.div>
                 <div className="md:order-1">

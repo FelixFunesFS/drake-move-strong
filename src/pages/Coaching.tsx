@@ -89,7 +89,7 @@ const Coaching = () => {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ scale: 1.02 }}
-                    className="flex items-start space-x-4 p-6 bg-card rounded-lg border border-border"
+                    className="flex items-start space-x-4 p-6 bg-white rounded-xl border border-border shadow-card"
                   >
                     <div className="text-primary flex-shrink-0">{reason.icon}</div>
                     <div>
@@ -140,7 +140,7 @@ const Coaching = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 }}
                   whileHover={{ y: -5 }}
-                  className="text-center p-6 bg-card rounded-lg border border-border"
+                  className="text-center p-6 bg-white rounded-xl border border-border shadow-card"
                 >
                   <div className="text-primary mb-4 flex justify-center">{item.icon}</div>
                   <h3 className="text-xl font-bold mb-3">{item.title}</h3>
@@ -153,7 +153,7 @@ const Coaching = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.6 }}
-              className="mt-12 max-w-3xl mx-auto bg-card p-8 rounded-lg border border-border"
+              className="mt-12 max-w-3xl mx-auto bg-white p-8 rounded-xl border border-border shadow-card"
             >
               <h3 className="text-2xl font-bold text-center mb-4">Additional Benefits</h3>
               <ul className="space-y-3">
@@ -193,7 +193,7 @@ const Coaching = () => {
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               <motion.div
                 whileHover={{ y: -8 }}
-                className="bg-card p-6 rounded-lg shadow-lg border border-border"
+                className="bg-white p-6 rounded-xl shadow-card border border-border"
               >
                 <OptimizedImage
                   src={davidCoach}
@@ -212,7 +212,7 @@ const Coaching = () => {
               </motion.div>
               <motion.div
                 whileHover={{ y: -8 }}
-                className="bg-card p-6 rounded-lg shadow-lg border border-border"
+                className="bg-white p-6 rounded-xl shadow-card border border-border"
               >
                 <OptimizedImage
                   src={nickCoach}

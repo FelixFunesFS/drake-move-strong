@@ -147,7 +147,7 @@ const Classes = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ y: -8, boxShadow: "0 20px 40px -10px rgba(0,0,0,0.2)" }}
-                  className="bg-card rounded-lg overflow-hidden border border-border transition-shadow"
+                  className="bg-white rounded-xl overflow-hidden border border-border shadow-card transition-shadow"
                 >
                   {classItem.image && (
                     <div className="overflow-hidden">
@@ -232,7 +232,7 @@ const Classes = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
-                  className={`${level.color} p-6 rounded-lg border border-border`}
+                  className={`${level.color} p-6 rounded-xl border border-border shadow-card`}
                 >
                   <h3 className="font-bold text-lg mb-2">{level.level}</h3>
                   <p className="text-sm">{level.description}</p>
@@ -249,7 +249,7 @@ const Classes = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
               Not Sure Which Class is <span className="text-primary">Right For You?</span>
             </h2>
-            <div className="max-w-3xl mx-auto bg-card p-8 rounded-lg shadow-lg border border-border text-center">
+            <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-card border border-border text-center">
               <p className="text-lg mb-6">
                 We recommend beginning with <strong>Foundation Flow™</strong> or <strong>Mobility Reset™</strong>. These classes build the groundwork for everything else we do.
               </p>
@@ -276,7 +276,7 @@ const Classes = () => {
             <div className="max-w-3xl mx-auto">
               <Accordion type="single" collapsible className="space-y-4">
                 {faqs.map((faq, index) => (
-                  <AccordionItem key={index} value={`item-${index}`} className="bg-card border border-border rounded-lg px-6">
+                  <AccordionItem key={index} value={`item-${index}`} className="bg-white border border-border rounded-xl px-6 shadow-card">
                     <AccordionTrigger className="text-lg font-semibold hover:no-underline">
                       {faq.question}
                     </AccordionTrigger>

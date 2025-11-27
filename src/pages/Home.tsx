@@ -54,45 +54,51 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-drake-dark text-white section-slant-top">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <p className="section-eyebrow text-drake-gold text-center">OUR DIFFERENCE</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-            What Makes Us <span className="text-drake-gold">Different</span>
-          </h2>
-          <p className="text-xl text-center text-gray-300 mb-12">
-            Mobility-First. Joint-Smart. Results You Can Feel.
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <AnimatedSection animation="fadeInUp">
+            <p className="section-eyebrow text-primary text-center">WHAT MAKES US DIFFERENT</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+              We Focus on <span className="text-primary">What Matters</span>
+            </h2>
+            <p className="text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+              This isn't a gym. It's a studio built around joint health, mobility, and sustainable strength.
+            </p>
+          </AnimatedSection>
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[{
-            icon: <CheckCircle2 className="w-8 h-8" />,
+            icon: <CheckCircle2 className="w-6 h-6" />,
             title: "Mobility before intensity",
             description: "We improve how your joints move before adding load — eliminating pain and preventing injury."
           }, {
-            icon: <Target className="w-8 h-8" />,
+            icon: <Target className="w-6 h-6" />,
             title: "Functional strength that carries into daily life",
             description: "Lift, carry, bend, twist, and move with confidence."
           }, {
-            icon: <Users className="w-8 h-8" />,
+            icon: <Users className="w-6 h-6" />,
             title: "Small classes with real coaching",
             description: "You get attention, guidance, and form corrections every time."
           }, {
-            icon: <TrendingUp className="w-8 h-8" />,
+            icon: <TrendingUp className="w-6 h-6" />,
             title: "Progress tracking that keeps you motivated",
             description: "Assessments every 4–8 weeks so you can see your progress."
           }, {
-            icon: <Heart className="w-8 h-8" />,
+            icon: <Heart className="w-6 h-6" />,
             title: "A supportive, ego-free community",
             description: "We welcome beginners, busy adults, and anyone wanting sustainable results."
           }, {
-            icon: <Trophy className="w-8 h-8" />,
+            icon: <Trophy className="w-6 h-6" />,
             title: "Expert coaching with 20+ years experience",
             description: "Learn from professionals who understand movement mechanics."
-          }].map((feature, index) => <div key={index} className="bg-drake-dark-muted p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-colors">
-                <div className="text-drake-gold mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                <p className="text-gray-300">{feature.description}</p>
-              </div>)}
+          }].map((feature, index) => <AnimatedSection key={index} animation="fadeInUp" delay={index * 0.1}>
+                <div className="bg-white p-8 rounded-xl shadow-card border border-border h-full hover:shadow-xl transition-shadow">
+                  <div className="w-12 h-12 bg-drake-cool-gray rounded-xl flex items-center justify-center text-primary mb-4">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                  <p className="text-muted-foreground">{feature.description}</p>
+                </div>
+              </AnimatedSection>)}
           </div>
         </div>
       </section>
@@ -167,14 +173,21 @@ const Home = () => {
 
       <section className="py-16 md:py-24 bg-drake-dark text-white section-slant-top">
         <div className="container mx-auto px-4">
-          <p className="section-eyebrow text-drake-gold text-center">OUR PROGRAMS</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-            Classes Designed to Help You <span className="text-drake-gold">Move and Feel Your Best</span>
-          </h2>
-          <p className="text-xl text-center text-gray-300 mb-12">
-            Better Movement. Better Strength. Better Life.
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-6">
+            <div className="text-left">
+              <p className="section-eyebrow text-drake-gold mb-2">OUR PROGRAMS</p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-2 uppercase">
+                Classes Designed to Help You <span className="text-drake-gold">Move and Feel Your Best</span>
+              </h2>
+              <p className="text-xl text-gray-300">
+                Better Movement. Better Strength. Better Life.
+              </p>
+            </div>
+            <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark shrink-0">
+              <Link to="/classes">Explore All Classes</Link>
+            </Button>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[{
             name: "Foundation Flow™",
             description: "Beginner-friendly, mobility-first"
@@ -193,15 +206,10 @@ const Home = () => {
           }, {
             name: "Functional Flow Online™",
             description: "Train live from anywhere"
-          }].map((classItem, index) => <div key={index} className="bg-drake-dark-muted p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-colors bg-muted-foreground">
+          }].map((classItem, index) => <div key={index} className="bg-drake-dark-muted p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-colors">
                 <h3 className="text-xl font-bold mb-2">{classItem.name}</h3>
                 <p className="text-gray-300">{classItem.description}</p>
               </div>)}
-          </div>
-          <div className="text-center">
-            <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark">
-              <Link to="/classes">Explore All Classes</Link>
-            </Button>
           </div>
         </div>
       </section>
@@ -217,7 +225,7 @@ const Home = () => {
           </p>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <AnimatedSection animation="fadeInUp" delay={0.1}>
-              <div className="bg-card p-6 rounded-lg shadow-lg border border-border hover:shadow-xl transition-shadow">
+              <div className="bg-white p-6 rounded-xl shadow-card border border-border hover:shadow-xl transition-shadow">
                 <OptimizedImage src={davidCoach} alt="David Drake coaching kettlebell technique" className="w-full rounded-lg mb-4" aspectRatio="video" />
                 <h3 className="text-2xl font-bold mb-2">David Drake</h3>
                 <p className="text-primary font-semibold mb-3">Owner & Head Coach</p>
@@ -230,7 +238,7 @@ const Home = () => {
               </div>
             </AnimatedSection>
             <AnimatedSection animation="fadeInUp" delay={0.2}>
-              <div className="bg-card p-6 rounded-lg shadow-lg border border-border hover:shadow-xl transition-shadow">
+              <div className="bg-white p-6 rounded-xl shadow-card border border-border hover:shadow-xl transition-shadow">
                 <OptimizedImage src={coachNick} alt="Coach Nick Poppa demonstrating sandbag training" className="w-full rounded-lg mb-4" aspectRatio="video" />
                 <h3 className="text-2xl font-bold mb-2">Coach Nick Poppa</h3>
                 <p className="text-primary font-semibold mb-3">Holistic Movement Specialist</p>
@@ -261,7 +269,7 @@ const Home = () => {
             quote: "The coaching here is next-level. It's not just a workout — it's education, support, and real progress.",
             author: "Member, Charleston",
             rating: 5
-          }].map((testimonial, index) => <div key={index} className="bg-card p-8 rounded-lg shadow-lg border border-border">
+          }].map((testimonial, index) => <div key={index} className="bg-white p-8 rounded-xl shadow-card border border-border">
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => <span key={i} className="text-drake-gold text-xl">★</span>)}
                 </div>
