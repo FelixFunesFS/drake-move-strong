@@ -7,9 +7,11 @@ interface CTASectionProps {
   ctaText: string;
   ctaLink: string;
   variant?: "primary" | "gold" | "dark";
+  eyebrow?: string;
+  slanted?: boolean;
 }
 
-const CTASection = ({ title, subtitle, ctaText, ctaLink, variant = "primary" }: CTASectionProps) => {
+const CTASection = ({ title, subtitle, ctaText, ctaLink, variant = "primary", eyebrow, slanted = false }: CTASectionProps) => {
   const bgClasses = {
     primary: "bg-primary",
     gold: "bg-drake-gold",
@@ -29,9 +31,14 @@ const CTASection = ({ title, subtitle, ctaText, ctaLink, variant = "primary" }: 
   };
 
   return (
-    <section className={`${bgClasses[variant]} py-16 md:py-20`}>
+    <section className={`${bgClasses[variant]} py-16 md:py-20 ${slanted ? 'section-slant-top' : ''}`}>
       <div className="container mx-auto px-4 text-center">
-        <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${textClasses[variant]}`}>
+        {eyebrow && (
+          <p className={`section-eyebrow ${variant === "gold" ? "text-drake-dark/70" : "text-gray-400"} mb-2`}>
+            {eyebrow}
+          </p>
+        )}
+        <h2 className={`text-3xl md:text-4xl font-bold mb-4 uppercase ${textClasses[variant]}`}>
           {title}
         </h2>
         {subtitle && (

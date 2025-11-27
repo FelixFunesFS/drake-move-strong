@@ -60,11 +60,8 @@ const SuccessStories = () => {
   return (
     <main>
       <Hero
-        title={
-          <>
-            Real People. <span className="text-drake-gold">Real Results.</span>
-          </>
-        }
+        eyebrow="SUCCESS STORIES"
+        title="Real People. Real Results."
         subtitle="Stories of everyday adults who improved mobility, reduced pain, and built strength that changed their lives."
         backgroundImage={communityImage}
       />
@@ -95,9 +92,10 @@ const SuccessStories = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-muted">
+      <section className="py-16 md:py-24 bg-muted section-slant-top">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          <p className="section-eyebrow text-primary text-center">THE COMMUNITY</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
             Join Our <span className="text-primary">Community</span>
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -121,9 +119,10 @@ const SuccessStories = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-primary text-white">
+      <section className="py-16 md:py-24 bg-primary text-white section-slant-top">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <p className="section-eyebrow text-drake-gold">YOUR TURN</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase">
             Your Success Story <span className="text-drake-gold">Starts Here</span>
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
@@ -133,11 +132,13 @@ const SuccessStories = () => {
       </section>
 
       <CTASection
+        eyebrow="GET STARTED"
         title="Ready to Write Your Own Success Story?"
         subtitle="Join us for a free movement assessment and start your transformation."
         ctaText="Book Free Assessment"
         ctaLink="/contact"
         variant="gold"
+        slanted={true}
       />
     </main>
   );

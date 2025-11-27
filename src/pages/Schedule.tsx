@@ -55,11 +55,8 @@ const Schedule = () => {
   return (
     <main>
       <Hero
-        title={
-          <>
-            Weekly Class <span className="text-drake-gold">Schedule</span>
-          </>
-        }
+        eyebrow="CLASS TIMES"
+        title="Weekly Class Schedule"
         subtitle="All classes are coach-led, mobility-first, and beginner-friendly."
       />
 
@@ -79,7 +76,7 @@ const Schedule = () => {
           <div className="space-y-12">
             {weekDays.map((day) => (
               <div key={day}>
-                <h2 className="text-2xl font-bold mb-6 pb-2 border-b-2 border-primary">
+                <h2 className="text-2xl font-bold mb-6 pb-2 border-b-2 border-primary uppercase">
                   {day}
                 </h2>
                 <div className="space-y-4">
@@ -141,9 +138,10 @@ const Schedule = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-muted">
+      <section className="py-16 md:py-24 bg-muted section-slant-top">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          <p className="section-eyebrow text-primary text-center">CLASS LEVELS</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
             Class Type <span className="text-primary">Guide</span>
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -167,11 +165,13 @@ const Schedule = () => {
       </section>
 
       <CTASection
+        eyebrow="GET STARTED"
         title="Ready to Get Started?"
         subtitle="Book your first class or start with a free movement assessment."
         ctaText="Book Now"
         ctaLink="/contact"
         variant="gold"
+        slanted={true}
       />
     </main>
   );

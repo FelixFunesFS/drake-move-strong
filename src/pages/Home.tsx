@@ -21,11 +21,7 @@ const Home = () => {
   return (
     <main>
       <Hero
-        title={
-          <>
-            Move Better. <span className="text-drake-gold">Live Stronger.</span> Stay Pain-Free.
-          </>
-        }
+        title="Move Better. Live Stronger. Stay Pain-Free."
         subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last."
         primaryCTA={{ text: "Book Your Free Movement Assessment", link: "/contact" }}
         secondaryCTA={{ text: "See Class Schedule", link: "/schedule" }}
@@ -37,8 +33,9 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Not Just a Gym. A <span className="text-primary">Movement Studio</span> for Real Life.
+              <p className="section-eyebrow text-primary">WHY JUST A GYM</p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase">
+                A <span className="text-primary">Movement Studio</span> for Real Life
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
                 Drake Fitness helps adults build strong, mobile, pain-free bodies through a proven blend of mobility training, functional strength, corrective exercise, and expert coaching.
@@ -65,9 +62,10 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-drake-dark text-white">
+      <section className="py-16 md:py-24 bg-drake-dark text-white section-slant-top">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+          <p className="section-eyebrow text-drake-gold text-center">OUR DIFFERENCE</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
             What Makes Us <span className="text-drake-gold">Different</span>
           </h2>
           <p className="text-xl text-center text-gray-300 mb-12">
@@ -116,13 +114,14 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            Who We <span className="text-primary">Help</span>
+          <p className="section-eyebrow text-primary text-center">WHO WE SERVE</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+            If You Feel Stiff, Achy, or Out of Shape...
           </h2>
           <p className="text-xl text-center text-muted-foreground mb-12">
-            If you feel stiff, achy, or out of shape… you're in the right place.
+            You're in the right place.
           </p>
           <div className="max-w-3xl mx-auto bg-card p-8 rounded-lg shadow-lg border border-border">
             <p className="text-lg mb-6">We specialize in helping:</p>
@@ -155,11 +154,12 @@ const Home = () => {
 
       <section className="py-16 md:py-24 bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            The Drake Fitness <span className="text-primary">Method</span>
+          <p className="section-eyebrow text-primary text-center">THE METHOD</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+            A Simple System That <span className="text-primary">Delivers Real Results</span>
           </h2>
           <p className="text-xl text-center text-muted-foreground mb-12">
-            A Simple, Expert-Guided System
+            Expert-Guided Training That Works
           </p>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
@@ -193,11 +193,12 @@ const Home = () => {
 
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            Featured <span className="text-primary">Classes</span>
+          <p className="section-eyebrow text-primary text-center">OUR PROGRAMS</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+            Classes Designed to Help You <span className="text-primary">Move and Feel Your Best</span>
           </h2>
           <p className="text-xl text-center text-muted-foreground mb-12">
-            Classes Designed for Better Movement, Better Strength, Better Life.
+            Better Movement. Better Strength. Better Life.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {[
@@ -222,13 +223,14 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-muted">
+      <section className="py-16 md:py-24 bg-muted section-slant-top">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            Meet Your <span className="text-primary">Coaches</span>
+          <p className="section-eyebrow text-primary text-center">MEET THE TEAM</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+            <span className="text-primary">Coaching You Can Trust</span>
           </h2>
           <p className="text-xl text-center text-muted-foreground mb-12">
-            Coaching Rooted in Experience, Expertise & Care
+            Experience, Expertise & Care
           </p>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <AnimatedSection animation="fadeInUp" delay={0.1}>
@@ -273,7 +275,8 @@ const Home = () => {
 
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+          <p className="section-eyebrow text-primary text-center">RESULTS</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
             Real People. <span className="text-primary">Real Results.</span>
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
@@ -310,7 +313,8 @@ const Home = () => {
 
       <section className="py-16 bg-muted overflow-hidden">
         <div className="container mx-auto px-4 mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">
+          <p className="section-eyebrow text-primary text-center">THE STUDIO</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 uppercase">
             Inside <span className="text-primary">Drake Fitness</span>
           </h2>
           <p className="text-center text-muted-foreground">Real training. Real results. Real community.</p>
@@ -356,10 +360,12 @@ const Home = () => {
       </section>
 
       <CTASection
+        eyebrow="GET STARTED"
         title="You Deserve a Body That Feels Strong, Mobile & Capable."
         ctaText="Book Your Free Movement Assessment"
         ctaLink="/contact"
         variant="gold"
+        slanted={true}
       />
     </main>
   );

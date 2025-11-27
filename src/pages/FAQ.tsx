@@ -110,11 +110,8 @@ const FAQ = () => {
   return (
     <main>
       <Hero
-        title={
-          <>
-            Frequently Asked <span className="text-drake-gold">Questions</span>
-          </>
-        }
+        eyebrow="HELP CENTER"
+        title="Frequently Asked Questions"
         subtitle="Everything you need to know about Drake Fitness, our classes, and how to get started."
       />
 
@@ -123,7 +120,7 @@ const FAQ = () => {
           <div className="max-w-4xl mx-auto space-y-12">
             {faqCategories.map((category, catIndex) => (
               <div key={catIndex}>
-                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary">
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary uppercase">
                   {category.category}
                 </h2>
                 <Accordion type="single" collapsible className="space-y-4">
@@ -148,9 +145,10 @@ const FAQ = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-muted">
+      <section className="py-16 md:py-24 bg-muted section-slant-top">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <p className="section-eyebrow text-primary">NEED MORE HELP?</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase">
             Still Have <span className="text-primary">Questions?</span>
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -160,11 +158,13 @@ const FAQ = () => {
       </section>
 
       <CTASection
+        eyebrow="GET STARTED"
         title="Ready to Get Started?"
         subtitle="Book your free movement assessment and experience the Drake Fitness difference."
         ctaText="Book Free Assessment"
         ctaLink="/contact"
         variant="gold"
+        slanted={true}
       />
     </main>
   );

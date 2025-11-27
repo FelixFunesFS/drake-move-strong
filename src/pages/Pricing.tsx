@@ -111,18 +111,16 @@ const Pricing = () => {
   return (
     <main>
       <Hero
-        title={
-          <>
-            Simple Memberships. <span className="text-drake-gold">Real Results.</span>
-          </>
-        }
+        eyebrow="PRICING"
+        title="Simple Memberships. Real Results."
         subtitle="No hidden fees. No long-term contracts. Just straightforward options designed to help you commit to your health."
       />
 
-      <section className="py-16 md:py-24 bg-primary text-white">
+      <section className="py-16 md:py-24 bg-primary text-white section-slant-top">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Start Here</h2>
+            <p className="section-eyebrow text-drake-gold">BEGIN HERE</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase">Start Here</h2>
             <Card className="bg-drake-gold text-drake-dark border-0">
               <CardHeader>
                 <CardTitle className="text-3xl">14-Day Intro Experience</CardTitle>
@@ -145,9 +143,10 @@ const Pricing = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+          <p className="section-eyebrow text-primary text-center">MEMBERSHIPS</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
             Choose Your <span className="text-primary">Path</span>
           </h2>
           <p className="text-xl text-center text-muted-foreground mb-12">
@@ -192,9 +191,10 @@ const Pricing = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-muted">
+      <section className="py-16 md:py-24 bg-muted section-slant-top">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          <p className="section-eyebrow text-primary text-center">FLEXIBLE OPTIONS</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
             Other Ways to <span className="text-primary">Train</span>
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -230,9 +230,10 @@ const Pricing = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          <p className="section-eyebrow text-primary text-center">QUESTIONS</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
             Common <span className="text-primary">Questions</span>
           </h2>
           <div className="max-w-3xl mx-auto">
@@ -253,11 +254,13 @@ const Pricing = () => {
       </section>
 
       <CTASection
+        eyebrow="GET STARTED"
         title="Ready to Feel Stronger?"
         subtitle="Join us for a free movement assessment and start your journey to better movement."
         ctaText="Book Now"
         ctaLink="/contact"
         variant="gold"
+        slanted={true}
       />
     </main>
   );
