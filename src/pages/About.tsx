@@ -22,12 +22,8 @@ const About = () => {
   return (
     <main>
       <Hero
-        eyebrow="Our Purpose"
-        title={
-          <>
-            Why Drake Fitness <span className="text-drake-gold">Exists</span>
-          </>
-        }
+        eyebrow="OUR PURPOSE"
+        title="Why Drake Fitness Exists"
         subtitle="To help adults move better, feel stronger, and stay pain-free for life."
         backgroundImage={heroImage}
       />
@@ -36,12 +32,10 @@ const About = () => {
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">
-                Our <span className="text-primary">Philosophy</span>
+              <p className="section-eyebrow text-primary text-center">OUR PHILOSOPHY</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 uppercase">
+                Movement First. <span className="text-primary">Strength for Life.</span>
               </h2>
-              <h3 className="text-2xl font-bold text-center mb-8 text-primary">
-                Movement First. Strength for Life.
-              </h3>
               <div className="prose prose-lg max-w-none">
                 <p className="text-lg text-muted-foreground mb-6">
                   We don't chase intensity, trends, or exhaustion.<br />
@@ -81,11 +75,12 @@ const About = () => {
       </AnimatedSection>
 
       <AnimatedSection animation="fadeIn">
-        <section className="py-16 md:py-24 bg-muted">
+        <section className="py-16 md:py-24 bg-muted section-slant-top">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-                See Our <span className="text-primary">Coaching Philosophy</span> in Action
+              <p className="section-eyebrow text-primary text-center">SEE IT IN ACTION</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+                Our <span className="text-primary">Coaching Philosophy</span>
               </h2>
               <p className="text-xl text-center text-muted-foreground mb-12">
                 Watch how we help clients move better
@@ -99,10 +94,11 @@ const About = () => {
         </section>
       </AnimatedSection>
 
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            <p className="section-eyebrow text-primary text-center">THE TEAM</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
               Meet Your <span className="text-primary">Coaches</span>
             </h2>
           </AnimatedSection>
@@ -231,9 +227,10 @@ const About = () => {
       </section>
 
       <AnimatedSection animation="fadeInUp">
-        <section className="py-16 md:py-24 bg-muted">
+        <section className="py-16 md:py-24 bg-muted section-slant-top">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <p className="section-eyebrow text-primary text-center">THE SPACE</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
               Inside the <span className="text-primary">Studio</span>
             </h2>
             <p className="text-xl text-center text-muted-foreground mb-12">
@@ -256,11 +253,13 @@ const About = () => {
       </AnimatedSection>
 
       <CTASection
+        eyebrow="GET STARTED"
         title="Ready to Experience the Drake Fitness Difference?"
         subtitle="Book a free movement assessment and discover how we can help you move better, feel stronger, and live pain-free."
         ctaText="Book Free Assessment"
         ctaLink="/contact"
         variant="gold"
+        slanted={true}
       />
     </main>
   );

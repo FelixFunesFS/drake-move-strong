@@ -35,12 +35,8 @@ const Contact = () => {
   return (
     <main>
       <Hero
-        eyebrow="Get in Touch"
-        title={
-          <>
-            We'd Love to Help You <span className="text-drake-gold">Move Better</span>
-          </>
-        }
+        eyebrow="GET IN TOUCH"
+        title="We'd Love to Help You Move Better"
         subtitle="Have questions about our classes, membership, or personal training? Fill out the form below and we'll reach out within 24 hours."
       />
 
@@ -187,9 +183,10 @@ const Contact = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-muted">
+      <section className="py-16 md:py-24 bg-muted section-slant-top">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          <p className="section-eyebrow text-primary text-center">QUESTIONS</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
             Common <span className="text-primary">Questions</span>
           </h2>
           <div className="max-w-3xl mx-auto space-y-6">

@@ -128,12 +128,8 @@ const Classes = () => {
   return (
     <main>
       <Hero
-        eyebrow="Our Programs"
-        title={
-          <>
-            Class Types That Build <span className="text-drake-gold">Strength, Mobility & Confidence</span>
-          </>
-        }
+        eyebrow="OUR PROGRAMS"
+        title="Class Types That Build Strength, Mobility & Confidence"
         subtitle="Every class is coached, structured, and designed for long-term, pain-free progress. We prioritize movement quality over intensity."
         primaryCTA={{ text: "See Full Schedule", link: "/schedule" }}
         backgroundImage={classGroup}
@@ -183,11 +179,12 @@ const Classes = () => {
       </AnimatedSection>
 
       <AnimatedSection animation="fadeIn">
-        <section className="py-16 md:py-24 bg-muted">
+        <section className="py-16 md:py-24 bg-muted section-slant-top">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-                See Our <span className="text-primary">Classes</span> in Action
+              <p className="section-eyebrow text-primary text-center">SEE IT IN ACTION</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+                Our <span className="text-primary">Classes</span> in Action
               </h2>
               <p className="text-xl text-center text-muted-foreground mb-8">
                 Watch a typical class session
@@ -202,9 +199,10 @@ const Classes = () => {
       </AnimatedSection>
 
       <AnimatedSection animation="fadeInUp">
-        <section className="py-16 md:py-24 bg-background">
+        <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <p className="section-eyebrow text-primary text-center">THE EXPERIENCE</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
               Class <span className="text-primary">Gallery</span>
             </h2>
             <p className="text-xl text-center text-muted-foreground mb-12">
@@ -216,9 +214,10 @@ const Classes = () => {
       </AnimatedSection>
 
       <AnimatedSection animation="fadeIn">
-        <section className="py-16 md:py-24 bg-muted">
+        <section className="py-16 md:py-24 bg-muted section-slant-top">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <p className="section-eyebrow text-primary text-center">CLASS LEVELS</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
               Class Type <span className="text-primary">Guide</span>
             </h2>
             <p className="text-xl text-center text-muted-foreground mb-12">
@@ -245,9 +244,9 @@ const Classes = () => {
       </AnimatedSection>
 
       <AnimatedSection animation="fadeInUp">
-        <section className="py-16 md:py-24 bg-background">
+        <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
               Not Sure Which Class is <span className="text-primary">Right For You?</span>
             </h2>
             <div className="max-w-3xl mx-auto bg-card p-8 rounded-lg shadow-lg border border-border text-center">
@@ -268,9 +267,10 @@ const Classes = () => {
       </AnimatedSection>
 
       <AnimatedSection animation="fadeIn">
-        <section className="py-16 md:py-24 bg-muted">
+        <section className="py-16 md:py-24 bg-muted section-slant-top">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            <p className="section-eyebrow text-primary text-center">QUESTIONS</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
               Common <span className="text-primary">Questions</span>
             </h2>
             <div className="max-w-3xl mx-auto">
@@ -292,11 +292,13 @@ const Classes = () => {
       </AnimatedSection>
 
       <CTASection
+        eyebrow="GET STARTED"
         title="Ready to Feel Stronger, Move Better, and Train Smarter?"
         subtitle="Join us for a free movement assessment and start your journey to better movement."
         ctaText="Book Now"
         ctaLink="/contact"
         variant="gold"
+        slanted={true}
       />
     </main>
   );
