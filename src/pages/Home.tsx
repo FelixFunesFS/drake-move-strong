@@ -41,8 +41,8 @@ const Home = () => {
             <AnimatedSection animation="scaleIn" delay={0.2} className="relative">
               <OptimizedImage src={outdoorTraining} alt="Outdoor functional training with kettlebells" className="rounded-lg shadow-2xl h-full min-h-[500px]" aspectRatio="auto" />
               <div className="absolute inset-0 bg-gradient-to-t from-drake-dark/90 via-drake-dark/50 to-transparent rounded-lg flex items-end p-8">
-                <p className="text-white text-2xl md:text-3xl font-bold italic leading-tight">
-                  "Not Just a Gym.<br />A Movement Studio."
+                <p className="text-white text-2xl font-bold italic leading-tight md:text-base">
+                  ​&quot;NOT JUST  A GYM. A MOVEMENT STUDIO.&quot;                  <br />​
                 </p>
               </div>
             </AnimatedSection>
@@ -70,7 +70,9 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 pb-32 bg-drake-dark text-white relative" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' }}>
+      <section className="py-16 md:py-24 pb-32 bg-drake-dark text-white relative" style={{
+      clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)'
+    }}>
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
             <p className="section-eyebrow text-drake-gold text-center">WHAT MAKES US DIFFERENT</p>
@@ -149,12 +151,7 @@ const Home = () => {
                 </Button>
               </div>
               <div className="relative h-full min-h-[400px] md:min-h-[600px]">
-              <OptimizedImage 
-                src={startHereImage} 
-                alt="Personal coaching session at Drake Fitness" 
-                className="h-full w-full" 
-                aspectRatio="auto" 
-              />
+              <OptimizedImage src={startHereImage} alt="Personal coaching session at Drake Fitness" className="h-full w-full" aspectRatio="auto" />
               </div>
             </div>
           </div>
@@ -172,7 +169,10 @@ const Home = () => {
           </p>
           <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto relative">
             {/* Connecting line for desktop */}
-            <div className="hidden md:block absolute top-12 left-[16.67%] right-[16.67%] h-0.5 bg-primary/30" style={{ width: '66.67%', left: '16.67%' }} />
+            <div className="hidden md:block absolute top-12 left-[16.67%] right-[16.67%] h-0.5 bg-primary/30" style={{
+            width: '66.67%',
+            left: '16.67%'
+          }} />
             
             {[{
             number: "1",
