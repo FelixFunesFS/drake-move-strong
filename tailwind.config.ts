@@ -15,6 +15,7 @@ export default {
     extend: {
       fontFamily: {
         heading: ['Montserrat', 'sans-serif'],
+        hero: ['Oswald', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
         sans: ['Inter', 'sans-serif'],
       },
