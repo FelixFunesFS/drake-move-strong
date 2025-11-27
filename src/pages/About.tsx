@@ -16,6 +16,16 @@ import communityMoment from "@/assets/community-gym-moment.jpg";
 import memberYoga from "@/assets/member-yoga-pose.jpg";
 import outdoorKb from "@/assets/outdoor-kettlebell.jpg";
 import coachingSession from "@/assets/coaching-session.jpg";
+import studioKettlebells from "@/assets/studio-kettlebells.jpg";
+import studioDavidStorefront from "@/assets/studio-david-storefront.jpg";
+import studioDavidDogArt from "@/assets/studio-david-dog-art.jpg";
+import studioBarbellPlatform from "@/assets/studio-barbell-platform.jpg";
+import studioTeamPhoto from "@/assets/studio-team-photo.jpg";
+import studioMobilityTraining from "@/assets/studio-mobility-training.jpg";
+import studioFullView from "@/assets/studio-full-view.jpg";
+import studioKettlebellClass from "@/assets/studio-kettlebell-class.jpg";
+import studioFloorExercise from "@/assets/studio-floor-exercise.jpg";
+import studioDavidDog from "@/assets/studio-david-dog.jpg";
 import ImageGallery from "@/components/ImageGallery";
 
 const About = () => {
@@ -382,13 +392,23 @@ const About = () => {
             </p>
             <ImageGallery
               images={[
-                { src: kbCollection, alt: "Drake Fitness kettlebell collection" },
+                { src: studioFullView, alt: "Wide view of Drake Fitness training studio interior" },
+                { src: studioDavidStorefront, alt: "David Drake with sandbag outside Drake Fitness studio" },
+                { src: studioTeamPhoto, alt: "Drake Fitness training group outside the studio" },
+                { src: studioKettlebellClass, alt: "Kettlebell training session in progress" },
+                { src: studioKettlebells, alt: "Professional kettlebell collection at Drake Fitness" },
+                { src: studioBarbellPlatform, alt: "Barbell platform and weight training area" },
+                { src: studioMobilityTraining, alt: "Mobility and flexibility training session" },
+                { src: studioFloorExercise, alt: "Floor-based kettlebell training exercise" },
+                { src: studioDavidDogArt, alt: "David Drake with studio dog and custom artwork" },
+                { src: studioDavidDog, alt: "David Drake with his dog at the studio" },
+                { src: kbCollection, alt: "Group kettlebell training session" },
                 { src: communityMoment, alt: "Community training moment at Drake Fitness" },
                 { src: memberYoga, alt: "Member practicing mobility and yoga" },
                 { src: outdoorKb, alt: "Outdoor kettlebell training session" },
                 { src: coachingSession, alt: "Personal coaching session at Drake Fitness" },
                 { src: davidImage2, alt: "David Drake coaching kettlebell technique" },
-                { src: davidImage, alt: "Drake Fitness studio front" },
+                { src: davidImage, alt: "Drake Fitness storefront with kettlebells" },
                 { src: nickImage, alt: "Coach Nick demonstrating functional training" },
               ]}
             />
