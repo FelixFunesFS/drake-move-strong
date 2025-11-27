@@ -228,7 +228,7 @@ const Home = () => {
             description: "Advanced strength & kettlebell technique"
           }, {
             name: "Mobility Reset™",
-            description: "Recovery & joint health"
+            description: "Recovery-based mobility and flexibility work."
           }, {
             name: "Weekend Warrior™",
             description: "Saturday strength & conditioning"
