@@ -8,7 +8,7 @@ import heroImage2 from "@/assets/david-plank-row-outdoor.jpg";
 import heroImage3 from "@/assets/kettlebell-artistic-floor.jpg";
 import outdoorTraining from "@/assets/david-outdoor-dumbbell.jpg";
 import davidCoach from "@/assets/david-goblet-squat-kb-rack.jpg";
-import coachNick from "@/assets/nick-sandbag-lunge.jpg";
+import coachNick from "@/assets/nick-holistic-coaching.jpg";
 import kbCollection from "@/assets/kettlebell-collection.jpg";
 import maceTraining from "@/assets/david-mace-training.jpg";
 import communityMoment from "@/assets/community-gym-moment.jpg";
