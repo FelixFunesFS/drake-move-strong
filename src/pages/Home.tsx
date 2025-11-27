@@ -28,10 +28,10 @@ import AnimatedSection from "@/components/AnimatedSection";
 const Home = () => {
   return <main>
       <Hero title={<>Move Better.<br /><span className="text-accent">Live Stronger.</span><br />Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
-      text: "Book Your Free Movement Assessment",
+      text: <>BOOK YOUR FREE<br />MOVEMENT ASSESSMENT</>,
       link: "/contact"
     }} secondaryCTA={{
-      text: "See Class Schedule",
+      text: <>SEE CLASS<br />SCHEDULE</>,
       link: "/schedule"
     }} backgroundImages={[heroImage, heroImage2, heroImage3]} autoRotate={true} />
 
