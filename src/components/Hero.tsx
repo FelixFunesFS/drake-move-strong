@@ -47,7 +47,7 @@ const Hero = ({
   }, [hasMultipleImages, images.length, autoRotate]);
 
   return (
-    <section className={cn("relative h-[800px] flex items-center overflow-hidden", className)}>
+    <section className={cn("relative h-[600px] md:h-[700px] lg:h-[800px] flex items-center overflow-hidden", className)}>
       {/* Background Images with Ken Burns Effect */}
       {images.length > 0 ? (
         <div className="absolute inset-0 z-0">
@@ -90,7 +90,7 @@ const Hero = ({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-hero text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[0.95] tracking-tighter uppercase"
+            className="font-hero text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 leading-[0.95] tracking-tighter uppercase"
           >
             {title}
           </motion.h1>
@@ -98,7 +98,7 @@ const Hero = ({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-base md:text-lg mb-8 text-gray-200 leading-relaxed max-w-xl"
+            className="text-sm sm:text-base md:text-lg mb-6 md:mb-8 text-gray-200 leading-relaxed max-w-xl"
           >
             {subtitle}
           </motion.p>
@@ -106,13 +106,13 @@ const Hero = ({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-col xs:flex-row gap-3 md:gap-4"
           >
             {primaryCTA && (
               <Button
                 asChild
                 size="lg"
-                className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-lg px-8 py-6 shadow-[var(--shadow-gold)] hover:scale-105 transition-transform"
+                className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-base md:text-lg px-6 md:px-8 py-5 md:py-6 shadow-[var(--shadow-gold)] hover:scale-105 transition-transform w-full xs:w-auto"
               >
                 <Link to={primaryCTA.link}>{primaryCTA.text}</Link>
               </Button>
@@ -122,7 +122,7 @@ const Hero = ({
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-drake-dark font-semibold text-lg px-8 py-6"
+                className="border-2 border-white text-white hover:bg-white hover:text-drake-dark font-semibold text-base md:text-lg px-6 md:px-8 py-5 md:py-6 w-full xs:w-auto"
               >
                 <Link to={secondaryCTA.link}>{secondaryCTA.text}</Link>
               </Button>
