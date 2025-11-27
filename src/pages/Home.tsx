@@ -99,29 +99,35 @@ const Home = () => {
 
       <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
         <div className="container mx-auto px-4">
-          <p className="section-eyebrow text-primary text-center">WHO WE SERVE</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-            If You Feel Stiff, Achy, or Out of Shape...
-          </h2>
-          <p className="text-xl text-center text-muted-foreground mb-12">
-            You're in the right place.
-          </p>
-          <div className="max-w-3xl mx-auto bg-card p-8 rounded-lg shadow-lg border border-border">
-            <p className="text-lg mb-6">We specialize in helping:</p>
-            <ul className="space-y-3 mb-8">
-              {["Adults 30–65", "Desk workers with back/hip stiffness", "Busy parents", "Former athletes", "People with past injuries", "Anyone wanting long-term, pain-free strength"].map((item, index) => <li key={index} className="flex items-start">
-                  <CheckCircle2 className="w-5 h-5 text-primary mr-3 mt-1 flex-shrink-0" />
-                  <span className="text-lg">{item}</span>
-                </li>)}
-            </ul>
-            <p className="text-lg font-semibold text-center mb-6">
-              No experience needed. We meet you where you are.
-            </p>
-            <div className="text-center">
-              <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <div className="bg-card p-8 md:p-10 rounded-lg shadow-card border border-border">
+              <p className="section-eyebrow text-primary mb-4">START HERE</p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase leading-tight">
+                If You Feel Stiff, Achy, or Out of Shape...<br />
+                <span className="text-primary">You're in the Right Place.</span>
+              </h2>
+              <p className="text-lg mb-6 text-muted-foreground">We specialize in helping:</p>
+              <ul className="space-y-3 mb-8">
+                {["Adults 30–65 with limited time", "Desk workers with back/hip stiffness", "Busy parents who need flexibility & results", "Former athletes seeking longevity", "People returning from injury", "Anyone wanting long-term, pain-free strength"].map((item, index) => <li key={index} className="flex items-start">
+                    <CheckCircle2 className="w-5 h-5 text-primary mr-3 mt-1 flex-shrink-0" />
+                    <span className="text-base">{item}</span>
+                  </li>)}
+              </ul>
+              <p className="text-base font-semibold mb-6">
+                No experience needed. No assessments. No pressure.
+              </p>
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 w-full md:w-auto">
                 <Link to="/contact">Start Your 14-Day Intro Experience</Link>
               </Button>
             </div>
+            <AnimatedSection animation="scaleIn" delay={0.2}>
+              <OptimizedImage 
+                src={coachNick} 
+                alt="Personal coaching session at Drake Fitness" 
+                className="rounded-lg shadow-2xl h-full min-h-[500px]" 
+                aspectRatio="auto" 
+              />
+            </AnimatedSection>
           </div>
         </div>
       </section>
