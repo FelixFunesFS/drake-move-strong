@@ -58,8 +58,8 @@ const Home = () => {
                 Every session is led by <strong>David Drake</strong> or <strong>Coach Nick</strong>, using a science-based method that improves how your body moves, how it feels, and how it performs — not just in the gym, but in daily life.
               </p>
               <div className="border-l-4 border-drake-gold bg-drake-gold/10 p-6 rounded-r-lg mb-6">
-                <p className="text-lg text-foreground font-semibold">Our Mission 
-Build bodies that move well, feel great, and last a lifetime.</p>
+                <p className="text-lg text-foreground font-semibold">Our Mission</p>
+                <p className="text-base text-foreground italic">Build bodies that move well, feel great, and last a lifetime.</p>
               </div>
               <Button asChild size="lg" className="mt-6 bg-primary hover:bg-primary/90">
                 <Link to="/about">Meet the Team</Link>
