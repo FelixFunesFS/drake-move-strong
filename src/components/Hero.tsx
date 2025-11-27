@@ -47,7 +47,7 @@ const Hero = ({
   }, [hasMultipleImages, images.length, autoRotate]);
 
   return (
-    <section className={cn("relative min-h-[600px] md:min-h-[700px] flex items-center overflow-hidden", className)}>
+    <section className={cn("relative h-[800px] flex items-center overflow-hidden", className)}>
       {/* Background Images with Ken Burns Effect */}
       {images.length > 0 ? (
         <div className="absolute inset-0 z-0">
@@ -67,7 +67,7 @@ const Hero = ({
               />
             </motion.div>
           ))}
-          <div className="absolute inset-0 bg-gradient-to-r from-drake-dark/90 via-drake-dark/70 to-drake-dark/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
         </div>
       ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-drake-dark via-drake-dark-muted to-primary/20" />
