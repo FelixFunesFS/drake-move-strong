@@ -107,10 +107,10 @@ const Hero = ({
           delay: 0.6
         }} className="flex flex-col sm:flex-row gap-3 md:gap-4 items-start max-w-xl">
             {primaryCTA && <Button asChild size="lg" className="uppercase bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-base md:text-lg px-8 py-5 md:py-6 shadow-[var(--shadow-gold)] hover:scale-105 transition-transform w-full sm:w-auto">
-                <Link to={primaryCTA.link} className="text-xs text-center">{primaryCTA.text}</Link>
+                <Link to={primaryCTA.link} className="text-center text-sm">{primaryCTA.text}</Link>
               </Button>}
             {secondaryCTA && <Button asChild size="lg" variant="outline" className="uppercase bg-transparent border-2 border-white text-white hover:bg-white/10 font-semibold text-base md:text-lg px-4 md:px-6 py-5 md:py-6 w-auto">
-                <Link to={secondaryCTA.link} className="text-xs text-center px-[30px]">{secondaryCTA.text}</Link>
+                <Link to={secondaryCTA.link} className="text-center px-[30px] text-sm">{secondaryCTA.text}</Link>
               </Button>}
           </motion.div>
         </div>
