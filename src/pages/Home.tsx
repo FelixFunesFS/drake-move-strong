@@ -231,7 +231,7 @@ const Home = () => {
             description: "Recovery-based mobility and flexibility work."
           }, {
             name: "Weekend Warrior™",
-            description: "Saturday strength & conditioning"
+            description: "Saturday full body strength & conditioning."
           }, {
             name: "Functional Flow Online™",
             description: "Train live from anywhere"
