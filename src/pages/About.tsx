@@ -26,6 +26,15 @@ import studioFullView from "@/assets/studio-full-view.jpg";
 import studioKettlebellClass from "@/assets/studio-kettlebell-class.jpg";
 import studioFloorExercise from "@/assets/studio-floor-exercise.jpg";
 import studioDavidDog from "@/assets/studio-david-dog.jpg";
+import studioDualTraining from "@/assets/studio-dual-training.jpg";
+import studioOutdoorBanner from "@/assets/studio-outdoor-banner.jpg";
+import studioNickDavidTogether from "@/assets/studio-nick-david-together.jpg";
+import studioLargeGroup from "@/assets/studio-large-group.jpg";
+import studioTeamThree from "@/assets/studio-team-three.jpg";
+import studioTrainingWithDog from "@/assets/studio-training-with-dog.jpg";
+import studioGroupSquats from "@/assets/studio-group-squats.jpg";
+import studioKbCloseup from "@/assets/studio-kb-closeup.jpg";
+import studioGroupOverhead from "@/assets/studio-group-overhead.jpg";
 import ImageGallery from "@/components/ImageGallery";
 
 const About = () => {
@@ -393,13 +402,22 @@ const About = () => {
             <ImageGallery
               images={[
                 { src: studioFullView, alt: "Wide view of Drake Fitness training studio interior" },
+                { src: studioNickDavidTogether, alt: "David Drake and Nick Poppa coaching team" },
+                { src: studioLargeGroup, alt: "Large training group with studio dog inside Drake Fitness" },
+                { src: studioTeamThree, alt: "Drake Fitness coaching team of three" },
                 { src: studioDavidStorefront, alt: "David Drake with sandbag outside Drake Fitness studio" },
+                { src: studioOutdoorBanner, alt: "Outdoor training with Drake Fitness banner" },
                 { src: studioTeamPhoto, alt: "Drake Fitness training group outside the studio" },
-                { src: studioKettlebellClass, alt: "Kettlebell training session in progress" },
+                { src: studioGroupSquats, alt: "Group kettlebell squats with studio dog watching" },
+                { src: studioGroupOverhead, alt: "Group overhead kettlebell training session" },
+                { src: studioDualTraining, alt: "Dual kettlebell training session in progress" },
+                { src: studioKettlebellClass, alt: "Kettlebell training class demonstration" },
+                { src: studioTrainingWithDog, alt: "Training session with studio dog supervising" },
                 { src: studioKettlebells, alt: "Professional kettlebell collection at Drake Fitness" },
                 { src: studioBarbellPlatform, alt: "Barbell platform and weight training area" },
                 { src: studioMobilityTraining, alt: "Mobility and flexibility training session" },
                 { src: studioFloorExercise, alt: "Floor-based kettlebell training exercise" },
+                { src: studioKbCloseup, alt: "Close-up of kettlebell exercise form" },
                 { src: studioDavidDogArt, alt: "David Drake with studio dog and custom artwork" },
                 { src: studioDavidDog, alt: "David Drake with his dog at the studio" },
                 { src: kbCollection, alt: "Group kettlebell training session" },
