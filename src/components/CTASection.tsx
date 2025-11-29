@@ -44,7 +44,7 @@ const CTASection = ({
         {subtitle && <p className={`text-base md:text-lg lg:text-xl mb-6 md:mb-8 max-w-2xl mx-auto ${variant === "gold" ? "text-drake-dark/80" : "text-gray-200"}`}>
             {subtitle}
           </p>}
-        <Button asChild size="lg" className={`${buttonClasses[variant]} font-semibold text-base md:text-lg px-6 md:px-8 py-5 md:py-6 w-full sm:w-auto`}>
+        <Button asChild size="lg" className={`${buttonClasses[variant]} font-semibold text-base md:text-lg px-6 md:px-8 py-5 md:py-6 w-full sm:w-auto text-balance`}>
           <Link to={ctaLink}>{ctaText}</Link>
         </Button>
       </div>

@@ -71,7 +71,7 @@ const Coaching = () => {
           </>
         }
         subtitle="Experience expert coaching designed specifically for your body, your history, and your goals. Move better and get stronger with 100% focus on you."
-        primaryCTA={{ text: "Book a 1:1 Consultation", link: "/contact" }}
+        primaryCTA={{ text: "Book 1:1 Consultation", link: "/contact" }}
         backgroundImage={oneOnOneCoaching}
       />
 
@@ -301,8 +301,8 @@ const Coaching = () => {
                 Book a consultation to discuss your goals, assess your movement, and build a plan that works for you. No pressure, just a conversation about your health.
               </p>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-lg px-8 py-6">
-                  <Link to="/contact">Book a 1:1 Consultation</Link>
+                <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-lg px-8 py-6 text-balance">
+                  <Link to="/contact">Book 1:1 Consultation</Link>
                 </Button>
               </motion.div>
             </div>
