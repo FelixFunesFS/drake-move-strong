@@ -8,6 +8,7 @@ interface OptimizedImageProps {
   aspectRatio?: "video" | "square" | "portrait" | "auto";
   priority?: boolean;
   objectPosition?: string;
+  transparent?: boolean;
 }
 
 const OptimizedImage = ({ 
@@ -16,7 +17,8 @@ const OptimizedImage = ({
   className, 
   aspectRatio = "auto",
   priority = false,
-  objectPosition
+  objectPosition,
+  transparent = false
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -29,7 +31,8 @@ const OptimizedImage = ({
 
   return (
     <div className={cn(
-      "relative overflow-hidden bg-muted",
+      "relative overflow-hidden",
+      !transparent && "bg-muted",
       aspectRatioClasses[aspectRatio],
       className
     )}>
