@@ -49,6 +49,7 @@ const About = () => {
         }
         subtitle="To help adults move better, feel stronger, and stay pain-free for life."
         backgroundImage={heroImage}
+        accentedSubtitle={true}
       />
 
       <AnimatedSection animation="fadeInUp">

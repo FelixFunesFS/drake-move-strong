@@ -17,6 +17,7 @@ interface HeroProps {
   autoRotate?: boolean;
   className?: string;
   eyebrow?: string;
+  accentedSubtitle?: boolean;
 }
 const Hero = ({
   title,
@@ -27,7 +28,8 @@ const Hero = ({
   backgroundImages,
   autoRotate = true,
   className,
-  eyebrow
+  eyebrow,
+  accentedSubtitle = false
 }: HeroProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = backgroundImages || (backgroundImage ? [backgroundImage] : []);
@@ -93,7 +95,10 @@ const Hero = ({
         }} transition={{
           duration: 0.8,
           delay: 0.4
-        }} className="text-sm sm:text-base md:text-lg mb-6 md:mb-8 text-gray-200 leading-relaxed max-w-xl">
+        }} className={cn(
+          "text-sm sm:text-base md:text-lg mb-6 md:mb-8 text-gray-200 leading-relaxed max-w-xl",
+          accentedSubtitle && "border-l-4 border-drake-gold pl-6"
+        )}>
             {subtitle}
           </motion.p>
           <motion.div initial={{
