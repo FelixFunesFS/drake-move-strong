@@ -40,8 +40,7 @@ const Home = () => {
             <AnimatedSection animation="scaleIn" delay={0.2} className="relative">
               <OptimizedImage src={outdoorTraining} alt="Outdoor functional training with kettlebells" className="rounded-lg shadow-2xl h-full min-h-[500px]" aspectRatio="auto" />
               <div className="absolute inset-0 bg-gradient-to-t from-drake-dark/90 via-drake-dark/50 to-transparent rounded-lg flex items-end p-8">
-                <p className="font-hero text-white text-2xl font-bold leading-tight md:text-lg">
-                  ​&quot;NOT JUST  A GYM. A MOVEMENT STUDIO.&quot;                  <br />​
+                <p className="font-hero text-white text-2xl font-bold leading-tight md:text-lg">​"NOT JUST A GYM. A MOVEMENT STUDIO."<br />​
                 </p>
               </div>
             </AnimatedSection>
