@@ -194,7 +194,7 @@ const About = () => {
                       Charleston's Best Personal Trainer (City Paper)
                     </p>
                     <div className="space-y-4 text-sm md:text-base text-gray-300">
-                      <p>​David brings more than 25 years of experience helping people move better, eliminate pain, and build strength that supports real life. With formal training in corrective exercise, mobility development, and StrongFirst-style kettlebell methodology, he coaches with the precision of a body mechanic—someone who understands how the body is designed to move and how to restore that natural function when injuries, stress, or modern habits get in the way.  His approach blends skill, science, and practical strength work to create long-term results that keep clients capable, confident, and resilient. <strong className="text-white">25 years</strong>​
+                      <p>David brings more than <strong className="text-white">25 years</strong> of experience helping people <strong className="text-white">move better</strong>, <strong className="text-white">eliminate pain</strong>, and <strong className="text-white">build strength</strong> that supports real life. With formal training in corrective exercise, mobility development, and StrongFirst-style kettlebell methodology, he coaches with the precision of a <strong className="text-white">body mechanic</strong>—someone who understands how the body is designed to move and how to restore that natural function when injuries, stress, or modern habits get in the way. His approach blends skill, science, and practical strength work to create long-term results that keep clients capable, confident, and resilient.
                       </p>
                       
                     </div>
