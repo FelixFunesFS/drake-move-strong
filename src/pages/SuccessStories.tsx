@@ -137,7 +137,7 @@ const SuccessStories = () => {
         subtitle="Join us for a free movement assessment and start your transformation."
         ctaText="Book Free Assessment"
         ctaLink="/contact"
-        variant="gold"
+        variant="primary"
         slanted={true}
       />
     </main>

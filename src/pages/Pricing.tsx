@@ -209,7 +209,7 @@ movement assessment. A perfect low-risk way to begin your journey with us.</p>
         </div>
       </section>
 
-      <CTASection eyebrow="GET STARTED" title="Ready to Feel Stronger?" subtitle="Join us for a free movement assessment and start your journey to better movement." ctaText="Book Now" ctaLink="/contact" variant="gold" slanted={true} />
+      <CTASection eyebrow="GET STARTED" title="Ready to Feel Stronger?" subtitle="Join us for a free movement assessment and start your journey to better movement." ctaText="Book Now" ctaLink="/contact" variant="primary" slanted={true} />
     </main>;
 };
 export default Pricing;

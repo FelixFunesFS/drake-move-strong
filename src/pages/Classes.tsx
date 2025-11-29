@@ -283,7 +283,7 @@ const Classes = () => {
         subtitle="Join us for a free movement assessment and start your journey to better movement."
         ctaText="Book Now"
         ctaLink="/contact"
-        variant="gold"
+        variant="primary"
         slanted={true}
       />
     </main>

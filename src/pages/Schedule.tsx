@@ -173,7 +173,7 @@ const Schedule = () => {
         subtitle="Book your first class or start with a free movement assessment."
         ctaText="Book Now"
         ctaLink="/contact"
-        variant="gold"
+        variant="primary"
         slanted={true}
       />
     </main>
