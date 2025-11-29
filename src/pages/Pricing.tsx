@@ -92,7 +92,7 @@ movement assessment. A perfect low-risk way to begin your journey with us.</p>
                   <p className="text-white/70 text-sm">No commitment required</p>
                 </div>
               </div>
-              <div className="md:col-span-2 text-center md:text-right md:border-l md:border-white/20 md:pl-8">
+              <div className="md:col-span-2 text-center md:border-l md:border-white/20 md:pl-8">
                 <div className="text-6xl md:text-7xl font-bold text-white mb-2">$49</div>
                 <p className="text-sm uppercase tracking-wide font-semibold text-accent text-center">One-Time Payment</p>
               </div>
