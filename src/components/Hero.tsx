@@ -112,7 +112,7 @@ const Hero = ({
                 <Link to={primaryCTA.link} className="text-center py-[34px] text-sm">{primaryCTA.text}</Link>
               </Button>}
             {secondaryCTA && <Button asChild size="lg" variant="outline" className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-semibold text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 w-full sm:w-auto">
-                <Link to={secondaryCTA.link} className="text-center py-[34px] text-sm">{secondaryCTA.text}</Link>
+                <Link to={secondaryCTA.link} className="text-center text-sm py-[31px]">{secondaryCTA.text}</Link>
               </Button>}
           </motion.div>
         </div>
