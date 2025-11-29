@@ -44,6 +44,7 @@ const Home = () => {
                 className="shadow-2xl w-full h-full min-h-[400px] md:min-h-[500px] object-cover" 
                 aspectRatio="auto"
                 transparent={true}
+                hideLoadingPlaceholder={true}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-drake-dark/90 via-drake-dark/50 to-transparent flex items-end p-6 md:p-8">
                 <p className="font-hero text-white text-xl md:text-2xl font-bold leading-tight">"NOT JUST A GYM. A MOVEMENT STUDIO."</p>
