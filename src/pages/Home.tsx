@@ -26,11 +26,11 @@ import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
 const Home = () => {
   return <main>
-      <Hero title={<>Move Better.<br /><span className="text-accent">Live Stronger.</span><br />Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
-      text: <>BOOK YOUR FREE<br />MOVEMENT ASSESSMENT</>,
+      <Hero title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
+      text: <>BOOK YOUR FREE<span className="hidden sm:inline"><br /></span> MOVEMENT ASSESSMENT</>,
       link: "/contact"
     }} secondaryCTA={{
-      text: <>SEE CLASS<br />SCHEDULE</>,
+      text: <>SEE CLASS<span className="hidden sm:inline"><br /></span> SCHEDULE</>,
       link: "/schedule"
     }} backgroundImages={[heroImage2, heroImage3]} autoRotate={true} />
 
@@ -324,14 +324,14 @@ const Home = () => {
           <p className="text-center text-muted-foreground">Real training. Real results. Real community.</p>
         </div>
         <Marquee speed="slow" pauseOnHover={true}>
-          <OptimizedImage src={coachingSession} alt="Battle rope training with personal coaching" className="h-80 w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={oneOnOneCoaching} alt="One-on-one coaching session at Drake Fitness" className="h-80 w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={kettlebellFormCheck} alt="Form check during sled training" className="h-80 w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={groupTraining} alt="Group training class at Drake Fitness studio" className="h-80 w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={mobilityClass} alt="Mobility and recovery equipment at Drake Fitness" className="h-80 w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={outdoorTrainingNew} alt="Outdoor group training session" className="h-80 w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={davidOutside} alt="David Drake outdoor functional training" className="h-80 w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={oneOnOne} alt="Member with kettlebells at Drake Fitness" className="h-80 w-96 rounded-lg mx-2" aspectRatio="auto" />
+          <OptimizedImage src={coachingSession} alt="Battle rope training with personal coaching" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
+          <OptimizedImage src={oneOnOneCoaching} alt="One-on-one coaching session at Drake Fitness" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
+          <OptimizedImage src={kettlebellFormCheck} alt="Form check during sled training" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
+          <OptimizedImage src={groupTraining} alt="Group training class at Drake Fitness studio" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
+          <OptimizedImage src={mobilityClass} alt="Mobility and recovery equipment at Drake Fitness" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
+          <OptimizedImage src={outdoorTrainingNew} alt="Outdoor group training session" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
+          <OptimizedImage src={davidOutside} alt="David Drake outdoor functional training" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
+          <OptimizedImage src={oneOnOne} alt="Member with kettlebells at Drake Fitness" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
         </Marquee>
       </section>
 
