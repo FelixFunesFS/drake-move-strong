@@ -72,8 +72,8 @@ const Pricing = () => {
   return <main>
       <Hero eyebrow="PRICING" title={<>Simple Memberships.<br /><span className="text-drake-gold">Real Results.</span></>} subtitle="No hidden fees. No long-term contracts. Just straightforward options designed to help you commit to your health." backgroundImage={pricingKettlebellRack} className="h-[450px] md:h-[400px] lg:h-[450px]" />
 
-      <section className="py-16 md:py-24 bg-primary text-white section-slant-top">
-        <div className="container mx-auto px-4">
+      <section className="py-16 md:py-24 text-white section-slant-top bg-muted">
+        <div className="container mx-auto px-4 bg-primary-foreground">
           <div className="max-w-5xl mx-auto">
             <div className="bg-primary border-2 border-white/10 rounded-2xl p-8 md:p-12 grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
               <div className="md:col-span-3 space-y-6">
