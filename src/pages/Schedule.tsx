@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Info } from "lucide-react";
+import scheduleCommunityImage from "@/assets/schedule-community-group.jpg";
 
 const Schedule = () => {
   const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -58,6 +59,8 @@ const Schedule = () => {
         eyebrow="CLASS TIMES"
         title="Weekly Class Schedule"
         subtitle="All classes are coach-led, mobility-first, and beginner-friendly."
+        backgroundImage={scheduleCommunityImage}
+        className="h-[400px] md:h-[500px] lg:h-[600px]"
       />
 
       <section className="py-8 md:py-12 bg-primary text-white">
