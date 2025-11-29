@@ -51,7 +51,7 @@ const Contact = () => {
                     <MapPin className="w-5 h-5 mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-semibold mb-1">Visit Us</p>
-                      <p className="text-sm">2 Avondale Ave<br />Charleston, SC 29407</p>
+                      <p className="text-sm">2 Avondale Ave<span className="hidden sm:inline"><br /></span><span className="sm:hidden"> </span>Charleston, SC 29407</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">

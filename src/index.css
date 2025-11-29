@@ -101,6 +101,26 @@ All colors MUST be HSL.
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Global overflow protection for mobile */
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Ensure media never exceeds container */
+  img, video, iframe {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Prevent text overflow from long words */
+  p, h1, h2, h3, h4, h5, h6, span, a, li, td {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 }
 

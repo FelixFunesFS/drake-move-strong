@@ -61,8 +61,7 @@ const About = () => {
                 <div>
                   <p className="section-eyebrow text-primary">THE DRAKE FITNESS PHILOSOPHY</p>
                   <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase leading-tight">
-                    Movement First.<br />
-                    Strength For <span className="text-primary">Life</span>.
+                    Movement First.<span className="hidden sm:inline"><br /></span> Strength For <span className="text-primary">Life</span>.
                   </h2>
                   <p className="text-base md:text-lg text-muted-foreground mb-8 border-l-4 border-drake-gold pl-6">
                     We don't chase intensity, trends, or exhaustion. We chase <strong>movement quality</strong>, <strong>joint health</strong>, and <strong>sustainable strength</strong> that helps you feel better and perform better in real life.
