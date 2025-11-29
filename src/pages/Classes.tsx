@@ -12,9 +12,16 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import classGroup from "@/assets/class-group.jpg";
 import mobilityClass from "@/assets/mobility-class.jpg";
 import kbStrong from "@/assets/kb-strong.jpg";
-import groupTraining from "@/assets/group-training.jpg";
-import kettlebellTraining from "@/assets/kettlebell-training.jpg";
-import kettlebellFormCheck from "@/assets/kettlebell-form-check.jpg";
+import classesGallery1 from "@/assets/classes-gallery-1.jpg";
+import classesGallery2 from "@/assets/classes-gallery-2.jpg";
+import classesGallery3 from "@/assets/classes-gallery-3.jpg";
+import classesGallery4 from "@/assets/classes-gallery-4.jpg";
+import classesGallery5 from "@/assets/classes-gallery-5.jpg";
+import classesGallery6 from "@/assets/classes-gallery-6.jpg";
+import classesGallery7 from "@/assets/classes-gallery-7.jpg";
+import classesGallery8 from "@/assets/classes-gallery-8.jpg";
+import classesGallery9 from "@/assets/classes-gallery-9.jpg";
+import classesGallery10 from "@/assets/classes-gallery-10.jpg";
 
 const Classes = () => {
   const classTypes = [
@@ -117,12 +124,16 @@ const Classes = () => {
   ];
 
   const galleryImages = [
-    { src: classGroup, alt: "Group class training session" },
-    { src: groupTraining, alt: "Functional group training" },
-    { src: kettlebellTraining, alt: "Kettlebell training technique" },
-    { src: kettlebellFormCheck, alt: "Coach checking kettlebell form" },
-    { src: kbStrong, alt: "KB Strong advanced class" },
-    { src: mobilityClass, alt: "Mobility reset class" },
+    { src: classesGallery1, alt: "Two members performing kettlebell overhead presses in studio" },
+    { src: classesGallery2, alt: "Drake Fitness community group photo with members and coaches" },
+    { src: classesGallery3, alt: "Group kettlebell goblet squats with coach supervision and studio dog" },
+    { src: classesGallery4, alt: "Three members performing synchronized kettlebell presses with dog watching" },
+    { src: classesGallery5, alt: "Two female members doing Turkish get-ups with kettlebells" },
+    { src: classesGallery6, alt: "Group class performing kettlebell goblet squats with coach instruction" },
+    { src: classesGallery7, alt: "Outdoor training session with women at Drake Fitness studio exterior" },
+    { src: classesGallery8, alt: "Group photo outside Drake Fitness building with Strength Movement Purpose sign" },
+    { src: classesGallery9, alt: "Large outdoor group photo with members, coaches, and dogs" },
+    { src: classesGallery10, alt: "Studio training session with members and dog in background" },
   ];
 
   return (
