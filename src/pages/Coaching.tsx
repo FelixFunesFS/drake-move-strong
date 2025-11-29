@@ -88,7 +88,7 @@ const Coaching = () => {
                           <Icon className="w-6 h-6 text-primary" />
                         </div>
                         <div>
-                          <h3 className="font-bold text-lg text-foreground mb-1">
+                          <h3 className="font-hero font-bold text-lg text-foreground mb-1 uppercase">
                             {reason.title}
                           </h3>
                           <p className="text-muted-foreground">
@@ -199,7 +199,7 @@ const Coaching = () => {
           }} transition={{
             delay: 0.6
           }} className="mt-12 max-w-3xl mx-auto bg-white p-8 rounded-xl border border-border shadow-card">
-              <h3 className="text-2xl font-bold text-center mb-4">Additional Benefits</h3>
+              <h3 className="font-hero text-2xl font-bold text-center mb-4 uppercase">Additional Benefits</h3>
               <ul className="space-y-3">
                 {["Movement assessment", "Corrective mobility work", "Functional strength training", "Technique refinement", "Lifestyle + recovery guidance", "Optional homework exercises"].map((benefit, index) => <motion.li key={index} initial={{
                 opacity: 0,
@@ -233,7 +233,7 @@ const Coaching = () => {
               y: -8
             }} className="bg-white p-6 rounded-xl shadow-card border border-border">
                 <OptimizedImage src={davidCoach} alt="David Drake in front of Drake Fitness studio" aspectRatio="video" className="mb-4 rounded-lg" />
-                <h3 className="text-2xl font-bold mb-2">David Drake</h3>
+                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">David Drake</h3>
                 <p className="text-primary font-semibold mb-3">Owner & Head Coach</p>
                 <p className="text-muted-foreground mb-4">
                   Specializing in mobility, corrective exercise, and functional strength training strategies.
@@ -246,7 +246,7 @@ const Coaching = () => {
               y: -8
             }} className="bg-white p-6 rounded-xl shadow-card border border-border">
                 <OptimizedImage src={nickCoach} alt="Coach Nick Poppa demonstrating sandbag training" aspectRatio="video" className="mb-4 rounded-lg" />
-                <h3 className="text-2xl font-bold mb-2">Coach Nick</h3>
+                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Coach Nick</h3>
                 <p className="text-primary font-semibold mb-3">Holistic Movement Specialist</p>
                 <p className="text-muted-foreground mb-4">
                   Expert in bridging rehabilitation and performance. Patience and results can coexist.

@@ -154,7 +154,7 @@ const Classes = () => {
                   )}
                    <div className="p-5 md:p-6">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 gap-2">
-                      <h3 className="text-xl md:text-2xl font-bold">{classItem.name}</h3>
+                      <h3 className="font-hero text-xl md:text-2xl font-bold uppercase">{classItem.name}</h3>
                       <Badge variant={classItem.badgeVariant} className="shrink-0 self-start sm:ml-2 text-xs">
                         {classItem.badge}
                       </Badge>

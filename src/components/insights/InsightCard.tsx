@@ -28,7 +28,7 @@ const InsightCard = ({ post }: InsightCardProps) => {
       </div>
 
       <div className="p-6">
-        <h3 className="font-semibold text-xl mb-2 group-hover:text-primary transition-colors line-clamp-2">
+        <h3 className="font-hero font-semibold text-xl mb-2 uppercase group-hover:text-primary transition-colors line-clamp-2">
           {post.title}
         </h3>
         

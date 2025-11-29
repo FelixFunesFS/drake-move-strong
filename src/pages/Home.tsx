@@ -233,7 +233,7 @@ const Home = () => {
             name: "Functional Flow Online™",
             description: "Train live from anywhere."
           }].map((classItem, index) => <div key={index} className="bg-drake-dark-muted p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-colors">
-                <h3 className="text-xl font-bold mb-2 text-drake-gold">{classItem.name}</h3>
+                <h3 className="font-hero text-xl font-bold mb-2 text-drake-gold uppercase">{classItem.name}</h3>
                 <p className="text-gray-300">{classItem.description}</p>
               </div>)}
           </div>
@@ -255,7 +255,7 @@ const Home = () => {
                 <div className="h-96 mb-4 overflow-hidden rounded-lg">
                   <OptimizedImage src={davidCoach} alt="David Drake coaching kettlebell technique" className="w-full h-full" aspectRatio="auto" />
                 </div>
-                <h3 className="text-2xl font-bold mb-2">David Drake</h3>
+                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">David Drake</h3>
                 <p className="text-primary font-semibold mb-3 uppercase text-sm tracking-wide">Owner & Head Coach</p>
                 <p className="text-muted-foreground mb-4">
                   With more than 25 years of training experience, a degree in Health and Exercise Science, and a career recognized early as Charleston's Best Personal Trainer, David is a master of movement and functional strength.
@@ -270,7 +270,7 @@ const Home = () => {
                 <div className="h-96 mb-4 overflow-hidden rounded-lg">
                   <OptimizedImage src={coachNick} alt="Coach Nick Poppa demonstrating sandbag training" className="w-full h-full" aspectRatio="auto" />
                 </div>
-                <h3 className="text-2xl font-bold mb-2">Coach Nick Poppa</h3>
+                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Coach Nick Poppa</h3>
                 <p className="text-primary font-semibold mb-3 uppercase text-sm tracking-wide">Holistic Movement Specialist</p>
                 <p className="text-muted-foreground mb-4">
                   Nick bridges the gap between rehabilitation and performance. His approach helps clients improve posture, stability, mobility, and strength through sustainable lifestyle and movement habits.
