@@ -295,7 +295,7 @@ His approach blends skill, science, and practical strength work to create long-t
                   delay: 0.2
                 }} className="relative group">
                     <div className="relative overflow-hidden rounded-lg shadow-xl border-4 border-drake-teal">
-                      <OptimizedImage src={nickImage} alt="Coach Nick Poppa demonstrating functional training" aspectRatio="portrait" className="" />
+                      <OptimizedImage src={nickImage} alt="Coach Nick Poppa demonstrating functional training" aspectRatio="portrait" objectPosition="center 20%" />
                       {/* White/Frosted Bottom Overlay with Name */}
                       <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6 border-t border-gray-200">
                         <h3 className="text-xl md:text-2xl font-bold text-drake-dark">COACH NICK</h3>
