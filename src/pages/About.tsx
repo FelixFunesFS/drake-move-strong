@@ -294,10 +294,10 @@ const About = () => {
                     <div className="relative overflow-hidden rounded-lg shadow-xl border-4 border-drake-teal">
                       <OptimizedImage src={nickImage} alt="Coach Nick Poppa demonstrating functional training" aspectRatio="portrait" objectPosition="center 20%" />
                       {/* White/Frosted Bottom Overlay with Name */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6 border-t border-gray-200">
-                        <h3 className="font-hero text-xl md:text-2xl font-bold text-drake-dark uppercase">COACH NICK</h3>
-                        <p className="text-primary font-semibold text-sm">Group & 1:1 Trainer</p>
-                      </div>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-drake-dark via-drake-dark/80 to-transparent p-6">
+                <h3 className="font-hero text-2xl md:text-3xl font-bold text-white uppercase">COACH NICK</h3>
+                <p className="text-drake-gold font-semibold">Group & 1:1 Trainer</p>
+              </div>
                     </div>
                   </motion.div>
                 </div>
