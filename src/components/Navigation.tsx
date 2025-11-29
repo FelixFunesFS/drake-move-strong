@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { useState } from "react";
 import drakeLogo from "@/assets/drake-logo.png";
 
@@ -44,7 +44,14 @@ const Navigation = () => {
             ))}
           </div>
 
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center space-x-4">
+            <a 
+              href="tel:+18438175420" 
+              className="flex items-center space-x-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
+            >
+              <Phone size={18} />
+              <span>(843) 817-5420</span>
+            </a>
             <Button asChild size="lg" variant="gold">
               <Link to="/contact">Book Assessment</Link>
             </Button>
@@ -77,6 +84,13 @@ const Navigation = () => {
                 {link.name}
               </Link>
             ))}
+            <a
+              href="tel:+18438175420"
+              className="flex items-center space-x-3 px-4 py-3 rounded-md text-sm font-medium text-foreground hover:bg-muted mt-2"
+            >
+              <Phone size={20} className="text-primary" />
+              <span>(843) 817-5420</span>
+            </a>
             <Button asChild variant="gold" className="w-full mt-4">
               <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
                 Book Assessment
