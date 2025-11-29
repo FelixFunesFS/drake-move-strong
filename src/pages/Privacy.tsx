@@ -8,14 +8,14 @@ const Privacy = () => {
             <p className="text-muted-foreground">Last updated: {new Date().toLocaleDateString()}</p>
             
             <section>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 uppercase">Introduction</h2>
+              <h2 className="text-2xl font-bold mb-4">Introduction</h2>
               <p>
                 Drake Fitness ("we," "our," or "us") respects your privacy and is committed to protecting your personal data. This privacy policy explains how we collect, use, and safeguard your information when you visit our website or use our services.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 uppercase">Information We Collect</h2>
+              <h2 className="text-2xl font-bold mb-4">Information We Collect</h2>
               <p>We may collect the following types of information:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Personal identification information (name, email address, phone number)</li>
@@ -26,7 +26,7 @@ const Privacy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 uppercase">How We Use Your Information</h2>
+              <h2 className="text-2xl font-bold mb-4">How We Use Your Information</h2>
               <p>We use your information to:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Provide and improve our fitness services</li>
@@ -38,14 +38,14 @@ const Privacy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 uppercase">Data Security</h2>
+              <h2 className="text-2xl font-bold mb-4">Data Security</h2>
               <p>
                 We implement appropriate security measures to protect your personal information. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 uppercase">Your Rights</h2>
+              <h2 className="text-2xl font-bold mb-4">Your Rights</h2>
               <p>You have the right to:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Access your personal data</li>
@@ -56,7 +56,7 @@ const Privacy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 uppercase">Contact Us</h2>
+              <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
               <p>
                 If you have questions about this privacy policy, please contact us at:
                 <br />

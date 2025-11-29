@@ -76,7 +76,7 @@ const Schedule = () => {
           <div className="space-y-12">
             {weekDays.map((day) => (
               <div key={day}>
-                <h2 className="text-2xl md:text-3xl font-bold mb-6 pb-2 border-b-2 border-primary uppercase">
+                <h2 className="text-2xl font-bold mb-6 pb-2 border-b-2 border-primary uppercase">
                   {day}
                 </h2>
                 <div className="space-y-4">

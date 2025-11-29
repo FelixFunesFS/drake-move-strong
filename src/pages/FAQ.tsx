@@ -120,7 +120,7 @@ const FAQ = () => {
           <div className="max-w-4xl mx-auto space-y-12">
             {faqCategories.map((category, catIndex) => (
               <div key={catIndex}>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary uppercase">
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary uppercase">
                   {category.category}
                 </h2>
                 <Accordion type="single" collapsible className="space-y-4">
