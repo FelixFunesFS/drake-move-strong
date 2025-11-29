@@ -63,7 +63,12 @@ const Coaching = () => {
     <main>
       <Hero
         eyebrow="INDIVIDUAL ATTENTION"
-        title="Personal Training Tailored to You"
+        title={
+          <>
+            Personal Training WITH<br />
+            <span className="text-primary">DAVID OR NICK</span>
+          </>
+        }
         subtitle="Experience expert coaching designed specifically for your body, your history, and your goals. Move better and get stronger with 100% focus on you."
         primaryCTA={{ text: "Book a 1:1 Consultation", link: "/contact" }}
         backgroundImage={oneOnOneCoaching}
