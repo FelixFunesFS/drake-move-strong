@@ -138,8 +138,8 @@ const About = () => {
                 Watch how we help clients move better
               </p>
               <YouTubeEmbed
+                videoId="wDtDMNnrF00"
                 title="Drake Fitness Coaching Philosophy"
-                placeholder="Add a video showcasing your coaching approach and training methodology"
               />
             </div>
           </div>
