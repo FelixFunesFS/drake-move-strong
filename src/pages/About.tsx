@@ -7,7 +7,7 @@ import { Target, Heart, TrendingUp, Users, CheckCircle2, Activity, Shield } from
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/david-mace-training.jpg";
+
 import davidImage from "@/assets/david-double-kb-storefront.jpg";
 import davidImage2 from "@/assets/david-goblet-squat-kb-rack.jpg";
 import nickImage from "@/assets/coach-nick-portrait.jpg";
@@ -49,7 +49,6 @@ const About = () => {
           </>
         }
         subtitle="To help adults move better, feel stronger, and stay pain-free for life."
-        fallbackImage={heroImage}
         accentedSubtitle={true}
       />
 
