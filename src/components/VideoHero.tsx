@@ -79,16 +79,20 @@ const VideoHero = ({
           events: {
             onReady: (event: any) => {
               setIsPlayerReady(true);
-              setShowFallback(false);
               event.target.seekTo(30, true);
               event.target.playVideo();
               event.target.mute();
               
-              // Start time monitoring for segment loop (30s-41s)
+              // Delay fade-in to ensure video is playing at 30 seconds
+              setTimeout(() => {
+                setShowFallback(false);
+              }, 500);
+              
+              // Start time monitoring for segment loop (30s-42s)
               timeCheckRef.current = setInterval(() => {
                 if (playerRef.current && playerRef.current.getCurrentTime) {
                   const currentTime = playerRef.current.getCurrentTime();
-                  if (currentTime >= 41) {
+                  if (currentTime >= 42) {
                     playerRef.current.seekTo(30, true);
                   }
                 }
@@ -134,7 +138,7 @@ const VideoHero = ({
               timeCheckRef.current = setInterval(() => {
                 if (playerRef.current && playerRef.current.getCurrentTime) {
                   const currentTime = playerRef.current.getCurrentTime();
-                  if (currentTime >= 41) {
+                  if (currentTime >= 42) {
                     playerRef.current.seekTo(30, true);
                   }
                 }
@@ -175,7 +179,7 @@ const VideoHero = ({
         {/* YouTube Player Container */}
         <div 
           className={cn(
-            "absolute inset-0 transition-opacity duration-1000",
+            "absolute inset-0 transition-opacity duration-1500",
             showFallback ? "opacity-0" : "opacity-100"
           )}
         >
