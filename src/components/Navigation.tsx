@@ -51,7 +51,7 @@ const Navigation = () => {
               <span>(843) 817-5420</span>
             </a>
             <Button asChild size="lg" variant="gold">
-              <Link to="/contact" className="bg-primary text-primary-foreground px-[16px] py-0">Book Assessment</Link>
+              <Link to="/contact" className="bg-primary text-primary-foreground px-[16px] py-0 text-sm">Book Assessment</Link>
             </Button>
           </div>
 
