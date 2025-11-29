@@ -141,7 +141,11 @@ const Classes = () => {
     <main>
       <Hero
         eyebrow="OUR PROGRAMS"
-        title="Class Types That Build Strength, Mobility & Confidence"
+        title={
+          <>
+            Class Types That Build <span className="text-primary">Strength, Mobility &</span> Confidence
+          </>
+        }
         subtitle="Every class is coached, structured, and designed for long-term, pain-free progress. We prioritize movement quality over intensity."
         primaryCTA={{ text: "See Full Schedule", link: "/schedule" }}
         backgroundImage={classesHeroOutdoorMace}
