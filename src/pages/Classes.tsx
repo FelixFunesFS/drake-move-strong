@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import classGroup from "@/assets/class-group.jpg";
+import classesHeroOutdoorMace from "@/assets/classes-hero-outdoor-mace.jpg";
 import mobilityClass from "@/assets/mobility-class.jpg";
 import kbStrong from "@/assets/kb-strong.jpg";
 import classesGallery1 from "@/assets/classes-gallery-1.jpg";
@@ -143,7 +144,7 @@ const Classes = () => {
         title="Class Types That Build Strength, Mobility & Confidence"
         subtitle="Every class is coached, structured, and designed for long-term, pain-free progress. We prioritize movement quality over intensity."
         primaryCTA={{ text: "See Full Schedule", link: "/schedule" }}
-        backgroundImage={classGroup}
+        backgroundImage={classesHeroOutdoorMace}
       />
 
       <AnimatedSection animation="fadeInUp">
