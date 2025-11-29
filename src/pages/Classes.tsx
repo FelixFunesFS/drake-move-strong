@@ -190,8 +190,8 @@ const Classes = () => {
                 Watch a typical class session
               </p>
               <YouTubeEmbed
+                videoId="DZ_T9ROQlos"
                 title="Drake Fitness Class Demo"
-                placeholder="Add a video showcasing your class structure and coaching style"
               />
             </div>
           </div>
