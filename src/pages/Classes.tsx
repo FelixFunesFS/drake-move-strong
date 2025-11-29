@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+
 import classGroup from "@/assets/class-group.jpg";
 import classesHeroOutdoorMace from "@/assets/classes-hero-outdoor-mace.jpg";
 import mobilityClass from "@/assets/mobility-class.jpg";
@@ -101,28 +101,6 @@ const Classes = () => {
     },
   ];
 
-  const faqs = [
-    {
-      question: "Do I need experience?",
-      answer: "No. Our Foundation Flow classes are specifically designed for beginners. We meet you where you are.",
-    },
-    {
-      question: "Will this help my joint pain?",
-      answer: "Yes. We are a mobility-first studio. We focus on safe, joint-friendly training that builds strength without hurting your body.",
-    },
-    {
-      question: "How big are the classes?",
-      answer: "We keep classes small to ensure everyone gets attention, coaching cues, and form correction from David or Nick.",
-    },
-    {
-      question: "Do you offer online classes?",
-      answer: "Yes. Functional Flow Online classes let you train live with us via Zoom. Perfect if you can't make it to the studio.",
-    },
-    {
-      question: "What if I have an injury?",
-      answer: "We modify movements for every individual. Our priority is keeping you safe while progressively building strength around your limitations.",
-    },
-  ];
 
   const galleryImages = [
     { src: classesGallery1, alt: "Two members performing kettlebell overhead presses in studio" },
@@ -260,26 +238,13 @@ const Classes = () => {
       </AnimatedSection>
 
       <AnimatedSection animation="fadeIn">
-        <section className="py-16 md:py-24 bg-muted section-slant-top">
-          <div className="container mx-auto px-4">
-            <p className="section-eyebrow text-primary text-center">QUESTIONS</p>
-            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
-              Common <span className="text-primary">Questions</span>
-            </h2>
-            <div className="max-w-3xl mx-auto">
-              <Accordion type="single" collapsible className="space-y-4">
-                {faqs.map((faq, index) => (
-                  <AccordionItem key={index} value={`item-${index}`} className="bg-white border border-border rounded-xl px-6 shadow-card">
-                    <AccordionTrigger className="text-lg font-semibold hover:no-underline">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
+        <section className="py-0 bg-drake-dark">
+          <div className="w-full">
+            <YouTubeEmbed
+              videoId="DZ_T9ROQlos"
+              title="Drake Fitness Training Experience"
+              className="w-full aspect-video rounded-none"
+            />
           </div>
         </section>
       </AnimatedSection>
