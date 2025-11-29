@@ -70,7 +70,7 @@ const Pricing = () => {
     answer: "We modify movements for every individual. Our priority is keeping you safe while progressively building strength around your limitations. Every session can be adapted to your needs."
   }];
   return <main>
-      <Hero eyebrow="PRICING" title={<>Simple Memberships.<br /><span className="text-drake-gold">Real Results.</span></>} subtitle="No hidden fees. No long-term contracts. Just straightforward options designed to help you commit to your health." backgroundImage={pricingKettlebellRack} className="h-[450px] md:h-[400px] lg:h-[450px]" />
+      <Hero eyebrow="PRICING" title={<>Simple Memberships.<br /><span className="text-drake-gold">Real Results.</span></>} subtitle="No hidden fees. No long-term contracts. Just straightforward options designed to help you commit to your health." backgroundImage={pricingKettlebellRack} className="h-[450px] md:h-[400px] lg:h-[450px]" centered={true} />
 
       <section className="py-16 md:py-24 text-white section-slant-top bg-muted">
         <div className="container mx-auto px-4 bg-inherit">
