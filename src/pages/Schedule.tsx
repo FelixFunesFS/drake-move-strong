@@ -88,12 +88,12 @@ const Schedule = () => {
                       key={index}
                       className="bg-white border border-border rounded-xl p-6 shadow-card hover:shadow-lg transition-shadow"
                     >
-                      <div className="grid md:grid-cols-12 gap-4 items-center">
-                        <div className="md:col-span-2">
+                      <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-12 gap-4 items-start lg:items-center">
+                        <div className="sm:col-span-2 lg:col-span-2">
                           <p className="text-2xl font-bold text-primary">{session.time}</p>
                           <p className="text-sm text-muted-foreground">{session.duration || "60 min"}</p>
                         </div>
-                        <div className="md:col-span-5">
+                        <div className="sm:col-span-2 lg:col-span-5">
                           <div className="flex items-start gap-2 mb-2">
                             <h3 className="text-xl font-bold">{session.class}</h3>
                             <Badge variant={getBadgeVariant(session.badge)}>
@@ -105,7 +105,7 @@ const Schedule = () => {
                             Coach: {session.coach}
                           </p>
                         </div>
-                        <div className="md:col-span-3 text-center">
+                        <div className="sm:col-span-1 lg:col-span-3 sm:text-center">
                           {session.waitlist ? (
                             <Badge variant="destructive" className="text-sm px-3 py-1">
                               Waitlist Only
@@ -120,7 +120,7 @@ const Schedule = () => {
                             </p>
                           )}
                         </div>
-                        <div className="md:col-span-2">
+                        <div className="sm:col-span-1 lg:col-span-2 w-full">
                           <Button 
                             asChild 
                             className="w-full bg-primary hover:bg-primary/90"

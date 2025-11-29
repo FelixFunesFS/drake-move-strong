@@ -65,7 +65,7 @@ const Coaching = () => {
         eyebrow="INDIVIDUAL ATTENTION"
         title={
           <>
-            <span className="whitespace-nowrap">PERSONAL TRAINING WITH</span><br />
+            <span className="sm:whitespace-nowrap">PERSONAL TRAINING WITH</span><br />
             <span className="text-primary">DAVID OR NICK</span><br />
             TAILORED TO YOU
           </>

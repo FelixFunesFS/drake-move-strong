@@ -75,8 +75,8 @@ const Pricing = () => {
       <section className="py-16 md:py-24 text-white section-slant-top bg-muted">
         <div className="container mx-auto px-4 bg-inherit">
           <div className="max-w-5xl mx-auto">
-            <div className="bg-primary border-2 border-white/10 rounded-2xl p-8 md:p-12 grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
-              <div className="md:col-span-3 space-y-6">
+            <div className="bg-primary border-2 border-white/10 rounded-2xl p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 items-center">
+              <div className="md:col-span-2 lg:col-span-3 space-y-6">
                 <div>
                   <span className="inline-block bg-drake-gold text-drake-dark text-sm font-bold uppercase tracking-wide px-4 py-1.5 rounded-full mb-4">
                     Start Here
@@ -92,7 +92,7 @@ movement assessment. A perfect low-risk way to begin your journey with us.</p>
                   <p className="text-white/70 text-sm">No commitment required</p>
                 </div>
               </div>
-              <div className="md:col-span-2 text-center md:border-l md:border-white/20 md:pl-8">
+              <div className="md:col-span-2 lg:col-span-2 text-center md:border-l md:border-white/20 md:pl-8">
                 <div className="text-6xl md:text-7xl font-bold text-white mb-2">$49</div>
                 <p className="text-sm uppercase tracking-wide font-semibold text-accent text-center">One-Time Payment</p>
               </div>
