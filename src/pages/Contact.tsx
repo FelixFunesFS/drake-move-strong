@@ -182,7 +182,7 @@ const Contact = () => {
       <section className="py-16 md:py-24 bg-muted section-slant-top">
         <div className="container mx-auto px-4">
           <p className="section-eyebrow text-primary text-center">QUESTIONS</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
+          <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
             Common <span className="text-primary">Questions</span>
           </h2>
           <div className="max-w-3xl mx-auto space-y-6">

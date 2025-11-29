@@ -95,7 +95,7 @@ const SuccessStories = () => {
       <section className="py-16 md:py-24 bg-muted section-slant-top">
         <div className="container mx-auto px-4">
           <p className="section-eyebrow text-primary text-center">THE COMMUNITY</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
+          <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
             Join Our <span className="text-primary">Community</span>
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -122,7 +122,7 @@ const SuccessStories = () => {
       <section className="py-16 md:py-24 bg-primary text-white section-slant-top">
         <div className="container mx-auto px-4 text-center">
           <p className="section-eyebrow text-drake-gold">YOUR TURN</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase">
+          <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase">
             Your Success Story <span className="text-drake-gold">Starts Here</span>
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">

@@ -38,7 +38,7 @@ const CTASection = ({
         {eyebrow && <p className={`section-eyebrow ${variant === "gold" ? "text-drake-dark/70" : "text-gray-400"} mb-2`}>
             {eyebrow}
           </p>}
-        <h2 className={`text-2xl md:text-3xl lg:text-4xl font-bold mb-4 uppercase tracking-tight ${textClasses[variant]}`}>
+        <h2 className={`font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-4 uppercase tracking-tight ${textClasses[variant]}`}>
           {title}
         </h2>
         {subtitle && <p className={`text-base md:text-lg lg:text-xl mb-6 md:mb-8 max-w-2xl mx-auto ${variant === "gold" ? "text-drake-dark/80" : "text-gray-200"}`}>

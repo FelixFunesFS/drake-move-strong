@@ -59,7 +59,7 @@ const About = () => {
                 {/* Left Column - Text Content */}
                 <div>
                   <p className="section-eyebrow text-primary">THE DRAKE FITNESS PHILOSOPHY</p>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase leading-tight">
+                  <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase leading-tight">
                     Movement First.<br />
                     Strength For <span className="text-primary">Life</span>.
                   </h2>
@@ -130,7 +130,7 @@ const About = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <p className="section-eyebrow text-primary text-center">SEE IT IN ACTION</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+              <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
                 Our <span className="text-primary">Coaching Philosophy</span>
               </h2>
               <p className="text-xl text-center text-muted-foreground mb-12">
@@ -150,7 +150,7 @@ const About = () => {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
             <p className="section-eyebrow text-drake-gold text-center">THE TEAM</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 uppercase">
+            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 uppercase">
               Meet Your <span className="text-primary">Coaches</span>
             </h2>
           </AnimatedSection>
@@ -322,7 +322,7 @@ const About = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <p className="section-eyebrow text-primary text-center">OUR VALUES</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+              <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
                 What We <span className="text-primary">Stand For</span>
               </h2>
               <p className="text-lg text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -342,7 +342,7 @@ const About = () => {
                   <div className="w-16 h-16 bg-drake-gold rounded-full flex items-center justify-center mb-6 mx-auto">
                     <Users className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl md:text-2xl font-bold text-center mb-4 uppercase">Community</h3>
+                  <h3 className="font-hero text-xl md:text-2xl font-bold text-center mb-4 uppercase">Community</h3>
                   <p className="text-sm md:text-base text-muted-foreground text-center">
                     We foster a supportive, ego-free environment where everyone is welcomed, encouraged, and celebrated for their progress.
                   </p>
@@ -360,7 +360,7 @@ const About = () => {
                   <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 mx-auto">
                     <Shield className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl md:text-2xl font-bold text-center mb-4 uppercase">Safety</h3>
+                  <h3 className="font-hero text-xl md:text-2xl font-bold text-center mb-4 uppercase">Safety</h3>
                   <p className="text-sm md:text-base text-muted-foreground text-center">
                     Proper form, intelligent programming, and injury prevention guide every movement and every session we coach.
                   </p>
@@ -378,7 +378,7 @@ const About = () => {
                   <div className="w-16 h-16 bg-drake-dark rounded-full flex items-center justify-center mb-6 mx-auto">
                     <Target className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl md:text-2xl font-bold text-center mb-4 uppercase">Results</h3>
+                  <h3 className="font-hero text-xl md:text-2xl font-bold text-center mb-4 uppercase">Results</h3>
                   <p className="text-sm md:text-base text-muted-foreground text-center">
                     We deliver measurable improvements in mobility, strength, and quality of life through proven methods and expert coaching.
                   </p>
@@ -393,7 +393,7 @@ const About = () => {
         <section className="py-16 md:py-24 bg-muted section-slant-top">
           <div className="container mx-auto px-4">
             <p className="section-eyebrow text-primary text-center">THE SPACE</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
               Inside the <span className="text-primary">Studio</span>
             </h2>
             <p className="text-xl text-center text-muted-foreground mb-12">
