@@ -108,10 +108,10 @@ const Hero = ({
           duration: 0.8,
           delay: 0.6
         }} className={cn("flex flex-col sm:flex-row gap-3 md:gap-4 max-w-xl", centered ? "items-center justify-center mx-auto" : "items-start")}>
-            {primaryCTA && <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6 h-auto min-h-[56px] shadow-[var(--shadow-gold)] hover:scale-105 transition-transform w-full sm:w-auto">
+            {primaryCTA && <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-sm sm:text-base md:text-base px-6 sm:px-8 md:px-8 py-4 sm:py-5 md:py-4 h-auto min-h-[56px] md:min-h-[44px] shadow-[var(--shadow-gold)] hover:scale-105 transition-transform w-full sm:w-auto">
                 <Link to={primaryCTA.link} className="text-center">{primaryCTA.text}</Link>
               </Button>}
-            {secondaryCTA && <Button asChild size="lg" variant="outline" className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-semibold text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6 h-auto min-h-[56px] w-full sm:w-auto">
+            {secondaryCTA && <Button asChild size="lg" variant="outline" className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-semibold text-sm sm:text-base md:text-base px-6 sm:px-8 md:px-8 py-4 sm:py-5 md:py-4 h-auto min-h-[56px] md:min-h-[44px] w-full sm:w-auto">
                 <Link to={secondaryCTA.link} className="text-center">{secondaryCTA.text}</Link>
               </Button>}
           </motion.div>
