@@ -163,7 +163,7 @@ const FAQ = () => {
         subtitle="Book your free movement assessment and experience the Drake Fitness difference."
         ctaText="Book Free Assessment"
         ctaLink="/contact"
-        variant="gold"
+        variant="primary"
         slanted={true}
       />
     </main>
