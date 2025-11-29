@@ -48,9 +48,9 @@ const InsightPost = () => {
               </div>
             )}
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 md:gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12">
               {/* Main Content */}
-              <div className="lg:col-span-3">
+              <div className="md:col-span-2 lg:col-span-3">
                 <div 
                   className="prose prose-lg max-w-none
                     prose-headings:font-hero prose-headings:uppercase prose-headings:tracking-tight
@@ -79,7 +79,7 @@ const InsightPost = () => {
               </div>
 
               {/* Sidebar */}
-              <aside className="lg:col-span-1">
+              <aside className="md:col-span-1 lg:col-span-1">
                 <div className="lg:sticky lg:top-24 space-y-6">
                   <AuthorBio author={post.author} />
                 </div>

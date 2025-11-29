@@ -42,8 +42,8 @@ const Contact = () => {
 
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
-            <div className="md:col-span-1 space-y-8">
+          <div className="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
+            <div className="lg:col-span-1 space-y-8">
               <div className="bg-primary text-white p-6 rounded-lg">
                 <h3 className="text-xl font-bold mb-6">Contact Info</h3>
                 <div className="space-y-4">
@@ -91,11 +91,11 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="md:col-span-2">
+            <div className="lg:col-span-2">
               <div className="bg-white border border-border rounded-xl p-8 shadow-card">
                 <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="firstName">First Name</Label>
                       <Input
@@ -118,7 +118,7 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="email">Email Address</Label>
                       <Input

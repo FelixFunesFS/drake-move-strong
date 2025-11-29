@@ -63,7 +63,7 @@ const Navigation = () => {
 
       {mobileMenuOpen && <div className="lg:hidden border-t border-border bg-background">
           <div className="container mx-auto px-4 py-4 space-y-2">
-            {navLinks.map(link => <Link key={link.path} to={link.path} onClick={() => setMobileMenuOpen(false)} className={`block px-4 py-2 rounded-md text-sm font-medium ${isActive(link.path) ? "bg-primary/10 text-primary" : "text-foreground hover:bg-muted"}`}>
+            {navLinks.map(link => <Link key={link.path} to={link.path} onClick={() => setMobileMenuOpen(false)} className={`block px-4 py-3 rounded-md text-sm font-medium ${isActive(link.path) ? "bg-primary/10 text-primary" : "text-foreground hover:bg-muted"}`}>
                 {link.name}
               </Link>)}
             <a href="tel:+18438175420" className="flex items-center space-x-3 px-4 py-3 rounded-md text-sm font-medium text-foreground hover:bg-muted mt-2">

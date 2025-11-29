@@ -85,10 +85,14 @@ const ImageGallery = ({
                   aspectRatio="square"
                   className="transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-drake-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <div className="absolute inset-0 bg-gradient-to-t from-drake-dark/80 via-transparent to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-3 transform translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300">
                     <Expand className="h-6 w-6 text-white" />
                   </div>
+                </div>
+                {/* Touch indicator - always visible on mobile */}
+                <div className="md:hidden absolute bottom-2 right-2 bg-white/30 backdrop-blur-sm rounded-full p-2">
+                  <Expand className="h-4 w-4 text-white" />
                 </div>
               </motion.div>
             ))}
