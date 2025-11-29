@@ -48,7 +48,7 @@ const About = () => {
             Why We <span className="text-primary">Exist</span>
           </>
         }
-        subtitle="To help adults move better, feel stronger, and stay pain-free for life."
+        subtitle="To help adults move better and build strong, mobile, pain-free bodies that support their everyday lives."
         accentedSubtitle={true}
       />
 
