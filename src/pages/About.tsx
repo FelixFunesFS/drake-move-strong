@@ -399,13 +399,13 @@ His approach blends skill, science, and practical strength work to create long-t
       </AnimatedSection>
 
       <AnimatedSection animation="fadeInUp">
-        <section className="py-16 md:py-24 bg-muted section-slant-top">
+        <section className="py-16 md:py-24 section-slant-top bg-secondary-foreground">
           <div className="container mx-auto px-4">
-            <p className="section-eyebrow text-primary text-center">THE SPACE</p>
-            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+            <p className="section-eyebrow text-center text-accent">THE SPACE</p>
+            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase text-primary-foreground">
               Inside the <span className="text-primary">Studio</span>
             </h2>
-            <p className="text-xl text-center text-muted-foreground mb-12">
+            <p className="text-xl text-center mb-12 text-muted">
               See where the magic happens — authentic training, expert coaching, and a supportive community.
             </p>
             <ImageGallery images={[{
