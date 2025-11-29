@@ -141,7 +141,7 @@ const Home = () => {
                   No experience needed. No pressure. Just expert guidance.
                 </p>
                 <Button asChild size="lg" className="bg-primary hover:bg-primary/90 w-full md:w-auto text-balance">
-                  <Link to="/contact">Start Your 14-Day Intro Experience</Link>
+                  <Link to="/contact" className="text-center">Start Your 14-Day Intro Experience</Link>
                 </Button>
               </div>
               <div className="relative h-full min-h-[400px] md:min-h-[600px]">
