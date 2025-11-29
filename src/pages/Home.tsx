@@ -48,7 +48,7 @@ const Home = () => {
             </AnimatedSection>
             <div>
               <p className="section-eyebrow text-primary">WHO WE ARE</p>
-              <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase">
                 A <span className="text-primary">Movement Studio</span> for Real Life
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
@@ -75,7 +75,7 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
             <p className="section-eyebrow text-drake-gold text-center">WHAT MAKES US DIFFERENT</p>
-            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
               We Focus on <span className="text-drake-gold">What Matters</span>
             </h2>
             <p className="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto">
@@ -131,7 +131,7 @@ const Home = () => {
             <div className="grid md:grid-cols-2">
               <div className="p-8 md:p-12">
                 <p className="section-eyebrow text-primary mb-4">START HERE</p>
-                <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase leading-tight">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase leading-tight">
                   If You Feel Stiff, Achy, or Out of Shape...<br />
                   <span className="text-primary">You're in the Right Place.</span>
                 </h2>
@@ -160,7 +160,7 @@ const Home = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <p className="section-eyebrow text-primary text-center">THE METHOD</p>
-          <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
             A Simple System That <span className="text-primary">Delivers Real Results</span>
           </h2>
           <p className="text-xl text-center text-muted-foreground mb-12">
@@ -204,7 +204,7 @@ const Home = () => {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-6">
             <div className="text-left">
               <p className="section-eyebrow text-drake-gold mb-2">OUR PROGRAMS</p>
-              <h2 className="font-hero text-3xl md:text-4xl font-bold mb-2 uppercase">
+              <h2 className="text-3xl md:text-4xl font-bold mb-2 uppercase">
                 Classes Designed to Help You <span className="text-drake-gold">Move and Feel Your Best</span>
               </h2>
               <p className="text-xl text-gray-300">
@@ -245,7 +245,7 @@ const Home = () => {
       <section className="py-16 md:py-24 bg-muted section-slant-top-reverse">
         <div className="container mx-auto px-4">
           <p className="section-eyebrow text-primary text-center">MEET THE TEAM</p>
-          <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
             <span className="text-primary">Coaching You Can Trust</span>
           </h2>
           <p className="text-xl text-center text-muted-foreground mb-12">
@@ -289,7 +289,7 @@ const Home = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <p className="section-eyebrow text-primary text-center">RESULTS</p>
-          <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
             Real People. <span className="text-primary">Real Results.</span>
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
