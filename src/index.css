@@ -217,6 +217,11 @@ All colors MUST be HSL.
     transform: scale(1.05);
   }
 
+  /* Text Balance for Better Button Wrapping */
+  .text-balance {
+    text-wrap: balance;
+  }
+
   /* Reduced Motion Support */
   @media (prefers-reduced-motion: reduce) {
     *,

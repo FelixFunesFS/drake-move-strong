@@ -27,10 +27,10 @@ import AnimatedSection from "@/components/AnimatedSection";
 const Home = () => {
   return <main>
       <Hero title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
-      text: <>BOOK YOUR FREE<span className="hidden sm:inline"><br /></span> MOVEMENT ASSESSMENT</>,
+      text: "BOOK FREE MOVEMENT ASSESSMENT",
       link: "/contact"
     }} secondaryCTA={{
-      text: <>SEE CLASS<span className="hidden sm:inline"><br /></span> SCHEDULE</>,
+      text: "SEE CLASS SCHEDULE",
       link: "/schedule"
     }} backgroundImages={[heroImage2, heroImage3]} autoRotate={true} />
 
@@ -59,7 +59,7 @@ const Home = () => {
                 <p className="text-lg text-foreground font-semibold">Our Mission</p>
                 <p className="text-base text-foreground italic">Build bodies that move well, feel great, and last a lifetime.</p>
               </div>
-              <Button asChild size="lg" className="mt-6 bg-primary hover:bg-primary/90">
+              <Button asChild size="lg" className="mt-6 bg-primary hover:bg-primary/90 whitespace-nowrap">
                 <Link to="/about">Meet the Team</Link>
               </Button>
             </div>
@@ -143,7 +143,7 @@ const Home = () => {
                 <p className="text-base font-semibold mb-6">
                   No experience needed. No pressure. Just expert guidance.
                 </p>
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90 w-full md:w-auto">
+                <Button asChild size="lg" className="bg-primary hover:bg-primary/90 w-full md:w-auto text-balance">
                   <Link to="/contact">Start Your 14-Day Intro Experience</Link>
                 </Button>
               </div>
@@ -209,7 +209,7 @@ const Home = () => {
                 Better Movement. Better Strength. Better Life.
               </p>
             </div>
-            <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark shrink-0">
+            <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark shrink-0 whitespace-nowrap">
               <Link to="/classes">Explore All Classes</Link>
             </Button>
           </div>
