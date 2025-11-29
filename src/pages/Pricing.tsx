@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Link } from "react-router-dom";
 import { CheckCircle2, Calendar, Users, Laptop } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import pricingHeroImage from "@/assets/pricing-hero-kettlebell.jpg";
+import pricingKettlebellRack from "@/assets/pricing-kettlebell-rack.jpg";
 
 const Pricing = () => {
   const membershipOptions = [
@@ -115,7 +115,7 @@ const Pricing = () => {
         eyebrow="PRICING"
         title="Simple Memberships. Real Results."
         subtitle="No hidden fees. No long-term contracts. Just straightforward options designed to help you commit to your health."
-        backgroundImage={pricingHeroImage}
+        backgroundImage={pricingKettlebellRack}
       />
 
       <section className="py-16 md:py-24 bg-primary text-white section-slant-top">
