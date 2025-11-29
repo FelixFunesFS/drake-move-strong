@@ -15,22 +15,27 @@ import coachingSession from "@/assets/coaching-session.jpg";
 const Coaching = () => {
   const reasons = [
     {
+      icon: Heart,
       title: "Are recovering from injury",
       description: "Safe, modified movements to bridge the gap between rehab and fitness.",
     },
     {
+      icon: User,
       title: "Feel intimidated jumping into class",
       description: "Build confidence and learn basics in private setting first.",
     },
     {
+      icon: TrendingUp,
       title: "Want faster progress",
       description: "More focused attention accelerates your goals and technique.",
     },
     {
+      icon: Target,
       title: "Need individualized mobility work",
       description: "Targeted mobility addressing your specific limitations and pain points.",
     },
     {
+      icon: Dumbbell,
       title: "Have specific performance goals",
       description: "Training for a race, sport, or life event that requires structured preparation.",
     },
@@ -79,26 +84,31 @@ const Coaching = () => {
                 </p>
                 
                 <div className="space-y-6">
-                  {reasons.map((reason, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      className="flex items-start gap-4"
-                    >
-                      <div className="w-3 h-3 bg-primary rounded-sm mt-2 flex-shrink-0" />
-                      <div>
-                        <h3 className="font-bold text-lg text-foreground mb-1">
-                          {reason.title}
-                        </h3>
-                        <p className="text-muted-foreground">
-                          {reason.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
+                  {reasons.map((reason, index) => {
+                    const Icon = reason.icon;
+                    return (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 }}
+                        className="flex items-start gap-4"
+                      >
+                        <div className="w-12 h-12 bg-cool-gray rounded-xl flex items-center justify-center flex-shrink-0">
+                          <Icon className="w-6 h-6 text-primary" />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-lg text-foreground mb-1">
+                            {reason.title}
+                          </h3>
+                          <p className="text-muted-foreground">
+                            {reason.description}
+                          </p>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </div>
 
