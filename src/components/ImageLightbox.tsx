@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { Button } from "./ui/button";
@@ -23,7 +24,9 @@ const ImageLightbox = ({
 }: ImageLightboxProps) => {
   const [isImageLoading, setIsImageLoading] = useState(true);
   const [slideDirection, setSlideDirection] = useState<"left" | "right" | null>(null);
+  const [swipeOffset, setSwipeOffset] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const lastFocusedElement = useRef<HTMLElement | null>(null);
 
   // Reset loading state when image changes
   useEffect(() => {
@@ -50,19 +53,30 @@ const ImageLightbox = ({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose, onNext, onPrevious]);
 
-  // Prevent body scroll when lightbox is open
+  // Prevent body scroll and manage focus when lightbox is open
   useEffect(() => {
     if (isOpen) {
+      // Save currently focused element
+      lastFocusedElement.current = document.activeElement as HTMLElement;
+      
+      // Prevent body scroll
       document.body.style.overflow = "hidden";
+      
+      // Focus the container for keyboard navigation
+      setTimeout(() => containerRef.current?.focus(), 100);
     } else {
+      // Restore body scroll
       document.body.style.overflow = "unset";
+      
+      // Restore focus to previously focused element
+      lastFocusedElement.current?.focus();
     }
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
-  // Touch/swipe support (horizontal and vertical)
+  // Enhanced touch/swipe support with velocity detection
   useEffect(() => {
     if (!isOpen || !containerRef.current) return;
 
@@ -70,46 +84,70 @@ const ImageLightbox = ({
     let touchEndX = 0;
     let touchStartY = 0;
     let touchEndY = 0;
+    let touchStartTime = 0;
+    let isSwiping = false;
 
     const handleTouchStart = (e: TouchEvent) => {
       touchStartX = e.changedTouches[0].screenX;
       touchStartY = e.changedTouches[0].screenY;
+      touchStartTime = Date.now();
+      isSwiping = true;
+      setSwipeOffset(0);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!isSwiping) return;
+      const currentX = e.changedTouches[0].screenX;
+      const diffX = currentX - touchStartX;
+      const diffY = e.changedTouches[0].screenY - touchStartY;
+      
+      // Only show visual feedback for horizontal swipes
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+        setSwipeOffset(diffX);
+      }
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
+      if (!isSwiping) return;
+      
       touchEndX = e.changedTouches[0].screenX;
       touchEndY = e.changedTouches[0].screenY;
-      handleSwipe();
-    };
-
-    const handleSwipe = () => {
+      const touchEndTime = Date.now();
+      
       const horizontalDistance = touchStartX - touchEndX;
       const verticalDistance = touchStartY - touchEndY;
+      const swipeDuration = touchEndTime - touchStartTime;
+      const velocity = Math.abs(horizontalDistance) / swipeDuration;
 
-      // Horizontal swipe (left/right navigation)
+      // Horizontal swipe (left/right navigation) with improved thresholds
       if (Math.abs(horizontalDistance) > Math.abs(verticalDistance)) {
-        if (horizontalDistance > 50) {
+        // Swipe threshold: 40px or velocity > 0.5
+        if (horizontalDistance > 40 || (velocity > 0.5 && horizontalDistance > 20)) {
           setSlideDirection("left");
           onNext();
-        }
-        if (horizontalDistance < -50) {
+        } else if (horizontalDistance < -40 || (velocity > 0.5 && horizontalDistance < -20)) {
           setSlideDirection("right");
           onPrevious();
         }
       }
       
-      // Vertical swipe down to close
-      if (verticalDistance < -100 && Math.abs(horizontalDistance) < 50) {
+      // Vertical swipe down to close (improved threshold)
+      if (verticalDistance < -80 && Math.abs(horizontalDistance) < 50) {
         onClose();
       }
+      
+      isSwiping = false;
+      setSwipeOffset(0);
     };
 
     const container = containerRef.current;
     container.addEventListener("touchstart", handleTouchStart, { passive: true });
+    container.addEventListener("touchmove", handleTouchMove, { passive: true });
     container.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
       container.removeEventListener("touchstart", handleTouchStart);
+      container.removeEventListener("touchmove", handleTouchMove);
       container.removeEventListener("touchend", handleTouchEnd);
     };
   }, [isOpen, onNext, onPrevious, onClose]);
@@ -118,7 +156,7 @@ const ImageLightbox = ({
 
   const currentImage = images[currentIndex];
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <motion.div
@@ -129,6 +167,10 @@ const ImageLightbox = ({
           transition={{ duration: 0.2 }}
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 p-2 sm:p-4 pt-[calc(0.5rem+env(safe-area-inset-top))] pb-[calc(0.5rem+env(safe-area-inset-bottom))]"
           onClick={onClose}
+          tabIndex={-1}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image lightbox"
         >
           {/* Close Button */}
           <Button
@@ -186,13 +228,20 @@ const ImageLightbox = ({
               x: slideDirection === "left" ? 100 : slideDirection === "right" ? -100 : 0,
               scale: 0.95 
             }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
+            animate={{ 
+              opacity: 1, 
+              x: swipeOffset * 0.3, 
+              scale: 1 - Math.abs(swipeOffset) * 0.0001 
+            }}
             exit={{ 
               opacity: 0, 
               x: slideDirection === "left" ? -100 : slideDirection === "right" ? 100 : 0,
               scale: 0.95 
             }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            transition={{ 
+              duration: swipeOffset !== 0 ? 0 : 0.3, 
+              ease: "easeOut" 
+            }}
             className="relative flex items-center justify-center w-full h-full max-h-[calc(100vh-4rem)] sm:max-h-[calc(100vh-8rem)]"
             onClick={(e) => e.stopPropagation()}
           >
@@ -222,7 +271,8 @@ const ImageLightbox = ({
           </div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 };
 
