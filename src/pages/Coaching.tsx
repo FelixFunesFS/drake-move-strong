@@ -66,7 +66,8 @@ const Coaching = () => {
         title={
           <>
             Personal Training WITH<br />
-            <span className="text-primary">DAVID OR NICK</span>
+            <span className="text-primary">DAVID OR NICK</span><br />
+            Tailored to You
           </>
         }
         subtitle="Experience expert coaching designed specifically for your body, your history, and your goals. Move better and get stronger with 100% focus on you."
