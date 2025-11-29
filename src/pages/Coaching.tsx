@@ -10,31 +10,27 @@ import { Target, Heart, Dumbbell, TrendingUp, User } from "lucide-react";
 import oneOnOneCoaching from "@/assets/one-on-one-coaching.jpg";
 import davidCoach from "@/assets/david-double-kb-storefront.jpg";
 import nickCoach from "@/assets/nick-sandbag-lunge.jpg";
+import coachingSession from "@/assets/coaching-session.jpg";
 
 const Coaching = () => {
   const reasons = [
     {
-      icon: <Heart className="w-8 h-8" />,
       title: "Are recovering from injury",
       description: "Safe, modified movements to bridge the gap between rehab and fitness.",
     },
     {
-      icon: <User className="w-8 h-8" />,
       title: "Feel intimidated jumping into class",
       description: "Build confidence and learn basics in private setting first.",
     },
     {
-      icon: <Target className="w-8 h-8" />,
       title: "Want faster progress",
       description: "More focused attention accelerates your goals and technique.",
     },
     {
-      icon: <TrendingUp className="w-8 h-8" />,
       title: "Need individualized mobility work",
       description: "Targeted mobility addressing your specific limitations and pain points.",
     },
     {
-      icon: <Dumbbell className="w-8 h-8" />,
       title: "Have specific performance goals",
       description: "Training for a race, sport, or life event that requires structured preparation.",
     },
@@ -71,33 +67,76 @@ const Coaching = () => {
       <AnimatedSection animation="fadeInUp">
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4">
-            <p className="section-eyebrow text-primary text-center">WHY 1:1</p>
-            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-              Why Choose <span className="text-primary">Personal Training?</span>
-            </h2>
-            <p className="text-xl text-center text-muted-foreground mb-12">
-              Because your body, history, and goals are unique.
-            </p>
-            <div className="max-w-4xl mx-auto">
-              <p className="text-lg text-center mb-12">1:1 coaching is perfect if you:</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
-              {reasons.map((reason, index) => (
+            <div className="grid lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
+              {/* Left Column - Text Content */}
+              <div>
+                <p className="section-eyebrow text-primary">WHY CHOOSE PERSONAL TRAINING?</p>
+                <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase leading-tight">
+                  WHEN YOU NEED <span className="text-primary">PERSONALIZED</span> COACHING
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8">
+                  While our group classes are coached intensively, sometimes you need a program built entirely around your unique needs. 1:1 training is ideal if you:
+                </p>
+                
+                <div className="space-y-6">
+                  {reasons.map((reason, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      className="flex items-start gap-4"
+                    >
+                      <div className="w-3 h-3 bg-primary rounded-sm mt-2 flex-shrink-0" />
+                      <div>
+                        <h3 className="font-bold text-lg text-foreground mb-1">
+                          {reason.title}
+                        </h3>
+                        <p className="text-muted-foreground">
+                          {reason.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right Column - Image */}
+              <div className="relative lg:sticky lg:top-8">
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.02 }}
-                  className="flex items-start space-x-3 md:space-x-4 p-5 md:p-6 bg-white rounded-xl border border-border shadow-card"
+                  transition={{ duration: 0.6 }}
+                  className="relative"
                 >
-                  <div className="text-primary flex-shrink-0">{reason.icon}</div>
-                  <div>
-                    <h3 className="font-bold text-base md:text-lg mb-2">{reason.title}</h3>
-                    <p className="text-sm md:text-base text-muted-foreground">{reason.description}</p>
-                  </div>
+                  <OptimizedImage
+                    src={coachingSession}
+                    alt="David and Nick coaching at Drake Fitness"
+                    className="rounded-2xl shadow-lg"
+                    aspectRatio="square"
+                  />
+                  
+                  {/* Caption Badge Overlay */}
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3, duration: 0.6 }}
+                    className="absolute bottom-4 left-4 right-4"
+                  >
+                    <div className="bg-black/70 backdrop-blur-sm rounded-lg px-4 py-3 flex items-center gap-3">
+                      <span className="text-drake-gold font-semibold text-sm uppercase tracking-wide">
+                        Expert Focus
+                      </span>
+                      <span className="text-white/50">|</span>
+                      <span className="text-white text-sm">
+                        David & Nick Coaching
+                      </span>
+                    </div>
+                  </motion.div>
                 </motion.div>
-              ))}
               </div>
             </div>
           </div>
