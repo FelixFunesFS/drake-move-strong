@@ -67,9 +67,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 pb-32 bg-drake-dark text-white relative" style={{
-      clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)'
-    }}>
+      <section className="py-16 md:py-24 bg-drake-dark text-white section-slant-bottom">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
             <p className="section-eyebrow text-drake-gold text-center">WHAT MAKES US DIFFERENT</p>

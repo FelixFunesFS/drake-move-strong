@@ -125,24 +125,47 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
-  /* Slanted Section Dividers */
+  /* Slanted Section Dividers - Mobile First with Tablet & Desktop Breakpoints */
+  
+  /* Mobile: Minimal slant for better content visibility */
   .section-slant-top {
-    clip-path: polygon(0 3%, 100% 0%, 100% 100%, 0% 100%);
-    margin-top: -2rem;
-    padding-top: 4rem;
+    clip-path: polygon(0 2%, 100% 0%, 100% 100%, 0% 100%);
+    margin-top: -1.5rem;
+    padding-top: 3rem;
   }
 
   .section-slant-bottom {
-    clip-path: polygon(0 0%, 100% 0%, 100% 97%, 0% 100%);
-    padding-bottom: 4rem;
+    clip-path: polygon(0 0%, 100% 0%, 100% 98%, 0% 100%);
+    padding-bottom: 3rem;
   }
 
   .section-slant-top-reverse {
-    clip-path: polygon(0 0%, 100% 3%, 100% 100%, 0% 100%);
-    margin-top: -2rem;
-    padding-top: 4rem;
+    clip-path: polygon(0 0%, 100% 2%, 100% 100%, 0% 100%);
+    margin-top: -1.5rem;
+    padding-top: 3rem;
   }
 
+  /* Tablet: Medium slant */
+  @media (min-width: 640px) {
+    .section-slant-top {
+      clip-path: polygon(0 3%, 100% 0%, 100% 100%, 0% 100%);
+      margin-top: -2rem;
+      padding-top: 4rem;
+    }
+
+    .section-slant-bottom {
+      clip-path: polygon(0 0%, 100% 0%, 100% 97%, 0% 100%);
+      padding-bottom: 4rem;
+    }
+
+    .section-slant-top-reverse {
+      clip-path: polygon(0 0%, 100% 3%, 100% 100%, 0% 100%);
+      margin-top: -2rem;
+      padding-top: 4rem;
+    }
+  }
+
+  /* Desktop: Full slant */
   @media (min-width: 768px) {
     .section-slant-top {
       clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0% 100%);
@@ -159,6 +182,21 @@ All colors MUST be HSL.
       clip-path: polygon(0 0%, 100% 5%, 100% 100%, 0% 100%);
       margin-top: -3rem;
       padding-top: 6rem;
+    }
+  }
+  
+  /* Disable slants on very small screens for better content visibility */
+  @media (max-width: 480px) {
+    .section-slant-top,
+    .section-slant-top-reverse {
+      clip-path: none;
+      margin-top: 0;
+      padding-top: 3rem;
+    }
+    
+    .section-slant-bottom {
+      clip-path: none;
+      padding-bottom: 3rem;
     }
   }
 
