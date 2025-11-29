@@ -18,6 +18,7 @@ interface HeroProps {
   className?: string;
   eyebrow?: string;
   accentedSubtitle?: boolean;
+  centered?: boolean;
 }
 const Hero = ({
   title,
@@ -29,7 +30,8 @@ const Hero = ({
   autoRotate = true,
   className,
   eyebrow,
-  accentedSubtitle = false
+  accentedSubtitle = false,
+  centered = false
 }: HeroProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = backgroundImages || (backgroundImage ? [backgroundImage] : []);
@@ -61,7 +63,7 @@ const Hero = ({
 
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-2xl text-left text-white">
+        <div className={cn("max-w-2xl text-white", centered ? "text-center mx-auto" : "text-left")}>
           {eyebrow}
           <motion.h1 initial={{
           opacity: 0,
@@ -96,7 +98,7 @@ const Hero = ({
         }} transition={{
           duration: 0.8,
           delay: 0.6
-        }} className="flex flex-col sm:flex-row gap-3 md:gap-4 items-start max-w-xl">
+        }} className={cn("flex flex-col sm:flex-row gap-3 md:gap-4 max-w-xl", centered ? "items-center justify-center mx-auto" : "items-start")}>
             {primaryCTA && <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 shadow-[var(--shadow-gold)] hover:scale-105 transition-transform w-full sm:w-auto">
                 <Link to={primaryCTA.link} className="text-center py-[34px] text-sm">{primaryCTA.text}</Link>
               </Button>}
