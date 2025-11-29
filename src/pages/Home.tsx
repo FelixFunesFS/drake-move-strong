@@ -41,8 +41,8 @@ const Home = () => {
               <OptimizedImage 
                 src={outdoorTraining} 
                 alt="Outdoor functional training with kettlebells" 
-                className="shadow-2xl w-full h-full min-h-[400px] md:min-h-[500px] object-cover" 
-                aspectRatio="auto"
+                className="shadow-2xl w-full md:min-h-[500px]" 
+                aspectRatio="portrait"
                 transparent={true}
                 hideLoadingPlaceholder={true}
               />
