@@ -479,7 +479,8 @@ His approach blends skill, science, and practical strength work to create long-t
             alt: "Outdoor kettlebell training session"
           }, {
             src: coachingSession,
-            alt: "Personal coaching session at Drake Fitness"
+            alt: "Personal coaching session at Drake Fitness",
+            objectPosition: "center top"
           }, {
             src: davidImage2,
             alt: "David Drake coaching kettlebell technique"

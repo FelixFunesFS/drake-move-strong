@@ -8,6 +8,7 @@ interface ImageGalleryProps {
   images: Array<{
     src: string;
     alt: string;
+    objectPosition?: string;
   }>;
   initialCount?: number;
 }
@@ -70,7 +71,7 @@ const ImageGallery = ({
               openLightbox(index);
             }
           }}>
-                <OptimizedImage src={image.src} alt={image.alt} aspectRatio="square" className="transition-transform duration-500 group-hover:scale-110" />
+                <OptimizedImage src={image.src} alt={image.alt} aspectRatio="square" objectPosition={image.objectPosition} className="transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-drake-dark/80 via-transparent to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <div className="bg-white/20 backdrop-blur-sm rounded-full p-3 transform translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300">
                     <Expand className="h-6 w-6 text-white" />
