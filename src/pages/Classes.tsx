@@ -183,7 +183,7 @@ const Classes = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto mb-8 md:mb-12">
               <p className="section-eyebrow text-primary text-center">SEE IT IN ACTION</p>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 uppercase">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 uppercase">
                 Our <span className="text-primary">Classes</span> in Action
               </h2>
               <p className="text-base md:text-lg lg:text-xl text-center text-muted-foreground mb-6 md:mb-8">
@@ -202,7 +202,7 @@ const Classes = () => {
         <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
           <div className="container mx-auto px-4">
             <p className="section-eyebrow text-primary text-center">THE EXPERIENCE</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
               Class <span className="text-primary">Gallery</span>
             </h2>
             <p className="text-xl text-center text-muted-foreground mb-12">
@@ -217,7 +217,7 @@ const Classes = () => {
         <section className="py-16 md:py-24 bg-muted section-slant-top">
           <div className="container mx-auto px-4">
             <p className="section-eyebrow text-primary text-center">CLASS LEVELS</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
               Class Type <span className="text-primary">Guide</span>
             </h2>
             <p className="text-xl text-center text-muted-foreground mb-12">
@@ -246,7 +246,7 @@ const Classes = () => {
       <AnimatedSection animation="fadeInUp">
         <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
               Not Sure Which Class is <span className="text-primary">Right For You?</span>
             </h2>
             <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-card border border-border text-center">
@@ -270,7 +270,7 @@ const Classes = () => {
         <section className="py-16 md:py-24 bg-muted section-slant-top">
           <div className="container mx-auto px-4">
             <p className="section-eyebrow text-primary text-center">QUESTIONS</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
+            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
               Common <span className="text-primary">Questions</span>
             </h2>
             <div className="max-w-3xl mx-auto">

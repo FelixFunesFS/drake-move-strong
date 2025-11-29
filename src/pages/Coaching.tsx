@@ -72,7 +72,7 @@ const Coaching = () => {
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4">
             <p className="section-eyebrow text-primary text-center">WHY 1:1</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
               Why Choose <span className="text-primary">Personal Training?</span>
             </h2>
             <p className="text-xl text-center text-muted-foreground mb-12">
@@ -109,7 +109,7 @@ const Coaching = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto mb-12">
               <p className="section-eyebrow text-primary text-center">SEE IT IN ACTION</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+              <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
                 <span className="text-primary">1:1 Coaching</span> in Action
               </h2>
               <p className="text-xl text-center text-muted-foreground mb-8">
@@ -128,7 +128,7 @@ const Coaching = () => {
         <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
           <div className="container mx-auto px-4">
             <p className="section-eyebrow text-primary text-center">YOUR SESSION</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
+            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
               What to <span className="text-primary">Expect</span>
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
@@ -187,7 +187,7 @@ const Coaching = () => {
         <section className="py-16 md:py-24 bg-muted section-slant-top">
           <div className="container mx-auto px-4">
             <p className="section-eyebrow text-primary text-center">THE TEAM</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
+            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
               Your <span className="text-primary">Coaches</span>
             </h2>
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -239,7 +239,7 @@ const Coaching = () => {
           <AnimatedSection animation="scaleIn">
             <div className="max-w-3xl mx-auto text-center">
               <p className="section-eyebrow text-drake-gold">YOUR TURN</p>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase">
+              <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase">
                 Ready to Get Started?
               </h2>
               <p className="text-xl mb-8">

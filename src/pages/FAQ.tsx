@@ -120,7 +120,7 @@ const FAQ = () => {
           <div className="max-w-4xl mx-auto space-y-12">
             {faqCategories.map((category, catIndex) => (
               <div key={catIndex}>
-                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary uppercase">
+                <h2 className="font-hero text-2xl md:text-3xl font-bold mb-6 text-primary uppercase">
                   {category.category}
                 </h2>
                 <Accordion type="single" collapsible className="space-y-4">
@@ -148,7 +148,7 @@ const FAQ = () => {
       <section className="py-16 md:py-24 bg-muted section-slant-top">
         <div className="container mx-auto px-4 text-center">
           <p className="section-eyebrow text-primary">NEED MORE HELP?</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase">
+          <h2 className="font-hero text-3xl md:text-4xl font-bold mb-4 uppercase">
             Still Have <span className="text-primary">Questions?</span>
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
