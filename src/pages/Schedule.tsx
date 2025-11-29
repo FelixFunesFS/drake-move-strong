@@ -95,7 +95,7 @@ const Schedule = () => {
                         </div>
                         <div className="sm:col-span-2 lg:col-span-5">
                           <div className="flex items-start gap-2 mb-2">
-                            <h3 className="text-xl font-bold">{session.class}</h3>
+                            <h3 className="font-hero text-xl font-bold uppercase">{session.class}</h3>
                             <Badge variant={getBadgeVariant(session.badge)}>
                               {session.badge}
                             </Badge>

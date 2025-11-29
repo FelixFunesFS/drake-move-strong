@@ -118,7 +118,7 @@ movement assessment. A perfect low-risk way to begin your journey with us.</p>
                       </span>
                     </div>}
                   <CardHeader>
-                    <CardTitle className={`text-2xl ${option.popular ? "text-drake-gold" : ""}`}>
+                    <CardTitle className={`font-hero text-2xl uppercase ${option.popular ? "text-drake-gold" : ""}`}>
                       {option.name}
                     </CardTitle>
                     <CardDescription className={`text-base ${option.popular ? "text-gray-300" : ""}`}>
@@ -163,7 +163,7 @@ movement assessment. A perfect low-risk way to begin your journey with us.</p>
             {otherOptions.map((option, index) => <Card key={index} className="shadow-card">
                 <CardHeader>
                   <div className="text-primary mb-2">{option.icon}</div>
-                  <CardTitle className="text-xl">{option.name}</CardTitle>
+                  <CardTitle className="font-hero text-xl uppercase">{option.name}</CardTitle>
                   <div className="mt-2">
                     <span className="text-3xl font-bold">{option.price}</span>
                     {option.period && <span className="text-muted-foreground">{option.period}</span>}

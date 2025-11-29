@@ -45,7 +45,7 @@ const Contact = () => {
           <div className="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
             <div className="lg:col-span-1 space-y-8">
               <div className="bg-primary text-white p-6 rounded-lg">
-                <h3 className="text-xl font-bold mb-6">Contact Info</h3>
+                <h3 className="font-hero text-xl font-bold mb-6 uppercase">Contact Info</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
                     <MapPin className="w-5 h-5 mt-1 flex-shrink-0" />
@@ -93,7 +93,7 @@ const Contact = () => {
 
             <div className="lg:col-span-2">
               <div className="bg-white border border-border rounded-xl p-8 shadow-card">
-                <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
+                <h3 className="font-hero text-2xl font-bold mb-6 uppercase">Send a Message</h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
@@ -201,7 +201,7 @@ const Contact = () => {
               },
             ].map((faq, index) => (
               <div key={index} className="bg-white p-6 rounded-xl border border-border shadow-card">
-                <h3 className="font-bold text-lg mb-2">{faq.q}</h3>
+                <h3 className="font-hero font-bold text-lg mb-2 uppercase">{faq.q}</h3>
                 <p className="text-muted-foreground">{faq.a}</p>
               </div>
             ))}

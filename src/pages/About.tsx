@@ -72,7 +72,7 @@ const About = () => {
                       <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                         <Heart className="w-6 h-6 text-primary" />
                       </div>
-                      <h3 className="text-lg font-bold mb-2">Feel Better</h3>
+                      <h3 className="font-hero text-lg font-bold mb-2 uppercase">Feel Better</h3>
                       <p className="text-sm text-muted-foreground">
                         Reduce pain and stiffness through intelligent movement and mobility work
                       </p>
@@ -92,7 +92,7 @@ const About = () => {
                       <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                         <Activity className="w-6 h-6 text-primary" />
                       </div>
-                      <h3 className="text-lg font-bold mb-2">Move Better</h3>
+                      <h3 className="font-hero text-lg font-bold mb-2 uppercase">Move Better</h3>
                       <p className="text-sm text-muted-foreground">
                         Restore natural range of motion and functional movement patterns
                       </p>
@@ -168,7 +168,7 @@ const About = () => {
                       <OptimizedImage src={davidImage} alt="David Drake - Owner and Head Coach at Drake Fitness" aspectRatio="portrait" className="" />
                       {/* Gradient Overlay with Name */}
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-drake-dark via-drake-dark/80 to-transparent p-6">
-                        <h3 className="text-2xl md:text-3xl font-bold text-white">DAVID DRAKE</h3>
+                        <h3 className="font-hero text-2xl md:text-3xl font-bold text-white uppercase">DAVID DRAKE</h3>
                         <p className="text-drake-gold font-semibold">Owner & Head Coach</p>
                       </div>
                     </div>
@@ -204,7 +204,7 @@ His approach blends skill, science, and practical strength work to create long-t
 
                     {/* Specialties Card - Semi-transparent */}
                     <div className="bg-white/5 border border-white/10 rounded-lg p-6 backdrop-blur-sm mt-6">
-                      <h4 className="font-bold text-white mb-4 text-lg">Specialties</h4>
+                      <h4 className="font-hero font-bold text-white mb-4 text-lg uppercase">Specialties</h4>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {["Mobility & joint restoration", "Corrective exercise", "Kettlebell training (StrongFirst)", "Movement mechanics", "Holistic wellness", "1:1 & small-group coaching"].map((specialty, index) => <div key={index} className="flex items-start">
                             <CheckCircle2 className="w-4 h-4 text-drake-gold mr-2 mt-0.5 flex-shrink-0" />
@@ -251,7 +251,7 @@ His approach blends skill, science, and practical strength work to create long-t
                 }} transition={{
                   duration: 0.6
                 }}>
-                    <h3 className="text-2xl md:text-3xl font-bold mb-2">NICK POPPA</h3>
+                    <h3 className="font-hero text-2xl md:text-3xl font-bold mb-2 uppercase">NICK POPPA</h3>
                     <p className="text-lg md:text-xl text-primary font-semibold mb-4">
                       Holistic Health & Movement Specialist
                     </p>
@@ -298,7 +298,7 @@ His approach blends skill, science, and practical strength work to create long-t
                       <OptimizedImage src={nickImage} alt="Coach Nick Poppa demonstrating functional training" aspectRatio="portrait" objectPosition="center 20%" />
                       {/* White/Frosted Bottom Overlay with Name */}
                       <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-6 border-t border-gray-200">
-                        <h3 className="text-xl md:text-2xl font-bold text-drake-dark">COACH NICK</h3>
+                        <h3 className="font-hero text-xl md:text-2xl font-bold text-drake-dark uppercase">COACH NICK</h3>
                         <p className="text-primary font-semibold text-sm">Group & 1:1 Trainer</p>
                       </div>
                     </div>

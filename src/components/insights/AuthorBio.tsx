@@ -16,7 +16,7 @@ const AuthorBio = ({ author }: AuthorBioProps) => {
           className="w-16 h-16 rounded-full object-cover"
         />
         <div className="flex-1">
-          <h4 className="font-semibold text-lg">{info.name}</h4>
+          <h4 className="font-hero font-semibold text-lg uppercase">{info.name}</h4>
           <p className="text-sm text-muted-foreground mb-2">{info.title}</p>
           <p className="text-sm">{info.bio}</p>
         </div>
