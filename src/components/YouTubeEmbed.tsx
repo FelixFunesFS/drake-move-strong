@@ -1,20 +1,27 @@
+import { useState } from "react";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 import { cn } from "@/lib/utils";
+import { Play } from "lucide-react";
 
 interface YouTubeEmbedProps {
   videoId?: string;
   title: string;
   className?: string;
   placeholder?: string;
+  poster?: "maxresdefault" | "hqdefault" | "sddefault" | "mqdefault";
+  customThumbnail?: string;
 }
 
 const YouTubeEmbed = ({ 
   videoId, 
   title, 
   className,
-  placeholder = "Add your YouTube video ID here" 
+  placeholder = "Add your YouTube video ID here",
+  poster = "maxresdefault",
+  customThumbnail
 }: YouTubeEmbedProps) => {
+  const [isPlaying, setIsPlaying] = useState(false);
   if (!videoId) {
     return (
       <div className={cn(
@@ -38,13 +45,51 @@ const YouTubeEmbed = ({
     );
   }
 
+  // Custom thumbnail mode - before playing
+  if (customThumbnail && !isPlaying) {
+    return (
+      <div 
+        className={cn("relative aspect-video w-full overflow-hidden rounded-lg cursor-pointer group", className)}
+        onClick={() => setIsPlaying(true)}
+      >
+        <img 
+          src={customThumbnail} 
+          alt={title} 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-16 h-12 bg-red-600 rounded-xl flex items-center justify-center group-hover:bg-red-700 transition-colors shadow-lg">
+            <Play className="w-6 h-6 text-white fill-white ml-1" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Custom thumbnail mode - now playing
+  if (customThumbnail && isPlaying) {
+    return (
+      <div className={cn("relative aspect-video w-full overflow-hidden rounded-lg", className)}>
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&vq=hd1080&hd=1`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="absolute inset-0 w-full h-full"
+        />
+      </div>
+    );
+  }
+
+  // Standard LiteYouTubeEmbed with HD defaults
   return (
     <div className={cn("relative aspect-video w-full overflow-hidden rounded-lg", className)}>
       <LiteYouTubeEmbed
         id={videoId}
         title={title}
-        poster="hqdefault"
+        poster={poster}
         noCookie={true}
+        params="rel=0&vq=hd1080"
       />
     </div>
   );
