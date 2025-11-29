@@ -86,7 +86,7 @@ const ImageGallery = ({
       </div>
 
       {hasMore && <motion.div layout className="flex justify-center mt-8">
-          <Button onClick={handleToggle} variant="gold" size="lg" className="gap-2 bg-primary text-accent border border-muted">
+          <Button onClick={handleToggle} variant="gold" size="lg" className="gap-2 border border-muted text-primary bg-secondary">
             {isExpanded ? <>
                 <ChevronUp className="h-5 w-5" />
                 Show Less
