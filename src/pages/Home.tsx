@@ -41,8 +41,8 @@ const Home = () => {
               <OptimizedImage 
                 src={outdoorTraining} 
                 alt="Outdoor functional training with kettlebells" 
-                className="shadow-2xl w-full" 
-                aspectRatio="video"
+                className="shadow-2xl w-full h-full min-h-[400px] md:min-h-[500px] object-cover" 
+                aspectRatio="auto"
                 transparent={true}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-drake-dark/90 via-drake-dark/50 to-transparent flex items-end p-6 md:p-8">
