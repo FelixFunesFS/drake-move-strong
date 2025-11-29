@@ -195,7 +195,7 @@ movement assessment. A perfect low-risk way to begin your journey with us.</p>
             Common <span className="text-drake-gold">Questions</span>
           </h2>
           <div className="max-w-3xl mx-auto">
-            <Accordion type="single" collapsible className="space-y-4">
+            <Accordion type="multiple" defaultValue={["item-0", "item-1", "item-2", "item-3"]} className="space-y-4">
               {faqs.map((faq, index) => <AccordionItem key={index} value={`item-${index}`} className="bg-white/5 border border-white/10 rounded-xl px-6">
                   <AccordionTrigger className="text-lg font-semibold hover:no-underline text-drake-gold">
                     {faq.question}
@@ -209,7 +209,7 @@ movement assessment. A perfect low-risk way to begin your journey with us.</p>
         </div>
       </section>
 
-      <CTASection eyebrow="GET STARTED" title="Ready to Feel Stronger?" subtitle="Join us for a free movement assessment and start your journey to better movement." ctaText="Book Now" ctaLink="/contact" variant="gold" slanted={true} className="bg-primary" />
+      <CTASection eyebrow="GET STARTED" title="Ready to Feel Stronger?" subtitle="Join us for a free movement assessment and start your journey to better movement." ctaText="Book Now" ctaLink="/contact" variant="gold" slanted={true} />
     </main>;
 };
 export default Pricing;
