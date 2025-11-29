@@ -266,7 +266,7 @@ const ImageLightbox = ({
               alt={currentImage.alt}
               onLoad={() => setIsImageLoading(false)}
               className={cn(
-                "max-w-full max-h-full h-auto w-auto object-contain rounded-lg transition-opacity duration-300 pointer-events-auto",
+                "max-w-full max-h-full h-auto w-auto object-contain object-top rounded-lg transition-opacity duration-300 pointer-events-auto",
                 isImageLoading ? "opacity-0" : "opacity-100"
               )}
             />
