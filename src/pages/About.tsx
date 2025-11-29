@@ -1,4 +1,4 @@
-import Hero from "@/components/Hero";
+import VideoHero from "@/components/VideoHero";
 import CTASection from "@/components/CTASection";
 import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
@@ -40,7 +40,8 @@ import ImageGallery from "@/components/ImageGallery";
 const About = () => {
   return (
     <main>
-      <Hero
+      <VideoHero
+        videoId="RX9zOxhayFk"
         eyebrow="OUR PURPOSE"
         title={
           <>
@@ -48,7 +49,7 @@ const About = () => {
           </>
         }
         subtitle="To help adults move better, feel stronger, and stay pain-free for life."
-        backgroundImage={heroImage}
+        fallbackImage={heroImage}
         accentedSubtitle={true}
       />
 
