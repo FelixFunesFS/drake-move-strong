@@ -113,34 +113,38 @@ const Pricing = () => {
     <main>
       <Hero
         eyebrow="PRICING"
-        title="Simple Memberships. Real Results."
+        title={<>Simple Memberships.<br /><span className="text-drake-gold">Real Results.</span></>}
         subtitle="No hidden fees. No long-term contracts. Just straightforward options designed to help you commit to your health."
         backgroundImage={pricingKettlebellRack}
+        className="h-[450px] md:h-[400px] lg:h-[450px]"
       />
 
       <section className="py-16 md:py-24 bg-primary text-white section-slant-top">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="section-eyebrow text-drake-gold">BEGIN HERE</p>
-            <h2 className="font-hero text-3xl md:text-4xl font-bold mb-4 uppercase">Start Here</h2>
-            <Card className="bg-drake-gold text-drake-dark border-0">
-              <CardHeader>
-                <CardTitle className="text-3xl">14-Day Intro Experience</CardTitle>
-                <CardDescription className="text-drake-dark/80 text-lg">
-                  Try unlimited classes for 14 days + get a free movement assessment
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <div className="text-5xl font-bold mb-4">$49</div>
-                <p className="text-sm uppercase tracking-wide font-semibold">One-Time Payment</p>
-                <p className="mt-4">The best way to begin. No commitment required.</p>
-              </CardContent>
-              <CardFooter className="justify-center">
-                <Button asChild size="lg" className="bg-drake-dark hover:bg-drake-dark/90 text-white">
-                  <Link to="/contact">Get Started</Link>
-                </Button>
-              </CardFooter>
-            </Card>
+          <div className="max-w-5xl mx-auto">
+            <div className="bg-primary border-2 border-white/10 rounded-2xl p-8 md:p-12 grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
+              <div className="md:col-span-3 space-y-6">
+                <div>
+                  <span className="inline-block bg-drake-gold text-drake-dark text-sm font-bold uppercase tracking-wide px-4 py-1.5 rounded-full mb-4">
+                    Start Here
+                  </span>
+                  <h2 className="font-hero text-3xl md:text-4xl font-bold mb-3 uppercase">14-Day Intro Experience</h2>
+                  <p className="text-white/90 text-lg">
+                    Try unlimited classes for 14 days + get a free movement assessment
+                  </p>
+                </div>
+                <div className="space-y-4">
+                  <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold w-full md:w-auto">
+                    <Link to="/contact">Get Started</Link>
+                  </Button>
+                  <p className="text-white/70 text-sm">No commitment required</p>
+                </div>
+              </div>
+              <div className="md:col-span-2 text-center md:text-right md:border-l md:border-white/20 md:pl-8">
+                <div className="text-6xl md:text-7xl font-bold text-white mb-2">$49</div>
+                <p className="text-sm uppercase tracking-wide font-semibold text-white/80">One-Time Payment</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -156,40 +160,69 @@ const Pricing = () => {
           </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
               {membershipOptions.map((option, index) => (
-                <Card key={index} className={`relative ${option.popular ? "border-primary border-2 shadow-card" : "shadow-card"}`}>
-                {option.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-                <CardHeader>
-                  <CardTitle className="text-2xl">{option.name}</CardTitle>
-                  <CardDescription className="text-base">{option.description}</CardDescription>
-                  <div className="mt-4">
-                    <span className="text-4xl font-bold">{option.price}</span>
-                    <span className="text-muted-foreground">{option.period}</span>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3">
-                    {option.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <CheckCircle2 className="w-5 h-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardFooter>
-                  <Button asChild className={`w-full ${option.popular ? "bg-primary hover:bg-primary/90" : ""}`}>
-                    <Link to={option.link}>{option.cta}</Link>
-                  </Button>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
+                <Card 
+                  key={index} 
+                  className={`relative ${
+                    option.popular 
+                      ? "bg-drake-dark text-white shadow-2xl md:-translate-y-4 border-drake-gold border-2" 
+                      : "shadow-card"
+                  }`}
+                >
+                  {option.popular && (
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <span className="bg-drake-gold text-drake-dark px-4 py-1 rounded-full text-sm font-semibold">
+                        Most Popular
+                      </span>
+                    </div>
+                  )}
+                  <CardHeader>
+                    <CardTitle className={`text-2xl ${option.popular ? "text-drake-gold" : ""}`}>
+                      {option.name}
+                    </CardTitle>
+                    <CardDescription className={`text-base ${option.popular ? "text-gray-300" : ""}`}>
+                      {option.description}
+                    </CardDescription>
+                    <div className="mt-4">
+                      <span className={`text-5xl font-bold ${option.popular ? "text-white" : ""}`}>
+                        {option.price}
+                      </span>
+                      <span className={option.popular ? "text-gray-400" : "text-muted-foreground"}>
+                        {option.period}
+                      </span>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-3">
+                      {option.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <CheckCircle2 
+                            className={`w-5 h-5 mr-2 mt-0.5 flex-shrink-0 ${
+                              option.popular ? "text-drake-gold" : "text-primary"
+                            }`} 
+                          />
+                          <span className={option.popular ? "text-gray-200" : ""}>
+                            {feature}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                  <CardFooter>
+                    <Button 
+                      asChild 
+                      variant={option.popular ? "default" : "outline"}
+                      className={`w-full ${
+                        option.popular 
+                          ? "bg-drake-gold hover:bg-drake-gold/90 text-drake-dark" 
+                          : ""
+                      }`}
+                    >
+                      <Link to={option.link}>{option.cta}</Link>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
         </div>
       </section>
 
@@ -232,20 +265,24 @@ const Pricing = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
+      <section className="py-16 md:py-24 bg-drake-dark section-slant-top-reverse">
         <div className="container mx-auto px-4">
-          <p className="section-eyebrow text-primary text-center">QUESTIONS</p>
-          <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
-            Common <span className="text-primary">Questions</span>
+          <p className="section-eyebrow text-drake-gold text-center">QUESTIONS</p>
+          <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase text-white">
+            Common <span className="text-drake-gold">Questions</span>
           </h2>
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="space-y-4">
               {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="bg-white border border-border rounded-xl px-6 shadow-card">
-                  <AccordionTrigger className="text-lg font-semibold hover:no-underline">
+                <AccordionItem 
+                  key={index} 
+                  value={`item-${index}`} 
+                  className="bg-white/5 border border-white/10 rounded-xl px-6"
+                >
+                  <AccordionTrigger className="text-lg font-semibold hover:no-underline text-drake-gold">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
+                  <AccordionContent className="text-gray-300">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
