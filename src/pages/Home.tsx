@@ -25,6 +25,7 @@ import oneOnOne from "@/assets/one-on-one.jpg";
 import Marquee from "@/components/Marquee";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
+import kettlebellBackground from "@/assets/kettlebell-background.jpg";
 const Home = () => {
   return <main>
       <Hero title={<>Move Better.<br /><span className="text-accent">Live Stronger.</span><br />Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
@@ -242,8 +243,18 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-muted section-slant-top-reverse">
-        <div className="container mx-auto px-4">
+      <section className="py-16 md:py-24 relative overflow-hidden section-slant-top-reverse">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${kettlebellBackground})` }}
+        />
+        
+        {/* Light Overlay - 90% opacity for subtle texture */}
+        <div className="absolute inset-0 bg-muted/90" />
+        
+        {/* Content - positioned above the background layers */}
+        <div className="container mx-auto px-4 relative z-10">
           <p className="section-eyebrow text-primary text-center">MEET THE TEAM</p>
           <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
             <span className="text-primary">Coaching You Can Trust</span>
