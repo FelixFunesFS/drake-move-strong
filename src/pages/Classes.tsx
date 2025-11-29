@@ -213,36 +213,6 @@ const Classes = () => {
         </section>
       </AnimatedSection>
 
-      <AnimatedSection animation="fadeIn">
-        <section className="py-16 md:py-24 bg-muted section-slant-top">
-          <div className="container mx-auto px-4">
-            <p className="section-eyebrow text-primary text-center">CLASS LEVELS</p>
-            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-              Class Type <span className="text-primary">Guide</span>
-            </h2>
-            <p className="text-xl text-center text-muted-foreground mb-12">
-              Understanding our class levels and what to expect
-            </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {levelGuide.map((level, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                  className={`${level.color} p-6 rounded-xl border border-border shadow-card`}
-                >
-                  <h3 className="font-bold text-lg mb-2">{level.level}</h3>
-                  <p className="text-sm">{level.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
-
       <AnimatedSection animation="fadeInUp">
         <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
           <div className="container mx-auto px-4">
