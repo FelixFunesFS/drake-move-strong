@@ -184,7 +184,7 @@ const Coaching = () => {
               y: -5
             }} className="text-center p-5 md:p-6 rounded-xl border bg-secondary-foreground shadow border-primary">
                   <div className="text-primary mb-4 flex justify-center">{item.icon}</div>
-                  <h3 className="text-lg md:text-xl font-bold mb-3 text-accent">{item.title}</h3>
+                  <h3 className="font-hero text-lg md:text-xl font-bold mb-3 text-accent uppercase">{item.title}</h3>
                   <p className="text-sm md:text-base text-muted-foreground">{item.description}</p>
                 </motion.div>)}
             </div>
