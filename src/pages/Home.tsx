@@ -3,7 +3,6 @@ import CTASection from "@/components/CTASection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle2, Users, Trophy, Target, TrendingUp, Heart } from "lucide-react";
-import heroImage from "@/assets/hero-kettlebell-training.jpg";
 import heroImage2 from "@/assets/hero-barbell-deadlift.jpg";
 import heroImage3 from "@/assets/hero-coaching-session.jpg";
 import outdoorTraining from "@/assets/david-outdoor-dumbbell.jpg";
@@ -33,7 +32,7 @@ const Home = () => {
     }} secondaryCTA={{
       text: <>SEE CLASS<br />SCHEDULE</>,
       link: "/schedule"
-    }} backgroundImages={[heroImage, heroImage2, heroImage3]} autoRotate={true} />
+    }} backgroundImages={[heroImage2, heroImage3]} autoRotate={true} />
 
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
