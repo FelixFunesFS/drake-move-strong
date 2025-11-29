@@ -11,69 +11,50 @@ import oneOnOneCoaching from "@/assets/one-on-one-coaching.jpg";
 import davidCoach from "@/assets/david-double-kb-storefront.jpg";
 import nickCoach from "@/assets/nick-sandbag-lunge.jpg";
 import coachingSession from "@/assets/coaching-session.jpg";
-
 const Coaching = () => {
-  const reasons = [
-    {
-      icon: Heart,
-      title: "Are recovering from injury",
-      description: "Safe, modified movements to bridge the gap between rehab and fitness.",
-    },
-    {
-      icon: User,
-      title: "Feel intimidated jumping into class",
-      description: "Build confidence and learn basics in private setting first.",
-    },
-    {
-      icon: TrendingUp,
-      title: "Want faster progress",
-      description: "More focused attention accelerates your goals and technique.",
-    },
-    {
-      icon: Target,
-      title: "Need individualized mobility work",
-      description: "Targeted mobility addressing your specific limitations and pain points.",
-    },
-    {
-      icon: Dumbbell,
-      title: "Have specific performance goals",
-      description: "Training for a race, sport, or life event that requires structured preparation.",
-    },
-  ];
-
-  const whatToExpect = [
-    {
-      icon: <Target className="w-8 h-8" />,
-      title: "Assessment & Goals",
-      description: "Every session starts with a check-in and targeted mobility assessment to evaluate what your body needs that day based on your body's mobility, strength, and your goals.",
-    },
-    {
-      icon: <Heart className="w-8 h-8" />,
-      title: "Mobility & Strength",
-      description: "A blend of targeted mobility work to open up your joints, functional strength training focused on real-world movement patterns that support your daily life and longevity.",
-    },
-    {
-      icon: <Dumbbell className="w-8 h-8" />,
-      title: "Coaching & Homework",
-      description: "Learn deeply from form corrections and technique refinement with optional homework exercises for recovery days to keep you progressing between sessions.",
-    },
-  ];
-
-  return (
-    <main>
-      <Hero
-        eyebrow="INDIVIDUAL ATTENTION"
-        title={
-          <>
+  const reasons = [{
+    icon: Heart,
+    title: "Are recovering from injury",
+    description: "Safe, modified movements to bridge the gap between rehab and fitness."
+  }, {
+    icon: User,
+    title: "Feel intimidated jumping into class",
+    description: "Build confidence and learn basics in private setting first."
+  }, {
+    icon: TrendingUp,
+    title: "Want faster progress",
+    description: "More focused attention accelerates your goals and technique."
+  }, {
+    icon: Target,
+    title: "Need individualized mobility work",
+    description: "Targeted mobility addressing your specific limitations and pain points."
+  }, {
+    icon: Dumbbell,
+    title: "Have specific performance goals",
+    description: "Training for a race, sport, or life event that requires structured preparation."
+  }];
+  const whatToExpect = [{
+    icon: <Target className="w-8 h-8" />,
+    title: "Assessment & Goals",
+    description: "Every session starts with a check-in and targeted mobility assessment to evaluate what your body needs that day based on your body's mobility, strength, and your goals."
+  }, {
+    icon: <Heart className="w-8 h-8" />,
+    title: "Mobility & Strength",
+    description: "A blend of targeted mobility work to open up your joints, functional strength training focused on real-world movement patterns that support your daily life and longevity."
+  }, {
+    icon: <Dumbbell className="w-8 h-8" />,
+    title: "Coaching & Homework",
+    description: "Learn deeply from form corrections and technique refinement with optional homework exercises for recovery days to keep you progressing between sessions."
+  }];
+  return <main>
+      <Hero eyebrow="INDIVIDUAL ATTENTION" title={<>
             <span className="sm:whitespace-nowrap">PERSONAL TRAINING WITH</span><br />
             <span className="text-primary">DAVID OR NICK</span><br />
             TAILORED TO YOU
-          </>
-        }
-        subtitle="Experience expert coaching designed specifically for your body, your history, and your goals. Move better and get stronger with 100% focus on you."
-        primaryCTA={{ text: "Book 1:1 Consultation", link: "/contact" }}
-        backgroundImage={oneOnOneCoaching}
-      />
+          </>} subtitle="Experience expert coaching designed specifically for your body, your history, and your goals. Move better and get stronger with 100% focus on you." primaryCTA={{
+      text: "Book 1:1 Consultation",
+      link: "/contact"
+    }} backgroundImage={oneOnOneCoaching} />
 
       <AnimatedSection animation="fadeInUp">
         <section className="py-16 md:py-24 bg-background">
@@ -91,16 +72,18 @@ const Coaching = () => {
                 
                 <div className="space-y-6">
                   {reasons.map((reason, index) => {
-                    const Icon = reason.icon;
-                    return (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 }}
-                        className="flex items-start gap-4"
-                      >
+                  const Icon = reason.icon;
+                  return <motion.div key={index} initial={{
+                    opacity: 0,
+                    x: -20
+                  }} whileInView={{
+                    opacity: 1,
+                    x: 0
+                  }} viewport={{
+                    once: true
+                  }} transition={{
+                    delay: index * 0.1
+                  }} className="flex items-start gap-4">
                         <div className="w-12 h-12 bg-cool-gray rounded-xl flex items-center justify-center flex-shrink-0">
                           <Icon className="w-6 h-6 text-primary" />
                         </div>
@@ -112,36 +95,39 @@ const Coaching = () => {
                             {reason.description}
                           </p>
                         </div>
-                      </motion.div>
-                    );
-                  })}
+                      </motion.div>;
+                })}
                 </div>
               </div>
 
               {/* Right Column - Image */}
               <div className="relative lg:sticky lg:top-8">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="relative"
-                >
-                  <OptimizedImage
-                    src={coachingSession}
-                    alt="David and Nick coaching at Drake Fitness"
-                    className="rounded-2xl shadow-lg"
-                    aspectRatio="square"
-                  />
+                <motion.div initial={{
+                opacity: 0,
+                scale: 0.95
+              }} whileInView={{
+                opacity: 1,
+                scale: 1
+              }} viewport={{
+                once: true
+              }} transition={{
+                duration: 0.6
+              }} className="relative">
+                  <OptimizedImage src={coachingSession} alt="David and Nick coaching at Drake Fitness" className="rounded-2xl shadow-lg" aspectRatio="square" />
                   
                   {/* Caption Badge Overlay */}
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3, duration: 0.6 }}
-                    className="absolute bottom-4 left-4 right-4"
-                  >
+                  <motion.div initial={{
+                  opacity: 0,
+                  y: 20
+                }} whileInView={{
+                  opacity: 1,
+                  y: 0
+                }} viewport={{
+                  once: true
+                }} transition={{
+                  delay: 0.3,
+                  duration: 0.6
+                }} className="absolute bottom-4 left-4 right-4">
                     <div className="bg-black/70 backdrop-blur-sm rounded-lg px-4 py-3 flex items-center gap-3">
                       <span className="text-drake-gold font-semibold text-sm uppercase tracking-wide">
                         Expert Focus
@@ -170,68 +156,65 @@ const Coaching = () => {
               <p className="text-xl text-center text-muted-foreground mb-8">
                 Watch a personal training session
               </p>
-              <YouTubeEmbed
-                title="Drake Fitness 1:1 Coaching Demo"
-                placeholder="Add a video showcasing your personalized coaching approach"
-              />
+              <YouTubeEmbed title="Drake Fitness 1:1 Coaching Demo" placeholder="Add a video showcasing your personalized coaching approach" />
             </div>
           </div>
         </section>
       </AnimatedSection>
 
       <AnimatedSection animation="fadeInUp">
-        <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
+        <section className="py-16 md:py-24 section-slant-top-reverse bg-secondary-foreground">
           <div className="container mx-auto px-4">
             <p className="section-eyebrow text-primary text-center">YOUR SESSION</p>
-            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
+            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase text-primary-foreground">
               What to <span className="text-primary">Expect</span>
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
-              {whatToExpect.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
-                  whileHover={{ y: -5 }}
-                  className="text-center p-5 md:p-6 bg-white rounded-xl border border-border shadow-card"
-                >
+              {whatToExpect.map((item, index) => <motion.div key={index} initial={{
+              opacity: 0,
+              y: 20
+            }} whileInView={{
+              opacity: 1,
+              y: 0
+            }} viewport={{
+              once: true
+            }} transition={{
+              delay: index * 0.2
+            }} whileHover={{
+              y: -5
+            }} className="text-center p-5 md:p-6 rounded-xl border bg-secondary-foreground shadow border-primary">
                   <div className="text-primary mb-4 flex justify-center">{item.icon}</div>
-                  <h3 className="text-lg md:text-xl font-bold mb-3">{item.title}</h3>
+                  <h3 className="text-lg md:text-xl font-bold mb-3 text-accent">{item.title}</h3>
                   <p className="text-sm md:text-base text-muted-foreground">{item.description}</p>
-                </motion.div>
-              ))}
+                </motion.div>)}
             </div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-              className="mt-12 max-w-3xl mx-auto bg-white p-8 rounded-xl border border-border shadow-card"
-            >
+            <motion.div initial={{
+            opacity: 0,
+            y: 20
+          }} whileInView={{
+            opacity: 1,
+            y: 0
+          }} viewport={{
+            once: true
+          }} transition={{
+            delay: 0.6
+          }} className="mt-12 max-w-3xl mx-auto bg-white p-8 rounded-xl border border-border shadow-card">
               <h3 className="text-2xl font-bold text-center mb-4">Additional Benefits</h3>
               <ul className="space-y-3">
-                {[
-                  "Movement assessment",
-                  "Corrective mobility work",
-                  "Functional strength training",
-                  "Technique refinement",
-                  "Lifestyle + recovery guidance",
-                  "Optional homework exercises",
-                ].map((benefit, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="flex items-center"
-                  >
+                {["Movement assessment", "Corrective mobility work", "Functional strength training", "Technique refinement", "Lifestyle + recovery guidance", "Optional homework exercises"].map((benefit, index) => <motion.li key={index} initial={{
+                opacity: 0,
+                x: -20
+              }} whileInView={{
+                opacity: 1,
+                x: 0
+              }} viewport={{
+                once: true
+              }} transition={{
+                delay: index * 0.1
+              }} className="flex items-center">
                     <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
                     <span className="text-lg">{benefit}</span>
-                  </motion.li>
-                ))}
+                  </motion.li>)}
               </ul>
             </motion.div>
           </div>
@@ -246,16 +229,10 @@ const Coaching = () => {
               Your <span className="text-primary">Coaches</span>
             </h2>
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              <motion.div
-                whileHover={{ y: -8 }}
-                className="bg-white p-6 rounded-xl shadow-card border border-border"
-              >
-                <OptimizedImage
-                  src={davidCoach}
-                  alt="David Drake in front of Drake Fitness studio"
-                  aspectRatio="video"
-                  className="mb-4 rounded-lg"
-                />
+              <motion.div whileHover={{
+              y: -8
+            }} className="bg-white p-6 rounded-xl shadow-card border border-border">
+                <OptimizedImage src={davidCoach} alt="David Drake in front of Drake Fitness studio" aspectRatio="video" className="mb-4 rounded-lg" />
                 <h3 className="text-2xl font-bold mb-2">David Drake</h3>
                 <p className="text-primary font-semibold mb-3">Owner & Head Coach</p>
                 <p className="text-muted-foreground mb-4">
@@ -265,16 +242,10 @@ const Coaching = () => {
                   <Link to="/about">Read Bio</Link>
                 </Button>
               </motion.div>
-              <motion.div
-                whileHover={{ y: -8 }}
-                className="bg-white p-6 rounded-xl shadow-card border border-border"
-              >
-                <OptimizedImage
-                  src={nickCoach}
-                  alt="Coach Nick Poppa demonstrating sandbag training"
-                  aspectRatio="video"
-                  className="mb-4 rounded-lg"
-                />
+              <motion.div whileHover={{
+              y: -8
+            }} className="bg-white p-6 rounded-xl shadow-card border border-border">
+                <OptimizedImage src={nickCoach} alt="Coach Nick Poppa demonstrating sandbag training" aspectRatio="video" className="mb-4 rounded-lg" />
                 <h3 className="text-2xl font-bold mb-2">Coach Nick</h3>
                 <p className="text-primary font-semibold mb-3">Holistic Movement Specialist</p>
                 <p className="text-muted-foreground mb-4">
@@ -300,7 +271,11 @@ const Coaching = () => {
               <p className="text-xl mb-8">
                 Book a consultation to discuss your goals, assess your movement, and build a plan that works for you. No pressure, just a conversation about your health.
               </p>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div whileHover={{
+              scale: 1.05
+            }} whileTap={{
+              scale: 0.95
+            }}>
                 <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-lg px-8 py-6 text-balance">
                   <Link to="/contact">Book 1:1 Consultation</Link>
                 </Button>
@@ -309,8 +284,6 @@ const Coaching = () => {
           </AnimatedSection>
         </div>
       </section>
-    </main>
-  );
+    </main>;
 };
-
 export default Coaching;
