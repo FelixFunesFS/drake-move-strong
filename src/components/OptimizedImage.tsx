@@ -7,6 +7,7 @@ interface OptimizedImageProps {
   className?: string;
   aspectRatio?: "video" | "square" | "portrait" | "auto";
   priority?: boolean;
+  objectPosition?: string;
 }
 
 const OptimizedImage = ({ 
@@ -14,7 +15,8 @@ const OptimizedImage = ({
   alt, 
   className, 
   aspectRatio = "auto",
-  priority = false 
+  priority = false,
+  objectPosition
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -37,6 +39,7 @@ const OptimizedImage = ({
         loading={priority ? "eager" : "lazy"}
         decoding="async"
         onLoad={() => setIsLoaded(true)}
+        style={objectPosition ? { objectPosition } : undefined}
         className={cn(
           "w-full h-full object-cover transition-all duration-700",
           isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-105"
