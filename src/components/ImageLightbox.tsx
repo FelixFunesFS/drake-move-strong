@@ -174,17 +174,22 @@ const ImageLightbox = ({
         >
           {/* Close Button */}
           <Button
+            type="button"
             variant="ghost"
             size="icon"
-            onClick={onClose}
-            className="absolute top-2 right-2 sm:top-4 sm:right-4 text-white hover:bg-white/10 rounded-full h-10 w-10 sm:h-12 sm:w-12 bg-black/30 backdrop-blur-sm"
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              onClose();
+            }}
+            className="absolute top-2 right-2 sm:top-4 sm:right-4 z-30 text-white hover:bg-white/10 rounded-full h-10 w-10 sm:h-12 sm:w-12 bg-black/30 backdrop-blur-sm cursor-pointer touch-manipulation"
             aria-label="Close lightbox"
           >
             <X className="h-5 w-5 sm:h-6 sm:w-6" />
           </Button>
 
           {/* Image Counter */}
-          <div className="absolute top-2 left-2 sm:top-4 sm:left-4 text-white bg-black/50 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full backdrop-blur-sm">
+          <div className="absolute top-2 left-2 sm:top-4 sm:left-4 z-30 text-white bg-black/50 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full backdrop-blur-sm pointer-events-none">
             <span className="text-xs sm:text-sm font-medium">
               {currentIndex + 1} / {images.length}
             </span>
@@ -192,14 +197,16 @@ const ImageLightbox = ({
 
           {/* Previous Button - Always visible with infinite loop */}
           <Button
+            type="button"
             variant="ghost"
             size="icon"
             onClick={(e) => {
               e.stopPropagation();
+              e.preventDefault();
               setSlideDirection("right");
               onPrevious();
             }}
-            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 rounded-full h-12 w-12 sm:h-14 sm:w-14 bg-black/30 backdrop-blur-sm"
+            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 text-white hover:bg-white/20 rounded-full h-12 w-12 sm:h-14 sm:w-14 bg-black/30 backdrop-blur-sm cursor-pointer touch-manipulation"
             aria-label="Previous image"
           >
             <ChevronLeft className="h-6 w-6 sm:h-8 sm:w-8" />
@@ -207,14 +214,16 @@ const ImageLightbox = ({
 
           {/* Next Button - Always visible with infinite loop */}
           <Button
+            type="button"
             variant="ghost"
             size="icon"
             onClick={(e) => {
               e.stopPropagation();
+              e.preventDefault();
               setSlideDirection("left");
               onNext();
             }}
-            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 rounded-full h-12 w-12 sm:h-14 sm:w-14 bg-black/30 backdrop-blur-sm"
+            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 text-white hover:bg-white/20 rounded-full h-12 w-12 sm:h-14 sm:w-14 bg-black/30 backdrop-blur-sm cursor-pointer touch-manipulation"
             aria-label="Next image"
           >
             <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8" />
@@ -242,7 +251,7 @@ const ImageLightbox = ({
               duration: swipeOffset !== 0 ? 0 : 0.3, 
               ease: "easeOut" 
             }}
-            className="relative flex items-center justify-center w-full h-full max-h-[calc(100vh-4rem)] sm:max-h-[calc(100vh-8rem)]"
+            className="relative z-10 flex items-center justify-center w-full h-full max-h-[calc(100vh-4rem)] sm:max-h-[calc(100vh-8rem)] pointer-events-none"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Loading Indicator */}
@@ -257,14 +266,14 @@ const ImageLightbox = ({
               alt={currentImage.alt}
               onLoad={() => setIsImageLoading(false)}
               className={cn(
-                "max-w-full max-h-full h-auto w-auto object-contain rounded-lg transition-opacity duration-300",
+                "max-w-full max-h-full h-auto w-auto object-contain rounded-lg transition-opacity duration-300 pointer-events-auto",
                 isImageLoading ? "opacity-0" : "opacity-100"
               )}
             />
           </motion.div>
 
           {/* Alt Text Caption */}
-          <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 max-w-[90%] sm:max-w-3xl px-2 sm:px-4">
+          <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 z-30 max-w-[90%] sm:max-w-3xl px-2 sm:px-4 pointer-events-none">
             <p className="text-white text-center text-xs sm:text-sm md:text-base bg-black/60 px-3 py-2 sm:px-6 sm:py-3 rounded-full backdrop-blur-sm">
               {currentImage.alt}
             </p>
