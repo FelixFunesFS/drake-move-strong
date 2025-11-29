@@ -45,6 +45,7 @@ const VideoHero = ({
   const playerRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const iframeContainerRef = useRef<HTMLDivElement>(null);
+  const timeCheckRef = useRef<NodeJS.Timeout | null>(null);
 
   // Load YouTube IFrame API
   useEffect(() => {
@@ -62,12 +63,11 @@ const VideoHero = ({
           playerVars: {
             autoplay: 1,
             mute: 1,
-            loop: 1,
+            start: 30,
             controls: 0,
             modestbranding: 1,
             showinfo: 0,
             rel: 0,
-            playlist: videoId, // Required for loop to work
             vq: 'hd1080',
             hd: 1,
             quality: 'hd1080',
@@ -80,14 +80,19 @@ const VideoHero = ({
             onReady: (event: any) => {
               setIsPlayerReady(true);
               setShowFallback(false);
+              event.target.seekTo(30, true);
               event.target.playVideo();
               event.target.mute();
-            },
-            onStateChange: (event: any) => {
-              // If video ends, replay (backup for loop)
-              if (event.data === window.YT.PlayerState.ENDED) {
-                event.target.playVideo();
-              }
+              
+              // Start time monitoring for segment loop (30s-41s)
+              timeCheckRef.current = setInterval(() => {
+                if (playerRef.current && playerRef.current.getCurrentTime) {
+                  const currentTime = playerRef.current.getCurrentTime();
+                  if (currentTime >= 41) {
+                    playerRef.current.seekTo(30, true);
+                  }
+                }
+              }, 200);
             },
             onError: () => {
               setShowFallback(true);
@@ -104,6 +109,9 @@ const VideoHero = ({
     }
 
     return () => {
+      if (timeCheckRef.current) {
+        clearInterval(timeCheckRef.current);
+      }
       if (playerRef.current && playerRef.current.destroy) {
         playerRef.current.destroy();
       }
@@ -121,8 +129,24 @@ const VideoHero = ({
         try {
           if (entry.isIntersecting) {
             playerRef.current.playVideo();
+            // Restart interval when video resumes
+            if (!timeCheckRef.current) {
+              timeCheckRef.current = setInterval(() => {
+                if (playerRef.current && playerRef.current.getCurrentTime) {
+                  const currentTime = playerRef.current.getCurrentTime();
+                  if (currentTime >= 41) {
+                    playerRef.current.seekTo(30, true);
+                  }
+                }
+              }, 200);
+            }
           } else {
             playerRef.current.pauseVideo();
+            // Clear interval when video pauses
+            if (timeCheckRef.current) {
+              clearInterval(timeCheckRef.current);
+              timeCheckRef.current = null;
+            }
           }
         } catch (error) {
           console.error('Error controlling video playback:', error);
