@@ -45,7 +45,7 @@ const CTASection = ({
             {subtitle}
           </p>}
         <Button asChild size="lg" className={`${buttonClasses[variant]} font-semibold text-base md:text-lg px-6 md:px-8 py-5 md:py-6 w-full sm:w-auto`}>
-          <Link to={ctaLink}>{ctaText}</Link>
+          <Link to={ctaLink} className="bg-accent text-secondary-foreground">{ctaText}</Link>
         </Button>
       </div>
     </section>;
