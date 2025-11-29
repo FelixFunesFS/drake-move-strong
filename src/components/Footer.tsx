@@ -36,7 +36,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-bold text-lg mb-4">Programs</h3>
+            <h3 className="font-bold text-lg mb-4 text-accent">Programs</h3>
             <ul className="space-y-2 text-sm">
               <li><span className="text-gray-300">Foundation Flow™</span></li>
               <li><span className="text-gray-300">Functional Strength™</span></li>
@@ -48,7 +48,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-bold text-lg mb-4">Connect</h3>
+            <h3 className="font-bold text-lg mb-4 text-accent">Connect</h3>
             <ul className="space-y-2 text-sm text-gray-300">
               <li>2 Avondale Ave</li>
               <li>Charleston, SC 29407</li>
