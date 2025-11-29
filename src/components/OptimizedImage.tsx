@@ -9,6 +9,7 @@ interface OptimizedImageProps {
   priority?: boolean;
   objectPosition?: string;
   transparent?: boolean;
+  hideLoadingPlaceholder?: boolean;
 }
 
 const OptimizedImage = ({ 
@@ -18,7 +19,8 @@ const OptimizedImage = ({
   aspectRatio = "auto",
   priority = false,
   objectPosition,
-  transparent = false
+  transparent = false,
+  hideLoadingPlaceholder = false
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -48,7 +50,7 @@ const OptimizedImage = ({
           isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-105"
         )}
       />
-      {!isLoaded && (
+      {!isLoaded && !hideLoadingPlaceholder && (
         <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-muted via-muted-foreground/10 to-muted" />
       )}
     </div>
