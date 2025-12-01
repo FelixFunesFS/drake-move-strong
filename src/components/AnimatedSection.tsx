@@ -42,8 +42,8 @@ const AnimatedSection = ({
   const ref = useRef(null);
   const isInView = useInView(ref, { 
     once, 
-    margin: "-50px",
-    amount: 0.1
+    margin: "0px",
+    amount: 0.2
   });
 
   return (
@@ -53,12 +53,15 @@ const AnimatedSection = ({
       animate={isInView ? "visible" : "hidden"}
       variants={animations[animation]}
       transition={{
-        duration: 0.6,
+        duration: 0.5,
         delay,
-        ease: [0.21, 0.47, 0.32, 0.98],
+        ease: [0.25, 0.46, 0.45, 0.94],
       }}
       className={className}
-      style={{ willChange: isInView ? "transform, opacity" : "auto" }}
+      style={{ 
+        willChange: isInView ? "transform, opacity" : "auto",
+        contain: "layout style paint"
+      }}
     >
       {children}
     </motion.div>
