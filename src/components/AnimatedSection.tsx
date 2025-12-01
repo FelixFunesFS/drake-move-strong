@@ -40,7 +40,11 @@ const AnimatedSection = ({
   once = true,
 }: AnimatedSectionProps) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once, margin: "-100px" });
+  const isInView = useInView(ref, { 
+    once, 
+    margin: "-50px",
+    amount: 0.1
+  });
 
   return (
     <motion.div
@@ -54,6 +58,7 @@ const AnimatedSection = ({
         ease: [0.21, 0.47, 0.32, 0.98],
       }}
       className={className}
+      style={{ willChange: isInView ? "transform, opacity" : "auto" }}
     >
       {children}
     </motion.div>
