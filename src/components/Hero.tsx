@@ -36,6 +36,22 @@ const Hero = ({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = backgroundImages || (backgroundImage ? [backgroundImage] : []);
   const hasMultipleImages = images.length > 1;
+  
+  // Preload first hero image for faster LCP
+  useEffect(() => {
+    if (images.length > 0) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = images[0];
+      document.head.appendChild(link);
+      
+      return () => {
+        document.head.removeChild(link);
+      };
+    }
+  }, []);
+  
   useEffect(() => {
     if (!hasMultipleImages || !autoRotate) return;
     const interval = setInterval(() => {

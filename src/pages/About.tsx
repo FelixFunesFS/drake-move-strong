@@ -37,7 +37,7 @@ import studioGroupOverhead from "@/assets/studio-group-overhead.jpg";
 import ImageGallery from "@/components/ImageGallery";
 const About = () => {
   return <main>
-      <VideoHero videoId="RX9zOxhayFk" eyebrow="OUR PURPOSE" title={<>
+      <VideoHero videoId="RX9zOxhayFk" fallbackImage={kbCollection} eyebrow="OUR PURPOSE" title={<>
             Why We <span className="text-primary">Exist</span>
           </>} subtitle="To help adults move better and build strong, mobile, pain-free bodies that support their everyday lives." accentedSubtitle={true} />
 
@@ -165,7 +165,7 @@ const About = () => {
                   duration: 0.6
                 }} className="relative group">
                     <div className="relative overflow-hidden rounded-lg border-4 border-primary shadow-2xl">
-                      <OptimizedImage src={davidImage} alt="David Drake - Owner and Head Coach at Drake Fitness" aspectRatio="portrait" className="" />
+                      <OptimizedImage src={davidImage} alt="David Drake - Owner and Head Coach at Drake Fitness" aspectRatio="portrait" className="" priority={true} />
                       {/* Gradient Overlay with Name */}
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-drake-dark via-drake-dark/80 to-transparent p-6">
                         <h3 className="font-hero text-2xl md:text-3xl font-bold text-white uppercase">DAVID DRAKE</h3>
