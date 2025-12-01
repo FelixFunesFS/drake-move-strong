@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { MapPin, Mail, Phone, Instagram, Facebook, Youtube } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { SEO } from "@/components/SEO";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -33,7 +34,14 @@ const Contact = () => {
   };
 
   return (
-    <main>
+    <>
+      <SEO
+        title="Contact Us"
+        description="Get in touch with Drake Fitness in Charleston, SC. Book your free movement assessment today. Located at 2 Avondale Ave, Charleston, SC 29407."
+        canonical="https://drake.fitness/contact"
+      />
+      
+      <main>
       <Hero
         eyebrow="GET IN TOUCH"
         title="We'd Love to Help You Move Better"
@@ -209,6 +217,7 @@ const Contact = () => {
         </div>
       </section>
     </main>
+    </>
   );
 };
 

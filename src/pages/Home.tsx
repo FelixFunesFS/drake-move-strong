@@ -3,6 +3,8 @@ import CTASection from "@/components/CTASection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle2, Users, Trophy, Target, TrendingUp, Heart } from "lucide-react";
+import { SEO } from "@/components/SEO";
+import { StructuredData, localBusinessSchema } from "@/components/StructuredData";
 import heroImage2 from "@/assets/hero-barbell-deadlift.jpg";
 import heroImage3 from "@/assets/hero-coaching-session.jpg";
 import outdoorTraining from "@/assets/david-outdoor-dumbbell.jpg";
@@ -25,7 +27,16 @@ import Marquee from "@/components/Marquee";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
 const Home = () => {
-  return <main>
+  return (
+    <>
+      <SEO
+        title="Drake Fitness - Mobility-First Functional Strength Training in Charleston, SC"
+        description="Expert-led functional strength and mobility training in Charleston, SC. Join David Drake and Coach Nick for small-group classes, personal training, and sustainable results. 25+ years of coaching experience."
+        canonical="https://drake.fitness"
+      />
+      <StructuredData data={localBusinessSchema} />
+      
+      <main>
       <Hero title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
       text: "BOOK FREE MOVEMENT ASSESSMENT",
       link: "/contact"
@@ -333,6 +344,8 @@ const Home = () => {
       </section>
 
       <CTASection eyebrow="GET STARTED" title="You Deserve a Body That Feels Strong, Mobile & Capable." ctaText="Book Your Free Movement Assessment" ctaLink="/contact" variant="primary" slanted={true} />
-    </main>;
+    </main>
+    </>
+  );
 };
 export default Home;

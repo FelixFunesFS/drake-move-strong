@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { SEO } from "@/components/SEO";
 
 import classGroup from "@/assets/class-group.jpg";
 import classesHeroOutdoorMace from "@/assets/classes-hero-outdoor-mace.jpg";
@@ -116,7 +117,14 @@ const Classes = () => {
   ];
 
   return (
-    <main>
+    <>
+      <SEO
+        title="Group Fitness Classes | Foundation Flow, KB Strong & More"
+        description="Join our mobility-first group classes in Charleston. Foundation Flow, Functional Strength, KB Strong, and more. Expert coaching in small groups for real results."
+        canonical="https://drake.fitness/classes"
+      />
+      
+      <main>
       <Hero
         eyebrow="OUR PROGRAMS"
         title={
@@ -259,6 +267,7 @@ const Classes = () => {
         slanted={true}
       />
     </main>
+    </>
   );
 };
 

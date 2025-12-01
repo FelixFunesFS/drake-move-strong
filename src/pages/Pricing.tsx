@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { CheckCircle2, Calendar, Users, Laptop } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import pricingKettlebellRack from "@/assets/pricing-kettlebell-rack.jpg";
+import { SEO } from "@/components/SEO";
+import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 const Pricing = () => {
   const membershipOptions = [{
     name: "Foundation Membership",
@@ -69,7 +71,19 @@ const Pricing = () => {
     question: "What if I have an injury?",
     answer: "We modify movements for every individual. Our priority is keeping you safe while progressively building strength around your limitations. Every session can be adapted to your needs."
   }];
-  return <main>
+  
+  const faqSchema = buildFAQSchema(faqs.map(faq => ({ q: faq.question, a: faq.answer })));
+  
+  return (
+    <>
+      <SEO
+        title="Membership Pricing"
+        description="Simple, transparent membership options starting at $49. No contracts, real results. Join Drake Fitness in Charleston, SC for mobility-first functional training."
+        canonical="https://drake.fitness/pricing"
+      />
+      <StructuredData data={faqSchema} />
+      
+      <main>
       <Hero eyebrow="PRICING" title={<>Simple Memberships.<span className="hidden sm:inline"><br /></span> <span className="text-drake-gold">Real Results.</span></>} subtitle="No hidden fees. No long-term contracts. Just straightforward options designed to help you commit to your health." backgroundImage={pricingKettlebellRack} className="h-[450px] md:h-[400px] lg:h-[450px]" centered={true} />
 
       <section className="py-16 md:py-24 text-white section-slant-top bg-muted">
@@ -210,6 +224,8 @@ movement assessment. A perfect low-risk way to begin your journey with us.</p>
       </section>
 
       <CTASection eyebrow="GET STARTED" title="Ready to Feel Stronger?" subtitle="Join us for a free movement assessment and start your journey to better movement." ctaText="Book Now" ctaLink="/contact" variant="primary" slanted={true} />
-    </main>;
+    </main>
+    </>
+  );
 };
 export default Pricing;

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Info } from "lucide-react";
 import scheduleCommunityImage from "@/assets/schedule-community-group.jpg";
+import { SEO } from "@/components/SEO";
 
 const Schedule = () => {
   const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -54,7 +55,14 @@ const Schedule = () => {
   };
 
   return (
-    <main>
+    <>
+      <SEO
+        title="Class Schedule"
+        description="View our weekly class schedule in Charleston. Morning and evening sessions available. Foundation Flow, Functional Strength, KB Strong, and more."
+        canonical="https://drake.fitness/schedule"
+      />
+      
+      <main>
       <Hero
         eyebrow="CLASS TIMES"
         title="Weekly Class Schedule"
@@ -177,6 +185,7 @@ const Schedule = () => {
         slanted={true}
       />
     </main>
+    </>
   );
 };
 

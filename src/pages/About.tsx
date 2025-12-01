@@ -7,6 +7,7 @@ import { Target, Heart, TrendingUp, Users, CheckCircle2, Activity, Shield } from
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { SEO } from "@/components/SEO";
 import davidImage from "@/assets/david-double-kb-storefront.jpg";
 import davidImage2 from "@/assets/david-goblet-squat-kb-rack.jpg";
 import nickImage from "@/assets/coach-nick-new.jpg";
@@ -36,7 +37,15 @@ import studioKbCloseup from "@/assets/studio-kb-closeup.jpg";
 import studioGroupOverhead from "@/assets/studio-group-overhead.jpg";
 import ImageGallery from "@/components/ImageGallery";
 const About = () => {
-  return <main>
+  return (
+    <>
+      <SEO
+        title="About Us | Meet David Drake & Coach Nick"
+        description="Meet the expert coaches behind Drake Fitness in Charleston, SC. 25+ years of experience in mobility-first functional training, corrective exercise, and sustainable strength building."
+        canonical="https://drake.fitness/about"
+      />
+      
+      <main>
       <VideoHero videoId="RX9zOxhayFk" fallbackImage={kbCollection} eyebrow="OUR PURPOSE" title={<>
             Why We <span className="text-primary">Exist</span>
           </>} subtitle="To help adults move better and build strong, mobile, pain-free bodies that support their everyday lives." accentedSubtitle={true} />
@@ -495,6 +504,8 @@ His approach blends skill, science, and practical strength work to create long-t
       </AnimatedSection>
 
       <CTASection eyebrow="GET STARTED" title="Ready to Experience the Drake Fitness Difference?" subtitle="Book a free movement assessment and discover how we can help you move better, feel stronger, and live pain-free." ctaText="Book Free Assessment" ctaLink="/contact" variant="primary" slanted={true} />
-    </main>;
+    </main>
+    </>
+  );
 };
 export default About;
