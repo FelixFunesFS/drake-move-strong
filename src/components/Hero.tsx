@@ -60,6 +60,17 @@ const Hero = ({
     return () => clearInterval(interval);
   }, [hasMultipleImages, images.length, autoRotate]);
   return <section className={cn("relative h-[600px] md:h-[700px] lg:h-[800px] flex items-center overflow-hidden", className)}>
+      {/* Hidden img tag for LCP optimization - makes first hero image discoverable */}
+      {images.length > 0 && (
+        <img 
+          src={images[0]} 
+          alt="" 
+          fetchPriority="high"
+          className="absolute inset-0 w-full h-full object-cover opacity-0 pointer-events-none" 
+          aria-hidden="true"
+        />
+      )}
+      
       {/* Background Images with Ken Burns Effect */}
       {images.length > 0 ? <div className="absolute inset-0 z-0">
           {images.map((img, index) => <motion.div key={img} initial={{
