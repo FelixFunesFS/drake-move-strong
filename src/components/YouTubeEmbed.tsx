@@ -22,6 +22,18 @@ const YouTubeEmbed = ({
   customThumbnail
 }: YouTubeEmbedProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  
+  // Warm YouTube connections on hover for faster playback
+  const warmConnections = () => {
+    if (typeof document !== 'undefined') {
+      const preconnect = document.createElement('link');
+      preconnect.rel = 'preconnect';
+      preconnect.href = 'https://www.youtube-nocookie.com';
+      if (!document.head.querySelector(`link[href="${preconnect.href}"]`)) {
+        document.head.appendChild(preconnect);
+      }
+    }
+  };
   if (!videoId) {
     return (
       <div className={cn(
@@ -83,7 +95,11 @@ const YouTubeEmbed = ({
 
   // Standard LiteYouTubeEmbed with HD defaults
   return (
-    <div className={cn("relative aspect-video w-full overflow-hidden rounded-lg", className)}>
+    <div 
+      className={cn("relative aspect-video w-full overflow-hidden rounded-lg", className)}
+      onMouseEnter={warmConnections}
+      onTouchStart={warmConnections}
+    >
       <LiteYouTubeEmbed
         id={videoId}
         title={title}

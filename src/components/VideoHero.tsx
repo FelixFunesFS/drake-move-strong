@@ -47,6 +47,19 @@ const VideoHero = ({
   const iframeContainerRef = useRef<HTMLDivElement>(null);
   const timeCheckRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Preload YouTube thumbnail for faster initial display
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+    document.head.appendChild(link);
+    
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, [videoId]);
+
   // Load YouTube IFrame API
   useEffect(() => {
     if (!window.YT) {
@@ -83,10 +96,10 @@ const VideoHero = ({
               event.target.playVideo();
               event.target.mute();
               
-              // Delay fade-in to ensure video is playing at 30 seconds
+              // Extended delay to ensure HD quality loads
               setTimeout(() => {
                 setShowFallback(false);
-              }, 500);
+              }, 1500);
               
               // Start time monitoring for segment loop (30s-42s)
               timeCheckRef.current = setInterval(() => {

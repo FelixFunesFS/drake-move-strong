@@ -42,6 +42,7 @@ const OptimizedImage = ({
         src={src}
         alt={alt}
         loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "auto"}
         decoding="async"
         onLoad={() => setIsLoaded(true)}
         style={objectPosition ? { objectPosition } : undefined}
