@@ -4,6 +4,7 @@ import communityImage from "@/assets/community-gym-moment.jpg";
 import memberYoga from "@/assets/member-yoga-pose.jpg";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
+import { SEO } from "@/components/SEO";
 
 const SuccessStories = () => {
   const testimonials = [
@@ -58,7 +59,14 @@ const SuccessStories = () => {
   ];
 
   return (
-    <main>
+    <>
+      <SEO
+        title="Success Stories & Testimonials"
+        description="Read real transformation stories from Drake Fitness members in Charleston. Discover how our mobility-first approach helps people move better and live pain-free."
+        canonical="https://drake.fitness/success-stories"
+      />
+      
+      <main>
       <Hero
         eyebrow="SUCCESS STORIES"
         title="Real People. Real Results."
@@ -141,6 +149,7 @@ const SuccessStories = () => {
         slanted={true}
       />
     </main>
+    </>
   );
 };
 

@@ -1,5 +1,4 @@
 import { useParams, Navigate } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import { insightPosts } from "@/data/insights";
 import InsightHero from "@/components/insights/InsightHero";
 import AuthorBio from "@/components/insights/AuthorBio";
@@ -7,6 +6,8 @@ import RelatedPosts from "@/components/insights/RelatedPosts";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import OptimizedImage from "@/components/OptimizedImage";
 import CTASection from "@/components/CTASection";
+import { SEO } from "@/components/SEO";
+import { StructuredData, buildArticleSchema } from "@/components/StructuredData";
 
 const InsightPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -16,12 +17,25 @@ const InsightPost = () => {
     return <Navigate to="/insights" replace />;
   }
 
+  const articleSchema = buildArticleSchema({
+    title: post.title,
+    description: post.excerpt,
+    author: post.author,
+    publishedAt: post.publishedAt,
+    thumbnail: post.thumbnail,
+    url: `https://drake.fitness/insights/${post.slug}`
+  });
+
   return (
     <>
-      <Helmet>
-        <title>{post.title} | Drake Fitness Insights</title>
-        <meta name="description" content={post.excerpt} />
-      </Helmet>
+      <SEO
+        title={post.title}
+        description={post.excerpt}
+        canonical={`https://drake.fitness/insights/${post.slug}`}
+        ogType="article"
+        article={{ publishedAt: post.publishedAt, author: post.author }}
+      />
+      <StructuredData data={articleSchema} />
 
       <InsightHero post={post} />
 

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Target, Heart, Dumbbell, TrendingUp, User } from "lucide-react";
+import { SEO } from "@/components/SEO";
 import oneOnOneCoaching from "@/assets/one-on-one-coaching.jpg";
 import davidCoach from "@/assets/david-double-kb-storefront.jpg";
 import nickCoach from "@/assets/nick-sandbag-lunge.jpg";
@@ -46,7 +47,15 @@ const Coaching = () => {
     title: "Coaching & Homework",
     description: "Learn deeply from form corrections and technique refinement with optional homework exercises for recovery days to keep you progressing between sessions."
   }];
-  return <main>
+  return (
+    <>
+      <SEO
+        title="1:1 Personal Training in Charleston"
+        description="Personalized coaching with David Drake or Coach Nick. Custom programs for mobility, strength, and injury recovery. Expert one-on-one training in Charleston, SC."
+        canonical="https://drake.fitness/coaching"
+      />
+      
+      <main>
       <Hero eyebrow="INDIVIDUAL ATTENTION" title={<>
             <span className="sm:whitespace-nowrap">PERSONAL TRAINING WITH</span><br />
             <span className="text-primary">DAVID OR NICK</span><br />
@@ -284,6 +293,8 @@ const Coaching = () => {
           </AnimatedSection>
         </div>
       </section>
-    </main>;
+    </main>
+    </>
+  );
 };
 export default Coaching;

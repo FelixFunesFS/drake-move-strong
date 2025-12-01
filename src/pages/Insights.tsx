@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Helmet } from "react-helmet";
 import Hero from "@/components/Hero";
 import InsightCard from "@/components/insights/InsightCard";
 import { insightPosts } from "@/data/insights";
 import AnimatedSection from "@/components/AnimatedSection";
 import CTASection from "@/components/CTASection";
 import heroImage from "@/assets/hero-coaching-session.jpg";
+import { SEO } from "@/components/SEO";
 
 type CategoryFilter = 'all' | 'strength' | 'movement' | 'purpose';
 
@@ -20,13 +20,11 @@ const Insights = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Move Better Insights | Drake Fitness Charleston</title>
-        <meta 
-          name="description" 
-          content="Expert insights on strength, movement, and purpose from Drake Fitness coaches. Learn how to move better and live better through functional training and mobility work." 
-        />
-      </Helmet>
+      <SEO
+        title="Move Better Insights"
+        description="Expert insights on strength, movement, and purpose from Drake Fitness coaches. Learn how to move better and live better through functional training and mobility work."
+        canonical="https://drake.fitness/insights"
+      />
 
       <Hero
         title="Move Better Insights"

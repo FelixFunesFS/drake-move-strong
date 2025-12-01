@@ -1,6 +1,8 @@
 import Hero from "@/components/Hero";
 import CTASection from "@/components/CTASection";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { SEO } from "@/components/SEO";
+import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 
 const FAQ = () => {
   const faqCategories = [
@@ -107,8 +109,19 @@ const FAQ = () => {
     },
   ];
 
+  const allFAQs = faqCategories.flatMap(cat => cat.questions);
+  const faqSchema = buildFAQSchema(allFAQs);
+
   return (
-    <main>
+    <>
+      <SEO
+        title="FAQ | Common Questions"
+        description="Find answers to common questions about our training, memberships, and approach at Drake Fitness in Charleston, SC."
+        canonical="https://drake.fitness/faq"
+      />
+      <StructuredData data={faqSchema} />
+      
+      <main>
       <Hero
         eyebrow="HELP CENTER"
         title="Frequently Asked Questions"
@@ -167,6 +180,7 @@ const FAQ = () => {
         slanted={true}
       />
     </main>
+    </>
   );
 };
 
