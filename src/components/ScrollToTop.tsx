@@ -5,17 +5,20 @@ const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // If there's a hash (anchor link), scroll to that element
-    if (hash) {
-      const element = document.getElementById(hash.slice(1));
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+    // Use requestAnimationFrame to batch layout operations
+    requestAnimationFrame(() => {
+      // If there's a hash (anchor link), scroll to that element
+      if (hash) {
+        const element = document.getElementById(hash.slice(1));
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+        return;
       }
-      return;
-    }
-    
-    // Otherwise, scroll to top of page
-    window.scrollTo({ top: 0, behavior: "instant" });
+      
+      // Otherwise, scroll to top of page
+      window.scrollTo({ top: 0, behavior: "instant" });
+    });
   }, [pathname, hash]);
 
   return null;
