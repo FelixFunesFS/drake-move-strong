@@ -130,23 +130,6 @@ const About = () => {
         </section>
       </AnimatedSection>
 
-      <AnimatedSection animation="fadeIn">
-        <section className="py-16 md:py-24 bg-muted section-slant-top">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <p className="section-eyebrow text-primary text-center">SEE IT IN ACTION</p>
-              <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-                Our <span className="text-primary">Coaching Philosophy</span>
-              </h2>
-              <p className="text-xl text-center text-muted-foreground mb-12">
-                Watch how we help clients move better
-              </p>
-              <YouTubeEmbed videoId="wDtDMNnrF00" title="Drake Fitness Coaching Philosophy" />
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
-
       {/* Meet David Section - Dark Theme with Clip Slant */}
       <section className="py-16 md:py-24 bg-drake-dark text-white section-slant-top">
         <div className="container mx-auto px-4">
@@ -318,9 +301,27 @@ His approach blends skill, science, and practical strength work to create long-t
         </div>
       </section>
 
+      {/* See It In Action - Video Section */}
+      <AnimatedSection animation="fadeIn">
+        <section className="py-16 md:py-24 bg-drake-dark section-slant-top">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <p className="section-eyebrow text-drake-gold text-center">SEE IT IN ACTION</p>
+              <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase text-white">
+                Our <span className="text-primary">Coaching Philosophy</span>
+              </h2>
+              <p className="text-xl text-center text-gray-300 mb-12">
+                Watch how we help clients move better
+              </p>
+              <YouTubeEmbed videoId="wDtDMNnrF00" title="Drake Fitness Coaching Philosophy" />
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
       {/* Values Section */}
       <AnimatedSection animation="fadeInUp">
-        <section className="py-16 md:py-24 bg-background">
+        <section className="py-16 md:py-24 bg-background section-slant-top">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <p className="section-eyebrow text-primary text-center">OUR VALUES</p>
