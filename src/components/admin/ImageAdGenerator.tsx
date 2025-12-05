@@ -9,6 +9,7 @@ import { TextOverlayEditor } from "./TextOverlayEditor";
 import { EffectsPanel } from "./EffectsPanel";
 import { ShapeEditor } from "./ShapeEditor";
 import { TextBoxEditor } from "./TextBoxEditor";
+import { IconSelector } from "./IconSelector";
 import { AIImageGenerator } from "./AIImageGenerator";
 import { AIImageEnhancer } from "./AIImageEnhancer";
 import { AdTemplates, AdTemplate } from "./AdTemplates";
@@ -74,6 +75,7 @@ export function ImageAdGenerator() {
       outputSize: template.config.outputSize || prev.outputSize,
       shapes: template.config.shapes || [],
       textBoxes: template.config.textBoxes || [],
+      icons: template.config.icons || [],
     }));
     setActiveTemplate(template.id);
     setActiveTab("editor"); // Switch to editor
@@ -188,7 +190,7 @@ export function ImageAdGenerator() {
                 />
 
                 {/* Premium Template Elements */}
-                {(config.shapes?.length > 0 || config.textBoxes?.length > 0) && (
+                {(config.shapes?.length > 0 || config.textBoxes?.length > 0 || config.icons?.length > 0) && (
                   <>
                     <ShapeEditor
                       shapes={config.shapes || []}
@@ -197,6 +199,10 @@ export function ImageAdGenerator() {
                     <TextBoxEditor
                       textBoxes={config.textBoxes || []}
                       onTextBoxesChange={(textBoxes) => setConfig((prev) => ({ ...prev, textBoxes }))}
+                    />
+                    <IconSelector
+                      icons={config.icons || []}
+                      onIconsChange={(icons) => setConfig((prev) => ({ ...prev, icons }))}
                     />
                   </>
                 )}
