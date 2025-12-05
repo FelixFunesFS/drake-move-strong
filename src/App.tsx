@@ -41,6 +41,7 @@ import MemberContracts from "./pages/member/Contracts";
 import AdminVideos from "./pages/admin/Videos";
 import AdminNotifications from "./pages/admin/Notifications";
 import AdminContracts from "./pages/admin/Contracts";
+import AdminExercises from "./pages/admin/Exercises";
 
 const queryClient = new QueryClient();
 
@@ -166,6 +167,11 @@ const AppLayout = () => {
             <Route path="/admin/contracts" element={
               <ProtectedRoute requiredRoles={['admin']}>
                 <AdminContracts />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/exercises" element={
+              <ProtectedRoute requiredRoles={['admin']}>
+                <AdminExercises />
               </ProtectedRoute>
             } />
             
