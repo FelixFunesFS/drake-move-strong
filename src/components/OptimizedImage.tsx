@@ -10,6 +10,9 @@ interface OptimizedImageProps {
   objectPosition?: string;
   transparent?: boolean;
   hideLoadingPlaceholder?: boolean;
+  width?: number;
+  height?: number;
+  sizes?: string;
 }
 
 const OptimizedImage = ({ 
@@ -20,7 +23,10 @@ const OptimizedImage = ({
   priority = false,
   objectPosition,
   transparent = false,
-  hideLoadingPlaceholder = false
+  hideLoadingPlaceholder = false,
+  width,
+  height,
+  sizes
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -41,6 +47,9 @@ const OptimizedImage = ({
       <img
         src={src}
         alt={alt}
+        width={width}
+        height={height}
+        sizes={sizes}
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
         decoding="async"
