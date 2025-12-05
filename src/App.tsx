@@ -20,6 +20,7 @@ import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 import Insights from "./pages/Insights";
 import InsightPost from "./pages/InsightPost";
+import SocialGenerator from "./pages/admin/SocialGenerator";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,8 @@ const App = () => (
               <Route path="/insights/:slug" element={<InsightPost />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
+              {/* Admin Routes */}
+              <Route path="/admin/social-generator" element={<SocialGenerator />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
