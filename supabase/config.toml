@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.fetch-youtube-transcript]
 verify_jwt = false
+
+[functions.generate-ad-image]
+verify_jwt = false
