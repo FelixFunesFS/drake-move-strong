@@ -2,3 +2,6 @@ project_id = "ktktwcbvambkcrpfflxi"
 
 [functions.generate-social-content]
 verify_jwt = false
+
+[functions.fetch-youtube-transcript]
+verify_jwt = false
