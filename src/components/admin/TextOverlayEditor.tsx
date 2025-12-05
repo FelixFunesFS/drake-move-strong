@@ -145,8 +145,8 @@ function TextLayerEditor({
       <div className="space-y-2">
         <Label>Vertical Position</Label>
         <Select
-          value={layer.position}
-          onValueChange={(v) => onChange({ ...layer, position: v as TextOverlay['position'] })}
+          value={typeof layer.position === 'string' ? layer.position : 'center'}
+          onValueChange={(v) => onChange({ ...layer, position: v as 'top' | 'center' | 'bottom' })}
         >
           <SelectTrigger>
             <SelectValue />

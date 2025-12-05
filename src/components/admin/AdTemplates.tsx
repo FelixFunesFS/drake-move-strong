@@ -1,14 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { LayoutTemplate, Dumbbell, Quote, Calendar, Users, Trophy, Heart, Zap } from "lucide-react";
-import { AdConfig, TextOverlay, ImageEffect, OutputSize, OUTPUT_SIZES } from "@/lib/canvasCompositor";
+import { LayoutTemplate, Dumbbell, Quote, Calendar, Users, Trophy, Heart, Zap, Sparkles, Star } from "lucide-react";
+import { AdConfig, TextOverlay, TextBox, ShapeElement, ImageEffect, OutputSize, OUTPUT_SIZES } from "@/lib/canvasCompositor";
 
 export interface AdTemplate {
   id: string;
   name: string;
   description: string;
-  category: "promotion" | "motivational" | "event" | "community" | "testimonial";
+  category: "promotion" | "motivational" | "event" | "community" | "premium";
   icon: React.ElementType;
   suggestedImageCategories: string[];
   config: Partial<AdConfig>;
@@ -20,7 +20,257 @@ export interface AdTemplate {
 }
 
 const TEMPLATES: AdTemplate[] = [
-  // Promotional Templates
+  // === PREMIUM TEMPLATES ===
+  {
+    id: "premium-badge",
+    name: "Class Promo with Badge",
+    description: "Eye-catching design with corner badge",
+    category: "premium",
+    icon: Star,
+    suggestedImageCategories: ["group", "training"],
+    config: {
+      shapes: [
+        // Gold corner ribbon
+        { type: 'pill', position: { x: 70, y: 8 }, size: { width: 25, height: 7 }, fill: '#F2B544', rotation: -12 },
+        // Decorative line under headline
+        { type: 'line', position: { x: 35, y: 58 }, size: { width: 30, height: 0.3 }, fill: '#F2B544' },
+      ],
+      textBoxes: [
+        // "NEW" badge text
+        { text: 'NEW CLASS', position: { x: 82, y: 11 }, fontSize: 22, fontFamily: 'Oswald', fontWeight: 'bold', color: '#1A1A1A', shadow: false, textAlign: 'center', rotation: -12 },
+      ],
+      headline: {
+        text: 'KETTLEBELL 101',
+        position: 'center',
+        fontSize: 72,
+        fontFamily: 'Oswald',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        shadow: true,
+        textAlign: 'center',
+      },
+      subheadline: {
+        text: 'Master the fundamentals',
+        position: 'center',
+        fontSize: 32,
+        fontFamily: 'Inter',
+        fontWeight: 'normal',
+        color: '#F2B544',
+        shadow: true,
+        textAlign: 'center',
+      },
+      cta: {
+        text: 'Book Your Spot →',
+        position: 'bottom',
+        fontSize: 24,
+        fontFamily: 'Inter',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        shadow: true,
+        textAlign: 'center',
+      },
+      effects: {
+        brightness: 88,
+        contrast: 115,
+        saturation: 90,
+        vignette: { intensity: 35, size: 55 },
+        overlay: { color: '#1A1A1A', opacity: 0.55, gradient: 'bottom' },
+      },
+      outputSize: OUTPUT_SIZES[0],
+    },
+    suggestedCopy: {
+      headline: 'KETTLEBELL 101',
+      subheadline: 'Master the fundamentals',
+      cta: 'Book Your Spot →',
+    },
+  },
+  {
+    id: "premium-minimal-quote",
+    name: "Elegant Quote",
+    description: "Minimalist design with decorative accents",
+    category: "premium",
+    icon: Sparkles,
+    suggestedImageCategories: ["training", "outdoor"],
+    config: {
+      shapes: [
+        // Top accent line
+        { type: 'line', position: { x: 30, y: 28 }, size: { width: 40, height: 0.4 }, fill: '#F2B544' },
+        // Bottom accent line
+        { type: 'line', position: { x: 30, y: 72 }, size: { width: 40, height: 0.4 }, fill: '#F2B544' },
+        // Corner accents
+        { type: 'corner-accent', position: { x: 8, y: 8 }, size: { width: 8, height: 8 }, stroke: '#F2B544', strokeWidth: 3 },
+        { type: 'corner-accent', position: { x: 84, y: 84 }, size: { width: 8, height: 8 }, stroke: '#F2B544', strokeWidth: 3, rotation: 180 },
+      ],
+      headline: {
+        text: '"IF YOU CAN MOVE BETTER,\nYOU CAN LIVE BETTER"',
+        position: 'center',
+        fontSize: 52,
+        fontFamily: 'Oswald',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        shadow: true,
+        textAlign: 'center',
+      },
+      subheadline: {
+        text: '— DRAKE FITNESS',
+        position: 'center',
+        fontSize: 22,
+        fontFamily: 'Inter',
+        fontWeight: 'normal',
+        color: '#F2B544',
+        shadow: true,
+        textAlign: 'center',
+      },
+      cta: {
+        text: '',
+        position: 'bottom',
+        fontSize: 20,
+        fontFamily: 'Inter',
+        fontWeight: 'bold',
+        color: '#F2B544',
+        shadow: true,
+        textAlign: 'center',
+      },
+      effects: {
+        brightness: 75,
+        contrast: 115,
+        saturation: 80,
+        vignette: { intensity: 50, size: 45 },
+        overlay: { color: '#1A1A1A', opacity: 0.7, gradient: 'full' },
+      },
+      outputSize: OUTPUT_SIZES[0],
+    },
+    suggestedCopy: {
+      headline: '"IF YOU CAN MOVE BETTER,\nYOU CAN LIVE BETTER"',
+      subheadline: '— DRAKE FITNESS',
+    },
+  },
+  {
+    id: "premium-event-badge",
+    name: "Event with Date Badge",
+    description: "Professional event promo with date circle",
+    category: "premium",
+    icon: Calendar,
+    suggestedImageCategories: ["group", "studio"],
+    config: {
+      shapes: [
+        // Date badge circle
+        { type: 'circle', position: { x: 75, y: 12 }, size: { width: 18, height: 18 }, fill: '#F2B544', stroke: '#FFFFFF', strokeWidth: 4 },
+        // Bottom CTA pill
+        { type: 'pill', position: { x: 25, y: 82 }, size: { width: 50, height: 8 }, fill: '#0B4A52', opacity: 0.9 },
+      ],
+      textBoxes: [
+        // Date inside badge
+        { text: 'JAN\n15', position: { x: 84, y: 21 }, fontSize: 24, fontFamily: 'Oswald', fontWeight: 'bold', color: '#1A1A1A', shadow: false, textAlign: 'center' },
+      ],
+      headline: {
+        text: 'MOBILITY\nWORKSHOP',
+        position: 'center',
+        fontSize: 68,
+        fontFamily: 'Oswald',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        shadow: true,
+        textAlign: 'center',
+      },
+      subheadline: {
+        text: 'Unlock your movement potential',
+        position: 'center',
+        fontSize: 26,
+        fontFamily: 'Inter',
+        fontWeight: 'normal',
+        color: '#F2B544',
+        shadow: true,
+        textAlign: 'center',
+      },
+      cta: {
+        text: 'LIMITED SPOTS AVAILABLE',
+        position: 'bottom',
+        fontSize: 22,
+        fontFamily: 'Inter',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        shadow: false,
+        textAlign: 'center',
+      },
+      effects: {
+        brightness: 85,
+        contrast: 110,
+        saturation: 90,
+        vignette: { intensity: 30, size: 60 },
+        overlay: { color: '#1A1A1A', opacity: 0.5, gradient: 'radial' },
+      },
+      outputSize: OUTPUT_SIZES[0],
+    },
+    suggestedCopy: {
+      headline: 'MOBILITY\nWORKSHOP',
+      subheadline: 'Unlock your movement potential',
+      cta: 'LIMITED SPOTS AVAILABLE',
+    },
+  },
+  {
+    id: "premium-challenge",
+    name: "Challenge Countdown",
+    description: "Bold challenge announcement with urgency",
+    category: "premium",
+    icon: Trophy,
+    suggestedImageCategories: ["training", "group"],
+    config: {
+      shapes: [
+        // Top bar
+        { type: 'rectangle', position: { x: 0, y: 0 }, size: { width: 100, height: 12 }, fill: '#F2B544' },
+        // Bottom bar
+        { type: 'rectangle', position: { x: 0, y: 88 }, size: { width: 100, height: 12 }, fill: '#0B4A52' },
+      ],
+      textBoxes: [
+        { text: 'STARTS JAN 1ST', position: { x: 50, y: 6 }, fontSize: 28, fontFamily: 'Oswald', fontWeight: 'bold', color: '#1A1A1A', shadow: false, textAlign: 'center' },
+      ],
+      headline: {
+        text: '30-DAY\nCHALLENGE',
+        position: 'center',
+        fontSize: 76,
+        fontFamily: 'Oswald',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        shadow: true,
+        textAlign: 'center',
+      },
+      subheadline: {
+        text: 'Transform Your Movement',
+        position: 'center',
+        fontSize: 28,
+        fontFamily: 'Inter',
+        fontWeight: 'normal',
+        color: '#F2B544',
+        shadow: true,
+        textAlign: 'center',
+      },
+      cta: {
+        text: 'JOIN THE CHALLENGE',
+        position: 'bottom',
+        fontSize: 24,
+        fontFamily: 'Inter',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        shadow: false,
+        textAlign: 'center',
+      },
+      effects: {
+        brightness: 90,
+        contrast: 120,
+        saturation: 105,
+        vignette: { intensity: 25, size: 65 },
+        overlay: { color: '#1A1A1A', opacity: 0.55, gradient: 'bottom' },
+      },
+      outputSize: OUTPUT_SIZES[0],
+    },
+    suggestedCopy: {
+      headline: '30-DAY\nCHALLENGE',
+      subheadline: 'Transform Your Movement',
+      cta: 'JOIN THE CHALLENGE',
+    },
+  },
+  // === STANDARD TEMPLATES ===
   {
     id: "class-promo",
     name: "Class Promotion",
@@ -30,47 +280,48 @@ const TEMPLATES: AdTemplate[] = [
     suggestedImageCategories: ["group", "training"],
     config: {
       headline: {
-        text: "KETTLEBELL FUNDAMENTALS",
-        position: "center",
+        text: 'KETTLEBELL FUNDAMENTALS',
+        position: 'center',
         fontSize: 64,
-        fontFamily: "Oswald",
-        fontWeight: "bold",
-        color: "#FFFFFF",
+        fontFamily: 'Oswald',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       subheadline: {
-        text: "Build strength. Move better.",
-        position: "center",
+        text: 'Build strength. Move better.',
+        position: 'center',
         fontSize: 32,
-        fontFamily: "Inter",
-        fontWeight: "normal",
-        color: "#F2B544",
+        fontFamily: 'Inter',
+        fontWeight: 'normal',
+        color: '#F2B544',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       cta: {
-        text: "Book Your Spot →",
-        position: "bottom",
+        text: 'Book Your Spot →',
+        position: 'bottom',
         fontSize: 24,
-        fontFamily: "Inter",
-        fontWeight: "bold",
-        color: "#F2B544",
+        fontFamily: 'Inter',
+        fontWeight: 'bold',
+        color: '#F2B544',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       effects: {
         brightness: 90,
         contrast: 110,
         saturation: 95,
-        overlay: { color: "#1A1A1A", opacity: 0.55, gradient: "bottom" },
+        vignette: { intensity: 25, size: 60 },
+        overlay: { color: '#1A1A1A', opacity: 0.55, gradient: 'bottom' },
       },
-      outputSize: OUTPUT_SIZES[0], // Instagram Square
+      outputSize: OUTPUT_SIZES[0],
     },
     suggestedCopy: {
-      headline: "KETTLEBELL FUNDAMENTALS",
-      subheadline: "Build strength. Move better.",
-      cta: "Book Your Spot →",
+      headline: 'KETTLEBELL FUNDAMENTALS',
+      subheadline: 'Build strength. Move better.',
+      cta: 'Book Your Spot →',
     },
   },
   {
@@ -82,50 +333,50 @@ const TEMPLATES: AdTemplate[] = [
     suggestedImageCategories: ["studio", "training"],
     config: {
       headline: {
-        text: "FREE WEEK",
-        position: "center",
+        text: 'FREE WEEK',
+        position: 'center',
         fontSize: 84,
-        fontFamily: "Oswald",
-        fontWeight: "bold",
-        color: "#F2B544",
+        fontFamily: 'Oswald',
+        fontWeight: 'bold',
+        color: '#F2B544',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       subheadline: {
-        text: "Experience Drake Fitness",
-        position: "center",
+        text: 'Experience Drake Fitness',
+        position: 'center',
         fontSize: 28,
-        fontFamily: "Inter",
-        fontWeight: "normal",
-        color: "#FFFFFF",
+        fontFamily: 'Inter',
+        fontWeight: 'normal',
+        color: '#FFFFFF',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       cta: {
-        text: "Claim Your Free Week",
-        position: "bottom",
+        text: 'Claim Your Free Week',
+        position: 'bottom',
         fontSize: 22,
-        fontFamily: "Inter",
-        fontWeight: "bold",
-        color: "#FFFFFF",
+        fontFamily: 'Inter',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       effects: {
         brightness: 85,
         contrast: 115,
         saturation: 90,
-        overlay: { color: "#0B4A52", opacity: 0.6, gradient: "full" },
+        vignette: { intensity: 30, size: 55 },
+        overlay: { color: '#0B4A52', opacity: 0.6, gradient: 'full' },
       },
       outputSize: OUTPUT_SIZES[0],
     },
     suggestedCopy: {
-      headline: "FREE WEEK",
-      subheadline: "Experience Drake Fitness",
-      cta: "Claim Your Free Week",
+      headline: 'FREE WEEK',
+      subheadline: 'Experience Drake Fitness',
+      cta: 'Claim Your Free Week',
     },
   },
-  // Motivational Templates
   {
     id: "motivational-quote",
     name: "Motivational Quote",
@@ -135,46 +386,47 @@ const TEMPLATES: AdTemplate[] = [
     suggestedImageCategories: ["training", "outdoor"],
     config: {
       headline: {
-        text: "IF YOU CAN MOVE BETTER, YOU CAN LIVE BETTER",
-        position: "center",
+        text: 'IF YOU CAN MOVE BETTER, YOU CAN LIVE BETTER',
+        position: 'center',
         fontSize: 56,
-        fontFamily: "Oswald",
-        fontWeight: "bold",
-        color: "#FFFFFF",
+        fontFamily: 'Oswald',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       subheadline: {
-        text: "— Drake Fitness",
-        position: "center",
+        text: '— Drake Fitness',
+        position: 'center',
         fontSize: 24,
-        fontFamily: "Inter",
-        fontWeight: "normal",
-        color: "#F2B544",
+        fontFamily: 'Inter',
+        fontWeight: 'normal',
+        color: '#F2B544',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       cta: {
-        text: "",
-        position: "bottom",
+        text: '',
+        position: 'bottom',
         fontSize: 20,
-        fontFamily: "Inter",
-        fontWeight: "bold",
-        color: "#F2B544",
+        fontFamily: 'Inter',
+        fontWeight: 'bold',
+        color: '#F2B544',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       effects: {
         brightness: 80,
         contrast: 120,
         saturation: 85,
-        overlay: { color: "#1A1A1A", opacity: 0.65, gradient: "full" },
+        vignette: { intensity: 40, size: 50 },
+        overlay: { color: '#1A1A1A', opacity: 0.65, gradient: 'full' },
       },
       outputSize: OUTPUT_SIZES[0],
     },
     suggestedCopy: {
-      headline: "IF YOU CAN MOVE BETTER, YOU CAN LIVE BETTER",
-      subheadline: "— Drake Fitness",
+      headline: 'IF YOU CAN MOVE BETTER, YOU CAN LIVE BETTER',
+      subheadline: '— Drake Fitness',
     },
   },
   {
@@ -186,49 +438,49 @@ const TEMPLATES: AdTemplate[] = [
     suggestedImageCategories: ["equipment", "training"],
     config: {
       headline: {
-        text: "SHOW UP",
-        position: "center",
+        text: 'SHOW UP',
+        position: 'center',
         fontSize: 96,
-        fontFamily: "Oswald",
-        fontWeight: "bold",
-        color: "#FFFFFF",
+        fontFamily: 'Oswald',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       subheadline: {
-        text: "Your future self will thank you",
-        position: "center",
+        text: 'Your future self will thank you',
+        position: 'center',
         fontSize: 28,
-        fontFamily: "Inter",
-        fontWeight: "normal",
-        color: "#F2B544",
+        fontFamily: 'Inter',
+        fontWeight: 'normal',
+        color: '#F2B544',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       cta: {
-        text: "",
-        position: "bottom",
+        text: '',
+        position: 'bottom',
         fontSize: 20,
-        fontFamily: "Inter",
-        fontWeight: "bold",
-        color: "#FFFFFF",
+        fontFamily: 'Inter',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       effects: {
         brightness: 95,
         contrast: 115,
         saturation: 100,
-        overlay: { color: "#1A1A1A", opacity: 0.5, gradient: "bottom" },
+        vignette: { intensity: 30, size: 55 },
+        overlay: { color: '#1A1A1A', opacity: 0.5, gradient: 'bottom' },
       },
       outputSize: OUTPUT_SIZES[0],
     },
     suggestedCopy: {
-      headline: "SHOW UP",
-      subheadline: "Your future self will thank you",
+      headline: 'SHOW UP',
+      subheadline: 'Your future self will thank you',
     },
   },
-  // Event Templates
   {
     id: "workshop-event",
     name: "Workshop/Event",
@@ -238,102 +490,50 @@ const TEMPLATES: AdTemplate[] = [
     suggestedImageCategories: ["group", "studio"],
     config: {
       headline: {
-        text: "MOBILITY WORKSHOP",
-        position: "top",
+        text: 'MOBILITY WORKSHOP',
+        position: 'top',
         fontSize: 52,
-        fontFamily: "Oswald",
-        fontWeight: "bold",
-        color: "#FFFFFF",
+        fontFamily: 'Oswald',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       subheadline: {
-        text: "Saturday, Jan 15 • 10AM",
-        position: "center",
+        text: 'Saturday, Jan 15 • 10AM',
+        position: 'center',
         fontSize: 32,
-        fontFamily: "Inter",
-        fontWeight: "bold",
-        color: "#F2B544",
+        fontFamily: 'Inter',
+        fontWeight: 'bold',
+        color: '#F2B544',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       cta: {
-        text: "Limited Spots • Register Now",
-        position: "bottom",
+        text: 'Limited Spots • Register Now',
+        position: 'bottom',
         fontSize: 22,
-        fontFamily: "Inter",
-        fontWeight: "bold",
-        color: "#FFFFFF",
+        fontFamily: 'Inter',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       effects: {
         brightness: 85,
         contrast: 110,
         saturation: 95,
-        overlay: { color: "#0B4A52", opacity: 0.7, gradient: "full" },
+        vignette: { intensity: 25, size: 60 },
+        overlay: { color: '#0B4A52', opacity: 0.7, gradient: 'full' },
       },
       outputSize: OUTPUT_SIZES[0],
     },
     suggestedCopy: {
-      headline: "MOBILITY WORKSHOP",
-      subheadline: "Saturday, Jan 15 • 10AM",
-      cta: "Limited Spots • Register Now",
+      headline: 'MOBILITY WORKSHOP',
+      subheadline: 'Saturday, Jan 15 • 10AM',
+      cta: 'Limited Spots • Register Now',
     },
   },
-  {
-    id: "challenge-event",
-    name: "Fitness Challenge",
-    description: "Promote a fitness challenge or competition",
-    category: "event",
-    icon: Trophy,
-    suggestedImageCategories: ["training", "group"],
-    config: {
-      headline: {
-        text: "30-DAY CHALLENGE",
-        position: "center",
-        fontSize: 68,
-        fontFamily: "Oswald",
-        fontWeight: "bold",
-        color: "#F2B544",
-        shadow: true,
-        textAlign: "center",
-      },
-      subheadline: {
-        text: "Transform Your Movement",
-        position: "center",
-        fontSize: 30,
-        fontFamily: "Inter",
-        fontWeight: "normal",
-        color: "#FFFFFF",
-        shadow: true,
-        textAlign: "center",
-      },
-      cta: {
-        text: "Starts January 1st",
-        position: "bottom",
-        fontSize: 24,
-        fontFamily: "Inter",
-        fontWeight: "bold",
-        color: "#FFFFFF",
-        shadow: true,
-        textAlign: "center",
-      },
-      effects: {
-        brightness: 90,
-        contrast: 120,
-        saturation: 110,
-        overlay: { color: "#1A1A1A", opacity: 0.55, gradient: "bottom" },
-      },
-      outputSize: OUTPUT_SIZES[0],
-    },
-    suggestedCopy: {
-      headline: "30-DAY CHALLENGE",
-      subheadline: "Transform Your Movement",
-      cta: "Starts January 1st",
-    },
-  },
-  // Community Templates
   {
     id: "member-spotlight",
     name: "Member Spotlight",
@@ -343,50 +543,50 @@ const TEMPLATES: AdTemplate[] = [
     suggestedImageCategories: ["training", "group"],
     config: {
       headline: {
-        text: "MEMBER SPOTLIGHT",
-        position: "top",
+        text: 'MEMBER SPOTLIGHT',
+        position: 'top',
         fontSize: 42,
-        fontFamily: "Oswald",
-        fontWeight: "bold",
-        color: "#F2B544",
+        fontFamily: 'Oswald',
+        fontWeight: 'bold',
+        color: '#F2B544',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       subheadline: {
         text: '"Drake Fitness changed my life"',
-        position: "center",
+        position: 'center',
         fontSize: 36,
-        fontFamily: "Inter",
-        fontWeight: "normal",
-        color: "#FFFFFF",
+        fontFamily: 'Inter',
+        fontWeight: 'normal',
+        color: '#FFFFFF',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       cta: {
-        text: "— Sarah M., Member since 2023",
-        position: "bottom",
+        text: '— Sarah M., Member since 2023',
+        position: 'bottom',
         fontSize: 18,
-        fontFamily: "Inter",
-        fontWeight: "normal",
-        color: "#FFFFFF",
+        fontFamily: 'Inter',
+        fontWeight: 'normal',
+        color: '#FFFFFF',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       effects: {
         brightness: 95,
         contrast: 105,
         saturation: 100,
-        overlay: { color: "#1A1A1A", opacity: 0.5, gradient: "bottom" },
+        vignette: { intensity: 20, size: 65 },
+        overlay: { color: '#1A1A1A', opacity: 0.5, gradient: 'bottom' },
       },
       outputSize: OUTPUT_SIZES[0],
     },
     suggestedCopy: {
-      headline: "MEMBER SPOTLIGHT",
+      headline: 'MEMBER SPOTLIGHT',
       subheadline: '"Drake Fitness changed my life"',
-      cta: "— Sarah M., Member since 2023",
+      cta: '— Sarah M., Member since 2023',
     },
   },
-  // Story Format
   {
     id: "story-promo",
     name: "Story Promo",
@@ -396,57 +596,58 @@ const TEMPLATES: AdTemplate[] = [
     suggestedImageCategories: ["training", "coaches"],
     config: {
       headline: {
-        text: "TRAIN WITH US",
-        position: "center",
+        text: 'TRAIN WITH US',
+        position: 'center',
         fontSize: 72,
-        fontFamily: "Oswald",
-        fontWeight: "bold",
-        color: "#FFFFFF",
+        fontFamily: 'Oswald',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       subheadline: {
-        text: "Functional Strength • Mobility • Community",
-        position: "center",
+        text: 'Functional Strength • Mobility • Community',
+        position: 'center',
         fontSize: 28,
-        fontFamily: "Inter",
-        fontWeight: "normal",
-        color: "#F2B544",
+        fontFamily: 'Inter',
+        fontWeight: 'normal',
+        color: '#F2B544',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       cta: {
-        text: "Swipe Up to Book",
-        position: "bottom",
+        text: 'Swipe Up to Book',
+        position: 'bottom',
         fontSize: 24,
-        fontFamily: "Inter",
-        fontWeight: "bold",
-        color: "#FFFFFF",
+        fontFamily: 'Inter',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
         shadow: true,
-        textAlign: "center",
+        textAlign: 'center',
       },
       effects: {
         brightness: 90,
         contrast: 110,
         saturation: 100,
-        overlay: { color: "#1A1A1A", opacity: 0.5, gradient: "bottom" },
+        vignette: { intensity: 30, size: 55 },
+        overlay: { color: '#1A1A1A', opacity: 0.5, gradient: 'bottom' },
       },
-      outputSize: OUTPUT_SIZES[1], // Instagram Story (1080x1920)
+      outputSize: OUTPUT_SIZES[1],
     },
     suggestedCopy: {
-      headline: "TRAIN WITH US",
-      subheadline: "Functional Strength • Mobility • Community",
-      cta: "Swipe Up to Book",
+      headline: 'TRAIN WITH US',
+      subheadline: 'Functional Strength • Mobility • Community',
+      cta: 'Swipe Up to Book',
     },
   },
 ];
 
 const CATEGORY_COLORS: Record<string, string> = {
+  premium: "bg-gradient-to-r from-amber-100 to-yellow-100 text-amber-800 border-amber-300",
   promotion: "bg-blue-100 text-blue-700",
   motivational: "bg-amber-100 text-amber-700",
   event: "bg-purple-100 text-purple-700",
   community: "bg-green-100 text-green-700",
-  testimonial: "bg-pink-100 text-pink-700",
 };
 
 interface AdTemplatesProps {
@@ -454,7 +655,7 @@ interface AdTemplatesProps {
 }
 
 export function AdTemplates({ onSelectTemplate }: AdTemplatesProps) {
-  const categories = ["promotion", "motivational", "event", "community"];
+  const categories = ["premium", "promotion", "motivational", "event", "community"];
 
   return (
     <Card>
@@ -474,20 +675,37 @@ export function AdTemplates({ onSelectTemplate }: AdTemplatesProps) {
 
           return (
             <div key={category} className="space-y-3">
-              <h4 className="text-sm font-semibold capitalize text-muted-foreground">
-                {category}
-              </h4>
+              <div className="flex items-center gap-2">
+                <h4 className="text-sm font-semibold capitalize text-muted-foreground">
+                  {category}
+                </h4>
+                {category === "premium" && (
+                  <Badge variant="secondary" className="text-xs bg-gradient-to-r from-amber-200 to-yellow-200 text-amber-800">
+                    <Sparkles className="h-3 w-3 mr-1" />
+                    Enhanced
+                  </Badge>
+                )}
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {categoryTemplates.map((template) => {
                   const Icon = template.icon;
+                  const isPremium = category === "premium";
                   return (
                     <button
                       key={template.id}
                       onClick={() => onSelectTemplate(template)}
-                      className="flex items-start gap-3 p-3 rounded-lg border border-border hover:border-primary/50 hover:bg-muted/50 transition-all text-left group"
+                      className={`flex items-start gap-3 p-3 rounded-lg border transition-all text-left group ${
+                        isPremium 
+                          ? "border-amber-300 hover:border-amber-400 hover:bg-amber-50/50 bg-gradient-to-br from-amber-50/30 to-yellow-50/30" 
+                          : "border-border hover:border-primary/50 hover:bg-muted/50"
+                      }`}
                     >
-                      <div className="p-2 rounded-md bg-muted group-hover:bg-primary/10 transition-colors">
-                        <Icon className="h-5 w-5 text-primary" />
+                      <div className={`p-2 rounded-md transition-colors ${
+                        isPremium 
+                          ? "bg-gradient-to-br from-amber-100 to-yellow-100 group-hover:from-amber-200 group-hover:to-yellow-200" 
+                          : "bg-muted group-hover:bg-primary/10"
+                      }`}>
+                        <Icon className={`h-5 w-5 ${isPremium ? "text-amber-700" : "text-primary"}`} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">

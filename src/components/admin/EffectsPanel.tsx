@@ -4,7 +4,7 @@ import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
-import { Sliders, Wand2, RotateCcw } from "lucide-react";
+import { Sliders, Wand2, RotateCcw, CircleDot } from "lucide-react";
 import { ImageEffect, LogoConfig, OutputSize, OUTPUT_SIZES, EFFECT_PRESETS } from "@/lib/canvasCompositor";
 
 interface EffectsPanelProps {
@@ -141,6 +141,56 @@ export function EffectsPanel({
           </div>
         </div>
 
+        {/* Vignette */}
+        <div className="space-y-4">
+          <Label className="flex items-center gap-2">
+            <CircleDot className="h-4 w-4" />
+            Vignette
+          </Label>
+          
+          <div className="space-y-2">
+            <div className="flex justify-between text-sm">
+              <span>Intensity</span>
+              <span className="text-muted-foreground">{effects.vignette?.intensity ?? 0}%</span>
+            </div>
+            <Slider
+              value={[effects.vignette?.intensity ?? 0]}
+              onValueChange={([v]) => onEffectsChange({ 
+                ...effects, 
+                vignette: { 
+                  intensity: v, 
+                  size: effects.vignette?.size ?? 60 
+                } 
+              })}
+              min={0}
+              max={80}
+              step={5}
+            />
+          </div>
+
+          {(effects.vignette?.intensity ?? 0) > 0 && (
+            <div className="space-y-2">
+              <div className="flex justify-between text-sm">
+                <span>Size</span>
+                <span className="text-muted-foreground">{effects.vignette?.size ?? 60}%</span>
+              </div>
+              <Slider
+                value={[effects.vignette?.size ?? 60]}
+                onValueChange={([v]) => onEffectsChange({ 
+                  ...effects, 
+                  vignette: { 
+                    intensity: effects.vignette?.intensity ?? 0, 
+                    size: v 
+                  } 
+                })}
+                min={30}
+                max={90}
+                step={5}
+              />
+            </div>
+          )}
+        </div>
+
         {/* Overlay */}
         <div className="space-y-4">
           <Label>Overlay</Label>
@@ -207,6 +257,7 @@ export function EffectsPanel({
                 <SelectItem value="top">Fade from Top</SelectItem>
                 <SelectItem value="bottom">Fade from Bottom</SelectItem>
                 <SelectItem value="full">Full Cover</SelectItem>
+                <SelectItem value="radial">Radial (Cinematic)</SelectItem>
               </SelectContent>
             </Select>
           </div>
