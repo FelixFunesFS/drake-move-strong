@@ -13,7 +13,8 @@ import {
   X,
   Image,
   Megaphone,
-  PlayCircle
+  PlayCircle,
+  Mail
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -27,6 +28,7 @@ const navItems = [
   { href: '/admin/schedule', label: 'Schedule', icon: Calendar },
   { href: '/admin/class-types', label: 'Class Types', icon: Layers },
   { href: '/admin/videos', label: 'Videos', icon: PlayCircle },
+  { href: '/admin/notifications', label: 'Notifications', icon: Mail },
   { href: '/admin/promotions', label: 'Promotions', icon: Megaphone },
   { href: '/admin/social-generator', label: 'Content Studio', icon: Image },
 ];

@@ -38,6 +38,7 @@ import MyBookings from "./pages/member/MyBookings";
 import MemberVideos from "./pages/member/Videos";
 import MemberVideoPlayer from "./pages/member/VideoPlayer";
 import AdminVideos from "./pages/admin/Videos";
+import AdminNotifications from "./pages/admin/Notifications";
 
 const queryClient = new QueryClient();
 
@@ -148,6 +149,11 @@ const AppLayout = () => {
             <Route path="/admin/videos" element={
               <ProtectedRoute requiredRoles={['admin']}>
                 <AdminVideos />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/notifications" element={
+              <ProtectedRoute requiredRoles={['admin']}>
+                <AdminNotifications />
               </ProtectedRoute>
             } />
             
