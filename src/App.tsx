@@ -46,6 +46,11 @@ import AdminContracts from "./pages/admin/Contracts";
 import AdminExercises from "./pages/admin/Exercises";
 import WorkoutBuilder from "./pages/admin/WorkoutBuilder";
 import AdminAnalytics from "./pages/admin/Analytics";
+import CoachDashboard from "./pages/coach/Dashboard";
+import CoachMembers from "./pages/coach/Members";
+import CoachClasses from "./pages/coach/Classes";
+import CoachTemplates from "./pages/coach/Templates";
+import CoachProgress from "./pages/coach/Progress";
 
 const queryClient = new QueryClient();
 
@@ -53,7 +58,7 @@ const queryClient = new QueryClient();
 const STANDALONE_ROUTES = ['/new-year', '/auth'];
 
 // Route prefixes that use custom layouts (no standard nav/footer)
-const CUSTOM_LAYOUT_PREFIXES = ['/member', '/admin'];
+const CUSTOM_LAYOUT_PREFIXES = ['/member', '/admin', '/coach'];
 
 const AppLayout = () => {
   const location = useLocation();
@@ -196,6 +201,33 @@ const AppLayout = () => {
             <Route path="/admin/analytics" element={
               <ProtectedRoute requiredRoles={['admin']}>
                 <AdminAnalytics />
+              </ProtectedRoute>
+            } />
+            
+            {/* Coach Routes (Protected - Coach and Admin) */}
+            <Route path="/coach/dashboard" element={
+              <ProtectedRoute requiredRoles={['coach', 'admin']}>
+                <CoachDashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/coach/members" element={
+              <ProtectedRoute requiredRoles={['coach', 'admin']}>
+                <CoachMembers />
+              </ProtectedRoute>
+            } />
+            <Route path="/coach/classes" element={
+              <ProtectedRoute requiredRoles={['coach', 'admin']}>
+                <CoachClasses />
+              </ProtectedRoute>
+            } />
+            <Route path="/coach/templates" element={
+              <ProtectedRoute requiredRoles={['coach', 'admin']}>
+                <CoachTemplates />
+              </ProtectedRoute>
+            } />
+            <Route path="/coach/progress" element={
+              <ProtectedRoute requiredRoles={['coach', 'admin']}>
+                <CoachProgress />
               </ProtectedRoute>
             } />
             
