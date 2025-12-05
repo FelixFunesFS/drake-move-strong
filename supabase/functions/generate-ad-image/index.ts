@@ -12,7 +12,7 @@ serve(async (req) => {
   }
 
   try {
-    const { prompt, style } = await req.json();
+    const { prompt, style, baseImageUrl, mode = "generate" } = await req.json();
 
     if (!prompt) {
       return new Response(
@@ -47,14 +47,53 @@ Quality: High resolution, well-lit, professional composition
       motivational: "Inspiring composition, dramatic lighting, powerful imagery, hero shot style",
     };
 
-    const enhancedPrompt = `${prompt}
+    let messages: any[];
+
+    if (mode === "enhance" && baseImageUrl) {
+      // Image enhancement/editing mode
+      console.log("Enhancing image with prompt:", prompt.substring(0, 100) + "...");
+      
+      const enhancePrompt = `Edit this fitness image: ${prompt}
+
+Keep the original subject and composition, but apply the requested changes.
+Maintain professional fitness photography quality.
+Do not add any text or watermarks.`;
+
+      messages = [
+        {
+          role: "user",
+          content: [
+            {
+              type: "text",
+              text: enhancePrompt,
+            },
+            {
+              type: "image_url",
+              image_url: {
+                url: baseImageUrl,
+              },
+            },
+          ],
+        },
+      ];
+    } else {
+      // Image generation mode
+      const enhancedPrompt = `${prompt}
 
 ${brandStyleGuide}
 ${style && styleModifiers[style] ? styleModifiers[style] : styleModifiers.photorealistic}
 
 Do not include any text or watermarks in the image.`;
 
-    console.log("Generating image with prompt:", enhancedPrompt.substring(0, 200) + "...");
+      console.log("Generating image with prompt:", enhancedPrompt.substring(0, 200) + "...");
+
+      messages = [
+        {
+          role: "user",
+          content: enhancedPrompt,
+        },
+      ];
+    }
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -64,12 +103,7 @@ Do not include any text or watermarks in the image.`;
       },
       body: JSON.stringify({
         model: "google/gemini-2.5-flash-image-preview",
-        messages: [
-          {
-            role: "user",
-            content: enhancedPrompt,
-          },
-        ],
+        messages,
         modalities: ["image", "text"],
       }),
     });
@@ -93,7 +127,7 @@ Do not include any text or watermarks in the image.`;
       }
 
       return new Response(
-        JSON.stringify({ error: "Failed to generate image" }),
+        JSON.stringify({ error: "Failed to process image" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
@@ -120,12 +154,12 @@ Do not include any text or watermarks in the image.`;
       );
     }
 
-    console.log("Image generated successfully");
+    console.log("Image processed successfully");
 
     return new Response(
       JSON.stringify({ 
         imageUrl,
-        message: data.choices?.[0]?.message?.content || "Image generated successfully"
+        message: data.choices?.[0]?.message?.content || "Image processed successfully"
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
