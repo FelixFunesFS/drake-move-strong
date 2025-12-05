@@ -25,6 +25,11 @@ import Insights from "./pages/Insights";
 import InsightPost from "./pages/InsightPost";
 import SocialGenerator from "./pages/admin/SocialGenerator";
 import Promotions from "./pages/admin/Promotions";
+import AdminDashboard from "./pages/admin/Dashboard";
+import AdminMembers from "./pages/admin/Members";
+import AdminMemberDetail from "./pages/admin/MemberDetail";
+import AdminScheduleManager from "./pages/admin/ScheduleManager";
+import AdminClassTypes from "./pages/admin/ClassTypes";
 import NewYearChallenge from "./pages/NewYearChallenge";
 import Auth from "./pages/Auth";
 import MemberDashboard from "./pages/member/Dashboard";
@@ -36,14 +41,14 @@ const queryClient = new QueryClient();
 // Routes that should not show the standard navigation and footer
 const STANDALONE_ROUTES = ['/new-year', '/auth'];
 
-// Routes that use the member portal layout (no standard nav/footer)
-const MEMBER_ROUTES_PREFIX = '/member';
+// Route prefixes that use custom layouts (no standard nav/footer)
+const CUSTOM_LAYOUT_PREFIXES = ['/member', '/admin'];
 
 const AppLayout = () => {
   const location = useLocation();
   const isStandalonePage = STANDALONE_ROUTES.includes(location.pathname);
-  const isMemberPortal = location.pathname.startsWith(MEMBER_ROUTES_PREFIX);
-  const hideNavFooter = isStandalonePage || isMemberPortal;
+  const hasCustomLayout = CUSTOM_LAYOUT_PREFIXES.some(prefix => location.pathname.startsWith(prefix));
+  const hideNavFooter = isStandalonePage || hasCustomLayout;
 
   return (
     <>
@@ -92,6 +97,31 @@ const AppLayout = () => {
             } />
             
             {/* Admin Routes (Protected - Admin Only) */}
+            <Route path="/admin/dashboard" element={
+              <ProtectedRoute requiredRoles={['admin']}>
+                <AdminDashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/members" element={
+              <ProtectedRoute requiredRoles={['admin']}>
+                <AdminMembers />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/members/:id" element={
+              <ProtectedRoute requiredRoles={['admin']}>
+                <AdminMemberDetail />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/schedule" element={
+              <ProtectedRoute requiredRoles={['admin']}>
+                <AdminScheduleManager />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/class-types" element={
+              <ProtectedRoute requiredRoles={['admin']}>
+                <AdminClassTypes />
+              </ProtectedRoute>
+            } />
             <Route path="/admin/social-generator" element={
               <ProtectedRoute requiredRoles={['admin']}>
                 <SocialGenerator />
