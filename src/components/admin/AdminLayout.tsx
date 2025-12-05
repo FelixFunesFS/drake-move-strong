@@ -12,7 +12,8 @@ import {
   Menu,
   X,
   Image,
-  Megaphone
+  Megaphone,
+  PlayCircle
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -25,6 +26,7 @@ const navItems = [
   { href: '/admin/members', label: 'Members', icon: Users },
   { href: '/admin/schedule', label: 'Schedule', icon: Calendar },
   { href: '/admin/class-types', label: 'Class Types', icon: Layers },
+  { href: '/admin/videos', label: 'Videos', icon: PlayCircle },
   { href: '/admin/promotions', label: 'Promotions', icon: Megaphone },
   { href: '/admin/social-generator', label: 'Content Studio', icon: Image },
 ];
