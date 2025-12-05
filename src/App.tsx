@@ -22,6 +22,7 @@ import NotFound from "./pages/NotFound";
 import Insights from "./pages/Insights";
 import InsightPost from "./pages/InsightPost";
 import SocialGenerator from "./pages/admin/SocialGenerator";
+import Promotions from "./pages/admin/Promotions";
 import NewYearChallenge from "./pages/NewYearChallenge";
 
 const queryClient = new QueryClient();
@@ -58,6 +59,7 @@ const AppLayout = () => {
             <Route path="/new-year" element={<NewYearChallenge />} />
             {/* Admin Routes */}
             <Route path="/admin/social-generator" element={<SocialGenerator />} />
+            <Route path="/admin/promotions" element={<Promotions />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
