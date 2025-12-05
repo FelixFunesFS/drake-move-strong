@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { Copy, Loader2, Instagram, Facebook, Linkedin, Twitter, Sparkles } from "lucide-react";
+import { Copy, Loader2, Instagram, Facebook, Linkedin, Twitter, Sparkles, Youtube, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
 
@@ -33,12 +34,24 @@ interface GeneratedPosts {
   };
 }
 
+interface YouTubeData {
+  videoId: string;
+  title: string;
+  transcript: string;
+  characterCount: number;
+}
+
 const SocialGenerator = () => {
   const [content, setContent] = useState("");
   const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>(["instagram"]);
   const [selectedTone, setSelectedTone] = useState("educational");
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedPosts, setGeneratedPosts] = useState<GeneratedPosts | null>(null);
+  
+  // YouTube state
+  const [youtubeUrl, setYoutubeUrl] = useState("");
+  const [isFetchingTranscript, setIsFetchingTranscript] = useState(false);
+  const [youtubeData, setYoutubeData] = useState<YouTubeData | null>(null);
 
   const handlePlatformToggle = (platformId: string) => {
     setSelectedPlatforms(prev =>
@@ -46,6 +59,55 @@ const SocialGenerator = () => {
         ? prev.filter(p => p !== platformId)
         : [...prev, platformId]
     );
+  };
+
+  const handleFetchTranscript = async () => {
+    if (!youtubeUrl.trim()) {
+      toast.error("Please enter a YouTube URL");
+      return;
+    }
+
+    setIsFetchingTranscript(true);
+    setYoutubeData(null);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("fetch-youtube-transcript", {
+        body: { url: youtubeUrl.trim() },
+      });
+
+      if (error) {
+        console.error("Edge function error:", error);
+        throw new Error(error.message || "Failed to fetch transcript");
+      }
+
+      if (data?.error) {
+        toast.error(data.error);
+        if (data.suggestion) {
+          toast.info(data.suggestion);
+        }
+        return;
+      }
+
+      setYoutubeData(data);
+      
+      // Auto-populate content with transcript
+      const transcriptContent = data.title 
+        ? `Video: ${data.title}\n\n${data.transcript}`
+        : data.transcript;
+      
+      setContent(prev => prev ? `${prev}\n\n---\n\n${transcriptContent}` : transcriptContent);
+      toast.success(`Transcript loaded: ${data.characterCount.toLocaleString()} characters`);
+    } catch (error) {
+      console.error("Transcript fetch error:", error);
+      toast.error(error instanceof Error ? error.message : "Failed to fetch transcript");
+    } finally {
+      setIsFetchingTranscript(false);
+    }
+  };
+
+  const clearYoutubeData = () => {
+    setYoutubeUrl("");
+    setYoutubeData(null);
   };
 
   const handleGenerate = async () => {
@@ -128,6 +190,59 @@ const SocialGenerator = () => {
             <div className="grid lg:grid-cols-2 gap-8">
               {/* Input Section */}
               <div className="space-y-6">
+                {/* YouTube Input */}
+                <Card>
+                  <CardHeader>
+                    <div className="flex items-center gap-2">
+                      <Youtube className="h-5 w-5 text-red-500" />
+                      <CardTitle>YouTube Video</CardTitle>
+                    </div>
+                    <CardDescription>
+                      Paste a YouTube URL to automatically extract the transcript.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="flex gap-2">
+                      <Input
+                        placeholder="https://youtube.com/watch?v=..."
+                        value={youtubeUrl}
+                        onChange={(e) => setYoutubeUrl(e.target.value)}
+                        className="flex-1"
+                      />
+                      <Button
+                        variant="outline"
+                        onClick={handleFetchTranscript}
+                        disabled={isFetchingTranscript || !youtubeUrl.trim()}
+                      >
+                        {isFetchingTranscript ? (
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                        ) : (
+                          "Fetch"
+                        )}
+                      </Button>
+                    </div>
+                    
+                    {youtubeData && (
+                      <div className="bg-muted rounded-lg p-3 flex items-start justify-between gap-2">
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium text-sm truncate">{youtubeData.title || "Video loaded"}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {youtubeData.characterCount.toLocaleString()} characters extracted
+                          </p>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="shrink-0"
+                          onClick={clearYoutubeData}
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+
                 {/* Content Input */}
                 <Card>
                   <CardHeader>
@@ -143,9 +258,21 @@ const SocialGenerator = () => {
                       onChange={(e) => setContent(e.target.value)}
                       className="min-h-[200px] resize-y"
                     />
-                    <p className="text-sm text-muted-foreground mt-2">
-                      {content.length} characters
-                    </p>
+                    <div className="flex justify-between items-center mt-2">
+                      <p className="text-sm text-muted-foreground">
+                        {content.length} characters
+                      </p>
+                      {content && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setContent("")}
+                          className="text-muted-foreground hover:text-foreground"
+                        >
+                          Clear
+                        </Button>
+                      )}
+                    </div>
                   </CardContent>
                 </Card>
 
