@@ -7,6 +7,8 @@ import { Download, RefreshCw, ImageIcon, Sparkles, Images, Wand2, LayoutTemplate
 import { ImageSelector } from "./ImageSelector";
 import { TextOverlayEditor } from "./TextOverlayEditor";
 import { EffectsPanel } from "./EffectsPanel";
+import { ShapeEditor } from "./ShapeEditor";
+import { TextBoxEditor } from "./TextBoxEditor";
 import { AIImageGenerator } from "./AIImageGenerator";
 import { AIImageEnhancer } from "./AIImageEnhancer";
 import { AdTemplates, AdTemplate } from "./AdTemplates";
@@ -184,6 +186,20 @@ export function ImageAdGenerator() {
                   onSubheadlineChange={(subheadline) => setConfig((prev) => ({ ...prev, subheadline }))}
                   onCtaChange={(cta) => setConfig((prev) => ({ ...prev, cta }))}
                 />
+
+                {/* Premium Template Elements */}
+                {(config.shapes?.length > 0 || config.textBoxes?.length > 0) && (
+                  <>
+                    <ShapeEditor
+                      shapes={config.shapes || []}
+                      onShapesChange={(shapes) => setConfig((prev) => ({ ...prev, shapes }))}
+                    />
+                    <TextBoxEditor
+                      textBoxes={config.textBoxes || []}
+                      onTextBoxesChange={(textBoxes) => setConfig((prev) => ({ ...prev, textBoxes }))}
+                    />
+                  </>
+                )}
 
                 <EffectsPanel
                   effects={config.effects}
