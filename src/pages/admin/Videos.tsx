@@ -34,6 +34,7 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Plus, Pencil, Trash2, PlayCircle, Eye, Star, GripVertical } from "lucide-react";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
+import { extractYouTubeId } from "@/lib/youtubeUtils";
 
 const difficulties = ['all_levels', 'beginner', 'intermediate', 'advanced'];
 const accessLevels = ['public', 'member', 'vip'];
@@ -310,13 +311,16 @@ export default function AdminVideos() {
                       </div>
 
                       <div className="col-span-2">
-                        <Label>YouTube Video ID *</Label>
+                        <Label>YouTube Video ID or URL *</Label>
                         <Input
                           value={videoForm.youtube_video_id}
-                          onChange={(e) => setVideoForm(f => ({ ...f, youtube_video_id: e.target.value }))}
-                          placeholder="e.g., dQw4w9WgXcQ"
+                          onChange={(e) => setVideoForm(f => ({ ...f, youtube_video_id: extractYouTubeId(e.target.value) }))}
+                          placeholder="Paste YouTube URL or video ID (e.g., dQw4w9WgXcQ)"
                           required
                         />
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Accepts full YouTube URLs or just the video ID
+                        </p>
                         {videoForm.youtube_video_id && (
                           <div className="mt-2">
                             <YouTubeEmbed
