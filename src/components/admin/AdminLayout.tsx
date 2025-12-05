@@ -16,7 +16,8 @@ import {
   PlayCircle,
   Mail,
   FileText,
-  Dumbbell
+  Dumbbell,
+  ClipboardList
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -30,6 +31,7 @@ const navItems = [
   { href: '/admin/schedule', label: 'Schedule', icon: Calendar },
   { href: '/admin/class-types', label: 'Class Types', icon: Layers },
   { href: '/admin/exercises', label: 'Exercises', icon: Dumbbell },
+  { href: '/admin/workout-builder', label: 'Workout Builder', icon: ClipboardList },
   { href: '/admin/videos', label: 'Videos', icon: PlayCircle },
   { href: '/admin/contracts', label: 'Contracts', icon: FileText },
   { href: '/admin/notifications', label: 'Notifications', icon: Mail },
