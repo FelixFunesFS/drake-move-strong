@@ -443,6 +443,159 @@ export type Database = {
         }
         Relationships: []
       }
+      video_categories: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          icon: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          slug: string
+          sort_order: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          slug: string
+          sort_order?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          slug?: string
+          sort_order?: number | null
+        }
+        Relationships: []
+      }
+      video_progress: {
+        Row: {
+          completed: boolean | null
+          id: string
+          last_watched_at: string | null
+          user_id: string
+          video_id: string
+          watched_seconds: number | null
+        }
+        Insert: {
+          completed?: boolean | null
+          id?: string
+          last_watched_at?: string | null
+          user_id: string
+          video_id: string
+          watched_seconds?: number | null
+        }
+        Update: {
+          completed?: boolean | null
+          id?: string
+          last_watched_at?: string | null
+          user_id?: string
+          video_id?: string
+          watched_seconds?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "video_progress_video_id_fkey"
+            columns: ["video_id"]
+            isOneToOne: false
+            referencedRelation: "videos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      videos: {
+        Row: {
+          access_level: Database["public"]["Enums"]["video_access_level"] | null
+          category_id: string | null
+          coach_id: string | null
+          created_at: string | null
+          description: string | null
+          difficulty_level:
+            | Database["public"]["Enums"]["difficulty_level"]
+            | null
+          duration_minutes: number | null
+          id: string
+          is_active: boolean | null
+          is_featured: boolean | null
+          sort_order: number | null
+          tags: string[] | null
+          thumbnail_url: string | null
+          title: string
+          updated_at: string | null
+          view_count: number | null
+          youtube_video_id: string
+        }
+        Insert: {
+          access_level?:
+            | Database["public"]["Enums"]["video_access_level"]
+            | null
+          category_id?: string | null
+          coach_id?: string | null
+          created_at?: string | null
+          description?: string | null
+          difficulty_level?:
+            | Database["public"]["Enums"]["difficulty_level"]
+            | null
+          duration_minutes?: number | null
+          id?: string
+          is_active?: boolean | null
+          is_featured?: boolean | null
+          sort_order?: number | null
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string | null
+          view_count?: number | null
+          youtube_video_id: string
+        }
+        Update: {
+          access_level?:
+            | Database["public"]["Enums"]["video_access_level"]
+            | null
+          category_id?: string | null
+          coach_id?: string | null
+          created_at?: string | null
+          description?: string | null
+          difficulty_level?:
+            | Database["public"]["Enums"]["difficulty_level"]
+            | null
+          duration_minutes?: number | null
+          id?: string
+          is_active?: boolean | null
+          is_featured?: boolean | null
+          sort_order?: number | null
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string | null
+          view_count?: number | null
+          youtube_video_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "videos_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "video_categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "videos_coach_id_fkey"
+            columns: ["coach_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       waitlist: {
         Row: {
           created_at: string
@@ -483,6 +636,13 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      can_access_video: {
+        Args: {
+          _access_level: Database["public"]["Enums"]["video_access_level"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
       get_user_role: {
         Args: { _user_id: string }
         Returns: Database["public"]["Enums"]["app_role"]
@@ -505,6 +665,7 @@ export type Database = {
         | "cancelled"
         | "expired"
         | "pending"
+      video_access_level: "public" | "member" | "vip"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -642,6 +803,7 @@ export const Constants = {
         "expired",
         "pending",
       ],
+      video_access_level: ["public", "member", "vip"],
     },
   },
 } as const
