@@ -8,11 +8,12 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
-import { Copy, Loader2, Instagram, Facebook, Linkedin, Twitter, Sparkles, Youtube, X, FileText, Eye, Code } from "lucide-react";
+import { Copy, Loader2, Instagram, Facebook, Linkedin, Twitter, Sparkles, Youtube, X, FileText, Eye, Code, ImageIcon } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
 import { insightPosts, authorInfo } from "@/data/insights";
 import { PlatformPreview } from "@/components/admin/PlatformPreview";
+import { ImageAdGenerator } from "@/components/admin/ImageAdGenerator";
 
 const PLATFORMS = [
   { id: "instagram", label: "Instagram", icon: Instagram, color: "text-pink-500" },
@@ -255,11 +256,25 @@ Tags: ${post.tags.join(', ')}`;
               </p>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-8">
-              {/* Input Section */}
-              <div className="space-y-6">
-                {/* Blog Post Selector */}
-                <Card>
+            {/* Main Tabs */}
+            <Tabs defaultValue="content" className="w-full">
+              <TabsList className="mb-6">
+                <TabsTrigger value="content" className="gap-2">
+                  <FileText className="h-4 w-4" />
+                  Content Generator
+                </TabsTrigger>
+                <TabsTrigger value="images" className="gap-2">
+                  <ImageIcon className="h-4 w-4" />
+                  Image Ads
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="content">
+                <div className="grid lg:grid-cols-2 gap-8">
+                  {/* Input Section */}
+                  <div className="space-y-6">
+                    {/* Blog Post Selector */}
+                    <Card>
                   <CardHeader>
                     <div className="flex items-center gap-2">
                       <FileText className="h-5 w-5 text-primary" />
@@ -600,6 +615,12 @@ Tags: ${post.tags.join(', ')}`;
                 )}
               </div>
             </div>
+              </TabsContent>
+
+              <TabsContent value="images">
+                <ImageAdGenerator />
+              </TabsContent>
+            </Tabs>
           </div>
         </div>
       </div>
