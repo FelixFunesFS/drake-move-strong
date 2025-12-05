@@ -14,6 +14,354 @@ export type Database = {
   }
   public: {
     Tables: {
+      bookings: {
+        Row: {
+          booked_at: string
+          cancellation_reason: string | null
+          cancelled_at: string | null
+          checked_in: boolean | null
+          checked_in_at: string | null
+          credits_used: number | null
+          id: string
+          schedule_id: string
+          status: Database["public"]["Enums"]["booking_status"] | null
+          user_id: string
+        }
+        Insert: {
+          booked_at?: string
+          cancellation_reason?: string | null
+          cancelled_at?: string | null
+          checked_in?: boolean | null
+          checked_in_at?: string | null
+          credits_used?: number | null
+          id?: string
+          schedule_id: string
+          status?: Database["public"]["Enums"]["booking_status"] | null
+          user_id: string
+        }
+        Update: {
+          booked_at?: string
+          cancellation_reason?: string | null
+          cancelled_at?: string | null
+          checked_in?: boolean | null
+          checked_in_at?: string | null
+          credits_used?: number | null
+          id?: string
+          schedule_id?: string
+          status?: Database["public"]["Enums"]["booking_status"] | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_schedule_id_fkey"
+            columns: ["schedule_id"]
+            isOneToOne: false
+            referencedRelation: "class_schedules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      class_schedules: {
+        Row: {
+          booked_count: number | null
+          capacity: number
+          class_id: string
+          coach_id: string | null
+          created_at: string
+          end_time: string
+          id: string
+          is_recurring: boolean | null
+          notes: string | null
+          parent_schedule_id: string | null
+          recurrence_rule: string | null
+          start_time: string
+          status: string | null
+        }
+        Insert: {
+          booked_count?: number | null
+          capacity?: number
+          class_id: string
+          coach_id?: string | null
+          created_at?: string
+          end_time: string
+          id?: string
+          is_recurring?: boolean | null
+          notes?: string | null
+          parent_schedule_id?: string | null
+          recurrence_rule?: string | null
+          start_time: string
+          status?: string | null
+        }
+        Update: {
+          booked_count?: number | null
+          capacity?: number
+          class_id?: string
+          coach_id?: string | null
+          created_at?: string
+          end_time?: string
+          id?: string
+          is_recurring?: boolean | null
+          notes?: string | null
+          parent_schedule_id?: string | null
+          recurrence_rule?: string | null
+          start_time?: string
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "class_schedules_class_id_fkey"
+            columns: ["class_id"]
+            isOneToOne: false
+            referencedRelation: "classes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "class_schedules_parent_schedule_id_fkey"
+            columns: ["parent_schedule_id"]
+            isOneToOne: false
+            referencedRelation: "class_schedules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      class_types: {
+        Row: {
+          badge_label: string | null
+          badge_variant: string | null
+          created_at: string
+          default_capacity: number | null
+          default_duration: number | null
+          description: string | null
+          difficulty_level:
+            | Database["public"]["Enums"]["difficulty_level"]
+            | null
+          id: string
+          is_active: boolean | null
+          name: string
+          sort_order: number | null
+        }
+        Insert: {
+          badge_label?: string | null
+          badge_variant?: string | null
+          created_at?: string
+          default_capacity?: number | null
+          default_duration?: number | null
+          description?: string | null
+          difficulty_level?:
+            | Database["public"]["Enums"]["difficulty_level"]
+            | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          sort_order?: number | null
+        }
+        Update: {
+          badge_label?: string | null
+          badge_variant?: string | null
+          created_at?: string
+          default_capacity?: number | null
+          default_duration?: number | null
+          description?: string | null
+          difficulty_level?:
+            | Database["public"]["Enums"]["difficulty_level"]
+            | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          sort_order?: number | null
+        }
+        Relationships: []
+      }
+      classes: {
+        Row: {
+          class_type_id: string
+          coach_id: string | null
+          created_at: string
+          id: string
+          is_online: boolean | null
+          location: string | null
+          zoom_link: string | null
+        }
+        Insert: {
+          class_type_id: string
+          coach_id?: string | null
+          created_at?: string
+          id?: string
+          is_online?: boolean | null
+          location?: string | null
+          zoom_link?: string | null
+        }
+        Update: {
+          class_type_id?: string
+          coach_id?: string | null
+          created_at?: string
+          id?: string
+          is_online?: boolean | null
+          location?: string | null
+          zoom_link?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "classes_class_type_id_fkey"
+            columns: ["class_type_id"]
+            isOneToOne: false
+            referencedRelation: "class_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      membership_plans: {
+        Row: {
+          billing_interval: string
+          class_credits: number | null
+          created_at: string
+          description: string | null
+          features: Json | null
+          id: string
+          is_active: boolean | null
+          name: string
+          price: number
+          sort_order: number | null
+          stripe_price_id: string | null
+          stripe_product_id: string | null
+          unlimited_classes: boolean | null
+          updated_at: string
+        }
+        Insert: {
+          billing_interval?: string
+          class_credits?: number | null
+          created_at?: string
+          description?: string | null
+          features?: Json | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          price: number
+          sort_order?: number | null
+          stripe_price_id?: string | null
+          stripe_product_id?: string | null
+          unlimited_classes?: boolean | null
+          updated_at?: string
+        }
+        Update: {
+          billing_interval?: string
+          class_credits?: number | null
+          created_at?: string
+          description?: string | null
+          features?: Json | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          price?: number
+          sort_order?: number | null
+          stripe_price_id?: string | null
+          stripe_product_id?: string | null
+          unlimited_classes?: boolean | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      memberships: {
+        Row: {
+          cancel_at_period_end: boolean | null
+          created_at: string
+          current_period_end: string | null
+          current_period_start: string | null
+          id: string
+          notes: string | null
+          plan_id: string
+          remaining_credits: number | null
+          status: Database["public"]["Enums"]["membership_status"] | null
+          stripe_customer_id: string | null
+          stripe_subscription_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          cancel_at_period_end?: boolean | null
+          created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          notes?: string | null
+          plan_id: string
+          remaining_credits?: number | null
+          status?: Database["public"]["Enums"]["membership_status"] | null
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          cancel_at_period_end?: boolean | null
+          created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          notes?: string | null
+          plan_id?: string
+          remaining_credits?: number | null
+          status?: Database["public"]["Enums"]["membership_status"] | null
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "memberships_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "membership_plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          date_of_birth: string | null
+          email: string
+          emergency_contact_name: string | null
+          emergency_contact_phone: string | null
+          first_name: string | null
+          health_notes: string | null
+          id: string
+          last_name: string | null
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          date_of_birth?: string | null
+          email: string
+          emergency_contact_name?: string | null
+          emergency_contact_phone?: string | null
+          first_name?: string | null
+          health_notes?: string | null
+          id: string
+          last_name?: string | null
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          date_of_birth?: string | null
+          email?: string
+          emergency_contact_name?: string | null
+          emergency_contact_phone?: string | null
+          first_name?: string | null
+          health_notes?: string | null
+          id?: string
+          last_name?: string | null
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       promotions: {
         Row: {
           accent_color: string | null
@@ -74,15 +422,89 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      waitlist: {
+        Row: {
+          created_at: string
+          id: string
+          notified_at: string | null
+          position: number
+          schedule_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          notified_at?: string | null
+          position: number
+          schedule_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          notified_at?: string | null
+          position?: number
+          schedule_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "waitlist_schedule_id_fkey"
+            columns: ["schedule_id"]
+            isOneToOne: false
+            referencedRelation: "class_schedules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_user_role: {
+        Args: { _user_id: string }
+        Returns: Database["public"]["Enums"]["app_role"]
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "coach" | "member"
+      booking_status: "confirmed" | "cancelled" | "completed" | "no_show"
+      difficulty_level: "beginner" | "intermediate" | "advanced" | "all_levels"
+      membership_status:
+        | "active"
+        | "paused"
+        | "cancelled"
+        | "expired"
+        | "pending"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -209,6 +631,17 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "coach", "member"],
+      booking_status: ["confirmed", "cancelled", "completed", "no_show"],
+      difficulty_level: ["beginner", "intermediate", "advanced", "all_levels"],
+      membership_status: [
+        "active",
+        "paused",
+        "cancelled",
+        "expired",
+        "pending",
+      ],
+    },
   },
 } as const

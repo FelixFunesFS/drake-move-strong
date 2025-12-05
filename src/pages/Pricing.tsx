@@ -10,17 +10,17 @@ import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 const Pricing = () => {
   const membershipOptions = [{
-    name: "Foundation Membership",
-    price: "$149",
+    name: "8 Classes",
+    price: "$199",
     period: "/mo",
     description: "Perfect for beginners or busy schedules",
     features: ["8 classes per month", "Movement assessment included", "Access to all class types", "Progress tracking"],
-    cta: "Choose Foundation",
+    cta: "Choose 8 Classes",
     link: "/contact",
     popular: false
   }, {
-    name: "Standard Unlimited",
-    price: "$199",
+    name: "Unlimited",
+    price: "$249",
     period: "/mo",
     description: "Our most popular option — train as often as you like",
     features: ["Unlimited classes", "Priority booking window", "Quarterly goal reviews", "Guest pass per month"],
@@ -29,15 +29,22 @@ const Pricing = () => {
     popular: true
   }, {
     name: "VIP Unlimited",
-    price: "$249",
+    price: "$299",
     period: "/mo",
-    description: "Unlimited group classes + weekly 1:1 coaching",
+    description: "Unlimited group classes + monthly 1:1 coaching",
     features: ["Unlimited classes", "1 monthly 1:1 session", "Personalized programming notes", "Nutritional guidance"],
     cta: "Choose VIP",
     link: "/contact",
     popular: false
   }];
   const otherOptions = [{
+    icon: <Users className="w-8 h-8" />,
+    name: "Single Drop-In",
+    price: "$40",
+    period: "/class",
+    description: "Just visiting or want to try a specific class?",
+    features: ["No commitment required", "Access to any class type"]
+  }, {
     icon: <Laptop className="w-8 h-8" />,
     name: "Hybrid Online/Studio",
     price: "$129",
@@ -47,16 +54,9 @@ const Pricing = () => {
   }, {
     icon: <Calendar className="w-8 h-8" />,
     name: "10-Pack Flex Pass",
-    price: "$300",
+    price: "$350",
     description: "Perfect for flexible schedules or frequent travelers.",
     features: ["10 class credits", "6-month expiration"]
-  }, {
-    icon: <Users className="w-8 h-8" />,
-    name: "Single Drop-In",
-    price: "$30",
-    period: "/class",
-    description: "Just visiting or want to try a specific class?",
-    features: ["No commitment required"]
   }];
   const faqs = [{
     question: "Do I need experience to join?",
@@ -78,7 +78,7 @@ const Pricing = () => {
     <>
       <SEO
         title="Membership Pricing"
-        description="Simple, transparent membership options starting at $49. No contracts, real results. Join Drake Fitness in Charleston, SC for mobility-first functional training."
+        description="Simple, transparent membership options starting at $40. Drop-in $40, 8 classes $199/mo, Unlimited $249/mo, VIP $299/mo. No contracts, real results at Drake Fitness Charleston."
         canonical="https://drake.fitness/pricing"
       />
       <StructuredData data={faqSchema} />

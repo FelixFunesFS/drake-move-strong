@@ -8,3 +8,12 @@ verify_jwt = false
 
 [functions.generate-ad-image]
 verify_jwt = false
+
+[functions.manage-promotions]
+verify_jwt = false
+
+[functions.book-class]
+verify_jwt = false
+
+[functions.cancel-booking]
+verify_jwt = false
