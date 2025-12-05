@@ -1,4 +1,13 @@
 // Canvas Compositor Utility for Image Ad Generation
+import { FITNESS_ICONS, drawIcon as drawIconFromLibrary } from './iconLibrary';
+
+export interface IconElement {
+  iconKey: string;
+  position: { x: number; y: number };
+  size: number;
+  color: string;
+  rotation?: number;
+}
 
 export interface TextOverlay {
   text: string;
@@ -65,6 +74,7 @@ export interface AdConfig {
   cta?: TextOverlay;
   textBoxes?: TextBox[];
   shapes?: ShapeElement[];
+  icons?: IconElement[];
   effects: ImageEffect;
   logo: LogoConfig;
   outputSize: OutputSize;
@@ -167,6 +177,7 @@ export const DEFAULT_AD_CONFIG: AdConfig = {
   },
   textBoxes: [],
   shapes: [],
+  icons: [],
   effects: {
     brightness: 100,
     contrast: 100,
@@ -701,6 +712,15 @@ export async function composeAd(
   if (config.shapes) {
     for (const shape of config.shapes) {
       drawShape(ctx, shape, width, height);
+    }
+  }
+
+  // Draw icons
+  if (config.icons) {
+    for (const icon of config.icons) {
+      const x = (icon.position.x / 100) * width;
+      const y = (icon.position.y / 100) * height;
+      drawIconFromLibrary(ctx, icon.iconKey, x, y, icon.size, icon.color, icon.rotation);
     }
   }
 
