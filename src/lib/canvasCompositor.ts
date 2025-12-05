@@ -144,13 +144,32 @@ export const DEFAULT_AD_CONFIG: AdConfig = {
   outputSize: OUTPUT_SIZES[0],
 };
 
-// Load image from URL or import path
-export function loadImage(src: string): Promise<HTMLImageElement> {
+// Load image from URL or import path with timeout and error handling
+export function loadImage(src: string, timeoutMs: number = 30000): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.crossOrigin = 'anonymous';
-    img.onload = () => resolve(img);
-    img.onerror = reject;
+    
+    const timeout = setTimeout(() => {
+      reject(new Error('Image load timeout - the image took too long to load'));
+    }, timeoutMs);
+
+    img.onload = () => {
+      clearTimeout(timeout);
+      resolve(img);
+    };
+    
+    img.onerror = (event) => {
+      clearTimeout(timeout);
+      // Try to provide more helpful error info
+      const errorMsg = src.startsWith('data:') 
+        ? 'Failed to load base64 image - data may be corrupted'
+        : src.startsWith('http') 
+          ? 'Failed to load image from URL - check CORS settings or image accessibility'
+          : 'Failed to load image - check the file path';
+      reject(new Error(errorMsg));
+    };
+    
     img.src = src;
   });
 }

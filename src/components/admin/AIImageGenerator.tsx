@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { Sparkles, Download, Loader2, Wand2 } from "lucide-react";
+import { Sparkles, Download, Loader2, Wand2, AlertCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { downloadImage } from "@/lib/canvasCompositor";
+import { getImageErrorMessage } from "@/lib/imageUtils";
 
 const STYLE_PRESETS = [
   { id: "photorealistic", label: "Photorealistic", description: "Professional photo quality" },
@@ -51,6 +52,7 @@ export function AIImageGenerator({ onImageGenerated }: AIImageGeneratorProps) {
   const [selectedStyle, setSelectedStyle] = useState("photorealistic");
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
+  const [processingStatus, setProcessingStatus] = useState<string>("");
 
   const handleGenerate = async () => {
     if (!prompt.trim()) {
@@ -60,18 +62,28 @@ export function AIImageGenerator({ onImageGenerated }: AIImageGeneratorProps) {
 
     setIsGenerating(true);
     setGeneratedImage(null);
+    setProcessingStatus("Generating image...");
 
     try {
       const { data, error } = await supabase.functions.invoke("generate-ad-image", {
         body: { prompt: prompt.trim(), style: selectedStyle },
       });
 
+      // Handle specific HTTP errors
       if (error) {
         console.error("Edge function error:", error);
-        throw new Error(error.message || "Failed to generate image");
+        const statusCode = (error as { status?: number }).status;
+        throw new Error(getImageErrorMessage(error, statusCode));
       }
 
       if (data?.error) {
+        // Check for specific error types
+        if (data.error.includes('rate') || data.error.includes('limit')) {
+          throw new Error('Rate limit exceeded. Please wait a moment before trying again.');
+        }
+        if (data.error.includes('credit') || data.error.includes('payment')) {
+          throw new Error('AI credits exhausted. Please add more credits to continue.');
+        }
         throw new Error(data.error);
       }
 
@@ -84,10 +96,11 @@ export function AIImageGenerator({ onImageGenerated }: AIImageGeneratorProps) {
       }
     } catch (error) {
       console.error("Generation error:", error);
-      const message = error instanceof Error ? error.message : "Failed to generate image";
+      const message = getImageErrorMessage(error);
       toast.error(message);
     } finally {
       setIsGenerating(false);
+      setProcessingStatus("");
     }
   };
 
@@ -217,7 +230,7 @@ export function AIImageGenerator({ onImageGenerated }: AIImageGeneratorProps) {
               {isGenerating ? (
                 <div className="text-center text-muted-foreground p-8">
                   <Loader2 className="h-12 w-12 mx-auto mb-3 animate-spin opacity-50" />
-                  <p className="font-medium">Creating your image...</p>
+                  <p className="font-medium">{processingStatus || "Creating your image..."}</p>
                   <p className="text-sm mt-1">This may take 15-30 seconds</p>
                 </div>
               ) : generatedImage ? (
@@ -246,6 +259,19 @@ export function AIImageGenerator({ onImageGenerated }: AIImageGeneratorProps) {
               <li>• Include setting details (gym, outdoor, studio)</li>
               <li>• Brand colors (teal, gold) are applied automatically</li>
             </ul>
+          </CardContent>
+        </Card>
+
+        {/* Rate Limit Warning */}
+        <Card className="border-amber-200 bg-amber-50/50 dark:border-amber-900 dark:bg-amber-950/20">
+          <CardContent className="p-4">
+            <div className="flex items-start gap-2">
+              <AlertCircle className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
+              <div className="text-sm text-amber-800 dark:text-amber-200">
+                <p className="font-medium">Generation Note</p>
+                <p className="text-amber-700 dark:text-amber-300">If you see rate limit errors, wait 30-60 seconds before generating again.</p>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>
