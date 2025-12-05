@@ -70,6 +70,8 @@ export function ImageAdGenerator() {
       cta: template.config.cta || prev.cta,
       effects: template.config.effects || prev.effects,
       outputSize: template.config.outputSize || prev.outputSize,
+      shapes: template.config.shapes || [],
+      textBoxes: template.config.textBoxes || [],
     }));
     setActiveTemplate(template.id);
     setActiveTab("editor"); // Switch to editor
