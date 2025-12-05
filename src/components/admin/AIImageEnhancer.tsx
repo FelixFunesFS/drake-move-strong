@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { Wand2, Download, Loader2, ArrowRight, RotateCcw } from "lucide-react";
+import { Wand2, Download, Loader2, ArrowRight, RotateCcw, AlertCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { downloadImage } from "@/lib/canvasCompositor";
+import { convertToBase64, validateImage, getImageErrorMessage } from "@/lib/imageUtils";
 
 const ENHANCEMENT_PRESETS = [
   { id: "dramatic-lighting", label: "Dramatic Lighting", prompt: "Add dramatic, moody lighting with deep shadows and highlights" },
@@ -29,25 +30,7 @@ export function AIImageEnhancer({ selectedImage, onImageEnhanced }: AIImageEnhan
   const [isEnhancing, setIsEnhancing] = useState(false);
   const [enhancedImage, setEnhancedImage] = useState<string | null>(null);
   const [activePreset, setActivePreset] = useState<string | null>(null);
-
-  // Convert image URL to base64 for API compatibility
-  const convertToBase64 = async (imageUrl: string): Promise<string> => {
-    // If already base64, return as-is
-    if (imageUrl.startsWith('data:image')) {
-      return imageUrl;
-    }
-    
-    // Fetch the image and convert to base64
-    const response = await fetch(imageUrl);
-    const blob = await response.blob();
-    
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
-    });
-  };
+  const [processingStatus, setProcessingStatus] = useState<string>("");
 
   const handleEnhance = async (prompt: string, presetId?: string) => {
     if (!selectedImage) {
@@ -63,10 +46,30 @@ export function AIImageEnhancer({ selectedImage, onImageEnhanced }: AIImageEnhan
     setIsEnhancing(true);
     setEnhancedImage(null);
     setActivePreset(presetId || null);
+    setProcessingStatus("Validating image...");
 
     try {
-      // Convert the image to base64 for the API
-      const base64Image = await convertToBase64(selectedImage);
+      // Validate image first
+      const validation = await validateImage(selectedImage);
+      if (!validation.valid && validation.error && !validation.error.includes('compressed')) {
+        throw new Error(validation.error);
+      }
+
+      // Convert the image to base64 with compression if needed
+      setProcessingStatus("Preparing image...");
+      const base64Image = await convertToBase64(selectedImage, {
+        maxWidth: 2048,
+        maxHeight: 2048,
+        quality: 0.85,
+        format: 'image/jpeg'
+      });
+
+      // Validate base64 result
+      if (!base64Image || !base64Image.startsWith('data:image')) {
+        throw new Error("Failed to process image. Please try a different image.");
+      }
+
+      setProcessingStatus("Enhancing with AI...");
       
       const { data, error } = await supabase.functions.invoke("generate-ad-image", {
         body: { 
@@ -76,9 +79,11 @@ export function AIImageEnhancer({ selectedImage, onImageEnhanced }: AIImageEnhan
         },
       });
 
+      // Handle specific HTTP errors
       if (error) {
         console.error("Edge function error:", error);
-        throw new Error(error.message || "Failed to enhance image");
+        const statusCode = (error as { status?: number }).status;
+        throw new Error(getImageErrorMessage(error, statusCode));
       }
 
       if (data?.error) {
@@ -94,10 +99,11 @@ export function AIImageEnhancer({ selectedImage, onImageEnhanced }: AIImageEnhan
       }
     } catch (error) {
       console.error("Enhancement error:", error);
-      const message = error instanceof Error ? error.message : "Failed to enhance image";
+      const message = getImageErrorMessage(error);
       toast.error(message);
     } finally {
       setIsEnhancing(false);
+      setProcessingStatus("");
     }
   };
 
@@ -247,7 +253,7 @@ export function AIImageEnhancer({ selectedImage, onImageEnhanced }: AIImageEnhan
                   {isEnhancing ? (
                     <div className="text-center p-4">
                       <Loader2 className="h-8 w-8 mx-auto mb-2 animate-spin text-muted-foreground" />
-                      <p className="text-xs text-muted-foreground">Processing...</p>
+                      <p className="text-xs text-muted-foreground">{processingStatus || "Processing..."}</p>
                     </div>
                   ) : enhancedImage ? (
                     <img
@@ -286,8 +292,21 @@ export function AIImageEnhancer({ selectedImage, onImageEnhanced }: AIImageEnhan
               <li>• Be specific about the changes you want</li>
               <li>• Lighting changes work best (dramatic, soft, golden hour)</li>
               <li>• Background modifications are well supported</li>
-              <li>• Color grading adjustments are effective</li>
+              <li>• Large images are automatically compressed for faster processing</li>
             </ul>
+          </CardContent>
+        </Card>
+
+        {/* Rate Limit Warning */}
+        <Card className="border-amber-200 bg-amber-50/50 dark:border-amber-900 dark:bg-amber-950/20">
+          <CardContent className="p-4">
+            <div className="flex items-start gap-2">
+              <AlertCircle className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
+              <div className="text-sm text-amber-800 dark:text-amber-200">
+                <p className="font-medium">Processing Note</p>
+                <p className="text-amber-700 dark:text-amber-300">AI enhancement may take 15-30 seconds. If you see rate limit errors, wait a moment before retrying.</p>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>
