@@ -3,12 +3,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
-import { Download, RefreshCw, ImageIcon, Sparkles, Images, Wand2 } from "lucide-react";
+import { Download, RefreshCw, ImageIcon, Sparkles, Images, Wand2, LayoutTemplate } from "lucide-react";
 import { ImageSelector } from "./ImageSelector";
 import { TextOverlayEditor } from "./TextOverlayEditor";
 import { EffectsPanel } from "./EffectsPanel";
 import { AIImageGenerator } from "./AIImageGenerator";
 import { AIImageEnhancer } from "./AIImageEnhancer";
+import { AdTemplates, AdTemplate } from "./AdTemplates";
 import {
   AdConfig,
   DEFAULT_AD_CONFIG,
@@ -23,7 +24,8 @@ export function ImageAdGenerator() {
   const [config, setConfig] = useState<AdConfig>(DEFAULT_AD_CONFIG);
   const [previewUrl, setPreviewUrl] = useState<string>("");
   const [isGenerating, setIsGenerating] = useState(false);
-  const [activeTab, setActiveTab] = useState("site-images");
+  const [activeTab, setActiveTab] = useState("templates");
+  const [activeTemplate, setActiveTemplate] = useState<string | null>(null);
 
   // Generate preview when config changes
   const generatePreview = useCallback(async () => {
@@ -55,8 +57,23 @@ export function ImageAdGenerator() {
   // Handle AI-generated image - use it as base image
   const handleAIImageGenerated = (imageUrl: string) => {
     setConfig((prev) => ({ ...prev, baseImage: imageUrl }));
-    setActiveTab("site-images"); // Switch to editor to add text overlays
+    setActiveTab("editor"); // Switch to editor to add text overlays
     toast.info("AI image loaded! Add text overlays and effects.");
+  };
+
+  // Handle template selection
+  const handleSelectTemplate = (template: AdTemplate) => {
+    setConfig((prev) => ({
+      ...prev,
+      headline: template.config.headline || prev.headline,
+      subheadline: template.config.subheadline || prev.subheadline,
+      cta: template.config.cta || prev.cta,
+      effects: template.config.effects || prev.effects,
+      outputSize: template.config.outputSize || prev.outputSize,
+    }));
+    setActiveTemplate(template.id);
+    setActiveTab("editor"); // Switch to editor
+    toast.success(`Template "${template.name}" applied! Now select an image.`);
   };
 
   const handleApplyPreset = (presetId: string) => {
@@ -82,6 +99,7 @@ export function ImageAdGenerator() {
       ...DEFAULT_AD_CONFIG,
       baseImage: prev.baseImage,
     }));
+    setActiveTemplate(null);
     toast.info("Settings reset to defaults");
   };
 
@@ -99,10 +117,14 @@ export function ImageAdGenerator() {
 
   return (
     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-      <TabsList className="mb-6">
-        <TabsTrigger value="site-images" className="gap-2">
+      <TabsList className="mb-6 flex-wrap h-auto gap-1">
+        <TabsTrigger value="templates" className="gap-2">
+          <LayoutTemplate className="h-4 w-4" />
+          Templates
+        </TabsTrigger>
+        <TabsTrigger value="editor" className="gap-2">
           <Images className="h-4 w-4" />
-          Site Images + Editor
+          Editor
         </TabsTrigger>
         <TabsTrigger value="ai-generate" className="gap-2">
           <Sparkles className="h-4 w-4" />
@@ -114,7 +136,34 @@ export function ImageAdGenerator() {
         </TabsTrigger>
       </TabsList>
 
-      <TabsContent value="site-images">
+      {/* Templates Tab */}
+      <TabsContent value="templates">
+        <div className="grid lg:grid-cols-2 gap-6">
+          <div className="space-y-6">
+            <AdTemplates onSelectTemplate={handleSelectTemplate} />
+          </div>
+          <div className="space-y-4 lg:sticky lg:top-4 lg:self-start">
+            <Card>
+              <CardContent className="p-6 text-center">
+                <LayoutTemplate className="h-12 w-12 mx-auto mb-4 text-muted-foreground opacity-50" />
+                <h3 className="font-semibold mb-2">Choose a Template</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Select a template to get started with pre-designed layouts, effects, and suggested copy.
+                </p>
+                <div className="text-xs text-muted-foreground space-y-1">
+                  <p>✓ Pre-configured text styles and positions</p>
+                  <p>✓ Optimized color overlays and effects</p>
+                  <p>✓ Platform-specific sizes (Square, Story)</p>
+                  <p>✓ Suggested copy you can customize</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </TabsContent>
+
+      {/* Editor Tab */}
+      <TabsContent value="editor">
         <div className="grid lg:grid-cols-2 gap-6">
           {/* Left Column - Controls */}
           <div className="space-y-6 order-2 lg:order-1">
@@ -153,7 +202,12 @@ export function ImageAdGenerator() {
             <Card>
               <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-semibold">Preview</h3>
+                  <div>
+                    <h3 className="font-semibold">Preview</h3>
+                    {activeTemplate && (
+                      <p className="text-xs text-muted-foreground">Using template</p>
+                    )}
+                  </div>
                   <div className="flex gap-2">
                     <Button
                       variant="outline"
@@ -186,7 +240,10 @@ export function ImageAdGenerator() {
                   {!config.baseImage ? (
                     <div className="text-center text-muted-foreground p-8">
                       <ImageIcon className="h-12 w-12 mx-auto mb-3 opacity-50" />
-                      <p>Select an image or generate one with AI</p>
+                      <p>Select an image to see preview</p>
+                      {activeTemplate && (
+                        <p className="text-xs mt-2">Template ready - just pick an image!</p>
+                      )}
                     </div>
                   ) : previewUrl ? (
                     <img
