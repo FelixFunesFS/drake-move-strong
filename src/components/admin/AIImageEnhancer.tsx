@@ -30,6 +30,25 @@ export function AIImageEnhancer({ selectedImage, onImageEnhanced }: AIImageEnhan
   const [enhancedImage, setEnhancedImage] = useState<string | null>(null);
   const [activePreset, setActivePreset] = useState<string | null>(null);
 
+  // Convert image URL to base64 for API compatibility
+  const convertToBase64 = async (imageUrl: string): Promise<string> => {
+    // If already base64, return as-is
+    if (imageUrl.startsWith('data:image')) {
+      return imageUrl;
+    }
+    
+    // Fetch the image and convert to base64
+    const response = await fetch(imageUrl);
+    const blob = await response.blob();
+    
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  };
+
   const handleEnhance = async (prompt: string, presetId?: string) => {
     if (!selectedImage) {
       toast.error("Please select an image first");
@@ -46,10 +65,13 @@ export function AIImageEnhancer({ selectedImage, onImageEnhanced }: AIImageEnhan
     setActivePreset(presetId || null);
 
     try {
+      // Convert the image to base64 for the API
+      const base64Image = await convertToBase64(selectedImage);
+      
       const { data, error } = await supabase.functions.invoke("generate-ad-image", {
         body: { 
           prompt: prompt.trim(), 
-          baseImageUrl: selectedImage,
+          baseImageUrl: base64Image,
           mode: "enhance"
         },
       });
