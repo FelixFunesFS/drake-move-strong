@@ -38,6 +38,8 @@ import MyBookings from "./pages/member/MyBookings";
 import MemberVideos from "./pages/member/Videos";
 import MemberVideoPlayer from "./pages/member/VideoPlayer";
 import MemberContracts from "./pages/member/Contracts";
+import MemberWorkouts from "./pages/member/Workouts";
+import MemberWorkoutSession from "./pages/member/WorkoutSession";
 import AdminVideos from "./pages/admin/Videos";
 import AdminNotifications from "./pages/admin/Notifications";
 import AdminContracts from "./pages/admin/Contracts";
@@ -116,6 +118,16 @@ const AppLayout = () => {
             <Route path="/member/contracts" element={
               <ProtectedRoute>
                 <MemberContracts />
+              </ProtectedRoute>
+            } />
+            <Route path="/member/workouts" element={
+              <ProtectedRoute>
+                <MemberWorkouts />
+              </ProtectedRoute>
+            } />
+            <Route path="/member/workouts/:planId/session" element={
+              <ProtectedRoute>
+                <MemberWorkoutSession />
               </ProtectedRoute>
             } />
             

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { LayoutDashboard, Calendar, Clock, User, PlayCircle, FileText } from 'lucide-react';
+import { LayoutDashboard, Calendar, Clock, User, PlayCircle, FileText, Dumbbell } from 'lucide-react';
 
 interface MemberLayoutProps {
   children: ReactNode;
@@ -11,6 +11,7 @@ const navItems = [
   { href: '/member/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/schedule', label: 'Book Class', icon: Calendar },
   { href: '/member/bookings', label: 'My Bookings', icon: Clock },
+  { href: '/member/workouts', label: 'Workouts', icon: Dumbbell },
   { href: '/member/videos', label: 'Videos', icon: PlayCircle },
   { href: '/member/contracts', label: 'Contracts', icon: FileText },
   { href: '/member/profile', label: 'Profile', icon: User },
