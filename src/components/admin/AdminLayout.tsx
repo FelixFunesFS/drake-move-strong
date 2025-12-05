@@ -17,7 +17,8 @@ import {
   Mail,
   FileText,
   Dumbbell,
-  ClipboardList
+  ClipboardList,
+  BarChart3
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -27,6 +28,7 @@ interface AdminLayoutProps {
 
 const navItems = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/admin/analytics', label: 'Analytics', icon: BarChart3 },
   { href: '/admin/members', label: 'Members', icon: Users },
   { href: '/admin/schedule', label: 'Schedule', icon: Calendar },
   { href: '/admin/class-types', label: 'Class Types', icon: Layers },
