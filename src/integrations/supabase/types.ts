@@ -14,7 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      promotions: {
+        Row: {
+          accent_color: string | null
+          background_color: string | null
+          created_at: string
+          cta_link: string | null
+          cta_text: string | null
+          description: string | null
+          dismissible: boolean
+          display_type: string
+          end_date: string | null
+          id: string
+          is_active: boolean
+          priority: number
+          start_date: string
+          target_pages: string[] | null
+          text_color: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          accent_color?: string | null
+          background_color?: string | null
+          created_at?: string
+          cta_link?: string | null
+          cta_text?: string | null
+          description?: string | null
+          dismissible?: boolean
+          display_type?: string
+          end_date?: string | null
+          id?: string
+          is_active?: boolean
+          priority?: number
+          start_date?: string
+          target_pages?: string[] | null
+          text_color?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          accent_color?: string | null
+          background_color?: string | null
+          created_at?: string
+          cta_link?: string | null
+          cta_text?: string | null
+          description?: string | null
+          dismissible?: boolean
+          display_type?: string
+          end_date?: string | null
+          id?: string
+          is_active?: boolean
+          priority?: number
+          start_date?: string
+          target_pages?: string[] | null
+          text_color?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
