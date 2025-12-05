@@ -37,8 +37,10 @@ import MemberProfile from "./pages/member/Profile";
 import MyBookings from "./pages/member/MyBookings";
 import MemberVideos from "./pages/member/Videos";
 import MemberVideoPlayer from "./pages/member/VideoPlayer";
+import MemberContracts from "./pages/member/Contracts";
 import AdminVideos from "./pages/admin/Videos";
 import AdminNotifications from "./pages/admin/Notifications";
+import AdminContracts from "./pages/admin/Contracts";
 
 const queryClient = new QueryClient();
 
@@ -109,6 +111,11 @@ const AppLayout = () => {
                 <MemberVideoPlayer />
               </ProtectedRoute>
             } />
+            <Route path="/member/contracts" element={
+              <ProtectedRoute>
+                <MemberContracts />
+              </ProtectedRoute>
+            } />
             
             {/* Admin Routes (Protected - Admin Only) */}
             <Route path="/admin/dashboard" element={
@@ -154,6 +161,11 @@ const AppLayout = () => {
             <Route path="/admin/notifications" element={
               <ProtectedRoute requiredRoles={['admin']}>
                 <AdminNotifications />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/contracts" element={
+              <ProtectedRoute requiredRoles={['admin']}>
+                <AdminContracts />
               </ProtectedRoute>
             } />
             

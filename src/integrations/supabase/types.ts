@@ -210,6 +210,95 @@ export type Database = {
           },
         ]
       }
+      contract_templates: {
+        Row: {
+          content: string
+          contract_type: Database["public"]["Enums"]["contract_type"]
+          created_at: string
+          id: string
+          is_active: boolean | null
+          is_required_for_booking: boolean | null
+          name: string
+          requires_signature: boolean | null
+          slug: string
+          updated_at: string
+          version: number | null
+        }
+        Insert: {
+          content: string
+          contract_type?: Database["public"]["Enums"]["contract_type"]
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          is_required_for_booking?: boolean | null
+          name: string
+          requires_signature?: boolean | null
+          slug: string
+          updated_at?: string
+          version?: number | null
+        }
+        Update: {
+          content?: string
+          contract_type?: Database["public"]["Enums"]["contract_type"]
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          is_required_for_booking?: boolean | null
+          name?: string
+          requires_signature?: boolean | null
+          slug?: string
+          updated_at?: string
+          version?: number | null
+        }
+        Relationships: []
+      }
+      member_contracts: {
+        Row: {
+          created_at: string
+          id: string
+          ip_address: string | null
+          metadata: Json | null
+          signature_data: string | null
+          signed_at: string
+          template_id: string
+          template_version: number
+          user_agent: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          ip_address?: string | null
+          metadata?: Json | null
+          signature_data?: string | null
+          signed_at?: string
+          template_id: string
+          template_version: number
+          user_agent?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          ip_address?: string | null
+          metadata?: Json | null
+          signature_data?: string | null
+          signed_at?: string
+          template_id?: string
+          template_version?: number
+          user_agent?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "member_contracts_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "contract_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       membership_plans: {
         Row: {
           billing_interval: string
@@ -746,10 +835,15 @@ export type Database = {
         }
         Returns: boolean
       }
+      has_signed_required_contracts: {
+        Args: { _user_id: string }
+        Returns: boolean
+      }
     }
     Enums: {
       app_role: "admin" | "coach" | "member"
       booking_status: "confirmed" | "cancelled" | "completed" | "no_show"
+      contract_type: "waiver" | "agreement" | "terms" | "other"
       difficulty_level: "beginner" | "intermediate" | "advanced" | "all_levels"
       membership_status:
         | "active"
@@ -887,6 +981,7 @@ export const Constants = {
     Enums: {
       app_role: ["admin", "coach", "member"],
       booking_status: ["confirmed", "cancelled", "completed", "no_show"],
+      contract_type: ["waiver", "agreement", "terms", "other"],
       difficulty_level: ["beginner", "intermediate", "advanced", "all_levels"],
       membership_status: [
         "active",
