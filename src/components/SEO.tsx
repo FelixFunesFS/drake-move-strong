@@ -45,12 +45,8 @@ export function SEO({
       <meta property="twitter:image" content={ogImage} />
 
       {/* Article Meta (if applicable) */}
-      {article && (
-        <>
-          <meta property="article:published_time" content={article.publishedAt} />
-          <meta property="article:author" content={article.author} />
-        </>
-      )}
+      {article && <meta property="article:published_time" content={article.publishedAt} />}
+      {article && <meta property="article:author" content={article.author} />}
     </Helmet>
   );
 }
