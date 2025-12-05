@@ -6,11 +6,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
-import { Copy, Loader2, Instagram, Facebook, Linkedin, Twitter, Sparkles, Youtube, X, FileText } from "lucide-react";
+import { Copy, Loader2, Instagram, Facebook, Linkedin, Twitter, Sparkles, Youtube, X, FileText, Eye, Code } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
 import { insightPosts, authorInfo } from "@/data/insights";
+import { PlatformPreview } from "@/components/admin/PlatformPreview";
 
 const PLATFORMS = [
   { id: "instagram", label: "Instagram", icon: Instagram, color: "text-pink-500" },
@@ -26,7 +28,7 @@ const TONES = [
   { id: "promotional", label: "Promotional", description: "Classes, events, and special offers" },
 ];
 
-const CATEGORY_LABELS = {
+const CATEGORY_LABELS: Record<string, string> = {
   strength: "Strength",
   movement: "Movement",
   purpose: "Purpose"
@@ -538,14 +540,33 @@ Tags: ${post.tags.join(', ')}`;
                             </div>
                           </CardHeader>
                           <CardContent>
-                            <div className="bg-muted rounded-lg p-4">
-                              <pre className="whitespace-pre-wrap text-sm font-sans leading-relaxed">
-                                {displayContent}
-                              </pre>
-                            </div>
-                            <p className="text-xs text-muted-foreground mt-2">
-                              {displayContent.length} characters
-                            </p>
+                            <Tabs defaultValue="preview" className="w-full">
+                              <TabsList className="grid w-full grid-cols-2 mb-4">
+                                <TabsTrigger value="preview" className="flex items-center gap-2">
+                                  <Eye className="h-4 w-4" />
+                                  Preview
+                                </TabsTrigger>
+                                <TabsTrigger value="text" className="flex items-center gap-2">
+                                  <Code className="h-4 w-4" />
+                                  Text
+                                </TabsTrigger>
+                              </TabsList>
+                              <TabsContent value="preview" className="mt-0">
+                                <div className="bg-gray-100 rounded-lg p-4 flex justify-center">
+                                  <PlatformPreview platform={platform} content={displayContent} />
+                                </div>
+                              </TabsContent>
+                              <TabsContent value="text" className="mt-0">
+                                <div className="bg-muted rounded-lg p-4">
+                                  <pre className="whitespace-pre-wrap text-sm font-sans leading-relaxed">
+                                    {displayContent}
+                                  </pre>
+                                </div>
+                                <p className="text-xs text-muted-foreground mt-2">
+                                  {displayContent.length} characters
+                                </p>
+                              </TabsContent>
+                            </Tabs>
                           </CardContent>
                         </Card>
                       );
