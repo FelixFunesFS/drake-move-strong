@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import ScrollToTop from "./components/ScrollToTop";
 import Footer from "./components/Footer";
+import AnnouncementBanner from "./components/AnnouncementBanner";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Classes from "./pages/Classes";
@@ -36,6 +37,7 @@ const AppLayout = () => {
     <>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen">
+        {!isStandalonePage && <AnnouncementBanner />}
         {!isStandalonePage && <Navigation />}
         <div className="flex-grow">
           <Routes>
