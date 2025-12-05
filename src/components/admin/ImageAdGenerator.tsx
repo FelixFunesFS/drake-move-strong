@@ -3,11 +3,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
-import { Download, RefreshCw, ImageIcon, Sparkles, Images } from "lucide-react";
+import { Download, RefreshCw, ImageIcon, Sparkles, Images, Wand2 } from "lucide-react";
 import { ImageSelector } from "./ImageSelector";
 import { TextOverlayEditor } from "./TextOverlayEditor";
 import { EffectsPanel } from "./EffectsPanel";
 import { AIImageGenerator } from "./AIImageGenerator";
+import { AIImageEnhancer } from "./AIImageEnhancer";
 import {
   AdConfig,
   DEFAULT_AD_CONFIG,
@@ -106,6 +107,10 @@ export function ImageAdGenerator() {
         <TabsTrigger value="ai-generate" className="gap-2">
           <Sparkles className="h-4 w-4" />
           AI Generate
+        </TabsTrigger>
+        <TabsTrigger value="ai-enhance" className="gap-2">
+          <Wand2 className="h-4 w-4" />
+          AI Enhance
         </TabsTrigger>
       </TabsList>
 
@@ -227,6 +232,13 @@ export function ImageAdGenerator() {
 
       <TabsContent value="ai-generate">
         <AIImageGenerator onImageGenerated={handleAIImageGenerated} />
+      </TabsContent>
+
+      <TabsContent value="ai-enhance">
+        <AIImageEnhancer 
+          selectedImage={config.baseImage} 
+          onImageEnhanced={handleImageSelect}
+        />
       </TabsContent>
     </Tabs>
   );
