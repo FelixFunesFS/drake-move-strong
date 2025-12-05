@@ -270,6 +270,150 @@ const TEMPLATES: AdTemplate[] = [
       cta: 'JOIN THE CHALLENGE',
     },
   },
+  {
+    id: "premium-challenge-icons",
+    name: "Challenge with Icons",
+    description: "Bold challenge design with trophy and flame icons",
+    category: "premium",
+    icon: Trophy,
+    suggestedImageCategories: ["training", "group"],
+    config: {
+      shapes: [
+        // Top gradient bar
+        { type: 'rectangle', position: { x: 0, y: 0 }, size: { width: 100, height: 8 }, fill: '#F2B544', opacity: 0.9 },
+        // Bottom accent bar
+        { type: 'rectangle', position: { x: 0, y: 92 }, size: { width: 100, height: 8 }, fill: '#0B4A52' },
+        // Center decorative lines
+        { type: 'line', position: { x: 20, y: 42 }, size: { width: 15, height: 0.4 }, fill: '#F2B544' },
+        { type: 'line', position: { x: 65, y: 42 }, size: { width: 15, height: 0.4 }, fill: '#F2B544' },
+      ],
+      icons: [
+        // Trophy icons on sides
+        { iconKey: 'trophy', position: { x: 12, y: 50 }, size: 64, color: '#F2B544', rotation: 0 },
+        { iconKey: 'trophy', position: { x: 88, y: 50 }, size: 64, color: '#F2B544', rotation: 0 },
+        // Flame icons near bottom
+        { iconKey: 'flame', position: { x: 25, y: 78 }, size: 40, color: '#F2B544', rotation: 0 },
+        { iconKey: 'flame', position: { x: 75, y: 78 }, size: 40, color: '#F2B544', rotation: 0 },
+      ],
+      textBoxes: [
+        { text: 'STARTS MONDAY', position: { x: 50, y: 4 }, fontSize: 22, fontFamily: 'Oswald', fontWeight: 'bold', color: '#1A1A1A', shadow: false, textAlign: 'center' },
+      ],
+      headline: {
+        text: 'TRANSFORMATION\nCHALLENGE',
+        position: 'center',
+        fontSize: 68,
+        fontFamily: 'Oswald',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        shadow: true,
+        textAlign: 'center',
+      },
+      subheadline: {
+        text: '6 WEEKS • TOTAL BODY • RESULTS',
+        position: 'center',
+        fontSize: 24,
+        fontFamily: 'Inter',
+        fontWeight: 'bold',
+        color: '#F2B544',
+        shadow: true,
+        textAlign: 'center',
+      },
+      cta: {
+        text: 'CLAIM YOUR SPOT',
+        position: 'bottom',
+        fontSize: 22,
+        fontFamily: 'Inter',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        shadow: false,
+        textAlign: 'center',
+      },
+      effects: {
+        brightness: 85,
+        contrast: 115,
+        saturation: 95,
+        vignette: { intensity: 40, size: 50 },
+        overlay: { color: '#1A1A1A', opacity: 0.6, gradient: 'radial' },
+      },
+      outputSize: OUTPUT_SIZES[0],
+    },
+    suggestedCopy: {
+      headline: 'TRANSFORMATION\nCHALLENGE',
+      subheadline: '6 WEEKS • TOTAL BODY • RESULTS',
+      cta: 'CLAIM YOUR SPOT',
+    },
+  },
+  {
+    id: "premium-achievement",
+    name: "Achievement Unlock",
+    description: "Celebratory design with star and checkmark icons",
+    category: "premium",
+    icon: Star,
+    suggestedImageCategories: ["training", "community"],
+    config: {
+      shapes: [
+        // Gold circle background for star
+        { type: 'circle', position: { x: 41, y: 15 }, size: { width: 18, height: 18 }, fill: '#F2B544' },
+        // Bottom pill CTA background
+        { type: 'pill', position: { x: 20, y: 82 }, size: { width: 60, height: 10 }, fill: '#0B4A52', opacity: 0.95 },
+      ],
+      icons: [
+        // Central star icon
+        { iconKey: 'star', position: { x: 50, y: 24 }, size: 56, color: '#1A1A1A', rotation: 0 },
+        // Checkmark icons
+        { iconKey: 'checkCircle', position: { x: 20, y: 65 }, size: 32, color: '#F2B544', rotation: 0 },
+        { iconKey: 'checkCircle', position: { x: 50, y: 65 }, size: 32, color: '#F2B544', rotation: 0 },
+        { iconKey: 'checkCircle', position: { x: 80, y: 65 }, size: 32, color: '#F2B544', rotation: 0 },
+      ],
+      textBoxes: [
+        { text: 'Strength', position: { x: 20, y: 72 }, fontSize: 16, fontFamily: 'Inter', fontWeight: 'normal', color: '#FFFFFF', shadow: true, textAlign: 'center' },
+        { text: 'Mobility', position: { x: 50, y: 72 }, fontSize: 16, fontFamily: 'Inter', fontWeight: 'normal', color: '#FFFFFF', shadow: true, textAlign: 'center' },
+        { text: 'Community', position: { x: 80, y: 72 }, fontSize: 16, fontFamily: 'Inter', fontWeight: 'normal', color: '#FFFFFF', shadow: true, textAlign: 'center' },
+      ],
+      headline: {
+        text: 'ACHIEVEMENT\nUNLOCKED',
+        position: 'center',
+        fontSize: 64,
+        fontFamily: 'Oswald',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        shadow: true,
+        textAlign: 'center',
+      },
+      subheadline: {
+        text: '',
+        position: 'center',
+        fontSize: 24,
+        fontFamily: 'Inter',
+        fontWeight: 'normal',
+        color: '#F2B544',
+        shadow: true,
+        textAlign: 'center',
+      },
+      cta: {
+        text: 'START YOUR JOURNEY',
+        position: 'bottom',
+        fontSize: 22,
+        fontFamily: 'Inter',
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        shadow: false,
+        textAlign: 'center',
+      },
+      effects: {
+        brightness: 80,
+        contrast: 120,
+        saturation: 85,
+        vignette: { intensity: 45, size: 45 },
+        overlay: { color: '#1A1A1A', opacity: 0.65, gradient: 'full' },
+      },
+      outputSize: OUTPUT_SIZES[0],
+    },
+    suggestedCopy: {
+      headline: 'ACHIEVEMENT\nUNLOCKED',
+      cta: 'START YOUR JOURNEY',
+    },
+  },
   // === STANDARD TEMPLATES ===
   {
     id: "class-promo",
