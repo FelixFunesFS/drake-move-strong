@@ -5,10 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Copy, Loader2, Instagram, Facebook, Linkedin, Twitter, Sparkles, Youtube, X } from "lucide-react";
+import { Copy, Loader2, Instagram, Facebook, Linkedin, Twitter, Sparkles, Youtube, X, FileText } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
+import { insightPosts, authorInfo } from "@/data/insights";
 
 const PLATFORMS = [
   { id: "instagram", label: "Instagram", icon: Instagram, color: "text-pink-500" },
@@ -23,6 +25,12 @@ const TONES = [
   { id: "community", label: "Community", description: "Behind-the-scenes and member stories" },
   { id: "promotional", label: "Promotional", description: "Classes, events, and special offers" },
 ];
+
+const CATEGORY_LABELS = {
+  strength: "Strength",
+  movement: "Movement",
+  purpose: "Purpose"
+};
 
 interface GeneratedPosts {
   posts: {
@@ -41,6 +49,25 @@ interface YouTubeData {
   characterCount: number;
 }
 
+// Strip HTML tags and convert to plain text
+function stripHtml(html: string): string {
+  return html
+    .replace(/<h3>/g, '\n\n## ')
+    .replace(/<\/h3>/g, '\n')
+    .replace(/<p>/g, '\n')
+    .replace(/<\/p>/g, '')
+    .replace(/<ul>/g, '\n')
+    .replace(/<\/ul>/g, '\n')
+    .replace(/<li>/g, '• ')
+    .replace(/<\/li>/g, '\n')
+    .replace(/<strong>/g, '')
+    .replace(/<\/strong>/g, '')
+    .replace(/<br\s*\/?>/g, '\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
 const SocialGenerator = () => {
   const [content, setContent] = useState("");
   const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>(["instagram"]);
@@ -52,6 +79,9 @@ const SocialGenerator = () => {
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [isFetchingTranscript, setIsFetchingTranscript] = useState(false);
   const [youtubeData, setYoutubeData] = useState<YouTubeData | null>(null);
+  
+  // Blog post state
+  const [selectedPostId, setSelectedPostId] = useState<string>("");
 
   const handlePlatformToggle = (platformId: string) => {
     setSelectedPlatforms(prev =>
@@ -59,6 +89,42 @@ const SocialGenerator = () => {
         ? prev.filter(p => p !== platformId)
         : [...prev, platformId]
     );
+  };
+
+  const handlePostSelect = (postId: string) => {
+    setSelectedPostId(postId);
+    
+    if (postId === "none") {
+      return;
+    }
+    
+    const post = insightPosts.find(p => p.id === postId);
+    if (!post) return;
+    
+    const author = authorInfo[post.author];
+    const plainContent = stripHtml(post.content);
+    
+    const postContent = `Title: ${post.title}
+
+Category: ${CATEGORY_LABELS[post.category]}
+Author: ${author.name}, ${author.title}
+
+Excerpt: ${post.excerpt}
+
+Full Content:
+${plainContent}
+
+Tags: ${post.tags.join(', ')}`;
+    
+    setContent(prev => prev ? `${prev}\n\n---\n\n${postContent}` : postContent);
+    
+    // If the post has a video, set the YouTube URL
+    if (post.videoId) {
+      setYoutubeUrl(`https://youtube.com/watch?v=${post.videoId}`);
+      toast.info(`This post has an associated video. Click "Fetch" to add the transcript.`);
+    }
+    
+    toast.success(`Loaded: ${post.title}`);
   };
 
   const handleFetchTranscript = async () => {
@@ -190,6 +256,52 @@ const SocialGenerator = () => {
             <div className="grid lg:grid-cols-2 gap-8">
               {/* Input Section */}
               <div className="space-y-6">
+                {/* Blog Post Selector */}
+                <Card>
+                  <CardHeader>
+                    <div className="flex items-center gap-2">
+                      <FileText className="h-5 w-5 text-primary" />
+                      <CardTitle>Blog Post</CardTitle>
+                    </div>
+                    <CardDescription>
+                      Select an existing Insights post to auto-populate content.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Select value={selectedPostId} onValueChange={handlePostSelect}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a blog post..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="none">-- Select a post --</SelectItem>
+                        {insightPosts.map((post) => (
+                          <SelectItem key={post.id} value={post.id}>
+                            <div className="flex items-center gap-2">
+                              <span className={`text-xs px-1.5 py-0.5 rounded ${
+                                post.category === 'strength' ? 'bg-red-100 text-red-700' :
+                                post.category === 'movement' ? 'bg-blue-100 text-blue-700' :
+                                'bg-amber-100 text-amber-700'
+                              }`}>
+                                {CATEGORY_LABELS[post.category]}
+                              </span>
+                              <span className="truncate">{post.title}</span>
+                              {post.videoId && <Youtube className="h-3 w-3 text-red-500 shrink-0" />}
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    
+                    {selectedPostId && selectedPostId !== "none" && (
+                      <div className="mt-3 p-3 bg-muted rounded-lg">
+                        <p className="text-sm text-muted-foreground">
+                          {insightPosts.find(p => p.id === selectedPostId)?.excerpt}
+                        </p>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+
                 {/* YouTube Input */}
                 <Card>
                   <CardHeader>
@@ -248,12 +360,12 @@ const SocialGenerator = () => {
                   <CardHeader>
                     <CardTitle>Content Input</CardTitle>
                     <CardDescription>
-                      Paste your blog post, video transcript, or describe what you want to post about.
+                      Your content appears here. Edit or add more context as needed.
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <Textarea
-                      placeholder="Enter your content here... This could be a blog post excerpt, YouTube video topic, class description, success story, or any idea you want to share."
+                      placeholder="Enter your content here... Select a blog post above, fetch a YouTube transcript, or type/paste your own content."
                       value={content}
                       onChange={(e) => setContent(e.target.value)}
                       className="min-h-[200px] resize-y"
@@ -266,10 +378,13 @@ const SocialGenerator = () => {
                         <Button
                           variant="ghost"
                           size="sm"
-                          onClick={() => setContent("")}
+                          onClick={() => {
+                            setContent("");
+                            setSelectedPostId("");
+                          }}
                           className="text-muted-foreground hover:text-foreground"
                         >
-                          Clear
+                          Clear All
                         </Button>
                       )}
                     </div>
@@ -376,7 +491,7 @@ const SocialGenerator = () => {
                         Your generated content will appear here.
                       </p>
                       <p className="text-sm text-muted-foreground/70 mt-1">
-                        Enter your content and click Generate to get started.
+                        Select a blog post, fetch a video, or enter content manually.
                       </p>
                     </CardContent>
                   </Card>
