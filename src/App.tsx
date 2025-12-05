@@ -45,6 +45,7 @@ import AdminNotifications from "./pages/admin/Notifications";
 import AdminContracts from "./pages/admin/Contracts";
 import AdminExercises from "./pages/admin/Exercises";
 import WorkoutBuilder from "./pages/admin/WorkoutBuilder";
+import AdminAnalytics from "./pages/admin/Analytics";
 
 const queryClient = new QueryClient();
 
@@ -190,6 +191,11 @@ const AppLayout = () => {
             <Route path="/admin/workout-builder" element={
               <ProtectedRoute requiredRoles={['admin']}>
                 <WorkoutBuilder />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/analytics" element={
+              <ProtectedRoute requiredRoles={['admin']}>
+                <AdminAnalytics />
               </ProtectedRoute>
             } />
             
