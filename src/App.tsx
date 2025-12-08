@@ -51,11 +51,12 @@ import CoachMembers from "./pages/coach/Members";
 import CoachClasses from "./pages/coach/Classes";
 import CoachTemplates from "./pages/coach/Templates";
 import CoachProgress from "./pages/coach/Progress";
+import Consultation from "./pages/Consultation";
 
 const queryClient = new QueryClient();
 
 // Routes that should not show the standard navigation and footer
-const STANDALONE_ROUTES = ['/new-year', '/auth'];
+const STANDALONE_ROUTES = ['/new-year', '/auth', '/consultation'];
 
 // Route prefixes that use custom layouts (no standard nav/footer)
 const CUSTOM_LAYOUT_PREFIXES = ['/member', '/admin', '/coach'];
@@ -94,6 +95,7 @@ const AppLayout = () => {
             
             {/* Landing Pages */}
             <Route path="/new-year" element={<NewYearChallenge />} />
+            <Route path="/consultation" element={<Consultation />} />
             
             {/* Member Portal (Protected) */}
             <Route path="/member/dashboard" element={
