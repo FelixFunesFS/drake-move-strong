@@ -37,7 +37,7 @@ const Contact = () => {
     <>
       <SEO
         title="Contact Us"
-        description="Get in touch with Drake Fitness in Charleston, SC. Book your free movement assessment today. Located at 2 Avondale Ave, Charleston, SC 29407."
+        description="Get in touch with Drake Fitness in Charleston, SC. Book your free mobility consultation today. Located at 2 Avondale Ave, Charleston, SC 29407."
         canonical="https://drake.fitness/contact"
       />
       
@@ -157,7 +157,7 @@ const Contact = () => {
                         <SelectValue placeholder="Select an option" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="assessment">Free Movement Assessment</SelectItem>
+                        <SelectItem value="assessment">Free Mobility Consultation</SelectItem>
                         <SelectItem value="intro">14-Day Intro Experience</SelectItem>
                         <SelectItem value="membership">Monthly Membership</SelectItem>
                         <SelectItem value="coaching">1:1 Coaching</SelectItem>
@@ -205,7 +205,7 @@ const Contact = () => {
               },
               {
                 q: "How do I get started?",
-                a: "The best way is to book a Free Movement Assessment or start our 14-Day Intro Experience.",
+                a: "The best way is to book a Free Mobility Consultation or start our 14-Day Intro Experience.",
               },
             ].map((faq, index) => (
               <div key={index} className="bg-white p-6 rounded-xl border border-border shadow-card">

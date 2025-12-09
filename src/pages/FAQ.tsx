@@ -15,7 +15,7 @@ const FAQ = () => {
         },
         {
           q: "How do I get started?",
-          a: "The best way to begin is to book a Free Movement Assessment or start our 14-Day Intro Experience ($49). This gives you unlimited classes for two weeks plus a movement assessment, so you can experience our coaching style and find the right class schedule for you.",
+          a: "The best way to begin is to book a Free Mobility Consultation or start our 14-Day Intro Experience ($49). This gives you unlimited classes for two weeks plus a mobility consultation, so you can experience our coaching style and find the right class schedule for you.",
         },
         {
           q: "What should I wear and bring?",
@@ -173,8 +173,8 @@ const FAQ = () => {
       <CTASection
         eyebrow="GET STARTED"
         title="Ready to Get Started?"
-        subtitle="Book your free movement assessment and experience the Drake Fitness difference."
-        ctaText="Book Free Assessment"
+        subtitle="Book your free mobility consultation and experience the Drake Fitness difference."
+        ctaText="Book Free Consultation"
         ctaLink="/contact"
         variant="primary"
         slanted={true}

@@ -51,7 +51,7 @@ const Navigation = () => {
               <span>(843) 817-5420</span>
             </a>
             <Button asChild size="lg" variant="gold">
-              <Link to="/contact" className="bg-primary text-primary-foreground px-[16px] py-0 text-sm whitespace-nowrap">Book Assessment</Link>
+              <Link to="/contact" className="bg-primary text-primary-foreground px-[16px] py-0 text-sm whitespace-nowrap">Book Consultation</Link>
             </Button>
           </div>
 
@@ -72,7 +72,7 @@ const Navigation = () => {
             </a>
             <Button asChild variant="gold" className="w-full mt-4">
               <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
-                Book Assessment
+                Book Consultation
               </Link>
             </Button>
           </div>

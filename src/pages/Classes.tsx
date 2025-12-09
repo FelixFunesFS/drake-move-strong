@@ -234,7 +234,7 @@ const Classes = () => {
               </p>
               <div className="grid md:grid-cols-2 gap-4">
                 <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                  <Link to="/contact">Book Free Assessment</Link>
+                  <Link to="/contact">Book Free Consultation</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">
                   <Link to="/schedule">View Full Schedule</Link>
@@ -260,7 +260,7 @@ const Classes = () => {
       <CTASection
         eyebrow="GET STARTED"
         title="Ready to Feel Stronger, Move Better, and Train Smarter?"
-        subtitle="Join us for a free movement assessment and start your journey to better movement."
+        subtitle="Join us for a free mobility consultation and start your journey to better movement."
         ctaText="Book Now"
         ctaLink="/contact"
         variant="primary"

@@ -109,7 +109,7 @@ const InsightPost = () => {
         eyebrow="Ready to Apply These Insights?"
         title="Train with Expert Coaching"
         subtitle="Experience personalized guidance that helps you move better and reach your goals."
-        ctaText="Book Free Assessment"
+        ctaText="Book Free Consultation"
         ctaLink="/contact"
         variant="primary"
       />

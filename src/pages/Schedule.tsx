@@ -458,7 +458,7 @@ const Schedule = () => {
         <CTASection
           eyebrow="GET STARTED"
           title="Ready to Get Started?"
-          subtitle="Book your first class or start with a free movement assessment."
+          subtitle="Book your first class or start with a free mobility consultation."
           ctaText="Book Now"
           ctaLink="/contact"
           variant="primary"

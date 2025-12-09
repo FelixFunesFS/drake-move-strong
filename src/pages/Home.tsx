@@ -38,13 +38,12 @@ const Home = () => {
       
       <main>
       <Hero title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
-      text: "BOOK FREE MOVEMENT ASSESSMENT",
+      text: "BOOK FREE MOBILITY CONSULTATION",
       link: "/contact"
     }} secondaryCTA={{
       text: "SEE CLASS SCHEDULE",
       link: "/schedule"
     }} backgroundImages={[heroImage2, heroImage3]} autoRotate={true} />
-
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -182,7 +181,7 @@ const Home = () => {
             {[{
             number: "1",
             title: "Assess",
-            description: "Start with a free movement assessment to understand your mobility, strength, and goals.",
+            description: "Start with a free mobility consultation to understand your mobility, strength, and goals.",
             bgColor: "bg-drake-dark"
           }, {
             number: "2",
