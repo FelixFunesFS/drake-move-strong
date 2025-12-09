@@ -97,7 +97,7 @@ const Pricing = () => {
                   </span>
                   <h2 className="font-hero text-3xl md:text-4xl font-bold mb-3 uppercase">14-Day Intro Experience</h2>
                   <p className="text-white/90 text-lg">Try unlimited classes for 14 days + get a free
-movement assessment. A perfect low-risk way to begin your journey with us.</p>
+mobility consultation. A perfect low-risk way to begin your journey with us.</p>
                 </div>
                 <div className="space-y-4">
                   <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold w-full md:w-auto">
@@ -223,7 +223,7 @@ movement assessment. A perfect low-risk way to begin your journey with us.</p>
         </div>
       </section>
 
-      <CTASection eyebrow="GET STARTED" title="Ready to Feel Stronger?" subtitle="Join us for a free movement assessment and start your journey to better movement." ctaText="Book Now" ctaLink="/contact" variant="primary" slanted={true} />
+      <CTASection eyebrow="GET STARTED" title="Ready to Feel Stronger?" subtitle="Join us for a free mobility consultation and start your journey to better movement." ctaText="Book Now" ctaLink="/contact" variant="primary" slanted={true} />
     </main>
     </>
   );

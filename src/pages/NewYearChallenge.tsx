@@ -27,7 +27,7 @@ const painPoints = [
 
 const offerIncludes = [
   "Unlimited classes for 30 days",
-  "Free movement assessment ($75 value)",
+  "Free mobility consultation ($75 value)",
   "Access to all class types",
   "Progress tracking included",
   "Expert coaching every session",
@@ -52,7 +52,7 @@ const benefits = [
 ];
 
 const steps = [
-  { number: "01", title: "Book", description: "Schedule your free movement assessment" },
+  { number: "01", title: "Book", description: "Schedule your free mobility consultation" },
   { number: "02", title: "Train", description: "Join unlimited classes with expert coaches" },
   { number: "03", title: "Transform", description: "Move better, feel stronger, live fully" },
 ];

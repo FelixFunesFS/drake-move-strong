@@ -90,7 +90,7 @@ const Insights = () => {
         eyebrow="Ready to Move Better?"
         title="Start Your Journey Today"
         subtitle="Experience expert coaching that helps you build strength, improve movement, and find purpose in your training."
-        ctaText="Book Free Assessment"
+        ctaText="Book Free Consultation"
         ctaLink="/contact"
         variant="primary"
       />

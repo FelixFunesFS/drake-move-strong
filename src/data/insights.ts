@@ -213,7 +213,7 @@ export const insightPosts: InsightPost[] = [
       <h3>The Drake Fitness Approach</h3>
       <p>We see dozens of desk workers weekly. Our programs specifically address sitting-related dysfunction while building practical strength for life outside the office.</p>
       
-      <p><strong>Book a movement assessment</strong> to see how sitting affects your body and get a personalized plan.</p>
+      <p><strong>Book a mobility consultation</strong> to see how sitting affects your body and get a personalized plan.</p>
     `,
     category: 'strength',
     author: 'david',

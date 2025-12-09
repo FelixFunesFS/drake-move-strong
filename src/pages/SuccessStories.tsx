@@ -142,8 +142,8 @@ const SuccessStories = () => {
       <CTASection
         eyebrow="GET STARTED"
         title="Ready to Write Your Own Success Story?"
-        subtitle="Join us for a free movement assessment and start your transformation."
-        ctaText="Book Free Assessment"
+        subtitle="Join us for a free mobility consultation and start your transformation."
+        ctaText="Book Free Consultation"
         ctaLink="/contact"
         variant="primary"
         slanted={true}
