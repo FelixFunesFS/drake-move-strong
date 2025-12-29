@@ -232,13 +232,31 @@ const Classes = () => {
               <p className="text-lg mb-6">
                 We recommend beginning with <strong>Foundation Flow™</strong> or <strong>Mobility Reset™</strong>. These classes build the groundwork for everything else we do.
               </p>
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-2 gap-4 mb-8">
                 <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
                   <Link to="/contact">Book Free Consultation</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">
                   <Link to="/schedule">View Full Schedule</Link>
                 </Button>
+              </div>
+              
+              {/* Internal Links to Local SEO Pages */}
+              <div className="border-t border-border pt-6 mt-6">
+                <p className="text-sm text-muted-foreground mb-4">Explore our specialized programs:</p>
+                <div className="flex flex-wrap justify-center gap-3">
+                  <Link to="/mobility-training-charleston" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
+                    Mobility Training
+                  </Link>
+                  <span className="text-muted-foreground">•</span>
+                  <Link to="/strength-training-over-40-charleston" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
+                    Strength Training 40+
+                  </Link>
+                  <span className="text-muted-foreground">•</span>
+                  <Link to="/low-impact-fitness-charleston" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
+                    Low-Impact Fitness
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
