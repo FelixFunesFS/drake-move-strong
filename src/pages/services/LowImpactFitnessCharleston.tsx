@@ -3,7 +3,12 @@ import { SEO } from "@/components/SEO";
 import { StructuredData, localBusinessSchema } from "@/components/StructuredData";
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
+import OptimizedImage from "@/components/OptimizedImage";
 import { Check, MapPin, ArrowRight, Activity, Users, Volume2 } from "lucide-react";
+
+import studioFloorExercise from "@/assets/studio-floor-exercise.jpg";
+import nickHolisticCoaching from "@/assets/nick-holistic-coaching.jpg";
+import studioDavidStorefront from "@/assets/studio-david-storefront.jpg";
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -60,12 +65,23 @@ export default function LowImpactFitnessCharleston() {
       <StructuredData data={serviceSchema} />
 
       {/* Hero Section */}
-      <section className="relative bg-primary text-primary-foreground py-20 md:py-28 lg:py-32">
-        <div className="container mx-auto px-4">
+      <section className="relative min-h-[70vh] flex items-center">
+        <div className="absolute inset-0">
+          <OptimizedImage
+            src={studioFloorExercise}
+            alt="Low-impact floor exercise at Drake Fitness in Charleston"
+            className="w-full h-full"
+            priority
+            transparent
+            hideLoadingPlaceholder
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10 py-20 md:py-28">
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl">
               <span className="section-eyebrow text-accent">AVONDALE & WEST ASHLEY</span>
-              <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+              <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-primary-foreground">
                 Low-Impact Fitness for Joint Pain in Avondale & West Ashley
               </h1>
               <p className="text-lg md:text-xl text-primary-foreground/90 mb-8">
@@ -116,20 +132,30 @@ export default function LowImpactFitnessCharleston() {
           </AnimatedSection>
           
           <AnimatedSection animation="fadeInUp" delay={0.1}>
-            <div className="max-w-2xl mx-auto">
-              <ul className="space-y-4">
-                {ourApproach.map((item, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center mt-0.5">
-                      <Check className="w-4 h-4 text-primary-foreground" />
-                    </div>
-                    <span className="text-lg text-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-8 text-lg text-muted-foreground text-center font-medium">
-                We modify intelligently so you can train with confidence.
-              </p>
+            <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+              <div>
+                <ul className="space-y-4">
+                  {ourApproach.map((item, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center mt-0.5">
+                        <Check className="w-4 h-4 text-primary-foreground" />
+                      </div>
+                      <span className="text-lg text-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-8 text-lg text-muted-foreground font-medium">
+                  We modify intelligently so you can train with confidence.
+                </p>
+              </div>
+              <div>
+                <OptimizedImage
+                  src={nickHolisticCoaching}
+                  alt="Coach Nick providing holistic coaching at Drake Fitness"
+                  className="rounded-2xl shadow-lg"
+                  aspectRatio="video"
+                />
+              </div>
             </div>
           </AnimatedSection>
         </div>
@@ -204,18 +230,28 @@ export default function LowImpactFitnessCharleston() {
       <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
-            <div className="max-w-3xl mx-auto text-center">
-              <span className="section-eyebrow text-primary">CONVENIENT LOCATION</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
-                Easily Accessible from West Ashley & Charleston
-              </h2>
-              <div className="flex items-center justify-center gap-2 text-muted-foreground mb-6">
-                <MapPin className="w-5 h-5 text-primary" />
-                <span className="text-lg">2 Avondale Ave, Charleston, SC 29407</span>
+            <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+              <div className="order-2 lg:order-1">
+                <OptimizedImage
+                  src={studioDavidStorefront}
+                  alt="Drake Fitness studio storefront in Avondale, Charleston"
+                  className="rounded-2xl shadow-lg"
+                  aspectRatio="video"
+                />
               </div>
-              <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-                Drake Fitness is located in Avondale, easily accessible from West Ashley and greater Charleston.
-              </p>
+              <div className="order-1 lg:order-2 text-center lg:text-left">
+                <span className="section-eyebrow text-primary">CONVENIENT LOCATION</span>
+                <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+                  Easily Accessible from West Ashley & Charleston
+                </h2>
+                <div className="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground mb-6">
+                  <MapPin className="w-5 h-5 text-primary" />
+                  <span className="text-lg">2 Avondale Ave, Charleston, SC 29407</span>
+                </div>
+                <p className="text-lg text-muted-foreground">
+                  Drake Fitness is located in Avondale, easily accessible from West Ashley and greater Charleston.
+                </p>
+              </div>
             </div>
           </AnimatedSection>
         </div>

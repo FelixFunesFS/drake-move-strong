@@ -3,7 +3,12 @@ import { SEO } from "@/components/SEO";
 import { StructuredData, localBusinessSchema } from "@/components/StructuredData";
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
+import OptimizedImage from "@/components/OptimizedImage";
 import { Check, MapPin, ArrowRight, Shield, TrendingUp, Heart } from "lucide-react";
+
+import heroKettlebellTraining from "@/assets/hero-kettlebell-training.jpg";
+import davidGobletSquat from "@/assets/david-goblet-squat-kb-rack.jpg";
+import studioDavidStorefront from "@/assets/studio-david-storefront.jpg";
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -55,12 +60,23 @@ export default function StrengthTrainingOver40Charleston() {
       <StructuredData data={serviceSchema} />
 
       {/* Hero Section */}
-      <section className="relative bg-primary text-primary-foreground py-20 md:py-28 lg:py-32">
-        <div className="container mx-auto px-4">
+      <section className="relative min-h-[70vh] flex items-center">
+        <div className="absolute inset-0">
+          <OptimizedImage
+            src={heroKettlebellTraining}
+            alt="Kettlebell strength training at Drake Fitness in Charleston"
+            className="w-full h-full"
+            priority
+            transparent
+            hideLoadingPlaceholder
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10 py-20 md:py-28">
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl">
               <span className="section-eyebrow text-accent">CHARLESTON, SC</span>
-              <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+              <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-primary-foreground">
                 Strength Training for Adults Over 40 in Charleston — Safe, Structured, and Sustainable
               </h1>
               <p className="text-lg md:text-xl text-primary-foreground/90 mb-8">
@@ -113,23 +129,33 @@ export default function StrengthTrainingOver40Charleston() {
           </AnimatedSection>
           
           <AnimatedSection animation="fadeInUp" delay={0.1}>
-            <div className="max-w-2xl mx-auto">
-              <p className="text-lg text-muted-foreground mb-8 text-center">
-                We focus on:
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {trainingFocus.map((item, index) => (
-                  <div key={index} className="flex items-center gap-3 bg-background p-4 rounded-xl">
-                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <item.icon className="w-5 h-5 text-primary" />
+            <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+              <div>
+                <p className="text-lg text-muted-foreground mb-8">
+                  We focus on:
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {trainingFocus.map((item, index) => (
+                    <div key={index} className="flex items-center gap-3 bg-background p-4 rounded-xl">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <item.icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <span className="text-foreground font-medium">{item.text}</span>
                     </div>
-                    <span className="text-foreground font-medium">{item.text}</span>
-                  </div>
-                ))}
+                  ))}
+                </div>
+                <p className="mt-8 text-lg text-muted-foreground font-medium">
+                  You'll get stronger without feeling beat up.
+                </p>
               </div>
-              <p className="mt-8 text-lg text-muted-foreground text-center font-medium">
-                You'll get stronger without feeling beat up.
-              </p>
+              <div>
+                <OptimizedImage
+                  src={davidGobletSquat}
+                  alt="Coach David demonstrating goblet squat form at Drake Fitness"
+                  className="rounded-2xl shadow-lg"
+                  aspectRatio="video"
+                />
+              </div>
             </div>
           </AnimatedSection>
         </div>
@@ -200,18 +226,28 @@ export default function StrengthTrainingOver40Charleston() {
       <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
-            <div className="max-w-3xl mx-auto text-center">
-              <span className="section-eyebrow text-primary">SERVING CHARLESTON LOCALS</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
-                A Smarter, Calmer Gym Experience
-              </h2>
-              <div className="flex items-center justify-center gap-2 text-muted-foreground mb-6">
-                <MapPin className="w-5 h-5 text-primary" />
-                <span className="text-lg">2 Avondale Ave, Charleston, SC 29407</span>
+            <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+              <div className="order-2 lg:order-1">
+                <OptimizedImage
+                  src={studioDavidStorefront}
+                  alt="Drake Fitness studio storefront in Avondale, Charleston"
+                  className="rounded-2xl shadow-lg"
+                  aspectRatio="video"
+                />
               </div>
-              <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-                Located in Avondale, Drake Fitness serves Charleston and West Ashley adults who want a smarter, calmer gym experience.
-              </p>
+              <div className="order-1 lg:order-2 text-center lg:text-left">
+                <span className="section-eyebrow text-primary">SERVING CHARLESTON LOCALS</span>
+                <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+                  A Smarter, Calmer Gym Experience
+                </h2>
+                <div className="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground mb-6">
+                  <MapPin className="w-5 h-5 text-primary" />
+                  <span className="text-lg">2 Avondale Ave, Charleston, SC 29407</span>
+                </div>
+                <p className="text-lg text-muted-foreground">
+                  Located in Avondale, Drake Fitness serves Charleston and West Ashley adults who want a smarter, calmer gym experience.
+                </p>
+              </div>
             </div>
           </AnimatedSection>
         </div>
