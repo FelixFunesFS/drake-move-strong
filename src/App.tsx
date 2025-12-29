@@ -52,6 +52,10 @@ import CoachClasses from "./pages/coach/Classes";
 import CoachTemplates from "./pages/coach/Templates";
 import CoachProgress from "./pages/coach/Progress";
 import Consultation from "./pages/Consultation";
+import MobilityTrainingCharleston from "./pages/services/MobilityTrainingCharleston";
+import StrengthTrainingOver40Charleston from "./pages/services/StrengthTrainingOver40Charleston";
+import LowImpactFitnessCharleston from "./pages/services/LowImpactFitnessCharleston";
+import PersonalTrainingAvondale from "./pages/services/PersonalTrainingAvondale";
 
 const queryClient = new QueryClient();
 
