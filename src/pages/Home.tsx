@@ -44,6 +44,19 @@ const Home = () => {
       text: "SEE CLASS SCHEDULE",
       link: "/schedule"
     }} backgroundImages={[heroImage2, heroImage3]} autoRotate={true} />
+
+      {/* Brand Values Marquee */}
+      <section className="py-4 md:py-6 bg-drake-dark overflow-hidden border-y border-drake-gold/20">
+        <Marquee speed="slow" gradient={false} pauseOnHover={false}>
+          {["MOVE BETTER", "LIVE STRONGER", "STAY PAIN-FREE", "MOBILITY FIRST", "FUNCTIONAL STRENGTH", "EXPERT COACHING"].map((text, i) => (
+            <span key={i} className="text-2xl md:text-4xl font-hero font-bold text-drake-gold uppercase px-6 md:px-8 whitespace-nowrap flex items-center">
+              {text}
+              <span className="text-white/40 mx-4 md:mx-6">•</span>
+            </span>
+          ))}
+        </Marquee>
+      </section>
+
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
