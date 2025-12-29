@@ -97,6 +97,12 @@ const AppLayout = () => {
             <Route path="/new-year" element={<NewYearChallenge />} />
             <Route path="/consultation" element={<Consultation />} />
             
+            {/* Local SEO Service Pages */}
+            <Route path="/mobility-training-charleston" element={<MobilityTrainingCharleston />} />
+            <Route path="/strength-training-over-40-charleston" element={<StrengthTrainingOver40Charleston />} />
+            <Route path="/low-impact-fitness-charleston" element={<LowImpactFitnessCharleston />} />
+            <Route path="/personal-training-avondale" element={<PersonalTrainingAvondale />} />
+            
             {/* Member Portal (Protected) */}
             <Route path="/member/dashboard" element={
               <ProtectedRoute>
