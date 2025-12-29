@@ -219,6 +219,25 @@ mobility consultation. A perfect low-risk way to begin your journey with us.</p>
                   </AccordionContent>
                 </AccordionItem>)}
             </Accordion>
+            
+            {/* Internal Links to Local SEO Pages */}
+            <div className="mt-12 text-center">
+              <p className="text-gray-400 mb-4">Learn more about our specialized programs:</p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link to="/mobility-training-charleston" className="text-drake-gold hover:text-drake-gold/80 underline underline-offset-2">
+                  Mobility Training
+                </Link>
+                <Link to="/strength-training-over-40-charleston" className="text-drake-gold hover:text-drake-gold/80 underline underline-offset-2">
+                  Strength Training 40+
+                </Link>
+                <Link to="/low-impact-fitness-charleston" className="text-drake-gold hover:text-drake-gold/80 underline underline-offset-2">
+                  Low-Impact Fitness
+                </Link>
+                <Link to="/personal-training-avondale" className="text-drake-gold hover:text-drake-gold/80 underline underline-offset-2">
+                  Personal Training
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

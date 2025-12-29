@@ -225,6 +225,24 @@ const Coaching = () => {
                     <span className="text-lg">{benefit}</span>
                   </motion.li>)}
               </ul>
+              
+              {/* Internal Links to Local SEO Pages */}
+              <div className="border-t border-border pt-6 mt-6">
+                <p className="text-sm text-muted-foreground mb-3 text-center">Looking for a specific focus?</p>
+                <div className="flex flex-wrap justify-center gap-3">
+                  <Link to="/personal-training-avondale" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
+                    Personal Training for Beginners
+                  </Link>
+                  <span className="text-muted-foreground">•</span>
+                  <Link to="/mobility-training-charleston" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
+                    Mobility Training
+                  </Link>
+                  <span className="text-muted-foreground">•</span>
+                  <Link to="/low-impact-fitness-charleston" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
+                    Joint-Friendly Fitness
+                  </Link>
+                </div>
+              </div>
             </motion.div>
           </div>
         </section>
