@@ -3,7 +3,7 @@ import CTASection from "@/components/CTASection";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { CheckCircle2, Calendar, Users, Laptop } from "lucide-react";
+import { CheckCircle2, Calendar, Users, Laptop, ExternalLink } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import pricingKettlebellRack from "@/assets/pricing-kettlebell-rack.jpg";
 import { SEO } from "@/components/SEO";
@@ -17,6 +17,7 @@ const Pricing = () => {
     features: ["8 classes per month", "Movement assessment included", "Access to all class types", "Progress tracking"],
     cta: "Choose 8 Classes",
     link: "/contact",
+    external: false,
     popular: false
   }, {
     name: "Unlimited",
@@ -25,7 +26,8 @@ const Pricing = () => {
     description: "Our most popular option — train as often as you like",
     features: ["Unlimited classes", "Priority booking window", "Quarterly goal reviews", "Guest pass per month"],
     cta: "Choose Unlimited",
-    link: "/contact",
+    link: "https://drakefitness.punchpass.com/org/5950/catalogs/purchase/membership/219877",
+    external: true,
     popular: true
   }, {
     name: "VIP Unlimited",
@@ -34,7 +36,8 @@ const Pricing = () => {
     description: "Unlimited group classes + monthly 1:1 coaching",
     features: ["Unlimited classes", "1 monthly 1:1 session", "Personalized programming notes", "Nutritional guidance"],
     cta: "Choose VIP",
-    link: "/contact",
+    link: "https://drakefitness.punchpass.com/org/5950/catalogs/purchase/membership/219881",
+    external: true,
     popular: false
   }];
   const otherOptions = [{
@@ -43,20 +46,26 @@ const Pricing = () => {
     price: "$40",
     period: "/class",
     description: "Just visiting or want to try a specific class?",
-    features: ["No commitment required", "Access to any class type"]
+    features: ["No commitment required", "Access to any class type"],
+    link: "https://drakefitness.punchpass.com/classes",
+    external: true
   }, {
     icon: <Laptop className="w-8 h-8" />,
     name: "Hybrid Online/Studio",
     price: "$129",
     period: "/mo",
     description: "Great for travelers or remote workers who want to stay connected.",
-    features: ["Unlimited Zoom classes", "2 studio visits per month"]
+    features: ["Unlimited Zoom classes", "2 studio visits per month"],
+    link: "https://drakefitness.punchpass.com/passes",
+    external: true
   }, {
     icon: <Calendar className="w-8 h-8" />,
     name: "10-Pack Flex Pass",
     price: "$350",
     description: "Perfect for flexible schedules or frequent travelers.",
-    features: ["10 class credits", "6-month expiration"]
+    features: ["10 class credits", "6-month expiration"],
+    link: "https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/219932",
+    external: true
   }];
   const faqs = [{
     question: "Do I need experience to join?",
@@ -101,7 +110,10 @@ mobility consultation. A perfect low-risk way to begin your journey with us.</p>
                 </div>
                 <div className="space-y-4">
                   <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold w-full md:w-auto">
-                    <Link to="/contact" className="text-primary bg-primary-foreground">Get Started</Link>
+                    <a href="https://drakefitness.punchpass.com/passes" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-primary bg-primary-foreground">
+                      Get Started
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
                   </Button>
                   <p className="text-white/70 text-sm">No commitment required</p>
                 </div>
@@ -158,9 +170,18 @@ mobility consultation. A perfect low-risk way to begin your journey with us.</p>
                     </ul>
                   </CardContent>
                   <CardFooter>
-                    <Button asChild variant={option.popular ? "default" : "outline"} className={`w-full ${option.popular ? "bg-drake-gold hover:bg-drake-gold/90 text-drake-dark" : ""}`}>
-                      <Link to={option.link}>{option.cta}</Link>
-                    </Button>
+                    {option.external ? (
+                      <Button asChild variant={option.popular ? "default" : "outline"} className={`w-full ${option.popular ? "bg-drake-gold hover:bg-drake-gold/90 text-drake-dark" : ""}`}>
+                        <a href={option.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
+                          {option.cta}
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button asChild variant={option.popular ? "default" : "outline"} className={`w-full ${option.popular ? "bg-drake-gold hover:bg-drake-gold/90 text-drake-dark" : ""}`}>
+                        <Link to={option.link}>{option.cta}</Link>
+                      </Button>
+                    )}
                   </CardFooter>
                 </Card>)}
             </div>
@@ -193,9 +214,18 @@ mobility consultation. A perfect low-risk way to begin your journey with us.</p>
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button asChild variant="outline" className="w-full">
-                    <Link to="/contact">Select Plan</Link>
-                  </Button>
+                  {option.external ? (
+                    <Button asChild variant="outline" className="w-full">
+                      <a href={option.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
+                        Select Plan
+                        <ExternalLink className="h-4 w-4" />
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button asChild variant="outline" className="w-full">
+                      <Link to="/contact">Select Plan</Link>
+                    </Button>
+                  )}
                 </CardFooter>
               </Card>)}
           </div>
