@@ -1,11 +1,99 @@
 import { cn } from "@/lib/utils";
 import { User, Bot } from "lucide-react";
+import { ReactNode } from "react";
 
 interface ChatMessageProps {
   role: 'user' | 'assistant';
   content: string;
   isStreaming?: boolean;
 }
+
+// Friendly labels for known URLs
+const friendlyLabels: Record<string, string> = {
+  'https://drakefitness.punchpass.com/classes': '📅 View Class Schedule',
+  'https://drakefitness.punchpass.com/passes': '🎟️ Browse Passes',
+  'https://drakefitness.punchpass.com': '📅 Book on PunchPass',
+};
+
+const getFriendlyLabel = (url: string): string => {
+  // Check exact match first
+  if (friendlyLabels[url]) return friendlyLabels[url];
+  
+  // Check if URL starts with a known base
+  for (const [knownUrl, label] of Object.entries(friendlyLabels)) {
+    if (url.startsWith(knownUrl)) return label;
+  }
+  
+  // Shorten long URLs for display
+  try {
+    const urlObj = new URL(url);
+    return urlObj.hostname + (urlObj.pathname !== '/' ? urlObj.pathname : '');
+  } catch {
+    return url;
+  }
+};
+
+const renderContentWithLinks = (text: string): ReactNode[] => {
+  // Regex for URLs, phone numbers, and emails
+  const urlRegex = /(https?:\/\/[^\s<>"{}|\\^`[\]]+)/g;
+  const phoneRegex = /(\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4})/g;
+  const emailRegex = /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g;
+  
+  // Combined pattern to split by any of these
+  const combinedRegex = /(https?:\/\/[^\s<>"{}|\\^`[\]]+|\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g;
+  
+  const parts = text.split(combinedRegex);
+  
+  return parts.map((part, index) => {
+    // Check if it's a URL
+    if (urlRegex.test(part)) {
+      urlRegex.lastIndex = 0; // Reset regex state
+      const label = getFriendlyLabel(part);
+      return (
+        <a
+          key={index}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+        >
+          {label}
+        </a>
+      );
+    }
+    
+    // Check if it's a phone number
+    if (phoneRegex.test(part)) {
+      phoneRegex.lastIndex = 0;
+      const cleanPhone = part.replace(/\D/g, '');
+      return (
+        <a
+          key={index}
+          href={`tel:+1${cleanPhone}`}
+          className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+        >
+          📞 {part}
+        </a>
+      );
+    }
+    
+    // Check if it's an email
+    if (emailRegex.test(part)) {
+      emailRegex.lastIndex = 0;
+      return (
+        <a
+          key={index}
+          href={`mailto:${part}`}
+          className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+        >
+          ✉️ {part}
+        </a>
+      );
+    }
+    
+    return part;
+  });
+};
 
 const ChatMessage = ({ role, content, isStreaming }: ChatMessageProps) => {
   const isUser = role === 'user';
@@ -28,7 +116,7 @@ const ChatMessage = ({ role, content, isStreaming }: ChatMessageProps) => {
           : "bg-muted text-foreground rounded-tl-sm"
       )}>
         <p className="whitespace-pre-wrap leading-relaxed">
-          {content}
+          {renderContentWithLinks(content)}
           {isStreaming && (
             <span className="inline-block w-2 h-4 ml-1 bg-current animate-pulse" />
           )}
