@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import ScrollToTop from "./components/ScrollToTop";
 import Footer from "./components/Footer";
 import AnnouncementBanner from "./components/AnnouncementBanner";
+import ChatBot from "./components/chat/ChatBot";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Classes from "./pages/Classes";
@@ -248,6 +249,7 @@ const AppLayout = () => {
           </Routes>
         </div>
         {!hideNavFooter && <Footer />}
+        {!hideNavFooter && <ChatBot />}
       </div>
     </>
   );

@@ -61,6 +61,30 @@ export type Database = {
           },
         ]
       }
+      chatbot_knowledge: {
+        Row: {
+          category: string
+          content: string
+          id: string
+          key: string
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          content: string
+          id?: string
+          key: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          content?: string
+          id?: string
+          key?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       class_schedules: {
         Row: {
           booked_count: number | null
@@ -316,6 +340,75 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      faqs: {
+        Row: {
+          answer: string
+          category: string
+          created_at: string
+          id: string
+          is_active: boolean | null
+          question: string
+          sort_order: number | null
+          updated_at: string
+        }
+        Insert: {
+          answer: string
+          category: string
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          question: string
+          sort_order?: number | null
+          updated_at?: string
+        }
+        Update: {
+          answer?: string
+          category?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          question?: string
+          sort_order?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      leads: {
+        Row: {
+          conversation_summary: string | null
+          created_at: string
+          email: string
+          id: string
+          interest: string | null
+          name: string | null
+          phone: string | null
+          source: string | null
+          status: string | null
+        }
+        Insert: {
+          conversation_summary?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          interest?: string | null
+          name?: string | null
+          phone?: string | null
+          source?: string | null
+          status?: string | null
+        }
+        Update: {
+          conversation_summary?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          interest?: string | null
+          name?: string | null
+          phone?: string | null
+          source?: string | null
+          status?: string | null
+        }
+        Relationships: []
       }
       member_contracts: {
         Row: {
