@@ -10,9 +10,25 @@ interface ChatMessageProps {
 
 // Friendly labels for known URLs
 const friendlyLabels: Record<string, string> = {
+  // PunchPass booking links
   'https://drakefitness.punchpass.com/classes': '📅 View Class Schedule',
   'https://drakefitness.punchpass.com/passes': '🎟️ Browse Passes',
+  'https://drakefitness.punchpass.com/catalog': '💳 View Membership Options',
   'https://drakefitness.punchpass.com': '📅 Book on PunchPass',
+  
+  // Intro offer links
+  'https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/46002': '🎁 Get Intro Week Special',
+  'https://drakefitness.punchpass.com/org/5950/catalogs/purchase': '🎁 Get Started - Intro Offers',
+  
+  // Drake Fitness website links
+  'https://drake.fitness': '🏠 Drake Fitness',
+  'https://drake.fitness/pricing': '💰 View Pricing',
+  'https://drake.fitness/schedule': '📅 See Schedule',
+  'https://drake.fitness/contact': '📞 Contact Us',
+  'https://drake.fitness/classes': '🏋️ Explore Classes',
+  'https://drake.fitness/about': '👋 About Us',
+  'https://drake.fitness/coaching': '🎯 Personal Coaching',
+  'https://drake.fitness/consultation': '📋 Book Free Consultation',
 };
 
 const getFriendlyLabel = (url: string): string => {
