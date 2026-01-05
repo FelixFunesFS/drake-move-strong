@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Clock, MapPin, User, Users, ExternalLink } from "lucide-react";
+import { Clock, MapPin, User, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ClassCardProps {
@@ -14,6 +14,7 @@ interface ClassCardProps {
   isOnline?: boolean;
   punchpassUrl?: string | null;
   variant?: 'compact' | 'full';
+  onBookClick?: () => void;
 }
 
 export function ClassCard({
@@ -27,6 +28,7 @@ export function ClassCard({
   isOnline,
   punchpassUrl,
   variant = 'full',
+  onBookClick,
 }: ClassCardProps) {
   const formatTime = (time: string) => {
     const [hours, minutes] = time.split(':').map(Number);
@@ -64,10 +66,13 @@ export function ClassCard({
             </span>
           )}
           {punchpassUrl && (
-            <Button asChild size="sm" variant="default" className="h-7 px-2 text-xs">
-              <a href={punchpassUrl} target="_blank" rel="noopener noreferrer">
-                Book
-              </a>
+            <Button 
+              size="sm" 
+              variant="default" 
+              className="h-7 px-2 text-xs"
+              onClick={onBookClick}
+            >
+              Book
             </Button>
           )}
         </div>
@@ -117,11 +122,8 @@ export function ClassCard({
       </div>
       
       {punchpassUrl && (
-        <Button asChild className="w-full" size="sm">
-          <a href={punchpassUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-            Book Now
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
+        <Button className="w-full" size="sm" onClick={onBookClick}>
+          Book Now
         </Button>
       )}
     </div>

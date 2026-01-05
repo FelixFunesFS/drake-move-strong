@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ChevronRight, Clock, Calendar, RefreshCw } from "lucide-react";
+import { ChevronRight, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
+import { BookingModal } from "./BookingModal";
 
 interface ScheduleClass {
   id: string;
@@ -24,6 +25,13 @@ export function TodayClassesBanner() {
   const [classes, setClasses] = useState<ScheduleClass[]>([]);
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const [selectedClass, setSelectedClass] = useState<ScheduleClass | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleClassClick = (classItem: ScheduleClass) => {
+    setSelectedClass(classItem);
+    setModalOpen(true);
+  };
 
   const fetchTodayClasses = async () => {
     try {
@@ -108,12 +116,11 @@ export function TodayClassesBanner() {
           {/* Classes Grid */}
           <div className="flex flex-col md:flex-row gap-2 md:gap-3 flex-1 md:justify-center">
             {classes.map((classItem) => (
-              <a
+              <button
                 key={classItem.id}
-                href={classItem.punchpass_url || '/schedule'}
-                target={classItem.punchpass_url ? '_blank' : undefined}
-                rel={classItem.punchpass_url ? 'noopener noreferrer' : undefined}
-                className="flex items-center gap-3 px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors group"
+                type="button"
+                onClick={() => handleClassClick(classItem)}
+                className="flex items-center gap-3 px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors group text-left"
               >
                 <div className="text-center shrink-0">
                   <p className="text-sm font-bold text-drake-gold">{formatTime(classItem.start_time)}</p>
@@ -139,7 +146,7 @@ export function TodayClassesBanner() {
                   </span>
                 )}
                 <ChevronRight className="w-4 h-4 text-gray-500 group-hover:text-white transition-colors shrink-0 hidden md:block" />
-              </a>
+              </button>
             ))}
           </div>
 
@@ -152,6 +159,15 @@ export function TodayClassesBanner() {
           </Button>
         </div>
       </div>
+      
+      <BookingModal
+        isOpen={modalOpen}
+        onClose={() => {
+          setModalOpen(false);
+          setSelectedClass(null);
+        }}
+        classData={selectedClass}
+      />
     </section>
   );
 }

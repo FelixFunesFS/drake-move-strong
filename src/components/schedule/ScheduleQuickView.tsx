@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Calendar, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { BookingModal } from "./BookingModal";
 
 interface ScheduleClass {
   id: string;
@@ -20,6 +21,13 @@ export function ScheduleQuickView() {
   const [todayClasses, setTodayClasses] = useState<ScheduleClass[]>([]);
   const [tomorrowClasses, setTomorrowClasses] = useState<ScheduleClass[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedClass, setSelectedClass] = useState<ScheduleClass | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleClassClick = (classItem: ScheduleClass) => {
+    setSelectedClass(classItem);
+    setModalOpen(true);
+  };
 
   useEffect(() => {
     const fetchClasses = async () => {
@@ -99,12 +107,11 @@ export function ScheduleQuickView() {
       ) : (
         <div className="space-y-2">
           {classes.slice(0, 4).map((classItem) => (
-            <a
+            <button
               key={classItem.id}
-              href={classItem.punchpass_url || '#'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-between gap-3 p-2 rounded-lg hover:bg-muted transition-colors group"
+              type="button"
+              onClick={() => handleClassClick(classItem)}
+              className="w-full flex items-center justify-between gap-3 p-2 rounded-lg hover:bg-muted transition-colors group text-left"
             >
               <div className="flex items-center gap-3 min-w-0">
                 <div className="flex items-center gap-1 text-sm text-primary font-medium shrink-0">
@@ -121,7 +128,7 @@ export function ScheduleQuickView() {
                   {classItem.spots_remaining} spots
                 </Badge>
               )}
-            </a>
+            </button>
           ))}
           {classes.length > 4 && (
             <p className="text-xs text-muted-foreground text-center pt-2">
@@ -134,10 +141,21 @@ export function ScheduleQuickView() {
   );
 
   return (
-    <div className="grid md:grid-cols-2 gap-4 mb-8">
-      {renderDayCard("Today", todayClasses, true)}
-      {renderDayCard("Tomorrow", tomorrowClasses, false)}
-    </div>
+    <>
+      <div className="grid md:grid-cols-2 gap-4 mb-8">
+        {renderDayCard("Today", todayClasses, true)}
+        {renderDayCard("Tomorrow", tomorrowClasses, false)}
+      </div>
+      
+      <BookingModal
+        isOpen={modalOpen}
+        onClose={() => {
+          setModalOpen(false);
+          setSelectedClass(null);
+        }}
+        classData={selectedClass}
+      />
+    </>
   );
 }
 
