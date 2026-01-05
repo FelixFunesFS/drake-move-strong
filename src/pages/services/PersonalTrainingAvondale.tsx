@@ -4,7 +4,6 @@ import { StructuredData, localBusinessSchema } from "@/components/StructuredData
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
-import PunchPassWidget from "@/components/PunchPassWidget";
 import { Check, MapPin, ArrowRight, BookOpen, Target, Shield, Smile } from "lucide-react";
 
 import oneOnOneCoaching from "@/assets/one-on-one-coaching.jpg";
@@ -266,16 +265,6 @@ export default function PersonalTrainingAvondale() {
           </AnimatedSection>
         </div>
       </section>
-
-      {/* Today's Classes Widget */}
-      <PunchPassWidget 
-        type="today" 
-        eyebrow="TRY A CLASS THIS WEEK"
-        headingText="Foundation Flow for Beginners"
-        ctaText="View Full Schedule"
-        ctaLink="/schedule"
-        variant="default"
-      />
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-accent section-slant-top">

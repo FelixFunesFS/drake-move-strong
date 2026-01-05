@@ -4,7 +4,6 @@ import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
 import ImageGallery from "@/components/ImageGallery";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
-import PunchPassWidget from "@/components/PunchPassWidget";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
@@ -180,16 +179,6 @@ const Classes = () => {
           </div>
         </section>
       </AnimatedSection>
-
-      {/* Book Your Next Class - Today Widget */}
-      <PunchPassWidget 
-        type="today" 
-        eyebrow="BOOK YOUR NEXT CLASS"
-        headingText="Classes Starting Soon"
-        ctaText="View Full Schedule"
-        ctaLink="/schedule"
-        variant="accent"
-      />
 
       <AnimatedSection animation="fadeIn">
         <section className="py-12 md:py-16 lg:py-24 bg-muted section-slant-top">
