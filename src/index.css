@@ -210,9 +210,9 @@ All colors MUST be HSL.
     @apply uppercase tracking-[0.02em];
   }
 
-  /* Apply font-heading and tight tracking to all headings */
+  /* Base heading tracking - font family applied per element */
   h1, h2, h3 {
-    @apply font-heading tracking-tight;
+    @apply tracking-tight;
   }
 
   /* Marquee Animation */
