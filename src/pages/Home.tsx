@@ -26,6 +26,7 @@ import oneOnOne from "@/assets/one-on-one.jpg";
 import Marquee from "@/components/Marquee";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
+import { UpcomingClassesWidget } from "@/components/schedule/UpcomingClassesWidget";
 const Home = () => {
   return (
     <>
@@ -259,6 +260,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Upcoming Classes Widget - Live from PunchPass */}
+      <UpcomingClassesWidget />
 
       <section className="py-16 md:py-24 bg-muted section-slant-top-reverse">
         <div className="container mx-auto px-4">

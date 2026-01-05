@@ -831,6 +831,60 @@ export type Database = {
         }
         Relationships: []
       }
+      punchpass_schedule: {
+        Row: {
+          class_date: string
+          class_name: string
+          created_at: string | null
+          duration_minutes: number | null
+          end_time: string | null
+          id: string
+          instructor: string | null
+          is_online: boolean | null
+          last_synced_at: string | null
+          location: string | null
+          punchpass_url: string | null
+          raw_time_string: string | null
+          spots_remaining: number | null
+          spots_total: number | null
+          start_time: string
+        }
+        Insert: {
+          class_date: string
+          class_name: string
+          created_at?: string | null
+          duration_minutes?: number | null
+          end_time?: string | null
+          id?: string
+          instructor?: string | null
+          is_online?: boolean | null
+          last_synced_at?: string | null
+          location?: string | null
+          punchpass_url?: string | null
+          raw_time_string?: string | null
+          spots_remaining?: number | null
+          spots_total?: number | null
+          start_time: string
+        }
+        Update: {
+          class_date?: string
+          class_name?: string
+          created_at?: string | null
+          duration_minutes?: number | null
+          end_time?: string | null
+          id?: string
+          instructor?: string | null
+          is_online?: boolean | null
+          last_synced_at?: string | null
+          location?: string | null
+          punchpass_url?: string | null
+          raw_time_string?: string | null
+          spots_remaining?: number | null
+          spots_total?: number | null
+          start_time?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

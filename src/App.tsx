@@ -10,6 +10,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Footer from "./components/Footer";
 import AnnouncementBanner from "./components/AnnouncementBanner";
 import ChatBot from "./components/chat/ChatBot";
+import { TodayClassesBanner } from "./components/schedule/TodayClassesBanner";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Classes from "./pages/Classes";
@@ -78,6 +79,7 @@ const AppLayout = () => {
       <div className="flex flex-col min-h-screen">
         {!hideNavFooter && <AnnouncementBanner />}
         {!hideNavFooter && <Navigation />}
+        {!hideNavFooter && <TodayClassesBanner />}
         <div className="flex-grow">
           <Routes>
             {/* Public Routes */}

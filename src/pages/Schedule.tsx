@@ -2,12 +2,49 @@ import Hero from "@/components/Hero";
 import CTASection from "@/components/CTASection";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Info, ExternalLink } from "lucide-react";
+import { Info, ExternalLink, RefreshCw } from "lucide-react";
 import scheduleCommunityImage from "@/assets/schedule-community-group.jpg";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
+import { ScheduleQuickView } from "@/components/schedule/ScheduleQuickView";
+import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const Schedule = () => {
+  const [syncing, setSyncing] = useState(false);
+  const { toast } = useToast();
+
+  const syncSchedule = async () => {
+    setSyncing(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('sync-punchpass-schedule');
+      if (error) {
+        toast({
+          title: "Sync Failed",
+          description: "Could not sync schedule. Please try again.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Schedule Synced",
+          description: `${data?.classes_synced || 0} classes updated.`,
+        });
+        // Reload the page to show updated data
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error('Error syncing schedule:', error);
+      toast({
+        title: "Sync Failed",
+        description: "An error occurred while syncing.",
+        variant: "destructive",
+      });
+    } finally {
+      setSyncing(false);
+    }
+  };
+
   return (
     <>
       <SEO
@@ -25,7 +62,7 @@ const Schedule = () => {
           className="h-[400px] md:h-[500px] lg:h-[600px]"
         />
 
-        <section className="py-8 md:py-12 bg-primary text-white">
+        <section className="py-6 md:py-8 bg-primary text-white">
           <div className="container mx-auto px-4">
             <Alert className="max-w-3xl mx-auto bg-drake-gold/20 border-drake-gold text-white">
               <Info className="h-5 w-5" />
@@ -36,7 +73,34 @@ const Schedule = () => {
           </div>
         </section>
 
-        <section className="py-16 md:py-24 bg-background">
+        {/* Quick View - Today's & Tomorrow's Classes */}
+        <section className="py-8 md:py-12 bg-muted">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+              <div>
+                <h2 className="font-hero text-xl md:text-2xl font-bold uppercase">
+                  Quick <span className="text-primary">View</span>
+                </h2>
+                <p className="text-sm text-muted-foreground">Today's and tomorrow's classes at a glance</p>
+              </div>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={syncSchedule}
+                disabled={syncing}
+                className="text-muted-foreground hover:text-primary self-start sm:self-auto"
+              >
+                <RefreshCw className={`w-4 h-4 mr-1.5 ${syncing ? 'animate-spin' : ''}`} />
+                {syncing ? 'Syncing...' : 'Sync Schedule'}
+              </Button>
+            </div>
+            <div className="max-w-4xl mx-auto">
+              <ScheduleQuickView />
+            </div>
+          </div>
+        </section>
+
+        <section className="py-12 md:py-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">
               <h2 className="font-hero text-2xl md:text-3xl font-bold uppercase mb-4">
@@ -57,16 +121,16 @@ const Schedule = () => {
                 </a>
               </Button>
             </div>
-            <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div className="max-w-4xl mx-auto bg-card rounded-2xl shadow-lg overflow-hidden border border-border">
               <iframe 
-                src="https://drakefitness.punchpass.com/classes"
+                src="https://drakefitness.punchpass.com/classes?embed=true"
                 title="Drake Fitness Class Schedule"
-                className="w-full h-[600px] md:h-[800px] border-0"
+                className="w-full h-[600px] md:h-[750px] lg:h-[850px] border-0"
                 loading="lazy"
               />
             </div>
             <p className="text-center text-sm text-muted-foreground mt-4">
-              Powered by PunchPass
+              Powered by PunchPass • Live booking available
             </p>
           </div>
         </section>
@@ -83,7 +147,7 @@ const Schedule = () => {
                 { badge: "All Levels", desc: "Scalable for everyone. Modifications provided for all fitness levels.", variant: "default" },
                 { badge: "Intermediate+", desc: "Some experience recommended. Higher intensity with complex movements.", variant: "destructive" }
               ].map((level, idx) => (
-                <div key={idx} className="bg-white p-6 rounded-xl shadow-card text-center">
+                <div key={idx} className="bg-card p-6 rounded-xl shadow-card text-center border border-border">
                   <Badge variant={level.variant as any} className="mb-4 text-sm px-4 py-1">{level.badge}</Badge>
                   <p className="text-muted-foreground">{level.desc}</p>
                 </div>
