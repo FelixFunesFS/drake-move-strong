@@ -56,10 +56,7 @@ import CoachClasses from "./pages/coach/Classes";
 import CoachTemplates from "./pages/coach/Templates";
 import CoachProgress from "./pages/coach/Progress";
 import Consultation from "./pages/Consultation";
-import MobilityTrainingCharleston from "./pages/services/MobilityTrainingCharleston";
-import StrengthTrainingOver40Charleston from "./pages/services/StrengthTrainingOver40Charleston";
 import LowImpactFitnessCharleston from "./pages/services/LowImpactFitnessCharleston";
-import PersonalTrainingAvondale from "./pages/services/PersonalTrainingAvondale";
 import MobilityFitnessAvondale from "./pages/services/MobilityFitnessAvondale";
 import StrengthTrainingCharleston from "./pages/services/StrengthTrainingCharleston";
 import WestAshleyFitness from "./pages/services/WestAshleyFitness";
@@ -113,10 +110,7 @@ const AppLayout = () => {
             <Route path="/consultation" element={<Consultation />} />
             
             {/* Local SEO Service Pages */}
-            <Route path="/mobility-training-charleston" element={<MobilityTrainingCharleston />} />
-            <Route path="/strength-training-over-40-charleston" element={<StrengthTrainingOver40Charleston />} />
             <Route path="/low-impact-fitness-charleston" element={<LowImpactFitnessCharleston />} />
-            <Route path="/personal-training-avondale" element={<PersonalTrainingAvondale />} />
             <Route path="/mobility-fitness-avondale" element={<MobilityFitnessAvondale />} />
             <Route path="/strength-training-charleston" element={<StrengthTrainingCharleston />} />
             <Route path="/west-ashley-fitness" element={<WestAshleyFitness />} />

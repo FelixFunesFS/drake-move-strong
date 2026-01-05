@@ -245,12 +245,12 @@ const Classes = () => {
               <div className="border-t border-border pt-6 mt-6">
                 <p className="text-sm text-muted-foreground mb-4">Explore our specialized programs:</p>
                 <div className="flex flex-wrap justify-center gap-3">
-                  <Link to="/mobility-training-charleston" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
+                  <Link to="/mobility-fitness-avondale" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
                     Mobility Training
                   </Link>
                   <span className="text-muted-foreground">•</span>
-                  <Link to="/strength-training-over-40-charleston" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
-                    Strength Training 40+
+                  <Link to="/strength-training-charleston" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
+                    Strength Training
                   </Link>
                   <span className="text-muted-foreground">•</span>
                   <Link to="/low-impact-fitness-charleston" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
