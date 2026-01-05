@@ -4,7 +4,14 @@ import { StructuredData, localBusinessSchema } from "@/components/StructuredData
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
-import { Check, MapPin, ArrowRight, Star, Users, Briefcase, Heart, Bike, Calendar } from "lucide-react";
+import { 
+  Check, MapPin, ArrowRight, Star, Users, Briefcase, Heart, Bike, Calendar,
+  Dumbbell, HeartPulse, ShieldCheck, Ban,
+  PersonStanding, Wind, Weight,
+  GraduationCap, Gauge,
+  Presentation, TrendingUp,
+  CalendarDays, Shield
+} from "lucide-react";
 
 import heroKettlebellTraining from "@/assets/hero-kettlebell-training.jpg";
 import davidGobletSquat from "@/assets/david-goblet-squat-kb-rack.jpg";
@@ -29,23 +36,23 @@ const serviceSchema = {
 };
 
 const whoThisIsFor = [
-  { title: "You've tried gyms before and it didn't stick", description: "Traditional gyms leave you confused, intimidated, or injured." },
-  { title: "Your back, knees, or shoulders feel beat up", description: "Pain and stiffness are getting in the way of daily life." },
-  { title: "You want strength without risking injury", description: "Smart training that builds you up, not breaks you down." },
-  { title: "You're done with extreme workouts", description: "No more crushing yourself just to prove you worked out." }
+  { icon: Dumbbell, title: "You've tried gyms before and it didn't stick", description: "Traditional gyms leave you confused, intimidated, or injured." },
+  { icon: HeartPulse, title: "Your back, knees, or shoulders feel beat up", description: "Pain and stiffness are getting in the way of daily life." },
+  { icon: ShieldCheck, title: "You want strength without risking injury", description: "Smart training that builds you up, not breaks you down." },
+  { icon: Ban, title: "You're done with extreme workouts", description: "No more crushing yourself just to prove you worked out." }
 ];
 
 const whyWorkoutsStopWorking = [
-  { title: "How You Move", description: "Joint mobility and movement quality come first — not reps and sets." },
-  { title: "How You Breathe", description: "Proper breathing creates stability and prevents compensation patterns." },
-  { title: "How You Control Load", description: "Strength without control leads to injury. We teach both." }
+  { icon: PersonStanding, title: "How You Move", description: "Joint mobility and movement quality come first — not reps and sets." },
+  { icon: Wind, title: "How You Breathe", description: "Proper breathing creates stability and prevents compensation patterns." },
+  { icon: Weight, title: "How You Control Load", description: "Strength without control leads to injury. We teach both." }
 ];
 
 const resetWeekIncludes = [
-  "Learn how to move safely and confidently",
-  "Rebuild control before adding intensity",
-  "Train with coaching, not chaos",
-  "See how your body should feel after training"
+  { icon: GraduationCap, text: "Learn how to move safely and confidently", description: "Master the fundamentals before adding intensity." },
+  { icon: Gauge, text: "Rebuild control before adding intensity", description: "Establish proper movement patterns that last." },
+  { icon: Users, text: "Train with coaching, not chaos", description: "Every session is guided by experienced coaches." },
+  { icon: Heart, text: "See how your body should feel after training", description: "Energized, not exhausted. Strong, not sore." }
 ];
 
 const charlestonAdvantages = [
@@ -56,12 +63,19 @@ const charlestonAdvantages = [
 ];
 
 const whatMakesDifferent = [
-  { title: "Coaching Over Crowd Control", description: "You get real attention, not just supervision. Every movement is coached." },
-  { title: "Progression Without Panic", description: "Structured programs that build on each session — no random workouts." },
-  { title: "Strength Without Punishment", description: "Build strength that serves your life, not destroys your body." },
-  { title: "Small Group Attention", description: "Limited class sizes ensure quality coaching for every member." },
-  { title: "Movement-First Approach", description: "Quality movement before heavy loads — always." },
-  { title: "Results You Can Feel", description: "Better movement, less pain, more confidence — in weeks, not months." }
+  { icon: Presentation, title: "Coaching Over Crowd Control", description: "You get real attention, not just supervision. Every movement is coached." },
+  { icon: TrendingUp, title: "Progression Without Panic", description: "Structured programs that build on each session — no random workouts." },
+  { icon: Dumbbell, title: "Strength Without Punishment", description: "Build strength that serves your life, not destroys your body." },
+  { icon: Users, title: "Small Group Attention", description: "Limited class sizes ensure quality coaching for every member." },
+  { icon: PersonStanding, title: "Movement-First Approach", description: "Quality movement before heavy loads — always." },
+  { icon: Star, title: "Results You Can Feel", description: "Better movement, less pain, more confidence — in weeks, not months." }
+];
+
+const finalCTAFeatures = [
+  { icon: CalendarDays, title: "Flexible Scheduling", description: "Morning, afternoon, and evening classes available" },
+  { icon: MapPin, title: "West Ashley Location", description: "Easy access from anywhere in Charleston" },
+  { icon: Users, title: "Small Group Training", description: "Maximum attention, minimum intimidation" },
+  { icon: Shield, title: "No Pressure Environment", description: "Start at your level, progress at your pace" }
 ];
 
 export default function StrengthTrainingCharleston() {
@@ -141,6 +155,7 @@ export default function StrengthTrainingCharleston() {
                 <div className="space-y-6 mb-10">
                   {whoThisIsFor.map((item, index) => (
                     <div key={index} className="flex items-start gap-4 p-5 bg-secondary rounded-xl border-l-4 border-accent">
+                      <item.icon className="text-primary h-6 w-6 mt-1 flex-shrink-0" />
                       <div>
                         <h3 className="font-bold text-lg mb-1">{item.title}</h3>
                         <p className="text-muted-foreground">{item.description}</p>
@@ -190,6 +205,9 @@ export default function StrengthTrainingCharleston() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               {whyWorkoutsStopWorking.map((item, index) => (
                 <div key={index} className="bg-background p-10 rounded-2xl shadow-lg text-center">
+                  <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <item.icon className="text-primary h-8 w-8" />
+                  </div>
                   <h3 className="font-heading text-2xl font-bold mb-4 uppercase">{item.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{item.description}</p>
                 </div>
@@ -238,10 +256,11 @@ export default function StrengthTrainingCharleston() {
                   {resetWeekIncludes.map((item, index) => (
                     <div key={index} className="flex items-start gap-4">
                       <div className="w-12 h-12 bg-primary rounded-lg flex-shrink-0 flex items-center justify-center">
-                        <Check className="text-primary-foreground h-6 w-6" />
+                        <item.icon className="text-primary-foreground h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-lg">{item}</h3>
+                        <h3 className="font-bold text-lg mb-1">{item.text}</h3>
+                        <p className="text-muted-foreground">{item.description}</p>
                       </div>
                     </div>
                   ))}
@@ -327,6 +346,9 @@ export default function StrengthTrainingCharleston() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {whatMakesDifferent.map((item, index) => (
                 <div key={index} className={`p-10 rounded-2xl border-2 border-transparent hover:border-primary transition-colors ${index === 5 ? 'bg-accent' : 'bg-secondary'}`}>
+                  <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${index === 5 ? 'bg-foreground' : 'bg-primary'}`}>
+                    <item.icon className={`h-7 w-7 ${index === 5 ? 'text-accent' : 'text-primary-foreground'}`} />
+                  </div>
                   <h3 className={`font-heading text-2xl font-bold mb-4 uppercase ${index === 5 ? 'text-accent-foreground' : ''}`}>{item.title}</h3>
                   <p className={`leading-relaxed ${index === 5 ? 'text-accent-foreground font-medium' : 'text-muted-foreground'}`}>{item.description}</p>
                 </div>
@@ -379,7 +401,7 @@ export default function StrengthTrainingCharleston() {
               <div className="flex flex-col md:flex-row items-center gap-8">
                 <div className="flex-shrink-0">
                   <div className="w-32 h-32 bg-primary rounded-full flex items-center justify-center">
-                    <Star className="text-primary-foreground h-16 w-16" />
+                    <span className="text-primary-foreground font-bold text-5xl">G</span>
                   </div>
                 </div>
                 <div className="text-center md:text-left">
@@ -403,18 +425,37 @@ export default function StrengthTrainingCharleston() {
               <span className="text-accent font-bold uppercase tracking-wider text-sm mb-2 block">READY TO GET STARTED?</span>
               <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">Start Your Reset Week Today</h2>
               <p className="text-xl text-primary-foreground/80 mb-10">Spots are limited to keep coaching quality high. Join Charleston's premier mobility and strength studio.</p>
-              
-              <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-12 py-6 text-xl font-bold uppercase tracking-wide">
-                <Link to="/reset-week">
-                  <ArrowRight className="mr-2 h-5 w-5" />
-                  Claim Your Reset Week Spot Now
-                </Link>
-              </Button>
-              <p className="text-primary-foreground/60 mt-6 text-sm">Limited to 12 spots per week • No credit card required</p>
             </div>
           </AnimatedSection>
 
           <AnimatedSection animation="fadeInUp" delay={0.1}>
+            <div className="bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded-3xl p-12 mb-10 max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                {finalCTAFeatures.map((item, index) => (
+                  <div key={index} className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent rounded-lg flex-shrink-0 flex items-center justify-center">
+                      <item.icon className="text-accent-foreground h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg mb-1">{item.title}</h3>
+                      <p className="text-primary-foreground/70">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="text-center">
+                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-12 py-6 text-xl font-bold uppercase tracking-wide">
+                  <Link to="/reset-week">
+                    <ArrowRight className="mr-2 h-5 w-5" />
+                    Claim Your Reset Week Spot Now
+                  </Link>
+                </Button>
+                <p className="text-primary-foreground/60 mt-6 text-sm">Limited to 12 spots per week • No credit card required</p>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fadeInUp" delay={0.2}>
             <div className="text-center">
               <p className="text-primary-foreground/60 mb-4">Questions? Call or text us:</p>
               <a href="tel:+18438175420" className="text-2xl font-bold text-accent hover:text-accent/80 transition-colors">
