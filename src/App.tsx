@@ -34,6 +34,7 @@ import AdminScheduleManager from "./pages/admin/ScheduleManager";
 import AdminClassTypes from "./pages/admin/ClassTypes";
 import NewYearChallenge from "./pages/NewYearChallenge";
 import ResetWeek from "./pages/ResetWeek";
+import ResetWeekAlt from "./pages/ResetWeekAlt";
 import Auth from "./pages/Auth";
 import MemberDashboard from "./pages/member/Dashboard";
 import MemberProfile from "./pages/member/Profile";
@@ -63,7 +64,7 @@ import PersonalTrainingAvondale from "./pages/services/PersonalTrainingAvondale"
 const queryClient = new QueryClient();
 
 // Routes that should not show the standard navigation and footer
-const STANDALONE_ROUTES = ['/new-year', '/reset-week', '/auth', '/consultation'];
+const STANDALONE_ROUTES = ['/new-year', '/reset-week', '/reset', '/auth', '/consultation'];
 
 // Route prefixes that use custom layouts (no standard nav/footer)
 const CUSTOM_LAYOUT_PREFIXES = ['/member', '/admin', '/coach'];
@@ -104,6 +105,7 @@ const AppLayout = () => {
             {/* Landing Pages */}
             <Route path="/new-year" element={<NewYearChallenge />} />
             <Route path="/reset-week" element={<ResetWeek />} />
+            <Route path="/reset" element={<ResetWeekAlt />} />
             <Route path="/consultation" element={<Consultation />} />
             
             {/* Local SEO Service Pages */}
