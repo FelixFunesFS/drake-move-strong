@@ -100,16 +100,13 @@ const Schedule = () => {
           </div>
         </section>
 
-        <section className="py-12 md:py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-8">
-              <h2 className="font-hero text-2xl md:text-3xl font-bold uppercase mb-4">
+        <section className="py-6 md:py-8 bg-background flex-1">
+          <div className="container mx-auto px-4 h-full">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-hero text-xl md:text-2xl font-bold uppercase">
                 Book Your <span className="text-primary">Class</span>
               </h2>
-              <p className="text-muted-foreground mb-6">
-                Select a class below to reserve your spot
-              </p>
-              <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
+              <Button asChild variant="outline" size="sm">
                 <a 
                   href="https://drakefitness.punchpass.com/classes" 
                   target="_blank" 
@@ -121,17 +118,18 @@ const Schedule = () => {
                 </a>
               </Button>
             </div>
-            <div className="max-w-4xl mx-auto bg-card rounded-2xl shadow-lg overflow-hidden border border-border">
+            <div className="bg-card rounded-xl shadow-lg overflow-hidden border border-border">
               <iframe 
-                src="https://drakefitness.punchpass.com/classes?embed=true"
+                src="https://drakefitness.punchpass.com/classes?embed=true&hidefilter=true"
                 title="Drake Fitness Class Schedule"
-                className="w-full h-[600px] md:h-[750px] lg:h-[850px] border-0"
+                className="w-full border-0"
+                style={{ 
+                  height: 'calc(100vh - 280px)',
+                  minHeight: '500px'
+                }}
                 loading="lazy"
               />
             </div>
-            <p className="text-center text-sm text-muted-foreground mt-4">
-              Powered by PunchPass • Live booking available
-            </p>
           </div>
         </section>
 

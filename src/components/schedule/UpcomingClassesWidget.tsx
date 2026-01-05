@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { ClassCard } from "./ClassCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import AnimatedSection from "@/components/AnimatedSection";
+import { BookingModal } from "./BookingModal";
 
 interface ScheduleClass {
   id: string;
@@ -32,6 +33,13 @@ export function UpcomingClassesWidget() {
   const [groupedClasses, setGroupedClasses] = useState<GroupedClasses[]>([]);
   const [loading, setLoading] = useState(true);
   const [syncing, setSyncing] = useState(false);
+  const [selectedClass, setSelectedClass] = useState<ScheduleClass | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleClassClick = (classItem: ScheduleClass) => {
+    setSelectedClass(classItem);
+    setModalOpen(true);
+  };
 
   const fetchUpcomingClasses = async () => {
     try {
@@ -207,12 +215,28 @@ export function UpcomingClassesWidget() {
                     isOnline={classItem.is_online}
                     punchpassUrl={classItem.punchpass_url}
                     variant="full"
+                    onBookClick={() => handleClassClick(classItem)}
                   />
                 ))}
               </div>
             </AnimatedSection>
           ))}
         </div>
+        
+        <BookingModal
+          isOpen={modalOpen}
+          onClose={() => {
+            setModalOpen(false);
+            setSelectedClass(null);
+          }}
+          classData={selectedClass ? {
+            class_name: selectedClass.class_name,
+            start_time: selectedClass.start_time,
+            instructor: selectedClass.instructor,
+            is_online: selectedClass.is_online,
+            punchpass_url: selectedClass.punchpass_url,
+          } : null}
+        />
       </div>
     </section>
   );
