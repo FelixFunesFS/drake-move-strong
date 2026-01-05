@@ -81,7 +81,7 @@ export default function LowImpactFitnessCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl">
               <span className="section-eyebrow text-accent">AVONDALE & WEST ASHLEY</span>
-              <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-primary-foreground">
+              <h1 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-primary-foreground uppercase">
                 Low-Impact Fitness for Joint Pain in Avondale & West Ashley
               </h1>
               <p className="text-lg md:text-xl text-primary-foreground/90 mb-8">
@@ -104,7 +104,7 @@ export default function LowImpactFitnessCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto">
               <span className="section-eyebrow text-primary">THE STRUGGLE</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
                 If Exercise Has Let You Down Before
               </h2>
               <div className="prose prose-lg text-muted-foreground">
@@ -122,7 +122,7 @@ export default function LowImpactFitnessCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <span className="section-eyebrow text-primary">OUR APPROACH</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
                 Our Low-Impact Approach
               </h2>
               <p className="text-lg text-muted-foreground">
@@ -167,7 +167,7 @@ export default function LowImpactFitnessCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <span className="section-eyebrow text-primary">COMMON ISSUES WE HELP WITH</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
                 Members Often Come In With:
               </h2>
             </div>
@@ -199,7 +199,7 @@ export default function LowImpactFitnessCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <span className="section-eyebrow text-accent">THE ENVIRONMENT</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 uppercase">
                 A Calm, Supportive Environment
               </h2>
               <p className="text-lg text-primary-foreground/90">
@@ -241,7 +241,7 @@ export default function LowImpactFitnessCharleston() {
               </div>
               <div className="order-1 lg:order-2 text-center lg:text-left">
                 <span className="section-eyebrow text-primary">CONVENIENT LOCATION</span>
-                <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+                <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
                   Easily Accessible from West Ashley & Charleston
                 </h2>
                 <div className="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground mb-6">
@@ -262,7 +262,7 @@ export default function LowImpactFitnessCharleston() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-accent-foreground">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-accent-foreground uppercase">
                 Train Again Without Fear of Making Things Worse
               </h2>
               <p className="text-lg text-accent-foreground/80 mb-6">Start with Reset Week — 7 days of unlimited classes for just $49.</p>

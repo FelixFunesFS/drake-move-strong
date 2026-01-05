@@ -76,7 +76,7 @@ export default function StrengthTrainingOver40Charleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl">
               <span className="section-eyebrow text-accent">CHARLESTON, SC</span>
-              <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-primary-foreground">
+              <h1 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-primary-foreground uppercase">
                 Strength Training for Adults Over 40 in Charleston — Safe, Structured, and Sustainable
               </h1>
               <p className="text-lg md:text-xl text-primary-foreground/90 mb-8">
@@ -99,7 +99,7 @@ export default function StrengthTrainingOver40Charleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto">
               <span className="section-eyebrow text-primary">THE REALITY</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
                 After 40, the Old "Push Harder" Approach Stops Working
               </h2>
               <div className="prose prose-lg text-muted-foreground">
@@ -117,7 +117,7 @@ export default function StrengthTrainingOver40Charleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <span className="section-eyebrow text-primary">HOW WE TRAIN DIFFERENTLY</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
                 At Drake Fitness, Strength Training Is:
               </h2>
               <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -167,7 +167,7 @@ export default function StrengthTrainingOver40Charleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <span className="section-eyebrow text-primary">WHO TRAINS HERE</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
                 This Program Is Built For:
               </h2>
             </div>
@@ -199,7 +199,7 @@ export default function StrengthTrainingOver40Charleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <span className="section-eyebrow text-accent">WHAT TO EXPECT</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 uppercase">
                 Each Session Includes:
               </h2>
             </div>
@@ -237,7 +237,7 @@ export default function StrengthTrainingOver40Charleston() {
               </div>
               <div className="order-1 lg:order-2 text-center lg:text-left">
                 <span className="section-eyebrow text-primary">SERVING CHARLESTON LOCALS</span>
-                <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+                <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
                   A Smarter, Calmer Gym Experience
                 </h2>
                 <div className="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground mb-6">
@@ -258,7 +258,7 @@ export default function StrengthTrainingOver40Charleston() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-accent-foreground">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-accent-foreground uppercase">
                 Start Strength Training That Actually Fits Your Body
               </h2>
               <p className="text-lg text-accent-foreground/80 mb-6">Try Reset Week — 7 days of unlimited classes for just $49.</p>

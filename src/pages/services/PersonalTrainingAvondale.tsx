@@ -82,7 +82,7 @@ export default function PersonalTrainingAvondale() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl">
               <span className="section-eyebrow text-accent">AVONDALE, CHARLESTON</span>
-              <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-primary-foreground">
+              <h1 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-primary-foreground uppercase">
                 Personal Training in Avondale, Charleston for Beginners and Returners
               </h1>
               <p className="text-lg md:text-xl text-primary-foreground/90 mb-8">
@@ -105,7 +105,7 @@ export default function PersonalTrainingAvondale() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto">
               <span className="section-eyebrow text-primary">THE CHALLENGE</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
                 Starting Again Is the Hardest Part
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
@@ -135,7 +135,7 @@ export default function PersonalTrainingAvondale() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <span className="section-eyebrow text-primary">THE DIFFERENCE</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
                 What Makes Our Personal Training Different
               </h2>
               <p className="text-lg text-muted-foreground">
@@ -180,7 +180,7 @@ export default function PersonalTrainingAvondale() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <span className="section-eyebrow text-accent">YOUR FIRST SESSIONS</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 uppercase">
                 We Start With:
               </h2>
             </div>
@@ -212,7 +212,7 @@ export default function PersonalTrainingAvondale() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <span className="section-eyebrow text-primary">WHO THIS IS BEST FOR</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
                 This Program Is Perfect For:
               </h2>
             </div>
@@ -250,7 +250,7 @@ export default function PersonalTrainingAvondale() {
               </div>
               <div className="order-1 lg:order-2 text-center lg:text-left">
                 <span className="section-eyebrow text-primary">LOCAL, ACCESSIBLE, SUPPORTIVE</span>
-                <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+                <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
                   A Safe Place to Start
                 </h2>
                 <div className="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground mb-6">
@@ -271,7 +271,7 @@ export default function PersonalTrainingAvondale() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-accent-foreground">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-accent-foreground uppercase">
                 Take the Guesswork Out of Getting Started
               </h2>
               <p className="text-lg text-accent-foreground/80 mb-6">Try Reset Week — 7 days of unlimited classes for just $49.</p>

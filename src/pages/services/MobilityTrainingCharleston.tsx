@@ -75,7 +75,7 @@ export default function MobilityTrainingCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl">
               <span className="section-eyebrow text-accent">AVONDALE, CHARLESTON</span>
-              <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-primary-foreground">
+              <h1 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-primary-foreground uppercase">
                 Mobility Training in Avondale, Charleston for Adults Who Want to Move Better Without Pain
               </h1>
               <p className="text-lg md:text-xl text-primary-foreground/90 mb-8">
@@ -98,7 +98,7 @@ export default function MobilityTrainingCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto">
               <span className="section-eyebrow text-primary">THE PROBLEM</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
                 If You Feel Tight, Sore, or Restricted When You Move, You're Not Alone
               </h2>
               <div className="prose prose-lg text-muted-foreground">
@@ -116,7 +116,7 @@ export default function MobilityTrainingCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <span className="section-eyebrow text-primary">THE DRAKE DIFFERENCE</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
                 At Drake Fitness, Mobility Isn't an Afterthought. It's the Foundation.
               </h2>
             </div>
@@ -161,7 +161,7 @@ export default function MobilityTrainingCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <span className="section-eyebrow text-primary">WHO THIS IS FOR</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
                 This Program Is Ideal If You:
               </h2>
             </div>
@@ -193,7 +193,7 @@ export default function MobilityTrainingCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <span className="section-eyebrow text-accent">YOUR FIRST VISIT</span>
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 uppercase">
                 What Your First Visit Looks Like
               </h2>
             </div>
@@ -237,7 +237,7 @@ export default function MobilityTrainingCharleston() {
               </div>
               <div className="order-1 lg:order-2 text-center lg:text-left">
                 <span className="section-eyebrow text-primary">LOCAL & CONVENIENT</span>
-                <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground">
+                <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
                   Serving Charleston & West Ashley
                 </h2>
                 <div className="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground mb-6">
@@ -258,7 +258,7 @@ export default function MobilityTrainingCharleston() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-accent-foreground">
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-accent-foreground uppercase">
                 Ready to Move Better and Feel More Confident in Your Body?
               </h2>
               <p className="text-lg text-accent-foreground/80 mb-6">Start with Reset Week — 7 days of unlimited classes for just $49.</p>
