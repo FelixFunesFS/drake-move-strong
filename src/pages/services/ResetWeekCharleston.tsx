@@ -97,7 +97,7 @@ export default function ResetWeekCharleston() {
         <div className="container mx-auto px-4 relative z-10 py-20 md:py-28 text-center">
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-4xl mx-auto">
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
+              <h1 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
                 Reset Week — A Smarter Way to Start<br />
                 <span className="text-accent">Strength Training in Charleston</span>
               </h1>
@@ -121,7 +121,7 @@ export default function ResetWeekCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center mb-12 max-w-3xl mx-auto">
               <span className="section-eyebrow text-primary">THE PROBLEM</span>
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">
+              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">
                 You Don't Need More Workouts
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
@@ -164,7 +164,7 @@ export default function ResetWeekCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center mb-16 max-w-3xl mx-auto">
               <span className="section-eyebrow text-primary">THE SOLUTION</span>
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">
+              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">
                 What Reset Week Solves
               </h2>
               <p className="text-xl text-muted-foreground">
@@ -180,7 +180,7 @@ export default function ResetWeekCharleston() {
                   <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-6">
                     <item.icon className="text-primary-foreground h-8 w-8" />
                   </div>
-                  <h3 className="font-heading text-2xl font-bold mb-4 uppercase">{item.title}</h3>
+                  <h3 className="font-hero text-2xl font-bold mb-4 uppercase">{item.title}</h3>
                   <p className="text-muted-foreground leading-relaxed mb-4">{item.description}</p>
                   <p className="text-primary font-semibold">{item.cta}</p>
                 </div>
@@ -197,7 +197,7 @@ export default function ResetWeekCharleston() {
             <AnimatedSection animation="fadeInUp">
               <div>
                 <span className="section-eyebrow text-primary">WHAT YOU'LL EXPERIENCE</span>
-                <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-8 uppercase leading-tight">
+                <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-8 uppercase leading-tight">
                   A Week That Prepares You<br />
                   <span className="text-primary">For Real Results</span>
                 </h2>
@@ -228,7 +228,7 @@ export default function ResetWeekCharleston() {
                   />
                 </div>
                 <div className="absolute -bottom-6 -left-6 bg-primary text-primary-foreground p-8 rounded-xl shadow-xl max-w-sm">
-                  <p className="font-heading text-2xl font-bold mb-2 uppercase">Week One Foundation</p>
+                  <p className="font-hero text-2xl font-bold mb-2 uppercase">Week One Foundation</p>
                   <p className="text-primary-foreground/80">Build the movement patterns that will carry you for years.</p>
                 </div>
               </div>
@@ -243,7 +243,7 @@ export default function ResetWeekCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center mb-16">
               <span className="text-accent font-bold uppercase tracking-wider text-sm mb-2 block">WHO IT'S PERFECT FOR</span>
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">
+              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">
                 Reset Week Is Designed For You If...
               </h2>
             </div>
@@ -258,7 +258,7 @@ export default function ResetWeekCharleston() {
                       <item.icon className="text-accent-foreground h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="font-heading text-xl font-bold mb-2 uppercase">{item.title}</h3>
+                      <h3 className="font-hero text-xl font-bold mb-2 uppercase">{item.title}</h3>
                       <p className="text-primary-foreground/80">{item.description}</p>
                     </div>
                   </div>
@@ -285,7 +285,7 @@ export default function ResetWeekCharleston() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
             <div className="text-center mb-12 max-w-4xl mx-auto">
-              <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">
+              <h2 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">
                 Ready to Start the Right Way?
               </h2>
               <p className="text-xl md:text-2xl text-primary-foreground/90 mb-4 leading-relaxed">
@@ -300,7 +300,7 @@ export default function ResetWeekCharleston() {
           <AnimatedSection animation="fadeInUp" delay={0.1}>
             <div className="bg-background rounded-2xl p-10 md:p-12 shadow-2xl max-w-4xl mx-auto">
               <div className="text-center mb-8">
-                <h3 className="font-heading text-3xl font-bold text-foreground mb-4 uppercase">What's Included in Reset Week</h3>
+                <h3 className="font-hero text-3xl font-bold text-foreground mb-4 uppercase">What's Included in Reset Week</h3>
                 <div className="h-1 w-24 bg-accent mx-auto mb-6"></div>
               </div>
 
@@ -341,7 +341,7 @@ export default function ResetWeekCharleston() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
             <div className="text-center mb-12">
-              <h3 className="font-heading text-2xl font-bold mb-2 uppercase">Proudly Serving Charleston</h3>
+              <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Proudly Serving Charleston</h3>
               <p className="text-muted-foreground">West Ashley | Avondale | James Island | Downtown Charleston | Johns Island</p>
             </div>
           </AnimatedSection>

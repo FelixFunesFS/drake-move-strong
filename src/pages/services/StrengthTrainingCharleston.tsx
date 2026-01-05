@@ -107,7 +107,7 @@ export default function StrengthTrainingCharleston() {
               <span className="inline-block px-4 py-2 bg-accent/20 border border-accent rounded-full mb-6">
                 <span className="text-accent font-bold uppercase tracking-wider text-sm">Charleston, SC</span>
               </span>
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
+              <h1 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
                 Mobility & Strength Training in Charleston, SC
               </h1>
               <p className="text-2xl md:text-3xl text-primary-foreground/90 mb-4 font-semibold">
@@ -148,7 +148,7 @@ export default function StrengthTrainingCharleston() {
             <AnimatedSection animation="fadeInUp">
               <div>
                 <span className="section-eyebrow text-primary">WHO THIS IS FOR</span>
-                <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-8 uppercase leading-tight">
+                <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-8 uppercase leading-tight">
                   If You Live or Work in <span className="text-primary">Charleston</span>...
                 </h2>
                 
@@ -165,7 +165,7 @@ export default function StrengthTrainingCharleston() {
                 </div>
 
                 <div className="bg-primary text-primary-foreground p-8 rounded-2xl">
-                  <h3 className="font-heading text-2xl font-bold mb-3 uppercase">This Program Was Built for You</h3>
+                  <h3 className="font-hero text-2xl font-bold mb-3 uppercase">This Program Was Built for You</h3>
                   <p className="text-primary-foreground/80 leading-relaxed">Most of our members come to us after years of pushing through workouts that stopped helping. Reset Week exists to change that — safely and intentionally.</p>
                 </div>
               </div>
@@ -196,7 +196,7 @@ export default function StrengthTrainingCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="section-eyebrow text-primary">THE PROBLEM</span>
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">Why Workouts Stop Working</h2>
+              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">Why Workouts Stop Working</h2>
               <p className="text-xl text-muted-foreground">Most gyms focus on intensity first. We focus on what actually matters.</p>
             </div>
           </AnimatedSection>
@@ -208,7 +208,7 @@ export default function StrengthTrainingCharleston() {
                   <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                     <item.icon className="text-primary h-8 w-8" />
                   </div>
-                  <h3 className="font-heading text-2xl font-bold mb-4 uppercase">{item.title}</h3>
+                  <h3 className="font-hero text-2xl font-bold mb-4 uppercase">{item.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{item.description}</p>
                 </div>
               ))}
@@ -217,7 +217,7 @@ export default function StrengthTrainingCharleston() {
 
           <AnimatedSection animation="fadeInUp" delay={0.2}>
             <div className="bg-primary text-primary-foreground p-12 rounded-3xl max-w-4xl mx-auto text-center">
-              <h3 className="font-heading text-3xl font-bold mb-4 uppercase">When These Foundations Are Missing...</h3>
+              <h3 className="font-hero text-3xl font-bold mb-4 uppercase">When These Foundations Are Missing...</h3>
               <p className="text-xl text-primary-foreground/80 mb-6">Progress slows and pain shows up — especially after 30 or 40.</p>
               <p className="text-2xl font-bold text-accent">Reset Week rebuilds those basics so strength training actually works again.</p>
             </div>
@@ -245,7 +245,7 @@ export default function StrengthTrainingCharleston() {
             <AnimatedSection animation="fadeInUp" delay={0.1}>
               <div>
                 <span className="section-eyebrow text-primary">THE OFFER</span>
-                <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase leading-tight">
+                <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase leading-tight">
                   What Is <span className="text-primary">Reset Week?</span>
                 </h2>
                 <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
@@ -289,7 +289,7 @@ export default function StrengthTrainingCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="text-accent font-bold uppercase tracking-wider text-sm mb-2 block">LOCAL ADVANTAGE</span>
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">Why Charleston Clients Choose Drake Fitness</h2>
+              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">Why Charleston Clients Choose Drake Fitness</h2>
             </div>
           </AnimatedSection>
 
@@ -298,7 +298,7 @@ export default function StrengthTrainingCharleston() {
               {charlestonAdvantages.map((item, index) => (
                 <div key={index} className="bg-primary-foreground/10 backdrop-blur-sm p-10 rounded-2xl border border-primary-foreground/20">
                   <item.icon className="text-accent h-10 w-10 mb-6" />
-                  <h3 className="font-heading text-2xl font-bold mb-4 uppercase">{item.title}</h3>
+                  <h3 className="font-hero text-2xl font-bold mb-4 uppercase">{item.title}</h3>
                   <p className="text-primary-foreground/80 leading-relaxed">{item.description}</p>
                 </div>
               ))}
@@ -307,7 +307,7 @@ export default function StrengthTrainingCharleston() {
 
           <AnimatedSection animation="fadeInUp" delay={0.2}>
             <div className="bg-background text-foreground p-12 rounded-3xl text-center max-w-4xl mx-auto">
-              <h3 className="font-heading text-3xl font-bold mb-6 uppercase">Our Approach Helps Charleston Members:</h3>
+              <h3 className="font-hero text-3xl font-bold mb-6 uppercase">Our Approach Helps Charleston Members:</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 <div className="flex flex-col items-center">
                   <Check className="text-primary h-8 w-8 mb-3" />
@@ -337,7 +337,7 @@ export default function StrengthTrainingCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="section-eyebrow text-primary">THE DRAKE DIFFERENCE</span>
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">What Makes Drake Fitness Different</h2>
+              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">What Makes Drake Fitness Different</h2>
               <p className="text-xl text-muted-foreground">This isn't about doing more — it's about doing what works.</p>
             </div>
           </AnimatedSection>
@@ -349,7 +349,7 @@ export default function StrengthTrainingCharleston() {
                   <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${index === 5 ? 'bg-foreground' : 'bg-primary'}`}>
                     <item.icon className={`h-7 w-7 ${index === 5 ? 'text-accent' : 'text-primary-foreground'}`} />
                   </div>
-                  <h3 className={`font-heading text-2xl font-bold mb-4 uppercase ${index === 5 ? 'text-accent-foreground' : ''}`}>{item.title}</h3>
+                  <h3 className={`font-hero text-2xl font-bold mb-4 uppercase ${index === 5 ? 'text-accent-foreground' : ''}`}>{item.title}</h3>
                   <p className={`leading-relaxed ${index === 5 ? 'text-accent-foreground font-medium' : 'text-muted-foreground'}`}>{item.description}</p>
                 </div>
               ))}
@@ -364,7 +364,7 @@ export default function StrengthTrainingCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="section-eyebrow text-primary">REAL RESULTS</span>
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">What Charleston Members Are Saying</h2>
+              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">What Charleston Members Are Saying</h2>
             </div>
           </AnimatedSection>
 
@@ -423,7 +423,7 @@ export default function StrengthTrainingCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center mb-12 max-w-4xl mx-auto">
               <span className="text-accent font-bold uppercase tracking-wider text-sm mb-2 block">READY TO GET STARTED?</span>
-              <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">Start Your Reset Week Today</h2>
+              <h2 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">Start Your Reset Week Today</h2>
               <p className="text-xl text-primary-foreground/80 mb-10">Spots are limited to keep coaching quality high. Join Charleston's premier mobility and strength studio.</p>
             </div>
           </AnimatedSection>
