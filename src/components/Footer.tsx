@@ -24,14 +24,14 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-hero font-bold text-lg mb-4 uppercase text-accent">Explore</h3>
+            <h3 className="font-hero font-bold text-lg mb-4 uppercase text-accent">Start Here</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/" className="text-gray-300 hover:text-drake-gold transition-colors">Home</Link></li>
+              <li><Link to="/reset-week" className="text-drake-gold hover:text-drake-gold/80 transition-colors font-semibold">→ Reset Week ($49)</Link></li>
               <li><Link to="/about" className="text-gray-300 hover:text-drake-gold transition-colors">About Us</Link></li>
               <li><Link to="/classes" className="text-gray-300 hover:text-drake-gold transition-colors">Classes</Link></li>
               <li><Link to="/schedule" className="text-gray-300 hover:text-drake-gold transition-colors">Schedule</Link></li>
-              <li><Link to="/success-stories" className="text-gray-300 hover:text-drake-gold transition-colors">Success Stories</Link></li>
-              <li><Link to="/faq" className="text-gray-300 hover:text-drake-gold transition-colors">FAQ</Link></li>
+              <li><Link to="/coaching" className="text-gray-300 hover:text-drake-gold transition-colors">1:1 Coaching</Link></li>
+              <li><Link to="/insights" className="text-gray-300 hover:text-drake-gold transition-colors">Move Better</Link></li>
             </ul>
           </div>
 

@@ -39,11 +39,8 @@ const Home = () => {
       
       <main>
       <Hero title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
-      text: "BOOK FREE MOBILITY CONSULTATION",
-      link: "/contact"
-    }} secondaryCTA={{
-      text: "SEE CLASS SCHEDULE",
-      link: "/schedule"
+      text: "START RESET WEEK",
+      link: "/reset-week"
     }} backgroundImages={[heroImage2, heroImage3]} autoRotate={true} />
 
       {/* Brand Values Marquee */}
@@ -165,7 +162,7 @@ const Home = () => {
                   No experience needed. No pressure. Just expert guidance.
                 </p>
                 <Button asChild size="lg" className="bg-primary hover:bg-primary/90 w-full md:w-auto text-balance">
-                  <Link to="/contact" className="text-center">Start Your 14-Day Intro Experience</Link>
+                  <Link to="/reset-week" className="text-center">Start Reset Week — $49</Link>
                 </Button>
               </div>
               <div className="relative h-full min-h-[400px] md:min-h-[600px]">
@@ -194,8 +191,8 @@ const Home = () => {
             
             {[{
             number: "1",
-            title: "Assess",
-            description: "Start with a free mobility consultation to understand your mobility, strength, and goals.",
+            title: "Start Reset Week",
+            description: "Try 7 days of unlimited classes for just $49 — no commitment, no pressure.",
             bgColor: "bg-drake-dark"
           }, {
             number: "2",
@@ -359,7 +356,7 @@ const Home = () => {
         </Marquee>
       </section>
 
-      <CTASection eyebrow="GET STARTED" title="You Deserve a Body That Feels Strong, Mobile & Capable." ctaText="Book Your Free Movement Assessment" ctaLink="/contact" variant="primary" slanted={true} />
+      <CTASection eyebrow="GET STARTED" title="Ready to Reset How You Move?" ctaText="Start Reset Week — $49" ctaLink="/reset-week" variant="primary" slanted={true} />
     </main>
     </>
   );

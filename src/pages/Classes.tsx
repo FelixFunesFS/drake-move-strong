@@ -234,7 +234,7 @@ const Classes = () => {
               </p>
               <div className="grid md:grid-cols-2 gap-4 mb-8">
                 <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                  <Link to="/contact">Book Free Consultation</Link>
+                  <Link to="/reset-week">Start Reset Week — $49</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">
                   <Link to="/schedule">View Full Schedule</Link>
@@ -278,9 +278,9 @@ const Classes = () => {
       <CTASection
         eyebrow="GET STARTED"
         title="Ready to Feel Stronger, Move Better, and Train Smarter?"
-        subtitle="Join us for a free mobility consultation and start your journey to better movement."
-        ctaText="Book Now"
-        ctaLink="/contact"
+        subtitle="Start with Reset Week — 7 days of unlimited classes for just $49."
+        ctaText="Start Reset Week — $49"
+        ctaLink="/reset-week"
         variant="primary"
         slanted={true}
       />

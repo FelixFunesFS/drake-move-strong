@@ -157,8 +157,7 @@ const Contact = () => {
                         <SelectValue placeholder="Select an option" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="assessment">Free Mobility Consultation</SelectItem>
-                        <SelectItem value="intro">14-Day Intro Experience</SelectItem>
+                        <SelectItem value="reset-week">Reset Week ($49)</SelectItem>
                         <SelectItem value="membership">Monthly Membership</SelectItem>
                         <SelectItem value="coaching">1:1 Coaching</SelectItem>
                         <SelectItem value="general">General Inquiry</SelectItem>

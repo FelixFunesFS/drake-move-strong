@@ -173,9 +173,9 @@ const FAQ = () => {
       <CTASection
         eyebrow="GET STARTED"
         title="Ready to Get Started?"
-        subtitle="Book your free mobility consultation and experience the Drake Fitness difference."
-        ctaText="Book Free Consultation"
-        ctaLink="/contact"
+        subtitle="Try Reset Week — 7 days of unlimited classes for just $49. No commitment."
+        ctaText="Start Reset Week — $49"
+        ctaLink="/reset-week"
         variant="primary"
         slanted={true}
       />

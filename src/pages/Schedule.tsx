@@ -155,11 +155,11 @@ const Schedule = () => {
         </section>
 
         <CTASection
-          eyebrow="NEED A PASS?"
-          title="Ready to Join a Class?"
-          subtitle="Purchase a class pack or membership to start booking."
-          ctaText="View Pricing"
-          ctaLink="/pricing"
+          eyebrow="NEW HERE?"
+          title="Try Reset Week — 7 Days Unlimited"
+          subtitle="The best way to experience Drake Fitness. Just $49, no commitment."
+          ctaText="Start Reset Week — $49"
+          ctaLink="/reset-week"
           variant="primary"
           slanted={true}
         />

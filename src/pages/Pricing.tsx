@@ -104,14 +104,13 @@ const Pricing = () => {
                   <span className="inline-block bg-drake-gold text-drake-dark text-sm font-bold uppercase tracking-wide px-4 py-1.5 rounded-full mb-4">
                     Start Here
                   </span>
-                  <h2 className="font-hero text-3xl md:text-4xl font-bold mb-3 uppercase">14-Day Intro Experience</h2>
-                  <p className="text-white/90 text-lg">Try unlimited classes for 14 days + get a free
-mobility consultation. A perfect low-risk way to begin your journey with us.</p>
+                  <h2 className="font-hero text-3xl md:text-4xl font-bold mb-3 uppercase">Reset Week</h2>
+                  <p className="text-white/90 text-lg">7 days of unlimited classes. The best way to experience Drake Fitness and see if it's right for you.</p>
                 </div>
                 <div className="space-y-4">
                   <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold w-full md:w-auto">
-                    <a href="https://drakefitness.punchpass.com/passes" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-primary bg-primary-foreground">
-                      Get Started
+                    <a href="https://app.punchpass.com/org/9942/buy?passes=1023628" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-primary bg-primary-foreground">
+                      Get Reset Week
                       <ExternalLink className="h-4 w-4" />
                     </a>
                   </Button>
@@ -120,7 +119,7 @@ mobility consultation. A perfect low-risk way to begin your journey with us.</p>
               </div>
               <div className="md:col-span-2 lg:col-span-2 text-center md:border-l md:border-white/20 md:pl-8">
                 <div className="text-6xl md:text-7xl font-bold text-white mb-2">$49</div>
-                <p className="text-sm uppercase tracking-wide font-semibold text-accent text-center">One-Time Payment</p>
+                <p className="text-sm uppercase tracking-wide font-semibold text-accent text-center">7 Days Unlimited</p>
               </div>
             </div>
           </div>
@@ -272,7 +271,7 @@ mobility consultation. A perfect low-risk way to begin your journey with us.</p>
         </div>
       </section>
 
-      <CTASection eyebrow="GET STARTED" title="Ready to Feel Stronger?" subtitle="Join us for a free mobility consultation and start your journey to better movement." ctaText="Book Now" ctaLink="/contact" variant="primary" slanted={true} />
+      <CTASection eyebrow="GET STARTED" title="Ready to Reset How You Move?" subtitle="Start with Reset Week — 7 days of unlimited classes for just $49." ctaText="Start Reset Week — $49" ctaLink="/reset-week" variant="primary" slanted={true} />
     </main>
     </>
   );

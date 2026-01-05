@@ -16,17 +16,11 @@ const Navigation = () => {
     name: "Classes",
     path: "/classes"
   }, {
-    name: "1:1 Coaching",
-    path: "/coaching"
-  }, {
-    name: "Move Better",
-    path: "/insights"
+    name: "Schedule",
+    path: "/schedule"
   }, {
     name: "Pricing",
     path: "/pricing"
-  }, {
-    name: "Schedule",
-    path: "/schedule"
   }, {
     name: "Contact",
     path: "/contact"
@@ -46,12 +40,8 @@ const Navigation = () => {
           </div>
 
           <div className="hidden lg:flex items-center space-x-4">
-            <a href="tel:+18438175420" className="flex items-center space-x-2 text-sm font-medium text-foreground hover:text-primary transition-colors">
-              <Phone size={18} />
-              <span>(843) 817-5420</span>
-            </a>
             <Button asChild size="lg" variant="gold">
-              <Link to="/contact" className="bg-primary text-primary-foreground px-[16px] py-0 text-sm whitespace-nowrap">Book Consultation</Link>
+              <Link to="/reset-week" className="bg-primary text-primary-foreground px-[16px] py-0 text-sm whitespace-nowrap">Start Reset Week</Link>
             </Button>
           </div>
 
@@ -66,13 +56,9 @@ const Navigation = () => {
             {navLinks.map(link => <Link key={link.path} to={link.path} onClick={() => setMobileMenuOpen(false)} className={`block px-4 py-3 rounded-md text-sm font-medium ${isActive(link.path) ? "bg-primary/10 text-primary" : "text-foreground hover:bg-muted"}`}>
                 {link.name}
               </Link>)}
-            <a href="tel:+18438175420" className="flex items-center space-x-3 px-4 py-3 rounded-md text-sm font-medium text-foreground hover:bg-muted mt-2">
-              <Phone size={20} className="text-primary" />
-              <span>(843) 817-5420</span>
-            </a>
             <Button asChild variant="gold" className="w-full mt-4">
-              <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
-                Book Consultation
+              <Link to="/reset-week" onClick={() => setMobileMenuOpen(false)}>
+                Start Reset Week
               </Link>
             </Button>
           </div>
