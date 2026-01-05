@@ -1,0 +1,298 @@
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+};
+
+interface ClassData {
+  class_name: string;
+  class_date: string;
+  start_time: string;
+  end_time: string | null;
+  duration_minutes: number;
+  location: string | null;
+  instructor: string | null;
+  spots_remaining: number | null;
+  spots_total: number | null;
+  is_online: boolean;
+  punchpass_url: string | null;
+  raw_time_string: string | null;
+}
+
+function parseTime(timeStr: string): { hours: number; minutes: number } {
+  const match = timeStr.match(/(\d{1,2}):(\d{2})\s*(am|pm)?/i);
+  if (!match) return { hours: 0, minutes: 0 };
+  
+  let hours = parseInt(match[1]);
+  const minutes = parseInt(match[2]);
+  const period = match[3]?.toLowerCase();
+  
+  if (period === 'pm' && hours !== 12) hours += 12;
+  if (period === 'am' && hours === 12) hours = 0;
+  
+  return { hours, minutes };
+}
+
+function formatTimeForDb(hours: number, minutes: number): string {
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:00`;
+}
+
+function parseScheduleFromMarkdown(markdown: string): ClassData[] {
+  const classes: ClassData[] = [];
+  const lines = markdown.split('\n');
+  
+  let currentDate: string | null = null;
+  let currentYear = new Date().getFullYear();
+  let i = 0;
+  
+  while (i < lines.length) {
+    const line = lines[i].trim();
+    
+    // Match date headers like "January 5", "January 6", etc.
+    const dateMatch = line.match(/^(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})$/i);
+    if (dateMatch) {
+      const monthName = dateMatch[1];
+      const day = parseInt(dateMatch[2]);
+      const monthMap: Record<string, number> = {
+        january: 0, february: 1, march: 2, april: 3, may: 4, june: 5,
+        july: 6, august: 7, september: 8, october: 9, november: 10, december: 11
+      };
+      const month = monthMap[monthName.toLowerCase()];
+      
+      // Handle year rollover
+      const today = new Date();
+      if (month < today.getMonth() - 6) {
+        currentYear = today.getFullYear() + 1;
+      }
+      
+      const dateObj = new Date(currentYear, month, day);
+      currentDate = dateObj.toISOString().split('T')[0];
+      i++;
+      continue;
+    }
+    
+    // Match time like "8:00 am" or "11:00 am"
+    const timeMatch = line.match(/^(\d{1,2}:\d{2}\s*(?:am|pm))/i);
+    if (timeMatch && currentDate) {
+      const rawTimeString = timeMatch[1];
+      const { hours, minutes } = parseTime(rawTimeString);
+      const startTime = formatTimeForDb(hours, minutes);
+      
+      // Look ahead for class details
+      let className = '';
+      let punchpassUrl: string | null = null;
+      let duration = 60;
+      let location: string | null = null;
+      let instructor: string | null = null;
+      let isOnline = false;
+      let spotsRemaining: number | null = null;
+      let spotsTotal: number | null = null;
+      
+      // Check next lines for class info
+      for (let j = i + 1; j < Math.min(i + 10, lines.length); j++) {
+        const nextLine = lines[j].trim();
+        
+        // Class name with URL
+        const classMatch = nextLine.match(/\[([^\]]+)\]\((https:\/\/drakefitness\.punchpass\.com\/classes\/\d+)\)/);
+        if (classMatch) {
+          className = classMatch[1];
+          punchpassUrl = classMatch[2];
+        }
+        
+        // ONLINE indicator
+        if (nextLine === 'ONLINE' || nextLine.toLowerCase().includes('zoom')) {
+          isOnline = true;
+        }
+        
+        // Duration
+        const durationMatch = nextLine.match(/(\d+)\s*(?:hour|hr|min)/i);
+        if (durationMatch) {
+          const value = parseInt(durationMatch[1]);
+          duration = nextLine.toLowerCase().includes('min') ? value : value * 60;
+        }
+        
+        // Location
+        if (nextLine.includes('Drake Fitness In Studio')) {
+          location = 'Drake Fitness Studio';
+        } else if (nextLine.includes('Zoom') || nextLine.includes('Online')) {
+          location = 'Online (Zoom)';
+          isOnline = true;
+        }
+        
+        // Instructor
+        if (['David', 'Nick', 'Coach Nick'].includes(nextLine)) {
+          instructor = nextLine;
+        }
+        
+        // Spots - look for patterns like "5/12 spots" or "5 spots"
+        const spotsMatch = nextLine.match(/(\d+)(?:\/(\d+))?\s*spots?/i);
+        if (spotsMatch) {
+          spotsRemaining = parseInt(spotsMatch[1]);
+          if (spotsMatch[2]) {
+            spotsTotal = parseInt(spotsMatch[2]);
+          }
+        }
+        
+        // Stop if we hit another time or date
+        if (nextLine.match(/^\d{1,2}:\d{2}\s*(?:am|pm)/i) && j > i + 1) {
+          break;
+        }
+        if (nextLine.match(/^(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2}$/i)) {
+          break;
+        }
+      }
+      
+      if (className && currentDate) {
+        // Calculate end time
+        const endHours = hours + Math.floor(duration / 60);
+        const endMinutes = minutes + (duration % 60);
+        const adjustedEndHours = endHours + Math.floor(endMinutes / 60);
+        const adjustedEndMinutes = endMinutes % 60;
+        const endTime = formatTimeForDb(adjustedEndHours, adjustedEndMinutes);
+        
+        classes.push({
+          class_name: className,
+          class_date: currentDate,
+          start_time: startTime,
+          end_time: endTime,
+          duration_minutes: duration,
+          location,
+          instructor,
+          spots_remaining: spotsRemaining,
+          spots_total: spotsTotal,
+          is_online: isOnline,
+          punchpass_url: punchpassUrl,
+          raw_time_string: rawTimeString,
+        });
+      }
+    }
+    
+    i++;
+  }
+  
+  return classes;
+}
+
+Deno.serve(async (req) => {
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { headers: corsHeaders });
+  }
+
+  try {
+    const firecrawlApiKey = Deno.env.get('FIRECRAWL_API_KEY');
+    if (!firecrawlApiKey) {
+      console.error('FIRECRAWL_API_KEY not configured');
+      return new Response(
+        JSON.stringify({ success: false, error: 'Firecrawl not configured' }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    console.log('Scraping PunchPass schedule...');
+
+    // Scrape the PunchPass schedule page
+    const scrapeResponse = await fetch('https://api.firecrawl.dev/v1/scrape', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${firecrawlApiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        url: 'https://drakefitness.punchpass.com/classes',
+        formats: ['markdown'],
+        onlyMainContent: true,
+        waitFor: 3000, // Wait for dynamic content
+      }),
+    });
+
+    const scrapeData = await scrapeResponse.json();
+
+    if (!scrapeResponse.ok || !scrapeData.success) {
+      console.error('Firecrawl scrape failed:', scrapeData);
+      return new Response(
+        JSON.stringify({ success: false, error: 'Failed to scrape schedule', details: scrapeData }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const markdown = scrapeData.data?.markdown || scrapeData.markdown || '';
+    console.log('Scraped markdown length:', markdown.length);
+
+    // Parse the schedule
+    const classes = parseScheduleFromMarkdown(markdown);
+    console.log(`Parsed ${classes.length} classes from schedule`);
+
+    if (classes.length === 0) {
+      console.warn('No classes parsed from schedule. Markdown preview:', markdown.substring(0, 500));
+      return new Response(
+        JSON.stringify({ 
+          success: true, 
+          message: 'No classes found in schedule',
+          classes_synced: 0,
+          markdown_preview: markdown.substring(0, 500)
+        }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Clear old entries (classes that have passed)
+    const today = new Date().toISOString().split('T')[0];
+    const { error: deleteError } = await supabase
+      .from('punchpass_schedule')
+      .delete()
+      .lt('class_date', today);
+
+    if (deleteError) {
+      console.warn('Error deleting old classes:', deleteError);
+    }
+
+    // Upsert new classes
+    const { data: upsertData, error: upsertError } = await supabase
+      .from('punchpass_schedule')
+      .upsert(
+        classes.map(c => ({
+          ...c,
+          last_synced_at: new Date().toISOString(),
+        })),
+        { 
+          onConflict: 'class_date,start_time,class_name,is_online',
+          ignoreDuplicates: false 
+        }
+      )
+      .select();
+
+    if (upsertError) {
+      console.error('Error upserting classes:', upsertError);
+      return new Response(
+        JSON.stringify({ success: false, error: 'Failed to save schedule', details: upsertError }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    console.log(`Successfully synced ${upsertData?.length || classes.length} classes`);
+
+    return new Response(
+      JSON.stringify({
+        success: true,
+        message: 'Schedule synced successfully',
+        classes_synced: upsertData?.length || classes.length,
+        classes_parsed: classes.length,
+        last_synced: new Date().toISOString(),
+      }),
+      { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    );
+
+  } catch (error) {
+    console.error('Error syncing schedule:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    return new Response(
+      JSON.stringify({ success: false, error: errorMessage }),
+      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    );
+  }
+});
