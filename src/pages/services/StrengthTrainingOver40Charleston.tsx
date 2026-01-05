@@ -261,9 +261,10 @@ export default function StrengthTrainingOver40Charleston() {
               <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-accent-foreground">
                 Start Strength Training That Actually Fits Your Body
               </h2>
+              <p className="text-lg text-accent-foreground/80 mb-6">Try Reset Week — 7 days of unlimited classes for just $49.</p>
               <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <Link to="/consultation">
-                  Schedule Your Free Consultation
+                <Link to="/reset-week">
+                  Start Reset Week — $49
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>

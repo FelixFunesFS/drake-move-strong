@@ -165,6 +165,9 @@ const ChatBot = () => {
 
   const handleQuickAction = (action: string) => {
     switch (action) {
+      case 'reset-week':
+        sendMessage("What is Reset Week and how do I get started?");
+        break;
       case 'schedule':
         sendMessage("What classes do you offer and how can I book one?");
         break;
@@ -290,6 +293,14 @@ const ChatBot = () => {
                   <p className="text-xs text-muted-foreground px-1">Quick questions:</p>
                   <div className="flex flex-wrap gap-2">
                     <Button
+                      variant="default"
+                      size="sm"
+                      onClick={() => handleQuickAction('reset-week')}
+                      className="text-xs h-8 bg-drake-gold text-drake-dark hover:bg-drake-gold/90"
+                    >
+                      🎁 Reset Week
+                    </Button>
+                    <Button
                       variant="outline"
                       size="sm"
                       onClick={() => handleQuickAction('schedule')}
@@ -306,15 +317,6 @@ const ChatBot = () => {
                     >
                       <DollarSign className="w-3 h-3 mr-1.5" />
                       Pricing
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleQuickAction('contact')}
-                      className="text-xs h-8"
-                    >
-                      <Phone className="w-3 h-3 mr-1.5" />
-                      Contact Us
                     </Button>
                   </div>
                 </div>
