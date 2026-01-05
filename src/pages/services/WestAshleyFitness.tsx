@@ -83,7 +83,7 @@ export default function WestAshleyFitness() {
                 <MapPin className="text-accent h-6 w-6" />
                 <span className="text-accent font-bold uppercase tracking-wider text-sm">Avondale, West Ashley, Charleston</span>
               </div>
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
+              <h1 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
                 Strength & Mobility Training <br />
                 <span className="text-accent">In West Ashley</span>
               </h1>
@@ -115,7 +115,7 @@ export default function WestAshleyFitness() {
             <AnimatedSection animation="fadeInUp">
               <div>
                 <span className="section-eyebrow text-primary">YOUR NEIGHBORHOOD GYM</span>
-                <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase leading-tight">
+                <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase leading-tight">
                   Located in <span className="text-primary">Avondale</span>, Serving West Ashley
                 </h2>
                 <ul className="space-y-5 mb-8">
@@ -155,7 +155,7 @@ export default function WestAshleyFitness() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="text-accent font-bold uppercase tracking-wider text-sm mb-2 block">WHY RESET WEEK?</span>
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">Our West Ashley Members Choose Reset Week Because It:</h2>
+              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">Our West Ashley Members Choose Reset Week Because It:</h2>
               <p className="text-xl text-primary-foreground/80">Removes guesswork, pressure, and fear while rebuilding strength the right way.</p>
             </div>
           </AnimatedSection>
@@ -167,7 +167,7 @@ export default function WestAshleyFitness() {
                   <div className="w-16 h-16 bg-accent rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     <item.icon className="h-8 w-8 text-accent-foreground" />
                   </div>
-                  <h3 className="font-heading text-2xl font-bold mb-4 uppercase">{item.title}</h3>
+                  <h3 className="font-hero text-2xl font-bold mb-4 uppercase">{item.title}</h3>
                   <p className="text-primary-foreground/80 leading-relaxed">{item.description}</p>
                 </div>
               ))}
@@ -183,7 +183,7 @@ export default function WestAshleyFitness() {
             <AnimatedSection animation="fadeInUp">
               <div>
                 <span className="section-eyebrow text-primary">CONVENIENT LOCATION</span>
-                <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">Right in the Heart of Avondale</h2>
+                <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">Right in the Heart of Avondale</h2>
                 <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
                   Drake Fitness is located in Avondale, the vibrant neighborhood in West Ashley. We're easily accessible from anywhere in Charleston — whether you're coming from work, home, or errands.
                 </p>
@@ -250,7 +250,7 @@ export default function WestAshleyFitness() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center mb-16">
               <span className="section-eyebrow text-primary">WEST ASHLEY MEMBERS</span>
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold uppercase">What Your Neighbors Are Saying</h2>
+              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold uppercase">What Your Neighbors Are Saying</h2>
             </div>
           </AnimatedSection>
 
@@ -295,7 +295,7 @@ export default function WestAshleyFitness() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
             <div className="text-center max-w-4xl mx-auto">
-              <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">Ready to Move Better?</h2>
+              <h2 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">Ready to Move Better?</h2>
               <p className="text-2xl text-primary-foreground/90 mb-4">Reset Week starts you off right — with coaching, community, and confidence.</p>
               <p className="text-xl text-primary-foreground/70 mb-10">Avondale's choice for pain-free strength training.</p>
               
@@ -331,7 +331,7 @@ export default function WestAshleyFitness() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center mb-16">
               <span className="section-eyebrow text-primary">QUESTIONS?</span>
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold uppercase">West Ashley FAQs</h2>
+              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold uppercase">West Ashley FAQs</h2>
             </div>
           </AnimatedSection>
 

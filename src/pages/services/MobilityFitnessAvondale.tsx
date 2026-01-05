@@ -149,7 +149,7 @@ export default function MobilityFitnessAvondale() {
               <span className="inline-block px-4 py-2 bg-accent/20 border border-accent rounded-full mb-6">
                 <span className="text-accent font-bold uppercase tracking-wider text-sm">Serving Avondale, Charleston</span>
               </span>
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
+              <h1 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
                 Safe, Coach-Led Training for Adults Restarting Fitness in Avondale
               </h1>
               <p className="text-2xl md:text-3xl text-primary-foreground/90 mb-4 font-semibold">
@@ -198,7 +198,7 @@ export default function MobilityFitnessAvondale() {
             <AnimatedSection animation="fadeInUp">
               <div>
                 <span className="section-eyebrow text-primary">THE FOUNDATION</span>
-                <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-8 uppercase leading-tight">
+                <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-8 uppercase leading-tight">
                   Why Mobility Matters <span className="text-primary">As We Age</span>
                 </h2>
                 
@@ -217,7 +217,7 @@ export default function MobilityFitnessAvondale() {
                 </div>
 
                 <div className="bg-accent/10 border-l-4 border-accent p-8 rounded-r-2xl">
-                  <h3 className="font-heading text-2xl font-bold mb-3 uppercase">The Solution</h3>
+                  <h3 className="font-hero text-2xl font-bold mb-3 uppercase">The Solution</h3>
                   <p className="text-foreground leading-relaxed font-medium">At Drake Fitness, we prioritize mobility first — so strength training actually works and lasts.</p>
                 </div>
               </div>
@@ -248,7 +248,7 @@ export default function MobilityFitnessAvondale() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="section-eyebrow text-primary">OUR COMMUNITY</span>
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">Who Drake Fitness Helps in Avondale</h2>
+              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">Who Drake Fitness Helps in Avondale</h2>
               <p className="text-xl text-muted-foreground">We specialize in helping local adults restart their fitness journey the right way.</p>
             </div>
           </AnimatedSection>
@@ -260,7 +260,7 @@ export default function MobilityFitnessAvondale() {
                   <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 ${index === 5 ? 'bg-foreground' : 'bg-primary'}`}>
                     <person.icon className={`h-7 w-7 ${index === 5 ? 'text-accent' : 'text-primary-foreground'}`} />
                   </div>
-                  <h3 className={`font-heading text-2xl font-bold mb-4 uppercase text-center ${index === 5 ? 'text-accent-foreground' : ''}`}>{person.title}</h3>
+                  <h3 className={`font-hero text-2xl font-bold mb-4 uppercase text-center ${index === 5 ? 'text-accent-foreground' : ''}`}>{person.title}</h3>
                   <p className={`leading-relaxed text-center ${index === 5 ? 'text-accent-foreground font-medium' : 'text-muted-foreground'}`}>{person.description}</p>
                 </div>
               ))}
@@ -294,7 +294,7 @@ export default function MobilityFitnessAvondale() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="section-eyebrow text-primary">YOUR FIRST SESSION</span>
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">What Your First Class Feels Like</h2>
+              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">What Your First Class Feels Like</h2>
               <p className="text-xl text-muted-foreground">No intimidation. No confusion. Just clear, supportive coaching.</p>
             </div>
           </AnimatedSection>
@@ -308,7 +308,7 @@ export default function MobilityFitnessAvondale() {
                       <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-heading text-2xl font-bold">{item.step}</div>
                     </div>
                     <div>
-                      <h3 className="font-heading text-2xl font-bold mb-3 uppercase">{item.title}</h3>
+                      <h3 className="font-hero text-2xl font-bold mb-3 uppercase">{item.title}</h3>
                       <p className="text-muted-foreground leading-relaxed">{item.description}</p>
                     </div>
                   </div>
@@ -342,7 +342,7 @@ export default function MobilityFitnessAvondale() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="section-eyebrow text-primary">MEMBER STORIES</span>
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">What Your Avondale Neighbors Say</h2>
+              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">What Your Avondale Neighbors Say</h2>
               <p className="text-xl text-muted-foreground">Real results from real people in your community.</p>
             </div>
           </AnimatedSection>
@@ -394,7 +394,7 @@ export default function MobilityFitnessAvondale() {
             <AnimatedSection animation="fadeInUp">
               <div>
                 <span className="text-accent font-bold uppercase tracking-wider text-sm mb-2 block">SPECIAL OFFER FOR AVONDALE</span>
-                <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">
+                <h2 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">
                   Start With Reset Week
                 </h2>
                 <p className="text-2xl mb-8 leading-relaxed text-primary-foreground/90">
@@ -402,7 +402,7 @@ export default function MobilityFitnessAvondale() {
                 </p>
 
                 <div className="bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded-2xl p-8 mb-10">
-                  <h3 className="font-heading text-3xl font-bold mb-6 uppercase">What's Included:</h3>
+                  <h3 className="font-hero text-3xl font-bold mb-6 uppercase">What's Included:</h3>
                   <div className="space-y-4">
                     {resetWeekIncludes.map((item, index) => (
                       <div key={index} className="flex items-start gap-4">
@@ -460,7 +460,7 @@ export default function MobilityFitnessAvondale() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="section-eyebrow text-primary">VISIT US</span>
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">Find Us in Avondale</h2>
+              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">Find Us in Avondale</h2>
               <p className="text-xl text-muted-foreground">Conveniently located in the heart of Avondale, West Ashley, Charleston</p>
             </div>
           </AnimatedSection>
@@ -468,7 +468,7 @@ export default function MobilityFitnessAvondale() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
             <AnimatedSection animation="fadeInUp" delay={0.1}>
               <div className="bg-background p-10 rounded-2xl shadow-lg h-full">
-                <h3 className="font-heading text-2xl font-bold mb-8 uppercase">Location Details</h3>
+                <h3 className="font-hero text-2xl font-bold mb-8 uppercase">Location Details</h3>
                 <div className="space-y-6">
                   {locationDetails.map((detail, index) => (
                     <div key={index} className="flex items-start gap-4">
@@ -503,7 +503,7 @@ export default function MobilityFitnessAvondale() {
 
           <AnimatedSection animation="fadeInUp" delay={0.3}>
             <div className="bg-background p-10 rounded-2xl shadow-lg max-w-4xl mx-auto">
-              <h3 className="font-heading text-2xl font-bold mb-8 uppercase text-center">Easy Access From</h3>
+              <h3 className="font-hero text-2xl font-bold mb-8 uppercase text-center">Easy Access From</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {nearbyAreas.map((area, index) => (
                   <div key={index} className="text-center p-4 bg-secondary rounded-xl">
@@ -523,7 +523,7 @@ export default function MobilityFitnessAvondale() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
             <div className="text-center max-w-4xl mx-auto">
-              <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">
+              <h2 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">
                 Train With Your Avondale Neighbors
               </h2>
               <p className="text-2xl mb-12 leading-relaxed text-primary-foreground/90">
