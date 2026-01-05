@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import CTASection from "@/components/CTASection";
+import PunchPassWidget from "@/components/PunchPassWidget";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle2, Users, Trophy, Target, TrendingUp, Heart } from "lucide-react";
@@ -259,6 +260,16 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Classes Starting Soon - Today Widget */}
+      <PunchPassWidget 
+        type="today" 
+        eyebrow="CLASSES STARTING SOON"
+        headingText="Join Us This Week"
+        ctaText="View Full Schedule"
+        ctaLink="/schedule"
+        variant="default"
+      />
 
       <section className="py-16 md:py-24 bg-muted section-slant-top-reverse">
         <div className="container mx-auto px-4">

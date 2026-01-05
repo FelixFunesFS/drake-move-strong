@@ -1,11 +1,11 @@
 import Hero from "@/components/Hero";
 import CTASection from "@/components/CTASection";
+import PunchPassWidget from "@/components/PunchPassWidget";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Info, ExternalLink } from "lucide-react";
+import { Info } from "lucide-react";
 import scheduleCommunityImage from "@/assets/schedule-community-group.jpg";
 import { SEO } from "@/components/SEO";
-import { Button } from "@/components/ui/button";
 
 const Schedule = () => {
   return (
@@ -36,40 +36,22 @@ const Schedule = () => {
           </div>
         </section>
 
-        <section className="py-16 md:py-24 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-8">
-              <h2 className="font-hero text-2xl md:text-3xl font-bold uppercase mb-4">
-                Book Your <span className="text-primary">Class</span>
-              </h2>
-              <p className="text-muted-foreground mb-6">
-                Select a class below to reserve your spot
-              </p>
-              <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                <a 
-                  href="https://drakefitness.punchpass.com/classes" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2"
-                >
-                  Open Full Schedule
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              </Button>
-            </div>
-            <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
-              <iframe 
-                src="https://drakefitness.punchpass.com/classes"
-                title="Drake Fitness Class Schedule"
-                className="w-full h-[600px] md:h-[800px] border-0"
-                loading="lazy"
-              />
-            </div>
-            <p className="text-center text-sm text-muted-foreground mt-4">
-              Powered by PunchPass
-            </p>
-          </div>
-        </section>
+        {/* Today's Classes - Quick Access */}
+        <PunchPassWidget 
+          type="today" 
+          eyebrow="HAPPENING NOW"
+          headingText="Today & Tomorrow"
+          showCTA={false}
+          variant="accent"
+        />
+
+        {/* Full Week Schedule */}
+        <PunchPassWidget 
+          type="full" 
+          eyebrow="BOOK YOUR CLASS"
+          headingText="Full Week Schedule"
+          showCTA={false}
+        />
 
         <section className="py-16 md:py-24 bg-muted section-slant-top">
           <div className="container mx-auto px-4">
