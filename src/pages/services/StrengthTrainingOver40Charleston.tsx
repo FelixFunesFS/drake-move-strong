@@ -4,6 +4,7 @@ import { StructuredData, localBusinessSchema } from "@/components/StructuredData
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
+import PunchPassWidget from "@/components/PunchPassWidget";
 import { Check, MapPin, ArrowRight, Shield, TrendingUp, Heart } from "lucide-react";
 
 import heroKettlebellTraining from "@/assets/hero-kettlebell-training.jpg";
@@ -252,6 +253,16 @@ export default function StrengthTrainingOver40Charleston() {
           </AnimatedSection>
         </div>
       </section>
+
+      {/* Today's Classes Widget */}
+      <PunchPassWidget 
+        type="today" 
+        eyebrow="TRY A CLASS THIS WEEK"
+        headingText="Functional Strength & KB Strong"
+        ctaText="View Full Schedule"
+        ctaLink="/schedule"
+        variant="default"
+      />
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-accent section-slant-top">
