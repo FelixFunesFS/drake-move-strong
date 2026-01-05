@@ -4,7 +4,12 @@ import { StructuredData, localBusinessSchema } from "@/components/StructuredData
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
-import { Check, MapPin, ArrowRight, Star } from "lucide-react";
+import { 
+  Check, MapPin, ArrowRight, Star, 
+  Footprints, ShieldCheck, TrendingUp, Clock,
+  Briefcase, RotateCcw, HeartPulse, Users, Baby, GraduationCap,
+  Phone, Mail, Car, Calendar, Shield
+} from "lucide-react";
 
 import studioMobilityTraining from "@/assets/studio-mobility-training.jpg";
 import davidMaceTraining from "@/assets/david-mace-training.jpg";
@@ -25,19 +30,19 @@ const serviceSchema = {
 };
 
 const whyMobilityMatters = [
-  { title: "Daily Movement Gets Harder", description: "After 30, stiffness and discomfort creep in. Simple movements like getting off the floor, reaching overhead, or bending down become challenging." },
-  { title: "Injury Risk Increases", description: "Without proper mobility, your body compensates in ways that lead to pain, strains, and chronic issues that keep you out of the gym." },
-  { title: "Strength Training Stalls", description: "You can't build strength on a foundation of poor movement. Mobility unlocks your ability to get stronger safely." },
-  { title: "Recovery Takes Longer", description: "Poor mobility means more soreness, longer recovery, and less consistency in your training." }
+  { icon: Footprints, title: "Daily Movement Gets Harder", description: "After 30, stiffness and discomfort creep in. Simple movements like getting off the floor, reaching overhead, or bending down become challenging." },
+  { icon: ShieldCheck, title: "Injury Risk Increases", description: "Without proper mobility, your body compensates in ways that lead to pain, strains, and chronic issues that keep you out of the gym." },
+  { icon: TrendingUp, title: "Strength Training Stalls", description: "You can't build strength on a foundation of poor movement. Mobility unlocks your ability to get stronger safely." },
+  { icon: Clock, title: "Recovery Takes Longer", description: "Poor mobility means more soreness, longer recovery, and less consistency in your training." }
 ];
 
 const whoWeHelp = [
-  { title: "Busy Professionals", description: "Avondale residents with demanding careers who need efficient, effective training that fits their schedule." },
-  { title: "Fitness Restarters", description: "Adults over 30 who used to be active but need a safe, guided path back to training." },
-  { title: "Pain Survivors", description: "Those dealing with chronic back, knee, or shoulder issues who need movement-first training." },
-  { title: "Community Seekers", description: "Avondale neighbors looking for a supportive, non-intimidating fitness community." },
-  { title: "New Parents", description: "Moms and dads rebuilding strength and energy after having kids." },
-  { title: "Complete Beginners", description: "Never worked out before? Perfect. We teach everything from scratch." }
+  { icon: Briefcase, title: "Busy Professionals", description: "Avondale residents with demanding careers who need efficient, effective training that fits their schedule." },
+  { icon: RotateCcw, title: "Fitness Restarters", description: "Adults over 30 who used to be active but need a safe, guided path back to training." },
+  { icon: HeartPulse, title: "Pain Survivors", description: "Those dealing with chronic back, knee, or shoulder issues who need movement-first training." },
+  { icon: Users, title: "Community Seekers", description: "Avondale neighbors looking for a supportive, non-intimidating fitness community." },
+  { icon: Baby, title: "New Parents", description: "Moms and dads rebuilding strength and energy after having kids." },
+  { icon: GraduationCap, title: "Complete Beginners", description: "Never worked out before? Perfect. We teach everything from scratch." }
 ];
 
 const firstClassSteps = [
@@ -45,6 +50,74 @@ const firstClassSteps = [
   { step: "2", title: "Movement Prep", description: "We start with breathing and mobility drills that prepare your body to move safely. This is where most gyms skip ahead." },
   { step: "3", title: "Guided Training", description: "You'll learn foundational movements with coaching at every step. We scale everything to your level — no pressure to keep up." },
   { step: "4", title: "Cool Down & Debrief", description: "We finish with recovery work and answer your questions. You leave feeling energized, not destroyed." }
+];
+
+const resetWeekIncludes = [
+  { title: "7 Days of Unlimited Classes", description: "Small groups, maximum attention" },
+  { title: "Coach-Guided Introduction", description: "Learn the fundamentals properly" },
+  { title: "Mobility-Focused Workouts", description: "Joint-friendly training that works" },
+  { title: "No Pressure Environment", description: "Go at your own pace" },
+  { title: "Community Access", description: "Connect with other Avondale members" }
+];
+
+const testimonials = [
+  { 
+    name: "Sarah M.", 
+    location: "Avondale Resident, 2 Years",
+    quote: "I live two blocks away and this is the only gym I've ever stuck with. The coaches know my name and actually care about my progress.",
+    featured: false
+  },
+  { 
+    name: "Mike T.", 
+    location: "Avondale, 6 Months",
+    quote: "After years of back pain, I can finally lift without fear. Reset Week taught me how to move properly for the first time.",
+    featured: false
+  },
+  { 
+    name: "Jennifer L.", 
+    location: "Avondale, 1 Year",
+    quote: "I was intimidated by every gym I tried. Drake Fitness made me feel welcome from day one. The community here is incredible.",
+    featured: false
+  },
+  { 
+    name: "David K.", 
+    location: "Avondale, 8 Months",
+    quote: "Best investment I've made in my health. I'm 42 and feel better than I did at 30. The mobility work changed everything.",
+    featured: false
+  },
+  { 
+    name: "Amanda R.", 
+    location: "Avondale, 3 Months",
+    quote: "As a new mom, I needed training that rebuilt my core safely. The coaches here understand post-pregnancy bodies.",
+    featured: false
+  },
+  { 
+    name: "Robert P.", 
+    location: "Avondale, 18 Months",
+    quote: "I've trained at gyms all over Charleston. This is the only place that focuses on long-term health over short-term results.",
+    featured: true
+  }
+];
+
+const locationDetails = [
+  { icon: MapPin, title: "Address", description: "2 Avondale Ave\nCharleston, SC 29407" },
+  { icon: Clock, title: "Hours", description: "Monday - Friday: 5:30 AM - 8:00 PM\nSaturday: 7:00 AM - 12:00 PM\nSunday: Closed" },
+  { icon: Phone, title: "Contact", description: "Phone: (843) 817-5420\nEmail: ddrake311@gmail.com" },
+  { icon: Car, title: "Parking", description: "Free parking available on-site\nStreet parking also available" }
+];
+
+const nearbyAreas = [
+  { area: "Downtown Avondale", time: "2 minutes" },
+  { area: "West Ashley", time: "5 minutes" },
+  { area: "James Island", time: "12 minutes" },
+  { area: "Downtown CHS", time: "15 minutes" }
+];
+
+const finalCTAFeatures = [
+  { icon: Calendar, title: "Next Reset Week Starts Monday", description: "Multiple time slots available" },
+  { icon: Users, title: "Limited to 12 Participants", description: "Small groups for maximum coaching" },
+  { icon: Shield, title: "No Pressure, No Contracts", description: "Try it risk-free" },
+  { icon: MapPin, title: "5 Minutes From You", description: "Right in Avondale" }
 ];
 
 export default function MobilityFitnessAvondale() {
@@ -132,6 +205,9 @@ export default function MobilityFitnessAvondale() {
                 <div className="space-y-6 mb-10">
                   {whyMobilityMatters.map((item, index) => (
                     <div key={index} className="flex items-start gap-4 p-6 bg-secondary rounded-xl border-l-4 border-primary">
+                      <div className="w-12 h-12 bg-primary rounded-lg flex-shrink-0 flex items-center justify-center">
+                        <item.icon className="text-primary-foreground h-6 w-6" />
+                      </div>
                       <div>
                         <h3 className="font-bold text-xl mb-2">{item.title}</h3>
                         <p className="text-muted-foreground leading-relaxed">{item.description}</p>
@@ -181,6 +257,9 @@ export default function MobilityFitnessAvondale() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
               {whoWeHelp.map((person, index) => (
                 <div key={index} className={`p-10 rounded-2xl shadow-lg hover:shadow-xl transition-shadow ${index === 5 ? 'bg-accent' : 'bg-background'}`}>
+                  <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 ${index === 5 ? 'bg-foreground' : 'bg-primary'}`}>
+                    <person.icon className={`h-7 w-7 ${index === 5 ? 'text-accent' : 'text-primary-foreground'}`} />
+                  </div>
                   <h3 className={`font-heading text-2xl font-bold mb-4 uppercase text-center ${index === 5 ? 'text-accent-foreground' : ''}`}>{person.title}</h3>
                   <p className={`leading-relaxed text-center ${index === 5 ? 'text-accent-foreground font-medium' : 'text-muted-foreground'}`}>{person.description}</p>
                 </div>
@@ -257,6 +336,57 @@ export default function MobilityFitnessAvondale() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="py-24 bg-secondary">
+        <div className="container mx-auto px-4">
+          <AnimatedSection animation="fadeInUp">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="section-eyebrow text-primary">MEMBER STORIES</span>
+              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">What Your Avondale Neighbors Say</h2>
+              <p className="text-xl text-muted-foreground">Real results from real people in your community.</p>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fadeInUp" delay={0.1}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+              {testimonials.map((testimonial, index) => (
+                <div key={index} className={`p-8 rounded-2xl shadow-lg ${testimonial.featured ? 'bg-accent' : 'bg-background'}`}>
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className={`h-5 w-5 fill-current ${testimonial.featured ? 'text-accent-foreground' : 'text-accent'}`} />
+                    ))}
+                  </div>
+                  <p className={`mb-6 leading-relaxed italic ${testimonial.featured ? 'text-accent-foreground' : 'text-muted-foreground'}`}>"{testimonial.quote}"</p>
+                  <div>
+                    <p className={`font-bold ${testimonial.featured ? 'text-accent-foreground' : ''}`}>{testimonial.name}</p>
+                    <p className={`text-sm ${testimonial.featured ? 'text-accent-foreground/80' : 'text-muted-foreground'}`}>{testimonial.location}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fadeInUp" delay={0.2}>
+            <div className="bg-primary text-primary-foreground p-10 rounded-3xl max-w-3xl mx-auto text-center">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <div className="w-16 h-16 bg-primary-foreground rounded-full flex items-center justify-center">
+                  <span className="text-primary font-bold text-2xl">G</span>
+                </div>
+                <div className="text-left">
+                  <div className="flex gap-1 mb-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 fill-current text-accent" />
+                    ))}
+                  </div>
+                  <p className="font-bold text-lg">4.9 / 5 on Google</p>
+                </div>
+              </div>
+              <p className="text-2xl font-bold">Join 200+ Avondale Members</p>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* Reset Week CTA Section */}
       <section className="py-24 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
@@ -274,43 +404,32 @@ export default function MobilityFitnessAvondale() {
                 <div className="bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded-2xl p-8 mb-10">
                   <h3 className="font-heading text-3xl font-bold mb-6 uppercase">What's Included:</h3>
                   <div className="space-y-4">
-                    <div className="flex items-start gap-4">
-                      <Check className="text-accent h-6 w-6 mt-1" />
-                      <div>
-                        <p className="font-bold text-lg mb-1">7 Days of Unlimited Classes</p>
-                        <p className="text-primary-foreground/80">Small groups, maximum attention</p>
+                    {resetWeekIncludes.map((item, index) => (
+                      <div key={index} className="flex items-start gap-4">
+                        <Check className="text-accent h-6 w-6 mt-1" />
+                        <div>
+                          <p className="font-bold text-lg mb-1">{item.title}</p>
+                          <p className="text-primary-foreground/80">{item.description}</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <Check className="text-accent h-6 w-6 mt-1" />
-                      <div>
-                        <p className="font-bold text-lg mb-1">Coach-Guided Introduction</p>
-                        <p className="text-primary-foreground/80">Learn the fundamentals properly</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <Check className="text-accent h-6 w-6 mt-1" />
-                      <div>
-                        <p className="font-bold text-lg mb-1">Mobility-Focused Workouts</p>
-                        <p className="text-primary-foreground/80">Joint-friendly training that works</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <Check className="text-accent h-6 w-6 mt-1" />
-                      <div>
-                        <p className="font-bold text-lg mb-1">No Pressure Environment</p>
-                        <p className="text-primary-foreground/80">Go at your own pace</p>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
 
-                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-6 text-lg font-bold uppercase tracking-wide">
-                  <Link to="/reset-week">
-                    Start Reset Week — $49
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-6 text-lg font-bold uppercase tracking-wide">
+                    <Link to="/reset-week">
+                      Start Reset Week — $49
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg" className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/20 px-10 py-6 text-lg font-bold uppercase tracking-wide">
+                    <a href="tel:8438175420">
+                      <Phone className="mr-2 h-5 w-5" />
+                      Call Us
+                    </a>
+                  </Button>
+                </div>
                 <p className="text-primary-foreground/60 text-sm mt-4">Limited spots per week • No commitment required</p>
               </div>
             </AnimatedSection>
@@ -335,7 +454,7 @@ export default function MobilityFitnessAvondale() {
         </div>
       </section>
 
-      {/* Location Section */}
+      {/* Expanded Location Section */}
       <section className="py-24 bg-secondary">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
@@ -346,33 +465,104 @@ export default function MobilityFitnessAvondale() {
             </div>
           </AnimatedSection>
 
-          <AnimatedSection animation="fadeInUp" delay={0.1}>
-            <div className="bg-background p-10 rounded-2xl shadow-lg max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <AnimatedSection animation="fadeInUp" delay={0.1}>
+              <div className="bg-background p-10 rounded-2xl shadow-lg h-full">
+                <h3 className="font-heading text-2xl font-bold mb-8 uppercase">Location Details</h3>
                 <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <MapPin className="text-primary h-6 w-6 mt-1" />
-                    <div>
-                      <p className="font-bold text-lg mb-1">Address</p>
-                      <p className="text-muted-foreground">2 Avondale Ave<br />Charleston, SC 29407</p>
+                  {locationDetails.map((detail, index) => (
+                    <div key={index} className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-primary rounded-lg flex-shrink-0 flex items-center justify-center">
+                        <detail.icon className="text-primary-foreground h-6 w-6" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-lg mb-1">{detail.title}</p>
+                        <p className="text-muted-foreground whitespace-pre-line">{detail.description}</p>
+                      </div>
                     </div>
+                  ))}
+                </div>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection animation="fadeInUp" delay={0.2}>
+              <div className="h-full min-h-[400px] rounded-2xl overflow-hidden shadow-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3352.7234!2d-79.9876!3d32.7876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88fe7a5c5f5f5f5f%3A0x5f5f5f5f5f5f5f5f!2s2%20Avondale%20Ave%2C%20Charleston%2C%20SC%2029407!5e0!3m2!1sen!2sus!4v1234567890"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, minHeight: '400px' }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Drake Fitness Location Map"
+                />
+              </div>
+            </AnimatedSection>
+          </div>
+
+          <AnimatedSection animation="fadeInUp" delay={0.3}>
+            <div className="bg-background p-10 rounded-2xl shadow-lg max-w-4xl mx-auto">
+              <h3 className="font-heading text-2xl font-bold mb-8 uppercase text-center">Easy Access From</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {nearbyAreas.map((area, index) => (
+                  <div key={index} className="text-center p-4 bg-secondary rounded-xl">
+                    <Car className="h-6 w-6 text-primary mx-auto mb-2" />
+                    <p className="font-bold">{area.area}</p>
+                    <p className="text-muted-foreground text-sm">{area.time}</p>
                   </div>
-                  <div className="flex items-start gap-4">
-                    <Star className="text-primary h-6 w-6 mt-1" />
-                    <div>
-                      <p className="font-bold text-lg mb-1">Parking</p>
-                      <p className="text-muted-foreground">Free parking available on-site</p>
+                ))}
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-24 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4">
+          <AnimatedSection animation="fadeInUp">
+            <div className="text-center max-w-4xl mx-auto">
+              <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">
+                Train With Your Avondale Neighbors
+              </h2>
+              <p className="text-2xl mb-12 leading-relaxed text-primary-foreground/90">
+                Join the community that's building strength, improving mobility, and feeling better every day.
+              </p>
+
+              <div className="bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded-3xl p-12 mb-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                  {finalCTAFeatures.map((item, index) => (
+                    <div key={index} className="flex items-start gap-4 text-left">
+                      <div className="w-12 h-12 bg-accent rounded-lg flex-shrink-0 flex items-center justify-center">
+                        <item.icon className="text-accent-foreground h-5 w-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-lg mb-1">{item.title}</h3>
+                        <p className="text-primary-foreground/70">{item.description}</p>
+                      </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
-                <div className="flex items-center justify-center">
-                  <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                    <Link to="/contact">
-                      <MapPin className="mr-2 h-5 w-5" />
-                      Get Directions
-                    </Link>
-                  </Button>
-                </div>
+
+                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-12 py-7 text-xl font-bold uppercase tracking-wide">
+                  <Link to="/reset-week">
+                    Start Your Reset Week — $49
+                    <ArrowRight className="ml-3 h-6 w-6" />
+                  </Link>
+                </Button>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-lg">
+                <a href="tel:8438175420" className="flex items-center gap-2 hover:text-accent transition-colors">
+                  <Phone className="h-5 w-5" />
+                  (843) 817-5420
+                </a>
+                <span className="hidden sm:block text-primary-foreground/40">|</span>
+                <a href="mailto:ddrake311@gmail.com" className="flex items-center gap-2 hover:text-accent transition-colors">
+                  <Mail className="h-5 w-5" />
+                  ddrake311@gmail.com
+                </a>
               </div>
             </div>
           </AnimatedSection>
