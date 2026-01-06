@@ -43,6 +43,7 @@ const Footer = () => {
               <li><Link to="/mobility-fitness-avondale" className="text-gray-300 hover:text-drake-gold transition-colors">Mobility Training</Link></li>
               <li><Link to="/strength-training-charleston" className="text-gray-300 hover:text-drake-gold transition-colors">Strength Training</Link></li>
               <li><Link to="/west-ashley-fitness" className="text-gray-300 hover:text-drake-gold transition-colors">West Ashley Fitness</Link></li>
+              <li><Link to="/reset-week-charleston" className="text-gray-300 hover:text-drake-gold transition-colors">Reset Week Charleston</Link></li>
               <li><Link to="/coaching" className="text-gray-300 hover:text-drake-gold transition-colors">1:1 Coaching</Link></li>
               <li><Link to="/pricing" className="text-gray-300 hover:text-drake-gold transition-colors">Pricing</Link></li>
             </ul>
