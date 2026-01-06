@@ -57,24 +57,21 @@ const steps = [
 
 const testimonials = [
   {
-    name: "Sarah M.",
-    age: 45,
-    quote: "After just one week, I knew this was different. The mobility focus changed everything for my back.",
-    result: "Hooked after week 1",
+    name: "Felix F.",
+    quote: "The coaches are incredibly attentive, they watch your form, make adjustments, and explain why certain movements matter… you feel confident in every exercise.",
+    result: "Beginner confidence",
     stars: 5,
   },
   {
-    name: "Mike T.",
-    age: 52,
-    quote: "I was skeptical, but the coaches made me feel welcome from day one. No judgment, just support.",
-    result: "Found my gym home",
+    name: "D. Ramos",
+    quote: "I wasn't comfortable in this new body and didn't know how to move it correctly… He really assesses your needs and makes sure you don't get hurt.",
+    result: "Restarting safely",
     stars: 5,
   },
   {
-    name: "Jennifer L.",
-    age: 38,
-    quote: "The Reset Week let me try everything without pressure. Now I've been a member for 2 years.",
-    result: "2-year member",
+    name: "Caitlin P.",
+    quote: "I have had 3 lower back surgeries… they helped me get back to working out consistently.",
+    result: "Back after 3 surgeries",
     stars: 5,
   },
 ];
@@ -343,7 +340,7 @@ const ResetWeek = () => {
                   </div>
                   <p className="text-drake-dark italic mb-4">"{testimonial.quote}"</p>
                   <div className="mt-auto">
-                    <p className="font-bold text-drake-dark">{testimonial.name}, {testimonial.age}</p>
+                    <p className="font-bold text-drake-dark">{testimonial.name}</p>
                     <p className="text-drake-teal font-semibold text-sm">{testimonial.result}</p>
                   </div>
                 </Card>
