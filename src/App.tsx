@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useMemo } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +12,17 @@ import ScrollToTopButton from "./components/ScrollToTopButton";
 import Footer from "./components/Footer";
 import AnnouncementBanner from "./components/AnnouncementBanner";
 import { TodayClassesBanner } from "./components/schedule/TodayClassesBanner";
+
+// Create QueryClient outside component to avoid recreation
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // Reduce initial query overhead
+      staleTime: 1000 * 60, // 1 minute
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 // Critical path - loaded immediately
 import Home from "./pages/Home";
@@ -80,7 +91,7 @@ const CoachProgress = lazy(() => import("./pages/coach/Progress"));
 // Lazy load ChatBot
 const ChatBot = lazy(() => import("./components/chat/ChatBot"));
 
-const queryClient = new QueryClient();
+// QueryClient is now defined at the top of the file with optimized settings
 
 // Routes that should not show the standard navigation and footer
 const STANDALONE_ROUTES = ['/new-year', '/reset-week', '/reset', '/auth', '/consultation'];
