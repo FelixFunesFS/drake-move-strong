@@ -47,7 +47,18 @@
   
   <!-- Critical CSS for hero - prevents flash of unstyled content -->
   <style>
-    body { margin: 0; background: #0a0a0a; }
+    :root{--background:222.2 84% 4.9%;--foreground:210 40% 98%;--primary:174 66% 41%;--drake-gold:45 93% 58%}
+    *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid}
+    html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:Inter,system-ui,sans-serif}
+    body{margin:0;background:hsl(222.2 84% 4.9%);color:hsl(210 40% 98%);min-height:100vh}
+    .container{width:100%;margin:0 auto;padding:0 1rem}
+    @media(min-width:1280px){.container{max-width:1280px}}
+    nav{position:sticky;top:0;z-index:50;background:hsl(222.2 84% 4.9%);border-bottom:1px solid hsl(217.2 32.6% 17.5%)}
+    section{position:relative;overflow:hidden}
+    h1{font-size:2.25rem;font-weight:700;line-height:0.95;text-transform:uppercase}
+    @media(min-width:640px){h1{font-size:3rem}}
+    @media(min-width:768px){h1{font-size:3.75rem}}
+    @media(min-width:1024px){h1{font-size:4.5rem}}
   </style>
 </head>
 
