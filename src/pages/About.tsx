@@ -36,6 +36,8 @@ import studioGroupSquats from "@/assets/studio-group-squats.jpg";
 import studioKbCloseup from "@/assets/studio-kb-closeup.jpg";
 import studioGroupOverhead from "@/assets/studio-group-overhead.jpg";
 import ImageGallery from "@/components/ImageGallery";
+import TestimonialHero from "@/components/TestimonialHero";
+import { LONGEVITY_REVIEWS } from "@/data/reviews";
 const About = () => {
   return (
     <>
@@ -300,6 +302,14 @@ His approach blends skill, science, and practical strength work to create long-t
           </div>
         </div>
       </section>
+
+      {/* Testimonial Hero - After Coach Nick */}
+      <TestimonialHero
+        quote={LONGEVITY_REVIEWS[0].quote}
+        author={LONGEVITY_REVIEWS[0].name}
+        result={LONGEVITY_REVIEWS[0].result}
+        backgroundImage={studioDualTraining}
+      />
 
       {/* See It In Action - Video Section */}
       <AnimatedSection animation="fadeIn">
