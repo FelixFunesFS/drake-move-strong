@@ -5,12 +5,12 @@ import { cn } from "@/lib/utils";
 export const GOOGLE_REVIEWS = {
   rating: 5.0,
   count: 31,
-  url: 'https://share.google/12iWa6vmYqvTz6qTz',
+  url: 'https://maps.app.goo.gl/opeP6dqsbidbY9GZ6',
   supportingText: 'Trusted by adults in Charleston who want to move better and stay pain-free.'
 };
 
 interface GoogleReviewsBadgeProps {
-  variant?: 'full' | 'compact' | 'micro';
+  variant?: 'full' | 'compact' | 'micro' | 'hero';
   className?: string;
   showSupportingText?: boolean;
 }
@@ -33,6 +33,29 @@ export function GoogleReviewsBadge({
   showSupportingText = false 
 }: GoogleReviewsBadgeProps) {
   const reviewUrl = GOOGLE_REVIEWS.url;
+
+  if (variant === 'hero') {
+    return (
+      <a
+        href={reviewUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(
+          "inline-flex items-center gap-2 text-sm sm:text-base text-white/90 hover:text-white transition-colors",
+          className
+        )}
+      >
+        <div className="flex gap-0.5">
+          {[...Array(5)].map((_, i) => (
+            <Star key={i} size={14} className="text-drake-gold fill-drake-gold" />
+          ))}
+        </div>
+        <span className="font-medium">{GOOGLE_REVIEWS.rating}</span>
+        <span className="text-white/70">·</span>
+        <span className="text-white/70">{GOOGLE_REVIEWS.count} reviews</span>
+      </a>
+    );
+  }
 
   if (variant === 'micro') {
     return (

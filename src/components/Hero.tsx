@@ -16,7 +16,7 @@ interface HeroProps {
   backgroundImages?: string[];
   autoRotate?: boolean;
   className?: string;
-  eyebrow?: string;
+  eyebrow?: string | ReactNode;
   accentedSubtitle?: boolean;
   centered?: boolean;
 }
@@ -138,9 +138,17 @@ const Hero = ({
             {primaryCTA && <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-sm sm:text-base md:text-base px-6 sm:px-8 md:px-8 py-4 sm:py-5 md:py-4 h-auto min-h-[56px] md:min-h-[44px] shadow-[var(--shadow-gold)] hover:scale-105 transition-transform w-full sm:w-auto">
                 <Link to={primaryCTA.link} className="text-center">{primaryCTA.text}</Link>
               </Button>}
-            {secondaryCTA && <Button asChild size="lg" variant="outline" className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-semibold text-sm sm:text-base md:text-base px-6 sm:px-8 md:px-8 py-4 sm:py-5 md:py-4 h-auto min-h-[56px] md:min-h-[44px] w-full sm:w-auto">
-                <Link to={secondaryCTA.link} className="text-center">{secondaryCTA.text}</Link>
-              </Button>}
+            {secondaryCTA && (
+              secondaryCTA.link.startsWith('http') ? (
+                <Button asChild size="lg" variant="outline" className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-semibold text-sm sm:text-base md:text-base px-6 sm:px-8 md:px-8 py-4 sm:py-5 md:py-4 h-auto min-h-[56px] md:min-h-[44px] w-full sm:w-auto">
+                  <a href={secondaryCTA.link} target="_blank" rel="noopener noreferrer" className="text-center">{secondaryCTA.text}</a>
+                </Button>
+              ) : (
+                <Button asChild size="lg" variant="outline" className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-semibold text-sm sm:text-base md:text-base px-6 sm:px-8 md:px-8 py-4 sm:py-5 md:py-4 h-auto min-h-[56px] md:min-h-[44px] w-full sm:w-auto">
+                  <Link to={secondaryCTA.link} className="text-center">{secondaryCTA.text}</Link>
+                </Button>
+              )
+            )}
           </motion.div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import CTASection from "@/components/CTASection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle2, Users, Trophy, Target, TrendingUp, Heart } from "lucide-react";
-import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
+import { GoogleReviewsBadge, GOOGLE_REVIEWS } from "@/components/GoogleReviewsBadge";
 import { SEO } from "@/components/SEO";
 import { StructuredData, localBusinessSchema } from "@/components/StructuredData";
 import heroImage2 from "@/assets/hero-barbell-deadlift.jpg";
@@ -39,22 +39,21 @@ const Home = () => {
       <StructuredData data={localBusinessSchema} />
       
       <main>
-      <Hero title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
-      text: "START RESET WEEK",
-      link: "/reset-week"
-    }} backgroundImages={[heroImage2, heroImage3]} autoRotate={true} />
-
-      {/* Google Reviews Trust Signal - Primary Placement */}
-      <section className="py-8 md:py-10 bg-background">
-        <div className="container mx-auto px-4 text-center">
-          <GoogleReviewsBadge variant="full" showSupportingText={true} />
-          <div className="mt-6">
-            <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold">
-              <Link to="/reset-week">Start Reset Week</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <Hero 
+        eyebrow={<GoogleReviewsBadge variant="hero" />}
+        title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} 
+        subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last." 
+        primaryCTA={{
+          text: "START RESET WEEK",
+          link: "/reset-week"
+        }} 
+        secondaryCTA={{
+          text: <>READ OUR<br className="hidden sm:inline" />REVIEWS</>,
+          link: GOOGLE_REVIEWS.url
+        }}
+        backgroundImages={[heroImage2, heroImage3]} 
+        autoRotate={true} 
+      />
 
       {/* Brand Values Marquee */}
       <section className="py-4 md:py-6 bg-drake-dark overflow-hidden border-y border-drake-gold/20">
