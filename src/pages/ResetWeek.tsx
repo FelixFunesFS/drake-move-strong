@@ -110,7 +110,7 @@ const ResetWeek = () => {
   return (
     <>
       <SEO
-        title="Reset Week - 7 Days Unlimited Classes $49 | Drake Fitness Charleston"
+        title="Reset Week Charleston | 7 Days $49 | Best Intro 2026"
         description="One week to reset how you move and feel. Get 7 days of unlimited classes at Drake Fitness Charleston for just $49. Expert coaching, mobility-first training. No commitment."
         canonical="https://drake.fitness/reset-week"
       />

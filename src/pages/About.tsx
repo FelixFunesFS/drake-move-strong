@@ -40,7 +40,7 @@ const About = () => {
   return (
     <>
       <SEO
-        title="About Us | Meet David Drake & Coach Nick"
+        title="Meet Our Expert Coaches | 25+ Years | Drake Fitness"
         description="Meet the expert coaches behind Drake Fitness in Charleston, SC. 25+ years of experience in mobility-first functional training, corrective exercise, and sustainable strength building."
         canonical="https://drake.fitness/about"
       />
@@ -59,10 +59,10 @@ const About = () => {
                 <div>
                   <p className="section-eyebrow text-primary">THE DRAKE FITNESS PHILOSOPHY</p>
                   <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase leading-tight">
-                    Movement First.<span className="hidden sm:inline"><br /></span> Strength For <span className="text-primary">Life</span>.
+                    Our Mobility-First <span className="text-primary">Training Philosophy</span>
                   </h2>
                   <p className="text-base md:text-lg text-muted-foreground mb-8 border-l-4 border-drake-gold pl-6">
-                    We don't chase intensity, trends, or exhaustion. We chase <strong>movement quality</strong>, <strong>joint health</strong>, and <strong>sustainable strength</strong> that helps you feel better and perform better in real life.
+                    We don't chase intensity, trends, or exhaustion. We chase <strong>movement quality</strong>, <strong>joint health</strong>, and <strong>sustainable strength</strong> that helps you feel better and perform better in real life. Experience our approach through <Link to="/classes" className="text-primary underline underline-offset-2 hover:text-primary/80">group classes</Link> or <Link to="/reset-week-charleston" className="text-primary underline underline-offset-2 hover:text-primary/80">Reset Week</Link>.
                   </p>
                   
                   {/* Info Boxes Grid */}
@@ -136,7 +136,7 @@ const About = () => {
           <AnimatedSection animation="fadeInUp">
             <p className="section-eyebrow text-drake-gold text-center">THE TEAM</p>
             <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 uppercase">
-              Meet Your <span className="text-primary">Coaches</span>
+              Meet <span className="text-primary">David Drake and Coach Nick</span>
             </h2>
           </AnimatedSection>
 
@@ -261,7 +261,7 @@ His approach blends skill, science, and practical strength work to create long-t
                     {/* Team Callout Box */}
                     <div className="bg-white border-l-4 border-primary rounded-lg p-6 shadow-sm mt-6">
                       <p className="text-sm md:text-base text-muted-foreground">
-                        <strong className="text-foreground">David and Nick work together</strong> to create personalized training programs that combine mobility, corrective movement, and functional strength — meeting you exactly where you are and guiding you toward sustainable results.
+                        <strong className="text-foreground">David and Nick work together</strong> to create personalized training programs that combine <Link to="/mobility-fitness-avondale" className="text-primary underline underline-offset-2 hover:text-primary/80">mobility</Link>, corrective movement, and <Link to="/strength-training-charleston" className="text-primary underline underline-offset-2 hover:text-primary/80">functional strength</Link> — meeting you exactly where you are and guiding you toward sustainable results. Start with <Link to="/reset-week-charleston" className="text-primary underline underline-offset-2 hover:text-primary/80">Reset Week</Link> to experience our approach.
                       </p>
                     </div>
 
@@ -326,7 +326,7 @@ His approach blends skill, science, and practical strength work to create long-t
             <div className="max-w-6xl mx-auto">
               <p className="section-eyebrow text-primary text-center">OUR VALUES</p>
               <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-                What We <span className="text-primary">Stand For</span>
+                3 Core Values That <span className="text-primary">Guide Our Training</span>
               </h2>
               <p className="text-lg text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
                 Our commitment to quality coaching, safe training environments, and real results.

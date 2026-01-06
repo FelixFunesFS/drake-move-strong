@@ -8,6 +8,14 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import pricingKettlebellRack from "@/assets/pricing-kettlebell-rack.jpg";
 import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
+import {
+  ComparisonTable,
+  ComparisonTableHead,
+  ComparisonTableBody,
+  ComparisonTableRow,
+  ComparisonTableHeaderCell,
+  ComparisonTableCell,
+} from "@/components/ui/comparison-table";
 const Pricing = () => {
   const membershipOptions = [{
     name: "8 Classes",
@@ -86,7 +94,7 @@ const Pricing = () => {
   return (
     <>
       <SEO
-        title="Membership Pricing"
+        title="Gym Membership Charleston | From $40 | 4 Plans 2026"
         description="Simple, transparent membership options starting at $40. Drop-in $40, 8 classes $199/mo, Unlimited $249/mo, VIP $299/mo. No contracts, real results at Drake Fitness Charleston."
         canonical="https://drake.fitness/pricing"
       />
@@ -130,11 +138,57 @@ const Pricing = () => {
         <div className="container mx-auto px-4">
           <p className="section-eyebrow text-primary text-center">MEMBERSHIPS</p>
           <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-            Choose Your <span className="text-primary">Path</span>
+            4 Charleston Gym <span className="text-primary">Membership Options</span>
           </h2>
-          <p className="text-xl text-center text-muted-foreground mb-12">
+          <p className="text-xl text-center text-muted-foreground mb-8">
             Monthly Memberships
           </p>
+          
+          {/* Comparison Table for Featured Snippets */}
+          <div className="max-w-4xl mx-auto mb-12">
+            <ComparisonTable>
+              <ComparisonTableHead>
+                <ComparisonTableRow>
+                  <ComparisonTableHeaderCell>Plan</ComparisonTableHeaderCell>
+                  <ComparisonTableHeaderCell>Classes/Month</ComparisonTableHeaderCell>
+                  <ComparisonTableHeaderCell>Price</ComparisonTableHeaderCell>
+                  <ComparisonTableHeaderCell>Best For</ComparisonTableHeaderCell>
+                  <ComparisonTableHeaderCell>Rating</ComparisonTableHeaderCell>
+                </ComparisonTableRow>
+              </ComparisonTableHead>
+              <ComparisonTableBody>
+                <ComparisonTableRow highlighted>
+                  <ComparisonTableCell className="font-bold">Reset Week</ComparisonTableCell>
+                  <ComparisonTableCell>Unlimited (7 days)</ComparisonTableCell>
+                  <ComparisonTableCell className="font-bold text-primary">$49</ComparisonTableCell>
+                  <ComparisonTableCell>Trying us out</ComparisonTableCell>
+                  <ComparisonTableCell className="text-drake-gold">★★★★★</ComparisonTableCell>
+                </ComparisonTableRow>
+                <ComparisonTableRow>
+                  <ComparisonTableCell className="font-bold">8 Classes</ComparisonTableCell>
+                  <ComparisonTableCell>8</ComparisonTableCell>
+                  <ComparisonTableCell>$199/mo</ComparisonTableCell>
+                  <ComparisonTableCell>Beginners</ComparisonTableCell>
+                  <ComparisonTableCell className="text-drake-gold">★★★★☆</ComparisonTableCell>
+                </ComparisonTableRow>
+                <ComparisonTableRow>
+                  <ComparisonTableCell className="font-bold">Unlimited</ComparisonTableCell>
+                  <ComparisonTableCell>Unlimited</ComparisonTableCell>
+                  <ComparisonTableCell>$249/mo</ComparisonTableCell>
+                  <ComparisonTableCell>Regular training</ComparisonTableCell>
+                  <ComparisonTableCell className="text-drake-gold">★★★★★</ComparisonTableCell>
+                </ComparisonTableRow>
+                <ComparisonTableRow>
+                  <ComparisonTableCell className="font-bold">VIP Unlimited</ComparisonTableCell>
+                  <ComparisonTableCell>Unlimited + 1:1</ComparisonTableCell>
+                  <ComparisonTableCell>$299/mo</ComparisonTableCell>
+                  <ComparisonTableCell>Maximum results</ComparisonTableCell>
+                  <ComparisonTableCell className="text-drake-gold">★★★★★</ComparisonTableCell>
+                </ComparisonTableRow>
+              </ComparisonTableBody>
+            </ComparisonTable>
+          </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
               {membershipOptions.map((option, index) => <Card key={index} className={`relative ${option.popular ? "bg-drake-dark text-white shadow-2xl md:-translate-y-4 border-drake-gold border-2" : "shadow-card"}`}>
                   {option.popular && <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -191,7 +245,7 @@ const Pricing = () => {
         <div className="container mx-auto px-4">
           <p className="section-eyebrow text-primary text-center">FLEXIBLE OPTIONS</p>
           <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
-            Other Ways to <span className="text-primary">Train</span>
+            3 Flexible <span className="text-primary">Training Packages</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
             {otherOptions.map((option, index) => <Card key={index} className="shadow-card">
@@ -235,7 +289,7 @@ const Pricing = () => {
         <div className="container mx-auto px-4">
           <p className="section-eyebrow text-drake-gold text-center">QUESTIONS</p>
           <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase text-white">
-            Common <span className="text-drake-gold">Questions</span>
+            Common Membership <span className="text-drake-gold">Questions Answered</span>
           </h2>
           <div className="max-w-3xl mx-auto">
             <Accordion type="multiple" defaultValue={["item-0", "item-1", "item-2", "item-3"]} className="space-y-4">

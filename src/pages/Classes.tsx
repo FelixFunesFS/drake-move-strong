@@ -9,6 +9,16 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { SEO } from "@/components/SEO";
+import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  ComparisonTable,
+  ComparisonTableHead,
+  ComparisonTableBody,
+  ComparisonTableRow,
+  ComparisonTableHeaderCell,
+  ComparisonTableCell,
+} from "@/components/ui/comparison-table";
 
 import classGroup from "@/assets/class-group.jpg";
 import classesHeroOutdoorMace from "@/assets/classes-hero-outdoor-mace.jpg";
@@ -116,13 +126,24 @@ const Classes = () => {
     { src: classesGallery10, alt: "Studio training session with members and dog in background" },
   ];
 
+  const classFAQs = [
+    { q: "Which fitness class is best for beginners in Charleston?", a: "Foundation Flow is our beginner-friendly class focusing on mobility and movement quality. No experience needed." },
+    { q: "How big are fitness classes at Drake Fitness?", a: "We keep classes small with 6-12 people to ensure personalized coaching and form correction from David or Nick." },
+    { q: "Do I need to bring my own equipment to class?", a: "No equipment needed. We provide all kettlebells, maces, mats, and tools. Just wear comfortable workout clothes." },
+    { q: "How do I get started at Drake Fitness?", a: "Start with Reset Week — 7 days of unlimited classes for $49. It's the best way to experience our training style." },
+    { q: "What should I expect in my first fitness class?", a: "Arrive 10 minutes early. We'll do a quick movement screen, then guide you through class with modifications as needed." },
+  ];
+
+  const faqSchema = buildFAQSchema(classFAQs);
+
   return (
     <>
       <SEO
-        title="Group Fitness Classes | Foundation Flow, KB Strong & More"
+        title="6 Group Fitness Classes Charleston | Best for 2026"
         description="Join our mobility-first group classes in Charleston. Foundation Flow, Functional Strength, KB Strong, and more. Expert coaching in small groups for real results."
         canonical="https://drake.fitness/classes"
       />
+      <StructuredData data={faqSchema} />
       
       <main>
       <Hero
@@ -176,6 +197,61 @@ const Classes = () => {
                 </motion.div>
               ))}
             </div>
+            
+            {/* Class Type Comparison Table for Featured Snippets */}
+            <div className="mt-12 max-w-4xl mx-auto">
+              <h3 className="font-hero text-xl md:text-2xl font-bold text-center mb-6 uppercase">
+                Quick Class <span className="text-primary">Comparison</span>
+              </h3>
+              <ComparisonTable>
+                <ComparisonTableHead>
+                  <ComparisonTableRow>
+                    <ComparisonTableHeaderCell>Class</ComparisonTableHeaderCell>
+                    <ComparisonTableHeaderCell>Level</ComparisonTableHeaderCell>
+                    <ComparisonTableHeaderCell>Focus</ComparisonTableHeaderCell>
+                    <ComparisonTableHeaderCell>Duration</ComparisonTableHeaderCell>
+                    <ComparisonTableHeaderCell>Best For</ComparisonTableHeaderCell>
+                  </ComparisonTableRow>
+                </ComparisonTableHead>
+                <ComparisonTableBody>
+                  <ComparisonTableRow highlighted>
+                    <ComparisonTableCell className="font-bold">Foundation Flow™</ComparisonTableCell>
+                    <ComparisonTableCell>Beginner</ComparisonTableCell>
+                    <ComparisonTableCell>Mobility</ComparisonTableCell>
+                    <ComparisonTableCell>45 min</ComparisonTableCell>
+                    <ComparisonTableCell>New members</ComparisonTableCell>
+                  </ComparisonTableRow>
+                  <ComparisonTableRow>
+                    <ComparisonTableCell className="font-bold">Functional Strength™</ComparisonTableCell>
+                    <ComparisonTableCell>All Levels</ComparisonTableCell>
+                    <ComparisonTableCell>Strength + Mobility</ComparisonTableCell>
+                    <ComparisonTableCell>50 min</ComparisonTableCell>
+                    <ComparisonTableCell>Core program</ComparisonTableCell>
+                  </ComparisonTableRow>
+                  <ComparisonTableRow>
+                    <ComparisonTableCell className="font-bold">KB Strong™</ComparisonTableCell>
+                    <ComparisonTableCell>Advanced</ComparisonTableCell>
+                    <ComparisonTableCell>Kettlebell Power</ComparisonTableCell>
+                    <ComparisonTableCell>50 min</ComparisonTableCell>
+                    <ComparisonTableCell>Experienced</ComparisonTableCell>
+                  </ComparisonTableRow>
+                  <ComparisonTableRow>
+                    <ComparisonTableCell className="font-bold">Mobility Reset™</ComparisonTableCell>
+                    <ComparisonTableCell>All Levels</ComparisonTableCell>
+                    <ComparisonTableCell>Recovery</ComparisonTableCell>
+                    <ComparisonTableCell>45 min</ComparisonTableCell>
+                    <ComparisonTableCell>Active recovery</ComparisonTableCell>
+                  </ComparisonTableRow>
+                  <ComparisonTableRow>
+                    <ComparisonTableCell className="font-bold">Weekend Warrior™</ComparisonTableCell>
+                    <ComparisonTableCell>All Levels</ComparisonTableCell>
+                    <ComparisonTableCell>Community Strength</ComparisonTableCell>
+                    <ComparisonTableCell>60 min</ComparisonTableCell>
+                    <ComparisonTableCell>Weekend training</ComparisonTableCell>
+                  </ComparisonTableRow>
+                </ComparisonTableBody>
+              </ComparisonTable>
+            </div>
           </div>
         </section>
       </AnimatedSection>
@@ -186,7 +262,7 @@ const Classes = () => {
             <div className="max-w-7xl mx-auto mb-8 md:mb-12">
               <p className="section-eyebrow text-primary text-center">SEE IT IN ACTION</p>
               <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 uppercase">
-                Our <span className="text-primary">Classes</span> in Action
+                How Our <span className="text-primary">Training Sessions</span> Work
               </h2>
               <p className="text-base md:text-lg lg:text-xl text-center text-muted-foreground mb-6 md:mb-8">
                 Watch our training sessions
@@ -212,7 +288,7 @@ const Classes = () => {
           <div className="container mx-auto px-4">
             <p className="section-eyebrow text-primary text-center">THE EXPERIENCE</p>
             <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-              Class <span className="text-primary">Gallery</span>
+              Inside Our Charleston <span className="text-primary">Fitness Studio</span>
             </h2>
             <p className="text-xl text-center text-muted-foreground mb-12">
               Experience the Drake Fitness atmosphere
@@ -258,6 +334,32 @@ const Classes = () => {
                   </Link>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      {/* FAQ Section */}
+      <AnimatedSection animation="fadeInUp">
+        <section className="py-16 md:py-24 bg-drake-dark section-slant-top">
+          <div className="container mx-auto px-4">
+            <p className="section-eyebrow text-drake-gold text-center">QUESTIONS</p>
+            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase text-white">
+              Common Class <span className="text-drake-gold">Questions Answered</span>
+            </h2>
+            <div className="max-w-3xl mx-auto">
+              <Accordion type="multiple" defaultValue={["item-0", "item-1", "item-2", "item-3", "item-4"]} className="space-y-4">
+                {classFAQs.map((faq, index) => (
+                  <AccordionItem key={index} value={`item-${index}`} className="bg-white/5 border border-white/10 rounded-xl px-6">
+                    <AccordionTrigger className="text-lg font-semibold hover:no-underline text-drake-gold">
+                      {faq.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-gray-300">
+                      {faq.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
           </div>
         </section>

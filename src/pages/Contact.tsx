@@ -8,6 +8,7 @@ import { MapPin, Mail, Phone, Instagram, Facebook, Youtube } from "lucide-react"
 import { useState } from "react";
 import { toast } from "sonner";
 import { SEO } from "@/components/SEO";
+import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -36,8 +37,8 @@ const Contact = () => {
   return (
     <>
       <SEO
-        title="Contact Us"
-        description="Get in touch with Drake Fitness in Charleston, SC. Book your free mobility consultation today. Located at 2 Avondale Ave, Charleston, SC 29407."
+        title="Contact Drake Fitness Charleston | Start Today"
+        description="Get in touch with Drake Fitness in Charleston, SC. Located at 2 Avondale Ave, Charleston, SC 29407. Call (843) 817-5420."
         canonical="https://drake.fitness/contact"
       />
       
@@ -186,6 +187,24 @@ const Contact = () => {
         </div>
       </section>
 
+      {(() => {
+        const contactFAQs = [
+          {
+            q: "Do I need experience to join Drake Fitness?",
+            a: "No. Our Foundation Flow classes are specifically designed for beginners. We meet you where you are, regardless of your starting point.",
+          },
+          {
+            q: "Will this help my joint pain?",
+            a: "Yes. We are a mobility-first studio. We focus on safe, joint-friendly training that builds strength without aggravating existing issues.",
+          },
+          {
+            q: "How do I get started at Drake Fitness?",
+            a: "Start with Reset Week — 7 days of unlimited classes for $49. It's the best way to experience our training style and find the right class for you.",
+          },
+        ];
+        const faqSchema = buildFAQSchema(contactFAQs);
+        return <StructuredData data={faqSchema} />;
+      })()}
       <section className="py-16 md:py-24 bg-muted section-slant-top">
         <div className="container mx-auto px-4">
           <p className="section-eyebrow text-primary text-center">QUESTIONS</p>
@@ -195,16 +214,16 @@ const Contact = () => {
           <div className="max-w-3xl mx-auto space-y-6">
             {[
               {
-                q: "Do I need experience to join?",
-                a: "No. Our Foundation Flow classes are specifically designed for beginners. We meet you where you are.",
+                q: "Do I need experience to join Drake Fitness?",
+                a: "No. Our Foundation Flow classes are specifically designed for beginners. We meet you where you are, regardless of your starting point.",
               },
               {
                 q: "Will this help my joint pain?",
                 a: "Yes. We are a mobility-first studio. We focus on safe, joint-friendly training that builds strength without aggravating existing issues.",
               },
               {
-                q: "How do I get started?",
-                a: "The best way is to book a Free Mobility Consultation or start our 14-Day Intro Experience.",
+                q: "How do I get started at Drake Fitness?",
+                a: "Start with Reset Week — 7 days of unlimited classes for $49. It's the best way to experience our training style and find the right class for you.",
               },
             ].map((faq, index) => (
               <div key={index} className="bg-white p-6 rounded-xl border border-border shadow-card">

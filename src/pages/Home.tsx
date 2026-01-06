@@ -31,7 +31,7 @@ const Home = () => {
   return (
     <>
       <SEO
-        title="Drake Fitness - Mobility-First Functional Strength Training in Charleston, SC"
+        title="Charleston Mobility Training 2026 | Proven Results | Drake"
         description="Expert-led functional strength and mobility training in Charleston, SC. Join David Drake and Coach Nick for small-group classes, personal training, and sustainable results. 25+ years of coaching experience."
         canonical="https://drake.fitness"
       />
@@ -67,13 +67,13 @@ const Home = () => {
             <div>
               <p className="section-eyebrow text-primary">WHO WE ARE</p>
               <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase">
-                A <span className="text-primary">Movement Studio</span> for Real Life
+                Charleston's <span className="text-primary">Mobility-First</span> Fitness Studio
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
-                Drake Fitness helps adults build strong, mobile, pain-free bodies through a proven blend of mobility training, functional strength, corrective exercise, and expert coaching.
+                Drake Fitness helps adults build strong, mobile, pain-free bodies through a proven blend of <Link to="/mobility-fitness-avondale" className="text-primary underline underline-offset-2 hover:text-primary/80">mobility training</Link>, <Link to="/strength-training-charleston" className="text-primary underline underline-offset-2 hover:text-primary/80">functional strength</Link>, corrective exercise, and expert coaching.
               </p>
               <p className="text-lg text-muted-foreground mb-6">
-                Every session is led by <strong>David Drake</strong> or <strong>Coach Nick</strong>, using a science-based method that improves how your body moves, how it feels, and how it performs — not just in the gym, but in daily life.
+                Every session is led by <strong>David Drake</strong> or <strong>Coach Nick</strong>, using a science-based method that improves how your body moves, how it feels, and how it performs — not just in the gym, but in daily life. Explore our <Link to="/classes" className="text-primary underline underline-offset-2 hover:text-primary/80">group classes</Link> or <Link to="/coaching" className="text-primary underline underline-offset-2 hover:text-primary/80">personal training</Link> options.
               </p>
               <div className="border-l-4 border-drake-gold bg-drake-gold/10 p-6 rounded-r-lg mb-6">
                 <p className="text-lg text-foreground font-semibold">Our Mission</p>
@@ -92,7 +92,7 @@ const Home = () => {
           <AnimatedSection animation="fadeInUp">
             <p className="section-eyebrow text-drake-gold text-center">WHAT MAKES US DIFFERENT</p>
             <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-              We Focus on <span className="text-drake-gold">What Matters</span>
+              5 Reasons Charleston Chooses <span className="text-drake-gold">Drake Fitness</span>
             </h2>
             <p className="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto">
               This isn't a gym. It's a studio built around joint health, mobility, and sustainable strength.
@@ -102,7 +102,8 @@ const Home = () => {
             {[{
             icon: <CheckCircle2 className="w-6 h-6" />,
             title: "Mobility before intensity",
-            description: "We improve how your joints move before adding load — eliminating pain and preventing injury."
+            description: "We improve how your joints move before adding load — eliminating pain and preventing injury.",
+            link: "/mobility-fitness-avondale"
           }, {
             icon: <Target className="w-6 h-6" />,
             title: "Functional strength that carries into daily life",
@@ -221,7 +222,7 @@ const Home = () => {
             <div className="text-left">
               <p className="section-eyebrow text-drake-gold mb-2">OUR PROGRAMS</p>
               <h2 className="font-hero text-3xl md:text-4xl font-bold mb-2 uppercase">
-                Classes Designed to Help You <span className="text-drake-gold">Move and Feel Your Best</span>
+                Group Fitness Classes in Charleston <span className="text-drake-gold">for All Levels</span>
               </h2>
               <p className="text-xl text-gray-300">
                 Better Movement. Better Strength. Better Life.
@@ -265,7 +266,7 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <p className="section-eyebrow text-primary text-center">MEET THE TEAM</p>
           <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-            <span className="text-primary">Coaching You Can Trust</span>
+            Expert Coaches with <span className="text-primary">25+ Years Experience</span>
           </h2>
           <p className="text-xl text-center text-muted-foreground mb-12">
             Experience, Expertise & Care
