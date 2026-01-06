@@ -5,7 +5,8 @@ import {
   Heart, Shield, Users, Calendar, Clock, Target, Sparkles, Brain, Zap,
   Activity, Scale, UserCheck, BadgeCheck, ChevronRight, X, AlertCircle,
   HeartPulse, ShieldCheck, CalendarCheck, Compass, HandHeart,
-  SlidersHorizontal, Infinity, Moon, Frown, Trophy, Hourglass
+  SlidersHorizontal, Infinity, Moon, Frown, Trophy, Hourglass,
+  VolumeX, Bed, Flame, Home, CalendarDays, RefreshCw, Phone
 } from "lucide-react";
 
 import blogTraditionalWorkoutsHero from "@/assets/blog-traditional-workouts-hero.jpg";
@@ -603,24 +604,35 @@ export const NoPainNoGainContent = () => {
           Pain Is Not Progress
         </h2>
         
-        <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-          Pain doesn't mean you're getting stronger.
-        </p>
-
-        <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-          It means your body is under stress it hasn't adapted to yet.
-        </p>
-
-        <div className="bg-red-50 dark:bg-red-950/20 border-l-4 border-red-600 p-8 rounded-r-2xl mb-8">
-          <p className="text-lg text-foreground leading-relaxed">
-            <strong className="text-red-600 dark:text-red-400">Short-term soreness is normal.</strong><br />
-            <strong className="text-red-600 dark:text-red-400">Persistent pain is a warning sign.</strong>
+        {/* Teal callout */}
+        <div className="border-l-4 border-primary bg-primary/5 p-6 rounded-r-xl mb-8">
+          <p className="text-lg text-foreground leading-relaxed font-medium">
+            Pain doesn't mean you're getting stronger. It means your body is under stress it hasn't adapted to yet.
           </p>
         </div>
 
-        <p className="text-lg text-muted-foreground leading-relaxed">
+        <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+          There's a difference between the brief discomfort of effort — muscles working, breath deepening — and actual pain. Short-term soreness is part of training. Persistent pain is a warning sign.
+        </p>
+
+        <p className="text-lg text-muted-foreground leading-relaxed mb-8">
           Your body communicates through sensation. When it sends pain signals, it's not testing your toughness — it's asking you to back off before something breaks.
         </p>
+
+        {/* Key Insight Card */}
+        <div className="bg-background border border-border rounded-2xl p-8 shadow-lg">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+              <Lightbulb className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-primary uppercase tracking-wide mb-2">Key Insight</p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                The best athletes don't push through pain — they train around it. They've learned that ignoring signals leads to setbacks, not breakthroughs.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Section 2: Why This Advice Fails Long-Term */}
@@ -630,21 +642,23 @@ export const NoPainNoGainContent = () => {
         </h2>
 
         <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-          "No pain, no gain":
+          "No pain, no gain" creates a dangerous framework:
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <div className="space-y-4 mb-10">
           {[
-            { title: "Encourages ignoring feedback", desc: "You learn to push through signals your body sends for protection." },
-            { title: "Rewards overuse", desc: "The more you hurt, the \"harder\" you think you're working." },
-            { title: "Penalizes recovery", desc: "Rest days feel like weakness instead of necessary adaptation." },
-            { title: "Burns people out", desc: "Constant discomfort isn't sustainable — mentally or physically." },
+            { icon: VolumeX, title: "Encourages Ignoring Feedback", desc: "You learn to push through signals your body sends for protection." },
+            { icon: AlertTriangle, title: "Rewards Overuse", desc: "The more you hurt, the 'harder' you think you're working." },
+            { icon: Bed, title: "Penalizes Recovery", desc: "Rest days feel like weakness instead of necessary adaptation." },
+            { icon: Flame, title: "Burns People Out", desc: "Constant discomfort isn't sustainable — mentally or physically." },
           ].map((item, i) => (
-            <div key={i} className="bg-muted p-8 rounded-xl border-l-4 border-red-600">
+            <div key={i} className="bg-background border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-start gap-4">
-                <X className="w-6 h-6 text-red-600 mt-1 flex-shrink-0" />
+                <div className="w-12 h-12 bg-red-100 dark:bg-red-950/50 rounded-full flex items-center justify-center flex-shrink-0">
+                  <item.icon className="w-6 h-6 text-red-600 dark:text-red-400" />
+                </div>
                 <div>
-                  <h3 className="font-bold text-xl mb-2">{item.title}</h3>
+                  <h3 className="font-bold text-lg mb-1 text-foreground">{item.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
                 </div>
               </div>
@@ -652,8 +666,9 @@ export const NoPainNoGainContent = () => {
           ))}
         </div>
 
-        <div className="bg-foreground text-white p-10 rounded-2xl">
-          <p className="text-xl leading-relaxed font-medium">
+        {/* Amber callout */}
+        <div className="border-l-4 border-amber-500 bg-amber-50 dark:bg-amber-950/20 p-6 rounded-r-xl">
+          <p className="text-lg text-foreground leading-relaxed font-medium">
             That's why so many people quit — right when they "should" be seeing results.
           </p>
         </div>
@@ -666,31 +681,30 @@ export const NoPainNoGainContent = () => {
         </h2>
 
         <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-          Sustainable strength:
+          Sustainable strength doesn't leave you broken. It builds you up:
         </p>
 
-        <div className="space-y-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
           {[
-            { title: "Improves confidence", desc: "You feel capable, not constantly battling your body." },
-            { title: "Increases capability", desc: "You can do more — lift heavier, move better, last longer." },
-            { title: "Leaves you energized — not wrecked", desc: "Training should add to your life, not deplete it." },
-            { title: "Shows up in daily life", desc: "You notice it when you pick up your kids, carry groceries, or play sports." },
+            { icon: ShieldCheck, title: "Improves Confidence", desc: "You feel capable, not constantly battling your body.", gradient: "from-green-500 to-emerald-600" },
+            { icon: TrendingUp, title: "Increases Capability", desc: "You can do more — lift heavier, move better, last longer.", gradient: "from-blue-500 to-indigo-600" },
+            { icon: Zap, title: "Leaves You Energized", desc: "Training should add to your life, not deplete it.", gradient: "from-purple-500 to-violet-600" },
+            { icon: Home, title: "Shows Up in Daily Life", desc: "You notice it when you pick up your kids, carry groceries, or play sports.", gradient: "from-primary to-teal-600" },
           ].map((item, i) => (
-            <div key={i} className="flex items-start gap-6 bg-background border-2 border-primary rounded-xl p-8">
-              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                <Check className="w-6 h-6 text-white" />
+            <div key={i} className={`bg-gradient-to-br ${item.gradient} text-white rounded-2xl p-8`}>
+              <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-4">
+                <item.icon className="w-7 h-7 text-white" />
               </div>
-              <div>
-                <h3 className="font-bold text-xl mb-2">{item.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
-              </div>
+              <h3 className="font-hero text-xl font-bold mb-3 uppercase">{item.title}</h3>
+              <p className="text-white/90 leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
 
-        <div className="bg-drake-gold/10 border-l-4 border-drake-gold p-8 rounded-r-2xl">
+        {/* Gold callout */}
+        <div className="border-l-4 border-drake-gold bg-drake-gold/10 p-6 rounded-r-xl">
           <p className="text-lg text-foreground leading-relaxed font-medium">
-            If training constantly beats you up, something is off.
+            If training constantly beats you up, something is off. Real progress feels like growth — not punishment.
           </p>
         </div>
       </div>
@@ -701,33 +715,30 @@ export const NoPainNoGainContent = () => {
           How Drake Fitness Does It Differently
         </h2>
 
-        <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-          We believe:
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-          {[
-            { icon: SlidersHorizontal, title: "Control comes before load", desc: "We don't add weight until your body can handle the movement pattern with precision." },
-            { icon: TrendingUp, title: "Progression should feel earned", desc: "Not forced. Not rushed. Every step forward builds on the last." },
-            { icon: Moon, title: "Recovery is part of training", desc: "Not an afterthought. It's when your body actually gets stronger." },
-            { icon: Infinity, title: "Long-term matters most", desc: "We're not chasing quick fixes. We're building strength that lasts decades." },
-          ].map((item, i) => (
-            <div key={i} className="bg-muted p-8 rounded-2xl">
-              <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-4">
-                <item.icon className="w-8 h-8 text-white" />
+        {/* Teal gradient box with checklist */}
+        <div className="bg-gradient-to-br from-primary to-teal-800 text-white rounded-2xl p-8 md:p-10 mb-8">
+          <p className="text-xl font-bold mb-6">We believe:</p>
+          <div className="space-y-4">
+            {[
+              "Control comes before load — we don't add weight until your body can handle the movement pattern with precision.",
+              "Progression should feel earned — not forced, not rushed. Every step forward builds on the last.",
+              "Recovery is part of training — not an afterthought. It's when your body actually gets stronger.",
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-3">
+                <Check className="w-6 h-6 text-drake-gold flex-shrink-0 mt-0.5" />
+                <p className="text-white/90 leading-relaxed">{item}</p>
               </div>
-              <h3 className="font-hero text-xl font-bold mb-3 uppercase">{item.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
+            ))}
+          </div>
+          <p className="mt-8 text-xl font-bold text-drake-gold">
+            Our goal isn't to destroy you in an hour. It's to keep you training for years.
+          </p>
         </div>
 
-        <div className="bg-primary text-white rounded-2xl p-10">
-          <p className="text-xl leading-relaxed mb-4 font-medium">
-            Our goal isn't to destroy you in an hour.
-          </p>
-          <p className="text-2xl leading-relaxed font-bold">
-            It's to keep you training for years.
+        {/* Gray follow-up */}
+        <div className="bg-muted rounded-xl p-6">
+          <p className="text-muted-foreground leading-relaxed">
+            In the long run, the tortoise beats the hare. Slow, consistent progress with intelligent training creates results that last — without the injuries, burnout, or frustration.
           </p>
         </div>
       </div>
@@ -742,20 +753,20 @@ export const NoPainNoGainContent = () => {
           This approach resonates most with:
         </p>
 
-        <div className="space-y-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
           {[
-            { icon: Hourglass, title: "Adults over 30", desc: "When recovery slows down and your body demands smarter training." },
-            { icon: RotateCcw, title: "People restarting fitness", desc: "After time off, injury, or burnout from previous training approaches." },
-            { icon: Frown, title: "Anyone tired of being sore", desc: "Constant discomfort isn't a badge of honor — it's a sign something's wrong." },
-            { icon: Trophy, title: "Anyone who wants results that last", desc: "Not just for the next few months — for the rest of your life." },
+            { icon: CalendarDays, title: "Adults Over 30", desc: "When recovery slows down and your body demands smarter training.", bgColor: "bg-blue-100 dark:bg-blue-950/50", iconColor: "text-blue-600 dark:text-blue-400" },
+            { icon: RefreshCw, title: "People Restarting Fitness", desc: "After time off, injury, or burnout from previous training approaches.", bgColor: "bg-green-100 dark:bg-green-950/50", iconColor: "text-green-600 dark:text-green-400" },
+            { icon: HandHeart, title: "Anyone Tired of Being Sore", desc: "Constant discomfort isn't a badge of honor — it's a sign something's wrong.", bgColor: "bg-amber-100 dark:bg-amber-950/50", iconColor: "text-amber-600 dark:text-amber-400" },
+            { icon: Infinity, title: "Anyone Who Wants Longevity", desc: "Not just for the next few months — for the rest of your life.", bgColor: "bg-purple-100 dark:bg-purple-950/50", iconColor: "text-purple-600 dark:text-purple-400" },
           ].map((item, i) => (
-            <div key={i} className="bg-background border-2 border-border rounded-xl p-8 hover:border-primary transition-colors">
-              <div className="flex items-center gap-6">
-                <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center flex-shrink-0">
-                  <item.icon className="w-8 h-8 text-primary" />
+            <div key={i} className="bg-background border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-start gap-4">
+                <div className={`w-12 h-12 ${item.bgColor} rounded-full flex items-center justify-center flex-shrink-0`}>
+                  <item.icon className={`w-6 h-6 ${item.iconColor}`} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-xl mb-2">{item.title}</h3>
+                  <h3 className="font-bold text-lg mb-1 text-foreground">{item.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
                 </div>
               </div>
@@ -763,64 +774,65 @@ export const NoPainNoGainContent = () => {
           ))}
         </div>
 
-        <div className="bg-drake-gold/10 border border-drake-gold rounded-2xl p-8">
-          <p className="text-lg text-foreground leading-relaxed font-medium">
-            If that's you, Reset Week is the safest place to begin.
-          </p>
+        {/* Inline CTA */}
+        <div className="bg-gradient-to-r from-primary to-teal-700 text-white rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <p className="text-xl font-bold text-center md:text-left">If that's you, Reset Week is the safest place to begin.</p>
+          <Link 
+            to="/reset-week"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-drake-gold text-foreground font-bold rounded-lg hover:bg-yellow-400 transition-all transform hover:-translate-y-1 shadow-lg uppercase tracking-wide whitespace-nowrap"
+          >
+            Start Your Reset Week
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </div>
 
-      {/* Section 6: The Bottom Line */}
+      {/* Section 6: Final Message Card */}
       <div className="mb-16">
-        <h2 className="font-hero text-3xl md:text-4xl font-bold text-foreground mb-6 uppercase">
-          The Bottom Line
-        </h2>
-
-        <div className="bg-foreground text-white rounded-2xl p-10 mb-8">
-          <p className="text-xl leading-relaxed mb-6">
-            Pain isn't progress. It's a warning.
+        <div className="bg-background border-2 border-drake-gold rounded-2xl p-10 text-center shadow-lg">
+          <div className="w-16 h-16 bg-drake-gold/20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <Dumbbell className="w-8 h-8 text-drake-gold" />
+          </div>
+          <h2 className="font-hero text-3xl md:text-4xl font-bold text-foreground mb-6 uppercase">
+            Strong Doesn't Have to Hurt
+          </h2>
+          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+            Real strength builds quietly — through controlled movement, smart progression, and intentional recovery. Pain isn't progress. It's a warning. The strongest people we train are the ones who learned to listen.
           </p>
-          <p className="text-xl leading-relaxed mb-6">
-            Real strength builds quietly — through controlled movement, smart progression, and intentional recovery.
-          </p>
-          <p className="text-2xl leading-relaxed font-bold text-drake-gold">
-            👉 Strong doesn't have to hurt.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { icon: Shield, title: "Pain-Free Training", sub: "That actually builds strength" },
-            { icon: CalendarCheck, title: "Sustainable Progress", sub: "Not short-term burnout" },
-            { icon: Heart, title: "Training You'll Love", sub: "Because it works with your body" },
-          ].map((item, i) => (
-            <div key={i} className="bg-muted p-8 rounded-xl text-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                <item.icon className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-              <p className="text-muted-foreground text-sm">{item.sub}</p>
-            </div>
-          ))}
         </div>
       </div>
 
       {/* Final CTA Section */}
       <div className="bg-gradient-to-br from-primary to-teal-900 text-white rounded-3xl p-10 md:p-12 text-center">
+        <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+          <CalendarCheck className="w-8 h-8 text-white" />
+        </div>
         <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase">
-          Ready to Train Without the Pain?
+          Ready to Experience Pain-Free Progress?
         </h2>
-        <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed text-gray-200">
+        <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed text-white/90">
           Reset Week teaches you how to build real strength — without beating up your body in the process.
         </p>
-        <Link 
-          to="/reset-week"
-          className="inline-flex items-center gap-2 px-10 py-5 bg-drake-gold text-foreground font-bold text-lg rounded-lg hover:bg-yellow-400 transition-all transform hover:-translate-y-1 shadow-xl uppercase tracking-wide"
-        >
-          <ArrowRight className="w-5 h-5" />
-          Start Your Reset Week
-        </Link>
-        <p className="text-gray-300 mt-6 text-sm">Charleston, SC — Limited Spots Available</p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+          <Link 
+            to="/reset-week"
+            className="inline-flex items-center gap-2 px-10 py-5 bg-drake-gold text-foreground font-bold text-lg rounded-lg hover:bg-yellow-400 transition-all transform hover:-translate-y-1 shadow-xl uppercase tracking-wide"
+          >
+            <CalendarCheck className="w-5 h-5" />
+            Start Reset Week Now
+          </Link>
+          <Link 
+            to="/contact"
+            className="inline-flex items-center gap-2 px-10 py-5 bg-transparent border-2 border-white text-white font-bold text-lg rounded-lg hover:bg-white/10 transition-all uppercase tracking-wide"
+          >
+            <Phone className="w-5 h-5" />
+            Talk to a Coach
+          </Link>
+        </div>
+        <p className="text-white/70 text-sm">
+          <Phone className="w-4 h-4 inline mr-2" />
+          (843) 817-5420 — Charleston, SC
+        </p>
       </div>
     </>
   );
