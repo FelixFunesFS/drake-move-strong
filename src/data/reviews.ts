@@ -130,3 +130,49 @@ export const ALL_VERIFIED_REVIEWS: Review[] = [
   ...RESET_WEEK_REVIEWS.slice(2, 3),
   FEATURED_REVIEWS[1]
 ];
+
+// Extended Reviews with Full Context (for featured placements on local SEO pages)
+export const EXTENDED_REVIEWS = {
+  caraS: {
+    name: "Cara S.",
+    quote: "I had a bad back injury that was not getting better with physical therapy. I missed being physically active and in shape, and longed to get back to exercising. I was so pleasantly surprised to see that Dave was BETTER than all physical therapists I have ever had. Moreover, I have had multiple different personal trainers and have been a part of many different group work out classes (i.e. orange theory), and he was better than them too!",
+    shortQuote: "Better than any physical therapist or personal trainer I've ever had.",
+    theme: "Professional Quality",
+    result: "Recovered from back injury",
+    stars: 5
+  },
+  vanessaH: {
+    name: "Vanessa H.",
+    quote: "I have been working with David for about 3 years now, on and off. I had a severe ankle injury that required multiple surgeries, ultimately resulting in ankle fusion (where the ankle is no longer a joint). He has helped me maintain strength and muscle in between surgeries; his knowledge about the way the body mechanically works has helped me to continue to exercise. After the final fusion surgery, we have worked together to modify movements to still achieve results. I am well on my way to being in the shape I was in pre accident. The other members of the classes are super encouraging and it feels more communal than a big box gym.",
+    shortQuote: "His knowledge about the way the body mechanically works has helped me continue to exercise after multiple surgeries.",
+    theme: "Long-Term Adaptability",
+    result: "Training through ankle fusion surgery",
+    duration: "3 years",
+    stars: 5
+  },
+  paulB: {
+    name: "Paul B.",
+    quote: "David Drake is literally the best. Coming out of the pandemic winter, my head and body were in a bad place. 30 lbs heavier and feeling hyper unmotivated. Starting to workout with David was the kick start I needed, and his consistent and specific training to my goals and needs has taken exercise as something I've done off and on into something I look forward to every single day of my life. His wealth of knowledge in exercise science is clear, but it's his approach and natural intuition for how to maximize the potential for a specific individual that is his real gift. I live out of state and do the vast majority of our one on one sessions over Zoom and it's still worth every penny.",
+    shortQuote: "Exercise went from something I did off and on into something I look forward to every day.",
+    theme: "Complete Transformation",
+    result: "Lost 30 lbs, daily habit formed",
+    stars: 5
+  },
+  jenniferR: {
+    name: "Jennifer R.",
+    quote: "As a lifelong fitness enthusiast and career bodyworker, I tend to have a high standard for instructors of all varieties. David brings the knowledge, technique, and vibe every single time. I've experienced both private sessions to work on form and sequencing of movements (Turkish get ups, kettlebell swings, etc) as well as his classes (small groups with community feel) and always walk away with a great workout and lots of useful knowledge of intelligent movement. As someone who tends towards yoga and a more flowy type of workouts, I have to say that his style is not only complimentary to it, but is the only true strength training I've stuck with long term and it's because of the variety and solidity his method of training brings.",
+    shortQuote: "The only true strength training I've stuck with long term.",
+    theme: "Expert Credibility",
+    result: "Long-term strength training convert",
+    background: "Bodyworker & yoga practitioner",
+    stars: 5
+  },
+  caitlinP: {
+    name: "Caitlin P.",
+    quote: "I have had 3 lower back surgeries - was in constant pain... David and his team helped me get back to working out consistently and build strength. I am forever grateful for this place - it truly changed my life!",
+    shortQuote: "I have had 3 lower back surgeries... they helped me get back to working out consistently.",
+    theme: "Post-Surgery Safety",
+    result: "Back to training after 3 surgeries",
+    stars: 5
+  }
+};

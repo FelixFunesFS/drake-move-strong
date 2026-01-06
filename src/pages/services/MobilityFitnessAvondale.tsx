@@ -62,39 +62,39 @@ const resetWeekIncludes = [
 
 const testimonials = [
   { 
-    name: "Sarah M.", 
-    location: "Avondale Resident, 2 Years",
-    quote: "I live two blocks away and this is the only gym I've ever stuck with. The coaches know my name and actually care about my progress.",
+    name: "Jennifer R.", 
+    location: "Verified Google Review",
+    quote: "As a lifelong fitness enthusiast and career bodyworker, I have a high standard for instructors. David brings the knowledge, technique, and vibe every single time. This is the only true strength training I've stuck with long term.",
     featured: false
   },
   { 
-    name: "Mike T.", 
-    location: "Avondale, 6 Months",
-    quote: "After years of back pain, I can finally lift without fear. Reset Week taught me how to move properly for the first time.",
+    name: "Felix F.", 
+    location: "Verified Google Review",
+    quote: "The coaches are incredibly attentive, they watch your form, make adjustments, and explain why certain movements matter... you feel confident in every exercise.",
     featured: false
   },
   { 
-    name: "Jennifer L.", 
-    location: "Avondale, 1 Year",
-    quote: "I was intimidated by every gym I tried. Drake Fitness made me feel welcome from day one. The community here is incredible.",
+    name: "D. Ramos", 
+    location: "Verified Google Review",
+    quote: "I wasn't comfortable in this new body and didn't know how to move it correctly... He really assesses your needs and makes sure you don't get hurt.",
     featured: false
   },
   { 
-    name: "David K.", 
-    location: "Avondale, 8 Months",
-    quote: "Best investment I've made in my health. I'm 42 and feel better than I did at 30. The mobility work changed everything.",
+    name: "Aaron Q.", 
+    location: "Verified Google Review",
+    quote: "I'm stronger in my 40s than ever before... His knowledge and adaptability have made a significant impact.",
     featured: false
   },
   { 
-    name: "Amanda R.", 
-    location: "Avondale, 3 Months",
-    quote: "As a new mom, I needed training that rebuilt my core safely. The coaches here understand post-pregnancy bodies.",
+    name: "Caitlin P.", 
+    location: "Verified Google Review",
+    quote: "I have had 3 lower back surgeries - was in constant pain... David and his team helped me get back to working out consistently and build strength.",
     featured: false
   },
   { 
-    name: "Robert P.", 
-    location: "Avondale, 18 Months",
-    quote: "I've trained at gyms all over Charleston. This is the only place that focuses on long-term health over short-term results.",
+    name: "Vanessa H.", 
+    location: "Verified Google Review",
+    quote: "I have been working with David for about 3 years. His knowledge about the way the body mechanically works has helped me continue to exercise after multiple surgeries.",
     featured: true
   }
 ];
@@ -329,8 +329,8 @@ export default function MobilityFitnessAvondale() {
 
           <AnimatedSection animation="fadeInUp" delay={0.3}>
             <div className="bg-primary text-primary-foreground p-12 rounded-3xl max-w-4xl mx-auto text-center">
-              <p className="text-2xl font-medium mb-6 leading-relaxed italic">"I was nervous about my first class, but the coach made me feel comfortable immediately. I knew exactly what to do and never felt lost."</p>
-              <p className="font-bold text-lg text-accent">— Lisa R., Avondale Member</p>
+              <p className="text-2xl font-medium mb-6 leading-relaxed italic">"The coaches are incredibly attentive, they watch your form, make adjustments, and explain why certain movements matter... you feel confident in every exercise."</p>
+              <p className="font-bold text-lg text-accent">— Felix F., Verified Google Review</p>
             </div>
           </AnimatedSection>
         </div>

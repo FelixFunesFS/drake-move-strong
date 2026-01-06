@@ -262,11 +262,11 @@ export default function WestAshleyFitness() {
                     {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
                   </div>
                 </div>
-                <p className="text-muted-foreground text-lg italic mb-6 leading-relaxed">"I live in Avondale and walk to Drake Fitness. Reset Week changed how I think about fitness — it's not about crushing yourself, it's about moving better."</p>
+                <p className="text-muted-foreground text-lg italic mb-6 leading-relaxed">"I had a bad back injury that was not getting better with physical therapy... Dave was BETTER than all physical therapists I've ever had. Moreover, I have had multiple different personal trainers and group classes, and he was better than them too!"</p>
                 <div className="flex items-center">
                   <div>
-                    <p className="font-semibold">Sarah M.</p>
-                    <p className="text-muted-foreground text-sm">Avondale, West Ashley</p>
+                    <p className="font-semibold">Cara S.</p>
+                    <p className="text-muted-foreground text-sm">Verified Google Review</p>
                   </div>
                 </div>
               </div>
@@ -277,11 +277,11 @@ export default function WestAshleyFitness() {
                     {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
                   </div>
                 </div>
-                <p className="text-muted-foreground text-lg italic mb-6 leading-relaxed">"After years of back pain, I finally found a place that gets it. The coaches here understand movement in a way no other gym does."</p>
+                <p className="text-muted-foreground text-lg italic mb-6 leading-relaxed">"Coming out of the pandemic, my head and body were in a bad place. 30 lbs heavier and feeling hyper unmotivated. David's training has taken exercise from something I did off and on into something I look forward to every single day."</p>
                 <div className="flex items-center">
                   <div>
-                    <p className="font-semibold">Mike T.</p>
-                    <p className="text-muted-foreground text-sm">West Ashley</p>
+                    <p className="font-semibold">Paul B.</p>
+                    <p className="text-muted-foreground text-sm">Verified Google Review</p>
                   </div>
                 </div>
               </div>
