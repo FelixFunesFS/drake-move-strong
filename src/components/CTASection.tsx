@@ -35,7 +35,7 @@ const CTASection = ({
   };
   return <section className={`${bgClasses[variant]} py-12 md:py-16 lg:py-20 ${slanted ? 'section-slant-top' : ''}`}>
       <div className="container mx-auto px-4 text-center text-primary-foreground">
-        {eyebrow && <p className={`section-eyebrow ${variant === "gold" ? "text-drake-dark/70" : "text-gray-400"} mb-2`}>
+        {eyebrow && <p className={`section-eyebrow ${variant === "gold" ? "text-drake-dark/70" : "text-gray-300"} mb-2`}>
             {eyebrow}
           </p>}
         <h2 className={`font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-4 uppercase tracking-tight ${textClasses[variant]}`}>
