@@ -7,6 +7,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
 import Navigation from "./components/Navigation";
 import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 import Footer from "./components/Footer";
 import AnnouncementBanner from "./components/AnnouncementBanner";
 import ChatBot from "./components/chat/ChatBot";
@@ -259,6 +260,7 @@ const AppLayout = () => {
         {!hideNavFooter && <Footer />}
         {!hideNavFooter && <ChatBot />}
       </div>
+      <ScrollToTopButton />
     </>
   );
 };

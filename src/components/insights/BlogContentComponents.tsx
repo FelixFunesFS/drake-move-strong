@@ -51,7 +51,7 @@ export const WhyTraditionalWorkoutsContent = () => {
       {/* Section 1: The Intensity Trap */}
       <div className="mb-16">
         <h2 className="font-hero text-3xl md:text-4xl font-bold text-foreground mb-6 uppercase">
-          The Intensity Trap: Why "Go Hard or Go Home" Stops Working
+          Why High-Intensity Training Fails After 40
         </h2>
         
         <div className="bg-muted p-8 rounded-2xl mb-8 border-l-4 border-drake-gold">
@@ -85,7 +85,7 @@ export const WhyTraditionalWorkoutsContent = () => {
       {/* Section 2: What Your Body Actually Needs */}
       <div className="mb-16">
         <h2 className="font-hero text-3xl md:text-4xl font-bold text-foreground mb-6 uppercase">
-          What Your Body Actually Needs After 40
+          What Bodies Over 40 Need: 4 Training Essentials
         </h2>
 
         <p className="text-lg text-muted-foreground leading-relaxed mb-8">
@@ -119,7 +119,7 @@ export const WhyTraditionalWorkoutsContent = () => {
       {/* Section 3: The Three Phases */}
       <div className="mb-16">
         <h2 className="font-hero text-3xl md:text-4xl font-bold text-foreground mb-6 uppercase">
-          The Three Phases of Smart Training
+          How Smart Training Works: 3 Progressive Phases
         </h2>
 
         <p className="text-lg text-muted-foreground leading-relaxed mb-8">
@@ -169,7 +169,7 @@ export const WhyTraditionalWorkoutsContent = () => {
       {/* Section 4: Real Life Example */}
       <div className="mb-16">
         <h2 className="font-hero text-3xl md:text-4xl font-bold text-foreground mb-6 uppercase">
-          What This Looks Like in Real Life
+          Real Results: How Charleston Members Train Smarter
         </h2>
 
         <p className="text-lg text-muted-foreground leading-relaxed mb-8">
@@ -220,7 +220,7 @@ export const WhyTraditionalWorkoutsContent = () => {
       {/* Section 5: Common Objections */}
       <div className="mb-16">
         <h2 className="font-hero text-3xl md:text-4xl font-bold text-foreground mb-6 uppercase">
-          Common Objections (And The Truth)
+          Frequently Asked Questions About Training Over 40
         </h2>
 
         <p className="text-lg text-muted-foreground leading-relaxed mb-8">
@@ -245,10 +245,56 @@ export const WhyTraditionalWorkoutsContent = () => {
         </div>
       </div>
 
+      {/* Comparison Table */}
+      <div className="mb-16">
+        <h2 className="font-hero text-3xl md:text-4xl font-bold text-foreground mb-6 uppercase">
+          Traditional vs. Smart Training: Quick Comparison
+        </h2>
+        
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse bg-background rounded-xl overflow-hidden shadow-lg">
+            <thead>
+              <tr className="bg-primary text-white">
+                <th className="px-6 py-4 text-left font-hero uppercase">Factor</th>
+                <th className="px-6 py-4 text-left font-hero uppercase">Traditional Training</th>
+                <th className="px-6 py-4 text-left font-hero uppercase">Smart Training (Drake)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              <tr className="hover:bg-muted/50">
+                <td className="px-6 py-4 font-semibold">Recovery Time</td>
+                <td className="px-6 py-4 text-muted-foreground">2-4 days soreness</td>
+                <td className="px-6 py-4 text-primary font-medium">1-2 days, minimal</td>
+              </tr>
+              <tr className="hover:bg-muted/50">
+                <td className="px-6 py-4 font-semibold">Injury Risk</td>
+                <td className="px-6 py-4 text-muted-foreground">High (cumulative damage)</td>
+                <td className="px-6 py-4 text-primary font-medium">Low (controlled progression)</td>
+              </tr>
+              <tr className="hover:bg-muted/50">
+                <td className="px-6 py-4 font-semibold">Long-Term Results</td>
+                <td className="px-6 py-4 text-muted-foreground">Diminishing after 40</td>
+                <td className="px-6 py-4 text-primary font-medium">Sustainable for decades</td>
+              </tr>
+              <tr className="hover:bg-muted/50">
+                <td className="px-6 py-4 font-semibold">Coaching Focus</td>
+                <td className="px-6 py-4 text-muted-foreground">Rep counting</td>
+                <td className="px-6 py-4 text-primary font-medium">Movement quality</td>
+              </tr>
+              <tr className="hover:bg-muted/50">
+                <td className="px-6 py-4 font-semibold">Best For</td>
+                <td className="px-6 py-4 text-muted-foreground">20s-30s athletes</td>
+                <td className="px-6 py-4 text-primary font-medium">Adults 35+ seeking longevity</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       {/* Section 6: The Bottom Line */}
       <div className="mb-16">
         <h2 className="font-hero text-3xl md:text-4xl font-bold text-foreground mb-6 uppercase">
-          The Bottom Line
+          Start Training Smarter Today
         </h2>
 
         <div className="bg-foreground text-white rounded-2xl p-10 mb-8">
@@ -420,7 +466,44 @@ export const MobilityVsFlexibilityContent = () => {
         <img src={mobilityClass} alt="Mobility training session" className="w-full h-auto max-h-96 object-cover" />
       </div>
 
-      {/* Definition Boxes */}
+      {/* Definition Boxes - Comparison Table */}
+      <div className="mb-12">
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse bg-background rounded-xl overflow-hidden shadow-lg">
+            <thead>
+              <tr className="bg-primary text-white">
+                <th className="px-6 py-4 text-left font-hero uppercase">Factor</th>
+                <th className="px-6 py-4 text-left font-hero uppercase">Flexibility</th>
+                <th className="px-6 py-4 text-left font-hero uppercase">Mobility</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              <tr className="hover:bg-muted/50">
+                <td className="px-6 py-4 font-semibold">Type</td>
+                <td className="px-6 py-4 text-muted-foreground">Passive</td>
+                <td className="px-6 py-4 text-primary font-medium">Active</td>
+              </tr>
+              <tr className="hover:bg-muted/50">
+                <td className="px-6 py-4 font-semibold">Control</td>
+                <td className="px-6 py-4 text-muted-foreground">External force</td>
+                <td className="px-6 py-4 text-primary font-medium">Self-controlled</td>
+              </tr>
+              <tr className="hover:bg-muted/50">
+                <td className="px-6 py-4 font-semibold">How Trained</td>
+                <td className="px-6 py-4 text-muted-foreground">Static stretching</td>
+                <td className="px-6 py-4 text-primary font-medium">Controlled movement drills</td>
+              </tr>
+              <tr className="hover:bg-muted/50">
+                <td className="px-6 py-4 font-semibold">Daily Impact</td>
+                <td className="px-6 py-4 text-muted-foreground">Limited transfer</td>
+                <td className="px-6 py-4 text-primary font-medium">High functional benefit</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Definition Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
         <div className="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl border-t-4 border-gray-400 text-center">
           <h3 className="font-hero text-xl font-bold uppercase mb-2">Flexibility</h3>
@@ -557,7 +640,7 @@ export const TooOutOfShapeContent = () => {
       {/* Who Reset Week Is For */}
       <div className="mb-16">
         <h2 className="font-hero text-3xl md:text-4xl font-bold text-foreground mb-6 uppercase">
-          Why Reset Week Works for Beginners
+          Who Reset Week Is Designed For
         </h2>
         <p className="text-lg text-muted-foreground mb-8">Reset Week was specifically designed for people who:</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -635,7 +718,7 @@ export const NoPainNoGainContent = () => {
       {/* Section 1: Pain Is Not Progress */}
       <div className="mb-16">
         <h2 className="font-hero text-3xl md:text-4xl font-bold text-foreground mb-6 uppercase">
-          Pain Is Not Progress
+          Why Pain During Exercise Isn't Progress
         </h2>
         
         {/* Teal callout */}
@@ -711,7 +794,7 @@ export const NoPainNoGainContent = () => {
       {/* Section 3: Real Strength Feels Different */}
       <div className="mb-16">
         <h2 className="font-hero text-3xl md:text-4xl font-bold text-foreground mb-6 uppercase">
-          Real Strength Feels Different
+          What Sustainable Strength Actually Feels Like
         </h2>
 
         <p className="text-lg text-muted-foreground leading-relaxed mb-8">
