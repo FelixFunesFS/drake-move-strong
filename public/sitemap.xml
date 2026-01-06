@@ -60,34 +60,55 @@
     <priority>0.3</priority>
     <changefreq>yearly</changefreq>
   </url>
-  <!-- Insight Posts -->
+  <!-- Pillar Blog Posts (High Priority) -->
   <url>
-    <loc>https://drake.fitness/insights/why-mobility-matters</loc>
+    <loc>https://drake.fitness/insights/why-traditional-workouts-stop-working-after-40</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://drake.fitness/insights/what-real-strength-actually-means</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://drake.fitness/insights/why-we-dont-believe-in-no-pain-no-gain</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <!-- Supporting Blog Posts -->
+  <url>
+    <loc>https://drake.fitness/insights/the-drake-philosophy-why-we-train-differently</loc>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://drake.fitness/insights/kettlebell-benefits</loc>
+    <loc>https://drake.fitness/insights/understanding-mobility-vs-flexibility</loc>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://drake.fitness/insights/finding-purpose-in-training</loc>
+    <loc>https://drake.fitness/insights/too-out-of-shape-to-start-reset-week-for-beginners</loc>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://drake.fitness/insights/functional-strength-for-life</loc>
+    <loc>https://drake.fitness/insights/can-i-train-with-old-injury</loc>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://drake.fitness/insights/mobility-before-intensity</loc>
+    <loc>https://drake.fitness/insights/how-breathing-controls-movement</loc>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://drake.fitness/insights/small-group-coaching-advantage</loc>
+    <loc>https://drake.fitness/insights/what-makes-drake-fitness-different-from-charleston-gyms</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://drake.fitness/insights/how-much-time-do-i-really-need</loc>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
