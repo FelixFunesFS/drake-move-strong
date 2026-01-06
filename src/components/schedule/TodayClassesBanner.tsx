@@ -97,8 +97,20 @@ export function TodayClassesBanner() {
     );
   }
 
+  // Reserve consistent height even when no classes to prevent CLS
   if (classes.length === 0) {
-    return null; // Don't show banner if no classes today
+    return (
+      <section className="py-3 md:py-4 bg-drake-dark border-y border-drake-gold/20 min-h-[60px] md:min-h-[72px]">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-center gap-2">
+            <Calendar className="w-4 h-4 md:w-5 md:h-5 text-drake-gold" />
+            <span className="text-sm md:text-base text-white/70">
+              No more classes today — <Link to="/schedule" className="text-drake-gold hover:underline">see tomorrow's schedule</Link>
+            </span>
+          </div>
+        </div>
+      </section>
+    );
   }
 
   return (
