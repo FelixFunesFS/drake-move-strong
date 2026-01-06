@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <img src={drakeLogo} alt="Drake Fitness" className="h-12 md:h-16 w-auto mb-4 brightness-200" />
+            <img src={drakeLogo} alt="Drake Fitness" width={134} height={64} className="h-12 md:h-16 w-auto mb-4 brightness-200" />
             <p className="text-sm text-gray-300 mb-4">
               Mobility-first functional strength training in, Charleston. Move better, live stronger.     
             </p>

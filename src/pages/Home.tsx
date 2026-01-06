@@ -74,7 +74,7 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <AnimatedSection animation="scaleIn" delay={0.2} className="relative overflow-hidden rounded-lg">
-              <OptimizedImage src={outdoorTraining} alt="Outdoor functional training with kettlebells" className="shadow-2xl w-full" aspectRatio="square" transparent={true} hideLoadingPlaceholder={true} priority={true} />
+              <OptimizedImage src={outdoorTraining} alt="Outdoor functional training with kettlebells" className="shadow-2xl w-full" aspectRatio="square" transparent={true} hideLoadingPlaceholder={true} priority={true} sizes="(max-width: 768px) 100vw, 580px" />
               <div className="absolute inset-0 bg-gradient-to-t from-drake-dark/90 via-drake-dark/50 to-transparent flex items-end p-6 md:p-8">
                 <p className="font-hero text-white md:text-2xl font-bold leading-tight text-base">"NOT JUST A GYM. A MOVEMENT STUDIO."</p>
               </div>
