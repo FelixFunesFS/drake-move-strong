@@ -1,3 +1,4 @@
+import { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,58 +11,74 @@ import ScrollToTop from "./components/ScrollToTop";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import Footer from "./components/Footer";
 import AnnouncementBanner from "./components/AnnouncementBanner";
-import ChatBot from "./components/chat/ChatBot";
 import { TodayClassesBanner } from "./components/schedule/TodayClassesBanner";
+
+// Critical path - loaded immediately
 import Home from "./pages/Home";
-import About from "./pages/About";
-import Classes from "./pages/Classes";
-import Coaching from "./pages/Coaching";
-import Pricing from "./pages/Pricing";
-import Schedule from "./pages/Schedule";
-import Contact from "./pages/Contact";
-import SuccessStories from "./pages/SuccessStories";
-import FAQ from "./pages/FAQ";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
-import NotFound from "./pages/NotFound";
-import Insights from "./pages/Insights";
-import InsightPost from "./pages/InsightPost";
-import SocialGenerator from "./pages/admin/SocialGenerator";
-import Promotions from "./pages/admin/Promotions";
-import AdminDashboard from "./pages/admin/Dashboard";
-import AdminMembers from "./pages/admin/Members";
-import AdminMemberDetail from "./pages/admin/MemberDetail";
-import AdminScheduleManager from "./pages/admin/ScheduleManager";
-import AdminClassTypes from "./pages/admin/ClassTypes";
-import NewYearChallenge from "./pages/NewYearChallenge";
-import ResetWeek from "./pages/ResetWeek";
-import ResetWeekAlt from "./pages/ResetWeekAlt";
-import Auth from "./pages/Auth";
-import MemberDashboard from "./pages/member/Dashboard";
-import MemberProfile from "./pages/member/Profile";
-import MyBookings from "./pages/member/MyBookings";
-import MemberVideos from "./pages/member/Videos";
-import MemberVideoPlayer from "./pages/member/VideoPlayer";
-import MemberContracts from "./pages/member/Contracts";
-import MemberWorkouts from "./pages/member/Workouts";
-import MemberWorkoutSession from "./pages/member/WorkoutSession";
-import AdminVideos from "./pages/admin/Videos";
-import AdminNotifications from "./pages/admin/Notifications";
-import AdminContracts from "./pages/admin/Contracts";
-import AdminExercises from "./pages/admin/Exercises";
-import WorkoutBuilder from "./pages/admin/WorkoutBuilder";
-import AdminAnalytics from "./pages/admin/Analytics";
-import CoachDashboard from "./pages/coach/Dashboard";
-import CoachMembers from "./pages/coach/Members";
-import CoachClasses from "./pages/coach/Classes";
-import CoachTemplates from "./pages/coach/Templates";
-import CoachProgress from "./pages/coach/Progress";
-import Consultation from "./pages/Consultation";
-import LowImpactFitnessCharleston from "./pages/services/LowImpactFitnessCharleston";
-import MobilityFitnessAvondale from "./pages/services/MobilityFitnessAvondale";
-import StrengthTrainingCharleston from "./pages/services/StrengthTrainingCharleston";
-import WestAshleyFitness from "./pages/services/WestAshleyFitness";
-import ResetWeekCharleston from "./pages/services/ResetWeekCharleston";
+
+// Lazy load non-critical routes
+const About = lazy(() => import("./pages/About"));
+const Classes = lazy(() => import("./pages/Classes"));
+const Coaching = lazy(() => import("./pages/Coaching"));
+const Pricing = lazy(() => import("./pages/Pricing"));
+const Schedule = lazy(() => import("./pages/Schedule"));
+const Contact = lazy(() => import("./pages/Contact"));
+const SuccessStories = lazy(() => import("./pages/SuccessStories"));
+const FAQ = lazy(() => import("./pages/FAQ"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Insights = lazy(() => import("./pages/Insights"));
+const InsightPost = lazy(() => import("./pages/InsightPost"));
+const Auth = lazy(() => import("./pages/Auth"));
+const Consultation = lazy(() => import("./pages/Consultation"));
+
+// Landing pages
+const NewYearChallenge = lazy(() => import("./pages/NewYearChallenge"));
+const ResetWeek = lazy(() => import("./pages/ResetWeek"));
+const ResetWeekAlt = lazy(() => import("./pages/ResetWeekAlt"));
+
+// Service pages
+const LowImpactFitnessCharleston = lazy(() => import("./pages/services/LowImpactFitnessCharleston"));
+const MobilityFitnessAvondale = lazy(() => import("./pages/services/MobilityFitnessAvondale"));
+const StrengthTrainingCharleston = lazy(() => import("./pages/services/StrengthTrainingCharleston"));
+const WestAshleyFitness = lazy(() => import("./pages/services/WestAshleyFitness"));
+const ResetWeekCharleston = lazy(() => import("./pages/services/ResetWeekCharleston"));
+
+// Member portal
+const MemberDashboard = lazy(() => import("./pages/member/Dashboard"));
+const MemberProfile = lazy(() => import("./pages/member/Profile"));
+const MyBookings = lazy(() => import("./pages/member/MyBookings"));
+const MemberVideos = lazy(() => import("./pages/member/Videos"));
+const MemberVideoPlayer = lazy(() => import("./pages/member/VideoPlayer"));
+const MemberContracts = lazy(() => import("./pages/member/Contracts"));
+const MemberWorkouts = lazy(() => import("./pages/member/Workouts"));
+const MemberWorkoutSession = lazy(() => import("./pages/member/WorkoutSession"));
+
+// Admin pages
+const SocialGenerator = lazy(() => import("./pages/admin/SocialGenerator"));
+const Promotions = lazy(() => import("./pages/admin/Promotions"));
+const AdminDashboard = lazy(() => import("./pages/admin/Dashboard"));
+const AdminMembers = lazy(() => import("./pages/admin/Members"));
+const AdminMemberDetail = lazy(() => import("./pages/admin/MemberDetail"));
+const AdminScheduleManager = lazy(() => import("./pages/admin/ScheduleManager"));
+const AdminClassTypes = lazy(() => import("./pages/admin/ClassTypes"));
+const AdminVideos = lazy(() => import("./pages/admin/Videos"));
+const AdminNotifications = lazy(() => import("./pages/admin/Notifications"));
+const AdminContracts = lazy(() => import("./pages/admin/Contracts"));
+const AdminExercises = lazy(() => import("./pages/admin/Exercises"));
+const WorkoutBuilder = lazy(() => import("./pages/admin/WorkoutBuilder"));
+const AdminAnalytics = lazy(() => import("./pages/admin/Analytics"));
+
+// Coach pages
+const CoachDashboard = lazy(() => import("./pages/coach/Dashboard"));
+const CoachMembers = lazy(() => import("./pages/coach/Members"));
+const CoachClasses = lazy(() => import("./pages/coach/Classes"));
+const CoachTemplates = lazy(() => import("./pages/coach/Templates"));
+const CoachProgress = lazy(() => import("./pages/coach/Progress"));
+
+// Lazy load ChatBot
+const ChatBot = lazy(() => import("./components/chat/ChatBot"));
 
 const queryClient = new QueryClient();
 
@@ -85,25 +102,26 @@ const AppLayout = () => {
         {!hideNavFooter && <Navigation />}
         {!hideNavFooter && <TodayClassesBanner />}
         <div className="flex-grow">
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/classes" element={<Classes />} />
-            <Route path="/coaching" element={<Coaching />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/schedule" element={<Schedule />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/success-stories" element={<SuccessStories />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/insights" element={<Insights />} />
-            <Route path="/insights/:slug" element={<InsightPost />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/terms" element={<Terms />} />
-            
-            {/* Auth Route */}
-            <Route path="/auth" element={<Auth />} />
-            
+          <Suspense fallback={<div className="min-h-screen" />}>
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/classes" element={<Classes />} />
+              <Route path="/coaching" element={<Coaching />} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="/schedule" element={<Schedule />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/success-stories" element={<SuccessStories />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/insights" element={<Insights />} />
+              <Route path="/insights/:slug" element={<InsightPost />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+              
+              {/* Auth Route */}
+              <Route path="/auth" element={<Auth />} />
+              
             {/* Landing Pages */}
             <Route path="/new-year" element={<NewYearChallenge />} />
             <Route path="/reset-week" element={<ResetWeek />} />
@@ -253,12 +271,17 @@ const AppLayout = () => {
               </ProtectedRoute>
             } />
             
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </div>
         {!hideNavFooter && <Footer />}
-        {!hideNavFooter && <ChatBot />}
+        {!hideNavFooter && (
+          <Suspense fallback={null}>
+            <ChatBot />
+          </Suspense>
+        )}
       </div>
       <ScrollToTopButton />
     </>
