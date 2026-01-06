@@ -1,3 +1,17 @@
+// Image imports for proper Vite bundling
+import blogTraditionalWorkoutsHero from '@/assets/blog-traditional-workouts-hero.jpg';
+import coachingSession from '@/assets/coaching-session.jpg';
+import mobilityClass from '@/assets/mobility-class.jpg';
+import groupKettlebellTraining from '@/assets/group-kettlebell-training.jpg';
+import studioMobilityTraining from '@/assets/studio-mobility-training.jpg';
+import kettlebellFormCheck from '@/assets/kettlebell-form-check.jpg';
+import studioFloorExercise from '@/assets/studio-floor-exercise.jpg';
+import studioFullView from '@/assets/studio-full-view.jpg';
+import outdoorTraining from '@/assets/outdoor-training.jpg';
+import heroKettlebellTraining from '@/assets/hero-kettlebell-training.jpg';
+import coachNickPortrait from '@/assets/coach-nick-portrait.jpg';
+import nickHolisticCoaching from '@/assets/nick-holistic-coaching.jpg';
+
 export interface InsightPost {
   id: string;
   slug: string;
@@ -19,13 +33,13 @@ export const authorInfo = {
     name: "Coach Drake",
     title: "Owner & Head Coach",
     bio: "25+ years experience in strength training and functional movement. StrongFirst Kettlebell Certified.",
-    image: "/src/assets/coach-nick-portrait.jpg"
+    image: coachNickPortrait
   },
   nick: {
     name: "Coach Nick",
     title: "Corrective Exercise & Holistic Coach",
     bio: "Specializes in corrective exercise, mobility, and holistic wellness approaches.",
-    image: "/src/assets/nick-holistic-coaching.jpg"
+    image: nickHolisticCoaching
   }
 };
 
@@ -157,7 +171,7 @@ export const insightPosts: InsightPost[] = [
     author: 'david',
     publishedAt: '2025-01-05',
     readTime: 8,
-    thumbnail: '@/assets/blog-traditional-workouts-hero.jpg',
+    thumbnail: blogTraditionalWorkoutsHero,
     featured: true,
     tags: ['training philosophy', 'over 40', 'smart training']
   },
@@ -201,7 +215,7 @@ export const insightPosts: InsightPost[] = [
     author: 'david',
     publishedAt: '2025-01-03',
     readTime: 6,
-    thumbnail: '/src/assets/coaching-session.jpg',
+    thumbnail: coachingSession,
     featured: true,
     tags: ['philosophy', 'coaching', 'values']
   },
@@ -250,7 +264,7 @@ export const insightPosts: InsightPost[] = [
     author: 'nick',
     publishedAt: '2025-01-02',
     readTime: 7,
-    thumbnail: '/src/assets/mobility-class.jpg',
+    thumbnail: mobilityClass,
     featured: false,
     tags: ['mobility', 'flexibility', 'movement quality']
   },
@@ -295,7 +309,7 @@ export const insightPosts: InsightPost[] = [
     author: 'david',
     publishedAt: '2024-12-30',
     readTime: 5,
-    thumbnail: '/src/assets/group-kettlebell-training.jpg',
+    thumbnail: groupKettlebellTraining,
     featured: false,
     tags: ['beginners', 'getting started', 'reset week']
   },
@@ -339,7 +353,7 @@ export const insightPosts: InsightPost[] = [
     author: 'nick',
     publishedAt: '2024-12-28',
     readTime: 6,
-    thumbnail: '/src/assets/studio-mobility-training.jpg',
+    thumbnail: studioMobilityTraining,
     featured: false,
     tags: ['philosophy', 'pain', 'training approach']
   },
@@ -385,7 +399,7 @@ export const insightPosts: InsightPost[] = [
     author: 'nick',
     publishedAt: '2024-12-26',
     readTime: 8,
-    thumbnail: '/src/assets/kettlebell-form-check.jpg',
+    thumbnail: kettlebellFormCheck,
     featured: false,
     tags: ['injuries', 'modifications', 'safety']
   },
@@ -435,7 +449,7 @@ export const insightPosts: InsightPost[] = [
     author: 'nick',
     publishedAt: '2024-12-24',
     readTime: 5,
-    thumbnail: '/src/assets/studio-floor-exercise.jpg',
+    thumbnail: studioFloorExercise,
     featured: false,
     tags: ['breathing', 'core stability', 'fundamentals']
   },
@@ -484,7 +498,7 @@ export const insightPosts: InsightPost[] = [
     author: 'david',
     publishedAt: '2024-12-22',
     readTime: 5,
-    thumbnail: '/src/assets/studio-full-view.jpg',
+    thumbnail: studioFullView,
     featured: false,
     tags: ['about us', 'Charleston', 'comparison']
   },
@@ -535,7 +549,7 @@ export const insightPosts: InsightPost[] = [
     author: 'david',
     publishedAt: '2024-12-20',
     readTime: 6,
-    thumbnail: '/src/assets/outdoor-training.jpg',
+    thumbnail: outdoorTraining,
     featured: false,
     tags: ['time management', 'busy schedules', 'efficiency']
   },
@@ -549,7 +563,7 @@ export const insightPosts: InsightPost[] = [
     author: 'david',
     publishedAt: '2025-01-15',
     readTime: 9,
-    thumbnail: '/src/assets/hero-kettlebell-training.jpg',
+    thumbnail: heroKettlebellTraining,
     featured: true,
     tags: ['strength', 'functional training', 'philosophy']
   }
