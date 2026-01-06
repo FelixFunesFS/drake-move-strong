@@ -382,6 +382,7 @@ const ChatBot = () => {
               size="icon"
               disabled={!input.trim() || isLoading}
               className="shrink-0"
+              aria-label="Send message"
             >
               <Send className="w-4 h-4" />
             </Button>
