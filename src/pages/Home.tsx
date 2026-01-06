@@ -6,8 +6,11 @@ import { CheckCircle2, Users, Trophy, Target, TrendingUp, Heart } from "lucide-r
 import { GoogleReviewsBadge, GOOGLE_REVIEWS } from "@/components/GoogleReviewsBadge";
 import { SEO } from "@/components/SEO";
 import { StructuredData, localBusinessSchema } from "@/components/StructuredData";
-import heroImage2 from "@/assets/hero-barbell-deadlift.jpg";
-import heroImage3 from "@/assets/hero-coaching-session.jpg";
+// WebP hero images with responsive sizes
+import heroImage2Desktop from "@/assets/hero-barbell-deadlift.jpg?format=webp&w=1920";
+import heroImage2Mobile from "@/assets/hero-barbell-deadlift.jpg?format=webp&w=768";
+import heroImage3Desktop from "@/assets/hero-coaching-session.jpg?format=webp&w=1920";
+import heroImage3Mobile from "@/assets/hero-coaching-session.jpg?format=webp&w=768";
 import outdoorTraining from "@/assets/david-outdoor-dumbbell.jpg";
 import davidCoach from "@/assets/david-goblet-squat-kb-rack.jpg";
 import coachNick from "@/assets/nick-holistic-coaching.jpg";
@@ -54,8 +57,9 @@ const Home = () => {
           text: <>READ OUR<br className="hidden sm:inline" />REVIEWS</>,
           link: GOOGLE_REVIEWS.url
         }}
-        backgroundImages={[heroImage2, heroImage3]} 
-        autoRotate={true} 
+        backgroundImages={[heroImage2Desktop, heroImage3Desktop]} 
+        backgroundImagesMobile={[heroImage2Mobile, heroImage3Mobile]}
+        autoRotate={true}
       />
 
       {/* Brand Values Marquee */}
