@@ -62,11 +62,18 @@ export function TodayClassesBanner() {
   };
 
   useEffect(() => {
-    fetchTodayClasses();
-    
-    // Refresh every 5 minutes
+    // Defer the database fetch to improve LCP - let hero render first
+    const initialDelay = setTimeout(() => {
+      fetchTodayClasses();
+    }, 2000); // Defer by 2s to prioritize hero rendering
+
+    // Refresh every 5 minutes after initial load
     const interval = setInterval(fetchTodayClasses, 5 * 60 * 1000);
-    return () => clearInterval(interval);
+    
+    return () => {
+      clearTimeout(initialDelay);
+      clearInterval(interval);
+    };
   }, []);
 
   const formatTime = (time: string) => {

@@ -102,15 +102,10 @@ const Hero = ({
               {eyebrow}
             </motion.p>
           )}
-          <motion.h1 initial={{
-          opacity: 1,
-          y: 0
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} className="font-hero text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 leading-[0.95] tracking-tighter uppercase">
+          {/* H1 uses regular element for faster LCP - no motion wrapper */}
+          <h1 className="font-hero text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 leading-[0.95] tracking-tighter uppercase">
             {title}
-          </motion.h1>
+          </h1>
           <motion.p initial={{
           opacity: 0,
           y: 30
