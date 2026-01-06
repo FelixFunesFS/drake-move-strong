@@ -170,20 +170,22 @@ const InsightPost = () => {
             </div>
           </div>
 
-          {/* CTA Box */}
-          <div className="mt-16 bg-gradient-to-br from-primary to-primary/80 text-white rounded-3xl p-10 md:p-12 text-center">
-            <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase">Ready to Train the Right Way?</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
-              Reset Week is where it starts. No pressure. No contracts. Just smart training that actually works for bodies over 40.
-            </p>
-            <Link 
-              to="/reset-week"
-              className="inline-flex items-center px-10 py-5 bg-drake-gold text-foreground font-bold text-lg rounded hover:bg-drake-gold/90 transition-all transform hover:-translate-y-1 shadow-xl uppercase tracking-wide"
-            >
-              <ArrowRight className="mr-2 w-5 h-5" /> Start Your Reset Week
-            </Link>
-            <p className="text-gray-300 mt-6 text-sm">Charleston, SC • Limited Spots Available</p>
-          </div>
+          {/* CTA Box - Only show for posts without custom content components */}
+          {!CustomContent && (
+            <div className="mt-16 bg-gradient-to-br from-primary to-primary/80 text-white rounded-3xl p-10 md:p-12 text-center">
+              <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase">Ready to Train the Right Way?</h2>
+              <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
+                Reset Week is where it starts. No pressure. No contracts. Just smart training that actually works for bodies over 40.
+              </p>
+              <Link 
+                to="/reset-week"
+                className="inline-flex items-center px-10 py-5 bg-drake-gold text-foreground font-bold text-lg rounded hover:bg-drake-gold/90 transition-all transform hover:-translate-y-1 shadow-xl uppercase tracking-wide"
+              >
+                <ArrowRight className="mr-2 w-5 h-5" /> Start Your Reset Week
+              </Link>
+              <p className="text-gray-300 mt-6 text-sm">Charleston, SC • Limited Spots Available</p>
+            </div>
+          )}
 
         </div>
       </section>
