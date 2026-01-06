@@ -5,55 +5,52 @@ import memberYoga from "@/assets/member-yoga-pose.jpg";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
 import { SEO } from "@/components/SEO";
+import { GoogleReviewsBadge, GOOGLE_REVIEWS } from "@/components/GoogleReviewsBadge";
+import { ExternalLink } from "lucide-react";
 
 const SuccessStories = () => {
+  // Verified Google Reviews - strategically mapped for conversion
   const testimonials = [
     {
-      name: "Sarah M.",
-      age: 42,
-      challenge: "Chronic back pain from desk work",
-      result: "Pain-free after 8 weeks",
-      quote: "I used to wake up with back pain every single day. After just two months at Drake Fitness, I move better than I did in my 30s. The mobility work completely changed my life.",
+      name: "Melissa F.",
+      challenge: "Chronic knee pain",
+      result: "Pain-free living",
+      quote: "I came in with chronic knee pain and now live pain free thanks to their guidance.",
       rating: 5,
     },
     {
-      name: "Mike T.",
-      age: 56,
-      challenge: "Former athlete, multiple injuries",
-      result: "Stronger and more mobile than ever",
-      quote: "The coaching here is next-level. It's not just a workout — it's education, support, and real progress. David and Nick truly understand how bodies move.",
+      name: "Caitlin P.",
+      challenge: "3 lower back surgeries",
+      result: "Back to consistent training",
+      quote: "I have had 3 lower back surgeries… they helped me get back to working out consistently.",
       rating: 5,
     },
     {
-      name: "Jennifer L.",
-      age: 38,
-      challenge: "Busy mom, no fitness background",
-      result: "Lost 25 lbs, gained confidence",
-      quote: "I was intimidated to start, but the Foundation Flow class made it so approachable. Now I'm doing things I never thought possible. The community here is incredible.",
+      name: "Aaron Q.",
+      challenge: "Wanted to stay strong in 40s",
+      result: "Stronger than ever",
+      quote: "I'm stronger in my 40s than ever before… His knowledge and adaptability have made a significant impact.",
       rating: 5,
     },
     {
-      name: "Robert K.",
-      age: 61,
-      challenge: "Hip replacement recovery",
-      result: "Full mobility restored",
-      quote: "After my hip replacement, I thought my active days were over. The 1:1 coaching helped me rebuild strength safely. Now I'm hiking again!",
+      name: "Chris P.",
+      challenge: "Injury prevention focus",
+      result: "Years of safe training",
+      quote: "He opened my eyes on how to be strong, move properly, and avoid senseless injuries.",
       rating: 5,
     },
     {
-      name: "Amanda R.",
-      age: 35,
-      challenge: "Postpartum recovery",
-      result: "Core strength rebuilt",
-      quote: "The coaches understood exactly what I needed post-pregnancy. They helped me rebuild my core safely and effectively. I feel stronger than before I had kids.",
+      name: "Paul B.",
+      challenge: "Inconsistent with exercise",
+      result: "Daily habit formed",
+      quote: "Exercise went from something I did off and on into something I look forward to every day.",
       rating: 5,
     },
     {
-      name: "David W.",
-      age: 48,
-      challenge: "Desk job, shoulder pain",
-      result: "Pain eliminated, posture improved",
-      quote: "My shoulder was so bad I couldn't lift my arm above my head. The corrective work and coaching fixed issues I'd had for years. Highly recommend!",
+      name: "Cara S.",
+      challenge: "Tried other trainers/PTs",
+      result: "Finally found what works",
+      quote: "Better than any physical therapist or personal trainer I've ever had.",
       rating: 5,
     },
   ];
@@ -70,9 +67,25 @@ const SuccessStories = () => {
       <Hero
         eyebrow="SUCCESS STORIES"
         title="Real People. Real Results."
-        subtitle="Stories of everyday adults who improved mobility, reduced pain, and built strength that changed their lives."
+        subtitle="Verified reviews from Drake Fitness members in Charleston who improved mobility, reduced pain, and built lasting strength."
         backgroundImage={communityImage}
       />
+
+      {/* Google Reviews Trust Badge */}
+      <section className="py-8 bg-muted border-b border-border">
+        <div className="container mx-auto px-4 text-center">
+          <GoogleReviewsBadge variant="full" showSupportingText />
+          <a 
+            href={GOOGLE_REVIEWS.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium mt-4 underline underline-offset-2"
+          >
+            Read all reviews on Google
+            <ExternalLink className="h-4 w-4" />
+          </a>
+        </div>
+      </section>
 
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
@@ -86,7 +99,7 @@ const SuccessStories = () => {
                 </div>
                 <p className="text-lg mb-6 italic">"{testimonial.quote}"</p>
                 <div className="border-t border-border pt-4">
-                  <p className="font-bold text-lg">{testimonial.name}, {testimonial.age}</p>
+                  <p className="font-bold text-lg">{testimonial.name}</p>
                   <p className="text-sm text-muted-foreground mb-2">
                     <strong>Challenge:</strong> {testimonial.challenge}
                   </p>

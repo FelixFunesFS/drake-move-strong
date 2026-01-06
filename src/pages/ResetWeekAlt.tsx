@@ -259,6 +259,20 @@ const ResetWeekAlt = () => {
               </AnimatedSection>
             ))}
           </div>
+          
+          {/* Testimonial for Reset Week Audience */}
+          <AnimatedSection delay={0.3} className="mt-12">
+            <div className="max-w-2xl mx-auto bg-card p-8 rounded-2xl border border-primary/20 shadow-lg">
+              <div className="flex gap-1 mb-4 justify-center">
+                {[...Array(5)].map((_, i) => <span key={i} className="text-drake-gold text-xl">★</span>)}
+              </div>
+              <p className="text-lg text-foreground italic text-center mb-4">
+                "I wasn't comfortable in this new body and didn't know how to move it correctly… He really assesses your needs and makes sure you don't get hurt."
+              </p>
+              <p className="text-center font-semibold text-foreground">— D. Ramos</p>
+              <p className="text-center text-sm text-primary">Started with Reset Week</p>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 

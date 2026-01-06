@@ -324,16 +324,20 @@ const Home = () => {
           <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
             Real People. <span className="text-primary">Real Results.</span>
           </h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-12">
             {[{
-            quote: "I used to wake up with back pain every day. Now I move better than I did in my 30s.",
-            author: "Member, Charleston",
-            rating: 5
-          }, {
-            quote: "The coaching here is next-level. It's not just a workout — it's education, support, and real progress.",
-            author: "Member, Charleston",
-            rating: 5
-          }].map((testimonial, index) => <div key={index} className="bg-white p-6 rounded-lg shadow-card border border-border">
+              quote: "I came in with chronic knee pain and now live pain free thanks to their guidance.",
+              author: "Melissa F.",
+              rating: 5
+            }, {
+              quote: "The coaches are incredibly attentive, they watch your form, make adjustments, and explain why certain movements matter.",
+              author: "Felix F.",
+              rating: 5
+            }, {
+              quote: "Better than any physical therapist or personal trainer I've ever had.",
+              author: "Cara S.",
+              rating: 5
+            }].map((testimonial, index) => <div key={index} className="bg-white p-6 rounded-lg shadow-card border border-border">
                 <div className="flex gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => <span key={i} className="text-drake-gold text-xl">★</span>)}
                 </div>

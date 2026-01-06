@@ -335,7 +335,27 @@ const Pricing = () => {
               </p>
             </div>
             
-            <p className="text-center text-muted-foreground mt-8">
+            {/* Tier-Mapped Testimonials */}
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-10">
+              <div className="bg-muted p-6 rounded-xl border border-border">
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => <span key={i} className="text-drake-gold text-lg">★</span>)}
+                </div>
+                <p className="text-foreground italic mb-4">"Even in the group classes, if you're a beginner, he will make sure you are comfortable and learn proper form."</p>
+                <p className="font-semibold text-foreground">— Turner W.</p>
+                <p className="text-sm text-primary">Foundation member</p>
+              </div>
+              <div className="bg-drake-dark p-6 rounded-xl border-2 border-drake-gold">
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => <span key={i} className="text-drake-gold text-lg">★</span>)}
+                </div>
+                <p className="text-gray-200 italic mb-4">"I'm stronger in my 40s than ever before… His knowledge and adaptability have made a significant impact."</p>
+                <p className="font-semibold text-white">— Aaron Q.</p>
+                <p className="text-sm text-drake-gold">Longevity Unlimited member</p>
+              </div>
+            </div>
+            
+            <p className="text-center text-muted-foreground mt-10">
               Still unsure? <Link to="/reset-week" className="text-primary hover:text-primary/80 font-medium underline underline-offset-2">Start with the Reset Week</Link> — it's designed to help you decide with confidence.
             </p>
           </div>
