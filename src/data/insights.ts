@@ -16,6 +16,7 @@ export interface InsightPost {
   id: string;
   slug: string;
   title: string;
+  seoTitle?: string;
   excerpt: string;
   content: string;
   category: 'education' | 'trust' | 'conversion';
@@ -69,6 +70,7 @@ export const insightPosts: InsightPost[] = [
     id: "1",
     slug: "why-traditional-workouts-stop-working-after-40",
     title: "Why Traditional Workouts Stop Working After 40",
+    seoTitle: "Why Workouts Fail After 40: Complete 2026 Guide",
     excerpt: "And What Actually Does Work for Long-Term Strength and Mobility",
     content: `
       <p class="lead">If you've been training for years and suddenly feel like your body isn't responding the way it used to, you're not alone. After 40, the rules change — but most gyms keep teaching the same playbook.</p>
@@ -179,6 +181,7 @@ export const insightPosts: InsightPost[] = [
     id: "2",
     slug: "the-drake-philosophy-why-we-train-differently",
     title: "The Drake Philosophy: Why We Train Differently",
+    seoTitle: "Drake Fitness Philosophy: Why Our Training Works",
     excerpt: "Discover the principles behind our coaching approach and why we prioritize movement quality over workout intensity. Learn what makes Drake Fitness different from traditional gyms.",
     content: `
       <p class="lead">Every gym has equipment. Most have trainers. What sets Drake Fitness apart isn't what we have — it's how we think about movement, strength, and your long-term success.</p>
@@ -223,6 +226,7 @@ export const insightPosts: InsightPost[] = [
     id: "3",
     slug: "understanding-mobility-vs-flexibility",
     title: "Understanding Mobility vs. Flexibility: What You Really Need",
+    seoTitle: "Mobility vs Flexibility: Key Differences Explained",
     excerpt: "Most people confuse mobility with flexibility. Learn the critical difference and why mobility training is essential for pain-free movement.",
     content: `
       <p class="lead">You can touch your toes, but your hips still feel tight. You can stretch for hours, but your shoulders still ache. What's going on?</p>
@@ -272,6 +276,7 @@ export const insightPosts: InsightPost[] = [
     id: "4",
     slug: "too-out-of-shape-to-start-reset-week-for-beginners",
     title: '"I\'m Too Out of Shape to Start": Why Reset Week Is Perfect for Beginners',
+    seoTitle: "Too Out of Shape? Why Reset Week Works for Beginners",
     excerpt: "Address the fear of starting. Learn why our program is specifically designed for people who feel unprepared.",
     content: `
       <p class="lead">We hear this concern constantly: "I need to get in shape before I can come to your gym." It makes sense — but it's exactly backwards.</p>
@@ -317,7 +322,8 @@ export const insightPosts: InsightPost[] = [
     id: "5",
     slug: "why-we-dont-believe-in-no-pain-no-gain",
     title: "Why 'No Pain No Gain' Is the Worst Advice for Long-Term Fitness",
-    excerpt: "",
+    seoTitle: "No Pain No Gain Myth: Proven Alternative (2025)",
+    excerpt: "For decades, the fitness industry has told you that if it doesn't hurt, it doesn't work. We disagree — here's why.",
     content: `
       <p class="lead">For decades, the fitness industry has told you that if it doesn't hurt, it doesn't work. We disagree.</p>
       
@@ -361,6 +367,7 @@ export const insightPosts: InsightPost[] = [
     id: "6",
     slug: "can-i-train-with-old-injury",
     title: "Can I Train With an Old Injury? How We Work Around Pain",
+    seoTitle: "Training With Injuries: Complete Safety Guide",
     excerpt: "Learn how our coaches modify exercises and create personalized progressions for members with injuries or limitations.",
     content: `
       <p class="lead">That old knee injury. The shoulder surgery from five years ago. The back that "goes out" sometimes. Can you still train? Absolutely — and here's how we make it work.</p>
@@ -407,6 +414,7 @@ export const insightPosts: InsightPost[] = [
     id: "7",
     slug: "how-breathing-controls-movement",
     title: "How Breathing Controls Movement (And Why Most People Get It Wrong)",
+    seoTitle: "How Breathing Improves Movement: 4 Key Benefits",
     excerpt: "Your breath is the foundation of movement quality. Learn why proper breathing mechanics matter more than you think.",
     content: `
       <p class="lead">Before you worry about your squat form or deadlift technique, ask yourself: are you breathing correctly? For most people, the answer is no.</p>
@@ -457,6 +465,7 @@ export const insightPosts: InsightPost[] = [
     id: "8",
     slug: "what-makes-drake-fitness-different-from-charleston-gyms",
     title: "What Makes Drake Fitness Different From Other Charleston Gyms",
+    seoTitle: "Charleston's Best Gym: 5 Reasons to Choose Drake",
     excerpt: "A transparent look at our unique approach to coaching, programming, and member experience.",
     content: `
       <p class="lead">Charleston has no shortage of gyms. So why would you choose Drake Fitness? Here's an honest comparison.</p>
@@ -506,6 +515,7 @@ export const insightPosts: InsightPost[] = [
     id: "9",
     slug: "how-much-time-do-i-really-need",
     title: "How Much Time Do I Really Need? Training for Busy Schedules",
+    seoTitle: "3 Hours/Week to Results: Realistic Fitness Guide",
     excerpt: "Realistic expectations for time commitment and how to make consistent progress with a demanding schedule.",
     content: `
       <p class="lead">You're busy. Work, family, commute, responsibilities. Where does fitness fit? Here's an honest look at the minimum effective dose.</p>
@@ -557,6 +567,7 @@ export const insightPosts: InsightPost[] = [
     id: "10",
     slug: "what-real-strength-actually-means",
     title: "What \"Real Strength\" Actually Means",
+    seoTitle: "Real Strength Explained: Ultimate Guide (2025)",
     excerpt: "It's Not What Most People Think",
     content: ``,
     category: 'education',

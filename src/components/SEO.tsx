@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet';
 
 interface SEOProps {
   title: string;
+  seoTitle?: string;
   description: string;
   canonical?: string;
   ogImage?: string;
@@ -14,13 +15,16 @@ interface SEOProps {
 
 export function SEO({
   title,
+  seoTitle,
   description,
   canonical = 'https://drake.fitness',
   ogImage = 'https://drake.fitness/og-image.jpg',
   ogType = 'website',
   article,
 }: SEOProps) {
-  const fullTitle = title.includes('Drake Fitness') ? title : `${title} | Drake Fitness`;
+  // Use seoTitle for meta tags if available, otherwise fall back to title
+  const metaTitle = seoTitle || title;
+  const fullTitle = metaTitle.includes('Drake Fitness') ? metaTitle : `${metaTitle} | Drake Fitness`;
 
   return (
     <Helmet>

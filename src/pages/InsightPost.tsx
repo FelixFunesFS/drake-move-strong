@@ -1,5 +1,5 @@
 import { useParams, Navigate, Link } from "react-router-dom";
-import { Calendar, Clock, Tag, ArrowRight } from "lucide-react";
+import { Calendar, Clock, Tag, ArrowRight, ArrowLeft } from "lucide-react";
 import { insightPosts, authorInfo, categoryInfo } from "@/data/insights";
 import OptimizedImage from "@/components/OptimizedImage";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
@@ -41,6 +41,7 @@ const InsightPost = () => {
     <>
       <SEO
         title={post.title}
+        seoTitle={post.seoTitle}
         description={post.excerpt}
         canonical={`https://drake.fitness/insights/${post.slug}`}
         ogType="article"
@@ -48,9 +49,20 @@ const InsightPost = () => {
       />
       <StructuredData data={articleSchema} />
 
-      {/* Hero Section */}
-      <section className="relative min-h-[500px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary to-primary/80">
-        <div className="absolute inset-0 z-0 opacity-10">
+      {/* Hero Section with Background Image */}
+      <section className="relative min-h-[500px] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={post.thumbnail}
+            alt=""
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/85 to-primary/95" />
+        </div>
+
+        {/* Pattern Overlay */}
+        <div className="absolute inset-0 z-10 opacity-10">
           <div 
             className="absolute inset-0" 
             style={{
@@ -85,15 +97,6 @@ const InsightPost = () => {
               <span>{categoryInfo[post.category].name}</span>
             </div>
           </div>
-          
-          {/* Social Share Buttons - Hero */}
-          <div className="mt-8">
-            <SocialShareButtons 
-              url={`https://drake.fitness/insights/${post.slug}`}
-              title={post.title}
-              excerpt={post.excerpt}
-            />
-          </div>
         </div>
       </section>
 
@@ -101,6 +104,17 @@ const InsightPost = () => {
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
+          {/* Back to All Articles */}
+          <div className="mb-8 pb-6 border-b border-border">
+            <Link 
+              to="/insights" 
+              className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-medium"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to All Articles
+            </Link>
+          </div>
+
           {/* Render custom content component if available, otherwise use HTML fallback */}
           {CustomContent ? (
             <CustomContent />
@@ -198,7 +212,7 @@ const InsightPost = () => {
                 Reset Week is where it starts. No pressure. No contracts. Just smart training that actually works for bodies over 40.
               </p>
               <Link 
-                to="/reset-week"
+                to="/reset-week-charleston"
                 className="inline-flex items-center px-10 py-5 bg-drake-gold text-foreground font-bold text-lg rounded hover:bg-drake-gold/90 transition-all transform hover:-translate-y-1 shadow-xl uppercase tracking-wide"
               >
                 <ArrowRight className="mr-2 w-5 h-5" /> Start Your Reset Week
