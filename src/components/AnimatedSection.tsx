@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { LazyMotion, m, useInView, domAnimation } from "framer-motion";
 import { useRef, ReactNode } from "react";
 
 interface AnimatedSectionProps {
@@ -47,24 +47,26 @@ const AnimatedSection = ({
   });
 
   return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={animations[animation]}
-      transition={{
-        duration: 0.5,
-        delay,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      }}
-      className={className}
-      style={{ 
-        willChange: isInView ? "transform, opacity" : "auto",
-        contain: "layout style paint"
-      }}
-    >
-      {children}
-    </motion.div>
+    <LazyMotion features={domAnimation}>
+      <m.div
+        ref={ref}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={animations[animation]}
+        transition={{
+          duration: 0.5,
+          delay,
+          ease: [0.25, 0.46, 0.45, 0.94],
+        }}
+        className={className}
+        style={{ 
+          willChange: isInView ? "transform, opacity" : "auto",
+          contain: "layout style paint"
+        }}
+      >
+        {children}
+      </m.div>
+    </LazyMotion>
   );
 };
 
