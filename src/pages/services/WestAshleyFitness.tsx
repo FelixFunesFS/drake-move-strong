@@ -83,21 +83,21 @@ export default function WestAshleyFitness() {
                 <MapPin className="text-accent h-6 w-6" />
                 <span className="text-accent font-bold uppercase tracking-wider text-sm">Avondale, West Ashley, Charleston</span>
               </div>
-              <h1 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
-                Strength & Mobility Training <br />
+              <h1 className="font-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
+                Strength & Mobility Training <br className="hidden sm:block" />
                 <span className="text-accent">In West Ashley</span>
               </h1>
-              <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 leading-relaxed">
+              <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-6 md:mb-8 leading-relaxed">
                 Reset Week at Drake Fitness — Your Path to Pain-Free Movement
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-6 text-lg font-bold uppercase tracking-wide">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
                   <Link to="/reset-week">
                     Start Reset Week — $49
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/20 px-10 py-6 text-lg font-bold uppercase tracking-wide">
+                <Button asChild variant="outline" size="lg" className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/20 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
                   <Link to="/contact">
                     View Location & Hours
                   </Link>
@@ -109,35 +109,35 @@ export default function WestAshleyFitness() {
       </section>
 
       {/* Local Intro Section */}
-      <section className="py-20 bg-background">
+      <section className="py-12 md:py-16 lg:py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <AnimatedSection animation="fadeInUp">
               <div>
                 <span className="section-eyebrow text-primary">YOUR NEIGHBORHOOD GYM</span>
-                <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase leading-tight">
+                <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 uppercase leading-tight">
                   Located in <span className="text-primary">Avondale</span>, Serving West Ashley
                 </h2>
-                <ul className="space-y-5 mb-8">
+                <ul className="space-y-4 md:space-y-5 mb-6 md:mb-8">
                   {whatWeOffer.map((item, index) => (
                     <li key={index} className="flex items-start">
-                      <div className="flex-shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-4 mt-1">
-                        <Check className="text-primary-foreground h-4 w-4" />
+                      <div className="flex-shrink-0 w-7 h-7 md:w-8 md:h-8 bg-primary rounded-full flex items-center justify-center mr-3 md:mr-4 mt-1">
+                        <Check className="text-primary-foreground h-3.5 w-3.5 md:h-4 md:w-4" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-lg mb-1">{item.title}</h3>
-                        <p className="text-muted-foreground">{item.description}</p>
+                        <h3 className="font-bold text-base md:text-lg mb-1">{item.title}</h3>
+                        <p className="text-muted-foreground text-sm md:text-base">{item.description}</p>
                       </div>
                     </li>
                   ))}
                 </ul>
-                <div className="bg-secondary border-l-4 border-accent p-6 rounded-r-lg">
-                  <p className="font-semibold text-lg">Drake Fitness is in Avondale — and Reset Week is the best place to start.</p>
+                <div className="bg-secondary border-l-4 border-accent p-4 md:p-6 rounded-r-lg">
+                  <p className="font-semibold text-base md:text-lg">Drake Fitness is in Avondale — and Reset Week is the best place to start.</p>
                 </div>
               </div>
             </AnimatedSection>
             <AnimatedSection animation="fadeInUp" delay={0.1}>
-              <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative h-[350px] sm:h-[450px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                 <OptimizedImage
                   src={groupKettlebellTraining}
                   alt="West Ashley members training at Drake Fitness"
@@ -255,14 +255,14 @@ export default function WestAshleyFitness() {
           </AnimatedSection>
 
           <AnimatedSection animation="fadeInUp" delay={0.1}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-background p-10 rounded-2xl shadow-lg">
-                <div className="flex items-center mb-6">
-                  <div className="flex text-accent text-xl">
-                    {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+              <div className="bg-background p-5 md:p-10 rounded-2xl shadow-lg">
+                <div className="flex items-center mb-4 md:mb-6">
+                  <div className="flex text-accent">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 fill-current" />)}
                   </div>
                 </div>
-                <p className="text-muted-foreground text-lg italic mb-6 leading-relaxed">"I had a bad back injury that was not getting better with physical therapy... Dave was BETTER than all physical therapists I've ever had. Moreover, I have had multiple different personal trainers and group classes, and he was better than them too!"</p>
+                <p className="text-muted-foreground text-base md:text-lg italic mb-4 md:mb-6 leading-relaxed break-words">"I had a bad back injury that was not getting better with physical therapy... Dave was BETTER than all physical therapists I've ever had. Moreover, I have had multiple different personal trainers and group classes, and he was better than them too!"</p>
                 <div className="flex items-center">
                   <div>
                     <p className="font-semibold">Cara S.</p>
@@ -271,13 +271,13 @@ export default function WestAshleyFitness() {
                 </div>
               </div>
 
-              <div className="bg-background p-10 rounded-2xl shadow-lg">
-                <div className="flex items-center mb-6">
-                  <div className="flex text-accent text-xl">
-                    {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
+              <div className="bg-background p-5 md:p-10 rounded-2xl shadow-lg">
+                <div className="flex items-center mb-4 md:mb-6">
+                  <div className="flex text-accent">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 fill-current" />)}
                   </div>
                 </div>
-                <p className="text-muted-foreground text-lg italic mb-6 leading-relaxed">"Coming out of the pandemic, my head and body were in a bad place. 30 lbs heavier and feeling hyper unmotivated. David's training has taken exercise from something I did off and on into something I look forward to every single day."</p>
+                <p className="text-muted-foreground text-base md:text-lg italic mb-4 md:mb-6 leading-relaxed break-words">"Coming out of the pandemic, my head and body were in a bad place. 30 lbs heavier and feeling hyper unmotivated. David's training has taken exercise from something I did off and on into something I look forward to every single day."</p>
                 <div className="flex items-center">
                   <div>
                     <p className="font-semibold">Paul B.</p>
@@ -291,32 +291,32 @@ export default function WestAshleyFitness() {
       </section>
 
       {/* Reset Week CTA Section */}
-      <section className="py-24 bg-primary text-primary-foreground">
+      <section className="py-12 md:py-16 lg:py-24 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
             <div className="text-center max-w-4xl mx-auto">
-              <h2 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">Ready to Move Better?</h2>
-              <p className="text-2xl text-primary-foreground/90 mb-4">Reset Week starts you off right — with coaching, community, and confidence.</p>
-              <p className="text-xl text-primary-foreground/70 mb-10">Avondale's choice for pain-free strength training.</p>
+              <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 uppercase leading-tight">Ready to Move Better?</h2>
+              <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-3 md:mb-4">Reset Week starts you off right — with coaching, community, and confidence.</p>
+              <p className="text-base md:text-lg lg:text-xl text-primary-foreground/70 mb-8 md:mb-10">Avondale's choice for pain-free strength training.</p>
               
-              <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-12 py-6 text-xl font-bold uppercase tracking-wide">
+              <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
                 <Link to="/reset-week">
                   Start Reset Week — $49
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                 </Link>
               </Button>
 
-              <div className="flex items-center justify-center gap-8 mt-8 text-primary-foreground/80">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 mt-6 md:mt-8 text-primary-foreground/80 text-sm md:text-base">
                 <div className="flex items-center gap-2">
-                  <Check className="text-accent h-5 w-5" />
+                  <Check className="text-accent h-4 w-4 md:h-5 md:w-5" />
                   <span>No Commitment</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="text-accent h-5 w-5" />
+                  <Check className="text-accent h-4 w-4 md:h-5 md:w-5" />
                   <span>Expert Coaching</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="text-accent h-5 w-5" />
+                  <Check className="text-accent h-4 w-4 md:h-5 md:w-5" />
                   <span>Small Groups</span>
                 </div>
               </div>

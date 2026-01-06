@@ -149,25 +149,25 @@ export default function MobilityFitnessAvondale() {
               <span className="inline-block px-4 py-2 bg-accent/20 border border-accent rounded-full mb-6">
                 <span className="text-accent font-bold uppercase tracking-wider text-sm">Serving Avondale, Charleston</span>
               </span>
-              <h1 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
+              <h1 className="font-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
                 Safe, Coach-Led Training for Adults Restarting Fitness in Avondale
               </h1>
-              <p className="text-2xl md:text-3xl text-primary-foreground/90 mb-4 font-semibold">
+              <p className="text-xl sm:text-2xl md:text-3xl text-primary-foreground/90 mb-4 font-semibold">
                 Mobility-Focused Fitness That Actually Works
               </p>
-              <p className="text-xl text-primary-foreground/80 mb-10 leading-relaxed">
+              <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 md:mb-10 leading-relaxed">
                 Join your Avondale neighbors who train smarter, move better, and build strength without pain.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 items-start">
-                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-6 text-lg font-bold uppercase tracking-wide">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-start">
+                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
                   <Link to="/reset-week">
-                    <ArrowRight className="mr-2 h-5 w-5" />
+                    <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
                     Start Reset Week — $49
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/20 px-10 py-6 text-lg font-bold uppercase tracking-wide">
+                <Button asChild variant="outline" size="lg" className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/20 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
                   <Link to="/contact">
-                    <MapPin className="mr-2 h-5 w-5" />
+                    <MapPin className="mr-2 h-5 w-5 flex-shrink-0" />
                     Get Directions
                   </Link>
                 </Button>
@@ -192,49 +192,49 @@ export default function MobilityFitnessAvondale() {
       </section>
 
       {/* Why Mobility Matters Section */}
-      <section className="py-24 bg-background">
+      <section className="py-12 md:py-16 lg:py-24 bg-background overflow-x-hidden">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
             <AnimatedSection animation="fadeInUp">
               <div>
                 <span className="section-eyebrow text-primary">THE FOUNDATION</span>
-                <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-8 uppercase leading-tight">
+                <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8 uppercase leading-tight">
                   Why Mobility Matters <span className="text-primary">As We Age</span>
                 </h2>
                 
-                <div className="space-y-6 mb-10">
+                <div className="space-y-4 md:space-y-6 mb-8 md:mb-10">
                   {whyMobilityMatters.map((item, index) => (
-                    <div key={index} className="flex items-start gap-4 p-6 bg-secondary rounded-xl border-l-4 border-primary">
-                      <div className="w-12 h-12 bg-primary rounded-lg flex-shrink-0 flex items-center justify-center">
-                        <item.icon className="text-primary-foreground h-6 w-6" />
+                    <div key={index} className="flex items-start gap-3 md:gap-4 p-4 md:p-6 bg-secondary rounded-xl border-l-4 border-primary">
+                      <div className="w-10 h-10 md:w-12 md:h-12 bg-primary rounded-lg flex-shrink-0 flex items-center justify-center">
+                        <item.icon className="text-primary-foreground h-5 w-5 md:h-6 md:w-6" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-xl mb-2">{item.title}</h3>
-                        <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                        <h3 className="font-bold text-lg md:text-xl mb-1 md:mb-2">{item.title}</h3>
+                        <p className="text-muted-foreground leading-relaxed text-sm md:text-base">{item.description}</p>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="bg-accent/10 border-l-4 border-accent p-8 rounded-r-2xl">
-                  <h3 className="font-hero text-2xl font-bold mb-3 uppercase">The Solution</h3>
-                  <p className="text-foreground leading-relaxed font-medium">At Drake Fitness, we prioritize mobility first — so strength training actually works and lasts.</p>
+                <div className="bg-accent/10 border-l-4 border-accent p-5 md:p-8 rounded-r-2xl">
+                  <h3 className="font-hero text-xl md:text-2xl font-bold mb-3 uppercase">The Solution</h3>
+                  <p className="text-foreground leading-relaxed font-medium text-sm md:text-base">At Drake Fitness, we prioritize mobility first — so strength training actually works and lasts.</p>
                 </div>
               </div>
             </AnimatedSection>
 
             <AnimatedSection animation="fadeInUp" delay={0.1}>
               <div className="relative">
-                <div className="h-[700px] rounded-2xl overflow-hidden shadow-2xl">
+                <div className="h-[350px] sm:h-[450px] md:h-[550px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl">
                   <OptimizedImage
                     src={davidMaceTraining}
                     alt="Coach demonstrating proper mobility movement technique"
                     className="w-full h-full"
                   />
                 </div>
-                <div className="absolute -bottom-8 -left-8 bg-primary text-primary-foreground p-8 rounded-xl shadow-xl max-w-sm">
-                  <p className="font-heading text-4xl font-bold mb-2">92%</p>
-                  <p className="font-semibold text-lg">of our Avondale members report less pain within 3 weeks</p>
+                <div className="lg:absolute lg:-bottom-8 lg:-left-8 mt-6 lg:mt-0 bg-primary text-primary-foreground p-5 md:p-8 rounded-xl shadow-xl max-w-sm mx-auto lg:mx-0">
+                  <p className="font-heading text-3xl md:text-4xl font-bold mb-2">92%</p>
+                  <p className="font-semibold text-base md:text-lg">of our Avondale members report less pain within 3 weeks</p>
                 </div>
               </div>
             </AnimatedSection>
