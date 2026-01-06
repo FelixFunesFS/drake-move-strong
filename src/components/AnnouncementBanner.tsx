@@ -23,38 +23,43 @@ const AnnouncementBanner = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const fetchPromotion = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('promotions')
-          .select('*')
-          .eq('is_active', true)
-          .eq('display_type', 'banner')
-          .order('priority', { ascending: false })
-          .limit(1)
-          .single();
+    // Defer the database fetch to improve LCP - let hero render first
+    const timeoutId = setTimeout(() => {
+      const fetchPromotion = async () => {
+        try {
+          const { data, error } = await supabase
+            .from('promotions')
+            .select('*')
+            .eq('is_active', true)
+            .eq('display_type', 'banner')
+            .order('priority', { ascending: false })
+            .limit(1)
+            .single();
 
-        if (error) {
-          if (error.code !== 'PGRST116') { // No rows returned
-            console.error('Error fetching promotion:', error);
+          if (error) {
+            if (error.code !== 'PGRST116') { // No rows returned
+              console.error('Error fetching promotion:', error);
+            }
+            setPromotion(null);
+          } else {
+            setPromotion(data);
+            // Check if this promotion was dismissed
+            const dismissedPromotions = JSON.parse(localStorage.getItem('dismissedPromotions') || '[]');
+            if (dismissedPromotions.includes(data.id)) {
+              setIsDismissed(true);
+            }
           }
-          setPromotion(null);
-        } else {
-          setPromotion(data);
-          // Check if this promotion was dismissed
-          const dismissedPromotions = JSON.parse(localStorage.getItem('dismissedPromotions') || '[]');
-          if (dismissedPromotions.includes(data.id)) {
-            setIsDismissed(true);
-          }
+        } catch (err) {
+          console.error('Error:', err);
+        } finally {
+          setIsLoading(false);
         }
-      } catch (err) {
-        console.error('Error:', err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+      };
 
-    fetchPromotion();
+      fetchPromotion();
+    }, 1500); // Defer by 1.5s to prioritize hero rendering
+
+    return () => clearTimeout(timeoutId);
   }, []);
 
   const handleDismiss = () => {
