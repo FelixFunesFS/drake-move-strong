@@ -190,6 +190,25 @@ export default function StrengthTrainingCharleston() {
         </div>
       </section>
 
+      {/* Testimonial Strip */}
+      <AnimatedSection animation="fadeInUp" delay={0.2}>
+        <div className="bg-secondary py-12">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto">
+              <div className="bg-background border-l-4 border-accent p-6 rounded-r-xl">
+                <div className="flex gap-1 text-accent mb-3">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                </div>
+                <p className="text-lg italic text-muted-foreground mb-3">
+                  "As a lifelong fitness enthusiast and career bodyworker, I tend to have a high standard for instructors... David brings the knowledge, technique, and vibe every single time. This is the only true strength training I've stuck with long term."
+                </p>
+                <p className="text-foreground font-medium">— Jennifer R., Verified Google Review</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
+
       {/* Why Workouts Stop Working Section */}
       <section className="py-24 bg-secondary">
         <div className="container mx-auto px-4">

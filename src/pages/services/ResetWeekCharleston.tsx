@@ -271,9 +271,9 @@ export default function ResetWeekCharleston() {
             <div className="mt-16 text-center">
               <div className="bg-accent/20 border-2 border-accent p-8 rounded-2xl inline-block max-w-2xl">
                 <p className="text-xl font-semibold mb-2">
-                  "I wish I had started here. It would have saved me years of frustration."
+                  "I have had 3 lower back surgeries - was in constant pain... David and his team helped me get back to working out consistently and build strength. I am forever grateful for this place - it truly changed my life!"
                 </p>
-                <p className="text-primary-foreground/80">— Current Member</p>
+                <p className="text-primary-foreground/80">— Caitlin P., Verified Google Review</p>
               </div>
             </div>
           </AnimatedSection>

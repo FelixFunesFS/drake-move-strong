@@ -4,7 +4,7 @@ import { StructuredData, localBusinessSchema } from "@/components/StructuredData
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
-import { Check, MapPin, ArrowRight, Activity, Users, Volume2 } from "lucide-react";
+import { Check, MapPin, ArrowRight, Activity, Users, Volume2, Star } from "lucide-react";
 
 import studioFloorExercise from "@/assets/studio-floor-exercise.jpg";
 import nickHolisticCoaching from "@/assets/nick-holistic-coaching.jpg";
@@ -187,6 +187,59 @@ export default function LowImpactFitnessCharleston() {
                   We don't "push through pain."<br />
                   <strong className="text-primary">We train around it—and often reduce it.</strong>
                 </p>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <AnimatedSection animation="fadeInUp">
+            <div className="text-center mb-12">
+              <span className="section-eyebrow text-primary">REAL RESULTS</span>
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
+                Members Who Trained Through Pain
+              </h2>
+            </div>
+          </AnimatedSection>
+
+          {/* Featured Testimonial */}
+          <AnimatedSection animation="fadeInUp" delay={0.1}>
+            <div className="max-w-3xl mx-auto mb-12">
+              <div className="bg-secondary border-l-4 border-accent p-8 rounded-r-xl">
+                <div className="flex gap-1 text-accent mb-4">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
+                </div>
+                <blockquote className="text-xl italic text-foreground mb-4 leading-relaxed">
+                  "I have had 3 lower back surgeries - was in constant pain... David and his team helped me get back to working out consistently and build strength. I am forever grateful for this place - it truly changed my life!"
+                </blockquote>
+                <cite className="text-muted-foreground font-medium">— Caitlin P., Verified Google Review</cite>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Supporting Testimonials */}
+          <AnimatedSection animation="fadeInUp" delay={0.2}>
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              <div className="bg-secondary p-6 rounded-xl">
+                <div className="flex gap-1 text-accent mb-3">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                </div>
+                <p className="text-muted-foreground italic mb-3">
+                  "I had a bad back injury that was not getting better with physical therapy... Dave was BETTER than all physical therapists I've ever had."
+                </p>
+                <p className="text-foreground font-medium text-sm">— Cara S., Verified Google Review</p>
+              </div>
+              <div className="bg-secondary p-6 rounded-xl">
+                <div className="flex gap-1 text-accent mb-3">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                </div>
+                <p className="text-muted-foreground italic mb-3">
+                  "His knowledge about the way the body mechanically works has helped me continue to exercise after multiple surgeries."
+                </p>
+                <p className="text-foreground font-medium text-sm">— Vanessa H., Verified Google Review</p>
               </div>
             </div>
           </AnimatedSection>
