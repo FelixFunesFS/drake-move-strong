@@ -28,7 +28,7 @@ const Pricing = () => {
     <>
       <SEO
         title="Gym Membership Charleston | From $50 | Simple Plans 2026"
-        description="Simple, transparent membership options. Reset Week $50, Foundation $140/mo, Longevity Unlimited $180/mo. No contracts, real results at Drake Fitness Charleston."
+        description="Simple, transparent membership options. Reset Week $50, Foundation $180/mo, Longevity Unlimited $225/mo. No contracts, real results at Drake Fitness Charleston."
         canonical="https://drake.fitness/pricing"
       />
       <StructuredData data={faqSchema} />
@@ -120,7 +120,7 @@ const Pricing = () => {
                     Build strength and consistency—without overdoing it.
                   </p>
                   <div className="mt-4">
-                    <span className="text-5xl font-bold text-foreground">$140</span>
+                    <span className="text-5xl font-bold text-foreground">$180</span>
                     <span className="text-muted-foreground ml-1">/ month</span>
                   </div>
                 </CardHeader>
@@ -169,7 +169,7 @@ const Pricing = () => {
                     Train without limits. Protect your body for the long run.
                   </p>
                   <div className="mt-4">
-                    <span className="text-5xl font-bold text-white">$180</span>
+                    <span className="text-5xl font-bold text-white">$225</span>
                     <span className="text-gray-400 ml-1">/ month</span>
                   </div>
                 </CardHeader>
@@ -219,7 +219,7 @@ const Pricing = () => {
               {/* Foundation Plus */}
               <div className="text-center">
                 <h4 className="font-semibold text-foreground mb-2">Foundation Plus</h4>
-                <p className="text-2xl font-bold text-foreground mb-2">$165<span className="text-sm font-normal text-muted-foreground">/month</span></p>
+                <p className="text-2xl font-bold text-foreground mb-2">$200<span className="text-sm font-normal text-muted-foreground">/month</span></p>
                 <p className="text-sm text-muted-foreground mb-3">
                   For members who want more structure without going unlimited.
                 </p>
@@ -235,8 +235,7 @@ const Pricing = () => {
               {/* Remote Movement Support */}
               <div className="text-center">
                 <h4 className="font-semibold text-foreground mb-2">Remote Movement Support</h4>
-                <p className="text-2xl font-bold text-foreground mb-2">$40<span className="text-sm font-normal text-muted-foreground">/month</span></p>
-                <p className="text-xs text-muted-foreground mb-2">or $15 / session</p>
+                <p className="text-2xl font-bold text-foreground mb-2">$100<span className="text-sm font-normal text-muted-foreground">/month</span></p>
                 <p className="text-sm text-muted-foreground mb-3">
                   Live Zoom sessions to support your in-studio training.
                 </p>
@@ -273,8 +272,63 @@ const Pricing = () => {
           </div>
         </section>
 
-        {/* STEP 4: REASSURANCE BLOCK */}
-        <section className="py-12 md:py-16 bg-background">
+        {/* SEO COMPARISON TABLE */}
+        <section className="py-12 md:py-16 bg-background border-t border-border">
+          <div className="container mx-auto px-4">
+            <p className="text-muted-foreground text-center mb-4 max-w-2xl mx-auto">
+              All Drake Fitness memberships are coached in Charleston, SC and designed for adults who want safe, sustainable strength and mobility.
+            </p>
+            <h2 className="font-hero text-2xl md:text-3xl font-bold uppercase text-center mb-8">
+              Compare Drake Fitness <span className="text-primary">Membership Options</span>
+            </h2>
+            
+            <div className="max-w-4xl mx-auto overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="bg-primary text-primary-foreground">
+                    <th className="px-4 py-3 text-left font-semibold">Membership</th>
+                    <th className="px-4 py-3 text-left font-semibold">Weekly Access</th>
+                    <th className="px-4 py-3 text-left font-semibold">Best For</th>
+                    <th className="px-4 py-3 text-left font-semibold">Commitment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-border bg-primary/5">
+                    <td className="px-4 py-3 font-medium text-foreground">Movement Reset Week</td>
+                    <td className="px-4 py-3 text-muted-foreground">Unlimited (7 days)</td>
+                    <td className="px-4 py-3 text-muted-foreground">Safest place to start</td>
+                    <td className="px-4 py-3 text-muted-foreground">None</td>
+                  </tr>
+                  <tr className="border-b border-border">
+                    <td className="px-4 py-3 font-medium text-foreground">Foundation</td>
+                    <td className="px-4 py-3 text-muted-foreground">2x per week</td>
+                    <td className="px-4 py-3 text-muted-foreground">Steady, manageable progress</td>
+                    <td className="px-4 py-3 text-muted-foreground">Month-to-month</td>
+                  </tr>
+                  <tr className="border-b border-border bg-drake-gold/10">
+                    <td className="px-4 py-3 font-medium text-foreground">Longevity Unlimited</td>
+                    <td className="px-4 py-3 text-muted-foreground">Unlimited</td>
+                    <td className="px-4 py-3 text-muted-foreground">Long-term results & flexibility</td>
+                    <td className="px-4 py-3 text-muted-foreground">Month-to-month</td>
+                  </tr>
+                  <tr className="border-b border-border">
+                    <td className="px-4 py-3 font-medium text-foreground">10-Class Pack</td>
+                    <td className="px-4 py-3 text-muted-foreground">Pay per class</td>
+                    <td className="px-4 py-3 text-muted-foreground">Occasional or maintenance</td>
+                    <td className="px-4 py-3 text-muted-foreground">Expires in 6 months</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <p className="text-center text-muted-foreground mt-8">
+              Still unsure? <Link to="/reset-week" className="text-primary hover:text-primary/80 font-medium underline underline-offset-2">Start with the Reset Week</Link> — it's designed to help you decide with confidence.
+            </p>
+          </div>
+        </section>
+
+        {/* REASSURANCE BLOCK */}
+        <section className="py-12 md:py-16 bg-muted">
           <div className="container mx-auto px-4 text-center">
             <p className="text-lg text-muted-foreground mb-6">
               Not sure which option fits you?<br />
