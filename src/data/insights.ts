@@ -538,5 +538,19 @@ export const insightPosts: InsightPost[] = [
     thumbnail: '/src/assets/outdoor-training.jpg',
     featured: false,
     tags: ['time management', 'busy schedules', 'efficiency']
+  },
+  {
+    id: "10",
+    slug: "what-real-strength-actually-means",
+    title: "What \"Real Strength\" Actually Means",
+    excerpt: "It's Not What Most People Think",
+    content: ``,
+    category: 'education',
+    author: 'david',
+    publishedAt: '2025-01-15',
+    readTime: 9,
+    thumbnail: '/src/assets/hero-kettlebell-training.jpg',
+    featured: true,
+    tags: ['strength', 'functional training', 'philosophy']
   }
 ];

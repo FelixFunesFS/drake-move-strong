@@ -1212,6 +1212,277 @@ export const HowMuchTimeContent = () => {
   );
 };
 
+// =====================================================
+// What Real Strength Actually Means
+// =====================================================
+export const WhatRealStrengthContent = () => {
+  return (
+    <>
+      {/* Intro Section with teal border */}
+      <div className="mb-16">
+        <p className="text-2xl text-muted-foreground leading-relaxed font-light border-l-4 border-primary pl-6">
+          When most people hear "strength," they think heavy weights. Maxing out. Grinding through reps. But that's only part of the picture—and often, not the most important part.
+        </p>
+      </div>
+
+      {/* Section 1: Strength Is Control */}
+      <div className="bg-muted rounded-2xl p-10 mb-16">
+        <h2 className="font-hero text-3xl font-bold text-foreground mb-6 uppercase">Strength Is Control</h2>
+        <p className="text-xl text-muted-foreground leading-relaxed mb-6">
+          Real strength means:
+        </p>
+        <ul className="space-y-4 text-lg text-muted-foreground">
+          {[
+            { bold: "You can control your body", text: "through full ranges of motion without compensation" },
+            { bold: "You can handle load safely", text: "without breaking down your movement patterns" },
+            { bold: "You move with confidence", text: "in any situation life throws at you" },
+            { bold: "You don't fear everyday tasks", text: "like lifting, carrying, or moving" },
+          ].map((item, index) => (
+            <li key={index} className="flex items-start">
+              <CheckCircle2 className="w-7 h-7 text-primary mr-4 mt-0.5 flex-shrink-0" />
+              <span><strong className="text-foreground">{item.bold}</strong> {item.text}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="mb-16 space-y-6">
+        <p className="text-xl text-muted-foreground leading-relaxed">
+          Strength that only exists in the gym isn't very useful.
+        </p>
+        <p className="text-xl text-muted-foreground leading-relaxed">
+          If you can deadlift 300 pounds but can't pick up a bag of groceries without tweaking your back—that's not real strength. If you can bench press your body weight but your shoulder hurts when you reach overhead—that's not functional capacity.
+        </p>
+      </div>
+
+      {/* Visual Break - 3 Pillars */}
+      <div className="bg-primary py-16 px-8 rounded-2xl mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-white text-center">
+          <div>
+            <Activity className="w-16 h-16 mx-auto mb-4 text-drake-gold" />
+            <h3 className="font-hero text-2xl font-bold mb-3 uppercase">Movement Quality</h3>
+            <p className="text-gray-200">Control comes before load</p>
+          </div>
+          <div>
+            <Shield className="w-16 h-16 mx-auto mb-4 text-drake-gold" />
+            <h3 className="font-hero text-2xl font-bold mb-3 uppercase">Injury Prevention</h3>
+            <p className="text-gray-200">Strength that protects</p>
+          </div>
+          <div>
+            <HeartPulse className="w-16 h-16 mx-auto mb-4 text-drake-gold" />
+            <h3 className="font-hero text-2xl font-bold mb-3 uppercase">Daily Confidence</h3>
+            <p className="text-gray-200">Strength for real life</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Section 2: Why Machines Create False Confidence */}
+      <div className="mb-16">
+        <h2 className="font-hero text-4xl font-bold text-foreground mb-8 uppercase">Why Machines Create False Confidence</h2>
+        
+        <div className="bg-red-50 border-l-4 border-red-600 p-8 rounded-r-xl mb-12">
+          <p className="text-xl text-foreground leading-relaxed mb-4">
+            Machines can make you feel strong—without building strength you can actually use.
+          </p>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            They're not inherently bad. But they shouldn't be your foundation.
+          </p>
+        </div>
+
+        <p className="text-xl text-muted-foreground leading-relaxed mb-8">
+          Here's the problem with machine-based training:
+        </p>
+
+        <div className="space-y-6 mb-12">
+          {[
+            { icon: X, title: "Lock You Into Fixed Paths", desc: "Your body doesn't move in perfectly straight lines in real life. Machines force you into unnatural movement patterns that don't transfer to functional activities." },
+            { icon: Scale, title: "Remove Balance Demands", desc: "The machine stabilizes the weight for you. You never learn to create stability from your own body—which is what you need when lifting groceries or carrying a child." },
+            { icon: Brain, title: "Reduce Coordination", desc: "Real strength requires multiple muscle groups working together in coordinated patterns. Machines isolate muscles, which sounds good in theory—but doesn't build functional capacity." },
+          ].map((item, index) => (
+            <div key={index} className="bg-background border border-border rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="font-hero text-2xl font-bold text-foreground mb-4 flex items-center uppercase">
+                <item.icon className="w-8 h-8 text-red-600 mr-4" />
+                {item.title}
+              </h3>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-muted rounded-2xl p-10">
+          <p className="text-xl text-foreground leading-relaxed font-semibold mb-4">
+            You can load a leg press with 500 pounds and still struggle to squat your own body weight properly.
+          </p>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            That's the disconnect. That's false confidence.
+          </p>
+        </div>
+      </div>
+
+      {/* Section 3: Strength That Carries Over */}
+      <div className="mb-16">
+        <h2 className="font-hero text-4xl font-bold text-foreground mb-8 uppercase">Strength That Carries Over</h2>
+        
+        <p className="text-xl text-muted-foreground leading-relaxed mb-8">
+          At Drake Fitness, we build strength differently. Our approach focuses on movements that actually transfer to your daily life.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <div className="bg-primary text-white rounded-2xl p-8">
+            <Dumbbell className="w-12 h-12 mb-4 text-drake-gold" />
+            <h3 className="font-hero text-2xl font-bold mb-4 uppercase">Controlled Free Movement</h3>
+            <p className="text-gray-200 leading-relaxed">
+              We use barbells, dumbbells, kettlebells, and your own body weight. You learn to control the load through space—just like real life demands.
+            </p>
+          </div>
+
+          <div className="bg-foreground text-white rounded-2xl p-8">
+            <Scale className="w-12 h-12 mb-4 text-drake-gold" />
+            <h3 className="font-hero text-2xl font-bold mb-4 uppercase">Stability-Focused Exercises</h3>
+            <p className="text-gray-200 leading-relaxed">
+              Before we add weight, we ensure you can stabilize your own body. Core strength. Breathing mechanics. Joint control. These come first.
+            </p>
+          </div>
+
+          <div className="bg-gray-800 text-white rounded-2xl p-8">
+            <Activity className="w-12 h-12 mb-4 text-drake-gold" />
+            <h3 className="font-hero text-2xl font-bold mb-4 uppercase">Loaded Carries</h3>
+            <p className="text-gray-200 leading-relaxed">
+              Walking with weight teaches your body to maintain position under load—one of the most functional strength patterns you can train.
+            </p>
+          </div>
+
+          <div className="bg-drake-gold text-foreground rounded-2xl p-8">
+            <UserCheck className="w-12 h-12 mb-4 text-primary" />
+            <h3 className="font-hero text-2xl font-bold mb-4 uppercase">Coaching You Can Feel</h3>
+            <p className="text-gray-800 leading-relaxed">
+              Small classes mean we catch compensations before they become habits. You get real-time feedback on every rep.
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-blue-50 border-l-4 border-blue-600 p-8 rounded-r-xl">
+          <p className="text-xl text-foreground leading-relaxed font-semibold mb-4">
+            Nothing flashy. Everything intentional.
+          </p>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            We're not here to make you sore. We're here to make you capable.
+          </p>
+        </div>
+      </div>
+
+      {/* Section 4: Why This Matters in Real Life */}
+      <div className="mb-16 bg-muted py-16 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-hero text-4xl font-bold text-foreground mb-8 uppercase">Why This Matters in Real Life</h2>
+          
+          <p className="text-xl text-muted-foreground leading-relaxed mb-12">
+            Real strength shows up when you need it—not just when you're in the gym.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            {[
+              { icon: ShieldCheck, title: "Lifting Groceries", desc: "Multiple bags. Awkward angles. One trip from the car. That's functional strength." },
+              { icon: Heart, title: "Carrying Kids", desc: "Holding a toddler on your hip for 20 minutes. Picking them up off the floor repeatedly. That requires real core strength." },
+              { icon: Home, title: "Moving Furniture", desc: "Rearranging a room. Helping a friend move. You need strength, stability, and coordination—not just max weight on a bar." },
+              { icon: Activity, title: "Staying Active Without Fear", desc: "Hiking. Playing with your dog. Picking up a new sport. Real strength gives you confidence to move freely." },
+            ].map((item, index) => (
+              <div key={index} className="bg-background rounded-xl p-8 shadow-md">
+                <div className="flex items-center mb-4">
+                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mr-4">
+                    <item.icon className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="font-hero text-xl font-bold text-foreground uppercase">{item.title}</h3>
+                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-background rounded-2xl p-10 shadow-lg border-2 border-primary">
+            <p className="text-2xl text-foreground leading-relaxed font-bold mb-4 text-center">
+              That's the kind of strength most people actually want.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed text-center">
+              Not a number on a leaderboard. Not a max lift you'll never use. Just the ability to live your life without limitation.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Section 5: The Reset Week Philosophy */}
+      <div className="mb-16">
+        <h2 className="font-hero text-4xl font-bold text-foreground mb-8 uppercase">The Reset Week Philosophy</h2>
+        
+        <p className="text-xl text-muted-foreground leading-relaxed mb-6">
+          This is why Reset Week exists.
+        </p>
+
+        <p className="text-xl text-muted-foreground leading-relaxed mb-12">
+          We're not trying to break you down in week one. We're not testing your max lifts or pushing you to failure. We're teaching you what real strength feels like—and how to build it sustainably.
+        </p>
+
+        <div className="space-y-6 mb-12">
+          {[
+            { icon: ShieldCheck, title: "Without Overwhelm", desc: "We introduce movements progressively. You learn the patterns before we add complexity or load." },
+            { icon: HandHeart, title: "Without Pressure", desc: "No one's watching the clock. No one's comparing your numbers. You move at your pace." },
+            { icon: Heart, title: "Without Unnecessary Pain", desc: "Soreness is not the goal. Movement quality is. If something hurts, we modify it." },
+          ].map((item, index) => (
+            <div key={index} className="flex items-start bg-muted rounded-xl p-8">
+              <item.icon className="w-10 h-10 text-primary mr-6 mt-1 flex-shrink-0" />
+              <div>
+                <h3 className="font-hero text-2xl font-bold text-foreground mb-3 uppercase">{item.title}</h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-primary text-white rounded-2xl p-10">
+          <p className="text-2xl leading-relaxed font-bold mb-6">
+            It's about building confidence first—then building capacity.
+          </p>
+          <p className="text-lg text-gray-200 leading-relaxed">
+            Because if you don't trust your body, you'll never push it to grow. And if you don't understand the movements, you'll never build strength that lasts.
+          </p>
+        </div>
+      </div>
+
+      {/* Final CTA Section */}
+      <div className="bg-foreground text-white rounded-2xl p-12 text-center">
+        <Dumbbell className="w-16 h-16 mx-auto mb-8 text-drake-gold" />
+        <h2 className="font-hero text-4xl md:text-5xl font-bold mb-6 uppercase">Learn What Real Strength Feels Like</h2>
+        <p className="text-xl text-gray-300 leading-relaxed mb-10 max-w-3xl mx-auto">
+          Reset Week isn't about testing your limits. It's about discovering what your body can actually do—and building from there.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+          <Link 
+            to="/reset-week"
+            className="px-10 py-5 bg-drake-gold text-foreground font-bold text-lg rounded-lg hover:bg-drake-gold/90 transition-all transform hover:-translate-y-1 shadow-2xl uppercase tracking-wide inline-flex items-center"
+          >
+            <ArrowRight className="mr-2 w-5 h-5" /> Start Reset Week
+          </Link>
+          <Link 
+            to="/schedule"
+            className="px-10 py-5 bg-white/10 backdrop-blur-sm text-white font-bold text-lg rounded-lg hover:bg-white/20 transition-all border-2 border-white/30 uppercase tracking-wide inline-flex items-center"
+          >
+            <Calendar className="mr-2 w-5 h-5" /> View Schedule
+          </Link>
+        </div>
+        <p className="text-gray-400 text-sm">
+          Questions? Call us: <a href="tel:+18438175420" className="text-drake-gold hover:text-drake-gold/80 font-bold">(843) 817-5420</a>
+        </p>
+      </div>
+    </>
+  );
+};
+
 // Map slugs to content components
 export const blogContentMap: Record<string, React.FC> = {
   'why-traditional-workouts-stop-working-after-40': WhyTraditionalWorkoutsContent,
@@ -1223,4 +1494,5 @@ export const blogContentMap: Record<string, React.FC> = {
   'how-breathing-controls-movement': BreathingControlsMovementContent,
   'what-makes-drake-fitness-different-from-charleston-gyms': WhatMakesDrakeDifferentContent,
   'how-much-time-do-i-really-need': HowMuchTimeContent,
+  'what-real-strength-actually-means': WhatRealStrengthContent,
 };
