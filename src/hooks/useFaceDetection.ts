@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import * as faceapi from 'face-api.js';
+import { useState, useEffect, useCallback } from 'react';
 
 interface FacePosition {
   objectPosition: string;
@@ -9,12 +8,20 @@ interface FacePosition {
 // Cache for storing computed positions
 const positionCache = new Map<string, FacePosition>();
 let modelsLoaded = false;
+let faceApiModule: typeof import('face-api.js') | null = null;
+
+// Lazy load face-api.js to avoid blocking initial render
+const loadFaceApi = async () => {
+  if (faceApiModule) return faceApiModule;
+  faceApiModule = await import('face-api.js');
+  return faceApiModule;
+};
 
 export const useFaceDetection = (imageSrc: string, enabled: boolean = true) => {
   const [position, setPosition] = useState<FacePosition | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
+  const detectFaces = useCallback(async () => {
     if (!enabled || !imageSrc) return;
     
     // Check cache first
@@ -23,27 +30,30 @@ export const useFaceDetection = (imageSrc: string, enabled: boolean = true) => {
       return;
     }
 
-    const detectFaces = async () => {
-      setIsLoading(true);
+    setIsLoading(true);
+    
+    try {
+      // Lazy load face-api.js
+      const faceapi = await loadFaceApi();
       
-      try {
-        // Load models only once
-        if (!modelsLoaded) {
-          await faceapi.nets.tinyFaceDetector.loadFromUri('/models');
-          modelsLoaded = true;
-        }
+      // Load models only once
+      if (!modelsLoaded) {
+        await faceapi.nets.tinyFaceDetector.loadFromUri('/models');
+        modelsLoaded = true;
+      }
 
-        // Create image element for detection
-        const img = new Image();
-        img.crossOrigin = 'anonymous';
-        img.src = imageSrc;
-        
-        await new Promise((resolve, reject) => {
-          img.onload = resolve;
-          img.onerror = reject;
-        });
+      // Create image element for detection
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.src = imageSrc;
+      
+      await new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = reject;
+      });
 
-        // Detect faces
+      // Use requestIdleCallback to avoid blocking main thread
+      const runDetection = async () => {
         const detections = await faceapi.detectAllFaces(
           img, 
           new faceapi.TinyFaceDetectorOptions()
@@ -77,16 +87,31 @@ export const useFaceDetection = (imageSrc: string, enabled: boolean = true) => {
           positionCache.set(imageSrc, result);
           setPosition(result);
         }
-      } catch (error) {
-        console.warn('Face detection failed:', error);
-        setPosition({ objectPosition: 'center center', facesDetected: 0 });
-      } finally {
-        setIsLoading(false);
-      }
-    };
+      };
 
-    detectFaces();
+      // Schedule detection during idle time
+      if ('requestIdleCallback' in window) {
+        (window as any).requestIdleCallback(() => runDetection(), { timeout: 2000 });
+      } else {
+        // Fallback: use setTimeout to defer
+        setTimeout(runDetection, 100);
+      }
+    } catch (error) {
+      console.warn('Face detection failed:', error);
+      setPosition({ objectPosition: 'center center', facesDetected: 0 });
+    } finally {
+      setIsLoading(false);
+    }
   }, [imageSrc, enabled]);
+
+  useEffect(() => {
+    // Defer face detection until after initial paint
+    const timeoutId = setTimeout(() => {
+      detectFaces();
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, [detectFaces]);
 
   return { position, isLoading };
 };
