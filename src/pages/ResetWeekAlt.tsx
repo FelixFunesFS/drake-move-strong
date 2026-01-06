@@ -175,7 +175,7 @@ const ResetWeekAlt = () => {
           />
         </div>
 
-        <div className="relative z-20 container mx-auto px-4 w-full text-white pt-24 pb-16">
+        <div className="relative z-20 container mx-auto px-4 w-full text-white pt-28 md:pt-24 pb-16">
           <div className="max-w-4xl">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -247,7 +247,7 @@ const ResetWeekAlt = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {audienceCards.map((card, index) => (
               <AnimatedSection key={card.title} delay={index * 0.1}>
-                <div className="bg-muted p-10 rounded-2xl hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-primary h-full">
+                <div className="bg-muted p-6 md:p-10 rounded-2xl hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-primary h-full">
                   <div className={`w-20 h-20 ${card.iconBg} rounded-full flex items-center justify-center mb-6`}>
                     <card.icon className={`${card.iconColor} w-8 h-8`} />
                   </div>
@@ -277,7 +277,7 @@ const ResetWeekAlt = () => {
       </section>
 
       {/* What Happens During Reset Week */}
-      <section className="py-24 bg-drake-dark text-white" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' }}>
+      <section className="py-12 md:py-24 bg-drake-dark text-white md:[clip-path:polygon(0_0,100%_0,100%_85%,0_100%)]">
         <div className="container mx-auto px-4 pb-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection>
@@ -327,7 +327,7 @@ const ResetWeekAlt = () => {
       </section>
 
       {/* Why Different Section */}
-      <section className="py-24 bg-background" style={{ clipPath: 'polygon(0 15%, 100% 0, 100% 100%, 0 100%)' }}>
+      <section className="py-12 md:py-24 bg-background md:[clip-path:polygon(0_15%,100%_0,100%_100%,0_100%)]">
         <div className="container mx-auto px-4 pt-12">
           <AnimatedSection className="text-center mb-16">
             <span className="section-eyebrow text-primary">Our Approach</span>
@@ -339,12 +339,12 @@ const ResetWeekAlt = () => {
             </p>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
             {differenceCards.map((card, index) => (
               <AnimatedSection key={card.title} delay={index * 0.1}>
                 <div className="relative group h-full">
                   <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} rounded-2xl transform group-hover:scale-105 transition-transform duration-300`} />
-                  <div className="relative bg-card m-1 p-8 rounded-2xl h-full">
+                  <div className="relative bg-card m-1 p-6 md:p-8 rounded-2xl h-full">
                     <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
                       <card.icon className="text-primary w-7 h-7" />
                     </div>

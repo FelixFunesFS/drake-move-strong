@@ -223,7 +223,7 @@ His approach blends skill, science, and practical strength work to create long-t
       </section>
 
       {/* Meet Nick Section - Gray Theme with Decorative Skew */}
-      <section className="py-16 md:py-24 bg-muted relative overflow-hidden section-slant-top-reverse">
+      <section className="py-16 md:py-24 bg-muted relative overflow-x-hidden overflow-y-visible section-slant-top-reverse">
         {/* Decorative Skewed Element */}
         <div className="absolute top-0 right-0 w-1/3 h-full bg-white/50 transform skew-x-12 translate-x-1/2 hidden lg:block"></div>
         

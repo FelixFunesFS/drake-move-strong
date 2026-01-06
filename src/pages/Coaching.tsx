@@ -72,8 +72,8 @@ const Coaching = () => {
       <StructuredData data={faqSchema} />
       
       <main>
-      <Hero eyebrow="INDIVIDUAL ATTENTION" title={<>
-            <span className="sm:whitespace-nowrap">PERSONAL TRAINING WITH</span><br />
+<Hero eyebrow="INDIVIDUAL ATTENTION" title={<>
+            <span>PERSONAL TRAINING WITH</span><br />
             <span className="text-primary">DAVID OR NICK</span><br />
             TAILORED TO YOU
           </>} subtitle="Experience expert coaching designed specifically for your body, your history, and your goals. Move better and get stronger with 100% focus on you." primaryCTA={{

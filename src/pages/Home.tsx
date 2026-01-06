@@ -61,8 +61,8 @@ const Home = () => {
       {/* Brand Values Marquee */}
       <section className="py-4 md:py-6 bg-drake-dark overflow-hidden border-y border-drake-gold/20">
         <Marquee speed="slow" gradient={false} pauseOnHover={false}>
-          {["SMALL GROUP COACHING", "KETTLEBELL & MACE SPECIALISTS", "CORRECTIVE EXERCISE", "JOINT-FRIENDLY TRAINING", "25+ YEARS EXPERIENCE", "AVONDALE, CHARLESTON"].map((text, i) => (
-            <span key={i} className="text-2xl md:text-4xl font-hero font-bold text-drake-gold uppercase px-6 md:px-8 whitespace-nowrap flex items-center">
+{["SMALL GROUP COACHING", "KETTLEBELL & MACE SPECIALISTS", "CORRECTIVE EXERCISE", "JOINT-FRIENDLY TRAINING", "25+ YEARS EXPERIENCE", "AVONDALE, CHARLESTON"].map((text, i) => (
+            <span key={i} className="text-xl sm:text-2xl md:text-4xl font-hero font-bold text-drake-gold uppercase px-4 sm:px-6 md:px-8 whitespace-nowrap flex items-center">
               {text}
               <span className="text-white/40 mx-4 md:mx-6">•</span>
             </span>
@@ -113,7 +113,7 @@ const Home = () => {
               This isn't a gym. It's a studio built around joint health, mobility, and sustainable strength.
             </p>
           </AnimatedSection>
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[{
             icon: <CheckCircle2 className="w-6 h-6" />,
             title: "Mobility before intensity",
