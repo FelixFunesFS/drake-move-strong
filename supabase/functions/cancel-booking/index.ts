@@ -16,28 +16,60 @@ serve(async (req) => {
   }
 
   try {
-    const supabase = createClient(
-      Deno.env.get('SUPABASE_URL')!,
+    // Validate JWT token
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
+      console.error('[cancel-booking] Missing or invalid authorization header');
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized - Missing authentication token' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Create authenticated Supabase client
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
+    const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } }
+    });
+
+    // Validate the JWT and extract user
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    
+    if (userError || !user) {
+      console.error('[cancel-booking] Invalid token:', userError);
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized - Invalid authentication token' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Extract user ID from authenticated user (NOT from request body)
+    const userId = user.id;
+    console.log(`[cancel-booking] Authenticated user: ${userId}`);
+
+    // Create service role client for database operations
+    const supabaseAdmin = createClient(
+      supabaseUrl,
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
     );
 
-    const { bookingId, userId, reason } = await req.json();
+    const { bookingId, reason } = await req.json();
 
-    console.log(`[cancel-booking] Cancel request - Booking: ${bookingId}, User: ${userId}`);
+    console.log(`[cancel-booking] Authenticated cancel request - Booking: ${bookingId}, User: ${userId}`);
 
-    if (!bookingId || !userId) {
+    if (!bookingId) {
       return new Response(
-        JSON.stringify({ error: 'Missing required fields: bookingId and userId' }),
+        JSON.stringify({ error: 'Missing required field: bookingId' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    // Get booking details with schedule info
-    const { data: booking, error: bookingError } = await supabase
+    // Get booking details with schedule info - verify ownership
+    const { data: booking, error: bookingError } = await supabaseAdmin
       .from('bookings')
       .select('*, class_schedules(*)')
       .eq('id', bookingId)
-      .eq('user_id', userId)
       .maybeSingle();
 
     if (bookingError || !booking) {
@@ -45,6 +77,15 @@ serve(async (req) => {
       return new Response(
         JSON.stringify({ error: 'Booking not found' }),
         { status: 404, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // CRITICAL: Verify the authenticated user owns this booking
+    if (booking.user_id !== userId) {
+      console.error(`[cancel-booking] Ownership mismatch - Booking user: ${booking.user_id}, Auth user: ${userId}`);
+      return new Response(
+        JSON.stringify({ error: 'Not authorized to cancel this booking' }),
+        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
@@ -71,7 +112,7 @@ serve(async (req) => {
     const refundCredit = hoursUntilClass >= CANCELLATION_WINDOW_HOURS && booking.credits_used > 0;
 
     // Update booking to cancelled
-    const { error: updateError } = await supabase
+    const { error: updateError } = await supabaseAdmin
       .from('bookings')
       .update({
         status: 'cancelled',
@@ -90,14 +131,14 @@ serve(async (req) => {
 
     // Update class booked count
     const newBookedCount = Math.max(0, (booking.class_schedules.booked_count || 0) - 1);
-    await supabase
+    await supabaseAdmin
       .from('class_schedules')
       .update({ booked_count: newBookedCount })
       .eq('id', booking.schedule_id);
 
     // Refund credit if within cancellation window
     if (refundCredit) {
-      const { data: membership } = await supabase
+      const { data: membership } = await supabaseAdmin
         .from('memberships')
         .select('id, remaining_credits')
         .eq('user_id', userId)
@@ -105,7 +146,7 @@ serve(async (req) => {
         .maybeSingle();
 
       if (membership) {
-        await supabase
+        await supabaseAdmin
           .from('memberships')
           .update({ remaining_credits: (membership.remaining_credits || 0) + booking.credits_used })
           .eq('id', membership.id);
@@ -115,7 +156,7 @@ serve(async (req) => {
     }
 
     // Promote from waitlist if there's a spot now
-    const { data: nextInLine } = await supabase
+    const { data: nextInLine } = await supabaseAdmin
       .from('waitlist')
       .select('*')
       .eq('schedule_id', booking.schedule_id)
@@ -129,7 +170,7 @@ serve(async (req) => {
       console.log(`[cancel-booking] Spot opened - Next in waitlist: ${nextInLine.user_id}`);
       
       // Update their notified_at timestamp
-      await supabase
+      await supabaseAdmin
         .from('waitlist')
         .update({ notified_at: new Date().toISOString() })
         .eq('id', nextInLine.id);

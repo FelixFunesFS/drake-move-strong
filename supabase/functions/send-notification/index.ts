@@ -28,18 +28,65 @@ Deno.serve(async (req) => {
   }
 
   try {
+    // Validate JWT token
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
+      console.error('[send-notification] Missing or invalid authorization header');
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized - Missing authentication token' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+    const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
     const resendApiKey = Deno.env.get('RESEND_API_KEY');
     
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    // Create authenticated Supabase client
+    const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } }
+    });
+
+    // Validate the JWT and extract user
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    
+    if (userError || !user) {
+      console.error('[send-notification] Invalid token:', userError);
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized - Invalid authentication token' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const userId = user.id;
+
+    // Create service role client for role check and database operations
+    const supabaseAdmin = createClient(supabaseUrl, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!);
+
+    // Check if user has admin or coach role
+    const { data: roleData, error: roleError } = await supabaseAdmin
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', userId)
+      .in('role', ['admin', 'coach'])
+      .maybeSingle();
+
+    if (roleError || !roleData) {
+      console.error(`[send-notification] Access denied - User ${userId} is not admin or coach`);
+      return new Response(
+        JSON.stringify({ error: 'Forbidden - Admin or coach access required' }),
+        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    console.log(`[send-notification] Access granted for user: ${userId} (role: ${roleData.role})`);
     
     const { template_slug, recipient_email, recipient_user_id, variables }: NotificationRequest = await req.json();
 
     console.log(`Processing notification: ${template_slug} to ${recipient_email}`);
 
     // Fetch the template
-    const { data: template, error: templateError } = await supabase
+    const { data: template, error: templateError } = await supabaseAdmin
       .from('notification_templates')
       .select('*')
       .eq('slug', template_slug)
@@ -104,7 +151,7 @@ Deno.serve(async (req) => {
     }
 
     // Log the notification
-    const { data: logEntry, error: logError } = await supabase
+    const { data: logEntry, error: logError } = await supabaseAdmin
       .from('notification_log')
       .insert({
         user_id: recipient_user_id || null,

@@ -180,6 +180,61 @@ Deno.serve(async (req) => {
   }
 
   try {
+    // Validate JWT token
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
+      console.error('[sync-punchpass-schedule] Missing or invalid authorization header');
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized - Missing authentication token' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
+    
+    // Create authenticated Supabase client
+    const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } }
+    });
+
+    // Validate the JWT and extract user
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    
+    if (userError || !user) {
+      console.error('[sync-punchpass-schedule] Invalid token:', userError);
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized - Invalid authentication token' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const userId = user.id;
+
+    // Create service role client for role check and database operations
+    const supabaseAdmin = createClient(
+      supabaseUrl,
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+    );
+
+    // Check if user has admin role
+    const { data: roleData, error: roleError } = await supabaseAdmin
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', userId)
+      .eq('role', 'admin')
+      .maybeSingle();
+
+    if (roleError || !roleData) {
+      console.error(`[sync-punchpass-schedule] Access denied - User ${userId} is not admin`);
+      return new Response(
+        JSON.stringify({ error: 'Forbidden - Admin access required' }),
+        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    console.log(`[sync-punchpass-schedule] Admin access granted for user: ${userId}`);
+
     const firecrawlApiKey = Deno.env.get('FIRECRAWL_API_KEY');
     if (!firecrawlApiKey) {
       console.error('FIRECRAWL_API_KEY not configured');
@@ -188,10 +243,6 @@ Deno.serve(async (req) => {
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
-
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
     console.log('Scraping PunchPass schedule...');
 
@@ -242,7 +293,7 @@ Deno.serve(async (req) => {
 
     // Clear old entries (classes that have passed)
     const today = new Date().toISOString().split('T')[0];
-    const { error: deleteError } = await supabase
+    const { error: deleteError } = await supabaseAdmin
       .from('punchpass_schedule')
       .delete()
       .lt('class_date', today);
@@ -252,7 +303,7 @@ Deno.serve(async (req) => {
     }
 
     // Upsert new classes
-    const { data: upsertData, error: upsertError } = await supabase
+    const { data: upsertData, error: upsertError } = await supabaseAdmin
       .from('punchpass_schedule')
       .upsert(
         classes.map(c => ({
