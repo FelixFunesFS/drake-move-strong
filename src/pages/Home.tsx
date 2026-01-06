@@ -57,8 +57,8 @@ const Home = () => {
           text: <>READ OUR<br className="hidden sm:inline" />REVIEWS</>,
           link: GOOGLE_REVIEWS.url
         }}
-        backgroundImages={[heroImage2Desktop, heroImage3Desktop]} 
-        backgroundImagesMobile={[heroImage2Mobile, heroImage3Mobile]}
+        backgroundImages={["/images/hero-mobile.jpg", heroImage3Desktop]} 
+        backgroundImagesMobile={["/images/hero-mobile.jpg", heroImage3Mobile]}
         autoRotate={true}
       />
 
