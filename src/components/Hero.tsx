@@ -98,14 +98,11 @@ const Hero = ({
             </motion.p>
           )}
           <motion.h1 initial={{
-          opacity: 0,
-          y: 30
+          opacity: 1,
+          y: 0
         }} animate={{
           opacity: 1,
           y: 0
-        }} transition={{
-          duration: 0.8,
-          delay: 0.2
         }} className="font-hero text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 leading-[0.95] tracking-tighter uppercase">
             {title}
           </motion.h1>
