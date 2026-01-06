@@ -9,6 +9,7 @@ import { SEO } from "@/components/SEO";
 import { StructuredData, buildArticleSchema } from "@/components/StructuredData";
 import { format } from "date-fns";
 import AnimatedSection from "@/components/AnimatedSection";
+import SocialShareButtons from "@/components/insights/SocialShareButtons";
 
 const InsightPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -84,6 +85,15 @@ const InsightPost = () => {
               <span>{categoryInfo[post.category].name}</span>
             </div>
           </div>
+          
+          {/* Social Share Buttons - Hero */}
+          <div className="mt-8">
+            <SocialShareButtons 
+              url={`https://drake.fitness/insights/${post.slug}`}
+              title={post.title}
+              excerpt={post.excerpt}
+            />
+          </div>
         </div>
       </section>
 
@@ -153,6 +163,16 @@ const InsightPost = () => {
               </div>
             </div>
           )}
+
+          {/* Social Share Buttons - After Content */}
+          <div className="mt-8 pt-8 border-t border-border">
+            <p className="text-sm text-muted-foreground mb-4">Share this article:</p>
+            <SocialShareButtons 
+              url={`https://drake.fitness/insights/${post.slug}`}
+              title={post.title}
+              excerpt={post.excerpt}
+            />
+          </div>
 
           {/* Author Bio */}
           <div className="mt-16 bg-muted rounded-2xl p-8">
