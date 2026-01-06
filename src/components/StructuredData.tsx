@@ -41,6 +41,13 @@ export const localBusinessSchema = {
     "https://www.instagram.com/drakefitnesschs/",
     "https://www.facebook.com/profile.php?id=100063722011333"
   ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "31",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",

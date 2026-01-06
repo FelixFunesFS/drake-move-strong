@@ -3,6 +3,7 @@ import CTASection from "@/components/CTASection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle2, Users, Trophy, Target, TrendingUp, Heart } from "lucide-react";
+import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
 import { SEO } from "@/components/SEO";
 import { StructuredData, localBusinessSchema } from "@/components/StructuredData";
 import heroImage2 from "@/assets/hero-barbell-deadlift.jpg";
@@ -42,6 +43,18 @@ const Home = () => {
       text: "START RESET WEEK",
       link: "/reset-week"
     }} backgroundImages={[heroImage2, heroImage3]} autoRotate={true} />
+
+      {/* Google Reviews Trust Signal - Primary Placement */}
+      <section className="py-8 md:py-10 bg-background">
+        <div className="container mx-auto px-4 text-center">
+          <GoogleReviewsBadge variant="full" showSupportingText={true} />
+          <div className="mt-6">
+            <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold">
+              <Link to="/reset-week">Start Reset Week</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
 
       {/* Brand Values Marquee */}
       <section className="py-4 md:py-6 bg-drake-dark overflow-hidden border-y border-drake-gold/20">
