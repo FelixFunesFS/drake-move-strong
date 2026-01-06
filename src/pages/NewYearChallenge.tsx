@@ -9,7 +9,7 @@ import OptimizedImage from '@/components/OptimizedImage';
 import { SEO } from '@/components/SEO';
 import AnimatedSection from '@/components/AnimatedSection';
 
-import drakeLogo from '@/assets/drake-logo.png';
+import drakeLogo from '@/assets/drake-logo.png?format=webp&w=176';
 import heroImage from '@/assets/group-training.jpg';
 import davidImage from '@/assets/david-outside.jpg';
 import nickImage from '@/assets/coach-nick-new.jpg';

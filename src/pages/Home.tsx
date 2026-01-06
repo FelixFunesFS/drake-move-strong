@@ -11,7 +11,7 @@ import heroImage2Desktop from "@/assets/hero-barbell-deadlift.jpg?format=webp&w=
 import heroImage2Mobile from "@/assets/hero-barbell-deadlift.jpg?format=webp&w=768";
 import heroImage3Desktop from "@/assets/hero-coaching-session.jpg?format=webp&w=1920";
 import heroImage3Mobile from "@/assets/hero-coaching-session.jpg?format=webp&w=768";
-import outdoorTraining from "@/assets/david-outdoor-dumbbell.jpg";
+import outdoorTraining from "@/assets/david-outdoor-dumbbell.jpg?format=webp&w=768";
 import davidCoach from "@/assets/david-goblet-squat-kb-rack.jpg";
 import coachNick from "@/assets/nick-holistic-coaching.jpg";
 import startHereImage from "@/assets/outdoor-sandbag-training.jpg";
@@ -24,7 +24,7 @@ import oneOnOneCoaching from "@/assets/one-on-one-coaching.jpg";
 import kettlebellFormCheck from "@/assets/kettlebell-form-check.jpg";
 import groupTraining from "@/assets/group-training.jpg";
 import mobilityClass from "@/assets/mobility-class.jpg";
-import outdoorTrainingNew from "@/assets/outdoor-training.jpg";
+import outdoorTrainingNew from "@/assets/outdoor-training.jpg?format=webp&w=768";
 import davidOutside from "@/assets/david-outside.jpg";
 import oneOnOne from "@/assets/one-on-one.jpg";
 import studioGroupSquats from "@/assets/studio-group-squats.jpg";
