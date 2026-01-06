@@ -54,25 +54,33 @@
     *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid}
     html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:Inter,system-ui,sans-serif;scroll-behavior:smooth}
     body{margin:0;background:hsl(222.2 84% 4.9%);color:hsl(210 40% 98%);min-height:100vh}
-    /* Fallback font styling - immediate render before web fonts load */
     body,button,input{font-family:Inter,-apple-system,BlinkMacSystemFont,system-ui,sans-serif}
     h1,h2,h3,.font-hero{font-family:Oswald,Impact,"Arial Black",sans-serif}
     .container{width:100%;margin:0 auto;padding:0 1rem}
     @media(min-width:1280px){.container{max-width:1280px}}
-    nav{position:sticky;top:0;z-index:50;background:hsl(222.2 84% 4.9%);border-bottom:1px solid hsl(217.2 32.6% 17.5%)}
-    nav img{height:48px;width:auto}
-    section{position:relative;overflow:hidden}
-    h1{font-size:2.25rem;font-weight:700;line-height:0.95;text-transform:uppercase;color:hsl(210 40% 98%)}
-    @media(min-width:640px){h1{font-size:3rem}}
-    @media(min-width:768px){h1{font-size:3.75rem};nav img{height:64px}}
-    @media(min-width:1024px){h1{font-size:4.5rem}}
-    /* Hero skeleton - renders immediately */
-    #root:empty::before{content:"";display:block;height:100vh;background:linear-gradient(180deg,hsl(222.2 84% 4.9%) 0%,hsl(222.2 84% 8%) 100%)}
+    /* Pre-render hero skeleton for instant FCP */
+    .hero-skeleton{position:relative;min-height:100vh;min-height:100svh;background:linear-gradient(180deg,hsl(222.2 84% 4.9%) 0%,hsl(222.2 84% 8%) 100%)}
+    .hero-skeleton::before{content:"";position:absolute;inset:0;background:url('/images/hero-mobile.jpg') center/cover no-repeat;opacity:0.6}
+    .hero-skeleton-content{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;padding:6rem 1rem 4rem;max-width:600px}
+    .hero-skeleton h1{font-size:2.25rem;font-weight:700;line-height:0.95;text-transform:uppercase;color:hsl(210 40% 98%);margin:0 0 1rem}
+    .hero-skeleton p{font-size:1rem;color:hsl(210 40% 90%);margin:0;opacity:0.9}
+    @media(min-width:640px){.hero-skeleton h1{font-size:3rem}}
+    @media(min-width:768px){.hero-skeleton h1{font-size:3.75rem}}
+    @media(min-width:1024px){.hero-skeleton h1{font-size:4.5rem};.hero-skeleton-content{padding-left:4rem}}
+    /* Hide skeleton once React mounts */
+    #root:not(:empty)+.hero-skeleton{display:none}
   </style>
 </head>
 
   <body>
     <div id="root"></div>
+    <!-- Pre-rendered hero skeleton for instant FCP - hidden once React mounts -->
+    <div class="hero-skeleton" aria-hidden="true">
+      <div class="hero-skeleton-content">
+        <h1>Move Better. Live Stronger. Stay Pain-Free.</h1>
+        <p>Mobility-first functional strength training in Charleston, SC</p>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
