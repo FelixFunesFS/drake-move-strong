@@ -60,18 +60,7 @@ const Hero = ({
     return () => clearInterval(interval);
   }, [hasMultipleImages, images.length, autoRotate]);
   return <section className={cn("relative h-[600px] md:h-[700px] lg:h-[800px] flex items-center overflow-hidden", className)}>
-      {/* Hidden img tag for LCP optimization - makes first hero image discoverable */}
-      {images.length > 0 && (
-        <img 
-          src={images[0]} 
-          alt="" 
-          fetchPriority="high"
-          className="absolute inset-0 w-full h-full object-cover opacity-0 pointer-events-none" 
-          aria-hidden="true"
-        />
-      )}
-      
-      {/* Background Images with Ken Burns Effect */}
+      {/* Background Images with Ken Burns Effect - uses real <img> for LCP optimization */}
       {images.length > 0 ? <div className="absolute inset-0 z-0">
           {images.map((img, index) => <motion.div key={img} initial={{
         opacity: 0
@@ -81,9 +70,16 @@ const Hero = ({
         duration: 1.5,
         ease: "easeInOut"
       }} className="absolute inset-0">
-              <div className="absolute inset-0 bg-cover bg-center animate-ken-burns" style={{
-          backgroundImage: `url(${img})`
-        }} />
+              {/* Use actual <img> element for LCP - fetchpriority only on first image */}
+              <img 
+                src={img} 
+                alt="" 
+                fetchPriority={index === 0 ? "high" : undefined}
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding={index === 0 ? "sync" : "async"}
+                className="absolute inset-0 w-full h-full object-cover animate-ken-burns"
+                aria-hidden="true"
+              />
             </motion.div>)}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
         </div> : <div className="absolute inset-0 bg-gradient-to-br from-drake-dark via-drake-dark-muted to-primary/20" />}
