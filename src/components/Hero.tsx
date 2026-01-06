@@ -14,6 +14,7 @@ interface HeroProps {
   secondaryCTA?: HeroCTA;
   backgroundImage?: string;
   backgroundImages?: string[];
+  backgroundImagesMobile?: string[];
   autoRotate?: boolean;
   className?: string;
   eyebrow?: string | ReactNode;
@@ -27,6 +28,7 @@ const Hero = ({
   secondaryCTA,
   backgroundImage,
   backgroundImages,
+  backgroundImagesMobile,
   autoRotate = true,
   className,
   eyebrow,
@@ -35,6 +37,7 @@ const Hero = ({
 }: HeroProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = backgroundImages || (backgroundImage ? [backgroundImage] : []);
+  const mobileImages = backgroundImagesMobile || [];
   const hasMultipleImages = images.length > 1;
   
   // Preload first hero image for faster LCP
@@ -73,6 +76,7 @@ const Hero = ({
               {/* Use actual <img> element for LCP - fetchpriority only on first image */}
               <img 
                 src={img} 
+                srcSet={mobileImages[index] ? `${mobileImages[index]} 768w, ${img} 1920w` : undefined}
                 alt="" 
                 fetchPriority={index === 0 ? "high" : undefined}
                 loading={index === 0 ? "eager" : "lazy"}
