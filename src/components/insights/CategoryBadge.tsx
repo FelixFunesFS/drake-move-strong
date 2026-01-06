@@ -1,26 +1,26 @@
 import { cn } from "@/lib/utils";
 
 interface CategoryBadgeProps {
-  category: 'strength' | 'movement' | 'purpose';
+  category: 'education' | 'trust' | 'conversion';
   className?: string;
 }
 
 const CategoryBadge = ({ category, className }: CategoryBadgeProps) => {
   const styles = {
-    strength: {
-      bg: "bg-primary/10",
-      text: "text-primary",
-      label: "Strength"
+    education: {
+      bg: "bg-blue-600",
+      text: "text-white",
+      label: "Education"
     },
-    movement: {
-      bg: "bg-drake-gold/20",
-      text: "text-drake-dark",
-      label: "Movement"
+    trust: {
+      bg: "bg-green-600",
+      text: "text-white",
+      label: "Trust"
     },
-    purpose: {
-      bg: "bg-muted",
-      text: "text-foreground",
-      label: "Purpose"
+    conversion: {
+      bg: "bg-amber-600",
+      text: "text-white",
+      label: "Conversion"
     }
   };
 

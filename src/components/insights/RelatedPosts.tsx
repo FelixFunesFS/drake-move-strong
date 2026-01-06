@@ -1,5 +1,5 @@
 import { InsightPost } from "@/data/insights";
-import InsightCard from "./InsightCard";
+import BlogArticleCard from "./BlogArticleCard";
 
 interface RelatedPostsProps {
   posts: InsightPost[];
@@ -7,7 +7,7 @@ interface RelatedPostsProps {
 }
 
 const RelatedPosts = ({ posts, currentPostId }: RelatedPostsProps) => {
-  // Get 3 related posts (same category, excluding current)
+  // Get 3 related posts (excluding current)
   const relatedPosts = posts
     .filter(post => post.id !== currentPostId)
     .slice(0, 3);
@@ -25,7 +25,7 @@ const RelatedPosts = ({ posts, currentPostId }: RelatedPostsProps) => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {relatedPosts.map((post) => (
-            <InsightCard key={post.id} post={post} />
+            <BlogArticleCard key={post.id} post={post} variant="default" />
           ))}
         </div>
       </div>

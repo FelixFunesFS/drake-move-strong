@@ -30,8 +30,9 @@ const TONES = [
 ];
 
 const CATEGORY_LABELS: Record<string, string> = {
-  strength: "Strength",
-  movement: "Movement",
+  education: "Education",
+  trust: "Trust",
+  conversion: "Conversion",
   purpose: "Purpose"
 };
 
@@ -295,8 +296,8 @@ Tags: ${post.tags.join(', ')}`;
                           <SelectItem key={post.id} value={post.id}>
                             <div className="flex items-center gap-2">
                               <span className={`text-xs px-1.5 py-0.5 rounded ${
-                                post.category === 'strength' ? 'bg-red-100 text-red-700' :
-                                post.category === 'movement' ? 'bg-blue-100 text-blue-700' :
+                                post.category === 'education' ? 'bg-blue-100 text-blue-700' :
+                                post.category === 'trust' ? 'bg-green-100 text-green-700' :
                                 'bg-amber-100 text-amber-700'
                               }`}>
                                 {CATEGORY_LABELS[post.category]}
