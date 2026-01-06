@@ -78,7 +78,7 @@ export function TodayClassesBanner() {
 
   if (loading) {
     return (
-      <section className="py-4 bg-drake-dark border-y border-drake-gold/20">
+      <section className="py-3 md:py-4 bg-drake-dark border-y border-drake-gold/20 min-h-[60px] md:min-h-[72px]">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-2">
