@@ -4,7 +4,8 @@ import {
   Footprints, Wind, Dumbbell, RotateCcw, Eye, Search, Wrench, TrendingUp,
   Heart, Shield, Users, Calendar, Clock, Target, Sparkles, Brain, Zap,
   Activity, Scale, UserCheck, BadgeCheck, ChevronRight, X, AlertCircle,
-  HeartPulse, ShieldCheck, CalendarCheck, Compass, HandHeart
+  HeartPulse, ShieldCheck, CalendarCheck, Compass, HandHeart,
+  SlidersHorizontal, Infinity, Moon, Frown, Trophy, Hourglass
 } from "lucide-react";
 
 import blogTraditionalWorkoutsHero from "@/assets/blog-traditional-workouts-hero.jpg";
@@ -706,10 +707,10 @@ export const NoPainNoGainContent = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
           {[
-            { icon: Target, title: "Control comes before load", desc: "We don't add weight until your body can handle the movement pattern with precision." },
+            { icon: SlidersHorizontal, title: "Control comes before load", desc: "We don't add weight until your body can handle the movement pattern with precision." },
             { icon: TrendingUp, title: "Progression should feel earned", desc: "Not forced. Not rushed. Every step forward builds on the last." },
-            { icon: RotateCcw, title: "Recovery is part of training", desc: "Not an afterthought. It's when your body actually gets stronger." },
-            { icon: Clock, title: "Long-term matters most", desc: "We're not chasing quick fixes. We're building strength that lasts decades." },
+            { icon: Moon, title: "Recovery is part of training", desc: "Not an afterthought. It's when your body actually gets stronger." },
+            { icon: Infinity, title: "Long-term matters most", desc: "We're not chasing quick fixes. We're building strength that lasts decades." },
           ].map((item, i) => (
             <div key={i} className="bg-muted p-8 rounded-2xl">
               <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-4">
@@ -743,10 +744,10 @@ export const NoPainNoGainContent = () => {
 
         <div className="space-y-6 mb-10">
           {[
-            { icon: UserCheck, title: "Adults over 30", desc: "When recovery slows down and your body demands smarter training." },
+            { icon: Hourglass, title: "Adults over 30", desc: "When recovery slows down and your body demands smarter training." },
             { icon: RotateCcw, title: "People restarting fitness", desc: "After time off, injury, or burnout from previous training approaches." },
-            { icon: Activity, title: "Anyone tired of being sore", desc: "Constant discomfort isn't a badge of honor — it's a sign something's wrong." },
-            { icon: Target, title: "Anyone who wants results that last", desc: "Not just for the next few months — for the rest of your life." },
+            { icon: Frown, title: "Anyone tired of being sore", desc: "Constant discomfort isn't a badge of honor — it's a sign something's wrong." },
+            { icon: Trophy, title: "Anyone who wants results that last", desc: "Not just for the next few months — for the rest of your life." },
           ].map((item, i) => (
             <div key={i} className="bg-background border-2 border-border rounded-xl p-8 hover:border-primary transition-colors">
               <div className="flex items-center gap-6">
@@ -802,6 +803,24 @@ export const NoPainNoGainContent = () => {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Final CTA Section */}
+      <div className="bg-gradient-to-br from-primary to-teal-900 text-white rounded-3xl p-10 md:p-12 text-center">
+        <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase">
+          Ready to Train Without the Pain?
+        </h2>
+        <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed text-gray-200">
+          Reset Week teaches you how to build real strength — without beating up your body in the process.
+        </p>
+        <Link 
+          to="/reset-week"
+          className="inline-flex items-center gap-2 px-10 py-5 bg-drake-gold text-foreground font-bold text-lg rounded-lg hover:bg-yellow-400 transition-all transform hover:-translate-y-1 shadow-xl uppercase tracking-wide"
+        >
+          <ArrowRight className="w-5 h-5" />
+          Start Your Reset Week
+        </Link>
+        <p className="text-gray-300 mt-6 text-sm">Charleston, SC — Limited Spots Available</p>
       </div>
     </>
   );
