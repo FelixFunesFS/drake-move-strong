@@ -123,7 +123,7 @@ export const WhyTraditionalWorkoutsContent = () => {
         </h2>
 
         <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-          At Drake Fitness, we structure training around three progressive phases. Most gyms skip straight to Phase 3 — which is why people get hurt or burn out.
+          At Drake Fitness, we structure training around three progressive phases. Most gyms skip straight to Phase 3 — which is why people get hurt or burn out. This phased approach is what sets <Link to="/strength-training-charleston" className="text-primary font-semibold hover:underline">Charleston strength training at Drake Fitness</Link> apart.
         </p>
 
         <div className="space-y-8">
@@ -182,10 +182,14 @@ export const WhyTraditionalWorkoutsContent = () => {
               <span className="font-hero text-2xl font-bold text-primary">S</span>
             </div>
             <div>
-              <h3 className="font-bold text-xl mb-2">Sarah, 47 — Charleston, SC</h3>
+              <h3 className="font-bold text-xl mb-2">Sarah, 47 — West Ashley, SC</h3>
               <p className="text-muted-foreground italic">"I thought I was just getting old. Turns out, I was just training wrong."</p>
             </div>
           </div>
+          
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            Sarah discovered our <Link to="/reset-week-charleston" className="text-primary font-semibold hover:underline">Reset Week program</Link> through a neighbor's recommendation—and it changed how she approached training entirely.
+          </p>
           
           <div className="space-y-6">
             {[
@@ -255,7 +259,7 @@ export const WhyTraditionalWorkoutsContent = () => {
             You don't need more intensity. You need better movement, proper breathing, and progressive loading that respects where your body is right now.
           </p>
           <p className="text-xl leading-relaxed font-bold text-drake-gold">
-            That's what Reset Week teaches. And that's why it works.
+            Ready to see how this works? <Link to="/reset-week-charleston" className="underline hover:text-white">Reset Week</Link> is where most Charleston members start.
           </p>
         </div>
 
@@ -395,7 +399,7 @@ export const DrakePhilosophyContent = () => {
 export const MobilityVsFlexibilityContent = () => {
   return (
     <>
-      <div className="mb-16">
+      <div className="mb-12">
         <p className="text-xl text-foreground leading-relaxed mb-6 font-medium">
           You can touch your toes, but your hips still feel tight. You can stretch for hours, but your shoulders still ache. What's going on?
         </p>
@@ -404,11 +408,33 @@ export const MobilityVsFlexibilityContent = () => {
         </p>
       </div>
 
+      {/* Short Answer Block for AI Extraction */}
+      <div className="bg-primary/5 border-2 border-primary rounded-xl p-6 mb-12">
+        <p className="text-sm font-bold text-primary uppercase tracking-wide mb-2">Short Answer</p>
+        <p className="text-lg text-foreground leading-relaxed">
+          Flexibility is passive range of motion. Mobility is active control through that range. Mobility is what actually matters for pain-free daily movement.
+        </p>
+      </div>
+
       <div className="mb-16 rounded-2xl overflow-hidden shadow-2xl">
         <img src={mobilityClass} alt="Mobility training session" className="w-full h-auto max-h-96 object-cover" />
       </div>
 
-      {/* Two Column Comparison */}
+      {/* Definition Boxes */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+        <div className="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl border-t-4 border-gray-400 text-center">
+          <h3 className="font-hero text-xl font-bold uppercase mb-2">Flexibility</h3>
+          <p className="text-lg font-medium text-muted-foreground">Passive Range of Motion</p>
+          <p className="text-sm text-muted-foreground mt-2">How far you CAN go</p>
+        </div>
+        <div className="bg-primary/10 p-6 rounded-xl border-t-4 border-primary text-center">
+          <h3 className="font-hero text-xl font-bold uppercase mb-2">Mobility</h3>
+          <p className="text-lg font-medium text-primary">Active Range of Motion</p>
+          <p className="text-sm text-muted-foreground mt-2">How far you CAN CONTROL</p>
+        </div>
+      </div>
+
+      {/* Two Column Deep Comparison */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
         <div className="bg-muted p-8 rounded-2xl border-t-4 border-gray-400">
           <h2 className="font-hero text-2xl font-bold text-foreground mb-4 uppercase">Flexibility</h2>
@@ -430,6 +456,14 @@ export const MobilityVsFlexibilityContent = () => {
             This is what actually matters for pain-free movement.
           </p>
         </div>
+      </div>
+
+      {/* Why This Matters in Charleston */}
+      <div className="bg-drake-gold/10 border-l-4 border-drake-gold p-8 rounded-r-2xl mb-16">
+        <h3 className="font-hero text-xl font-bold text-foreground mb-4 uppercase">Why This Matters for Charleston Residents</h3>
+        <p className="text-lg text-muted-foreground leading-relaxed">
+          Whether you spend your day at a desk in downtown Charleston, stand for long shifts in the service industry, or enjoy the active lifestyle our area offers—from paddleboarding to hiking—mobility is what determines how you feel afterward. Our <Link to="/mobility-fitness-avondale" className="text-primary font-semibold hover:underline">Avondale studio</Link> specializes in building the active control you need for pain-free movement in real life.
+        </p>
       </div>
 
       {/* What Mobility Matters For */}
@@ -556,13 +590,13 @@ export const TooOutOfShapeContent = () => {
             <p className="text-lg text-muted-foreground italic mb-4">
               "I couldn't touch my toes when I started. Now I deadlift 135 pounds and my back pain is gone."
             </p>
-            <p className="font-semibold text-foreground">— Sarah, 47</p>
+            <p className="font-semibold text-foreground">— Sarah, 47, West Ashley</p>
           </div>
           <div className="bg-muted p-8 rounded-2xl border-l-4 border-drake-gold">
             <p className="text-lg text-muted-foreground italic mb-4">
               "I was 50 pounds overweight and hadn't exercised in 10 years. They didn't make me feel embarrassed — they made me feel capable."
             </p>
-            <p className="font-semibold text-foreground">— Tom, 52</p>
+            <p className="font-semibold text-foreground">— Tom, 52, Downtown Charleston</p>
           </div>
         </div>
       </div>
@@ -774,14 +808,18 @@ export const NoPainNoGainContent = () => {
           ))}
         </div>
 
+        <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+          If joint pain or past injuries have kept you away from fitness, you might also benefit from our <Link to="/low-impact-fitness-charleston" className="text-primary font-semibold hover:underline">low-impact fitness approach</Link>.
+        </p>
+
         {/* Inline CTA */}
         <div className="bg-gradient-to-r from-primary to-teal-700 text-white rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-xl font-bold text-center md:text-left">If that's you, Reset Week is the safest place to begin.</p>
+          <p className="text-xl font-bold text-center md:text-left">Curious how this works in practice? Reset Week is your introduction.</p>
           <Link 
-            to="/reset-week"
+            to="/reset-week-charleston"
             className="inline-flex items-center gap-2 px-8 py-4 bg-drake-gold text-foreground font-bold rounded-lg hover:bg-yellow-400 transition-all transform hover:-translate-y-1 shadow-lg uppercase tracking-wide whitespace-nowrap"
           >
-            Start Your Reset Week
+            See How We Train Differently
             <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
@@ -844,9 +882,17 @@ export const NoPainNoGainContent = () => {
 export const TrainingWithInjuryContent = () => {
   return (
     <>
-      <div className="mb-16">
+      <div className="mb-12">
         <p className="text-xl text-foreground leading-relaxed mb-6 font-medium">
           That old knee injury. The shoulder surgery from five years ago. The back that "goes out" sometimes. Can you still train? Absolutely — and here's how we make it work.
+        </p>
+      </div>
+
+      {/* Short Answer Block for AI Extraction */}
+      <div className="bg-primary/5 border-2 border-primary rounded-xl p-6 mb-12">
+        <p className="text-sm font-bold text-primary uppercase tracking-wide mb-2">Short Answer</p>
+        <p className="text-lg text-foreground leading-relaxed">
+          Yes, you can train with old injuries—if movement is assessed and exercises are modified correctly. Most injuries don't prevent all exercise; they prevent specific exercises.
         </p>
       </div>
 
@@ -854,13 +900,13 @@ export const TrainingWithInjuryContent = () => {
         <img src={kettlebellFormCheck} alt="Coach helping with form" className="w-full h-auto max-h-96 object-cover" />
       </div>
 
-      {/* Key Message */}
+      {/* FAQ-style Key Message */}
       <div className="bg-primary/10 border-l-4 border-primary p-8 rounded-r-2xl mb-16">
         <h2 className="font-hero text-2xl font-bold text-foreground mb-4 uppercase">
-          Injuries Don't Mean You Can't Train
+          Is It Safe to Train With an Old Injury?
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          Most injuries don't prevent all exercise — they prevent certain exercises. The key is knowing which movements are safe and which need modification or avoidance.
+          In most cases, yes. Most injuries don't prevent all exercise — they prevent certain exercises. The key is knowing which movements are safe and which need modification or avoidance.
         </p>
       </div>
 
@@ -909,7 +955,7 @@ export const TrainingWithInjuryContent = () => {
       </div>
 
       {/* When to See a Professional */}
-      <div className="bg-foreground text-white p-10 rounded-2xl">
+      <div className="bg-foreground text-white p-10 rounded-2xl mb-16">
         <h3 className="font-hero text-2xl font-bold mb-4 uppercase flex items-center gap-3">
           <AlertTriangle className="w-6 h-6 text-drake-gold" />
           When to Consult a Professional First
@@ -917,6 +963,30 @@ export const TrainingWithInjuryContent = () => {
         <p className="text-gray-300 leading-relaxed">
           If you're currently in acute pain or have an undiagnosed issue, see a doctor or physical therapist first. We work with healthcare providers, not instead of them.
         </p>
+      </div>
+
+      {/* Reassurance CTA */}
+      <div className="bg-gradient-to-r from-primary to-teal-700 text-white rounded-2xl p-10 text-center">
+        <h3 className="font-hero text-2xl font-bold mb-4 uppercase">
+          Still Unsure If Training Is Right for You?
+        </h3>
+        <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
+          Reset Week is designed for exactly this situation. We assess your movement, work around your limitations, and show you what's possible—safely.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link 
+            to="/reset-week" 
+            className="inline-flex items-center gap-2 px-8 py-4 bg-drake-gold text-foreground font-bold rounded-lg hover:bg-yellow-400 transition-all uppercase tracking-wide"
+          >
+            <Calendar className="w-5 h-5" /> Try Reset Week
+          </Link>
+          <Link 
+            to="/contact" 
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 text-white font-bold rounded-lg border-2 border-white/30 hover:bg-white/20 transition-all uppercase tracking-wide"
+          >
+            <Phone className="w-5 h-5" /> Talk to a Coach First
+          </Link>
+        </div>
       </div>
     </>
   );
@@ -928,9 +998,17 @@ export const TrainingWithInjuryContent = () => {
 export const BreathingControlsMovementContent = () => {
   return (
     <>
-      <div className="mb-16">
+      <div className="mb-12">
         <p className="text-xl text-foreground leading-relaxed mb-6 font-medium">
           Before you worry about your squat form or deadlift technique, ask yourself: are you breathing correctly? For most people, the answer is no.
+        </p>
+      </div>
+
+      {/* Short Answer Block for AI Extraction */}
+      <div className="bg-primary/5 border-2 border-primary rounded-xl p-6 mb-12">
+        <p className="text-sm font-bold text-primary uppercase tracking-wide mb-2">Short Answer</p>
+        <p className="text-lg text-foreground leading-relaxed">
+          Proper breathing creates core stability, positions your ribcage for better mechanics, and regulates your nervous system. Without correct breathing, even perfect exercise form is built on a weak foundation.
         </p>
       </div>
 
@@ -1010,6 +1088,13 @@ export const BreathingControlsMovementContent = () => {
         </div>
       </div>
 
+      {/* Earlier Reset Week Link */}
+      <div className="bg-drake-gold/10 border-l-4 border-drake-gold p-6 rounded-r-xl mb-16">
+        <p className="text-lg text-foreground leading-relaxed">
+          <strong>This is why Reset Week starts with breathing.</strong> Before we add any load or intensity, we ensure your breathing mechanics create the foundation for safe movement. <Link to="/reset-week" className="text-primary font-bold hover:underline">Learn more about Reset Week →</Link>
+        </p>
+      </div>
+
       {/* How We Teach It */}
       <div className="bg-drake-gold/10 border-l-4 border-drake-gold p-8 rounded-r-2xl">
         <h3 className="font-hero text-xl font-bold text-foreground mb-4 uppercase">How We Teach It</h3>
@@ -1029,7 +1114,7 @@ export const WhatMakesDrakeDifferentContent = () => {
     <>
       <div className="mb-16">
         <p className="text-xl text-foreground leading-relaxed mb-6 font-medium">
-          Charleston has no shortage of gyms. So why would you choose Drake Fitness? Here's an honest comparison.
+          Charleston has no shortage of gyms. West Ashley alone has a dozen options within a few miles. So why do members drive past other gyms to train with us in Avondale? Here's an honest comparison.
         </p>
       </div>
 
@@ -1156,6 +1241,13 @@ export const HowMuchTimeContent = () => {
         </div>
       </div>
 
+      {/* Charleston Lifestyle Reference */}
+      <div className="bg-muted rounded-xl p-6 mb-16">
+        <p className="text-lg text-muted-foreground leading-relaxed">
+          <strong className="text-foreground">For Charleston residents:</strong> Our Avondale location means most West Ashley members are 5-10 minutes away. Early morning classes mean you can train before downtown traffic, and evening sessions fit after a normal workday.
+        </p>
+      </div>
+
       {/* Quality Over Quantity */}
       <div className="bg-drake-gold/10 border-l-4 border-drake-gold p-8 rounded-r-2xl mb-16">
         <h2 className="font-hero text-2xl font-bold text-foreground mb-4 uppercase">
@@ -1248,7 +1340,7 @@ export const WhatRealStrengthContent = () => {
 
       <div className="mb-16 space-y-6">
         <p className="text-xl text-muted-foreground leading-relaxed">
-          Strength that only exists in the gym isn't very useful.
+          Strength that only exists in the gym isn't very useful. This is exactly what we teach in <Link to="/reset-week" className="text-primary font-semibold hover:underline">Reset Week</Link>.
         </p>
         <p className="text-xl text-muted-foreground leading-relaxed">
           If you can deadlift 300 pounds but can't pick up a bag of groceries without tweaking your back—that's not real strength. If you can bench press your body weight but your shoulder hurts when you reach overhead—that's not functional capacity.
@@ -1378,8 +1470,8 @@ export const WhatRealStrengthContent = () => {
         <div className="max-w-4xl mx-auto">
           <h2 className="font-hero text-4xl font-bold text-foreground mb-8 uppercase">Why This Matters in Real Life</h2>
           
-          <p className="text-xl text-muted-foreground leading-relaxed mb-12">
-            Real strength shows up when you need it—not just when you're in the gym.
+          <p className="text-xl text-muted-foreground leading-relaxed mb-8">
+            Real strength shows up when you need it—not just when you're in the gym. This is the foundation of <Link to="/strength-training-charleston" className="text-primary font-semibold hover:underline">strength training at Drake Fitness</Link>.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
@@ -1457,9 +1549,9 @@ export const WhatRealStrengthContent = () => {
       {/* Final CTA Section */}
       <div className="bg-foreground text-white rounded-2xl p-12 text-center">
         <Dumbbell className="w-16 h-16 mx-auto mb-8 text-drake-gold" />
-        <h2 className="font-hero text-4xl md:text-5xl font-bold mb-6 uppercase">Learn What Real Strength Feels Like</h2>
+        <h2 className="font-hero text-4xl md:text-5xl font-bold mb-6 uppercase">Curious? See What Real Strength Feels Like</h2>
         <p className="text-xl text-gray-300 leading-relaxed mb-10 max-w-3xl mx-auto">
-          Reset Week isn't about testing your limits. It's about discovering what your body can actually do—and building from there.
+          Reset Week is your no-pressure introduction. Discover what your body can actually do—and build from there.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
           <Link 
