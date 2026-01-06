@@ -10,10 +10,22 @@ import { StructuredData, buildArticleSchema } from "@/components/StructuredData"
 import { format } from "date-fns";
 import AnimatedSection from "@/components/AnimatedSection";
 
+// Import blog hero image
+import blogTraditionalWorkoutsHero from "@/assets/blog-traditional-workouts-hero.jpg";
+
 const categoryBadgeConfig = {
   education: "bg-blue-600",
   trust: "bg-green-600",
   conversion: "bg-amber-600",
+};
+
+// Map for dynamically imported thumbnails
+const thumbnailMap: Record<string, string> = {
+  '@/assets/blog-traditional-workouts-hero.jpg': blogTraditionalWorkoutsHero,
+};
+
+const getThumbnail = (thumbnail: string) => {
+  return thumbnailMap[thumbnail] || thumbnail;
 };
 
 const InsightPost = () => {
@@ -97,7 +109,7 @@ const InsightPost = () => {
           {/* Featured Image */}
           <div className="mb-16 rounded-2xl overflow-hidden shadow-2xl">
             <OptimizedImage
-              src={post.thumbnail}
+              src={getThumbnail(post.thumbnail)}
               alt={post.title}
               className="w-full h-auto max-h-96 object-cover"
             />
@@ -130,6 +142,14 @@ const InsightPost = () => {
               [&_.lead]:text-xl [&_.lead]:text-foreground [&_.lead]:font-medium [&_.lead]:leading-relaxed [&_.lead]:mb-8
               [&_.key-insight]:bg-background [&_.key-insight]:border-2 [&_.key-insight]:border-primary [&_.key-insight]:rounded-2xl [&_.key-insight]:p-8 [&_.key-insight]:my-8
               [&_.key-insight_h3]:flex [&_.key-insight_h3]:items-center [&_.key-insight_h3]:gap-3 [&_.key-insight_h3]:text-foreground [&_.key-insight_h3]:mb-4
+              [&_.warning-box]:bg-foreground [&_.warning-box]:text-white [&_.warning-box]:p-10 [&_.warning-box]:rounded-2xl [&_.warning-box]:my-10
+              [&_.warning-box_h3]:text-2xl [&_.warning-box_h3]:text-white [&_.warning-box_h3]:mb-4 [&_.warning-box_h3]:flex [&_.warning-box_h3]:items-center [&_.warning-box_h3]:gap-3
+              [&_.warning-box_p]:text-gray-300 [&_.warning-box_p]:mb-4 [&_.warning-box_p]:last:mb-0
+              [&_.testimonial-box]:bg-muted [&_.testimonial-box]:rounded-2xl [&_.testimonial-box]:p-10 [&_.testimonial-box]:my-8
+              [&_.testimonial-box_h3]:text-xl [&_.testimonial-box_h3]:font-bold [&_.testimonial-box_h3]:text-foreground [&_.testimonial-box_h3]:mb-2
+              [&_.testimonial-box_.quote]:text-muted-foreground [&_.testimonial-box_.quote]:italic [&_.testimonial-box_.quote]:mb-6
+              [&_.testimonial-box_ul]:space-y-4 [&_.testimonial-box_ul]:mt-6
+              [&_.testimonial-box_li]:flex [&_.testimonial-box_li]:items-start [&_.testimonial-box_li]:gap-4 [&_.testimonial-box_li]:text-muted-foreground
             "
             dangerouslySetInnerHTML={{ __html: post.content }}
           />

@@ -54,8 +54,8 @@ export const insightPosts: InsightPost[] = [
   {
     id: "1",
     slug: "why-traditional-workouts-stop-working-after-40",
-    title: "Why Traditional Workouts Stop Working After 40 (And What Actually Does)",
-    excerpt: "Most people over 40 hit a wall with traditional fitness programs. Learn why intensity-first approaches fail and what your body actually needs to build sustainable strength without pain or injury.",
+    title: "Why Traditional Workouts Stop Working After 40",
+    excerpt: "And What Actually Does Work for Long-Term Strength and Mobility",
     content: `
       <p class="lead">If you've been training for years and suddenly feel like your body isn't responding the way it used to, you're not alone. After 40, the rules change — but most gyms keep teaching the same playbook.</p>
       
@@ -107,6 +107,44 @@ export const insightPosts: InsightPost[] = [
       <h3>Phase 3: Express Strength (Ongoing)</h3>
       <p>Now you're ready for intensity. With a solid foundation, your body can handle heavier loads, faster movements, and more complex training — without breaking down.</p>
 
+      <div class="warning-box">
+        <h3>Why Most Gyms Skip This Process</h3>
+        <p>Because it's slower. It's less flashy. And it requires actual coaching — not just supervision. But skipping these phases is why people end up injured, frustrated, or stuck.</p>
+        <p>We'd rather take the time to do it right than rush you into workouts your body isn't ready for.</p>
+      </div>
+
+      <h2>What This Looks Like in Real Life</h2>
+      
+      <p>Let's make this concrete. Here's what a typical member experiences when they start training the right way after years of traditional workouts.</p>
+
+      <div class="testimonial-box">
+        <h3>Sarah, 47 — Charleston, SC</h3>
+        <p class="quote">"I thought I was just getting old. Turns out, I was just training wrong."</p>
+        <ul>
+          <li><strong>Week 1-2 (Reset Week):</strong> Sarah learned how to breathe properly, restored shoulder and hip mobility, and practiced foundational movements without any pain.</li>
+          <li><strong>Week 3-8 (Build Control):</strong> We introduced kettlebells, bodyweight strength work, and loaded carries — all with strict form and tempo control. Her back pain disappeared.</li>
+          <li><strong>Week 9+ (Express Strength):</strong> Now Sarah deadlifts, presses, and swings kettlebells with confidence. She's stronger than she was at 35 — and pain-free.</li>
+        </ul>
+      </div>
+
+      <p><strong>This isn't magic.</strong> It's just respecting the process. When you give your body what it actually needs — not what fitness trends say you should do — results follow.</p>
+
+      <h2>Common Objections (And The Truth)</h2>
+      
+      <p>We hear these concerns all the time. Let's address them directly.</p>
+
+      <h3>"I don't have time to go slow. I need results now."</h3>
+      <p>Going slow at the start actually gets you results faster. Skipping the foundation means you'll hit a wall sooner — or worse, get injured and have to start over. Smart training is faster than reckless training.</p>
+
+      <h3>"I'm not that out of shape. Can't I just jump into regular classes?"</h3>
+      <p>Maybe. But most people overestimate their movement quality. Reset Week isn't about fitness level — it's about movement literacy. Even experienced lifters benefit from revisiting the basics.</p>
+
+      <h3>"Won't this be too easy? I like feeling challenged."</h3>
+      <p>Controlling movement is harder than it looks. Most people discover muscles they didn't know they had. And once you've built the foundation, the challenge comes — but in a way your body can actually handle.</p>
+
+      <h3>"I've tried everything. Why would this be different?"</h3>
+      <p>Because most programs focus on what you do, not how you do it. We focus on movement quality, breathing mechanics, and progressive loading. That's not trendy — but it works.</p>
+
       <h2>The Bottom Line</h2>
       
       <p>Traditional workouts stop working after 40 because they're built for recovery systems you no longer have. The solution isn't to push harder — it's to train smarter.</p>
@@ -119,7 +157,7 @@ export const insightPosts: InsightPost[] = [
     author: 'david',
     publishedAt: '2025-01-05',
     readTime: 8,
-    thumbnail: '/src/assets/one-on-one-coaching.jpg',
+    thumbnail: '@/assets/blog-traditional-workouts-hero.jpg',
     featured: true,
     tags: ['training philosophy', 'over 40', 'smart training']
   },
