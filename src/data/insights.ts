@@ -4,7 +4,7 @@ export interface InsightPost {
   title: string;
   excerpt: string;
   content: string;
-  category: 'strength' | 'movement' | 'purpose';
+  category: 'education' | 'trust' | 'conversion';
   author: 'david' | 'nick';
   publishedAt: string;
   readTime: number;
@@ -16,255 +16,489 @@ export interface InsightPost {
 
 export const authorInfo = {
   david: {
-    name: "David Drake",
+    name: "Coach Drake",
     title: "Owner & Head Coach",
     bio: "25+ years experience in strength training and functional movement. StrongFirst Kettlebell Certified.",
     image: "/src/assets/coach-nick-portrait.jpg"
   },
   nick: {
-    name: "Nick Poppa",
+    name: "Coach Nick",
     title: "Corrective Exercise & Holistic Coach",
     bio: "Specializes in corrective exercise, mobility, and holistic wellness approaches.",
     image: "/src/assets/nick-holistic-coaching.jpg"
   }
 };
 
+export const categoryInfo = {
+  education: {
+    name: "Education",
+    description: "Learn the fundamentals of movement, strength training principles, and how your body actually works. Science-backed insights made accessible.",
+    color: "blue",
+    icon: "GraduationCap",
+  },
+  trust: {
+    name: "Trust",
+    description: "Stories, philosophies, and transparent insights into our coaching approach. Understand who we are and why we do what we do.",
+    color: "green",
+    icon: "ShieldCheck",
+  },
+  conversion: {
+    name: "Decision Support",
+    description: "Overcome objections, address concerns, and get clarity on whether Drake Fitness is right for you. No pressure, just honest answers.",
+    color: "amber",
+    icon: "Target",
+  }
+};
+
 export const insightPosts: InsightPost[] = [
   {
     id: "1",
-    slug: "why-kettlebells-build-real-world-strength",
-    title: "Why Kettlebells Build Real-World Strength",
-    excerpt: "Discover why kettlebell training creates functional strength that translates to everyday life, not just the gym.",
+    slug: "why-traditional-workouts-stop-working-after-40",
+    title: "Why Traditional Workouts Stop Working After 40 (And What Actually Does)",
+    excerpt: "Most people over 40 hit a wall with traditional fitness programs. Learn why intensity-first approaches fail and what your body actually needs to build sustainable strength without pain or injury.",
     content: `
-      <p>At Drake Fitness, we believe strength should serve you in real life—not just look good in a mirror. That's why kettlebells are a cornerstone of our training philosophy.</p>
+      <p class="lead">If you've been training for years and suddenly feel like your body isn't responding the way it used to, you're not alone. After 40, the rules change — but most gyms keep teaching the same playbook.</p>
       
-      <h3>What Makes Kettlebells Different?</h3>
-      <p>Unlike traditional weights that isolate muscles, kettlebells force your body to work as a complete system. Every swing, press, or carry engages multiple muscle groups while challenging your balance and coordination.</p>
+      <p>High-intensity workouts that once made you feel invincible now leave you sore, stiff, and exhausted. Recovery takes longer. Joints ache. And the results you used to see? They've slowed down or stopped entirely.</p>
       
-      <h3>Real-World Applications</h3>
-      <ul>
-        <li><strong>Lifting groceries:</strong> Turkish get-ups mirror the movement of standing up while holding weight</li>
-        <li><strong>Playing with kids:</strong> Swings build explosive hip power for running and dynamic movement</li>
-        <li><strong>Yard work:</strong> Carries strengthen grip and core stability for sustained physical work</li>
-      </ul>
+      <p>The problem isn't your effort. It's the approach. Let's talk about why traditional workouts fail after 40 — and what actually works instead.</p>
+
+      <h2>The Intensity Trap: Why "Go Hard or Go Home" Stops Working</h2>
       
-      <h3>The Movement Quality Factor</h3>
-      <p>We emphasize proper form over heavy weight. A well-executed kettlebell swing with 16kg teaches your body more than a sloppy lift with 32kg. This approach builds strength that lasts and reduces injury risk.</p>
+      <blockquote>"I used to crush myself in the gym. Now, crushing myself just crushes me."<br><small>— Common sentiment from members over 40</small></blockquote>
       
-      <p><strong>Ready to experience functional strength training?</strong> Our small group classes provide expert coaching to ensure you move better from day one.</p>
+      <p>In your 20s and 30s, your body could handle almost anything. You could train hard, recover fast, and push through soreness without much consequence. But after 40, your body's recovery systems slow down. Hormones shift. Connective tissue becomes less forgiving.</p>
+      
+      <p>Traditional high-intensity training assumes your body can absorb endless stress and bounce back quickly. When that's no longer true, those workouts don't build you up — they break you down.</p>
+      
+      <div class="key-insight">
+        <h3>The Key Insight</h3>
+        <p>Intensity without intention creates fatigue, not fitness. What you need is strategic training that respects your body's current capacity while still challenging it to grow.</p>
+      </div>
+
+      <h2>What Your Body Actually Needs After 40</h2>
+      
+      <p>The shift isn't about doing less — it's about doing what matters more. Your body still needs challenge, but the type of challenge changes.</p>
+
+      <h3>1. Movement Quality First</h3>
+      <p>Before adding weight or speed, ensure your joints move well and your body can control the ranges of motion you're asking it to perform.</p>
+
+      <h3>2. Breathing Mechanics</h3>
+      <p>Proper breathing creates core stability and allows your body to handle load without compensation. Most people skip this entirely.</p>
+
+      <h3>3. Progressive Loading</h3>
+      <p>Strength still matters — but it needs to be built on a foundation of control. Load comes after movement quality is established.</p>
+
+      <h3>4. Recovery Strategy</h3>
+      <p>Training is stress. Recovery is adaptation. Without intentional recovery, you're just accumulating fatigue.</p>
+
+      <p><strong>Bottom line:</strong> Your body still wants to get stronger. But it needs a smarter path to get there — one that prioritizes longevity over short-term intensity.</p>
+
+      <h2>The Three Phases of Smart Training</h2>
+      
+      <p>At Drake Fitness, we structure training around three progressive phases. Most gyms skip straight to Phase 3 — which is why people get hurt or burn out.</p>
+
+      <h3>Phase 1: Reset & Restore (1-2 weeks)</h3>
+      <p>This is where Reset Week lives. We restore joint mobility, teach proper breathing patterns, and rebuild movement foundations. No heavy weights. No exhausting circuits. Just intentional, controlled movement.</p>
+
+      <h3>Phase 2: Build Control (4-6 weeks)</h3>
+      <p>Once movement quality is established, we introduce load — but with strict control. This phase teaches your body to handle resistance without compensation. Tempo matters more than weight.</p>
+
+      <h3>Phase 3: Express Strength (Ongoing)</h3>
+      <p>Now you're ready for intensity. With a solid foundation, your body can handle heavier loads, faster movements, and more complex training — without breaking down.</p>
+
+      <h2>The Bottom Line</h2>
+      
+      <p>Traditional workouts stop working after 40 because they're built for recovery systems you no longer have. The solution isn't to push harder — it's to train smarter.</p>
+      
+      <p>You don't need more intensity. You need better movement, proper breathing, and progressive loading that respects where your body is right now.</p>
+      
+      <p><strong>That's what Reset Week teaches. And that's why it works.</strong></p>
     `,
-    category: 'strength',
+    category: 'education',
     author: 'david',
-    publishedAt: '2024-03-15',
-    readTime: 5,
-    thumbnail: '/src/assets/kettlebell-training.jpg',
+    publishedAt: '2025-01-05',
+    readTime: 8,
+    thumbnail: '/src/assets/one-on-one-coaching.jpg',
     featured: true,
-    tags: ['kettlebells', 'functional strength', 'training philosophy']
+    tags: ['training philosophy', 'over 40', 'smart training']
   },
   {
     id: "2",
-    slug: "5-minute-morning-mobility-routine",
-    title: "5-Minute Morning Mobility Routine",
-    excerpt: "Start your day with this simple mobility sequence that reduces stiffness and prepares your body for movement.",
+    slug: "the-drake-philosophy-why-we-train-differently",
+    title: "The Drake Philosophy: Why We Train Differently",
+    excerpt: "Discover the principles behind our coaching approach and why we prioritize movement quality over workout intensity. Learn what makes Drake Fitness different from traditional gyms.",
     content: `
-      <p>You don't need an hour-long yoga session to feel better. This 5-minute routine addresses the most common areas of stiffness and sets you up for a productive day.</p>
+      <p class="lead">Every gym has equipment. Most have trainers. What sets Drake Fitness apart isn't what we have — it's how we think about movement, strength, and your long-term success.</p>
       
-      <h3>The Routine</h3>
-      <p><strong>1. Cat-Cow (1 minute)</strong><br>
-      Wakes up your spine and shoulders. Move slowly and breathe deeply.</p>
+      <h2>Movement Quality Over Intensity</h2>
+      <p>The fitness industry sells intensity. More reps. Heavier weights. Harder workouts. But intensity without quality creates problems. We've seen too many people hurt themselves chasing "more" when they should have focused on "better."</p>
       
-      <p><strong>2. Hip Circles (1 minute)</strong><br>
-      Restores hip mobility after a night of sleeping. 30 seconds each direction.</p>
+      <p>Our approach prioritizes how you move before how much you lift. This doesn't mean easy workouts — it means smart ones.</p>
+
+      <h2>Coaching, Not Counting Reps</h2>
+      <p>Anyone can count your reps. Real coaching means:</p>
+      <ul>
+        <li>Identifying movement restrictions before they become injuries</li>
+        <li>Modifying exercises to match your body's current capacity</li>
+        <li>Progressing you at the right pace — not too slow, not too fast</li>
+        <li>Teaching you to understand your own body</li>
+      </ul>
       
-      <p><strong>3. Thoracic Rotation (1 minute)</strong><br>
-      Opens up your upper back—crucial if you sit at a desk. 30 seconds per side.</p>
+      <p>We limit class sizes specifically to ensure you get actual coaching attention, not just supervision.</p>
+
+      <h2>Long-Term Thinking</h2>
+      <p>We measure success in years, not weeks. The question isn't "how hard was your workout today?" It's "can you still move well at 60, 70, 80?"</p>
       
-      <p><strong>4. Deep Squat Hold (1 minute)</strong><br>
-      Restores natural hip and ankle mobility. Use a doorframe for support if needed.</p>
+      <p>Every exercise we teach, every progression we use, is designed with your long-term health in mind. That's not always the fastest path — but it's the one that lasts.</p>
+
+      <h2>Community That Supports</h2>
+      <p>Our members aren't competing against each other. They're supporting each other. When someone struggles with a movement, others offer encouragement. When someone achieves a milestone, the whole group celebrates.</p>
       
-      <p><strong>5. Shoulder Pass-Throughs (1 minute)</strong><br>
-      Improves shoulder range of motion. Use a resistance band or towel.</p>
-      
-      <h3>Why It Works</h3>
-      <p>This sequence targets the joints that lose mobility fastest in modern life: hips, thoracic spine, and shoulders. Five minutes every morning compounds into significant improvements over time.</p>
-      
-      <p><strong>Want personalized mobility work?</strong> Our corrective exercise sessions identify your specific restrictions and create custom solutions.</p>
+      <p>This culture doesn't happen by accident. We cultivate it intentionally because sustainable fitness requires community.</p>
+
+      <p><strong>Ready to experience a different approach?</strong> Start with Reset Week and see what training with intention feels like.</p>
     `,
-    category: 'movement',
-    author: 'nick',
-    publishedAt: '2024-03-10',
-    readTime: 4,
-    thumbnail: '/src/assets/mobility-class.jpg',
-    videoId: 'wDtDMNnrF00',
-    featured: false,
-    tags: ['mobility', 'morning routine', 'flexibility']
+    category: 'trust',
+    author: 'david',
+    publishedAt: '2025-01-03',
+    readTime: 6,
+    thumbnail: '/src/assets/coaching-session.jpg',
+    featured: true,
+    tags: ['philosophy', 'coaching', 'values']
   },
   {
     id: "3",
-    slug: "how-to-stay-consistent-even-when-life-gets-busy",
-    title: "How to Stay Consistent (Even When Life Gets Busy)",
-    excerpt: "Practical strategies to maintain your training routine when work, family, and life demand your attention.",
+    slug: "understanding-mobility-vs-flexibility",
+    title: "Understanding Mobility vs. Flexibility: What You Really Need",
+    excerpt: "Most people confuse mobility with flexibility. Learn the critical difference and why mobility training is essential for pain-free movement.",
     content: `
-      <p>The biggest obstacle to fitness isn't lack of knowledge—it's consistency. Here's how we help our members stay on track even during their busiest seasons.</p>
+      <p class="lead">You can touch your toes, but your hips still feel tight. You can stretch for hours, but your shoulders still ache. What's going on?</p>
       
-      <h3>1. Define Your Non-Negotiables</h3>
-      <p>Don't aim for perfection. Identify 2-3 weekly sessions you can realistically commit to. For most people, that's enough to maintain strength and mobility.</p>
+      <p>The answer lies in the difference between flexibility and mobility — and why most people focus on the wrong one.</p>
+
+      <h2>Flexibility: Passive Range of Motion</h2>
+      <p>Flexibility is how far a joint can move when an external force (gravity, your hand, a partner) pushes it there. It's passive. You're not controlling the movement — something else is.</p>
       
-      <h3>2. Schedule It Like a Meeting</h3>
-      <p>Training sessions in your calendar are more likely to happen than "when I have time" workouts. Our fixed class schedule helps create this structure.</p>
+      <p>Stretching improves flexibility. But flexibility alone doesn't help you move better or feel better during daily activities.</p>
+
+      <h2>Mobility: Active Range of Motion</h2>
+      <p>Mobility is how far a joint can move when YOU control the movement with strength and stability. It's active. Your muscles are engaged throughout the range.</p>
       
-      <h3>3. Have a Minimum Viable Workout</h3>
-      <p>Can't make it to the gym? Keep a 15-minute home routine ready: some swings, push-ups, and mobility work. Something is always better than nothing.</p>
+      <p>This is what actually matters for:</p>
+      <ul>
+        <li>Getting in and out of a car without pain</li>
+        <li>Picking things up from the floor safely</li>
+        <li>Playing with your kids or grandkids</li>
+        <li>Training without injury</li>
+      </ul>
+
+      <h2>Why Stretching Alone Doesn't Work</h2>
+      <p>You can stretch your hamstrings every day and still "feel tight." Why? Because your nervous system doesn't trust that range of motion.</p>
       
-      <h3>4. Connect to Your Why</h3>
-      <p>Are you training to keep up with your kids? To avoid back pain? To feel confident? Revisit this reason when motivation dips.</p>
-      
-      <h3>5. Join a Community</h3>
-      <p>Training alone requires willpower. Training with others creates accountability. Our small group format means people notice when you're absent—in the best way.</p>
-      
-      <h3>The Long Game</h3>
-      <p>We've worked with members for years. The ones who succeed don't train perfectly—they train consistently. They show up even when they don't feel like it, and they trust the process.</p>
-      
-      <p><strong>Ready to build sustainable habits?</strong> Our coaching emphasizes long-term consistency over short-term intensity.</p>
+      <p>If you can't control a position with strength, your brain limits access to it. Stretching without strengthening creates passive range you can't actually use.</p>
+
+      <h2>How We Build Real Mobility</h2>
+      <p>At Drake Fitness, mobility work includes:</p>
+      <ul>
+        <li><strong>Controlled articular rotations:</strong> Moving joints through their full range with active control</li>
+        <li><strong>End-range strength training:</strong> Building strength in your deepest positions</li>
+        <li><strong>Movement pattern training:</strong> Integrating mobility into functional movements</li>
+      </ul>
+
+      <p><strong>Want a mobility assessment?</strong> We identify your specific restrictions and create a personalized plan to restore movement quality.</p>
     `,
-    category: 'purpose',
-    author: 'david',
-    publishedAt: '2024-03-05',
-    readTime: 6,
-    thumbnail: '/src/assets/group-training.jpg',
+    category: 'education',
+    author: 'nick',
+    publishedAt: '2025-01-02',
+    readTime: 7,
+    thumbnail: '/src/assets/mobility-class.jpg',
     featured: false,
-    tags: ['motivation', 'consistency', 'lifestyle']
+    tags: ['mobility', 'flexibility', 'movement quality']
   },
   {
     id: "4",
-    slug: "the-truth-about-mobility-and-aging",
-    title: "The Truth About Mobility and Aging",
-    excerpt: "Why maintaining mobility matters more than strength as you age, and what you can do about it starting today.",
+    slug: "too-out-of-shape-to-start-reset-week-for-beginners",
+    title: '"I\'m Too Out of Shape to Start": Why Reset Week Is Perfect for Beginners',
+    excerpt: "Address the fear of starting. Learn why our program is specifically designed for people who feel unprepared.",
     content: `
-      <p>Most people accept stiffness and reduced range of motion as inevitable parts of aging. We don't. Here's why mobility should be your top priority as you get older.</p>
+      <p class="lead">We hear this concern constantly: "I need to get in shape before I can come to your gym." It makes sense — but it's exactly backwards.</p>
       
-      <h3>Mobility vs. Flexibility</h3>
-      <p>Flexibility is passive range of motion—how far you can stretch. Mobility is active range of motion—how far you can move with control and strength. We care about the latter.</p>
-      
-      <h3>Why It Matters</h3>
-      <p>Limited mobility doesn't just mean you can't touch your toes. It means:</p>
+      <h2>The Chicken-and-Egg Problem</h2>
+      <p>If you wait until you're "in shape enough" to start training, you'll never start. That's not motivational speak — it's just logic. Getting in shape is why you need training. It's not a prerequisite.</p>
+
+      <h2>Why Reset Week Works for Beginners</h2>
+      <p>Reset Week was specifically designed for people who:</p>
       <ul>
-        <li>Higher injury risk from compensating with other joints</li>
-        <li>Reduced quality of life (can't play with grandkids, garden, travel comfortably)</li>
-        <li>Accelerated joint degeneration from moving poorly</li>
+        <li>Haven't exercised regularly in years</li>
+        <li>Feel intimidated by traditional gyms</li>
+        <li>Have old injuries or movement restrictions</li>
+        <li>Don't know where to start</li>
       </ul>
       
-      <h3>The Good News</h3>
-      <p>Mobility can be restored at any age. We've seen 60-year-olds regain hip mobility they lost in their 30s. It requires consistent work, but the payoff is enormous.</p>
+      <p>We don't throw you into a high-intensity class and hope you survive. We meet you where you are.</p>
+
+      <h2>What "Beginner-Friendly" Actually Means Here</h2>
+      <p>At Drake Fitness, every exercise has progressions and regressions. If a goblet squat is too challenging, we modify it. If a plank is too hard, we adjust the position.</p>
       
-      <h3>Where to Start</h3>
-      <p>Focus on these key areas:</p>
-      <ul>
-        <li><strong>Hips:</strong> Deep squats, hip circles, 90/90 stretches</li>
-        <li><strong>Thoracic spine:</strong> Rotations, extensions, cat-cow variations</li>
-        <li><strong>Shoulders:</strong> Pass-throughs, wall slides, band pull-aparts</li>
-        <li><strong>Ankles:</strong> Calf stretches, ankle circles, controlled squats</li>
-      </ul>
+      <p>You'll never be asked to do something your body can't handle. That's not soft — it's smart.</p>
+
+      <h2>Real Stories from Members Who Started "Out of Shape"</h2>
+      <blockquote>"I couldn't touch my toes when I started. Now I deadlift 135 pounds and my back pain is gone."<br><small>— Sarah, 47</small></blockquote>
       
-      <p><strong>Want a mobility assessment?</strong> We identify your specific restrictions and create a personalized plan to restore movement quality.</p>
+      <blockquote>"I was 50 pounds overweight and hadn't exercised in 10 years. They didn't make me feel embarrassed — they made me feel capable."<br><small>— Tom, 52</small></blockquote>
+
+      <h2>The Only Requirement</h2>
+      <p>Show up. That's it. We'll handle the rest.</p>
+      
+      <p><strong>Ready to prove to yourself that you can do this?</strong> Reset Week is waiting.</p>
     `,
-    category: 'movement',
-    author: 'nick',
-    publishedAt: '2024-02-28',
+    category: 'conversion',
+    author: 'david',
+    publishedAt: '2024-12-30',
     readTime: 5,
-    thumbnail: '/src/assets/studio-mobility-training.jpg',
+    thumbnail: '/src/assets/group-kettlebell-training.jpg',
     featured: false,
-    tags: ['mobility', 'aging', 'joint health']
+    tags: ['beginners', 'getting started', 'reset week']
   },
   {
     id: "5",
-    slug: "desk-worker-strength-essentials",
-    title: "Desk Worker Strength Essentials",
-    excerpt: "The specific exercises desk workers need to counteract sitting and maintain functional strength for life outside the office.",
+    slug: "why-we-dont-believe-in-no-pain-no-gain",
+    title: 'Why We Don\'t Believe in "No Pain, No Gain"',
+    excerpt: "Our coaching philosophy rejects outdated fitness mantras. Learn why sustainable progress doesn't require suffering.",
     content: `
-      <p>If you sit for 8+ hours daily, your body adapts—and not in good ways. Here's how to fight back with smart strength training.</p>
+      <p class="lead">For decades, the fitness industry has told you that if it doesn't hurt, it doesn't work. We disagree.</p>
       
-      <h3>The Sitting Problem</h3>
-      <p>Prolonged sitting creates:</p>
+      <h2>Pain Is Information, Not a Goal</h2>
+      <p>Pain tells you something is wrong. It's your body's warning system. Training through pain doesn't build toughness — it creates damage.</p>
+      
+      <p>Discomfort? That's different. Challenge is uncomfortable. Growth is uncomfortable. But sharp pain, joint pain, or pain that lingers after workouts? That's your body asking you to stop.</p>
+
+      <h2>The "No Pain, No Gain" Problem</h2>
+      <p>This mindset leads to:</p>
       <ul>
-        <li>Tight hip flexors that limit hip extension</li>
-        <li>Weak glutes from being constantly stretched</li>
-        <li>Rounded shoulders from keyboard posture</li>
-        <li>Inactive core muscles</li>
+        <li>Injuries that sideline you for weeks or months</li>
+        <li>Chronic joint problems that accumulate over years</li>
+        <li>Burnout and exercise aversion</li>
+        <li>Negative associations with movement</li>
       </ul>
       
-      <h3>The Solution: Targeted Strength Work</h3>
+      <p>We see people every week who "pushed through" pain in their 30s and are now paying for it in their 40s and 50s.</p>
+
+      <h2>What We Believe Instead</h2>
+      <p><strong>Smart effort over maximum effort.</strong> We push you — but intelligently. We challenge you — but appropriately. We help you find the line between productive discomfort and counterproductive pain.</p>
       
-      <p><strong>1. Hip Extension Exercises</strong><br>
-      Deadlifts, swings, and bridges restore what sitting takes away. We emphasize strong hip drive in all movements.</p>
+      <p><strong>Longevity over intensity.</strong> We'd rather you train consistently for 20 years than intensely for 2 years before burning out or getting hurt.</p>
       
-      <p><strong>2. Pulling Movements</strong><br>
-      Rows and face pulls combat forward shoulder posture. We program 2:1 pulling to pushing ratios for desk workers.</p>
-      
-      <p><strong>3. Anti-Flexion Core Work</strong><br>
-      Planks and carries teach your core to resist the hunched position you're in all day.</p>
-      
-      <p><strong>4. Thoracic Mobility</strong><br>
-      Your upper back loses extension from looking at screens. We open it back up with specific mobility drills.</p>
-      
-      <h3>Training Frequency</h3>
-      <p>Three 45-minute sessions per week is enough to counteract sitting damage and build functional strength. More isn't always better—consistency is.</p>
-      
-      <h3>The Drake Fitness Approach</h3>
-      <p>We see dozens of desk workers weekly. Our programs specifically address sitting-related dysfunction while building practical strength for life outside the office.</p>
-      
-      <p><strong>Book a mobility consultation</strong> to see how sitting affects your body and get a personalized plan.</p>
+      <p><strong>Progress over punishment.</strong> Training should make you feel capable, not broken. If you leave every session feeling destroyed, something is wrong with the programming — not your effort.</p>
+
+      <h2>How This Changes Results</h2>
+      <p>Counterintuitively, training smarter leads to better results. When you're not constantly recovering from excessive stress, you can train more consistently. Consistency beats intensity every time.</p>
+
+      <p><strong>Experience training that builds you up.</strong> Reset Week is your introduction to a better way.</p>
     `,
-    category: 'strength',
-    author: 'david',
-    publishedAt: '2024-02-20',
+    category: 'trust',
+    author: 'nick',
+    publishedAt: '2024-12-28',
     readTime: 6,
-    thumbnail: '/src/assets/one-on-one-coaching.jpg',
+    thumbnail: '/src/assets/studio-mobility-training.jpg',
     featured: false,
-    tags: ['desk workers', 'posture', 'corrective exercise']
+    tags: ['philosophy', 'pain', 'training approach']
   },
   {
     id: "6",
-    slug: "building-training-habits-that-last",
-    title: "Building Training Habits That Last",
-    excerpt: "Science-backed strategies to make fitness a permanent part of your life, not another failed New Year's resolution.",
+    slug: "can-i-train-with-old-injury",
+    title: "Can I Train With an Old Injury? How We Work Around Pain",
+    excerpt: "Learn how our coaches modify exercises and create personalized progressions for members with injuries or limitations.",
     content: `
-      <p>Most people approach fitness as motivation-driven: they start when they feel excited and quit when that feeling fades. Here's a better way.</p>
+      <p class="lead">That old knee injury. The shoulder surgery from five years ago. The back that "goes out" sometimes. Can you still train? Absolutely — and here's how we make it work.</p>
       
-      <h3>Habits Beat Motivation</h3>
-      <p>Motivation fluctuates. Habits persist. The goal isn't to stay pumped up forever—it's to build systems that work even when you don't feel like it.</p>
+      <h2>Injuries Don't Mean You Can't Train</h2>
+      <p>Most injuries don't prevent all exercise — they prevent certain exercises. The key is knowing which movements are safe and which need modification or avoidance.</p>
       
-      <h3>The Four Habit Laws</h3>
-      
-      <p><strong>1. Make It Obvious</strong><br>
-      Keep your gym bag in your car. Put your mobility band where you see it every morning. Visual cues trigger action.</p>
-      
-      <p><strong>2. Make It Attractive</strong><br>
-      Train with people you like. Choose exercises you don't hate. Fitness should add to your life, not feel like punishment.</p>
-      
-      <p><strong>3. Make It Easy</strong><br>
-      Choose a gym on your commute route. Have a 10-minute backup workout for busy days. Reduce friction.</p>
-      
-      <p><strong>4. Make It Satisfying</strong><br>
-      Track your workouts. Notice how you feel after training. Celebrate small wins. Immediate rewards reinforce habits.</p>
-      
-      <h3>The Two-Day Rule</h3>
-      <p>Never skip two days in a row. Miss Monday? Make sure you hit Wednesday. This simple rule prevents slides into inactivity.</p>
-      
-      <h3>Community as a Habit Tool</h3>
-      <p>Training in a group creates social accountability. You're less likely to skip when people expect you. Our small group format leverages this naturally.</p>
-      
-      <h3>Start Small, Stay Consistent</h3>
-      <p>Don't commit to 6 days per week if you can only realistically do 3. Better to hit 3 sessions consistently for a year than 6 sessions for a month.</p>
-      
-      <p><strong>Ready to build sustainable fitness habits?</strong> Our coaching focuses on long-term behavior change, not quick fixes.</p>
+      <p>At Drake Fitness, we don't give you a generic workout and hope it fits. We assess your specific situation and build around it.</p>
+
+      <h2>Our Process</h2>
+      <h3>1. Assessment</h3>
+      <p>Before you touch a weight, we learn about your injury history. What hurts? What movements are limited? What have doctors or physical therapists said?</p>
+
+      <h3>2. Movement Screening</h3>
+      <p>We watch you move. Not to judge — to understand. Where do you compensate? What feels restricted? This tells us more than any questionnaire.</p>
+
+      <h3>3. Modification</h3>
+      <p>Every exercise has alternatives. Can't squat deep? We find your safe depth. Shoulder won't go overhead? We work around it. There's always an option.</p>
+
+      <h3>4. Progression</h3>
+      <p>As you get stronger and more mobile, we expand what's possible. Many members eventually do movements they thought were forever off-limits.</p>
+
+      <h2>Real Examples</h2>
+      <ul>
+        <li><strong>Knee replacement:</strong> Modified lunges and step-ups, avoiding deep flexion initially</li>
+        <li><strong>Shoulder impingement:</strong> Landmine presses instead of overhead pressing</li>
+        <li><strong>Lower back history:</strong> Core stability emphasis, hip hinge mastery before deadlifts</li>
+      </ul>
+
+      <h2>When to Consult a Professional First</h2>
+      <p>If you're currently in acute pain or have an undiagnosed issue, see a doctor or physical therapist first. We work with healthcare providers, not instead of them.</p>
+
+      <p><strong>Have questions about training with your specific injury?</strong> Book a consultation and we'll talk through it honestly.</p>
     `,
-    category: 'purpose',
+    category: 'conversion',
     author: 'nick',
-    publishedAt: '2024-02-15',
-    readTime: 7,
-    thumbnail: '/src/assets/community-gym-moment.jpg',
+    publishedAt: '2024-12-26',
+    readTime: 8,
+    thumbnail: '/src/assets/kettlebell-form-check.jpg',
     featured: false,
-    tags: ['habits', 'behavior change', 'long-term success']
+    tags: ['injuries', 'modifications', 'safety']
+  },
+  {
+    id: "7",
+    slug: "how-breathing-controls-movement",
+    title: "How Breathing Controls Movement (And Why Most People Get It Wrong)",
+    excerpt: "Your breath is the foundation of movement quality. Learn why proper breathing mechanics matter more than you think.",
+    content: `
+      <p class="lead">Before you worry about your squat form or deadlift technique, ask yourself: are you breathing correctly? For most people, the answer is no.</p>
+      
+      <h2>Breathing Isn't Just About Oxygen</h2>
+      <p>We think of breathing as simple gas exchange. In, out, repeat. But breathing does much more:</p>
+      <ul>
+        <li>Creates intra-abdominal pressure for spinal stability</li>
+        <li>Positions your ribcage for optimal shoulder mechanics</li>
+        <li>Regulates your nervous system's stress response</li>
+        <li>Influences your ability to access certain ranges of motion</li>
+      </ul>
+
+      <h2>The Chest Breathing Problem</h2>
+      <p>Most adults breathe shallowly into their chest. This pattern:</p>
+      <ul>
+        <li>Creates tension in the neck and shoulders</li>
+        <li>Limits core stability during lifting</li>
+        <li>Keeps the nervous system in a stressed state</li>
+        <li>Reduces available mobility in the thoracic spine</li>
+      </ul>
+      
+      <p>You can have perfect exercise form, but if your breathing is dysfunctional, you're building on a weak foundation.</p>
+
+      <h2>What Good Breathing Looks Like</h2>
+      <p>Proper diaphragmatic breathing involves:</p>
+      <ul>
+        <li>Expansion in all directions (front, sides, back)</li>
+        <li>Minimal shoulder and neck movement</li>
+        <li>A relaxed exhale that naturally engages the core</li>
+        <li>A rhythm that matches the demands of the movement</li>
+      </ul>
+
+      <h2>How We Teach It</h2>
+      <p>In Reset Week, we spend time on breathing before any loaded exercise. This might feel basic, but it's foundational. Members consistently report that breathing work alone reduces back pain and improves their ability to move.</p>
+
+      <p><strong>Ready to build on a solid foundation?</strong> Reset Week starts with the basics — including the breath.</p>
+    `,
+    category: 'education',
+    author: 'nick',
+    publishedAt: '2024-12-24',
+    readTime: 5,
+    thumbnail: '/src/assets/studio-floor-exercise.jpg',
+    featured: false,
+    tags: ['breathing', 'core stability', 'fundamentals']
+  },
+  {
+    id: "8",
+    slug: "what-makes-drake-fitness-different-from-charleston-gyms",
+    title: "What Makes Drake Fitness Different From Other Charleston Gyms",
+    excerpt: "A transparent look at our unique approach to coaching, programming, and member experience.",
+    content: `
+      <p class="lead">Charleston has no shortage of gyms. So why would you choose Drake Fitness? Here's an honest comparison.</p>
+      
+      <h2>Small Class Sizes (And We Mean It)</h2>
+      <p>We cap classes at 8 people. Not 15. Not 20. Eight. This ensures every person gets individual attention during every session. If you've ever felt invisible in a group fitness class, you'll notice the difference immediately.</p>
+
+      <h2>Coaches Who Actually Coach</h2>
+      <p>Our coaches don't just demonstrate exercises and count reps. They:</p>
+      <ul>
+        <li>Watch your movement quality throughout every session</li>
+        <li>Provide real-time corrections and modifications</li>
+        <li>Know your injury history and adjust accordingly</li>
+        <li>Track your progress and adjust programming</li>
+      </ul>
+      
+      <p>This requires more coaches per member — which is why we keep classes small.</p>
+
+      <h2>Programming That Progresses</h2>
+      <p>Generic workouts don't create lasting results. Our programming:</p>
+      <ul>
+        <li>Builds systematically week over week</li>
+        <li>Balances strength, mobility, and conditioning</li>
+        <li>Adapts to individual needs within group settings</li>
+        <li>Respects recovery and prevents burnout</li>
+      </ul>
+
+      <h2>Community Without Competition</h2>
+      <p>We don't post leaderboards. We don't encourage you to beat others. Our culture emphasizes personal progress and mutual support.</p>
+      
+      <p>This attracts members who want to get better, not members who want to win.</p>
+
+      <h2>Investment in Long-Term Results</h2>
+      <p>We're not the cheapest option. We're not trying to be. Our pricing reflects the coaching quality, class sizes, and programming that produce real, lasting results.</p>
+
+      <p><strong>See the difference for yourself.</strong> Reset Week is your risk-free introduction.</p>
+    `,
+    category: 'trust',
+    author: 'david',
+    publishedAt: '2024-12-22',
+    readTime: 5,
+    thumbnail: '/src/assets/studio-full-view.jpg',
+    featured: false,
+    tags: ['about us', 'Charleston', 'comparison']
+  },
+  {
+    id: "9",
+    slug: "how-much-time-do-i-really-need",
+    title: "How Much Time Do I Really Need? Training for Busy Schedules",
+    excerpt: "Realistic expectations for time commitment and how to make consistent progress with a demanding schedule.",
+    content: `
+      <p class="lead">You're busy. Work, family, commute, responsibilities. Where does fitness fit? Here's an honest look at the minimum effective dose.</p>
+      
+      <h2>The Truth About Time Requirements</h2>
+      <p>Three 45-minute sessions per week is enough to:</p>
+      <ul>
+        <li>Build and maintain strength</li>
+        <li>Improve mobility and movement quality</li>
+        <li>Boost energy and reduce stress</li>
+        <li>Create meaningful health changes</li>
+      </ul>
+      
+      <p>That's 2.25 hours per week. Less than most people spend on Netflix in a day.</p>
+
+      <h2>Quality Over Quantity</h2>
+      <p>More isn't always better. Three focused sessions with quality coaching beats five random workouts. We've seen members training 2-3 times per week outperform those who train 6 times per week at other gyms.</p>
+      
+      <p>Why? Because smart programming and proper recovery matter more than volume.</p>
+
+      <h2>Making It Work With Your Schedule</h2>
+      <p>Our class schedule is designed for working professionals:</p>
+      <ul>
+        <li>Early morning options before work</li>
+        <li>Evening slots after normal work hours</li>
+        <li>Consistent times that become routine</li>
+        <li>Sessions that start and end on time</li>
+      </ul>
+
+      <h2>The Real Barrier Isn't Time</h2>
+      <p>Most "I don't have time" objections are actually "I haven't prioritized this." We get it — life is demanding. But investing 2-3 hours weekly in your health pays dividends in every other area of life.</p>
+      
+      <p>Better energy. Less pain. More capacity for everything else.</p>
+
+      <h2>Start With What You Have</h2>
+      <p>Can you commit to two sessions per week? Start there. Consistency with two beats inconsistency with five.</p>
+
+      <p><strong>Let's find what fits your life.</strong> Book a consultation to discuss your schedule.</p>
+    `,
+    category: 'conversion',
+    author: 'david',
+    publishedAt: '2024-12-20',
+    readTime: 6,
+    thumbnail: '/src/assets/outdoor-training.jpg',
+    featured: false,
+    tags: ['time management', 'busy schedules', 'efficiency']
   }
 ];

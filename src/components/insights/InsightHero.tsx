@@ -1,6 +1,6 @@
 import { Calendar, Clock, User } from "lucide-react";
 import CategoryBadge from "./CategoryBadge";
-import { InsightPost, authorInfo } from "@/data/insights";
+import { InsightPost, authorInfo, categoryInfo } from "@/data/insights";
 import { format } from "date-fns";
 
 interface InsightHeroProps {
