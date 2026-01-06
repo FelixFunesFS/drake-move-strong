@@ -107,18 +107,18 @@ export default function StrengthTrainingCharleston() {
               <span className="inline-block px-4 py-2 bg-accent/20 border border-accent rounded-full mb-6">
                 <span className="text-accent font-bold uppercase tracking-wider text-sm">Charleston, SC</span>
               </span>
-              <h1 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
+              <h1 className="font-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
                 Mobility & Strength Training in Charleston, SC
               </h1>
-              <p className="text-2xl md:text-3xl text-primary-foreground/90 mb-4 font-semibold">
+              <p className="text-xl sm:text-2xl md:text-3xl text-primary-foreground/90 mb-4 font-semibold">
                 Start With Reset Week
               </p>
-              <p className="text-xl text-primary-foreground/80 mb-10 leading-relaxed">
+              <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 md:mb-10 leading-relaxed">
                 Train Smarter. Move Better. Get Strong Without Pain.
               </p>
-              <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-6 text-lg font-bold uppercase tracking-wide">
+              <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
                 <Link to="/reset-week">
-                  <ArrowRight className="mr-2 h-5 w-5" />
+                  <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
                   Start Reset Week — $49
                 </Link>
               </Button>
@@ -142,47 +142,47 @@ export default function StrengthTrainingCharleston() {
       </section>
 
       {/* Who This Is For Section */}
-      <section className="py-24 bg-background">
+      <section className="py-12 md:py-16 lg:py-24 bg-background overflow-x-hidden">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
             <AnimatedSection animation="fadeInUp">
               <div>
                 <span className="section-eyebrow text-primary">WHO THIS IS FOR</span>
-                <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-8 uppercase leading-tight">
+                <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8 uppercase leading-tight">
                   If You Live or Work in <span className="text-primary">Charleston</span>...
                 </h2>
                 
-                <div className="space-y-6 mb-10">
+                <div className="space-y-4 md:space-y-6 mb-8 md:mb-10">
                   {whoThisIsFor.map((item, index) => (
-                    <div key={index} className="flex items-start gap-4 p-5 bg-secondary rounded-xl border-l-4 border-accent">
-                      <item.icon className="text-primary h-6 w-6 mt-1 flex-shrink-0" />
+                    <div key={index} className="flex items-start gap-3 md:gap-4 p-4 md:p-5 bg-secondary rounded-xl border-l-4 border-accent">
+                      <item.icon className="text-primary h-5 w-5 md:h-6 md:w-6 mt-1 flex-shrink-0" />
                       <div>
-                        <h3 className="font-bold text-lg mb-1">{item.title}</h3>
-                        <p className="text-muted-foreground">{item.description}</p>
+                        <h3 className="font-bold text-base md:text-lg mb-1">{item.title}</h3>
+                        <p className="text-muted-foreground text-sm md:text-base">{item.description}</p>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="bg-primary text-primary-foreground p-8 rounded-2xl">
-                  <h3 className="font-hero text-2xl font-bold mb-3 uppercase">This Program Was Built for You</h3>
-                  <p className="text-primary-foreground/80 leading-relaxed">Most of our members come to us after years of pushing through workouts that stopped helping. Reset Week exists to change that — safely and intentionally.</p>
+                <div className="bg-primary text-primary-foreground p-5 md:p-8 rounded-2xl">
+                  <h3 className="font-hero text-xl md:text-2xl font-bold mb-3 uppercase">This Program Was Built for You</h3>
+                  <p className="text-primary-foreground/80 leading-relaxed text-sm md:text-base">Most of our members come to us after years of pushing through workouts that stopped helping. Reset Week exists to change that — safely and intentionally.</p>
                 </div>
               </div>
             </AnimatedSection>
 
             <AnimatedSection animation="fadeInUp" delay={0.1}>
               <div className="relative">
-                <div className="h-[700px] rounded-2xl overflow-hidden shadow-2xl">
+                <div className="h-[350px] sm:h-[450px] md:h-[550px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl">
                   <OptimizedImage
                     src={groupKettlebellTraining}
                     alt="Diverse group of adults training with coach in Charleston"
                     className="w-full h-full"
                   />
                 </div>
-                <div className="absolute -bottom-8 -left-8 bg-accent text-accent-foreground p-8 rounded-xl shadow-xl max-w-sm">
-                  <p className="font-heading text-3xl font-bold mb-2">85%</p>
-                  <p className="font-semibold">of our members are over 30 and starting from scratch</p>
+                <div className="lg:absolute lg:-bottom-8 lg:-left-8 mt-6 lg:mt-0 bg-accent text-accent-foreground p-5 md:p-8 rounded-xl shadow-xl max-w-sm mx-auto lg:mx-0">
+                  <p className="font-heading text-2xl md:text-3xl font-bold mb-2">85%</p>
+                  <p className="font-semibold text-sm md:text-base">of our members are over 30 and starting from scratch</p>
                 </div>
               </div>
             </AnimatedSection>

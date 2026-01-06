@@ -97,17 +97,17 @@ export default function ResetWeekCharleston() {
         <div className="container mx-auto px-4 relative z-10 py-20 md:py-28 text-center">
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-4xl mx-auto">
-              <h1 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
-                Reset Week — A Smarter Way to Start<br />
+              <h1 className="font-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
+                Reset Week — A Smarter Way to Start<br className="hidden sm:block" />
                 <span className="text-accent">Strength Training in Charleston</span>
               </h1>
-              <p className="text-xl md:text-2xl text-primary-foreground/90 mb-10 leading-relaxed max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-8 md:mb-10 leading-relaxed max-w-3xl mx-auto">
                 Most people don't need more workouts — they need a better starting point.
               </p>
-              <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-12 py-6 text-xl font-bold uppercase tracking-wide">
+              <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
                 <Link to="/reset-week">
                   Start Reset Week — $49
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                 </Link>
               </Button>
             </div>
@@ -191,26 +191,26 @@ export default function ResetWeekCharleston() {
       </section>
 
       {/* Experience Section */}
-      <section className="py-20 bg-background">
+      <section className="py-12 md:py-16 lg:py-20 bg-background overflow-x-hidden">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
             <AnimatedSection animation="fadeInUp">
               <div>
                 <span className="section-eyebrow text-primary">WHAT YOU'LL EXPERIENCE</span>
-                <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-8 uppercase leading-tight">
-                  A Week That Prepares You<br />
+                <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8 uppercase leading-tight">
+                  A Week That Prepares You<br className="hidden sm:block" />
                   <span className="text-primary">For Real Results</span>
                 </h2>
 
-                <div className="space-y-6">
+                <div className="space-y-4 md:space-y-6">
                   {whatYoullExperience.map((item, index) => (
-                    <div key={index} className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
-                        <item.icon className="text-accent-foreground h-6 w-6" />
+                    <div key={index} className="flex items-start gap-3 md:gap-4">
+                      <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-accent rounded-lg flex items-center justify-center">
+                        <item.icon className="text-accent-foreground h-5 w-5 md:h-6 md:w-6" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-xl mb-1">{item.title}</h3>
-                        <p className="text-muted-foreground">{item.description}</p>
+                        <h3 className="font-bold text-lg md:text-xl mb-1">{item.title}</h3>
+                        <p className="text-muted-foreground text-sm md:text-base">{item.description}</p>
                       </div>
                     </div>
                   ))}
@@ -220,16 +220,16 @@ export default function ResetWeekCharleston() {
 
             <AnimatedSection animation="fadeInUp" delay={0.1}>
               <div className="relative">
-                <div className="h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+                <div className="h-[350px] sm:h-[450px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                   <OptimizedImage
                     src={groupKettlebellTraining}
                     alt="Small group training session with coach"
                     className="w-full h-full"
                   />
                 </div>
-                <div className="absolute -bottom-6 -left-6 bg-primary text-primary-foreground p-8 rounded-xl shadow-xl max-w-sm">
-                  <p className="font-hero text-2xl font-bold mb-2 uppercase">Week One Foundation</p>
-                  <p className="text-primary-foreground/80">Build the movement patterns that will carry you for years.</p>
+                <div className="lg:absolute lg:-bottom-6 lg:-left-6 mt-6 lg:mt-0 bg-primary text-primary-foreground p-5 md:p-8 rounded-xl shadow-xl max-w-sm mx-auto lg:mx-0">
+                  <p className="font-hero text-xl md:text-2xl font-bold mb-2 uppercase">Week One Foundation</p>
+                  <p className="text-primary-foreground/80 text-sm md:text-base">Build the movement patterns that will carry you for years.</p>
                 </div>
               </div>
             </AnimatedSection>
@@ -238,28 +238,28 @@ export default function ResetWeekCharleston() {
       </section>
 
       {/* Perfect For Section */}
-      <section className="py-20 bg-primary text-primary-foreground">
+      <section className="py-12 md:py-16 lg:py-20 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
-            <div className="text-center mb-16">
+            <div className="text-center mb-10 md:mb-16">
               <span className="text-accent font-bold uppercase tracking-wider text-sm mb-2 block">WHO IT'S PERFECT FOR</span>
-              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">
+              <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 uppercase">
                 Reset Week Is Designed For You If...
               </h2>
             </div>
           </AnimatedSection>
 
           <AnimatedSection animation="fadeInUp" delay={0.1}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-6xl mx-auto">
               {perfectFor.map((item, index) => (
-                <div key={index} className="bg-primary-foreground/5 backdrop-blur-sm p-8 rounded-xl border border-primary-foreground/10 hover:border-accent/50 transition-all">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 bg-accent rounded-lg flex items-center justify-center">
-                      <item.icon className="text-accent-foreground h-5 w-5" />
+                <div key={index} className="bg-primary-foreground/5 backdrop-blur-sm p-5 md:p-8 rounded-xl border border-primary-foreground/10 hover:border-accent/50 transition-all">
+                  <div className="flex items-start gap-3 md:gap-4">
+                    <div className="flex-shrink-0 w-9 h-9 md:w-10 md:h-10 bg-accent rounded-lg flex items-center justify-center">
+                      <item.icon className="text-accent-foreground h-4 w-4 md:h-5 md:w-5" />
                     </div>
                     <div>
-                      <h3 className="font-hero text-xl font-bold mb-2 uppercase">{item.title}</h3>
-                      <p className="text-primary-foreground/80">{item.description}</p>
+                      <h3 className="font-hero text-lg md:text-xl font-bold mb-1 md:mb-2 uppercase">{item.title}</h3>
+                      <p className="text-primary-foreground/80 text-sm md:text-base">{item.description}</p>
                     </div>
                   </div>
                 </div>
@@ -268,12 +268,12 @@ export default function ResetWeekCharleston() {
           </AnimatedSection>
 
           <AnimatedSection animation="fadeInUp" delay={0.2}>
-            <div className="mt-16 text-center">
-              <div className="bg-accent/20 border-2 border-accent p-8 rounded-2xl inline-block max-w-2xl">
-                <p className="text-xl font-semibold mb-2">
+            <div className="mt-10 md:mt-16 text-center">
+              <div className="bg-accent/20 border-2 border-accent p-5 md:p-8 rounded-2xl max-w-2xl mx-auto">
+                <p className="text-base md:text-xl font-semibold mb-2 break-words leading-relaxed">
                   "I have had 3 lower back surgeries - was in constant pain... David and his team helped me get back to working out consistently and build strength. I am forever grateful for this place - it truly changed my life!"
                 </p>
-                <p className="text-primary-foreground/80">— Caitlin P., Verified Google Review</p>
+                <p className="text-primary-foreground/80 text-sm md:text-base">— Caitlin P., Verified Google Review</p>
               </div>
             </div>
           </AnimatedSection>
@@ -281,46 +281,46 @@ export default function ResetWeekCharleston() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-primary text-primary-foreground">
+      <section className="py-12 md:py-16 lg:py-24 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
-            <div className="text-center mb-12 max-w-4xl mx-auto">
-              <h2 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">
+            <div className="text-center mb-8 md:mb-12 max-w-4xl mx-auto">
+              <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 uppercase leading-tight">
                 Ready to Start the Right Way?
               </h2>
-              <p className="text-xl md:text-2xl text-primary-foreground/90 mb-4 leading-relaxed">
+              <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-3 md:mb-4 leading-relaxed">
                 Reset Week gives you the foundation, confidence, and clarity you need to succeed.
               </p>
-              <p className="text-lg text-primary-foreground/70 mb-10">
+              <p className="text-base md:text-lg text-primary-foreground/70 mb-8 md:mb-10">
                 No pressure. No intimidation. Just smart, guided training.
               </p>
             </div>
           </AnimatedSection>
 
           <AnimatedSection animation="fadeInUp" delay={0.1}>
-            <div className="bg-background rounded-2xl p-10 md:p-12 shadow-2xl max-w-4xl mx-auto">
-              <div className="text-center mb-8">
-                <h3 className="font-hero text-3xl font-bold text-foreground mb-4 uppercase">What's Included in Reset Week</h3>
-                <div className="h-1 w-24 bg-accent mx-auto mb-6"></div>
+            <div className="bg-background rounded-2xl p-5 sm:p-8 md:p-10 lg:p-12 shadow-2xl max-w-4xl mx-auto">
+              <div className="text-center mb-6 md:mb-8">
+                <h3 className="font-hero text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-3 md:mb-4 uppercase">What's Included in Reset Week</h3>
+                <div className="h-1 w-16 md:w-24 bg-accent mx-auto mb-4 md:mb-6"></div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-10">
                 {whatsIncluded.map((item, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <Check className="text-primary h-6 w-6 mt-1" />
-                    <p className="text-muted-foreground text-lg">{item}</p>
+                    <Check className="text-primary h-5 w-5 md:h-6 md:w-6 mt-0.5 flex-shrink-0" />
+                    <p className="text-muted-foreground text-base md:text-lg">{item}</p>
                   </div>
                 ))}
               </div>
 
               <div className="text-center">
-                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-12 py-6 text-xl font-bold uppercase tracking-wide">
+                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal">
                   <Link to="/reset-week">
-                    <ArrowRight className="mr-2 h-5 w-5" />
+                    <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
                     Start Reset Week — $49
                   </Link>
                 </Button>
-                <p className="text-muted-foreground text-sm mt-4">Available spots are limited to maintain small group sizes</p>
+                <p className="text-muted-foreground text-xs md:text-sm mt-4">Available spots are limited to maintain small group sizes</p>
               </div>
             </div>
           </AnimatedSection>
