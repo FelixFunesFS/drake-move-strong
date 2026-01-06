@@ -302,8 +302,8 @@ export const insightPosts: InsightPost[] = [
   {
     id: "5",
     slug: "why-we-dont-believe-in-no-pain-no-gain",
-    title: 'Why We Don\'t Believe in "No Pain, No Gain"',
-    excerpt: "Our coaching philosophy rejects outdated fitness mantras. Learn why sustainable progress doesn't require suffering.",
+    title: "Why 'No Pain No Gain' Is the Worst Advice for Long-Term Fitness",
+    excerpt: "",
     content: `
       <p class="lead">For decades, the fitness industry has told you that if it doesn't hurt, it doesn't work. We disagree.</p>
       
