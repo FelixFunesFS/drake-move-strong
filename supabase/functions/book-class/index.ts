@@ -13,24 +13,57 @@ serve(async (req) => {
   }
 
   try {
-    const supabase = createClient(
-      Deno.env.get('SUPABASE_URL')!,
+    // Validate JWT token
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
+      console.error('[book-class] Missing or invalid authorization header');
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized - Missing authentication token' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Create authenticated Supabase client
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
+    const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } }
+    });
+
+    // Validate the JWT and extract user
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    
+    if (userError || !user) {
+      console.error('[book-class] Invalid token:', userError);
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized - Invalid authentication token' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Extract user ID from authenticated user (NOT from request body)
+    const userId = user.id;
+    console.log(`[book-class] Authenticated user: ${userId}`);
+
+    // Create service role client for database operations
+    const supabaseAdmin = createClient(
+      supabaseUrl,
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
     );
 
-    const { scheduleId, userId } = await req.json();
+    const { scheduleId } = await req.json();
 
-    console.log(`[book-class] Booking request - User: ${userId}, Schedule: ${scheduleId}`);
+    console.log(`[book-class] Authenticated booking request - User: ${userId}, Schedule: ${scheduleId}`);
 
-    if (!scheduleId || !userId) {
+    if (!scheduleId) {
       return new Response(
-        JSON.stringify({ error: 'Missing required fields: scheduleId and userId' }),
+        JSON.stringify({ error: 'Missing required field: scheduleId' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
     // Check if user already has a booking for this schedule
-    const { data: existingBooking } = await supabase
+    const { data: existingBooking } = await supabaseAdmin
       .from('bookings')
       .select('id, status')
       .eq('user_id', userId)
@@ -45,7 +78,7 @@ serve(async (req) => {
     }
 
     // Get membership info
-    const { data: membership } = await supabase
+    const { data: membership } = await supabaseAdmin
       .from('memberships')
       .select('*, membership_plans(*)')
       .eq('user_id', userId)
@@ -69,7 +102,7 @@ serve(async (req) => {
     }
 
     // Get class schedule info
-    const { data: schedule, error: scheduleError } = await supabase
+    const { data: schedule, error: scheduleError } = await supabaseAdmin
       .from('class_schedules')
       .select('*, classes(*, class_types(*))')
       .eq('id', scheduleId)
@@ -94,7 +127,7 @@ serve(async (req) => {
     // Check class availability
     if (schedule.booked_count >= schedule.capacity) {
       // Add to waitlist
-      const { data: waitlistPosition } = await supabase
+      const { data: waitlistPosition } = await supabaseAdmin
         .from('waitlist')
         .select('position')
         .eq('schedule_id', scheduleId)
@@ -103,7 +136,7 @@ serve(async (req) => {
 
       const nextPosition = (waitlistPosition?.[0]?.position || 0) + 1;
 
-      const { error: waitlistError } = await supabase
+      const { error: waitlistError } = await supabaseAdmin
         .from('waitlist')
         .insert({
           user_id: userId,
@@ -131,7 +164,7 @@ serve(async (req) => {
     }
 
     // Create booking
-    const { data: booking, error: bookingError } = await supabase
+    const { data: booking, error: bookingError } = await supabaseAdmin
       .from('bookings')
       .insert({
         user_id: userId,
@@ -151,14 +184,14 @@ serve(async (req) => {
     }
 
     // Update class booked count
-    await supabase
+    await supabaseAdmin
       .from('class_schedules')
       .update({ booked_count: schedule.booked_count + 1 })
       .eq('id', scheduleId);
 
     // Deduct credit if not unlimited
     if (!plan.unlimited_classes) {
-      await supabase
+      await supabaseAdmin
         .from('memberships')
         .update({ remaining_credits: (membership.remaining_credits || 0) - 1 })
         .eq('id', membership.id);
