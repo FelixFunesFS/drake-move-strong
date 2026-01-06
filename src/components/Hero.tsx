@@ -40,20 +40,7 @@ const Hero = ({
   const mobileImages = backgroundImagesMobile || [];
   const hasMultipleImages = images.length > 1;
   
-  // Preload first hero image for faster LCP
-  useEffect(() => {
-    if (images.length > 0) {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'image';
-      link.href = images[0];
-      document.head.appendChild(link);
-      
-      return () => {
-        document.head.removeChild(link);
-      };
-    }
-  }, []);
+  // Image preload handled in index.html for faster discovery
   
   useEffect(() => {
     if (!hasMultipleImages || !autoRotate) return;
