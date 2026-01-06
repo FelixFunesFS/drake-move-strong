@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { supabase } from '@/integrations/supabase/client';
 
 interface Promotion {
   id: string;
@@ -27,6 +26,8 @@ const AnnouncementBanner = () => {
     const timeoutId = setTimeout(() => {
       const fetchPromotion = async () => {
         try {
+          // Lazy load Supabase to reduce initial bundle
+          const { supabase } = await import('@/integrations/supabase/client');
           const { data, error } = await supabase
             .from('promotions')
             .select('*')

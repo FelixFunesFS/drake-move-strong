@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRight, Calendar } from "lucide-react";
@@ -39,6 +38,8 @@ export function TodayClassesBanner() {
       const now = new Date();
       const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:00`;
 
+      // Lazy load Supabase to reduce initial bundle
+      const { supabase } = await import('@/integrations/supabase/client');
       const { data, error } = await supabase
         .from('punchpass_schedule')
         .select('*')
