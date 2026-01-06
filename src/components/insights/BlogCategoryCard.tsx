@@ -32,7 +32,7 @@ const BlogCategoryCard = ({ category, name, description, articleCount }: BlogCat
 
   return (
     <div className="bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2">
-      <div className={`h-64 overflow-hidden bg-gradient-to-br ${config.gradient} flex items-center justify-center`}>
+      <div className={`h-48 md:h-64 overflow-hidden bg-gradient-to-br ${config.gradient} flex items-center justify-center`}>
         <Icon className="text-white w-24 h-24" strokeWidth={1.5} />
       </div>
       <div className="p-8">
