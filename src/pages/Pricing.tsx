@@ -6,6 +6,7 @@ import { CheckCircle2, Star, ExternalLink } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
+import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
 
 const Pricing = () => {
   const faqs = [{
@@ -49,6 +50,11 @@ const Pricing = () => {
         {/* STEP 1: MOVEMENT RESET WEEK (VISUAL PRIORITY #1) */}
         <section className="py-12 md:py-16 bg-muted">
           <div className="container mx-auto px-4">
+            {/* Trust Signal - Above Reset Week Card */}
+            <div className="text-center mb-8">
+              <GoogleReviewsBadge variant="compact" />
+            </div>
+            
             <div className="max-w-4xl mx-auto">
               <Card className="bg-primary/5 border-2 border-primary/20 shadow-lg overflow-hidden">
                 <CardHeader className="pb-4">
@@ -319,6 +325,14 @@ const Pricing = () => {
                   </tr>
                 </tbody>
               </table>
+            </div>
+            
+            {/* Trust Reinforcement - Below Table */}
+            <div className="text-center mt-10 mb-4">
+              <GoogleReviewsBadge variant="compact" />
+              <p className="text-sm text-muted-foreground mt-2">
+                Real people. Real results. No gimmicks.
+              </p>
             </div>
             
             <p className="text-center text-muted-foreground mt-8">

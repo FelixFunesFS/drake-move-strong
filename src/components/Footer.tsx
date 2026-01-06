@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, Youtube } from "lucide-react";
 import drakeLogo from "@/assets/drake-logo.png";
+import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
 const Footer = () => {
   return <footer className="bg-drake-dark text-white">
       <div className="container mx-auto px-4 py-12">
@@ -67,6 +68,10 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
+          {/* Micro Trust Line */}
+          <div className="mb-4">
+            <GoogleReviewsBadge variant="micro" className="text-gray-400 hover:text-white" />
+          </div>
           <p>© {new Date().getFullYear()} Drake Fitness. All rights reserved.</p>
           <div className="mt-2 space-x-4">
             <Link to="/privacy" className="hover:text-drake-gold transition-colors">Privacy Policy</Link>
