@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Target, Heart, Dumbbell, TrendingUp, User } from "lucide-react";
 import { SEO } from "@/components/SEO";
+import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import oneOnOneCoaching from "@/assets/one-on-one-coaching.jpg";
 import davidCoach from "@/assets/david-double-kb-storefront.jpg";
 import nickCoach from "@/assets/nick-sandbag-lunge.jpg";
@@ -47,13 +49,25 @@ const Coaching = () => {
     title: "Coaching & Homework",
     description: "Learn deeply from form corrections and technique refinement with optional homework exercises for recovery days to keep you progressing between sessions."
   }];
+
+  const coachingFAQs = [
+    { q: "How much does personal training cost in Charleston?", a: "Contact us for current rates. Sessions include mobility assessment, strength training, and personalized programming." },
+    { q: "How long are personal training sessions?", a: "Sessions are typically 60 minutes including warm-up, mobility work, strength training, and cooldown." },
+    { q: "Can I combine personal training with group classes?", a: "Yes! Many members do both. Personal training accelerates progress while group classes build community and consistency." },
+    { q: "What's the difference between coaching and group classes?", a: "Personal training is 100% focused on you with custom programming. Group classes are coached but follow a shared format." },
+    { q: "Do you offer online personal training?", a: "Yes, we offer virtual coaching via Zoom with personalized programming and real-time form feedback." },
+  ];
+
+  const faqSchema = buildFAQSchema(coachingFAQs);
+
   return (
     <>
       <SEO
-        title="1:1 Personal Training in Charleston"
+        title="1:1 Personal Training Charleston | Complete Guide 2026"
         description="Personalized coaching with David Drake or Coach Nick. Custom programs for mobility, strength, and injury recovery. Expert one-on-one training in Charleston, SC."
         canonical="https://drake.fitness/coaching"
       />
+      <StructuredData data={faqSchema} />
       
       <main>
       <Hero eyebrow="INDIVIDUAL ATTENTION" title={<>
@@ -73,7 +87,7 @@ const Coaching = () => {
               <div>
                 <p className="section-eyebrow text-primary">WHY CHOOSE PERSONAL TRAINING?</p>
                 <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase leading-tight">
-                  WHEN YOU NEED <span className="text-primary">PERSONALIZED</span> COACHING
+                  5 Reasons to Choose <span className="text-primary">1:1 Personal Training</span>
                 </h2>
                 <p className="text-lg text-muted-foreground mb-8">
                   While our group classes are coached intensively, sometimes you need a program built entirely around your unique needs. 1:1 training is ideal if you:
@@ -176,7 +190,7 @@ const Coaching = () => {
           <div className="container mx-auto px-4">
             <p className="section-eyebrow text-primary text-center">YOUR SESSION</p>
             <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase text-primary-foreground">
-              What to <span className="text-primary">Expect</span>
+              What Happens in a <span className="text-primary">Personal Training Session</span>
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
               {whatToExpect.map((item, index) => <motion.div key={index} initial={{
@@ -282,6 +296,31 @@ const Coaching = () => {
                   <Link to="/about">Read Bio</Link>
                 </Button>
               </motion.div>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+      {/* FAQ Section */}
+      <AnimatedSection animation="fadeInUp">
+        <section className="py-16 md:py-24 bg-drake-dark section-slant-top">
+          <div className="container mx-auto px-4">
+            <p className="section-eyebrow text-drake-gold text-center">QUESTIONS</p>
+            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase text-white">
+              Personal Training <span className="text-drake-gold">FAQs</span>
+            </h2>
+            <div className="max-w-3xl mx-auto">
+              <Accordion type="multiple" defaultValue={["item-0", "item-1", "item-2", "item-3", "item-4"]} className="space-y-4">
+                {coachingFAQs.map((faq, index) => (
+                  <AccordionItem key={index} value={`item-${index}`} className="bg-white/5 border border-white/10 rounded-xl px-6">
+                    <AccordionTrigger className="text-lg font-semibold hover:no-underline text-drake-gold">
+                      {faq.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-gray-300">
+                      {faq.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
           </div>
         </section>

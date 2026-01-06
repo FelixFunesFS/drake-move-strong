@@ -115,7 +115,7 @@ const FAQ = () => {
   return (
     <>
       <SEO
-        title="FAQ | Common Questions"
+        title="10 Charleston Fitness FAQs Answered | 2026 Guide"
         description="Find answers to common questions about our training, memberships, and approach at Drake Fitness in Charleston, SC."
         canonical="https://drake.fitness/faq"
       />

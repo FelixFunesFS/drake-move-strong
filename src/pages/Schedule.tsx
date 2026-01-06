@@ -48,7 +48,7 @@ const Schedule = () => {
   return (
     <>
       <SEO
-        title="Class Schedule"
+        title="Class Schedule Charleston | Book Today | Drake Fitness"
         description="View our weekly class schedule in Charleston. Morning and evening sessions available. Foundation Flow, Functional Strength, KB Strong, and more."
         canonical="https://drake.fitness/schedule"
       />
