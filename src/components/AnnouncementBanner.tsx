@@ -73,7 +73,12 @@ const AnnouncementBanner = () => {
     return promotion.target_pages.includes(location.pathname);
   };
 
-  if (isLoading || !promotion || isDismissed || !shouldShowOnPage()) {
+  // Return a placeholder with same height to prevent layout shift during loading
+  if (isLoading) {
+    return <div className="h-[52px] md:h-[48px]" aria-hidden="true" />;
+  }
+
+  if (!promotion || isDismissed || !shouldShowOnPage()) {
     return null;
   }
 
