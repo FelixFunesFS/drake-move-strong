@@ -24,10 +24,13 @@ import mobilityClass from "@/assets/mobility-class.jpg";
 import outdoorTrainingNew from "@/assets/outdoor-training.jpg";
 import davidOutside from "@/assets/david-outside.jpg";
 import oneOnOne from "@/assets/one-on-one.jpg";
+import studioGroupSquats from "@/assets/studio-group-squats.jpg";
 import Marquee from "@/components/Marquee";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
 import { UpcomingClassesWidget } from "@/components/schedule/UpcomingClassesWidget";
+import TestimonialHero from "@/components/TestimonialHero";
+import { FEATURED_REVIEWS } from "@/data/reviews";
 const Home = () => {
   return (
     <>
@@ -317,6 +320,14 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Testimonial Hero - Between Coaches and Results */}
+      <TestimonialHero
+        quote={FEATURED_REVIEWS[0].quote}
+        author={FEATURED_REVIEWS[0].name}
+        result={FEATURED_REVIEWS[0].result}
+        backgroundImage={studioGroupSquats}
+      />
 
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">

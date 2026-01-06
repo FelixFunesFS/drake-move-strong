@@ -14,6 +14,8 @@ import oneOnOneCoaching from "@/assets/one-on-one-coaching.jpg";
 import davidCoach from "@/assets/david-double-kb-storefront.jpg";
 import nickCoach from "@/assets/nick-sandbag-lunge.jpg";
 import coachingSession from "@/assets/coaching-session.jpg";
+import TestimonialHero from "@/components/TestimonialHero";
+import { FEATURED_REVIEWS } from "@/data/reviews";
 const Coaching = () => {
   const reasons = [{
     icon: Heart,
@@ -167,6 +169,14 @@ const Coaching = () => {
           </div>
         </section>
       </AnimatedSection>
+
+      {/* Testimonial Hero - Before Video */}
+      <TestimonialHero
+        quote={FEATURED_REVIEWS[1].quote}
+        author={FEATURED_REVIEWS[1].name}
+        result={FEATURED_REVIEWS[1].result}
+        backgroundImage={coachingSession}
+      />
 
       <AnimatedSection animation="fadeIn">
         <section className="py-16 md:py-24 bg-muted section-slant-top">

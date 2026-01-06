@@ -74,6 +74,20 @@ export const LONGEVITY_REVIEWS: Review[] = [
     result: "Peak strength at 45",
     theme: "Age-Defying",
     stars: 5
+  },
+  {
+    name: "Vanessa H.",
+    quote: "His knowledge about the way the body mechanically works has helped me continue to exercise after multiple surgeries.",
+    result: "Training through multiple surgeries",
+    theme: "Long-Term Adaptability",
+    stars: 5
+  },
+  {
+    name: "Marc G.",
+    quote: "Better shape now than most of my adult life.",
+    result: "Life-long transformation",
+    theme: "Sustainable Results",
+    stars: 5
   }
 ];
 

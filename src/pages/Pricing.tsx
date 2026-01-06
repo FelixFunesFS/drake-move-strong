@@ -194,9 +194,13 @@ const Pricing = () => {
                       <span className="text-gray-200">Best option for long-term results</span>
                     </li>
                   </ul>
-                  <p className="text-sm text-gray-400 italic mb-6">
+                  <p className="text-sm text-gray-400 italic mb-4">
                     The easiest way to stay strong, mobile, and pain-free.
                   </p>
+                  {/* Testimonial Snippet */}
+                  <div className="text-sm italic text-gray-300 border-t border-white/10 pt-4 mb-4">
+                    "I'm stronger in my 40s than ever before." — Aaron Q.
+                  </div>
                   <Button asChild className="w-full bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold">
                     <a href="https://drakefitness.punchpass.com/org/5950/catalogs/purchase/membership/219877" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
                       Go Unlimited
