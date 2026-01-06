@@ -28,7 +28,7 @@ import studioGroupSquats from "@/assets/studio-group-squats.jpg";
 import Marquee from "@/components/Marquee";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
-import { UpcomingClassesWidget } from "@/components/schedule/UpcomingClassesWidget";
+
 import TestimonialHero from "@/components/TestimonialHero";
 import { FEATURED_REVIEWS } from "@/data/reviews";
 const Home = () => {
@@ -274,8 +274,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Upcoming Classes Widget - Live from PunchPass */}
-      <UpcomingClassesWidget />
 
       <section className="py-16 md:py-24 bg-muted section-slant-top-reverse">
         <div className="container mx-auto px-4">
