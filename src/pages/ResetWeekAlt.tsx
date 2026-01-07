@@ -237,9 +237,10 @@ const ResetWeekAlt = () => {
 
       {/* Trust Stats Bar */}
       <TrustStatsBar 
-        variant="compact" 
+        variant="horizontal" 
         stats={['sessions', 'charlestonians', 'experience', 'classSize']}
         className="bg-muted/50"
+        showSublabels={false}
       />
 
       {/* Who It's For Section */}
