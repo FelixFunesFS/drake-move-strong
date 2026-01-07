@@ -8,6 +8,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
+import CredentialTable from "@/components/CredentialTable";
+import PhilosophyQuote from "@/components/PhilosophyQuote";
 import davidImage from "@/assets/david-double-kb-storefront.jpg";
 import davidImage2 from "@/assets/david-goblet-squat-kb-rack.jpg";
 import nickImage from "@/assets/coach-nick-new.jpg";
@@ -131,6 +133,18 @@ const About = () => {
           </div>
         </section>
       </AnimatedSection>
+
+      {/* Credential Table - After Philosophy */}
+      <section className="py-12 md:py-16 bg-muted">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h3 className="font-hero text-2xl font-bold text-center mb-8 uppercase">
+              Our <span className="text-primary">Credentials</span>
+            </h3>
+            <CredentialTable variant="full" className="bg-card rounded-xl shadow-card" />
+          </div>
+        </div>
+      </section>
 
       {/* Meet David Section - Dark Theme with Clip Slant */}
       <section className="py-16 md:py-24 bg-drake-dark text-white section-slant-top">
@@ -416,6 +430,9 @@ His approach blends skill, science, and practical strength work to create long-t
           </div>
         </section>
       </AnimatedSection>
+
+      {/* Philosophy Quote - Before Studio Section */}
+      <PhilosophyQuote variant="hero" quote="philosophy" />
 
       <AnimatedSection animation="fadeInUp">
         <section className="py-16 md:py-24 section-slant-top bg-secondary-foreground">

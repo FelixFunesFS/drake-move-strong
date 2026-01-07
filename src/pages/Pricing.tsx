@@ -7,6 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
+import TrustStatsBar from "@/components/TrustStatsBar";
 
 const Pricing = () => {
   const faqs = [{
@@ -291,6 +292,14 @@ const Pricing = () => {
             <h2 className="font-hero text-2xl md:text-3xl font-bold uppercase text-center mb-8">
               Compare Drake Fitness <span className="text-primary">Membership Options</span>
             </h2>
+            
+            {/* Trust Stats Bar */}
+            <div className="max-w-4xl mx-auto mb-8">
+              <TrustStatsBar 
+                variant="minimal" 
+                stats={['sessions', 'experience', 'reviews']} 
+              />
+            </div>
             
             <div className="max-w-4xl mx-auto overflow-x-auto">
               <table className="w-full border-collapse">
