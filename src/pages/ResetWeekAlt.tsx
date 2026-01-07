@@ -19,6 +19,10 @@ import {
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { SEO } from "@/components/SEO";
+import { TrustStatsBar } from "@/components/TrustStatsBar";
+import { MicroTrustBadges } from "@/components/MicroTrustBadges";
+import { PhilosophyQuote } from "@/components/PhilosophyQuote";
+import { LongevityBlock } from "@/components/LongevityBlock";
 
 import heroImage from "@/assets/hero-kettlebell-training.jpg";
 import groupTrainingImage from "@/assets/group-kettlebell-training.jpg";
@@ -231,6 +235,13 @@ const ResetWeekAlt = () => {
         </div>
       </section>
 
+      {/* Trust Stats Bar */}
+      <TrustStatsBar 
+        variant="compact" 
+        stats={['sessions', 'charlestonians', 'experience', 'classSize']}
+        className="bg-muted/50"
+      />
+
       {/* Who It's For Section */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
@@ -273,8 +284,18 @@ const ResetWeekAlt = () => {
               <p className="text-center text-sm text-primary">Started with Reset Week</p>
             </div>
           </AnimatedSection>
+
+          {/* Micro Trust Badges */}
+          <MicroTrustBadges 
+            badges={['local', 'reviews', 'safe']} 
+            variant="inline" 
+            className="mt-8"
+          />
         </div>
       </section>
+
+      {/* Philosophy Quote */}
+      <PhilosophyQuote variant="inline" quote="philosophy" className="bg-muted/30" />
 
       {/* What Happens During Reset Week */}
       <section className="py-12 md:py-24 bg-drake-dark text-white md:[clip-path:polygon(0_0,100%_0,100%_85%,0_100%)]">
@@ -439,6 +460,10 @@ const ResetWeekAlt = () => {
             <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
               Seven days. Unlimited classes. Zero commitment. Just a chance to see if Drake Fitness is right for you.
             </p>
+            
+            {/* Longevity Block */}
+            <LongevityBlock variant="minimal" className="mb-10" />
+            
             <Button 
               asChild 
               size="lg" 
