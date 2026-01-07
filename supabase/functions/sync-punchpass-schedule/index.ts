@@ -235,57 +235,55 @@ Deno.serve(async (req) => {
 
     console.log(`[sync-punchpass-schedule] Admin access granted for user: ${userId}`);
 
-    const firecrawlApiKey = Deno.env.get('FIRECRAWL_API_KEY');
-    if (!firecrawlApiKey) {
-      console.error('FIRECRAWL_API_KEY not configured');
+    const tavilyApiKey = Deno.env.get('TAVILY_API_KEY');
+    if (!tavilyApiKey) {
+      console.error('TAVILY_API_KEY not configured');
       return new Response(
-        JSON.stringify({ success: false, error: 'Firecrawl not configured' }),
+        JSON.stringify({ success: false, error: 'Tavily not configured' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    console.log('Scraping PunchPass schedule...');
+    console.log('Extracting PunchPass schedule with Tavily...');
 
-    // Scrape the PunchPass schedule page
-    const scrapeResponse = await fetch('https://api.firecrawl.dev/v1/scrape', {
+    // Extract the PunchPass schedule page using Tavily Extract API
+    const extractResponse = await fetch('https://api.tavily.com/extract', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${firecrawlApiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        url: 'https://drakefitness.punchpass.com/classes',
-        formats: ['markdown'],
-        onlyMainContent: true,
-        waitFor: 3000, // Wait for dynamic content
+        api_key: tavilyApiKey,
+        urls: ['https://drakefitness.punchpass.com/classes'],
       }),
     });
 
-    const scrapeData = await scrapeResponse.json();
+    const extractData = await extractResponse.json();
 
-    if (!scrapeResponse.ok || !scrapeData.success) {
-      console.error('Firecrawl scrape failed:', scrapeData);
+    if (!extractResponse.ok) {
+      console.error('Tavily extract failed:', extractData);
       return new Response(
-        JSON.stringify({ success: false, error: 'Failed to scrape schedule', details: scrapeData }),
+        JSON.stringify({ success: false, error: 'Failed to extract schedule', details: extractData }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    const markdown = scrapeData.data?.markdown || scrapeData.markdown || '';
-    console.log('Scraped markdown length:', markdown.length);
+    // Tavily returns results array with raw_content
+    const content = extractData.results?.[0]?.raw_content || '';
+    console.log('Extracted content length:', content.length);
 
     // Parse the schedule
-    const classes = parseScheduleFromMarkdown(markdown);
+    const classes = parseScheduleFromMarkdown(content);
     console.log(`Parsed ${classes.length} classes from schedule`);
 
     if (classes.length === 0) {
-      console.warn('No classes parsed from schedule. Markdown preview:', markdown.substring(0, 500));
+      console.warn('No classes parsed from schedule. Content preview:', content.substring(0, 500));
       return new Response(
         JSON.stringify({ 
           success: true, 
           message: 'No classes found in schedule',
           classes_synced: 0,
-          markdown_preview: markdown.substring(0, 500)
+          content_preview: content.substring(0, 500)
         }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
