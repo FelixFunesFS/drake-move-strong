@@ -7,6 +7,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import OptimizedImage from '@/components/OptimizedImage';
 import { SEO } from '@/components/SEO';
 import AnimatedSection from '@/components/AnimatedSection';
+import TrustStatsBar from '@/components/TrustStatsBar';
+import MicroTrustBadges from '@/components/MicroTrustBadges';
+import PhilosophyQuote from '@/components/PhilosophyQuote';
 
 import drakeLogo from '@/assets/drake-logo.png?format=webp&w=176';
 import heroImage from '@/assets/group-training.jpg';
@@ -167,6 +170,14 @@ const ResetWeek = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Trust Stats Bar - After Hero */}
+      <TrustStatsBar 
+        variant="compact" 
+        stats={['charlestonians', 'sessions', 'experience', 'classSize']}
+        className="bg-drake-light px-4"
+        showSublabels={false}
+      />
 
       {/* Pain Points Section */}
       <section className="bg-drake-teal py-16 md:py-24">
@@ -349,6 +360,9 @@ const ResetWeek = () => {
           </div>
         </div>
       </section>
+
+      {/* Philosophy Quote - Before Coaches */}
+      <PhilosophyQuote variant="inline" quote="collaboration" className="max-w-2xl mx-auto py-8 px-4" />
 
       {/* Meet the Coaches */}
       <section className="bg-drake-light py-16 md:py-24">

@@ -6,6 +6,8 @@ import { CheckCircle2, Users, Trophy, Target, TrendingUp, Heart } from "lucide-r
 import { GoogleReviewsBadge, GOOGLE_REVIEWS } from "@/components/GoogleReviewsBadge";
 import { SEO } from "@/components/SEO";
 import { StructuredData, localBusinessSchema } from "@/components/StructuredData";
+import TrustStatsBar from "@/components/TrustStatsBar";
+import LongevityBlock from "@/components/LongevityBlock";
 // WebP hero images with responsive sizes
 import heroImage2Desktop from "@/assets/hero-barbell-deadlift.jpg?format=webp&w=1920";
 import heroImage2Mobile from "@/assets/hero-barbell-deadlift.jpg?format=webp&w=768";
@@ -105,6 +107,13 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Trust Stats Bar - After Who We Are */}
+      <TrustStatsBar 
+        variant="horizontal" 
+        stats={['sessions', 'charlestonians', 'experience', 'rating']} 
+        className="border-y border-border"
+      />
 
       <section className="py-16 md:py-24 bg-drake-dark text-white section-slant-bottom">
         <div className="container mx-auto px-4">
@@ -385,6 +394,9 @@ const Home = () => {
           <OptimizedImage src={oneOnOne} alt="Member with kettlebells at Drake Fitness" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
         </Marquee>
       </section>
+
+      {/* Longevity Block - Before Final CTA */}
+      <LongevityBlock />
 
       <CTASection eyebrow="GET STARTED" title="Ready to Reset How You Move?" ctaText="Start Reset Week — $49" ctaLink="/reset-week" variant="primary" slanted={true} />
     </main>

@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { Instagram, Facebook, Youtube } from "lucide-react";
 import drakeLogo from "@/assets/drake-logo.png?format=webp&w=176";
 import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
+import MicroTrustBadges from "@/components/MicroTrustBadges";
+
 const Footer = () => {
   return <footer className="bg-drake-dark text-white">
       <div className="container mx-auto px-4 py-12">
@@ -69,6 +71,14 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
+          {/* Trust Badges Row */}
+          <div className="mb-4">
+            <MicroTrustBadges 
+              badges={['local', 'experience', 'safe']} 
+              variant="row"
+              className="text-gray-400"
+            />
+          </div>
           {/* Micro Trust Line */}
           <div className="mb-4">
             <GoogleReviewsBadge variant="micro" className="text-gray-400 hover:text-white" />

@@ -1,11 +1,12 @@
 import { Star, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { TRUST_STATS } from "@/data/trustStats";
 
-// Centralized review data - update here when count changes
+// Re-export for backward compatibility - now pulls from centralized trustStats
 export const GOOGLE_REVIEWS = {
-  rating: 5.0,
-  count: 31,
-  url: 'https://maps.app.goo.gl/opeP6dqsbidbY9GZ6',
+  rating: TRUST_STATS.googleRating,
+  count: TRUST_STATS.googleReviewCount,
+  url: TRUST_STATS.googleReviewUrl,
   supportingText: 'Trusted by adults in Charleston who want to move better and stay pain-free.'
 };
 
