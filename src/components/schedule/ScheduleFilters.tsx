@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { Monitor, Home, Clock, Sun, Sunset } from "lucide-react";
+import { Monitor, Home, Sun, Sunset } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 
 interface ScheduleFiltersProps {
   locationFilter: "all" | "studio" | "zoom";
-  timeFilter: "all" | "morning" | "afternoon" | "evening";
+  timeFilter: "all" | "morning" | "evening";
   onLocationChange: (filter: "all" | "studio" | "zoom") => void;
-  onTimeChange: (filter: "all" | "morning" | "afternoon" | "evening") => void;
+  onTimeChange: (filter: "all" | "morning" | "evening") => void;
 }
 
 export function ScheduleFilters({
@@ -60,13 +60,6 @@ export function ScheduleFilters({
             icon={<Sun className="w-3.5 h-3.5" />}
           >
             AM
-          </FilterPill>
-          <FilterPill
-            active={timeFilter === "afternoon"}
-            onClick={() => onTimeChange("afternoon")}
-            icon={<Clock className="w-3.5 h-3.5" />}
-          >
-            Midday
           </FilterPill>
           <FilterPill
             active={timeFilter === "evening"}
@@ -131,15 +124,6 @@ export function ScheduleFilters({
         >
           <Sun className="w-3.5 h-3.5" />
           <span className="hidden sm:inline">AM</span>
-        </Button>
-        <Button
-          variant={timeFilter === "afternoon" ? "default" : "ghost"}
-          size="sm"
-          onClick={() => onTimeChange("afternoon")}
-          className="h-8 px-3 text-xs gap-1.5"
-        >
-          <Clock className="w-3.5 h-3.5" />
-          <span className="hidden sm:inline">Midday</span>
         </Button>
         <Button
           variant={timeFilter === "evening" ? "default" : "ghost"}

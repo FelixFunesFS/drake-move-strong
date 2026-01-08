@@ -28,7 +28,7 @@ export function NativeWeeklySchedule() {
   const [classes, setClasses] = useState<ScheduleClass[]>([]);
   const [loading, setLoading] = useState(true);
   const [locationFilter, setLocationFilter] = useState<"all" | "studio" | "zoom">("all");
-  const [timeFilter, setTimeFilter] = useState<"all" | "morning" | "afternoon" | "evening">("all");
+  const [timeFilter, setTimeFilter] = useState<"all" | "morning" | "evening">("all");
   const [selectedClass, setSelectedClass] = useState<ScheduleClass | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState<Date>(new Date());
@@ -76,10 +76,9 @@ export function NativeWeeklySchedule() {
     setModalOpen(true);
   };
 
-  const getTimeCategory = (time: string): "morning" | "afternoon" | "evening" => {
+  const getTimeCategory = (time: string): "morning" | "evening" => {
     const hour = parseInt(time.split(':')[0], 10);
     if (hour < 12) return "morning";
-    if (hour < 17) return "afternoon";
     return "evening";
   };
 
