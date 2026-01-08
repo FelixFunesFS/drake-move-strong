@@ -190,7 +190,7 @@ const Coaching = () => {
               <p className="text-xl text-center text-muted-foreground mb-8">
                 Watch a personal training session
               </p>
-              <YouTubeEmbed title="Drake Fitness 1:1 Coaching Demo" placeholder="Add a video showcasing your personalized coaching approach" />
+              <YouTubeEmbed videoId="N047J_Wnj2Q" title="Drake Fitness 1:1 Coaching Demo" />
             </div>
           </div>
         </section>
