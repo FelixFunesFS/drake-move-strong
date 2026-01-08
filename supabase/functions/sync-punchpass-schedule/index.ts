@@ -198,18 +198,19 @@ Deno.serve(async (req) => {
       global: { headers: { Authorization: authHeader } }
     });
 
-    // Validate the JWT and extract user
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    // Validate the JWT using getClaims (more reliable than getUser for edge functions)
+    const token = authHeader.replace('Bearer ', '');
+    const { data: claimsData, error: claimsError } = await supabase.auth.getClaims(token);
     
-    if (userError || !user) {
-      console.error('[sync-punchpass-schedule] Invalid token:', userError);
+    if (claimsError || !claimsData?.claims?.sub) {
+      console.error('[sync-punchpass-schedule] Invalid token:', claimsError);
       return new Response(
         JSON.stringify({ error: 'Unauthorized - Invalid authentication token' }),
         { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    const userId = user.id;
+    const userId = claimsData.claims.sub;
 
     // Create service role client for role check and database operations
     const supabaseAdmin = createClient(
