@@ -216,10 +216,10 @@ const Coaching = () => {
               delay: index * 0.2
             }} whileHover={{
               y: -5
-            }} className="text-center p-5 md:p-6 rounded-xl border bg-secondary-foreground shadow border-primary">
+            }} className="text-center p-5 md:p-6 rounded-xl border bg-white/10 shadow border-primary">
                   <div className="text-primary mb-4 flex justify-center">{item.icon}</div>
                   <h3 className="font-hero text-lg md:text-xl font-bold mb-3 text-accent uppercase">{item.title}</h3>
-                  <p className="text-sm md:text-base text-muted-foreground">{item.description}</p>
+                  <p className="text-sm md:text-base text-gray-300">{item.description}</p>
                 </motion.div>)}
             </div>
             <motion.div initial={{
@@ -234,7 +234,7 @@ const Coaching = () => {
             delay: 0.6
           }} className="mt-12 max-w-3xl mx-auto bg-white p-8 rounded-xl border border-border shadow-card">
               <h3 className="font-hero text-2xl font-bold text-center mb-4 uppercase">Additional Benefits</h3>
-              <ul className="space-y-3">
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-x-8 md:gap-y-3">
                 {["Movement assessment", "Corrective mobility work", "Functional strength training", "Technique refinement", "Lifestyle + recovery guidance", "Optional homework exercises"].map((benefit, index) => <motion.li key={index} initial={{
                 opacity: 0,
                 x: -20
