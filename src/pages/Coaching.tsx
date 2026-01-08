@@ -246,7 +246,7 @@ const Coaching = () => {
                   once: true
                 }} transition={{
                   delay: index * 0.1
-                }} className="flex items-center">
+                }} className="flex items-center px-[60px]">
                     <span className="w-2 h-2 bg-accent rounded-full mr-3"></span>
                     <span className="text-lg text-gray-300">{benefit}</span>
                   </motion.li>)}
