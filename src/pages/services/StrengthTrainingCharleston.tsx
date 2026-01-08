@@ -4,13 +4,14 @@ import { StructuredData, localBusinessSchema } from "@/components/StructuredData
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
+import { GoogleMapEmbed } from "@/components/GoogleMapEmbed";
 import { 
   Check, MapPin, ArrowRight, Star, Users, Briefcase, Heart, Bike, Calendar,
   Dumbbell, HeartPulse, ShieldCheck, Ban,
   PersonStanding, Wind, Weight,
   GraduationCap, Gauge,
   Presentation, TrendingUp,
-  CalendarDays, Shield
+  CalendarDays, Shield, Clock, Car, Navigation
 } from "lucide-react";
 
 import heroKettlebellTraining from "@/assets/hero-kettlebell-training.jpg";
@@ -433,6 +434,71 @@ export default function StrengthTrainingCharleston() {
               </div>
             </div>
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Location Section */}
+      <section className="py-24 bg-secondary">
+        <div className="container mx-auto px-4">
+          <AnimatedSection animation="fadeInUp">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="section-eyebrow text-primary">VISIT US</span>
+              <h2 className="font-hero text-3xl md:text-4xl font-bold uppercase">
+                Located in <span className="text-primary">Avondale, Charleston</span>
+              </h2>
+              <p className="text-xl text-muted-foreground mt-4">5 minutes from West Ashley • Free parking on-site</p>
+            </div>
+          </AnimatedSection>
+          
+          <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            <AnimatedSection animation="fadeInUp" delay={0.1}>
+              <GoogleMapEmbed height="450px" />
+            </AnimatedSection>
+            
+            <AnimatedSection animation="fadeInUp" delay={0.2}>
+              <div className="bg-background p-10 rounded-2xl shadow-lg h-full flex flex-col justify-center">
+                <h3 className="font-hero text-2xl font-bold mb-8 uppercase">Getting Here</h3>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-primary rounded-lg flex-shrink-0 flex items-center justify-center">
+                      <MapPin className="text-primary-foreground h-6 w-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg mb-1">Address</h4>
+                      <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                        2 Avondale Ave, Charleston, SC 29407
+                      </a>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-primary rounded-lg flex-shrink-0 flex items-center justify-center">
+                      <Clock className="text-primary-foreground h-6 w-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg mb-1">Hours</h4>
+                      <p className="text-muted-foreground">Mon-Fri: 5:30 AM - 7:00 PM</p>
+                      <p className="text-muted-foreground">Sat: 8:00 AM - 12:00 PM</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-primary rounded-lg flex-shrink-0 flex items-center justify-center">
+                      <Car className="text-primary-foreground h-6 w-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg mb-1">Parking</h4>
+                      <p className="text-muted-foreground">Free on-site parking available</p>
+                    </div>
+                  </div>
+                </div>
+                <Button asChild className="mt-8">
+                  <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer">
+                    <Navigation className="mr-2 h-4 w-4" />
+                    Get Directions
+                  </a>
+                </Button>
+              </div>
+            </AnimatedSection>
+          </div>
         </div>
       </section>
 

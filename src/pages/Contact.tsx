@@ -4,11 +4,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MapPin, Mail, Phone, Instagram, Facebook, Youtube } from "lucide-react";
+import { MapPin, Mail, Phone, Instagram, Facebook, Youtube, Clock, Car, Navigation } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
+import { GoogleMapEmbed } from "@/components/GoogleMapEmbed";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -183,6 +184,56 @@ const Contact = () => {
                     Send Message
                   </Button>
                 </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Location Map Section */}
+      <section className="py-16 md:py-24 bg-secondary">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <p className="section-eyebrow text-primary">FIND US</p>
+            <h2 className="font-hero text-3xl md:text-4xl font-bold uppercase">
+              Visit <span className="text-primary">Drake Fitness</span>
+            </h2>
+            <p className="text-muted-foreground mt-4">Located in the heart of Avondale, West Ashley</p>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* Map Embed */}
+            <GoogleMapEmbed height="400px" />
+            
+            {/* Quick Info Card */}
+            <div className="bg-background p-8 rounded-2xl flex flex-col justify-center shadow-lg">
+              <h3 className="font-hero text-2xl font-bold mb-6 uppercase">Quick Details</h3>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <MapPin className="text-primary h-5 w-5 flex-shrink-0" />
+                  <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                    2 Avondale Ave, Charleston, SC 29407
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Clock className="text-primary h-5 w-5 flex-shrink-0" />
+                  <span>Mon-Fri: 5:30 AM - 7:00 PM</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Car className="text-primary h-5 w-5 flex-shrink-0" />
+                  <span>Free on-site parking</span>
+                </div>
+              </div>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Button asChild>
+                  <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer">
+                    <Navigation className="mr-2 h-4 w-4" />
+                    Get Directions
+                  </a>
+                </Button>
+                <Button asChild variant="outline">
+                  <a href="tel:8438175420">Call Us</a>
+                </Button>
               </div>
             </div>
           </div>

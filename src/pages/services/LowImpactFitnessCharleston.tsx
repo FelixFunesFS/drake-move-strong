@@ -4,11 +4,11 @@ import { StructuredData, localBusinessSchema } from "@/components/StructuredData
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
-import { Check, MapPin, ArrowRight, Activity, Users, Volume2, Star } from "lucide-react";
+import { GoogleMapEmbed } from "@/components/GoogleMapEmbed";
+import { Check, MapPin, ArrowRight, Activity, Users, Volume2, Star, Navigation, Clock, Car } from "lucide-react";
 
 import studioFloorExercise from "@/assets/studio-floor-exercise.jpg";
 import nickHolisticCoaching from "@/assets/nick-holistic-coaching.jpg";
-import studioDavidStorefront from "@/assets/studio-david-storefront.jpg";
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -283,32 +283,60 @@ export default function LowImpactFitnessCharleston() {
       <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
-            <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-              <div className="order-2 lg:order-1">
-                <OptimizedImage
-                  src={studioDavidStorefront}
-                  alt="Drake Fitness studio storefront in Avondale, Charleston"
-                  className="rounded-2xl shadow-lg"
-                  aspectRatio="video"
-                />
-              </div>
-              <div className="order-1 lg:order-2 text-center lg:text-left">
-                <span className="section-eyebrow text-primary">CONVENIENT LOCATION</span>
-                <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-foreground uppercase">
-                  Easily Accessible from West Ashley & Charleston
-                </h2>
-                <div className="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground mb-6">
-                  <MapPin className="w-5 h-5 text-primary" />
-                  <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer" className="text-lg hover:text-primary transition-colors">
-                    2 Avondale Ave, Charleston, SC 29407
-                  </a>
-                </div>
-                <p className="text-lg text-muted-foreground">
-                  Drake Fitness is located in Avondale, easily accessible from West Ashley and greater Charleston.
-                </p>
-              </div>
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <span className="section-eyebrow text-primary">CONVENIENT LOCATION</span>
+              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-foreground uppercase">
+                Easily Accessible from West Ashley & Charleston
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Drake Fitness is located in Avondale, easily accessible from West Ashley and greater Charleston.
+              </p>
             </div>
           </AnimatedSection>
+          
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <AnimatedSection animation="fadeInUp" delay={0.1}>
+              <GoogleMapEmbed height="450px" />
+            </AnimatedSection>
+            
+            <AnimatedSection animation="fadeInUp" delay={0.2}>
+              <div className="bg-secondary p-8 rounded-2xl">
+                <h3 className="font-hero text-xl font-bold mb-6 uppercase">Visit Us</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="text-primary h-5 w-5 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold mb-1">Address</p>
+                      <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                        2 Avondale Ave, Charleston, SC 29407
+                      </a>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Clock className="text-primary h-5 w-5 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold mb-1">Hours</p>
+                      <p className="text-muted-foreground">Mon-Fri: 5:30 AM - 7:00 PM</p>
+                      <p className="text-muted-foreground">Sat: 8:00 AM - 12:00 PM</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Car className="text-primary h-5 w-5 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold mb-1">Parking</p>
+                      <p className="text-muted-foreground">Free on-site parking</p>
+                    </div>
+                  </div>
+                </div>
+                <Button asChild className="mt-6">
+                  <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer">
+                    <Navigation className="mr-2 h-4 w-4" />
+                    Get Directions
+                  </a>
+                </Button>
+              </div>
+            </AnimatedSection>
+          </div>
         </div>
       </section>
 
