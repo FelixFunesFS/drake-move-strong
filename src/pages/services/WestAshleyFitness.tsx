@@ -195,7 +195,9 @@ export default function WestAshleyFitness() {
                     </div>
                     <div>
                       <h3 className="font-bold text-lg mb-1">Address</h3>
-                      <p className="text-muted-foreground">2 Avondale Ave<br />Charleston, SC 29407</p>
+                      <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors block">
+                        2 Avondale Ave<br />Charleston, SC 29407
+                      </a>
                     </div>
                   </div>
 
