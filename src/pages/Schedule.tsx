@@ -10,12 +10,23 @@ import { ScheduleQuickView } from "@/components/schedule/ScheduleQuickView";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Schedule = () => {
   const [syncing, setSyncing] = useState(false);
   const { toast } = useToast();
+  const { isAdmin } = useAuth();
 
   const syncSchedule = async () => {
+    if (!isAdmin) {
+      toast({
+        title: "Admin only",
+        description: "Please sign in with an admin account to sync the schedule.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setSyncing(true);
     try {
       const { data, error } = await supabase.functions.invoke('sync-punchpass-schedule');
@@ -83,16 +94,18 @@ const Schedule = () => {
                 </h2>
                 <p className="text-sm text-muted-foreground">Today's and tomorrow's classes at a glance</p>
               </div>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={syncSchedule}
-                disabled={syncing}
-                className="text-muted-foreground hover:text-primary self-start sm:self-auto"
-              >
-                <RefreshCw className={`w-4 h-4 mr-1.5 ${syncing ? 'animate-spin' : ''}`} />
-                {syncing ? 'Syncing...' : 'Sync Schedule'}
-              </Button>
+              {isAdmin ? (
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={syncSchedule}
+                  disabled={syncing}
+                  className="text-muted-foreground hover:text-primary self-start sm:self-auto"
+                >
+                  <RefreshCw className={`w-4 h-4 mr-1.5 ${syncing ? 'animate-spin' : ''}`} />
+                  {syncing ? 'Syncing...' : 'Sync Schedule'}
+                </Button>
+              ) : null}
             </div>
             <div className="max-w-4xl mx-auto">
               <ScheduleQuickView />
