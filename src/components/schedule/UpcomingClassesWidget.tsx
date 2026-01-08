@@ -7,6 +7,7 @@ import { ClassCard } from "./ClassCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import AnimatedSection from "@/components/AnimatedSection";
 import { BookingModal } from "./BookingModal";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface ScheduleClass {
   id: string;
@@ -30,6 +31,8 @@ interface GroupedClasses {
 }
 
 export function UpcomingClassesWidget() {
+  const { isAdmin } = useAuth();
+
   const [groupedClasses, setGroupedClasses] = useState<GroupedClasses[]>([]);
   const [loading, setLoading] = useState(true);
   const [syncing, setSyncing] = useState(false);
@@ -99,6 +102,8 @@ export function UpcomingClassesWidget() {
   };
 
   const syncSchedule = async () => {
+    if (!isAdmin) return;
+
     setSyncing(true);
     try {
       const { error } = await supabase.functions.invoke('sync-punchpass-schedule');
@@ -165,16 +170,18 @@ export function UpcomingClassesWidget() {
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={syncSchedule}
-                disabled={syncing}
-                className="text-muted-foreground hover:text-primary"
-              >
-                <RefreshCw className={`w-4 h-4 mr-1.5 ${syncing ? 'animate-spin' : ''}`} />
-                {syncing ? 'Syncing...' : 'Refresh'}
-              </Button>
+              {isAdmin ? (
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={syncSchedule}
+                  disabled={syncing}
+                  className="text-muted-foreground hover:text-primary"
+                >
+                  <RefreshCw className={`w-4 h-4 mr-1.5 ${syncing ? 'animate-spin' : ''}`} />
+                  {syncing ? 'Syncing...' : 'Refresh'}
+                </Button>
+              ) : null}
               <Button asChild size="lg" className="shrink-0">
                 <Link to="/schedule" className="inline-flex items-center gap-2">
                   View Full Schedule
@@ -183,6 +190,7 @@ export function UpcomingClassesWidget() {
               </Button>
             </div>
           </div>
+
         </AnimatedSection>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
