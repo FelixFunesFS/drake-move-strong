@@ -4,10 +4,10 @@ import { StructuredData, localBusinessSchema } from "@/components/StructuredData
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
-import { Check, MapPin, ArrowRight, Star, Shield, Heart, Dumbbell, Clock, Car } from "lucide-react";
+import { GoogleMapEmbed } from "@/components/GoogleMapEmbed";
+import { Check, MapPin, ArrowRight, Star, Shield, Heart, Dumbbell, Clock, Car, Navigation } from "lucide-react";
 
 import heroKettlebellTraining from "@/assets/hero-kettlebell-training.jpg";
-import studioDavidStorefront from "@/assets/studio-david-storefront.jpg";
 import groupKettlebellTraining from "@/assets/group-kettlebell-training.jpg";
 import studioMobilityTraining from "@/assets/studio-mobility-training.jpg";
 
@@ -224,23 +224,17 @@ export default function WestAshleyFitness() {
                   </div>
                 </div>
 
-                <Button asChild variant="outline" size="lg" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                  <Link to="/contact">
+                <Button asChild className="mt-2">
+                  <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer">
+                    <Navigation className="mr-2 h-4 w-4" />
                     Get Directions
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
+                  </a>
                 </Button>
               </div>
             </AnimatedSection>
 
             <AnimatedSection animation="fadeInUp" delay={0.1}>
-              <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
-                <OptimizedImage
-                  src={studioDavidStorefront}
-                  alt="Drake Fitness studio storefront in Avondale, West Ashley"
-                  className="w-full h-full"
-                />
-              </div>
+              <GoogleMapEmbed height="600px" />
             </AnimatedSection>
           </div>
         </div>
