@@ -33,46 +33,29 @@ import studioGroupSquats from "@/assets/studio-group-squats.jpg";
 import Marquee from "@/components/Marquee";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
-
 import TestimonialHero from "@/components/TestimonialHero";
 import { FEATURED_REVIEWS } from "@/data/reviews";
 const Home = () => {
-  return (
-    <>
-      <SEO
-        title="Charleston Mobility Training 2026 | Proven Results | Drake"
-        description="Expert-led functional strength and mobility training in Charleston, SC. Join David Drake and Coach Nick for small-group classes, personal training, and sustainable results. 25+ years of coaching experience."
-        canonical="https://drake.fitness"
-      />
+  return <>
+      <SEO title="Charleston Mobility Training 2026 | Proven Results | Drake" description="Expert-led functional strength and mobility training in Charleston, SC. Join David Drake and Coach Nick for small-group classes, personal training, and sustainable results. 25+ years of coaching experience." canonical="https://drake.fitness" />
       <StructuredData data={localBusinessSchema} />
       
       <main>
-      <Hero 
-        eyebrow={<GoogleReviewsBadge variant="hero" />}
-        title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} 
-        subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last." 
-        primaryCTA={{
-          text: "START RESET WEEK",
-          link: "/reset-week"
-        }} 
-        secondaryCTA={{
-          text: <>READ OUR<br className="hidden sm:inline" />REVIEWS</>,
-          link: GOOGLE_REVIEWS.url
-        }}
-        backgroundImages={["/images/hero-mobile.jpg", heroImage3Desktop]} 
-        backgroundImagesMobile={["/images/hero-mobile.jpg", heroImage3Mobile]}
-        autoRotate={true}
-      />
+      <Hero eyebrow={<GoogleReviewsBadge variant="hero" />} title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
+        text: "START RESET WEEK",
+        link: "/reset-week"
+      }} secondaryCTA={{
+        text: <>READ OUR<br className="hidden sm:inline" />REVIEWS</>,
+        link: GOOGLE_REVIEWS.url
+      }} backgroundImages={["/images/hero-mobile.jpg", heroImage3Desktop]} backgroundImagesMobile={["/images/hero-mobile.jpg", heroImage3Mobile]} autoRotate={true} />
 
       {/* Brand Values Marquee */}
       <section className="py-4 md:py-6 bg-drake-dark overflow-hidden border-y border-drake-gold/20">
         <Marquee speed="slow" gradient={false} pauseOnHover={false}>
-{["SMALL GROUP COACHING", "KETTLEBELL & MACE SPECIALISTS", "CORRECTIVE EXERCISE", "JOINT-FRIENDLY TRAINING", "25+ YEARS EXPERIENCE", "AVONDALE, CHARLESTON"].map((text, i) => (
-            <span key={i} className="text-xl sm:text-2xl md:text-4xl font-hero font-bold text-drake-gold uppercase px-4 sm:px-6 md:px-8 whitespace-nowrap flex items-center">
+          {["SMALL GROUP COACHING", "KETTLEBELL & MACE SPECIALISTS", "CORRECTIVE EXERCISE", "JOINT-FRIENDLY TRAINING", "25+ YEARS EXPERIENCE", "AVONDALE, CHARLESTON"].map((text, i) => <span key={i} className="text-xl sm:text-2xl md:text-4xl font-hero font-bold text-drake-gold uppercase px-4 sm:px-6 md:px-8 whitespace-nowrap flex items-center">
               {text}
               <span className="text-white/40 mx-4 md:mx-6">•</span>
-            </span>
-          ))}
+            </span>)}
         </Marquee>
       </section>
 
@@ -109,11 +92,7 @@ const Home = () => {
       </section>
 
       {/* Trust Stats Bar - After Who We Are */}
-      <TrustStatsBar 
-        variant="horizontal" 
-        stats={['sessions', 'charlestonians', 'experience', 'rating']} 
-        className="border-y border-border"
-      />
+      <TrustStatsBar variant="horizontal" stats={['sessions', 'charlestonians', 'experience', 'rating']} className="border-y border-border" />
 
       <section className="py-16 md:py-24 bg-drake-dark text-white section-slant-bottom">
         <div className="container mx-auto px-4">
@@ -128,23 +107,23 @@ const Home = () => {
           </AnimatedSection>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[{
-            icon: <CheckCircle2 className="w-6 h-6" />,
-            title: "Mobility before intensity",
-            description: "We improve how your joints move before adding load — eliminating pain and preventing injury.",
-            link: "/mobility-fitness-avondale"
-          }, {
-            icon: <Target className="w-6 h-6" />,
-            title: "Functional strength that carries into daily life",
-            description: "Lift, carry, bend, twist, and move with confidence."
-          }, {
-            icon: <Users className="w-6 h-6" />,
-            title: "Small classes with real coaching",
-            description: "You get attention, guidance, and form corrections every time."
-          }, {
-            icon: <TrendingUp className="w-6 h-6" />,
-            title: "Progress tracking that keeps you motivated",
-            description: "Assessments every 4–8 weeks so you can see your progress."
-          }].map((feature, index) => <AnimatedSection key={index} animation="fadeInUp" delay={index * 0.1}>
+              icon: <CheckCircle2 className="w-6 h-6" />,
+              title: "Mobility before intensity",
+              description: "We improve how your joints move before adding load — eliminating pain and preventing injury.",
+              link: "/mobility-fitness-avondale"
+            }, {
+              icon: <Target className="w-6 h-6" />,
+              title: "Functional strength that carries into daily life",
+              description: "Lift, carry, bend, twist, and move with confidence."
+            }, {
+              icon: <Users className="w-6 h-6" />,
+              title: "Small classes with real coaching",
+              description: "You get attention, guidance, and form corrections every time."
+            }, {
+              icon: <TrendingUp className="w-6 h-6" />,
+              title: "Progress tracking that keeps you motivated",
+              description: "Assessments every 4–8 weeks so you can see your progress."
+            }].map((feature, index) => <AnimatedSection key={index} animation="fadeInUp" delay={index * 0.1}>
                 <div className="bg-white/5 border border-white/10 p-8 rounded-xl h-full hover:bg-white/10 transition-colors">
                   <div className="w-12 h-12 bg-drake-teal rounded-xl flex items-center justify-center text-white mb-4">
                     {feature.icon}
@@ -214,26 +193,26 @@ const Home = () => {
           <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto relative">
             {/* Connecting line for desktop */}
             <div className="hidden md:block absolute top-12 left-[16.67%] right-[16.67%] h-0.5 bg-primary/30" style={{
-            width: '66.67%',
-            left: '16.67%'
-          }} />
+              width: '66.67%',
+              left: '16.67%'
+            }} />
             
             {[{
-            number: "1",
-            title: "Start Reset Week",
-            description: "Try 7 days of unlimited classes for just $49 — no commitment, no pressure.",
-            bgColor: "bg-drake-dark"
-          }, {
-            number: "2",
-            title: "Train",
-            description: "Join the right class track — Foundation Flow, Functional Strength, Mobility Reset, KB Strong, or Weekend Warrior.",
-            bgColor: "bg-drake-gold"
-          }, {
-            number: "3",
-            title: "Progress",
-            description: "We check mobility and strength regularly so you can see and feel your improvements.",
-            bgColor: "bg-drake-teal"
-          }].map((step, index) => <div key={index} className="text-center relative z-10">
+              number: "1",
+              title: "Start Reset Week",
+              description: "Try 7 days of unlimited classes for just $49 — no commitment, no pressure.",
+              bgColor: "bg-drake-dark"
+            }, {
+              number: "2",
+              title: "Train",
+              description: "Join the right class track — Foundation Flow, Functional Strength, Mobility Reset, KB Strong, or Weekend Warrior.",
+              bgColor: "bg-drake-gold"
+            }, {
+              number: "3",
+              title: "Progress",
+              description: "We check mobility and strength regularly so you can see and feel your improvements.",
+              bgColor: "bg-drake-teal"
+            }].map((step, index) => <div key={index} className="text-center relative z-10">
                 <div className={`w-24 h-24 ${step.bgColor} rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-6 shadow-lg`}>
                   {step.number}
                 </div>
@@ -262,24 +241,24 @@ const Home = () => {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[{
-            name: "Foundation Flow™",
-            description: "Beginner-friendly, mobility-first."
-          }, {
-            name: "Functional Strength™",
-            description: "Our core program for sustainable strength and better movement."
-          }, {
-            name: "KB Strong™",
-            description: "Advanced strength & kettlebell training."
-          }, {
-            name: "Mobility Reset™",
-            description: "Recovery-based mobility and flexibility work."
-          }, {
-            name: "Weekend Warrior™",
-            description: "Saturday full body strength & conditioning."
-          }, {
-            name: "Functional Flow Online™",
-            description: "Train live from anywhere."
-          }].map((classItem, index) => <div key={index} className="bg-drake-dark-muted p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-colors">
+              name: "Foundation Flow™",
+              description: "Beginner-friendly, mobility-first."
+            }, {
+              name: "Functional Strength™",
+              description: "Our core program for sustainable strength and better movement."
+            }, {
+              name: "KB Strong™",
+              description: "Advanced strength & kettlebell training."
+            }, {
+              name: "Mobility Reset™",
+              description: "Recovery-based mobility and flexibility work."
+            }, {
+              name: "Weekend Warrior™",
+              description: "Saturday full body strength & conditioning."
+            }, {
+              name: "Functional Flow Online™",
+              description: "Train live from anywhere."
+            }].map((classItem, index) => <div key={index} className="bg-drake-dark-muted p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-colors bg-gray-800">
                 <h3 className="font-hero text-xl font-bold mb-2 text-drake-gold uppercase">{classItem.name}</h3>
                 <p className="text-gray-300">{classItem.description}</p>
               </div>)}
@@ -333,12 +312,7 @@ const Home = () => {
       </section>
 
       {/* Testimonial Hero - Between Coaches and Results */}
-      <TestimonialHero
-        quote={FEATURED_REVIEWS[0].quote}
-        author={FEATURED_REVIEWS[0].name}
-        result={FEATURED_REVIEWS[0].result}
-        backgroundImage={studioGroupSquats}
-      />
+      <TestimonialHero quote={FEATURED_REVIEWS[0].quote} author={FEATURED_REVIEWS[0].name} result={FEATURED_REVIEWS[0].result} backgroundImage={studioGroupSquats} />
 
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
@@ -400,7 +374,6 @@ const Home = () => {
 
       <CTASection eyebrow="GET STARTED" title="Ready to Reset How You Move?" ctaText="Start Reset Week — $49" ctaLink="/reset-week" variant="primary" slanted={true} />
     </main>
-    </>
-  );
+    </>;
 };
 export default Home;
