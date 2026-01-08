@@ -2,60 +2,13 @@ import Hero from "@/components/Hero";
 import CTASection from "@/components/CTASection";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Info, ExternalLink, RefreshCw } from "lucide-react";
+import { Info, ExternalLink } from "lucide-react";
 import scheduleCommunityImage from "@/assets/schedule-community-group.jpg";
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { ScheduleQuickView } from "@/components/schedule/ScheduleQuickView";
-import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "@/hooks/use-toast";
-import { useAuth } from "@/contexts/AuthContext";
 
 const Schedule = () => {
-  const [syncing, setSyncing] = useState(false);
-  const { toast } = useToast();
-  const { isAdmin } = useAuth();
-
-  const syncSchedule = async () => {
-    if (!isAdmin) {
-      toast({
-        title: "Admin only",
-        description: "Please sign in with an admin account to sync the schedule.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setSyncing(true);
-    try {
-      const { data, error } = await supabase.functions.invoke('sync-punchpass-schedule');
-      if (error) {
-        toast({
-          title: "Sync Failed",
-          description: "Could not sync schedule. Please try again.",
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "Schedule Synced",
-          description: `${data?.classes_synced || 0} classes updated.`,
-        });
-        // Reload the page to show updated data
-        window.location.reload();
-      }
-    } catch (error) {
-      console.error('Error syncing schedule:', error);
-      toast({
-        title: "Sync Failed",
-        description: "An error occurred while syncing.",
-        variant: "destructive",
-      });
-    } finally {
-      setSyncing(false);
-    }
-  };
-
   return (
     <>
       <SEO
@@ -87,25 +40,11 @@ const Schedule = () => {
         {/* Quick View - Today's & Tomorrow's Classes */}
         <section className="py-8 md:py-12 bg-muted">
           <div className="container mx-auto px-4">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-              <div>
-                <h2 className="font-hero text-xl md:text-2xl font-bold uppercase">
-                  Quick <span className="text-primary">View</span>
-                </h2>
-                <p className="text-sm text-muted-foreground">Today's and tomorrow's classes at a glance</p>
-              </div>
-              {isAdmin ? (
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={syncSchedule}
-                  disabled={syncing}
-                  className="text-muted-foreground hover:text-primary self-start sm:self-auto"
-                >
-                  <RefreshCw className={`w-4 h-4 mr-1.5 ${syncing ? 'animate-spin' : ''}`} />
-                  {syncing ? 'Syncing...' : 'Sync Schedule'}
-                </Button>
-              ) : null}
+            <div className="mb-6">
+              <h2 className="font-hero text-xl md:text-2xl font-bold uppercase">
+                Quick <span className="text-primary">View</span>
+              </h2>
+              <p className="text-sm text-muted-foreground">Today's and tomorrow's classes at a glance</p>
             </div>
             <div className="max-w-4xl mx-auto">
               <ScheduleQuickView />
