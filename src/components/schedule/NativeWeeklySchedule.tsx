@@ -3,7 +3,7 @@ import { format, startOfWeek, addDays, addWeeks, subWeeks, isSameDay, isToday } 
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ChevronLeft, ChevronRight, ExternalLink, Calendar } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Calendar, Monitor } from "lucide-react";
 import { WeekDayColumn } from "./WeekDayColumn";
 import { ScheduleFilters } from "./ScheduleFilters";
 import { BookingModal } from "./BookingModal";
@@ -19,6 +19,15 @@ const getInstructorStyles = (instructor: string | null) => {
     default:
       return 'bg-slate-100 text-slate-600';
   }
+};
+
+const calculateDuration = (startTime: string, endTime: string | null): string | null => {
+  if (!endTime) return null;
+  const [startH, startM] = startTime.split(':').map(Number);
+  const [endH, endM] = endTime.split(':').map(Number);
+  const totalMinutes = (endH * 60 + endM) - (startH * 60 + startM);
+  if (totalMinutes <= 0) return null;
+  return `${totalMinutes}min`;
 };
 
 interface ScheduleClass {
@@ -220,6 +229,11 @@ export function NativeWeeklySchedule() {
                     <div className="flex-1 min-w-0">
                       <div className="text-primary font-semibold text-sm mb-1">
                         {formatTime(classItem.start_time)}
+                        {calculateDuration(classItem.start_time, classItem.end_time) && (
+                          <span className="font-normal text-muted-foreground ml-1.5">
+                            · {calculateDuration(classItem.start_time, classItem.end_time)}
+                          </span>
+                        )}
                       </div>
                       <div className="font-bold text-base mb-1 group-hover:text-primary transition-colors">
                         {classItem.class_name}
@@ -231,7 +245,8 @@ export function NativeWeeklySchedule() {
                           </span>
                         )}
                         {classItem.is_online && (
-                          <span className="inline-flex items-center gap-1 text-xs bg-secondary px-1.5 py-0.5 rounded font-medium">
+                          <span className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full font-medium bg-sky-100 text-sky-700">
+                            <Monitor className="w-3 h-3" />
                             ZOOM
                           </span>
                         )}

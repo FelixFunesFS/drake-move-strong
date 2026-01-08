@@ -13,6 +13,15 @@ const getInstructorStyles = (instructor: string | null) => {
   }
 };
 
+const calculateDuration = (startTime: string, endTime: string | null): string | null => {
+  if (!endTime) return null;
+  const [startH, startM] = startTime.split(':').map(Number);
+  const [endH, endM] = endTime.split(':').map(Number);
+  const totalMinutes = (endH * 60 + endM) - (startH * 60 + startM);
+  if (totalMinutes <= 0) return null;
+  return `${totalMinutes}min`;
+};
+
 interface ClassItem {
   id: string;
   class_name: string;
@@ -73,6 +82,11 @@ export function WeekDayColumn({ date, classes, onClassClick }: WeekDayColumnProp
             >
               <div className="text-xs font-bold text-primary mb-0.5">
                 {formatTime(classItem.start_time)}
+                {calculateDuration(classItem.start_time, classItem.end_time) && (
+                  <span className="font-normal text-muted-foreground ml-1">
+                    · {calculateDuration(classItem.start_time, classItem.end_time)}
+                  </span>
+                )}
               </div>
               <div className="text-sm font-semibold leading-tight mb-1 group-hover:text-primary transition-colors line-clamp-2">
                 {classItem.class_name}
@@ -84,10 +98,10 @@ export function WeekDayColumn({ date, classes, onClassClick }: WeekDayColumnProp
                   </span>
                 )}
                 {classItem.is_online && (
-                  <Badge variant="secondary" className="text-[10px] px-1 py-0 gap-0.5">
+                  <span className="inline-flex items-center gap-0.5 text-[10px] px-1.5 py-0.5 rounded-full font-medium bg-sky-100 text-sky-700">
                     <Monitor className="w-2.5 h-2.5" />
                     ZOOM
-                  </Badge>
+                  </span>
                 )}
               </div>
             </button>
