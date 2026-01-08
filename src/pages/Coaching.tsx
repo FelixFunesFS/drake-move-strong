@@ -6,7 +6,7 @@ import YouTubeEmbed from "@/components/YouTubeEmbed";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Target, Heart, Dumbbell, TrendingUp, User } from "lucide-react";
+import { Target, Heart, Dumbbell, TrendingUp, User, Sparkles } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -232,7 +232,12 @@ const Coaching = () => {
             once: true
           }} transition={{
             delay: 0.6
-          }} className="mt-12 bg-white/10 p-8 rounded-xl border border-primary shadow">
+          }} className="mt-12 bg-white/10 p-8 rounded-xl border border-primary shadow max-w-5xl mx-auto">
+              <div className="flex justify-center mb-4">
+                <div className="p-3 bg-primary/20 rounded-lg">
+                  <Sparkles className="w-8 h-8 text-accent" />
+                </div>
+              </div>
               <h3 className="font-hero text-2xl font-bold text-center mb-4 uppercase text-accent">Additional Benefits</h3>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-x-8 md:gap-y-3">
                 {["Movement assessment", "Corrective mobility work", "Functional strength training", "Technique refinement", "Lifestyle + recovery guidance", "Optional homework exercises"].map((benefit, index) => <motion.li key={index} initial={{
@@ -253,19 +258,21 @@ const Coaching = () => {
               
               {/* Internal Links to Local SEO Pages */}
               <div className="border-t border-primary/30 pt-6 mt-6">
-                <p className="text-sm text-gray-400 mb-3 text-center">Looking for a specific focus?</p>
-                <div className="flex flex-wrap justify-center gap-3">
-                  <Link to="/mobility-fitness-avondale" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
-                    Mobility Training
-                  </Link>
-                  <span className="text-muted-foreground">•</span>
-                  <Link to="/low-impact-fitness-charleston" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
-                    Joint-Friendly Fitness
-                  </Link>
-                  <span className="text-muted-foreground">•</span>
-                  <Link to="/west-ashley-fitness" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
-                    West Ashley Fitness
-                  </Link>
+                <div className="bg-white/5 rounded-lg p-4">
+                  <p className="text-sm text-gray-300 mb-3 text-center">Looking for a specific focus?</p>
+                  <div className="flex flex-wrap justify-center gap-3">
+                    <Link to="/mobility-fitness-avondale" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
+                      Mobility Training
+                    </Link>
+                    <span className="text-muted-foreground">•</span>
+                    <Link to="/low-impact-fitness-charleston" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
+                      Joint-Friendly Fitness
+                    </Link>
+                    <span className="text-muted-foreground">•</span>
+                    <Link to="/west-ashley-fitness" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
+                      West Ashley Fitness
+                    </Link>
+                  </div>
                 </div>
               </div>
             </motion.div>
