@@ -439,7 +439,9 @@ const ResetWeek = () => {
               <div className="space-y-4 text-primary-foreground/80">
                 <div className="flex items-center gap-3">
                   <MapPin className="h-5 w-5 text-drake-gold flex-shrink-0" />
-                  <span>2 Avondale Ave, Charleston, SC 29407</span>
+                  <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer" className="hover:text-drake-gold transition-colors">
+                    2 Avondale Ave, Charleston, SC 29407
+                  </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Clock className="h-5 w-5 text-drake-gold flex-shrink-0" />

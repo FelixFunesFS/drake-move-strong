@@ -299,7 +299,9 @@ export default function LowImpactFitnessCharleston() {
                 </h2>
                 <div className="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground mb-6">
                   <MapPin className="w-5 h-5 text-primary" />
-                  <span className="text-lg">2 Avondale Ave, Charleston, SC 29407</span>
+                  <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer" className="text-lg hover:text-primary transition-colors">
+                    2 Avondale Ave, Charleston, SC 29407
+                  </a>
                 </div>
                 <p className="text-lg text-muted-foreground">
                   Drake Fitness is located in Avondale, easily accessible from West Ashley and greater Charleston.

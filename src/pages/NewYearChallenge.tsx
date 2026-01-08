@@ -471,10 +471,10 @@ const NewYearChallenge = () => {
                 <Phone className="h-5 w-5" />
                 (843) 817-5420
               </a>
-              <span className="flex items-center gap-2">
+              <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:underline">
                 <MapPin className="h-5 w-5" />
                 2 Avondale Ave, Charleston, SC
-              </span>
+              </a>
             </div>
           </AnimatedSection>
         </div>

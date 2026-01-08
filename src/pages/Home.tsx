@@ -2,7 +2,7 @@ import Hero from "@/components/Hero";
 import CTASection from "@/components/CTASection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { CheckCircle2, Users, Trophy, Target, TrendingUp, Heart } from "lucide-react";
+import { CheckCircle2, Users, Trophy, Target, TrendingUp, Heart, MapPin, Navigation } from "lucide-react";
 import { GoogleReviewsBadge, GOOGLE_REVIEWS } from "@/components/GoogleReviewsBadge";
 import { SEO } from "@/components/SEO";
 import { StructuredData, localBusinessSchema } from "@/components/StructuredData";
@@ -41,18 +41,23 @@ const Home = () => {
       <StructuredData data={localBusinessSchema} />
       
       <main>
-      <Hero eyebrow={<GoogleReviewsBadge variant="hero" />} title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
+      <Hero eyebrow={
+        <div className="flex flex-col items-start gap-2">
+          <span className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-white/80 bg-white/10 px-3 py-1 rounded-full">
+            <MapPin className="w-3 h-3" />
+            Avondale • West Ashley • Charleston
+          </span>
+          <GoogleReviewsBadge variant="hero" />
+        </div>
+      } title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
         text: "START RESET WEEK",
         link: "/reset-week"
-      }} secondaryCTA={{
-        text: <>READ OUR<br className="hidden sm:inline" />REVIEWS</>,
-        link: GOOGLE_REVIEWS.url
       }} backgroundImages={["/images/hero-mobile.jpg", heroImage3Desktop]} backgroundImagesMobile={["/images/hero-mobile.jpg", heroImage3Mobile]} autoRotate={true} />
 
       {/* Brand Values Marquee */}
       <section className="py-4 md:py-6 bg-drake-dark overflow-hidden border-y border-drake-gold/20">
         <Marquee speed="slow" gradient={false} pauseOnHover={false}>
-          {["SMALL GROUP COACHING", "KETTLEBELL & MACE SPECIALISTS", "CORRECTIVE EXERCISE", "JOINT-FRIENDLY TRAINING", "25+ YEARS EXPERIENCE", "AVONDALE, CHARLESTON"].map((text, i) => <span key={i} className="text-xl sm:text-2xl md:text-4xl font-hero font-bold text-drake-gold uppercase px-4 sm:px-6 md:px-8 whitespace-nowrap flex items-center">
+          {["SMALL GROUP COACHING", "KETTLEBELL & MACE SPECIALISTS", "CORRECTIVE EXERCISE", "JOINT-FRIENDLY TRAINING", "25+ YEARS EXPERIENCE", "AVONDALE • WEST ASHLEY • CHARLESTON"].map((text, i) => <span key={i} className="text-xl sm:text-2xl md:text-4xl font-hero font-bold text-drake-gold uppercase px-4 sm:px-6 md:px-8 whitespace-nowrap flex items-center">
               {text}
               <span className="text-white/40 mx-4 md:mx-6">•</span>
             </span>)}
@@ -371,6 +376,34 @@ const Home = () => {
 
       {/* Longevity Block - Before Final CTA */}
       <LongevityBlock />
+
+      {/* Local Trust Block */}
+      <section className="py-12 bg-muted border-y border-border">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 max-w-4xl mx-auto">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                <MapPin className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <p className="font-bold text-lg">Located in Avondale, Charleston</p>
+                <p className="text-muted-foreground">2 Avondale Ave • 5 min from West Ashley</p>
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button asChild variant="outline" size="lg">
+                <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer">
+                  <Navigation className="w-4 h-4 mr-2" />
+                  Get Directions
+                </a>
+              </Button>
+              <Button asChild size="lg">
+                <Link to="/reset-week">Start Reset Week</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <CTASection eyebrow="GET STARTED" title="Ready to Reset How You Move?" ctaText="Start Reset Week — $49" ctaLink="/reset-week" variant="primary" slanted={true} />
     </main>

@@ -54,8 +54,16 @@ const Footer = () => {
           <div>
             <h3 className="font-hero font-bold text-lg mb-4 text-accent uppercase">Connect</h3>
             <ul className="space-y-2 text-sm text-gray-300">
-              <li>2 Avondale Ave</li>
-              <li>Charleston, SC 29407</li>
+              <li>
+                <a 
+                  href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-drake-gold transition-colors"
+                >
+                  2 Avondale Ave<br />Charleston, SC 29407
+                </a>
+              </li>
               <li className="pt-2">
                 <a href="mailto:ddrake311@gmail.com" className="hover:text-drake-gold transition-colors">
                   ddrake311@gmail.com
