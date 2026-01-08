@@ -52,35 +52,36 @@ const Coaching = () => {
     title: "Coaching & Homework",
     description: "Learn deeply from form corrections and technique refinement with optional homework exercises for recovery days to keep you progressing between sessions."
   }];
-
-  const coachingFAQs = [
-    { q: "How much does personal training cost in Charleston?", a: "Contact us for current rates. Sessions include mobility assessment, strength training, and personalized programming." },
-    { q: "How long are personal training sessions?", a: "Sessions are typically 60 minutes including warm-up, mobility work, strength training, and cooldown." },
-    { q: "Can I combine personal training with group classes?", a: "Yes! Many members do both. Personal training accelerates progress while group classes build community and consistency." },
-    { q: "What's the difference between coaching and group classes?", a: "Personal training is 100% focused on you with custom programming. Group classes are coached but follow a shared format." },
-    { q: "Do you offer online personal training?", a: "Yes, we offer virtual coaching via Zoom with personalized programming and real-time form feedback." },
-  ];
-
+  const coachingFAQs = [{
+    q: "How much does personal training cost in Charleston?",
+    a: "Contact us for current rates. Sessions include mobility assessment, strength training, and personalized programming."
+  }, {
+    q: "How long are personal training sessions?",
+    a: "Sessions are typically 60 minutes including warm-up, mobility work, strength training, and cooldown."
+  }, {
+    q: "Can I combine personal training with group classes?",
+    a: "Yes! Many members do both. Personal training accelerates progress while group classes build community and consistency."
+  }, {
+    q: "What's the difference between coaching and group classes?",
+    a: "Personal training is 100% focused on you with custom programming. Group classes are coached but follow a shared format."
+  }, {
+    q: "Do you offer online personal training?",
+    a: "Yes, we offer virtual coaching via Zoom with personalized programming and real-time form feedback."
+  }];
   const faqSchema = buildFAQSchema(coachingFAQs);
-
-  return (
-    <>
-      <SEO
-        title="1:1 Personal Training Charleston | Complete Guide 2026"
-        description="Personalized coaching with David Drake or Coach Nick. Custom programs for mobility, strength, and injury recovery. Expert one-on-one training in Charleston, SC."
-        canonical="https://drake.fitness/coaching"
-      />
+  return <>
+      <SEO title="1:1 Personal Training Charleston | Complete Guide 2026" description="Personalized coaching with David Drake or Coach Nick. Custom programs for mobility, strength, and injury recovery. Expert one-on-one training in Charleston, SC." canonical="https://drake.fitness/coaching" />
       <StructuredData data={faqSchema} />
       
       <main>
-<Hero eyebrow="INDIVIDUAL ATTENTION" title={<>
+      <Hero eyebrow="INDIVIDUAL ATTENTION" title={<>
             <span>PERSONAL TRAINING WITH</span><br />
             <span className="text-primary">DAVID OR NICK</span><br />
             TAILORED TO YOU
           </>} subtitle="Experience expert coaching designed specifically for your body, your history, and your goals. Move better and get stronger with 100% focus on you." primaryCTA={{
-      text: "Book 1:1 Consultation",
-      link: "/contact"
-    }} backgroundImage={oneOnOneCoaching} />
+        text: "Book 1:1 Consultation",
+        link: "/contact"
+      }} backgroundImage={oneOnOneCoaching} />
 
       <AnimatedSection animation="fadeInUp">
         <section className="py-16 md:py-24 bg-background">
@@ -98,18 +99,18 @@ const Coaching = () => {
                 
                 <div className="space-y-6">
                   {reasons.map((reason, index) => {
-                  const Icon = reason.icon;
-                  return <motion.div key={index} initial={{
-                    opacity: 0,
-                    x: -20
-                  }} whileInView={{
-                    opacity: 1,
-                    x: 0
-                  }} viewport={{
-                    once: true
-                  }} transition={{
-                    delay: index * 0.1
-                  }} className="flex items-start gap-4">
+                    const Icon = reason.icon;
+                    return <motion.div key={index} initial={{
+                      opacity: 0,
+                      x: -20
+                    }} whileInView={{
+                      opacity: 1,
+                      x: 0
+                    }} viewport={{
+                      once: true
+                    }} transition={{
+                      delay: index * 0.1
+                    }} className="flex items-start gap-4">
                         <div className="w-12 h-12 bg-cool-gray rounded-xl flex items-center justify-center flex-shrink-0">
                           <Icon className="w-6 h-6 text-primary" />
                         </div>
@@ -122,38 +123,38 @@ const Coaching = () => {
                           </p>
                         </div>
                       </motion.div>;
-                })}
+                  })}
                 </div>
               </div>
 
               {/* Right Column - Image */}
               <div className="relative lg:sticky lg:top-8">
                 <motion.div initial={{
-                opacity: 0,
-                scale: 0.95
-              }} whileInView={{
-                opacity: 1,
-                scale: 1
-              }} viewport={{
-                once: true
-              }} transition={{
-                duration: 0.6
-              }} className="relative">
+                  opacity: 0,
+                  scale: 0.95
+                }} whileInView={{
+                  opacity: 1,
+                  scale: 1
+                }} viewport={{
+                  once: true
+                }} transition={{
+                  duration: 0.6
+                }} className="relative">
                   <OptimizedImage src={coachingSession} alt="David and Nick coaching at Drake Fitness" className="rounded-2xl shadow-lg" aspectRatio="square" />
                   
                   {/* Caption Badge Overlay */}
                   <motion.div initial={{
-                  opacity: 0,
-                  y: 20
-                }} whileInView={{
-                  opacity: 1,
-                  y: 0
-                }} viewport={{
-                  once: true
-                }} transition={{
-                  delay: 0.3,
-                  duration: 0.6
-                }} className="absolute bottom-4 left-4 right-4">
+                    opacity: 0,
+                    y: 20
+                  }} whileInView={{
+                    opacity: 1,
+                    y: 0
+                  }} viewport={{
+                    once: true
+                  }} transition={{
+                    delay: 0.3,
+                    duration: 0.6
+                  }} className="absolute bottom-4 left-4 right-4">
                     <div className="bg-black/70 backdrop-blur-sm rounded-lg px-4 py-3 flex items-center gap-3">
                       <span className="text-drake-gold font-semibold text-sm uppercase tracking-wide">
                         Expert Focus
@@ -172,12 +173,7 @@ const Coaching = () => {
       </AnimatedSection>
 
       {/* Testimonial Hero - Before Video */}
-      <TestimonialHero
-        quote={FEATURED_REVIEWS[1].quote}
-        author={FEATURED_REVIEWS[1].name}
-        result={FEATURED_REVIEWS[1].result}
-        backgroundImage={coachingSession}
-      />
+      <TestimonialHero quote={FEATURED_REVIEWS[1].quote} author={FEATURED_REVIEWS[1].name} result={FEATURED_REVIEWS[1].result} backgroundImage={coachingSession} />
 
       <AnimatedSection animation="fadeIn">
         <section className="py-16 md:py-24 bg-muted section-slant-top">
@@ -205,6 +201,24 @@ const Coaching = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
               {whatToExpect.map((item, index) => <motion.div key={index} initial={{
+                opacity: 0,
+                y: 20
+              }} whileInView={{
+                opacity: 1,
+                y: 0
+              }} viewport={{
+                once: true
+              }} transition={{
+                delay: index * 0.2
+              }} whileHover={{
+                y: -5
+              }} className="text-center p-5 md:p-6 rounded-xl border bg-white/10 shadow border-primary">
+                  <div className="text-primary mb-4 flex justify-center">{item.icon}</div>
+                  <h3 className="font-hero text-lg md:text-xl font-bold mb-3 text-accent uppercase">{item.title}</h3>
+                  <p className="text-sm md:text-base text-gray-300">{item.description}</p>
+                </motion.div>)}
+            </div>
+            <motion.div initial={{
               opacity: 0,
               y: 20
             }} whileInView={{
@@ -213,26 +227,8 @@ const Coaching = () => {
             }} viewport={{
               once: true
             }} transition={{
-              delay: index * 0.2
-            }} whileHover={{
-              y: -5
-            }} className="text-center p-5 md:p-6 rounded-xl border bg-white/10 shadow border-primary">
-                  <div className="text-primary mb-4 flex justify-center">{item.icon}</div>
-                  <h3 className="font-hero text-lg md:text-xl font-bold mb-3 text-accent uppercase">{item.title}</h3>
-                  <p className="text-sm md:text-base text-gray-300">{item.description}</p>
-                </motion.div>)}
-            </div>
-            <motion.div initial={{
-            opacity: 0,
-            y: 20
-          }} whileInView={{
-            opacity: 1,
-            y: 0
-          }} viewport={{
-            once: true
-          }} transition={{
-            delay: 0.6
-          }} className="mt-12 bg-white/10 p-8 rounded-xl border border-primary shadow max-w-5xl mx-auto">
+              delay: 0.6
+            }} className="mt-12 p-8 rounded-xl border border-primary shadow max-w-5xl mx-auto bg-secondary-foreground">
               <div className="flex justify-center mb-4">
                 <div className="p-3 bg-primary/20 rounded-lg">
                   <Sparkles className="w-8 h-8 text-accent" />
@@ -241,16 +237,16 @@ const Coaching = () => {
               <h3 className="font-hero text-2xl font-bold text-center mb-4 uppercase text-accent">Additional Benefits</h3>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-x-8 md:gap-y-3">
                 {["Movement assessment", "Corrective mobility work", "Functional strength training", "Technique refinement", "Lifestyle + recovery guidance", "Optional homework exercises"].map((benefit, index) => <motion.li key={index} initial={{
-                opacity: 0,
-                x: -20
-              }} whileInView={{
-                opacity: 1,
-                x: 0
-              }} viewport={{
-                once: true
-              }} transition={{
-                delay: index * 0.1
-              }} className="flex items-center">
+                  opacity: 0,
+                  x: -20
+                }} whileInView={{
+                  opacity: 1,
+                  x: 0
+                }} viewport={{
+                  once: true
+                }} transition={{
+                  delay: index * 0.1
+                }} className="flex items-center">
                     <span className="w-2 h-2 bg-accent rounded-full mr-3"></span>
                     <span className="text-lg text-gray-300">{benefit}</span>
                   </motion.li>)}
@@ -258,8 +254,8 @@ const Coaching = () => {
               
               {/* Internal Links to Local SEO Pages */}
               <div className="border-t border-primary/30 pt-6 mt-6">
-                <div className="bg-white/5 rounded-lg p-4">
-                  <p className="text-sm text-gray-300 mb-3 text-center">Looking for a specific focus?</p>
+                <div className="rounded-lg p-4 bg-card">
+                  <p className="text-sm mb-3 text-center text-primary">Looking for a specific focus?</p>
                   <div className="flex flex-wrap justify-center gap-3">
                     <Link to="/mobility-fitness-avondale" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
                       Mobility Training
@@ -289,8 +285,8 @@ const Coaching = () => {
             </h2>
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               <motion.div whileHover={{
-              y: -8
-            }} className="bg-white p-6 rounded-xl shadow-card border border-border">
+                y: -8
+              }} className="bg-white p-6 rounded-xl shadow-card border border-border">
                 <OptimizedImage src={davidCoach} alt="David Drake in front of Drake Fitness studio" className="mb-4 rounded-lg aspect-[10/9] md:aspect-[6/5]" objectPosition="center 60%" sizes="(max-width: 768px) 100vw, 576px" />
                 <h3 className="font-hero text-2xl font-bold mb-2 uppercase">David Drake</h3>
                 <p className="text-primary font-semibold mb-3">Owner & Head Coach</p>
@@ -302,8 +298,8 @@ const Coaching = () => {
                 </Button>
               </motion.div>
               <motion.div whileHover={{
-              y: -8
-            }} className="bg-white p-6 rounded-xl shadow-card border border-border">
+                y: -8
+              }} className="bg-white p-6 rounded-xl shadow-card border border-border">
               <OptimizedImage src={nickCoach} alt="Coach Nick Poppa at Drake Fitness" className="mb-4 rounded-lg aspect-[10/9] md:aspect-[6/5]" objectPosition="center 15%" sizes="(max-width: 768px) 100vw, 576px" />
                 <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Coach Nick Poppa</h3>
                 <p className="text-primary font-semibold mb-3">Holistic Movement Specialist</p>
@@ -328,16 +324,14 @@ const Coaching = () => {
             </h2>
             <div className="max-w-3xl mx-auto">
               <Accordion type="multiple" defaultValue={["item-0", "item-1", "item-2", "item-3", "item-4"]} className="space-y-4">
-                {coachingFAQs.map((faq, index) => (
-                  <AccordionItem key={index} value={`item-${index}`} className="bg-white/5 border border-white/10 rounded-xl px-6">
+                {coachingFAQs.map((faq, index) => <AccordionItem key={index} value={`item-${index}`} className="bg-white/5 border border-white/10 rounded-xl px-6">
                     <AccordionTrigger className="text-lg font-semibold hover:no-underline text-drake-gold">
                       {faq.q}
                     </AccordionTrigger>
                     <AccordionContent className="text-gray-300">
                       {faq.a}
                     </AccordionContent>
-                  </AccordionItem>
-                ))}
+                  </AccordionItem>)}
               </Accordion>
             </div>
           </div>
@@ -356,10 +350,10 @@ const Coaching = () => {
                 Book a consultation to discuss your goals, assess your movement, and build a plan that works for you. No pressure, just a conversation about your health.
               </p>
               <motion.div whileHover={{
-              scale: 1.05
-            }} whileTap={{
-              scale: 0.95
-            }}>
+                scale: 1.05
+              }} whileTap={{
+                scale: 0.95
+              }}>
                 <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-lg px-8 py-6 text-balance">
                   <Link to="/contact">Book 1:1 Consultation</Link>
                 </Button>
@@ -370,7 +364,6 @@ const Coaching = () => {
       </section>
     </main>
     <Footer />
-    </>
-  );
+    </>;
 };
 export default Coaching;
