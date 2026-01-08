@@ -30,9 +30,9 @@ export function WeekDayColumn({ date, classes, onClassClick }: WeekDayColumnProp
   const tomorrow = isTomorrow(date);
 
   return (
-    <div className={`flex flex-col min-w-[140px] ${today ? 'bg-primary/5 rounded-lg' : ''}`}>
+    <div className={`flex flex-col min-w-[120px] ${today ? 'bg-primary/5 rounded-lg' : ''}`}>
       {/* Day Header */}
-      <div className={`p-2 text-center border-b border-border sticky top-0 bg-card z-10 ${today ? 'bg-primary/5' : ''}`}>
+      <div className={`p-2 text-center border-b border-border sticky top-0 bg-card z-10 rounded-t-lg ${today ? 'bg-primary/5' : ''}`}>
         <div className="text-xs font-medium text-muted-foreground uppercase">
           {format(date, 'EEE')}
         </div>
@@ -42,7 +42,7 @@ export function WeekDayColumn({ date, classes, onClassClick }: WeekDayColumnProp
         {today && (
           <Badge variant="default" className="text-[10px] px-1.5 py-0">Today</Badge>
         )}
-        {tomorrow && (
+        {tomorrow && !today && (
           <Badge variant="secondary" className="text-[10px] px-1.5 py-0">Tomorrow</Badge>
         )}
       </div>
@@ -50,7 +50,7 @@ export function WeekDayColumn({ date, classes, onClassClick }: WeekDayColumnProp
       {/* Classes */}
       <div className="flex-1 p-1.5 space-y-1.5">
         {classes.length === 0 ? (
-          <div className="text-xs text-muted-foreground text-center py-4">
+          <div className="text-xs text-muted-foreground text-center py-6">
             No classes
           </div>
         ) : (
@@ -58,19 +58,19 @@ export function WeekDayColumn({ date, classes, onClassClick }: WeekDayColumnProp
             <button
               key={classItem.id}
               onClick={() => onClassClick(classItem)}
-              className="w-full text-left p-2 rounded-md bg-background hover:bg-accent border border-border hover:border-primary/50 transition-colors group"
+              className="w-full text-left p-2 rounded-lg bg-background hover:bg-accent border border-border hover:border-primary/50 transition-all group shadow-sm"
             >
-              <div className="text-xs font-semibold text-primary mb-0.5">
+              <div className="text-xs font-bold text-primary mb-0.5">
                 {formatTime(classItem.start_time)}
               </div>
-              <div className="text-sm font-medium leading-tight mb-1 group-hover:text-primary transition-colors">
+              <div className="text-sm font-semibold leading-tight mb-1 group-hover:text-primary transition-colors line-clamp-2">
                 {classItem.class_name}
               </div>
               <div className="flex items-center gap-1.5 flex-wrap">
                 {classItem.instructor && (
                   <div className="flex items-center gap-1 text-xs text-muted-foreground">
                     <User className="w-3 h-3" />
-                    <span className="truncate max-w-[70px]">{classItem.instructor}</span>
+                    <span className="truncate max-w-[80px]">{classItem.instructor}</span>
                   </div>
                 )}
                 {classItem.is_online && (
