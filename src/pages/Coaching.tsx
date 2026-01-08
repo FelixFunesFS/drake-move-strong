@@ -212,7 +212,7 @@ const Coaching = () => {
                 delay: index * 0.2
               }} whileHover={{
                 y: -5
-              }} className="text-center p-5 md:p-6 rounded-xl border shadow border-primary bg-primary">
+              }} className="text-center p-5 md:p-6 rounded-xl border shadow border-primary bg-gray-800">
                   <div className="text-primary mb-4 flex justify-center">{item.icon}</div>
                   <h3 className="font-hero text-lg md:text-xl font-bold mb-3 text-accent uppercase">{item.title}</h3>
                   <p className="text-sm md:text-base text-gray-300">{item.description}</p>
@@ -228,13 +228,13 @@ const Coaching = () => {
               once: true
             }} transition={{
               delay: 0.6
-            }} className="mt-12 p-8 rounded-xl border border-primary shadow max-w-5xl mx-auto bg-primary">
+            }} className="mt-12 p-8 rounded-xl border border-primary shadow max-w-5xl mx-auto bg-gray-800">
               <div className="flex justify-center mb-4">
                 <div className="p-3 bg-primary/20 rounded-lg">
                   <Sparkles className="w-8 h-8 text-accent" />
                 </div>
               </div>
-              <h3 className="font-hero text-2xl font-bold text-center mb-4 uppercase text-accent">Additional Benefits</h3>
+              <h3 className="font-hero font-bold text-center mb-4 uppercase text-accent text-xl">Additional Benefits</h3>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-x-8 md:gap-y-3">
                 {["Movement assessment", "Corrective mobility work", "Functional strength training", "Technique refinement", "Lifestyle + recovery guidance", "Optional homework exercises"].map((benefit, index) => <motion.li key={index} initial={{
                   opacity: 0,
