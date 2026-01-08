@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
 import CredentialTable from "@/components/CredentialTable";
 import PhilosophyQuote from "@/components/PhilosophyQuote";
-import davidImage from "@/assets/david-double-kb-storefront.jpg";
+import davidImage from "@/assets/david-double-kb-storefront-new.jpg";
 import davidImage2 from "@/assets/david-goblet-squat-kb-rack.jpg";
 import nickImage from "@/assets/coach-nick-new.jpg";
 import kbCollection from "@/assets/group-kettlebell-training.jpg";
