@@ -232,8 +232,8 @@ const Coaching = () => {
             once: true
           }} transition={{
             delay: 0.6
-          }} className="mt-12 max-w-3xl mx-auto bg-white p-8 rounded-xl border border-border shadow-card">
-              <h3 className="font-hero text-2xl font-bold text-center mb-4 uppercase">Additional Benefits</h3>
+          }} className="mt-12 bg-white/10 p-8 rounded-xl border border-primary shadow">
+              <h3 className="font-hero text-2xl font-bold text-center mb-4 uppercase text-accent">Additional Benefits</h3>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-x-8 md:gap-y-3">
                 {["Movement assessment", "Corrective mobility work", "Functional strength training", "Technique refinement", "Lifestyle + recovery guidance", "Optional homework exercises"].map((benefit, index) => <motion.li key={index} initial={{
                 opacity: 0,
@@ -246,14 +246,14 @@ const Coaching = () => {
               }} transition={{
                 delay: index * 0.1
               }} className="flex items-center">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
-                    <span className="text-lg">{benefit}</span>
+                    <span className="w-2 h-2 bg-accent rounded-full mr-3"></span>
+                    <span className="text-lg text-gray-300">{benefit}</span>
                   </motion.li>)}
               </ul>
               
               {/* Internal Links to Local SEO Pages */}
-              <div className="border-t border-border pt-6 mt-6">
-                <p className="text-sm text-muted-foreground mb-3 text-center">Looking for a specific focus?</p>
+              <div className="border-t border-primary/30 pt-6 mt-6">
+                <p className="text-sm text-gray-400 mb-3 text-center">Looking for a specific focus?</p>
                 <div className="flex flex-wrap justify-center gap-3">
                   <Link to="/mobility-fitness-avondale" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
                     Mobility Training
