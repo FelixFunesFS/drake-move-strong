@@ -297,8 +297,8 @@ const Coaching = () => {
               <motion.div whileHover={{
               y: -8
             }} className="bg-white p-6 rounded-xl shadow-card border border-border">
-                <OptimizedImage src={nickCoach} alt="Coach Nick Poppa demonstrating sandbag training" aspectRatio="video" className="mb-4 rounded-lg" sizes="(max-width: 768px) 100vw, 576px" />
-                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Coach Nick</h3>
+              <OptimizedImage src={nickCoach} alt="Coach Nick Poppa at Drake Fitness" aspectRatio="video" className="mb-4 rounded-lg" objectPosition="top" sizes="(max-width: 768px) 100vw, 576px" />
+                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Coach Nick Poppa</h3>
                 <p className="text-primary font-semibold mb-3">Holistic Movement Specialist</p>
                 <p className="text-muted-foreground mb-4">
                   Expert in bridging rehabilitation and performance. Patience and results can coexist.
