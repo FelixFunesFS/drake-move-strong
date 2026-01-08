@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Calendar, RefreshCw } from "lucide-react";
+import { ChevronRight, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ClassCard } from "./ClassCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import AnimatedSection from "@/components/AnimatedSection";
 import { BookingModal } from "./BookingModal";
-import { useAuth } from "@/contexts/AuthContext";
 
 interface ScheduleClass {
   id: string;
@@ -31,11 +30,8 @@ interface GroupedClasses {
 }
 
 export function UpcomingClassesWidget() {
-  const { isAdmin } = useAuth();
-
   const [groupedClasses, setGroupedClasses] = useState<GroupedClasses[]>([]);
   const [loading, setLoading] = useState(true);
-  const [syncing, setSyncing] = useState(false);
   const [selectedClass, setSelectedClass] = useState<ScheduleClass | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -101,24 +97,6 @@ export function UpcomingClassesWidget() {
     }
   };
 
-  const syncSchedule = async () => {
-    if (!isAdmin) return;
-
-    setSyncing(true);
-    try {
-      const { error } = await supabase.functions.invoke('sync-punchpass-schedule');
-      if (error) {
-        console.error('Error syncing schedule:', error);
-      } else {
-        await fetchUpcomingClasses();
-      }
-    } catch (error) {
-      console.error('Error syncing schedule:', error);
-    } finally {
-      setSyncing(false);
-    }
-  };
-
   useEffect(() => {
     fetchUpcomingClasses();
     
@@ -169,26 +147,12 @@ export function UpcomingClassesWidget() {
                 Reserve your spot in a class that fits your schedule
               </p>
             </div>
-            <div className="flex items-center gap-3">
-              {isAdmin ? (
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={syncSchedule}
-                  disabled={syncing}
-                  className="text-muted-foreground hover:text-primary"
-                >
-                  <RefreshCw className={`w-4 h-4 mr-1.5 ${syncing ? 'animate-spin' : ''}`} />
-                  {syncing ? 'Syncing...' : 'Refresh'}
-                </Button>
-              ) : null}
-              <Button asChild size="lg" className="shrink-0">
-                <Link to="/schedule" className="inline-flex items-center gap-2">
-                  View Full Schedule
-                  <ChevronRight className="w-4 h-4" />
-                </Link>
-              </Button>
-            </div>
+            <Button asChild size="lg" className="shrink-0">
+              <Link to="/schedule" className="inline-flex items-center gap-2">
+                View Full Schedule
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </Button>
           </div>
 
         </AnimatedSection>
