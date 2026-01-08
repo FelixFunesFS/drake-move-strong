@@ -191,14 +191,6 @@ export function NativeWeeklySchedule() {
           })}
         </div>
 
-        {/* Filters */}
-        <ScheduleFilters
-          locationFilter={locationFilter}
-          timeFilter={timeFilter}
-          onLocationChange={setLocationFilter}
-          onTimeChange={setTimeFilter}
-        />
-
         {/* Selected Day Classes */}
         <div className="space-y-3">
           <h3 className="font-semibold text-base">
