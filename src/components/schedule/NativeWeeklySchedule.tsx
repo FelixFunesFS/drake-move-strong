@@ -10,6 +10,17 @@ import { BookingModal } from "./BookingModal";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 
+const getInstructorStyles = (instructor: string | null) => {
+  switch (instructor?.toLowerCase()) {
+    case 'david':
+      return 'bg-amber-100 text-amber-700';
+    case 'nick':
+      return 'bg-violet-100 text-violet-700';
+    default:
+      return 'bg-slate-100 text-slate-600';
+  }
+};
+
 interface ScheduleClass {
   id: string;
   class_name: string;
@@ -213,8 +224,12 @@ export function NativeWeeklySchedule() {
                       <div className="font-bold text-base mb-1 group-hover:text-primary transition-colors">
                         {classItem.class_name}
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        {classItem.instructor && <span>{classItem.instructor}</span>}
+                      <div className="flex items-center gap-2 text-sm">
+                        {classItem.instructor && (
+                          <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${getInstructorStyles(classItem.instructor)}`}>
+                            {classItem.instructor}
+                          </span>
+                        )}
                         {classItem.is_online && (
                           <span className="inline-flex items-center gap-1 text-xs bg-secondary px-1.5 py-0.5 rounded font-medium">
                             ZOOM

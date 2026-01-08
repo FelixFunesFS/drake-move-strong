@@ -1,6 +1,17 @@
 import { format, isToday, isTomorrow } from "date-fns";
 import { Badge } from "@/components/ui/badge";
-import { Monitor, User } from "lucide-react";
+import { Monitor } from "lucide-react";
+
+const getInstructorStyles = (instructor: string | null) => {
+  switch (instructor?.toLowerCase()) {
+    case 'david':
+      return 'bg-amber-100 text-amber-700';
+    case 'nick':
+      return 'bg-violet-100 text-violet-700';
+    default:
+      return 'bg-slate-100 text-slate-600';
+  }
+};
 
 interface ClassItem {
   id: string;
@@ -68,10 +79,9 @@ export function WeekDayColumn({ date, classes, onClassClick }: WeekDayColumnProp
               </div>
               <div className="flex items-center gap-1.5 flex-wrap">
                 {classItem.instructor && (
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                    <User className="w-3 h-3" />
-                    <span className="truncate max-w-[80px]">{classItem.instructor}</span>
-                  </div>
+                  <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${getInstructorStyles(classItem.instructor)}`}>
+                    {classItem.instructor}
+                  </span>
                 )}
                 {classItem.is_online && (
                   <Badge variant="secondary" className="text-[10px] px-1 py-0 gap-0.5">
