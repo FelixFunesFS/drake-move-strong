@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
-import { format, startOfWeek, addDays, addWeeks, subWeeks, parseISO } from "date-fns";
+import { format, startOfWeek, addDays, addWeeks, subWeeks, isSameDay, isToday } from "date-fns";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Calendar } from "lucide-react";
 import { WeekDayColumn } from "./WeekDayColumn";
 import { ScheduleFilters } from "./ScheduleFilters";
 import { BookingModal } from "./BookingModal";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { cn } from "@/lib/utils";
 
 interface ScheduleClass {
   id: string;
@@ -21,7 +23,7 @@ interface ScheduleClass {
 
 export function NativeWeeklySchedule() {
   const [weekStart, setWeekStart] = useState(() => 
-    startOfWeek(new Date(), { weekStartsOn: 1 }) // Monday start
+    startOfWeek(new Date(), { weekStartsOn: 1 })
   );
   const [classes, setClasses] = useState<ScheduleClass[]>([]);
   const [loading, setLoading] = useState(true);
@@ -29,11 +31,24 @@ export function NativeWeeklySchedule() {
   const [timeFilter, setTimeFilter] = useState<"all" | "morning" | "afternoon" | "evening">("all");
   const [selectedClass, setSelectedClass] = useState<ScheduleClass | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [selectedDay, setSelectedDay] = useState<Date>(new Date());
+  const isMobile = useIsMobile();
 
   const weekEnd = addDays(weekStart, 6);
+  const weekDays = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
 
   useEffect(() => {
     fetchClasses();
+  }, [weekStart]);
+
+  // Set selected day to today when week changes
+  useEffect(() => {
+    const todayInWeek = weekDays.find(day => isToday(day));
+    if (todayInWeek) {
+      setSelectedDay(todayInWeek);
+    } else {
+      setSelectedDay(weekDays[0]);
+    }
   }, [weekStart]);
 
   const fetchClasses = async () => {
@@ -69,13 +84,9 @@ export function NativeWeeklySchedule() {
   };
 
   const filteredClasses = classes.filter((c) => {
-    // Location filter
     if (locationFilter === "studio" && c.is_online) return false;
     if (locationFilter === "zoom" && !c.is_online) return false;
-    
-    // Time filter
     if (timeFilter !== "all" && getTimeCategory(c.start_time) !== timeFilter) return false;
-    
     return true;
   });
 
@@ -84,8 +95,153 @@ export function NativeWeeklySchedule() {
     return filteredClasses.filter(c => c.class_date === dateStr);
   };
 
-  const weekDays = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
+  const formatTime = (time: string) => {
+    const [hours, minutes] = time.split(':').map(Number);
+    const period = hours >= 12 ? 'PM' : 'AM';
+    const displayHours = hours % 12 || 12;
+    return `${displayHours}:${minutes.toString().padStart(2, '0')} ${period}`;
+  };
 
+  // Mobile: Single day view with day selector
+  if (isMobile) {
+    return (
+      <div className="space-y-4">
+        {/* Week Navigation - Compact */}
+        <div className="flex items-center justify-between gap-2">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => setWeekStart(subWeeks(weekStart, 1))}
+            className="h-9 w-9"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </Button>
+          
+          <div className="text-center flex-1">
+            <div className="text-sm font-semibold">
+              {format(weekStart, 'MMM d')} – {format(weekEnd, 'MMM d')}
+            </div>
+          </div>
+          
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => setWeekStart(addWeeks(weekStart, 1))}
+            className="h-9 w-9"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </Button>
+        </div>
+
+        {/* Day Selector Pills - Horizontal scroll */}
+        <div className="flex gap-1.5 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
+          {weekDays.map((day) => {
+            const isSelected = isSameDay(day, selectedDay);
+            const isTodayDay = isToday(day);
+            const classCount = getClassesForDate(day).length;
+            
+            return (
+              <button
+                key={day.toISOString()}
+                onClick={() => setSelectedDay(day)}
+                className={cn(
+                  "flex-shrink-0 flex flex-col items-center px-3 py-2 rounded-xl transition-all min-w-[56px]",
+                  isSelected 
+                    ? "bg-primary text-primary-foreground shadow-md" 
+                    : isTodayDay
+                      ? "bg-primary/10 text-primary border border-primary/30"
+                      : "bg-muted hover:bg-muted/80"
+                )}
+              >
+                <span className="text-xs font-medium uppercase">
+                  {format(day, 'EEE')}
+                </span>
+                <span className="text-lg font-bold">
+                  {format(day, 'd')}
+                </span>
+                {classCount > 0 && (
+                  <span className={cn(
+                    "text-[10px] font-medium mt-0.5",
+                    isSelected ? "text-primary-foreground/80" : "text-muted-foreground"
+                  )}>
+                    {classCount}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Filters */}
+        <ScheduleFilters
+          locationFilter={locationFilter}
+          timeFilter={timeFilter}
+          onLocationChange={setLocationFilter}
+          onTimeChange={setTimeFilter}
+        />
+
+        {/* Selected Day Classes */}
+        <div className="space-y-3">
+          <h3 className="font-semibold text-base">
+            {format(selectedDay, 'EEEE, MMMM d')}
+          </h3>
+          
+          {loading ? (
+            <div className="space-y-3">
+              {[1, 2, 3].map((i) => (
+                <Skeleton key={i} className="h-20 w-full rounded-xl" />
+              ))}
+            </div>
+          ) : getClassesForDate(selectedDay).length === 0 ? (
+            <div className="text-center py-10 text-muted-foreground bg-muted/30 rounded-xl">
+              <Calendar className="w-10 h-10 mx-auto mb-3 opacity-50" />
+              <p className="font-medium">No classes scheduled</p>
+              <p className="text-sm">Try another day or clear filters</p>
+            </div>
+          ) : (
+            <div className="space-y-2">
+              {getClassesForDate(selectedDay).map((classItem) => (
+                <button
+                  key={classItem.id}
+                  onClick={() => handleClassClick(classItem)}
+                  className="w-full text-left p-4 rounded-xl bg-card border border-border hover:border-primary/50 hover:shadow-md transition-all group active:scale-[0.98]"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1 min-w-0">
+                      <div className="text-primary font-semibold text-sm mb-1">
+                        {formatTime(classItem.start_time)}
+                      </div>
+                      <div className="font-bold text-base mb-1 group-hover:text-primary transition-colors">
+                        {classItem.class_name}
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        {classItem.instructor && <span>{classItem.instructor}</span>}
+                        {classItem.is_online && (
+                          <span className="inline-flex items-center gap-1 text-xs bg-secondary px-1.5 py-0.5 rounded font-medium">
+                            ZOOM
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0 mt-1" />
+                  </div>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Booking Modal */}
+        <BookingModal
+          isOpen={modalOpen}
+          onClose={() => setModalOpen(false)}
+          classData={selectedClass}
+        />
+      </div>
+    );
+  }
+
+  // Desktop: Week grid view
   return (
     <div className="space-y-4">
       {/* Header with Navigation */}
@@ -160,7 +316,7 @@ export function NativeWeeklySchedule() {
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <div className="grid grid-cols-7 gap-0 divide-x divide-border min-w-[980px]">
+            <div className="grid grid-cols-7 gap-0 divide-x divide-border min-w-[840px]">
               {weekDays.map((date) => (
                 <WeekDayColumn
                   key={date.toISOString()}
@@ -177,7 +333,8 @@ export function NativeWeeklySchedule() {
       {/* Empty State */}
       {!loading && filteredClasses.length === 0 && (
         <div className="text-center py-8 text-muted-foreground">
-          <p>No classes found for this week with the selected filters.</p>
+          <Calendar className="w-12 h-12 mx-auto mb-4 opacity-50" />
+          <p className="font-medium">No classes found for this week</p>
           <Button
             variant="link"
             onClick={() => {
