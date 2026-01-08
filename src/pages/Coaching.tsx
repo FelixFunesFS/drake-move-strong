@@ -284,7 +284,7 @@ const Coaching = () => {
               <motion.div whileHover={{
               y: -8
             }} className="bg-white p-6 rounded-xl shadow-card border border-border">
-                <OptimizedImage src={davidCoach} alt="David Drake in front of Drake Fitness studio" className="mb-4 rounded-lg aspect-[4/3] md:aspect-[16/11]" objectPosition="center 10%" sizes="(max-width: 768px) 100vw, 576px" />
+                <OptimizedImage src={davidCoach} alt="David Drake in front of Drake Fitness studio" className="mb-4 rounded-lg aspect-[4/3] md:aspect-[16/11]" objectPosition="center 45%" sizes="(max-width: 768px) 100vw, 576px" />
                 <h3 className="font-hero text-2xl font-bold mb-2 uppercase">David Drake</h3>
                 <p className="text-primary font-semibold mb-3">Owner & Head Coach</p>
                 <p className="text-muted-foreground mb-4">
