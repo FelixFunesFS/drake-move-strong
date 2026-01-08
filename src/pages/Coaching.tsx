@@ -16,7 +16,6 @@ import nickCoach from "@/assets/coach-nick-new.jpg";
 import coachingSession from "@/assets/coaching-session.jpg";
 import TestimonialHero from "@/components/TestimonialHero";
 import { FEATURED_REVIEWS } from "@/data/reviews";
-import Footer from "@/components/Footer";
 const Coaching = () => {
   const reasons = [{
     icon: Heart,
@@ -363,7 +362,6 @@ const Coaching = () => {
         </div>
       </section>
     </main>
-    <Footer />
     </>;
 };
 export default Coaching;

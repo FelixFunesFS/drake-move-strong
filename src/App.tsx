@@ -97,7 +97,7 @@ const ChatBot = lazy(() => import("./components/chat/ChatBot"));
 const STANDALONE_ROUTES = ['/new-year', '/reset-week', '/reset', '/auth', '/consultation'];
 
 // Route prefixes that use custom layouts (no standard nav/footer)
-const CUSTOM_LAYOUT_PREFIXES = ['/member', '/admin', '/coach'];
+const CUSTOM_LAYOUT_PREFIXES = ['/member/', '/admin/', '/coach/'];
 
 const AppLayout = () => {
   const location = useLocation();
