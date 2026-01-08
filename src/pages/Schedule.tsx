@@ -2,11 +2,10 @@ import Hero from "@/components/Hero";
 import CTASection from "@/components/CTASection";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Info, ExternalLink } from "lucide-react";
+import { Info } from "lucide-react";
 import scheduleCommunityImage from "@/assets/schedule-community-group.jpg";
 import { SEO } from "@/components/SEO";
-import { Button } from "@/components/ui/button";
-import { ScheduleQuickView } from "@/components/schedule/ScheduleQuickView";
+import { NativeWeeklySchedule } from "@/components/schedule/NativeWeeklySchedule";
 
 const Schedule = () => {
   return (
@@ -37,51 +36,16 @@ const Schedule = () => {
           </div>
         </section>
 
-        {/* Quick View - Today's & Tomorrow's Classes */}
-        <section className="py-8 md:py-12 bg-muted">
+        {/* Native Weekly Schedule */}
+        <section className="py-8 md:py-12 bg-background">
           <div className="container mx-auto px-4">
             <div className="mb-6">
               <h2 className="font-hero text-xl md:text-2xl font-bold uppercase">
-                Quick <span className="text-primary">View</span>
-              </h2>
-              <p className="text-sm text-muted-foreground">Today's and tomorrow's classes at a glance</p>
-            </div>
-            <div className="max-w-4xl mx-auto">
-              <ScheduleQuickView />
-            </div>
-          </div>
-        </section>
-
-        <section className="py-6 md:py-8 bg-background flex-1">
-          <div className="container mx-auto px-4 h-full">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="font-hero text-xl md:text-2xl font-bold uppercase">
                 Book Your <span className="text-primary">Class</span>
               </h2>
-              <Button asChild variant="outline" size="sm">
-                <a 
-                  href="https://drakefitness.punchpass.com/classes" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2"
-                >
-                  Open Full Schedule
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              </Button>
+              <p className="text-sm text-muted-foreground">Click any class to book your spot</p>
             </div>
-            <div className="bg-card rounded-xl shadow-lg overflow-hidden border border-border">
-              <iframe 
-                src="https://drakefitness.punchpass.com/classes?embed=true&hidefilter=true"
-                title="Drake Fitness Class Schedule"
-                className="w-full border-0"
-                style={{ 
-                  height: 'calc(100vh - 280px)',
-                  minHeight: '500px'
-                }}
-                loading="lazy"
-              />
-            </div>
+            <NativeWeeklySchedule />
           </div>
         </section>
 
