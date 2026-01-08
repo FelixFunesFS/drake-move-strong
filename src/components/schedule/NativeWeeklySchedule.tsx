@@ -9,7 +9,6 @@ import { ScheduleFilters } from "./ScheduleFilters";
 import { BookingModal } from "./BookingModal";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
-import { getClassType, getClassTypeStyles } from "@/lib/classTypeColors";
 
 interface ScheduleClass {
   id: string;
@@ -200,41 +199,33 @@ export function NativeWeeklySchedule() {
             </div>
           ) : (
             <div className="space-y-2">
-              {getClassesForDate(selectedDay).map((classItem) => {
-                const classType = getClassType(classItem.class_name);
-                const typeStyles = getClassTypeStyles(classType);
-                
-                return (
-                  <button
-                    key={classItem.id}
-                    onClick={() => handleClassClick(classItem)}
-                    className={cn(
-                      "w-full text-left p-4 rounded-xl bg-card border border-border hover:border-primary/50 hover:shadow-md transition-all group active:scale-[0.98]",
-                      typeStyles.border
-                    )}
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex-1 min-w-0">
-                        <div className="text-primary font-semibold text-sm mb-1">
-                          {formatTime(classItem.start_time)}
-                        </div>
-                        <div className="font-bold text-base mb-1 group-hover:text-primary transition-colors">
-                          {classItem.class_name}
-                        </div>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          {classItem.instructor && <span>{classItem.instructor}</span>}
-                          {classItem.is_online && (
-                            <span className="inline-flex items-center gap-1 text-xs bg-secondary px-1.5 py-0.5 rounded font-medium">
-                              ZOOM
-                            </span>
-                          )}
-                        </div>
+              {getClassesForDate(selectedDay).map((classItem) => (
+                <button
+                  key={classItem.id}
+                  onClick={() => handleClassClick(classItem)}
+                  className="w-full text-left p-4 rounded-xl bg-card border border-border hover:border-primary/50 hover:shadow-md transition-all group active:scale-[0.98]"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1 min-w-0">
+                      <div className="text-primary font-semibold text-sm mb-1">
+                        {formatTime(classItem.start_time)}
                       </div>
-                      <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0 mt-1" />
+                      <div className="font-bold text-base mb-1 group-hover:text-primary transition-colors">
+                        {classItem.class_name}
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        {classItem.instructor && <span>{classItem.instructor}</span>}
+                        {classItem.is_online && (
+                          <span className="inline-flex items-center gap-1 text-xs bg-secondary px-1.5 py-0.5 rounded font-medium">
+                            ZOOM
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </button>
-                );
-              })}
+                    <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0 mt-1" />
+                  </div>
+                </button>
+              ))}
             </div>
           )}
         </div>
