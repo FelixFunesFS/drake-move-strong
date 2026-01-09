@@ -35,6 +35,7 @@ import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
 import TestimonialHero from "@/components/TestimonialHero";
 import { FEATURED_REVIEWS } from "@/data/reviews";
+import { TodayClassesBanner } from "@/components/schedule/TodayClassesBanner";
 const Home = () => {
   return <>
       <SEO title="Charleston Mobility Training 2026 | Proven Results | Drake" description="Expert-led functional strength and mobility training in Charleston, SC. Join David Drake and Coach Nick for small-group classes, personal training, and sustainable results. 25+ years of coaching experience." canonical="https://drake.fitness" />
@@ -63,6 +64,9 @@ const Home = () => {
             </span>)}
         </Marquee>
       </section>
+
+      {/* Today's Classes Banner - After Marquee on Homepage */}
+      <TodayClassesBanner />
 
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
