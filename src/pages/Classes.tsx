@@ -380,8 +380,8 @@ const Classes = () => {
       <CTASection
         eyebrow="GET STARTED"
         title="Ready to Feel Stronger, Move Better, and Train Smarter?"
-        subtitle="Start with Reset Week — 7 days of unlimited classes for just $49."
-        ctaText="Start Reset Week — $49"
+        subtitle="Start with Reset Week — 7 days of unlimited classes for just $50."
+        ctaText="Start Reset Week — $50"
         ctaLink="/reset-week"
         variant="primary"
         slanted={true}
