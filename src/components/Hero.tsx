@@ -51,7 +51,7 @@ const Hero = ({
   }, [hasMultipleImages, images.length, autoRotate]);
   return (
     <LazyMotion features={domAnimation}>
-      <section className={cn("relative h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] flex items-center overflow-hidden", className)}>
+      <section className={cn("relative h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] flex items-center md:items-start md:pt-28 lg:pt-36 overflow-hidden", className)}>
         {/* Background Images with Ken Burns Effect - uses real <img> for LCP optimization */}
         {images.length > 0 ? (
           <div className="absolute inset-0 z-0">
@@ -91,20 +91,20 @@ const Hero = ({
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="section-eyebrow text-drake-gold mb-4"
+                className="section-eyebrow text-drake-gold mb-2 md:mb-4"
               >
                 {eyebrow}
               </m.p>
             )}
             {/* H1 uses regular element for faster LCP - no motion wrapper */}
-            <h1 className="font-hero text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 leading-[0.95] tracking-tighter uppercase">
+            <h1 className="font-hero text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-3 md:mb-5 leading-[0.95] tracking-tighter uppercase">
               {title}
             </h1>
             <m.p 
               initial={{ opacity: 0, y: 30 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.8, delay: 0.4 }} 
-              className={cn("text-sm sm:text-base md:text-lg mb-6 md:mb-8 text-gray-200 leading-relaxed max-w-xl", accentedSubtitle && "border-l-4 border-drake-gold pl-6")}
+              className={cn("text-sm sm:text-base md:text-lg mb-4 md:mb-6 text-gray-200 leading-relaxed max-w-xl", accentedSubtitle && "border-l-4 border-drake-gold pl-6")}
             >
               {subtitle}
             </m.p>
