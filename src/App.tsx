@@ -109,11 +109,11 @@ const AppLayout = () => {
     <>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen">
-        {!hideNavFooter && <AnnouncementBanner />}
         {!hideNavFooter && (
-          <div className="sticky top-0 z-50">
+          <header className="sticky top-0 z-50">
+            <AnnouncementBanner />
             <Navigation />
-          </div>
+          </header>
         )}
         {!hideNavFooter && location.pathname !== '/' && <TodayClassesBanner />}
         <div className="flex-grow">

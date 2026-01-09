@@ -348,10 +348,10 @@ export default function LowImpactFitnessCharleston() {
               <h2 className="font-hero text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-accent-foreground uppercase">
                 Train Again Without Fear of Making Things Worse
               </h2>
-              <p className="text-base md:text-lg text-accent-foreground/80 mb-4 md:mb-6">Start with Reset Week — 7 days of unlimited classes for just $49.</p>
+              <p className="text-base md:text-lg text-accent-foreground/80 mb-4 md:mb-6">Start with Reset Week — 7 days of unlimited classes for just $50.</p>
               <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 md:px-8 py-4 md:py-5 text-base md:text-lg whitespace-normal text-center">
                 <Link to="/reset-week">
-                  Start Reset Week — $49
+                  Start Reset Week — $50
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                 </Link>
               </Button>

@@ -162,7 +162,7 @@ export default function MobilityFitnessAvondale() {
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
                   <Link to="/reset-week">
                     <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
-                    Start Reset Week — $49
+                    Start Reset Week — $50
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/20 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">

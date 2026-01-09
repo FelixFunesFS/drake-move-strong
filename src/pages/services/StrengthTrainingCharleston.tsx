@@ -84,7 +84,7 @@ export default function StrengthTrainingCharleston() {
     <>
       <SEO
         title="Mobility & Strength Training in Charleston, SC | Drake Fitness"
-        description="Train smarter, move better, and get strong without pain. Charleston's premier mobility and strength training studio. Start with Reset Week — $49."
+        description="Train smarter, move better, and get strong without pain. Charleston's premier mobility and strength training studio. Start with Reset Week — $50."
         canonical="https://drake.fitness/strength-training-charleston"
       />
       <StructuredData data={serviceSchema} />
@@ -120,7 +120,7 @@ export default function StrengthTrainingCharleston() {
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
                 <Link to="/reset-week">
                   <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
-                  Start Reset Week — $49
+                  Start Reset Week — $50
                 </Link>
               </Button>
               <div className="mt-10 flex flex-wrap gap-6 text-sm text-primary-foreground">

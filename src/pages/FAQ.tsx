@@ -15,7 +15,7 @@ const FAQ = () => {
         },
         {
           q: "How do I get started?",
-          a: "The best way to begin is to book a Free Mobility Consultation or start our 14-Day Intro Experience ($49). This gives you unlimited classes for two weeks plus a mobility consultation, so you can experience our coaching style and find the right class schedule for you.",
+          a: "The best way to begin is to start with Reset Week ($50). This gives you 7 days of unlimited classes so you can experience our coaching style and find the right class schedule for you.",
         },
         {
           q: "What should I wear and bring?",
@@ -173,8 +173,8 @@ const FAQ = () => {
       <CTASection
         eyebrow="GET STARTED"
         title="Ready to Get Started?"
-        subtitle="Try Reset Week — 7 days of unlimited classes for just $49. No commitment."
-        ctaText="Start Reset Week — $49"
+        subtitle="Try Reset Week — 7 days of unlimited classes for just $50. No commitment."
+        ctaText="Start Reset Week — $50"
         ctaLink="/reset-week"
         variant="primary"
         slanted={true}

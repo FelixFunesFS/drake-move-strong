@@ -207,7 +207,7 @@ const Contact = () => {
                         <SelectValue placeholder="Select an option" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="reset-week">Reset Week ($49)</SelectItem>
+                        <SelectItem value="reset-week">Reset Week ($50)</SelectItem>
                         <SelectItem value="membership">Monthly Membership</SelectItem>
                         <SelectItem value="coaching">1:1 Coaching</SelectItem>
                         <SelectItem value="general">General Inquiry</SelectItem>
@@ -248,7 +248,7 @@ const Contact = () => {
             },
             {
               q: "How do I get started at Drake Fitness?",
-              a: "Start with Reset Week — 7 days of unlimited classes for $49. It's the best way to experience our training style and find the right class for you.",
+              a: "Start with Reset Week — 7 days of unlimited classes for $50. It's the best way to experience our training style and find the right class for you.",
             },
           ];
           const faqSchema = buildFAQSchema(contactFAQs);
@@ -272,7 +272,7 @@ const Contact = () => {
                 },
                 {
                   q: "How do I get started at Drake Fitness?",
-                  a: "Start with Reset Week — 7 days of unlimited classes for $49. It's the best way to experience our training style and find the right class for you.",
+                  a: "Start with Reset Week — 7 days of unlimited classes for $50. It's the best way to experience our training style and find the right class for you.",
                 },
               ].map((faq, index) => (
                 <div key={index} className="bg-white p-6 rounded-xl border border-border shadow-card">

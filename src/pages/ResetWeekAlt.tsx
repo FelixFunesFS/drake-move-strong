@@ -143,8 +143,8 @@ const ResetWeekAlt = () => {
   return (
     <>
       <SEO 
-        title="Reset Week Charleston | $49 for 7 Days | Try Us 2026"
-        description="Move better, feel stronger, stay pain-free. A safe, guided reset for people restarting fitness — even if gyms haven't worked before. 7 days unlimited for $49."
+        title="Reset Week Charleston | $50 for 7 Days | Try Us 2026"
+        description="Move better, feel stronger, stay pain-free. A safe, guided reset for people restarting fitness — even if gyms haven't worked before. 7 days unlimited for $50."
         canonical="https://drake.fitness/reset"
       />
 
