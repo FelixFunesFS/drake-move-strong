@@ -51,14 +51,14 @@ const Hero = ({
     }, 8000);
     return () => clearInterval(interval);
   }, [hasMultipleImages, images.length, autoRotate]);
-  // Dynamic height: viewport-based for home hero (nav is above, not overlaying)
+  // Dynamic height: shorter on mobile to peek Marquee, full viewport on desktop
   const heroHeightClass = fullViewport 
-    ? "h-[calc(100vh-112px)] md:h-[calc(100vh-112px)]" // 112px = banner + nav height
+    ? "h-[calc(100vh-160px)] md:h-[calc(100vh-112px)]" // Shorter on mobile to show more content
     : "h-[500px] sm:h-[600px] md:h-[600px] lg:h-[700px]";
   
-  // Content positioning: center vertically since nav is above (not overlaying)
+  // Content positioning: mobile starts higher, desktop centers
   const contentPositionClass = fullViewport
-    ? "items-center"
+    ? "items-start pt-12 md:items-center md:pt-0"
     : "items-center md:items-start md:pt-8 lg:pt-12";
     
   return (
