@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, Youtube } from "lucide-react";
-import drakeLogo from "@/assets/drake-logo.png?format=webp&w=176";
+import drakeLogo from "@/assets/drake-logo-new.png?format=webp&w=200";
 import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
 import MicroTrustBadges from "@/components/MicroTrustBadges";
 
