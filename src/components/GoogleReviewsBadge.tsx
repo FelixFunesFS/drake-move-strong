@@ -1,6 +1,7 @@
 import { Star, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { TRUST_STATS } from "@/data/trustStats";
+import googleLogoG from "@/assets/google-logo-g.png";
 
 // Re-export for backward compatibility - now pulls from centralized trustStats
 export const GOOGLE_REVIEWS = {
@@ -10,19 +11,13 @@ export const GOOGLE_REVIEWS = {
   supportingText: 'Trusted by adults in Charleston who want to move better and stay pain-free.'
 };
 
-// Google brand rainbow "G" using official brand colors
+// Google brand "G" logo - sized responsively with text
 const GoogleBrandedG = () => (
-  <span 
-    className="font-bold"
-    style={{
-      background: 'linear-gradient(90deg, #4285F4 0%, #EA4335 33%, #FBBC05 66%, #34A853 100%)',
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-      backgroundClip: 'text',
-    }}
-  >
-    G
-  </span>
+  <img 
+    src={googleLogoG}
+    alt="G"
+    className="inline-block h-[1em] w-auto align-baseline -mb-[0.1em]"
+  />
 );
 
 interface GoogleReviewsBadgeProps {
