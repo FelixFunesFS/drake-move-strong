@@ -1,4 +1,4 @@
-import { Suspense, lazy, useMemo } from "react";
+import { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +12,8 @@ import ScrollToTopButton from "./components/ScrollToTopButton";
 import Footer from "./components/Footer";
 import AnnouncementBanner from "./components/AnnouncementBanner";
 import { TodayClassesBanner } from "./components/schedule/TodayClassesBanner";
+import { useScrollDirection } from "@/hooks/useScrollDirection";
+import { cn } from "@/lib/utils";
 
 // Create QueryClient outside component to avoid recreation
 const queryClient = new QueryClient({
@@ -101,6 +103,8 @@ const CUSTOM_LAYOUT_PREFIXES = ['/member/', '/admin/', '/coach/'];
 
 const AppLayout = () => {
   const location = useLocation();
+  const { isScrolled, isVisible } = useScrollDirection(100);
+  const isHomePage = location.pathname === '/';
   const isStandalonePage = STANDALONE_ROUTES.includes(location.pathname);
   const hasCustomLayout = CUSTOM_LAYOUT_PREFIXES.some(prefix => location.pathname.startsWith(prefix));
   const hideNavFooter = isStandalonePage || hasCustomLayout;
@@ -110,12 +114,24 @@ const AppLayout = () => {
       <ScrollToTop />
       <div className="flex flex-col min-h-screen">
         {!hideNavFooter && (
-          <header className="sticky top-0 z-50">
+          <header 
+            className={cn(
+              "fixed top-0 left-0 right-0 z-50 transition-transform duration-300",
+              isVisible ? "translate-y-0" : "-translate-y-full"
+            )}
+          >
             <AnnouncementBanner />
-            <Navigation />
+            <Navigation 
+              transparent={isHomePage} 
+              isScrolled={isScrolled} 
+            />
           </header>
         )}
-        {!hideNavFooter && location.pathname !== '/' && <TodayClassesBanner />}
+        {/* Spacer for fixed header on non-home pages */}
+        {!hideNavFooter && !isHomePage && (
+          <div className="h-[112px]" />
+        )}
+        {!hideNavFooter && !isHomePage && <TodayClassesBanner />}
         <div className="flex-grow">
           <Suspense fallback={<div className="min-h-screen" />}>
             <Routes>

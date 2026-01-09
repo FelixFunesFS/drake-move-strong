@@ -42,7 +42,9 @@ const Home = () => {
       <StructuredData data={localBusinessSchema} />
       
       <main>
-      <Hero eyebrow={
+      <Hero 
+        fullViewport={true}
+        eyebrow={
         <div className="flex flex-col md:flex-row md:items-center items-start gap-2 md:gap-4">
           <span className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-white/80 bg-white/10 px-3 py-1 rounded-full">
             <MapPin className="w-3 h-3" />
