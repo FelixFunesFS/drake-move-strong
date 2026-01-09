@@ -25,6 +25,16 @@ const AnnouncementBanner = ({ onVisibilityChange }: AnnouncementBannerProps) => 
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
 
+  // Development helper to reset dismissed banners
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      (window as any).resetDismissedBanners = () => {
+        localStorage.removeItem('dismissedPromotions');
+        window.location.reload();
+      };
+    }
+  }, []);
+
   useEffect(() => {
     const fetchPromotion = async () => {
       try {

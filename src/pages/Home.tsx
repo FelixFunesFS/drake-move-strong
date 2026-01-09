@@ -62,11 +62,6 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         link: "/reset-week"
       }} backgroundImages={["/images/hero-mobile.jpg", heroImage3Desktop]} backgroundImagesMobile={["/images/hero-mobile.jpg", heroImage3Mobile]} autoRotate={true} />
 
-      {/* Today's Classes Banner - Desktop: After Hero, Mobile: Hidden here */}
-      <div className="hidden md:block">
-        <TodayClassesBanner />
-      </div>
-
       {/* Brand Values Marquee */}
       <section className="py-4 md:py-6 bg-drake-dark overflow-hidden border-y border-drake-gold/20">
         <Marquee speed="slow" gradient={false} pauseOnHover={false}>
@@ -77,10 +72,8 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         </Marquee>
       </section>
 
-      {/* Today's Classes Banner - Mobile Only: After Marquee */}
-      <div className="block md:hidden">
-        <TodayClassesBanner />
-      </div>
+      {/* Today's Classes Banner - After Marquee on all devices */}
+      <TodayClassesBanner />
 
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
