@@ -2,7 +2,7 @@ import CTASection from "@/components/CTASection";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { CheckCircle2, Star, ExternalLink } from "lucide-react";
+import { CheckCircle2, Star, ExternalLink, ArrowRight } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
@@ -222,63 +222,141 @@ const Pricing = () => {
         {/* STEP 3: OTHER OPTIONS (DE-EMPHASIZED) */}
         <section className="py-12 md:py-16 bg-muted border-t border-border">
           <div className="container mx-auto px-4">
-            <h3 className="text-lg font-medium text-muted-foreground text-center mb-10">
+            <p className="text-sm uppercase tracking-widest text-muted-foreground text-center mb-2">
+              Alternative Options
+            </p>
+            <h3 className="font-hero text-xl md:text-2xl uppercase text-center text-foreground mb-10">
               Other Ways to Train
             </h3>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              {/* Foundation Plus */}
-              <div className="text-center">
-                <h4 className="font-semibold text-foreground mb-2">Foundation Plus</h4>
-                <p className="text-2xl font-bold text-foreground mb-2">$200<span className="text-sm font-normal text-muted-foreground">/month</span></p>
-                <p className="text-sm text-muted-foreground mb-3">
-                  For members who want more structure without going unlimited.
-                </p>
-                <ul className="text-sm text-muted-foreground space-y-1 mb-4">
-                  <li>3 classes per week</li>
-                  <li>Same coaching and programming</li>
-                </ul>
-                <Link to="/contact" className="text-primary hover:text-primary/80 text-sm font-medium underline underline-offset-2">
-                  Learn About Foundation Plus
-                </Link>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {/* Foundation Plus Card */}
+              <Card className="bg-card border border-border shadow-sm">
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-semibold text-lg text-foreground">
+                      Foundation Plus
+                    </h4>
+                    <span className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground">
+                      Add-on
+                    </span>
+                  </div>
+                  <div className="mt-2">
+                    <span className="text-2xl font-bold text-foreground">$200</span>
+                    <span className="text-sm text-muted-foreground">/month</span>
+                  </div>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <p className="text-sm text-muted-foreground mb-4">
+                    For members who want more structure without going unlimited.
+                  </p>
+                  <ul className="text-sm text-muted-foreground space-y-2 mb-4">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-primary/70 flex-shrink-0" />
+                      3 classes per week
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-primary/70 flex-shrink-0" />
+                      Same coaching quality
+                    </li>
+                  </ul>
+                </CardContent>
+                <CardFooter className="pt-0">
+                  <Link 
+                    to="/contact" 
+                    className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1"
+                  >
+                    Learn More
+                    <ArrowRight className="w-3 h-3" />
+                  </Link>
+                </CardFooter>
+              </Card>
 
-              {/* Remote Movement Support */}
-              <div className="text-center">
-                <h4 className="font-semibold text-foreground mb-2">Remote Movement Support</h4>
-                <p className="text-2xl font-bold text-foreground mb-2">$100<span className="text-sm font-normal text-muted-foreground">/month</span></p>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Live Zoom sessions to support your in-studio training.
-                </p>
-                <ul className="text-sm text-muted-foreground space-y-1 mb-4">
-                  <li>Active membership required</li>
-                  <li>Designed for travel or continuity</li>
-                </ul>
-                <Link to="/contact" className="text-primary hover:text-primary/80 text-sm font-medium underline underline-offset-2">
-                  Add Remote Support
-                </Link>
-              </div>
+              {/* Remote Movement Support Card */}
+              <Card className="bg-card border border-border shadow-sm">
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-semibold text-lg text-foreground">
+                      Remote Support
+                    </h4>
+                    <span className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground">
+                      Add-on
+                    </span>
+                  </div>
+                  <div className="mt-2">
+                    <span className="text-2xl font-bold text-foreground">$100</span>
+                    <span className="text-sm text-muted-foreground">/month</span>
+                  </div>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Live Zoom sessions when you can't make it to the studio.
+                  </p>
+                  <ul className="text-sm text-muted-foreground space-y-2 mb-4">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-primary/70 flex-shrink-0" />
+                      Active membership required
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-primary/70 flex-shrink-0" />
+                      Designed for travel
+                    </li>
+                  </ul>
+                </CardContent>
+                <CardFooter className="pt-0">
+                  <Link 
+                    to="/contact" 
+                    className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1"
+                  >
+                    Learn More
+                    <ArrowRight className="w-3 h-3" />
+                  </Link>
+                </CardFooter>
+              </Card>
 
-              {/* 10-Class Pack */}
-              <div className="text-center">
-                <h4 className="font-semibold text-foreground mb-2">10-Class Pack</h4>
-                <p className="text-2xl font-bold text-foreground mb-4">$200</p>
-                <p className="text-sm text-muted-foreground mb-3">
-                  For occasional training or maintenance.
-                </p>
-                <ul className="text-sm text-muted-foreground space-y-1 mb-4">
-                  <li>Expires in 6 months</li>
-                  <li>No weekly structure</li>
-                </ul>
-                <a 
-                  href="https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/219932" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-primary hover:text-primary/80 text-sm font-medium underline underline-offset-2"
-                >
-                  Buy Class Pack
-                </a>
-              </div>
+              {/* 10-Class Pack Card */}
+              <Card className="bg-card border border-border shadow-sm">
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-semibold text-lg text-foreground">
+                      10-Class Pack
+                    </h4>
+                    <span className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground">
+                      Flexible
+                    </span>
+                  </div>
+                  <div className="mt-2">
+                    <span className="text-2xl font-bold text-foreground">$200</span>
+                    <span className="text-sm text-muted-foreground"> one-time</span>
+                  </div>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <p className="text-sm text-muted-foreground mb-4">
+                    For occasional training or maintenance phases.
+                  </p>
+                  <ul className="text-sm text-muted-foreground space-y-2 mb-4">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-primary/70 flex-shrink-0" />
+                      Expires in 6 months
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-primary/70 flex-shrink-0" />
+                      No weekly commitment
+                    </li>
+                  </ul>
+                </CardContent>
+                <CardFooter className="pt-0">
+                  <a 
+                    href="https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/219932" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1"
+                  >
+                    Buy Pack
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </CardFooter>
+              </Card>
             </div>
           </div>
         </section>
