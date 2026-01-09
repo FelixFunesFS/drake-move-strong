@@ -52,12 +52,6 @@ const Navigation = ({ transparent = false, isScrolled = false }: NavigationProps
               </Link>)}
           </div>
 
-          <div className="hidden lg:flex items-center space-x-4">
-            <Button asChild size="lg" variant="gold">
-              <Link to="/reset-week" className="bg-primary text-primary-foreground px-[16px] py-0 text-sm whitespace-nowrap">Start Reset Week</Link>
-            </Button>
-          </div>
-
           <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="lg:hidden p-2" aria-label="Toggle menu">
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -69,11 +63,6 @@ const Navigation = ({ transparent = false, isScrolled = false }: NavigationProps
             {navLinks.map(link => <Link key={link.path} to={link.path} onClick={() => setMobileMenuOpen(false)} className={`block px-4 py-3 rounded-md text-sm font-medium ${isActive(link.path) ? "bg-primary/10 text-primary" : "text-foreground hover:bg-muted"}`}>
                 {link.name}
               </Link>)}
-            <Button asChild variant="gold" className="w-full mt-4">
-              <Link to="/reset-week" onClick={() => setMobileMenuOpen(false)}>
-                Start Reset Week
-              </Link>
-            </Button>
           </div>
         </div>}
     </nav>;

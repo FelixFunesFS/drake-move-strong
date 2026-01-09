@@ -4,12 +4,16 @@ interface ScrollInfo {
   isScrolled: boolean;      // Scrolled past threshold
   isScrollingDown: boolean; // Current direction
   isVisible: boolean;       // Should header be visible
+  isPastHeader: boolean;    // Scrolled past initial header position (for static-to-fixed transition)
 }
+
+const HEADER_HEIGHT = 112; // banner (~48px) + nav (~64px)
 
 export function useScrollDirection(threshold = 100): ScrollInfo {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [isPastHeader, setIsPastHeader] = useState(false);
   const lastScrollY = useRef(0);
   const scrollTimeout = useRef<NodeJS.Timeout>();
 
@@ -18,9 +22,10 @@ export function useScrollDirection(threshold = 100): ScrollInfo {
       const currentScrollY = window.scrollY;
       const scrollingDown = currentScrollY > lastScrollY.current;
       
-      // Update scroll direction
+      // Update scroll direction and states
       setIsScrollingDown(scrollingDown);
       setIsScrolled(currentScrollY > threshold);
+      setIsPastHeader(currentScrollY > HEADER_HEIGHT);
       
       // Hide when scrolling down past threshold
       if (scrollingDown && currentScrollY > threshold) {
@@ -48,5 +53,5 @@ export function useScrollDirection(threshold = 100): ScrollInfo {
     };
   }, [threshold]);
 
-  return { isScrolled, isScrollingDown, isVisible };
+  return { isScrolled, isScrollingDown, isVisible, isPastHeader };
 }

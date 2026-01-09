@@ -103,11 +103,14 @@ const CUSTOM_LAYOUT_PREFIXES = ['/member/', '/admin/', '/coach/'];
 
 const AppLayout = () => {
   const location = useLocation();
-  const { isScrolled, isVisible } = useScrollDirection(100);
+  const { isScrolled, isVisible, isPastHeader } = useScrollDirection(100);
   const isHomePage = location.pathname === '/';
   const isStandalonePage = STANDALONE_ROUTES.includes(location.pathname);
   const hasCustomLayout = CUSTOM_LAYOUT_PREFIXES.some(prefix => location.pathname.startsWith(prefix));
   const hideNavFooter = isStandalonePage || hasCustomLayout;
+
+  // Header becomes fixed only AFTER scrolling past it (for home page)
+  const headerIsFixed = isHomePage ? isPastHeader : true;
 
   return (
     <>
@@ -116,19 +119,22 @@ const AppLayout = () => {
         {!hideNavFooter && (
           <header 
             className={cn(
-              "fixed top-0 left-0 right-0 z-50 transition-transform duration-300",
-              isVisible ? "translate-y-0" : "-translate-y-full"
+              "w-full z-50 transition-all duration-300",
+              headerIsFixed 
+                ? "fixed top-0 left-0 right-0" 
+                : "relative",
+              headerIsFixed && (isVisible ? "translate-y-0" : "-translate-y-full")
             )}
           >
             <AnnouncementBanner />
             <Navigation 
-              transparent={isHomePage} 
+              transparent={false}
               isScrolled={isScrolled} 
             />
           </header>
         )}
-        {/* Spacer for fixed header on non-home pages */}
-        {!hideNavFooter && !isHomePage && (
+        {/* Spacer when header becomes fixed (to prevent content jump) */}
+        {!hideNavFooter && headerIsFixed && (
           <div className="h-[112px]" />
         )}
         {!hideNavFooter && !isHomePage && <TodayClassesBanner />}
