@@ -55,14 +55,14 @@ const Hero = ({
   }, [hasMultipleImages, images.length, autoRotate]);
   // Dynamic height: shorter on mobile to peek Marquee, full viewport on desktop
   // Adjust for banner visibility: with banner 200px, without banner 150px
-  const mobileHeightOffset = bannerVisible ? 200 : 150;
+  const mobileHeightOffset = bannerVisible ? 168 : 118;
   const heroHeightClass = fullViewport 
     ? `h-[calc(100vh-${mobileHeightOffset}px)] md:h-[calc(100vh-112px)]`
     : "h-[500px] sm:h-[600px] md:h-[600px] lg:h-[700px]";
   
   // Content positioning: mobile starts higher, desktop centers
   const contentPositionClass = fullViewport
-    ? "items-start pt-12 md:items-center md:pt-0"
+    ? "items-start pt-20 md:items-center md:pt-0"
     : "items-center md:items-start md:pt-8 lg:pt-12";
     
   return (
