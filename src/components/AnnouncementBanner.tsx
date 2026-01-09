@@ -15,7 +15,11 @@ interface Promotion {
   dismissible: boolean;
 }
 
-const AnnouncementBanner = () => {
+interface AnnouncementBannerProps {
+  onVisibilityChange?: (visible: boolean) => void;
+}
+
+const AnnouncementBanner = ({ onVisibilityChange }: AnnouncementBannerProps) => {
   const [promotion, setPromotion] = useState<Promotion | null>(null);
   const [isDismissed, setIsDismissed] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -57,6 +61,12 @@ const AnnouncementBanner = () => {
 
     fetchPromotion();
   }, []);
+
+  // Report visibility state to parent
+  useEffect(() => {
+    const isVisible = !isLoading && !!promotion && !isDismissed && shouldShowOnPage();
+    onVisibilityChange?.(isVisible);
+  }, [isLoading, promotion, isDismissed, location.pathname, onVisibilityChange]);
 
   const handleDismiss = () => {
     if (promotion) {

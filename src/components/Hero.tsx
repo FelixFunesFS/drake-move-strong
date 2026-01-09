@@ -21,6 +21,7 @@ interface HeroProps {
   accentedSubtitle?: boolean;
   centered?: boolean;
   fullViewport?: boolean;
+  bannerVisible?: boolean;
 }
 const Hero = ({
   title,
@@ -35,7 +36,8 @@ const Hero = ({
   eyebrow,
   accentedSubtitle = false,
   centered = false,
-  fullViewport = false
+  fullViewport = false,
+  bannerVisible = false
 }: HeroProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = backgroundImages || (backgroundImage ? [backgroundImage] : []);
@@ -52,8 +54,10 @@ const Hero = ({
     return () => clearInterval(interval);
   }, [hasMultipleImages, images.length, autoRotate]);
   // Dynamic height: shorter on mobile to peek Marquee, full viewport on desktop
+  // Adjust for banner visibility: with banner 200px, without banner 150px
+  const mobileHeightOffset = bannerVisible ? 200 : 150;
   const heroHeightClass = fullViewport 
-    ? "h-[calc(100vh-200px)] md:h-[calc(100vh-112px)]" // 200px leaves room for marquee above fold
+    ? `h-[calc(100vh-${mobileHeightOffset}px)] md:h-[calc(100vh-112px)]`
     : "h-[500px] sm:h-[600px] md:h-[600px] lg:h-[700px]";
   
   // Content positioning: mobile starts higher, desktop centers
