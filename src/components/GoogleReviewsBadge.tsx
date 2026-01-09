@@ -80,7 +80,7 @@ export function GoogleReviewsBadge({
         )}
       >
         <Star size={14} className="text-drake-gold fill-drake-gold" />
-        <span>{GOOGLE_REVIEWS.rating} rated by {GOOGLE_REVIEWS.count} Charleston clients</span>
+        <span>{GOOGLE_REVIEWS.rating} · <GoogleBrandedG />oogle-rated in Charleston</span>
       </a>
     );
   }
@@ -100,8 +100,8 @@ export function GoogleReviewsBadge({
         <span className="text-foreground font-semibold">
           {GOOGLE_REVIEWS.rating} rating
         </span>
-        <span className="text-muted-foreground">
-          from {GOOGLE_REVIEWS.count} local clients
+        <span className="text-muted-foreground flex items-center gap-1">
+          on <GoogleBrandedG />oogle
         </span>
         <ExternalLink size={14} className="text-muted-foreground group-hover:text-foreground transition-colors" />
       </a>
