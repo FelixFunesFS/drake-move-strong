@@ -103,7 +103,7 @@ const CUSTOM_LAYOUT_PREFIXES = ['/member/', '/admin/', '/coach/'];
 
 const AppLayout = () => {
   const location = useLocation();
-  const { isScrolled, isVisible, isPastHeader } = useScrollDirection(100);
+  const { isScrolled, isPastHeader } = useScrollDirection(100);
   const isHomePage = location.pathname === '/';
   const isStandalonePage = STANDALONE_ROUTES.includes(location.pathname);
   const hasCustomLayout = CUSTOM_LAYOUT_PREFIXES.some(prefix => location.pathname.startsWith(prefix));
@@ -122,8 +122,7 @@ const AppLayout = () => {
               "w-full z-50 transition-all duration-300",
               headerIsFixed 
                 ? "fixed top-0 left-0 right-0" 
-                : "relative",
-              headerIsFixed && (isVisible ? "translate-y-0" : "-translate-y-full")
+                : "relative"
             )}
           >
             <AnnouncementBanner />
