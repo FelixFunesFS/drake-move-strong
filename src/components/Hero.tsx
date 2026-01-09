@@ -51,7 +51,7 @@ const Hero = ({
   }, [hasMultipleImages, images.length, autoRotate]);
   return (
     <LazyMotion features={domAnimation}>
-      <section className={cn("relative h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] flex items-center md:items-start md:pt-28 lg:pt-36 overflow-hidden", className)}>
+      <section className={cn("relative h-[500px] sm:h-[600px] md:h-[600px] lg:h-[700px] flex items-center md:items-start md:pt-28 lg:pt-36 overflow-hidden", className)}>
         {/* Background Images with Ken Burns Effect - uses real <img> for LCP optimization */}
         {images.length > 0 ? (
           <div className="absolute inset-0 z-0">
