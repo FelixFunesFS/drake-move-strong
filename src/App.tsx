@@ -136,7 +136,7 @@ const AppLayout = () => {
         {!hideNavFooter && headerIsFixed && (
           <div className="h-[112px]" />
         )}
-        {!hideNavFooter && !isHomePage && <TodayClassesBanner />}
+        {!hideNavFooter && location.pathname !== '/' && location.pathname !== '/about' && <TodayClassesBanner />}
         <div className="flex-grow">
           <Suspense fallback={<div className="min-h-screen" />}>
             <Routes>
