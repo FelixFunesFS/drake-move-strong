@@ -50,9 +50,18 @@ const About = () => {
       />
       
       <main>
-      <VideoHero videoId="RX9zOxhayFk" fallbackImage={kbCollection} eyebrow="OUR PURPOSE" title={<>
-            Why We <span className="text-primary">Exist</span>
-          </>} subtitle="To help adults move better and build strong, mobile, pain-free bodies that support their everyday lives." accentedSubtitle={true} />
+      {/* Negative margin pulls hero up to header edge */}
+      <div className="-mt-[112px]">
+        <VideoHero 
+          videoId="RX9zOxhayFk" 
+          fallbackImage={kbCollection} 
+          eyebrow="OUR PURPOSE" 
+          title={<>Why We <span className="text-primary">Exist</span></>} 
+          subtitle="To help adults move better and build strong, mobile, pain-free bodies that support their everyday lives." 
+          accentedSubtitle={true}
+          className="h-screen"
+        />
+      </div>
 
       <AnimatedSection animation="fadeInUp">
         <section className="py-16 md:py-24 bg-background">
