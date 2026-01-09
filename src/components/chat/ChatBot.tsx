@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { MessageCircle, X, Send, Calendar, DollarSign, Phone, RotateCcw } from "lucide-react";
+import { MessageCircle, X, Send, Calendar, DollarSign, Phone, RotateCcw, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -176,6 +176,9 @@ const ChatBot = () => {
       case 'pricing':
         sendMessage("What are your membership options and pricing?");
         break;
+      case 'injury':
+        sendMessage("Can I train at Drake Fitness if I have an injury or physical limitation?");
+        break;
       case 'contact':
         setShowLeadForm(true);
         break;
@@ -319,6 +322,15 @@ const ChatBot = () => {
                     >
                       <DollarSign className="w-3 h-3 mr-1.5" />
                       Pricing
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleQuickAction('injury')}
+                      className="text-xs h-8"
+                    >
+                      <Heart className="w-3 h-3 mr-1.5" />
+                      Training Safely?
                     </Button>
                   </div>
                 </div>
