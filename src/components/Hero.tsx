@@ -100,7 +100,7 @@ const Hero = ({
         )}
 
         {/* Content */}
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 pb-8 md:pb-0 relative z-10">
           <div className={cn("max-w-2xl text-white", centered ? "text-center mx-auto" : "text-left")}>
             {eyebrow && (
               <m.p
@@ -150,19 +150,6 @@ const Hero = ({
           </div>
         </div>
 
-        {/* Image Indicators */}
-        {hasMultipleImages && (
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-            {images.map((_, index) => (
-              <button 
-                key={index} 
-                onClick={() => setCurrentImageIndex(index)} 
-                className={cn("w-2 h-2 rounded-full transition-all duration-300", index === currentImageIndex ? "bg-drake-gold w-8" : "bg-white/50 hover:bg-white/80")} 
-                aria-label={`Go to slide ${index + 1}`} 
-              />
-            ))}
-          </div>
-        )}
       </section>
     </LazyMotion>
   );
