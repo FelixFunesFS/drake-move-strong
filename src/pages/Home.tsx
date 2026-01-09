@@ -36,13 +36,18 @@ import AnimatedSection from "@/components/AnimatedSection";
 import TestimonialHero from "@/components/TestimonialHero";
 import { FEATURED_REVIEWS } from "@/data/reviews";
 import { TodayClassesBanner } from "@/components/schedule/TodayClassesBanner";
-const Home = () => {
+interface HomeProps {
+  bannerVisible?: boolean;
+}
+
+const Home = ({ bannerVisible = false }: HomeProps) => {
   return <>
       <SEO title="Charleston Mobility Training 2026 | Proven Results | Drake" description="Expert-led functional strength and mobility training in Charleston, SC. Join David Drake and Coach Nick for small-group classes, personal training, and sustainable results. 25+ years of coaching experience." canonical="https://drake.fitness" />
       <StructuredData data={localBusinessSchema} />
       
       <main>
       <Hero 
+        bannerVisible={bannerVisible}
         fullViewport={true}
         eyebrow={
         <div className="flex flex-col md:flex-row md:items-center items-start gap-2 md:gap-4">

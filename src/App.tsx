@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -104,6 +104,7 @@ const CUSTOM_LAYOUT_PREFIXES = ['/member/', '/admin/', '/coach/'];
 const AppLayout = () => {
   const location = useLocation();
   const { isScrolled, isPastHeader } = useScrollDirection(100);
+  const [isBannerVisible, setIsBannerVisible] = useState(false);
   const isHomePage = location.pathname === '/';
   const isStandalonePage = STANDALONE_ROUTES.includes(location.pathname);
   const hasCustomLayout = CUSTOM_LAYOUT_PREFIXES.some(prefix => location.pathname.startsWith(prefix));
@@ -111,6 +112,9 @@ const AppLayout = () => {
 
   // Header becomes fixed only AFTER scrolling past it (for home page)
   const headerIsFixed = isHomePage ? isPastHeader : true;
+  
+  // Dynamic spacer height based on banner visibility
+  const spacerHeight = isBannerVisible ? "h-[112px]" : "h-16";
 
   return (
     <>
@@ -125,7 +129,7 @@ const AppLayout = () => {
                 : "relative"
             )}
           >
-            <AnnouncementBanner />
+            <AnnouncementBanner onVisibilityChange={setIsBannerVisible} />
             <Navigation 
               transparent={false}
               isScrolled={isScrolled} 
@@ -134,14 +138,14 @@ const AppLayout = () => {
         )}
         {/* Spacer when header becomes fixed (to prevent content jump) */}
         {!hideNavFooter && headerIsFixed && (
-          <div className="h-[112px]" />
+          <div className={spacerHeight} />
         )}
         {!hideNavFooter && location.pathname !== '/' && location.pathname !== '/about' && <TodayClassesBanner />}
         <div className="flex-grow">
           <Suspense fallback={<div className="min-h-screen" />}>
             <Routes>
               {/* Public Routes */}
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Home bannerVisible={isBannerVisible} />} />
               <Route path="/about" element={<About />} />
               <Route path="/classes" element={<Classes />} />
               <Route path="/coaching" element={<Coaching />} />
