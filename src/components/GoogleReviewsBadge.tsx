@@ -10,6 +10,21 @@ export const GOOGLE_REVIEWS = {
   supportingText: 'Trusted by adults in Charleston who want to move better and stay pain-free.'
 };
 
+// Google brand rainbow "G" using official brand colors
+const GoogleBrandedG = () => (
+  <span 
+    className="font-bold"
+    style={{
+      background: 'linear-gradient(90deg, #4285F4 0%, #EA4335 33%, #FBBC05 66%, #34A853 100%)',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+      backgroundClip: 'text',
+    }}
+  >
+    G
+  </span>
+);
+
 interface GoogleReviewsBadgeProps {
   variant?: 'full' | 'compact' | 'micro' | 'hero';
   className?: string;
@@ -53,7 +68,7 @@ export function GoogleReviewsBadge({
         </div>
         <span className="font-medium">{GOOGLE_REVIEWS.rating}</span>
         <span className="text-white/70">·</span>
-        <span className="text-white/70">{GOOGLE_REVIEWS.count} reviews</span>
+        <span className="text-white/70"><GoogleBrandedG />oogle reviews</span>
       </a>
     );
   }
