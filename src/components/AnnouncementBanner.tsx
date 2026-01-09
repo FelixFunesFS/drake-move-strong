@@ -22,45 +22,40 @@ const AnnouncementBanner = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Defer the database fetch to improve LCP - let hero render first
-    const timeoutId = setTimeout(() => {
-      const fetchPromotion = async () => {
-        try {
-          // Lazy load Supabase to reduce initial bundle
-          const { supabase } = await import('@/integrations/supabase/client');
-          const { data, error } = await supabase
-            .from('promotions')
-            .select('*')
-            .eq('is_active', true)
-            .eq('display_type', 'banner')
-            .order('priority', { ascending: false })
-            .limit(1)
-            .single();
+    const fetchPromotion = async () => {
+      try {
+        // Lazy load Supabase to reduce initial bundle
+        const { supabase } = await import('@/integrations/supabase/client');
+        const { data, error } = await supabase
+          .from('promotions')
+          .select('*')
+          .eq('is_active', true)
+          .eq('display_type', 'banner')
+          .order('priority', { ascending: false })
+          .limit(1)
+          .single();
 
-          if (error) {
-            if (error.code !== 'PGRST116') { // No rows returned
-              console.error('Error fetching promotion:', error);
-            }
-            setPromotion(null);
-          } else {
-            setPromotion(data);
-            // Check if this promotion was dismissed
-            const dismissedPromotions = JSON.parse(localStorage.getItem('dismissedPromotions') || '[]');
-            if (dismissedPromotions.includes(data.id)) {
-              setIsDismissed(true);
-            }
+        if (error) {
+          if (error.code !== 'PGRST116') { // No rows returned
+            console.error('Error fetching promotion:', error);
           }
-        } catch (err) {
-          console.error('Error:', err);
-        } finally {
-          setIsLoading(false);
+          setPromotion(null);
+        } else {
+          setPromotion(data);
+          // Check if this promotion was dismissed
+          const dismissedPromotions = JSON.parse(localStorage.getItem('dismissedPromotions') || '[]');
+          if (dismissedPromotions.includes(data.id)) {
+            setIsDismissed(true);
+          }
         }
-      };
+      } catch (err) {
+        console.error('Error:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-      fetchPromotion();
-    }, 1500); // Defer by 1.5s to prioritize hero rendering
-
-    return () => clearTimeout(timeoutId);
+    fetchPromotion();
   }, []);
 
   const handleDismiss = () => {
@@ -79,9 +74,8 @@ const AnnouncementBanner = () => {
     return promotion.target_pages.includes(location.pathname);
   };
 
-  // Return a placeholder with same height to prevent layout shift during loading
   if (isLoading) {
-    return <div className="h-[52px] md:h-[48px]" aria-hidden="true" />;
+    return null;
   }
 
   if (!promotion || isDismissed || !shouldShowOnPage()) {

@@ -130,7 +130,7 @@ const Classes = () => {
     { q: "Which fitness class is best for beginners in Charleston?", a: "Foundation Flow is our beginner-friendly class focusing on mobility and movement quality. No experience needed." },
     { q: "How big are fitness classes at Drake Fitness?", a: "We keep classes small with 6-12 people to ensure personalized coaching and form correction from David or Nick." },
     { q: "Do I need to bring my own equipment to class?", a: "No equipment needed. We provide all kettlebells, maces, mats, and tools. Just wear comfortable workout clothes." },
-    { q: "How do I get started at Drake Fitness?", a: "Start with Reset Week — 7 days of unlimited classes for $49. It's the best way to experience our training style." },
+    { q: "How do I get started at Drake Fitness?", a: "Start with Reset Week — 7 days of unlimited classes for $50. It's the best way to experience our training style." },
     { q: "What should I expect in my first fitness class?", a: "Arrive 10 minutes early. We'll do a quick movement screen, then guide you through class with modifications as needed." },
   ];
 
@@ -310,7 +310,7 @@ const Classes = () => {
               </p>
               <div className="grid md:grid-cols-2 gap-4 mb-8">
                 <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                  <Link to="/reset-week">Start Reset Week — $49</Link>
+                  <Link to="/reset-week">Start Reset Week — $50</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">
                   <Link to="/schedule">View Full Schedule</Link>

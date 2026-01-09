@@ -27,7 +27,7 @@ const serviceSchema = {
   "serviceType": "Fitness Training",
   "offers": {
     "@type": "Offer",
-    "price": "49",
+    "price": "50",
     "priceCurrency": "USD",
     "description": "7 days of unlimited classes"
   }
@@ -76,7 +76,7 @@ export default function ResetWeekCharleston() {
     <>
       <SEO
         title="Reset Week — A Smarter Way to Start Strength Training | Charleston, SC"
-        description="Most people don't need more workouts — they need a better starting point. Reset Week gives you 7 days of unlimited classes for $49."
+        description="Most people don't need more workouts — they need a better starting point. Reset Week gives you 7 days of unlimited classes for $50."
         canonical="https://drake.fitness/reset-week-charleston"
       />
       <StructuredData data={serviceSchema} />
@@ -106,7 +106,7 @@ export default function ResetWeekCharleston() {
               </p>
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
                 <Link to="/reset-week">
-                  Start Reset Week — $49
+                  Start Reset Week — $50
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                 </Link>
               </Button>
@@ -317,7 +317,7 @@ export default function ResetWeekCharleston() {
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal">
                   <Link to="/reset-week">
                     <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
-                    Start Reset Week — $49
+                    Start Reset Week — $50
                   </Link>
                 </Button>
                 <p className="text-muted-foreground text-xs md:text-sm mt-4">Available spots are limited to maintain small group sizes</p>

@@ -110,8 +110,8 @@ const ResetWeek = () => {
   return (
     <>
       <SEO
-        title="Reset Week Charleston | 7 Days $49 | Best Intro 2026"
-        description="One week to reset how you move and feel. Get 7 days of unlimited classes at Drake Fitness Charleston for just $49. Expert coaching, mobility-first training. No commitment."
+        title="Reset Week Charleston | 7 Days $50 | Best Intro 2026"
+        description="One week to reset how you move and feel. Get 7 days of unlimited classes at Drake Fitness Charleston for just $50. Expert coaching, mobility-first training. No commitment."
         canonical="https://drake.fitness/reset-week"
       />
 
@@ -151,7 +151,7 @@ const ResetWeek = () => {
             </h1>
             
             <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-              7 days of unlimited classes for just <span className="text-drake-gold font-bold">$49</span>. Experience mobility-first training that actually works.
+              7 days of unlimited classes for just <span className="text-drake-gold font-bold">$50</span>. Experience mobility-first training that actually works.
             </p>
 
             <Button
@@ -254,7 +254,7 @@ const ResetWeek = () => {
                     Reset Week
                   </h2>
                   <div className="flex items-center justify-center gap-4 mb-4">
-                    <span className="text-5xl md:text-6xl font-hero font-bold text-drake-teal">$49</span>
+                    <span className="text-5xl md:text-6xl font-hero font-bold text-drake-teal">$50</span>
                   </div>
                   <p className="text-drake-slate-gray text-lg">7 days unlimited access</p>
                 </div>
@@ -289,7 +289,7 @@ const ResetWeek = () => {
                     className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-bold text-lg px-10 py-6 rounded-lg w-full md:w-auto"
                   >
                     <a href={RESET_WEEK_URL} target="_blank" rel="noopener noreferrer">
-                      Get Reset Week — $49
+                      Get Reset Week — $50
                     </a>
                   </Button>
                   <p className="text-drake-slate-gray text-sm mt-4">

@@ -73,8 +73,8 @@ const Schedule = () => {
         <CTASection
           eyebrow="NEW HERE?"
           title="Try Reset Week — 7 Days Unlimited"
-          subtitle="The best way to experience Drake Fitness. Just $49, no commitment."
-          ctaText="Start Reset Week — $49"
+          subtitle="The best way to experience Drake Fitness. Just $50, no commitment."
+          ctaText="Start Reset Week — $50"
           ctaLink="/reset-week"
           variant="primary"
           slanted={true}

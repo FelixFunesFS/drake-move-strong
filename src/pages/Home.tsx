@@ -179,7 +179,7 @@ const Home = () => {
                   No experience needed. No pressure. Just expert guidance.
                 </p>
                 <Button asChild size="lg" className="bg-primary hover:bg-primary/90 w-full md:w-auto text-balance">
-                  <Link to="/reset-week" className="text-center">Start Reset Week — $49</Link>
+                  <Link to="/reset-week" className="text-center">Start Reset Week — $50</Link>
                 </Button>
               </div>
               <div className="relative h-full min-h-[400px] md:min-h-[600px]">
@@ -209,7 +209,7 @@ const Home = () => {
             {[{
               number: "1",
               title: "Start Reset Week",
-              description: "Try 7 days of unlimited classes for just $49 — no commitment, no pressure.",
+              description: "Try 7 days of unlimited classes for just $50 — no commitment, no pressure.",
               bgColor: "bg-drake-dark"
             }, {
               number: "2",
