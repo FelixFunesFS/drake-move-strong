@@ -53,7 +53,7 @@ const Hero = ({
   }, [hasMultipleImages, images.length, autoRotate]);
   // Dynamic height: shorter on mobile to peek Marquee, full viewport on desktop
   const heroHeightClass = fullViewport 
-    ? "h-[calc(100vh-160px)] md:h-[calc(100vh-112px)]" // Shorter on mobile to show more content
+    ? "h-[calc(100vh-200px)] md:h-[calc(100vh-112px)]" // 200px leaves room for marquee above fold
     : "h-[500px] sm:h-[600px] md:h-[600px] lg:h-[700px]";
   
   // Content positioning: mobile starts higher, desktop centers
