@@ -20,6 +20,7 @@ interface HeroProps {
   eyebrow?: string | ReactNode;
   accentedSubtitle?: boolean;
   centered?: boolean;
+  fullViewport?: boolean;
 }
 const Hero = ({
   title,
@@ -33,7 +34,8 @@ const Hero = ({
   className,
   eyebrow,
   accentedSubtitle = false,
-  centered = false
+  centered = false,
+  fullViewport = false
 }: HeroProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = backgroundImages || (backgroundImage ? [backgroundImage] : []);
@@ -49,9 +51,19 @@ const Hero = ({
     }, 8000);
     return () => clearInterval(interval);
   }, [hasMultipleImages, images.length, autoRotate]);
+  // Dynamic height: viewport-based for home hero, fixed for other pages
+  const heroHeightClass = fullViewport 
+    ? "h-[calc(100vh-48px)] md:h-[calc(100vh-48px)]" // 48px = banner height approx
+    : "h-[500px] sm:h-[600px] md:h-[600px] lg:h-[700px]";
+  
+  // Content positioning: when nav overlays (fullViewport), position in upper portion
+  const contentPositionClass = fullViewport
+    ? "items-start pt-[18vh] md:pt-[15vh]"
+    : "items-center md:items-start md:pt-8 lg:pt-12";
+    
   return (
     <LazyMotion features={domAnimation}>
-      <section className={cn("relative h-[500px] sm:h-[600px] md:h-[600px] lg:h-[700px] flex items-center md:items-start md:pt-8 lg:pt-12 overflow-hidden", className)}>
+      <section className={cn("relative flex overflow-hidden", heroHeightClass, contentPositionClass, className)}>
         {/* Background Images with Ken Burns Effect - uses real <img> for LCP optimization */}
         {images.length > 0 ? (
           <div className="absolute inset-0 z-0">

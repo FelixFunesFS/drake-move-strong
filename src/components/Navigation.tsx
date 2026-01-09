@@ -1,9 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 import drakeLogo from "@/assets/drake-logo-new.png";
-const Navigation = () => {
+
+interface NavigationProps {
+  transparent?: boolean;
+  isScrolled?: boolean;
+}
+
+const Navigation = ({ transparent = false, isScrolled = false }: NavigationProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navLinks = [{
@@ -26,7 +33,13 @@ const Navigation = () => {
     path: "/contact"
   }];
   const isActive = (path: string) => location.pathname === path;
-  return <nav className="bg-background border-b border-border">
+  
+  // Conditional background: transparent over hero, solid when scrolled
+  const bgClass = transparent && !isScrolled 
+    ? "bg-transparent" 
+    : "bg-background border-b border-border";
+    
+  return <nav className={cn(bgClass, "transition-colors duration-300")}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex-shrink-0">
