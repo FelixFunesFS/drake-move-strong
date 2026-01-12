@@ -61,9 +61,7 @@ export function GoogleReviewsBadge({
             <Star key={i} size={14} className="text-drake-gold fill-drake-gold" />
           ))}
         </div>
-        <span className="font-medium">{GOOGLE_REVIEWS.rating}</span>
-        <span className="text-white/70">·</span>
-        <span className="text-white/70"><GoogleBrandedG />oogle reviews</span>
+      <span className="text-white/70"><GoogleBrandedG />oogle Reviews</span>
       </a>
     );
   }
