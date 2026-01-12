@@ -419,7 +419,7 @@ export default function MobilityFitnessAvondale() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-6 text-lg font-bold uppercase tracking-wide">
                     <Link to="/reset-week">
-                      Start Reset Week — $49
+                      Start Reset Week — $50
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                   </Button>
@@ -444,9 +444,8 @@ export default function MobilityFitnessAvondale() {
                   />
                 </div>
                 <div className="absolute -bottom-8 -right-8 bg-accent text-accent-foreground p-8 rounded-xl shadow-xl max-w-sm">
-                  <p className="font-heading text-4xl font-bold mb-2">$49</p>
+                  <p className="font-heading text-4xl font-bold mb-2">$50</p>
                   <p className="font-semibold text-lg">For Your Full Reset Week</p>
-                  <p className="text-sm mt-2 opacity-80">(Regular value: $199)</p>
                 </div>
               </div>
             </AnimatedSection>
@@ -553,7 +552,7 @@ export default function MobilityFitnessAvondale() {
 
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-12 py-7 text-xl font-bold uppercase tracking-wide">
                   <Link to="/reset-week">
-                    Start Your Reset Week — $49
+                    Start Your Reset Week — $50
                     <ArrowRight className="ml-3 h-6 w-6" />
                   </Link>
                 </Button>

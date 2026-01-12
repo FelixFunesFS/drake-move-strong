@@ -57,7 +57,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
           </span>
           <GoogleReviewsBadge variant="hero" />
         </div>
-      } title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 20+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
+      } title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 25+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
         text: "START RESET WEEK",
         link: "/reset-week"
       }} backgroundImages={["/images/hero-mobile.jpg", heroImage3Desktop]} backgroundImagesMobile={["/images/hero-mobile.jpg", heroImage3Mobile]} autoRotate={true} />
@@ -416,7 +416,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         </div>
       </section>
 
-      <CTASection eyebrow="GET STARTED" title="Ready to Reset How You Move?" ctaText="Start Reset Week — $49" ctaLink="/reset-week" variant="primary" slanted={true} />
+      <CTASection eyebrow="GET STARTED" title="Ready to Reset How You Move?" ctaText="Start Reset Week — $50" ctaLink="/reset-week" variant="primary" slanted={true} />
     </main>
     </>;
 };

@@ -14,7 +14,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Reset Week - Charleston Strength Training Intro",
-  "description": "Reset Week is a smarter way to start strength training in Charleston. 7 days of unlimited classes for $49.",
+  "description": "Reset Week is a smarter way to start strength training in Charleston. 7 days of unlimited classes for $50.",
   "provider": localBusinessSchema,
   "areaServed": {
     "@type": "City",

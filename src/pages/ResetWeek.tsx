@@ -505,7 +505,7 @@ const ResetWeek = () => {
               Ready to Reset?
             </h2>
             <p className="text-drake-dark/80 text-lg mb-8 max-w-xl mx-auto">
-              One week. $49. No commitment. Just the chance to feel what functional fitness can do for you.
+              One week. $50. No commitment. Just the chance to feel what functional fitness can do for you.
             </p>
             <Button
               asChild
@@ -513,7 +513,7 @@ const ResetWeek = () => {
               className="bg-drake-dark hover:bg-drake-dark/90 text-white font-bold text-lg px-10 py-6 rounded-lg"
             >
               <a href={RESET_WEEK_URL} target="_blank" rel="noopener noreferrer">
-                Get Reset Week — $49 <ArrowRight className="ml-2 h-5 w-5" />
+                Get Reset Week — $50 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </Button>
           </AnimatedSection>
@@ -527,7 +527,7 @@ const ResetWeek = () => {
           className="w-full bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-bold py-4"
         >
           <a href={RESET_WEEK_URL} target="_blank" rel="noopener noreferrer">
-            Start Reset Week — $49
+            Start Reset Week — $50
           </a>
         </Button>
       </div>
