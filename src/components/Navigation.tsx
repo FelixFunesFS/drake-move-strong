@@ -26,6 +26,9 @@ const Navigation = ({ transparent = false, isScrolled = false }: NavigationProps
     name: "Pricing",
     path: "/pricing"
   }, {
+    name: "Insights",
+    path: "/insights"
+  }, {
     name: "Contact",
     path: "/contact"
   }];

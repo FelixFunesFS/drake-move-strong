@@ -75,7 +75,7 @@ const About = () => {
                     Our Mobility-First <span className="text-primary">Training Philosophy</span>
                   </h2>
                   <p className="text-base md:text-lg text-muted-foreground mb-8 border-l-4 border-drake-gold pl-6">
-                    We don't chase intensity, trends, or exhaustion. We chase <strong>movement quality</strong>, <strong>joint health</strong>, and <strong>sustainable strength</strong> that helps you feel better and perform better in real life. Experience our approach through <Link to="/classes" className="text-primary underline underline-offset-2 hover:text-primary/80">group classes</Link> or <Link to="/reset-week-charleston" className="text-primary underline underline-offset-2 hover:text-primary/80">Reset Week</Link>.
+                    We don't chase intensity, trends, or exhaustion. We chase <strong>movement quality</strong>, <strong>joint health</strong>, and <strong>sustainable strength</strong> that helps you feel better and perform better in real life. Experience our approach through <Link to="/schedule" className="text-primary underline underline-offset-2 hover:text-primary/80">group classes</Link> or <Link to="/reset-week-charleston" className="text-primary underline underline-offset-2 hover:text-primary/80">Reset Week</Link>.
                   </p>
                   
                   {/* Info Boxes Grid */}
