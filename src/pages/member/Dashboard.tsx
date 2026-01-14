@@ -142,7 +142,7 @@ export default function MemberDashboard() {
                   <Link to="/member/profile">Complete Profile</Link>
                 </Button>
                 <Button asChild variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">
-                  <Link to="/classes">View Classes</Link>
+                  <Link to="/schedule">View Classes</Link>
                 </Button>
               </div>
             </CardContent>

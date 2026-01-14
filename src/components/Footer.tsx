@@ -31,10 +31,9 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li><Link to="/reset-week" className="text-drake-gold hover:text-drake-gold/80 transition-colors font-semibold">→ Reset Week ($50)</Link></li>
               <li><Link to="/about" className="text-gray-300 hover:text-drake-gold transition-colors">About Us</Link></li>
-              <li><Link to="/classes" className="text-gray-300 hover:text-drake-gold transition-colors">Classes</Link></li>
-              <li><Link to="/schedule" className="text-gray-300 hover:text-drake-gold transition-colors">Schedule</Link></li>
+              <li><Link to="/schedule" className="text-gray-300 hover:text-drake-gold transition-colors">Classes & Schedule</Link></li>
               <li><Link to="/coaching" className="text-gray-300 hover:text-drake-gold transition-colors">1:1 Coaching</Link></li>
-              <li><Link to="/insights" className="text-gray-300 hover:text-drake-gold transition-colors">Move Better</Link></li>
+              <li><Link to="/insights" className="text-gray-300 hover:text-drake-gold transition-colors">Insights & Blog</Link></li>
             </ul>
           </div>
 
