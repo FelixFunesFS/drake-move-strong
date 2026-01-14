@@ -20,10 +20,7 @@ const Navigation = ({ transparent = false, isScrolled = false }: NavigationProps
     name: "About",
     path: "/about"
   }, {
-    name: "Classes",
-    path: "/classes"
-  }, {
-    name: "Schedule",
+    name: "Classes & Schedule",
     path: "/schedule"
   }, {
     name: "Pricing",
