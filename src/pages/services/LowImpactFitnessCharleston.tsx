@@ -88,8 +88,8 @@ export default function LowImpactFitnessCharleston() {
                 A joint-friendly fitness program for adults who want results without aggravating pain.
               </p>
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-8 py-4 md:py-5 text-base md:text-lg whitespace-normal text-center">
-                <Link to="/consultation">
-                  Book a Free Consultation
+                <Link to="/reset-week">
+                  Start Reset Week — $50
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                 </Link>
               </Button>
