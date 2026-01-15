@@ -21,7 +21,7 @@ import coachNickNew from "@/assets/coach-nick-new.jpg";
 import coachNickPortrait from "@/assets/coach-nick-portrait.jpg";
 import coachNick from "@/assets/coach-nick.jpg";
 import coachingSession from "@/assets/coaching-session.jpg";
-import communityGym from "@/assets/community-gym-moment.jpg";
+import communityGym from "@/assets/community-plank-rows-kettlebells.jpg";
 import davidCoachingForm from "@/assets/david-coaching-form.jpg";
 import davidDoubleKb from "@/assets/david-double-kb-storefront.jpg";
 import davidGobletSquat from "@/assets/david-goblet-squat-kb-rack.jpg";
