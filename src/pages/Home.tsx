@@ -34,38 +34,26 @@ import Marquee from "@/components/Marquee";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
 import TestimonialHero from "@/components/TestimonialHero";
-import CommunityParallaxGallery from "@/components/CommunityParallaxGallery";
 import { FEATURED_REVIEWS } from "@/data/reviews";
 import { TodayClassesBanner } from "@/components/schedule/TodayClassesBanner";
-// New authentic training photos
-import communityGroupPhotoLarge from "@/assets/community-group-photo-large.jpg";
-import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg";
-import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg";
-import gymInteriorWide from "@/assets/gym-interior-wide.jpg";
-import groupClassPlankWide from "@/assets/group-class-plank-wide.jpg";
-import groupPlankRowsKettlebells from "@/assets/group-plank-rows-kettlebells.jpg";
 interface HomeProps {
   bannerVisible?: boolean;
 }
-
-const Home = ({ bannerVisible = false }: HomeProps) => {
+const Home = ({
+  bannerVisible = false
+}: HomeProps) => {
   return <>
       <SEO title="Charleston Mobility Training 2026 | Proven Results | Drake" description="Expert-led functional strength and mobility training in Charleston, SC. Join David Drake and Coach Nick for small-group classes, personal training, and sustainable results. 25+ years of coaching experience." canonical="https://drake.fitness" />
       <StructuredData data={localBusinessSchema} />
       
       <main>
-      <Hero 
-        bannerVisible={bannerVisible}
-        fullViewport={true}
-        eyebrow={
-        <div className="flex flex-col md:flex-row md:items-center items-start gap-2 md:gap-4">
+      <Hero bannerVisible={bannerVisible} fullViewport={true} eyebrow={<div className="flex flex-col md:flex-row md:items-center items-start gap-2 md:gap-4">
           <span className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-white/80 bg-white/10 px-3 py-1 rounded-full">
             <MapPin className="w-3 h-3" />
             Avondale • West Ashley • Charleston
           </span>
           <GoogleReviewsBadge variant="hero" />
-        </div>
-      } title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 25+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
+        </div>} title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 25+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
         text: "START RESET WEEK",
         link: "/reset-week"
       }} backgroundImages={["/images/hero-mobile.jpg", heroImage3Desktop]} backgroundImagesMobile={["/images/hero-mobile.jpg", heroImage3Mobile]} autoRotate={true} />
@@ -118,26 +106,8 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       {/* Trust Stats Bar - After Who We Are */}
       <TrustStatsBar variant="horizontal" stats={['sessions', 'charlestonians', 'experience', 'rating']} className="border-y border-border" />
 
-      <section className="relative py-16 md:py-24 text-white section-slant-bottom overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <OptimizedImage 
-            src={groupPlankRowsKettlebells} 
-            alt="" 
-            className="w-full h-full object-cover"
-            aspectRatio="auto"
-            transparent
-            hideLoadingPlaceholder
-          />
-        </div>
-        
-        {/* Dark Overlay for Contrast */}
-        <div className="absolute inset-0 bg-drake-dark/85" />
-        
-        {/* Subtle Teal/Gold Gradient Accent */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-drake-gold/10" />
-        
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="py-16 md:py-24 bg-drake-dark text-white section-slant-bottom">
+        <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
             <p className="section-eyebrow text-drake-gold text-center">WHAT MAKES US DIFFERENT</p>
             <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
@@ -166,7 +136,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
               title: "Progress tracking that keeps you motivated",
               description: "Assessments every 4–8 weeks so you can see your progress."
             }].map((feature, index) => <AnimatedSection key={index} animation="fadeInUp" delay={index * 0.1}>
-                <div className="bg-white/15 border border-white/20 p-8 rounded-xl h-full hover:bg-white/20 transition-colors backdrop-blur-sm">
+                <div className="bg-white/5 border border-white/10 p-8 rounded-xl h-full hover:bg-white/10 transition-colors">
                   <div className="w-12 h-12 bg-drake-teal rounded-xl flex items-center justify-center text-white mb-4">
                     {feature.icon}
                   </div>
@@ -175,7 +145,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                 </div>
               </AnimatedSection>)}
             <AnimatedSection animation="fadeInUp" delay={0.4} className="md:col-span-2">
-              <div className="bg-white/15 border border-white/20 p-8 rounded-xl hover:bg-white/20 transition-colors backdrop-blur-sm">
+              <div className="bg-white/5 border border-white/10 p-8 rounded-xl hover:bg-white/10 transition-colors">
                 <div className="flex items-start gap-6">
                   <div className="w-12 h-12 bg-drake-teal rounded-xl flex items-center justify-center text-white flex-shrink-0">
                     <Heart className="w-6 h-6" />
@@ -192,7 +162,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       </section>
 
       <section className="py-16 md:py-24 bg-muted">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 bg-[#1a1a1a]/[0.21]">
           <div className="max-w-6xl mx-auto bg-white rounded-none shadow-lg overflow-hidden">
             <div className="grid md:grid-cols-2">
               <div className="p-8 md:p-12">
@@ -223,37 +193,18 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         </div>
       </section>
 
-      <section className="relative py-16 md:py-24 overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <OptimizedImage 
-            src={gymInteriorWide} 
-            alt="" 
-            className="w-full h-full object-cover"
-            aspectRatio="auto"
-            transparent
-            hideLoadingPlaceholder
-          />
-        </div>
-        
-        {/* Dark Overlay for Contrast */}
-        <div className="absolute inset-0 bg-drake-dark/85" />
-        
-        {/* Subtle Teal/Gold Gradient Accent */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-drake-gold/10" />
-        
-        {/* Content */}
-        <div className="container mx-auto px-4 relative z-10">
-          <p className="section-eyebrow text-drake-gold text-center">THE METHOD</p>
-          <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase text-white">
-            A Simple System That <span className="text-drake-gold">Delivers Real Results</span>
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <p className="section-eyebrow text-primary text-center">THE METHOD</p>
+          <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+            A Simple System That <span className="text-primary">Delivers Real Results</span>
           </h2>
-          <p className="text-xl text-center text-gray-300 mb-12">
+          <p className="text-xl text-center text-muted-foreground mb-12">
             Expert-Guided Training That Works
           </p>
           <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto relative">
             {/* Connecting line for desktop */}
-            <div className="hidden md:block absolute top-12 left-[16.67%] right-[16.67%] h-0.5 bg-white/30" style={{
+            <div className="hidden md:block absolute top-12 left-[16.67%] right-[16.67%] h-0.5 bg-primary/30" style={{
               width: '66.67%',
               left: '16.67%'
             }} />
@@ -262,7 +213,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
               number: "1",
               title: "Start Reset Week",
               description: "Try 7 days of unlimited classes for just $50 — no commitment, no pressure.",
-              bgColor: "bg-white"
+              bgColor: "bg-drake-dark"
             }, {
               number: "2",
               title: "Train",
@@ -274,11 +225,11 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
               description: "We check mobility and strength regularly so you can see and feel your improvements.",
               bgColor: "bg-drake-teal"
             }].map((step, index) => <div key={index} className="text-center relative z-10">
-                <div className={`w-24 h-24 ${step.bgColor} rounded-full flex items-center justify-center ${step.bgColor === 'bg-white' ? 'text-drake-dark' : 'text-white'} text-3xl font-bold mx-auto mb-6 shadow-lg`}>
+                <div className={`w-24 h-24 ${step.bgColor} rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-6 shadow-lg`}>
                   {step.number}
                 </div>
-                <h3 className="font-hero text-2xl font-bold mb-3 uppercase text-white">{step.title}</h3>
-                <p className="text-lg text-gray-200">{step.description}</p>
+                <h3 className="font-hero text-2xl font-bold mb-3 uppercase">{step.title}</h3>
+                <p className="text-lg text-muted-foreground">{step.description}</p>
               </div>)}
           </div>
         </div>
@@ -374,15 +325,6 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
 
       {/* Testimonial Hero - Between Coaches and Results */}
       <TestimonialHero quote={FEATURED_REVIEWS[0].quote} author={FEATURED_REVIEWS[0].name} result={FEATURED_REVIEWS[0].result} backgroundImage={studioGroupSquats} />
-
-      {/* Community in Action - Staggered Parallax Gallery */}
-      <CommunityParallaxGallery 
-        images={[
-          { src: communityGroupPhotoLarge, alt: "Large community group photo" },
-          { src: groupOverheadPressClass, alt: "Group overhead press class" },
-          { src: membersOverheadLungeNaturalLight, alt: "Members training in natural light" },
-        ]}
-      />
 
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
