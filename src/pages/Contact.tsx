@@ -10,7 +10,8 @@ import { toast } from "sonner";
 import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { GoogleMapEmbed } from "@/components/GoogleMapEmbed";
-
+import contactHeroClass from "@/assets/contact-hero-class-turkish-getup.jpg";
+import davidStorefrontPortrait from "@/assets/david-kettlebell-storefront-portrait.jpg";
 const Contact = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -47,6 +48,7 @@ const Contact = () => {
           eyebrow="GET IN TOUCH"
           title="We'd Love to Help You Move Better"
           subtitle="Have questions about our classes, membership, or personal training? Fill out the form below and we'll reach out within 24 hours."
+          backgroundImages={[contactHeroClass]}
         />
 
         {/* Find Us Section - Map-Centric with ALL contact details */}
@@ -141,96 +143,114 @@ const Contact = () => {
           </div>
         </section>
 
-        {/* Contact Form Section - Full Width */}
+        {/* Contact Form Section - Split Layout */}
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto">
-              <div className="text-center mb-8">
-                <p className="section-eyebrow text-primary">SEND A MESSAGE</p>
-                <h2 className="font-hero text-2xl md:text-3xl font-bold uppercase">
-                  Have a Question? <span className="text-primary">Reach Out</span>
-                </h2>
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto items-center">
+              
+              {/* Left: David Portrait */}
+              <div className="relative hidden lg:block">
+                <div className="relative rounded-2xl overflow-hidden shadow-xl">
+                  <img 
+                    src={davidStorefrontPortrait}
+                    alt="David Drake holding a kettlebell in front of Drake Fitness"
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+                {/* Decorative accent */}
+                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full -z-10" />
               </div>
-              <div className="bg-white border border-border rounded-xl p-8 shadow-card">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-4">
+              
+              {/* Right: Contact Form */}
+              <div>
+                <div className="mb-8">
+                  <p className="section-eyebrow text-primary">SEND A MESSAGE</p>
+                  <h2 className="font-hero text-2xl md:text-3xl font-bold uppercase">
+                    Have a Question? <span className="text-primary">Reach Out</span>
+                  </h2>
+                </div>
+                <div className="bg-white border border-border rounded-xl p-8 shadow-card">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="firstName">First Name</Label>
+                        <Input
+                          id="firstName"
+                          value={formData.firstName}
+                          onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                          placeholder="Jane"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="lastName">Last Name</Label>
+                        <Input
+                          id="lastName"
+                          value={formData.lastName}
+                          onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                          placeholder="Doe"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="email">Email Address</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          placeholder="jane@example.com"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="phone">Phone Number</Label>
+                        <Input
+                          id="phone"
+                          type="tel"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          placeholder="(555) 123-4567"
+                        />
+                      </div>
+                    </div>
+
                     <div>
-                      <Label htmlFor="firstName">First Name</Label>
-                      <Input
-                        id="firstName"
-                        value={formData.firstName}
-                        onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                        placeholder="Jane"
-                        required
+                      <Label htmlFor="interest">I'm Interested in...</Label>
+                      <Select value={formData.interest} onValueChange={(value) => setFormData({ ...formData, interest: value })}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select an option" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="reset-week">Reset Week ($50)</SelectItem>
+                          <SelectItem value="membership">Monthly Membership</SelectItem>
+                          <SelectItem value="coaching">1:1 Coaching</SelectItem>
+                          <SelectItem value="general">General Inquiry</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="message">Message</Label>
+                      <Textarea
+                        id="message"
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        placeholder="Tell us about your goals or questions..."
+                        rows={6}
                       />
                     </div>
-                    <div>
-                      <Label htmlFor="lastName">Last Name</Label>
-                      <Input
-                        id="lastName"
-                        value={formData.lastName}
-                        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                        placeholder="Doe"
-                        required
-                      />
-                    </div>
-                  </div>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="email">Email Address</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="jane@example.com"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="phone">Phone Number</Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="(555) 123-4567"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="interest">I'm Interested in...</Label>
-                    <Select value={formData.interest} onValueChange={(value) => setFormData({ ...formData, interest: value })}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select an option" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="reset-week">Reset Week ($50)</SelectItem>
-                        <SelectItem value="membership">Monthly Membership</SelectItem>
-                        <SelectItem value="coaching">1:1 Coaching</SelectItem>
-                        <SelectItem value="general">General Inquiry</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="message">Message</Label>
-                    <Textarea
-                      id="message"
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Tell us about your goals or questions..."
-                      rows={6}
-                    />
-                  </div>
-
-                  <Button type="submit" size="lg" className="w-full bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold">
-                    Send Message
-                  </Button>
-                </form>
+                    <Button type="submit" size="lg" className="w-full bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold">
+                      Send Message
+                    </Button>
+                  </form>
+                </div>
               </div>
+              
             </div>
           </div>
         </section>
