@@ -34,6 +34,7 @@ import Marquee from "@/components/Marquee";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
 import TestimonialHero from "@/components/TestimonialHero";
+import CommunityParallaxGallery from "@/components/CommunityParallaxGallery";
 import { FEATURED_REVIEWS } from "@/data/reviews";
 import { TodayClassesBanner } from "@/components/schedule/TodayClassesBanner";
 // New authentic training photos
@@ -334,27 +335,14 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       {/* Testimonial Hero - Between Coaches and Results */}
       <TestimonialHero quote={FEATURED_REVIEWS[0].quote} author={FEATURED_REVIEWS[0].name} result={FEATURED_REVIEWS[0].result} backgroundImage={studioGroupSquats} />
 
-      {/* NEW: Community in Action Strip */}
-      <section className="py-8 bg-muted overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide md:justify-center">
-            {[
-              { src: communityGroupPhotoLarge, alt: "Large community group photo" },
-              { src: groupOverheadPressClass, alt: "Group overhead press class" },
-              { src: membersOverheadLungeNaturalLight, alt: "Members training in natural light" },
-            ].map((img, i) => (
-              <div key={i} className="min-w-[300px] md:min-w-[350px] flex-shrink-0 snap-center">
-                <OptimizedImage
-                  src={img.src}
-                  alt={img.alt}
-                  aspectRatio="video"
-                  className="rounded-lg shadow-lg"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Community in Action - Staggered Parallax Gallery */}
+      <CommunityParallaxGallery 
+        images={[
+          { src: communityGroupPhotoLarge, alt: "Large community group photo" },
+          { src: groupOverheadPressClass, alt: "Group overhead press class" },
+          { src: membersOverheadLungeNaturalLight, alt: "Members training in natural light" },
+        ]}
+      />
 
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
