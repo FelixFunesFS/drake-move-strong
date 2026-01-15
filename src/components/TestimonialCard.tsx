@@ -31,7 +31,7 @@ const TestimonialCard = ({
             />
             
             {/* Dark Overlay */}
-            <div className="absolute inset-0 bg-drake-dark/85" />
+            <div className="absolute inset-0 bg-drake-dark/70" />
             
             {/* Gold Left Accent Bar */}
             <div className="absolute top-0 left-0 w-2 h-full bg-drake-gold z-10" />
