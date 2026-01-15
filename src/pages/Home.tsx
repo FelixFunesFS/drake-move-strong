@@ -34,6 +34,7 @@ import Marquee from "@/components/Marquee";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
 import TestimonialCard from "@/components/TestimonialCard";
+import { getStaggerDelay } from "@/lib/motionConfig";
 import CommunityMasonryGallery from "@/components/CommunityMasonryGallery";
 import { FEATURED_REVIEWS } from "@/data/reviews";
 import { TodayClassesBanner } from "@/components/schedule/TodayClassesBanner";
@@ -97,7 +98,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                 <p className="font-hero text-white md:text-2xl font-bold leading-tight text-base">"NOT JUST A GYM. A MOVEMENT STUDIO."</p>
               </div>
             </AnimatedSection>
-            <div>
+            <AnimatedSection animation="fadeInUp" delay={0.1}>
               <p className="section-eyebrow text-primary">WHO WE ARE</p>
               <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase">
                 Charleston's <span className="text-primary">Mobility-First</span> Fitness Studio
@@ -115,13 +116,15 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
               <Button asChild size="lg" className="mt-6 bg-primary hover:bg-primary/90 whitespace-nowrap">
                 <Link to="/about">Meet the Team</Link>
               </Button>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
       {/* Trust Stats Bar - After Who We Are */}
-      <TrustStatsBar variant="horizontal" stats={['sessions', 'charlestonians', 'experience', 'rating']} className="border-y border-border" />
+      <AnimatedSection animation="fadeInUp">
+        <TrustStatsBar variant="horizontal" stats={['sessions', 'charlestonians', 'experience', 'rating']} className="border-y border-border" />
+      </AnimatedSection>
 
       <section className="relative py-16 md:py-24 text-white section-slant-bottom overflow-hidden">
         {/* Background Image */}
@@ -200,7 +203,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto bg-white rounded-none shadow-lg overflow-hidden">
             <div className="grid md:grid-cols-2">
-              <div className="p-8 md:p-12">
+              <AnimatedSection animation="slideInLeft" className="p-8 md:p-12">
                 <p className="section-eyebrow text-primary mb-4">START HERE</p>
                 <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase leading-tight">
                   If You Feel Stiff, Achy, or Out of Shape...<br />
@@ -219,10 +222,10 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                 <Button asChild size="lg" className="bg-primary hover:bg-primary/90 w-full md:w-auto text-balance">
                   <Link to="/reset-week" className="text-center">Start Reset Week — $50</Link>
                 </Button>
-              </div>
-              <div className="relative h-full min-h-[400px] md:min-h-[600px]">
-              <OptimizedImage src={startHereImage} alt="Personal coaching session at Drake Fitness" className="h-full w-full" aspectRatio="auto" />
-              </div>
+              </AnimatedSection>
+              <AnimatedSection animation="slideInRight" delay={0.1} className="relative h-full min-h-[400px] md:min-h-[600px]">
+                <OptimizedImage src={startHereImage} alt="Personal coaching session at Drake Fitness" className="h-full w-full" aspectRatio="auto" />
+              </AnimatedSection>
             </div>
           </div>
         </div>
@@ -249,13 +252,15 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         
         {/* Content */}
         <div className="container mx-auto px-4 relative z-10">
-          <p className="section-eyebrow text-drake-gold text-center">THE METHOD</p>
-          <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase text-white">
-            A Simple System That <span className="text-drake-gold">Delivers Real Results</span>
-          </h2>
-          <p className="text-xl text-center text-gray-300 mb-12">
-            Expert-Guided Training That Works
-          </p>
+          <AnimatedSection animation="fadeInUp">
+            <p className="section-eyebrow text-drake-gold text-center">THE METHOD</p>
+            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase text-white">
+              A Simple System That <span className="text-drake-gold">Delivers Real Results</span>
+            </h2>
+            <p className="text-xl text-center text-gray-300 mb-12">
+              Expert-Guided Training That Works
+            </p>
+          </AnimatedSection>
           <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto relative">
             {/* Connecting line for desktop */}
             <div className="hidden md:block absolute top-12 left-[16.67%] right-[16.67%] h-0.5 bg-white/30" style={{
@@ -278,33 +283,37 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
               title: "Progress",
               description: "We check mobility and strength regularly so you can see and feel your improvements.",
               bgColor: "bg-drake-teal"
-            }].map((step, index) => <div key={index} className="text-center relative z-10">
+            }].map((step, index) => (
+              <AnimatedSection key={index} animation="scaleIn" delay={getStaggerDelay(index)} className="text-center relative z-10">
                 <div className={`w-24 h-24 ${step.bgColor} rounded-full flex items-center justify-center ${step.bgColor === 'bg-white' ? 'text-drake-dark' : 'text-white'} text-3xl font-bold mx-auto mb-6 shadow-lg`}>
                   {step.number}
                 </div>
                 <h3 className="font-hero text-2xl font-bold mb-3 uppercase text-white">{step.title}</h3>
                 <p className="text-lg text-gray-200">{step.description}</p>
-              </div>)}
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
 
       <section className="py-16 md:py-24 bg-drake-dark text-white section-slant-top">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-6">
-            <div className="text-left">
-              <p className="section-eyebrow text-drake-gold mb-2">OUR PROGRAMS</p>
-              <h2 className="font-hero text-3xl md:text-4xl font-bold mb-2 uppercase">
-                Group Fitness Classes in Charleston <span className="text-drake-gold">for All Levels</span>
-              </h2>
-              <p className="text-xl text-gray-300">
-                Better Movement. Better Strength. Better Life.
-              </p>
+          <AnimatedSection animation="fadeInUp">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-6">
+              <div className="text-left">
+                <p className="section-eyebrow text-drake-gold mb-2">OUR PROGRAMS</p>
+                <h2 className="font-hero text-3xl md:text-4xl font-bold mb-2 uppercase">
+                  Group Fitness Classes in Charleston <span className="text-drake-gold">for All Levels</span>
+                </h2>
+                <p className="text-xl text-gray-300">
+                  Better Movement. Better Strength. Better Life.
+                </p>
+              </div>
+              <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark shrink-0 whitespace-nowrap">
+                <Link to="/schedule">Explore All Classes</Link>
+              </Button>
             </div>
-            <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark shrink-0 whitespace-nowrap">
-              <Link to="/schedule">Explore All Classes</Link>
-            </Button>
-          </div>
+          </AnimatedSection>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[{
               name: "Foundation Flow™",
@@ -324,10 +333,14 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
             }, {
               name: "Functional Flow Online™",
               description: "Train live from anywhere."
-            }].map((classItem, index) => <div key={index} className="bg-drake-dark-muted p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-colors bg-gray-800">
-                <h3 className="font-hero text-xl font-bold mb-2 text-drake-gold uppercase">{classItem.name}</h3>
-                <p className="text-gray-300">{classItem.description}</p>
-              </div>)}
+            }].map((classItem, index) => (
+              <AnimatedSection key={index} animation="fadeInUp" delay={getStaggerDelay(index)}>
+                <div className="bg-drake-dark-muted p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-colors bg-gray-800 h-full">
+                  <h3 className="font-hero text-xl font-bold mb-2 text-drake-gold uppercase">{classItem.name}</h3>
+                  <p className="text-gray-300">{classItem.description}</p>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
@@ -335,13 +348,15 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
 
       <section className="py-16 md:py-24 bg-muted section-slant-top-reverse">
         <div className="container mx-auto px-4">
-          <p className="section-eyebrow text-primary text-center">MEET THE TEAM</p>
-          <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-            Expert Coaches with <span className="text-primary">25+ Years Experience</span>
-          </h2>
-          <p className="text-xl text-center text-muted-foreground mb-12">
-            Experience, Expertise & Care
-          </p>
+          <AnimatedSection animation="fadeInUp">
+            <p className="section-eyebrow text-primary text-center">MEET THE TEAM</p>
+            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+              Expert Coaches with <span className="text-primary">25+ Years Experience</span>
+            </h2>
+            <p className="text-xl text-center text-muted-foreground mb-12">
+              Experience, Expertise & Care
+            </p>
+          </AnimatedSection>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <AnimatedSection animation="fadeInUp" delay={0.1}>
               <div className="bg-gray-50 p-6 rounded-xl shadow-card hover:shadow-xl transition-shadow">
@@ -378,7 +393,9 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       </section>
 
       {/* Testimonial Hero - Between Coaches and Results */}
-      <TestimonialCard quote={FEATURED_REVIEWS[0].quote} author={FEATURED_REVIEWS[0].name} result={FEATURED_REVIEWS[0].result} />
+      <AnimatedSection animation="fadeInUp">
+        <TestimonialCard quote={FEATURED_REVIEWS[0].quote} author={FEATURED_REVIEWS[0].name} result={FEATURED_REVIEWS[0].result} />
+      </AnimatedSection>
 
       {/* Community in Action - 2-Row Masonry Gallery */}
       <CommunityMasonryGallery 
@@ -394,10 +411,12 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
 
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <p className="section-eyebrow text-primary text-center">RESULTS</p>
-          <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-            Real People. <span className="text-primary">Real Results.</span>
-          </h2>
+          <AnimatedSection animation="fadeInUp">
+            <p className="section-eyebrow text-primary text-center">RESULTS</p>
+            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+              Real People. <span className="text-primary">Real Results.</span>
+            </h2>
+          </AnimatedSection>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-12">
             {[{
               quote: "I'm stronger in my 40s than ever before… His knowledge and adaptability have made a significant impact.",
@@ -411,29 +430,37 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
               quote: "Better than any physical therapist or personal trainer I've ever had.",
               author: "Cara S.",
               rating: 5
-            }].map((testimonial, index) => <div key={index} className="bg-white p-6 rounded-lg shadow-card border border-border">
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => <span key={i} className="text-drake-gold text-xl">★</span>)}
+            }].map((testimonial, index) => (
+              <AnimatedSection key={index} animation="fadeInUp" delay={getStaggerDelay(index)}>
+                <div className="bg-white p-6 rounded-lg shadow-card border border-border h-full">
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => <span key={i} className="text-drake-gold text-xl">★</span>)}
+                  </div>
+                  <p className="text-lg mb-4 italic">"{testimonial.quote}"</p>
+                  <p className="font-semibold">— {testimonial.author}</p>
                 </div>
-                <p className="text-lg mb-4 italic">"{testimonial.quote}"</p>
-                <p className="font-semibold">— {testimonial.author}</p>
-              </div>)}
+              </AnimatedSection>
+            ))}
           </div>
-          <div className="text-center mt-8">
-            <Button asChild size="lg" variant="outline">
-              <Link to="/success-stories">See More Success Stories</Link>
-            </Button>
-          </div>
+          <AnimatedSection animation="fadeInUp" delay={0.3}>
+            <div className="text-center mt-8">
+              <Button asChild size="lg" variant="outline">
+                <Link to="/success-stories">See More Success Stories</Link>
+              </Button>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
       <section className="py-16 bg-muted overflow-hidden">
         <div className="container mx-auto px-4 mb-8">
-          <p className="section-eyebrow text-primary text-center">THE STUDIO</p>
-          <h2 className="font-hero text-2xl md:text-3xl font-bold text-center mb-2 uppercase">
-            Inside <span className="text-primary">Drake Fitness</span>
-          </h2>
-          <p className="text-center text-muted-foreground">Real training. Real results. Real community.</p>
+          <AnimatedSection animation="fadeInUp">
+            <p className="section-eyebrow text-primary text-center">THE STUDIO</p>
+            <h2 className="font-hero text-2xl md:text-3xl font-bold text-center mb-2 uppercase">
+              Inside <span className="text-primary">Drake Fitness</span>
+            </h2>
+            <p className="text-center text-muted-foreground">Real training. Real results. Real community.</p>
+          </AnimatedSection>
         </div>
         <Marquee speed="slow" pauseOnHover={true}>
           <OptimizedImage src={coachingSession} alt="Battle rope training with personal coaching" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
@@ -448,37 +475,43 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       </section>
 
       {/* Longevity Block - Before Final CTA */}
-      <LongevityBlock />
+      <AnimatedSection animation="fadeInUp">
+        <LongevityBlock />
+      </AnimatedSection>
 
       {/* Local Trust Block */}
-      <section className="py-12 bg-muted border-y border-border">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 max-w-4xl mx-auto">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                <MapPin className="w-6 h-6 text-primary" />
+      <AnimatedSection animation="fadeInUp">
+        <section className="py-12 bg-muted border-y border-border">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6 max-w-4xl mx-auto">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                  <MapPin className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <p className="font-bold text-lg">Located in Avondale, Charleston</p>
+                  <p className="text-muted-foreground">2 Avondale Ave • 5 min from West Ashley</p>
+                </div>
               </div>
-              <div>
-                <p className="font-bold text-lg">Located in Avondale, Charleston</p>
-                <p className="text-muted-foreground">2 Avondale Ave • 5 min from West Ashley</p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button asChild variant="outline" size="lg">
+                  <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer">
+                    <Navigation className="w-4 h-4 mr-2" />
+                    Get Directions
+                  </a>
+                </Button>
+                <Button asChild size="lg">
+                  <Link to="/reset-week">Start Reset Week</Link>
+                </Button>
               </div>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Button asChild variant="outline" size="lg">
-                <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer">
-                  <Navigation className="w-4 h-4 mr-2" />
-                  Get Directions
-                </a>
-              </Button>
-              <Button asChild size="lg">
-                <Link to="/reset-week">Start Reset Week</Link>
-              </Button>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
-      <CTASection eyebrow="GET STARTED" title="Ready to Reset How You Move?" ctaText="Start Reset Week — $50" ctaLink="/reset-week" variant="primary" slanted={true} />
+      <AnimatedSection animation="fadeInUp">
+        <CTASection eyebrow="GET STARTED" title="Ready to Reset How You Move?" ctaText="Start Reset Week — $50" ctaLink="/reset-week" variant="primary" slanted={true} />
+      </AnimatedSection>
     </main>
     </>;
 };
