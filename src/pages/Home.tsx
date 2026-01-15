@@ -42,6 +42,7 @@ import communityGroupPhotoLarge from "@/assets/community-group-photo-large.jpg";
 import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg";
 import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg";
 import gymInteriorWide from "@/assets/gym-interior-wide.jpg";
+import groupClassPlankWide from "@/assets/group-class-plank-wide.jpg";
 interface HomeProps {
   bannerVisible?: boolean;
 }
@@ -116,8 +117,26 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       {/* Trust Stats Bar - After Who We Are */}
       <TrustStatsBar variant="horizontal" stats={['sessions', 'charlestonians', 'experience', 'rating']} className="border-y border-border" />
 
-      <section className="py-16 md:py-24 bg-drake-dark text-white section-slant-bottom">
-        <div className="container mx-auto px-4">
+      <section className="relative py-16 md:py-24 text-white section-slant-bottom overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <OptimizedImage 
+            src={groupClassPlankWide} 
+            alt="" 
+            className="w-full h-full object-cover"
+            aspectRatio="auto"
+            transparent
+            hideLoadingPlaceholder
+          />
+        </div>
+        
+        {/* Dark Overlay for Contrast */}
+        <div className="absolute inset-0 bg-drake-dark/85" />
+        
+        {/* Subtle Teal/Gold Gradient Accent */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-drake-gold/10" />
+        
+        <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection animation="fadeInUp">
             <p className="section-eyebrow text-drake-gold text-center">WHAT MAKES US DIFFERENT</p>
             <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
@@ -146,7 +165,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
               title: "Progress tracking that keeps you motivated",
               description: "Assessments every 4–8 weeks so you can see your progress."
             }].map((feature, index) => <AnimatedSection key={index} animation="fadeInUp" delay={index * 0.1}>
-                <div className="bg-white/5 border border-white/10 p-8 rounded-xl h-full hover:bg-white/10 transition-colors">
+                <div className="bg-white/5 border border-white/10 p-8 rounded-xl h-full hover:bg-white/10 transition-colors backdrop-blur-sm">
                   <div className="w-12 h-12 bg-drake-teal rounded-xl flex items-center justify-center text-white mb-4">
                     {feature.icon}
                   </div>
@@ -155,7 +174,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                 </div>
               </AnimatedSection>)}
             <AnimatedSection animation="fadeInUp" delay={0.4} className="md:col-span-2">
-              <div className="bg-white/5 border border-white/10 p-8 rounded-xl hover:bg-white/10 transition-colors">
+              <div className="bg-white/5 border border-white/10 p-8 rounded-xl hover:bg-white/10 transition-colors backdrop-blur-sm">
                 <div className="flex items-start gap-6">
                   <div className="w-12 h-12 bg-drake-teal rounded-xl flex items-center justify-center text-white flex-shrink-0">
                     <Heart className="w-6 h-6" />
