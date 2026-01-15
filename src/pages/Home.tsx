@@ -48,7 +48,7 @@ import groupPlankRowsKettlebells from "@/assets/group-plank-rows-kettlebells.jpg
 import communityGroupPhotoNew from "@/assets/community-group-photo-new.jpg";
 import communityTurkishGetupClass from "@/assets/community-turkish-getup-class.jpg";
 import communityKettlebellRackPair from "@/assets/community-kettlebell-rack-pair.jpg";
-import communityGymMoment from "@/assets/community-gym-moment.jpg";
+import communityPlankRowsKettlebells from "@/assets/community-plank-rows-kettlebells.jpg";
 interface HomeProps {
   bannerVisible?: boolean;
 }
@@ -388,7 +388,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
           { src: communityKettlebellRackPair, alt: "Members holding kettlebells in rack position" },
           { src: groupOverheadPressClass, alt: "Group overhead press class at Drake Fitness" },
           { src: membersOverheadLungeNaturalLight, alt: "Members performing overhead lunges in natural light" },
-          { src: communityGymMoment, alt: "Members doing plank rows with colorful kettlebells at Drake Fitness Charleston" },
+          { src: communityPlankRowsKettlebells, alt: "Members doing plank rows with colorful kettlebells at Drake Fitness Charleston" },
         ]}
       />
 
