@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { GoogleMapEmbed } from "@/components/GoogleMapEmbed";
+import AnimatedSection from "@/components/AnimatedSection";
 import contactHeroClass from "@/assets/contact-hero-class-turkish-getup.jpg";
 import davidStorefrontPortrait from "@/assets/david-kettlebell-storefront-portrait.jpg";
 const Contact = () => {
@@ -54,20 +55,23 @@ const Contact = () => {
         {/* Find Us Section - Map-Centric with ALL contact details */}
         <section className="py-16 md:py-24 bg-secondary">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <AnimatedSection animation="fadeInUp" className="text-center mb-12">
               <p className="section-eyebrow text-primary">FIND US</p>
               <h2 className="font-hero text-3xl md:text-4xl font-bold uppercase">
                 Visit <span className="text-primary">Drake Fitness</span>
               </h2>
               <p className="text-muted-foreground mt-4">Located in the heart of Avondale, West Ashley</p>
-            </div>
+            </AnimatedSection>
             
             <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
               {/* Map Embed */}
-              <GoogleMapEmbed height="400px" className="lg:h-full lg:min-h-[450px]" />
+              <AnimatedSection animation="slideInLeft" delay={0.1}>
+                <GoogleMapEmbed height="400px" className="lg:h-full lg:min-h-[450px]" />
+              </AnimatedSection>
               
               {/* Contact Details Card - Consolidated */}
-              <div className="bg-background p-8 rounded-2xl flex flex-col justify-center shadow-lg h-full">
+              <AnimatedSection animation="slideInRight" delay={0.2}>
+                <div className="bg-background p-8 rounded-2xl flex flex-col justify-center shadow-lg h-full">
                 <h3 className="font-hero text-2xl font-bold mb-6 uppercase">Contact Details</h3>
                 <div className="space-y-4">
                   {/* Address */}
@@ -138,7 +142,8 @@ const Contact = () => {
                     </a>
                   </Button>
                 </div>
-              </div>
+                </div>
+              </AnimatedSection>
             </div>
           </div>
         </section>
@@ -149,7 +154,7 @@ const Contact = () => {
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto items-center">
               
               {/* Left: David Portrait */}
-              <div className="relative hidden lg:block">
+              <AnimatedSection animation="slideInLeft" className="relative hidden lg:block">
                 <div className="relative rounded-2xl overflow-hidden shadow-xl">
                   <img 
                     src={davidStorefrontPortrait}
@@ -159,10 +164,10 @@ const Contact = () => {
                 </div>
                 {/* Decorative accent */}
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full -z-10" />
-              </div>
+              </AnimatedSection>
               
               {/* Right: Contact Form */}
-              <div>
+              <AnimatedSection animation="slideInRight" delay={0.1}>
                 <div className="mb-8">
                   <p className="section-eyebrow text-primary">SEND A MESSAGE</p>
                   <h2 className="font-hero text-2xl md:text-3xl font-bold uppercase">
@@ -249,7 +254,7 @@ const Contact = () => {
                     </Button>
                   </form>
                 </div>
-              </div>
+              </AnimatedSection>
               
             </div>
           </div>
@@ -276,10 +281,12 @@ const Contact = () => {
         })()}
         <section className="py-16 md:py-24 bg-muted section-slant-top">
           <div className="container mx-auto px-4">
-            <p className="section-eyebrow text-primary text-center">QUESTIONS</p>
-            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
-              Common <span className="text-primary">Questions</span>
-            </h2>
+            <AnimatedSection animation="fadeInUp">
+              <p className="section-eyebrow text-primary text-center">QUESTIONS</p>
+              <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
+                Common <span className="text-primary">Questions</span>
+              </h2>
+            </AnimatedSection>
             <div className="max-w-3xl mx-auto space-y-6">
               {[
                 {
@@ -295,10 +302,12 @@ const Contact = () => {
                   a: "Start with Reset Week — 7 days of unlimited classes for $50. It's the best way to experience our training style and find the right class for you.",
                 },
               ].map((faq, index) => (
-                <div key={index} className="bg-white p-6 rounded-xl border border-border shadow-card">
-                  <h3 className="font-hero font-bold text-lg mb-2 uppercase">{faq.q}</h3>
-                  <p className="text-muted-foreground">{faq.a}</p>
-                </div>
+                <AnimatedSection key={index} animation="fadeInUp" delay={index * 0.1}>
+                  <div className="bg-white p-6 rounded-xl border border-border shadow-card">
+                    <h3 className="font-hero font-bold text-lg mb-2 uppercase">{faq.q}</h3>
+                    <p className="text-muted-foreground">{faq.a}</p>
+                  </div>
+                </AnimatedSection>
               ))}
             </div>
           </div>

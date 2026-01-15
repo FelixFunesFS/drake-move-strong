@@ -3,6 +3,8 @@ import CTASection from "@/components/CTASection";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
+import AnimatedSection from "@/components/AnimatedSection";
+import { getStaggerDelay } from "@/lib/motionConfig";
 
 const FAQ = () => {
   const faqCategories = [
@@ -132,7 +134,7 @@ const FAQ = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto space-y-12">
             {faqCategories.map((category, catIndex) => (
-              <div key={catIndex}>
+              <AnimatedSection key={catIndex} animation="fadeInUp" delay={getStaggerDelay(catIndex, 0.05)}>
                 <h2 className="font-hero text-2xl md:text-3xl font-bold mb-6 text-primary uppercase">
                   {category.category}
                 </h2>
@@ -152,7 +154,7 @@ const FAQ = () => {
                     </AccordionItem>
                   ))}
                 </Accordion>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -160,13 +162,15 @@ const FAQ = () => {
 
       <section className="py-16 md:py-24 bg-muted section-slant-top">
         <div className="container mx-auto px-4 text-center">
-          <p className="section-eyebrow text-primary">NEED MORE HELP?</p>
-          <h2 className="font-hero text-3xl md:text-4xl font-bold mb-4 uppercase">
-            Still Have <span className="text-primary">Questions?</span>
-          </h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            We're here to help. Reach out and we'll get back to you within 24 hours.
-          </p>
+          <AnimatedSection animation="fadeInUp">
+            <p className="section-eyebrow text-primary">NEED MORE HELP?</p>
+            <h2 className="font-hero text-3xl md:text-4xl font-bold mb-4 uppercase">
+              Still Have <span className="text-primary">Questions?</span>
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              We're here to help. Reach out and we'll get back to you within 24 hours.
+            </p>
+          </AnimatedSection>
         </div>
       </section>
 

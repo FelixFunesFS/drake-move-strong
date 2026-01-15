@@ -8,6 +8,8 @@ import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
 import TrustStatsBar from "@/components/TrustStatsBar";
+import AnimatedSection from "@/components/AnimatedSection";
+import { getStaggerDelay } from "@/lib/motionConfig";
 
 const Pricing = () => {
   const faqs = [{
@@ -39,12 +41,16 @@ const Pricing = () => {
         {/* SECTION HEADER */}
         <section className="pt-32 pb-16 bg-background">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold uppercase mb-6">
-              Start Moving Better—<span className="text-primary">Without Guesswork</span>
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Simple memberships. Clear coaching. A safe path to long-term strength and mobility.
-            </p>
+            <AnimatedSection animation="fadeInUp">
+              <h1 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold uppercase mb-6">
+                Start Moving Better—<span className="text-primary">Without Guesswork</span>
+              </h1>
+            </AnimatedSection>
+            <AnimatedSection animation="fadeInUp" delay={0.1}>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Simple memberships. Clear coaching. A safe path to long-term strength and mobility.
+              </p>
+            </AnimatedSection>
           </div>
         </section>
 
@@ -52,11 +58,11 @@ const Pricing = () => {
         <section className="py-12 md:py-16 bg-muted">
           <div className="container mx-auto px-4">
             {/* Trust Signal - Above Reset Week Card */}
-            <div className="text-center mb-8">
+            <AnimatedSection animation="fadeIn" className="text-center mb-8">
               <GoogleReviewsBadge variant="compact" />
-            </div>
+            </AnimatedSection>
             
-            <div className="max-w-4xl mx-auto">
+            <AnimatedSection animation="scaleIn" delay={0.1} className="max-w-4xl mx-auto">
               <Card className="bg-primary/5 border-2 border-primary/20 shadow-lg overflow-hidden">
                 <CardHeader className="pb-4">
                   <span className="inline-block bg-primary/10 text-primary text-sm font-semibold uppercase tracking-wide px-4 py-1.5 rounded-full w-fit mb-4">
@@ -105,20 +111,23 @@ const Pricing = () => {
                   </p>
                 </CardFooter>
               </Card>
-            </div>
+            </AnimatedSection>
           </div>
         </section>
 
         {/* STEP 2: CORE MEMBERSHIPS (SIDE-BY-SIDE) */}
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4">
-            <p className="text-sm uppercase tracking-widest text-muted-foreground text-center mb-8">
-              Ongoing Memberships
-            </p>
+            <AnimatedSection animation="fadeInUp">
+              <p className="text-sm uppercase tracking-widest text-muted-foreground text-center mb-8">
+                Ongoing Memberships
+              </p>
+            </AnimatedSection>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
               {/* LEFT CARD — FOUNDATION MEMBERSHIP */}
-              <Card className="shadow-card relative">
+              <AnimatedSection animation="slideInLeft" delay={0.1}>
+                <Card className="shadow-card relative h-full">
                 <CardHeader className="pb-4">
                   <h3 className="font-hero text-2xl uppercase text-foreground">
                     Foundation Membership
@@ -158,10 +167,12 @@ const Pricing = () => {
                     Most members start here after Reset Week.
                   </p>
                 </CardFooter>
-              </Card>
+                </Card>
+              </AnimatedSection>
 
               {/* RIGHT CARD — LONGEVITY UNLIMITED (ANCHOR) */}
-              <Card className="shadow-lg relative bg-drake-dark text-white border-2 border-drake-gold md:-translate-y-2">
+              <AnimatedSection animation="slideInRight" delay={0.2}>
+                <Card className="shadow-lg relative bg-drake-dark text-white border-2 border-drake-gold md:-translate-y-2 h-full">
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                   <span className="bg-drake-gold text-drake-dark px-4 py-1.5 rounded-full text-sm font-semibold inline-flex items-center gap-1.5">
                     <Star className="w-4 h-4 fill-current" />
@@ -214,7 +225,8 @@ const Pricing = () => {
                     Most popular choice for lasting results.
                   </p>
                 </CardFooter>
-              </Card>
+                </Card>
+              </AnimatedSection>
             </div>
           </div>
         </section>
@@ -222,16 +234,19 @@ const Pricing = () => {
         {/* STEP 3: OTHER OPTIONS (DE-EMPHASIZED) */}
         <section className="py-12 md:py-16 bg-muted border-t border-border">
           <div className="container mx-auto px-4">
-            <p className="text-sm uppercase tracking-widest text-muted-foreground text-center mb-2">
-              Alternative Options
-            </p>
-            <h3 className="font-hero text-xl md:text-2xl uppercase text-center text-foreground mb-10">
-              Other Ways to Train
-            </h3>
+            <AnimatedSection animation="fadeInUp">
+              <p className="text-sm uppercase tracking-widest text-muted-foreground text-center mb-2">
+                Alternative Options
+              </p>
+              <h3 className="font-hero text-xl md:text-2xl uppercase text-center text-foreground mb-10">
+                Other Ways to Train
+              </h3>
+            </AnimatedSection>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {/* Foundation Plus Card */}
-              <Card className="bg-card border border-border shadow-sm">
+              <AnimatedSection animation="fadeInUp" delay={getStaggerDelay(0)}>
+                <Card className="bg-card border border-border shadow-sm h-full">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
                     <h4 className="font-semibold text-lg text-foreground">
@@ -270,10 +285,12 @@ const Pricing = () => {
                     <ArrowRight className="w-3 h-3" />
                   </Link>
                 </CardFooter>
-              </Card>
+                </Card>
+              </AnimatedSection>
 
               {/* Remote Movement Support Card */}
-              <Card className="bg-card border border-border shadow-sm">
+              <AnimatedSection animation="fadeInUp" delay={getStaggerDelay(1)}>
+                <Card className="bg-card border border-border shadow-sm h-full">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
                     <h4 className="font-semibold text-lg text-foreground">
@@ -312,10 +329,12 @@ const Pricing = () => {
                     <ArrowRight className="w-3 h-3" />
                   </Link>
                 </CardFooter>
-              </Card>
+                </Card>
+              </AnimatedSection>
 
               {/* 10-Class Pack Card */}
-              <Card className="bg-card border border-border shadow-sm">
+              <AnimatedSection animation="fadeInUp" delay={getStaggerDelay(2)}>
+                <Card className="bg-card border border-border shadow-sm h-full">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
                     <h4 className="font-semibold text-lg text-foreground">
@@ -356,7 +375,8 @@ const Pricing = () => {
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </CardFooter>
-              </Card>
+                </Card>
+              </AnimatedSection>
             </div>
           </div>
         </section>
@@ -364,22 +384,24 @@ const Pricing = () => {
         {/* SEO COMPARISON TABLE */}
         <section className="py-12 md:py-16 bg-background border-t border-border">
           <div className="container mx-auto px-4">
-            <p className="text-muted-foreground text-center mb-4 max-w-2xl mx-auto">
-              All Drake Fitness memberships are coached in Charleston, SC and designed for adults who want safe, sustainable strength and mobility.
-            </p>
-            <h2 className="font-hero text-2xl md:text-3xl font-bold uppercase text-center mb-8">
-              Compare Drake Fitness <span className="text-primary">Membership Options</span>
-            </h2>
+            <AnimatedSection animation="fadeInUp">
+              <p className="text-muted-foreground text-center mb-4 max-w-2xl mx-auto">
+                All Drake Fitness memberships are coached in Charleston, SC and designed for adults who want safe, sustainable strength and mobility.
+              </p>
+              <h2 className="font-hero text-2xl md:text-3xl font-bold uppercase text-center mb-8">
+                Compare Drake Fitness <span className="text-primary">Membership Options</span>
+              </h2>
+            </AnimatedSection>
             
             {/* Trust Stats Bar */}
-            <div className="max-w-4xl mx-auto mb-8">
+            <AnimatedSection animation="fadeIn" delay={0.1} className="max-w-4xl mx-auto mb-8">
               <TrustStatsBar 
                 variant="minimal" 
                 stats={['sessions', 'experience', 'reviews']} 
               />
-            </div>
+            </AnimatedSection>
             
-            <div className="max-w-4xl mx-auto overflow-x-auto">
+            <AnimatedSection animation="fadeInUp" delay={0.2} className="max-w-4xl mx-auto overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
                   <tr className="bg-primary text-primary-foreground">
@@ -416,34 +438,38 @@ const Pricing = () => {
                   </tr>
                 </tbody>
               </table>
-            </div>
+            </AnimatedSection>
             
             {/* Trust Reinforcement - Below Table */}
-            <div className="text-center mt-10 mb-4">
+            <AnimatedSection animation="fadeIn" delay={0.3} className="text-center mt-10 mb-4">
               <GoogleReviewsBadge variant="compact" />
               <p className="text-sm text-muted-foreground mt-2">
                 Real people. Real results. No gimmicks.
               </p>
-            </div>
+            </AnimatedSection>
             
             {/* Tier-Mapped Testimonials */}
             <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-10">
-              <div className="bg-muted p-6 rounded-xl border border-border">
-                <div className="flex gap-1 mb-3">
-                  {[...Array(5)].map((_, i) => <span key={i} className="text-drake-gold text-lg">★</span>)}
+              <AnimatedSection animation="slideInLeft" delay={0.4}>
+                <div className="bg-muted p-6 rounded-xl border border-border h-full">
+                  <div className="flex gap-1 mb-3">
+                    {[...Array(5)].map((_, i) => <span key={i} className="text-drake-gold text-lg">★</span>)}
+                  </div>
+                  <p className="text-foreground italic mb-4">"Even in the group classes, if you're a beginner, he will make sure you are comfortable and learn proper form."</p>
+                  <p className="font-semibold text-foreground">— Turner W.</p>
+                  <p className="text-sm text-primary">Foundation member</p>
                 </div>
-                <p className="text-foreground italic mb-4">"Even in the group classes, if you're a beginner, he will make sure you are comfortable and learn proper form."</p>
-                <p className="font-semibold text-foreground">— Turner W.</p>
-                <p className="text-sm text-primary">Foundation member</p>
-              </div>
-              <div className="bg-drake-dark p-6 rounded-xl border-2 border-drake-gold">
-                <div className="flex gap-1 mb-3">
-                  {[...Array(5)].map((_, i) => <span key={i} className="text-drake-gold text-lg">★</span>)}
+              </AnimatedSection>
+              <AnimatedSection animation="slideInRight" delay={0.5}>
+                <div className="bg-drake-dark p-6 rounded-xl border-2 border-drake-gold h-full">
+                  <div className="flex gap-1 mb-3">
+                    {[...Array(5)].map((_, i) => <span key={i} className="text-drake-gold text-lg">★</span>)}
+                  </div>
+                  <p className="text-gray-200 italic mb-4">"I'm stronger in my 40s than ever before… His knowledge and adaptability have made a significant impact."</p>
+                  <p className="font-semibold text-white">— Aaron Q.</p>
+                  <p className="text-sm text-drake-gold">Longevity Unlimited member</p>
                 </div>
-                <p className="text-gray-200 italic mb-4">"I'm stronger in my 40s than ever before… His knowledge and adaptability have made a significant impact."</p>
-                <p className="font-semibold text-white">— Aaron Q.</p>
-                <p className="text-sm text-drake-gold">Longevity Unlimited member</p>
-              </div>
+              </AnimatedSection>
             </div>
             
             <p className="text-center text-muted-foreground mt-10">
@@ -471,11 +497,13 @@ const Pricing = () => {
         {/* FAQ SECTION */}
         <section className="py-16 md:py-24 bg-drake-dark">
           <div className="container mx-auto px-4">
-            <p className="section-eyebrow text-drake-gold text-center">QUESTIONS</p>
-            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase text-white">
-              Common Membership <span className="text-drake-gold">Questions Answered</span>
-            </h2>
-            <div className="max-w-3xl mx-auto">
+            <AnimatedSection animation="fadeInUp">
+              <p className="section-eyebrow text-drake-gold text-center">QUESTIONS</p>
+              <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase text-white">
+                Common Membership <span className="text-drake-gold">Questions Answered</span>
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection animation="fadeInUp" delay={0.1} className="max-w-3xl mx-auto">
               <Accordion type="multiple" defaultValue={["item-0", "item-1", "item-2", "item-3"]} className="space-y-4">
                 {faqs.map((faq, index) => <AccordionItem key={index} value={`item-${index}`} className="bg-white/5 border border-white/10 rounded-xl px-6">
                     <AccordionTrigger className="text-lg font-semibold hover:no-underline text-drake-gold">
@@ -486,9 +514,10 @@ const Pricing = () => {
                     </AccordionContent>
                   </AccordionItem>)}
               </Accordion>
+            </AnimatedSection>
               
-              {/* Internal Links to Local SEO Pages */}
-              <div className="mt-12 text-center">
+            {/* Internal Links to Local SEO Pages */}
+            <AnimatedSection animation="fadeIn" delay={0.2} className="mt-12 text-center max-w-3xl mx-auto">
                 <p className="text-gray-400 mb-4">Learn more about our specialized programs:</p>
                 <div className="flex flex-wrap justify-center gap-4">
                   <Link to="/mobility-fitness-avondale" className="text-drake-gold hover:text-drake-gold/80 underline underline-offset-2">
@@ -504,8 +533,7 @@ const Pricing = () => {
                     West Ashley Fitness
                   </Link>
                 </div>
-              </div>
-            </div>
+            </AnimatedSection>
           </div>
         </section>
 
