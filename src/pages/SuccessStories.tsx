@@ -1,6 +1,6 @@
 import Hero from "@/components/Hero";
 import CTASection from "@/components/CTASection";
-import communityImage from "@/assets/community-gym-moment.jpg";
+import communityImage from "@/assets/community-plank-rows-kettlebells.jpg";
 import memberYoga from "@/assets/member-yoga-pose.jpg";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
