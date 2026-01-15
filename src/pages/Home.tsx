@@ -45,7 +45,7 @@ import gymInteriorWide from "@/assets/gym-interior-wide.jpg";
 import groupClassPlankWide from "@/assets/group-class-plank-wide.jpg";
 import groupPlankRowsKettlebells from "@/assets/group-plank-rows-kettlebells.jpg";
 // New community gallery images
-import communityPlankRowsGroup from "@/assets/community-plank-rows-group.jpg";
+import communityGroupPhotoNew from "@/assets/community-group-photo-new.jpg";
 import communityTurkishGetupClass from "@/assets/community-turkish-getup-class.jpg";
 import communityKettlebellRackPair from "@/assets/community-kettlebell-rack-pair.jpg";
 import communityStudioBarbellDog from "@/assets/community-studio-barbell-dog.jpg";
@@ -383,7 +383,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       {/* Community in Action - 2-Row Masonry Gallery */}
       <CommunityMasonryGallery 
         images={[
-          { src: communityPlankRowsGroup, alt: "Group plank rows with kettlebells in studio" },
+          { src: communityGroupPhotoNew, alt: "Drake Fitness community group photo in studio" },
           { src: communityTurkishGetupClass, alt: "Large group Turkish get-up class with natural lighting" },
           { src: communityKettlebellRackPair, alt: "Members holding kettlebells in rack position" },
           { src: groupOverheadPressClass, alt: "Group overhead press class at Drake Fitness" },
