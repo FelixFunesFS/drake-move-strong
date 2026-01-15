@@ -165,7 +165,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
               title: "Progress tracking that keeps you motivated",
               description: "Assessments every 4–8 weeks so you can see your progress."
             }].map((feature, index) => <AnimatedSection key={index} animation="fadeInUp" delay={index * 0.1}>
-                <div className="bg-white/5 border border-white/10 p-8 rounded-xl h-full hover:bg-white/10 transition-colors backdrop-blur-sm">
+                <div className="bg-white/15 border border-white/20 p-8 rounded-xl h-full hover:bg-white/20 transition-colors backdrop-blur-sm">
                   <div className="w-12 h-12 bg-drake-teal rounded-xl flex items-center justify-center text-white mb-4">
                     {feature.icon}
                   </div>
@@ -174,7 +174,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                 </div>
               </AnimatedSection>)}
             <AnimatedSection animation="fadeInUp" delay={0.4} className="md:col-span-2">
-              <div className="bg-white/5 border border-white/10 p-8 rounded-xl hover:bg-white/10 transition-colors backdrop-blur-sm">
+              <div className="bg-white/15 border border-white/20 p-8 rounded-xl hover:bg-white/20 transition-colors backdrop-blur-sm">
                 <div className="flex items-start gap-6">
                   <div className="w-12 h-12 bg-drake-teal rounded-xl flex items-center justify-center text-white flex-shrink-0">
                     <Heart className="w-6 h-6" />
