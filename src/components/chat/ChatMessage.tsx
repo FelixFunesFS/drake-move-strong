@@ -25,10 +25,10 @@ const friendlyLabels: Record<string, string> = {
   'https://drake.fitness/pricing': '💰 View Pricing',
   'https://drake.fitness/schedule': '📅 See Schedule',
   'https://drake.fitness/contact': '📞 Contact Us',
-  'https://drake.fitness/classes': '🏋️ Explore Classes',
+  'https://drake.fitness/reset-week': '🎁 Start Reset Week',
   'https://drake.fitness/about': '👋 About Us',
   'https://drake.fitness/coaching': '🎯 Personal Coaching',
-  'https://drake.fitness/consultation': '📋 Book Free Consultation',
+  'https://drake.fitness/consultation': '📋 Book Consultation',
 };
 
 const getFriendlyLabel = (url: string): string => {
