@@ -5,7 +5,7 @@ import BlogCategoryCard from "@/components/insights/BlogCategoryCard";
 import BlogArticleCard from "@/components/insights/BlogArticleCard";
 import AnimatedSection from "@/components/AnimatedSection";
 import CTASection from "@/components/CTASection";
-import heroImage from "@/assets/hero-coaching-session.jpg";
+import heroImage from "@/assets/insights-hero-turkish-getup-class.jpg";
 import { SEO } from "@/components/SEO";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
