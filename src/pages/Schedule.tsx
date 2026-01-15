@@ -24,10 +24,10 @@ import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { NativeWeeklySchedule } from "@/components/schedule/NativeWeeklySchedule";
 
-// Class images
-import mobilityClass from "@/assets/mobility-class.jpg";
-import classGroup from "@/assets/class-group.jpg";
-import kbStrong from "@/assets/kb-strong.jpg";
+// Class images - using new authentic photos
+import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg";
+import membersDoubleKettlebellRack from "@/assets/members-double-kettlebell-rack.jpg";
+import groupPlankRowsKettlebells from "@/assets/group-plank-rows-kettlebells.jpg";
 
 // Gallery images
 import classesGallery1 from "@/assets/classes-gallery-1.jpg";
@@ -40,13 +40,15 @@ import classesGallery7 from "@/assets/classes-gallery-7.jpg";
 import classesGallery8 from "@/assets/classes-gallery-8.jpg";
 import classesGallery9 from "@/assets/classes-gallery-9.jpg";
 import classesGallery10 from "@/assets/classes-gallery-10.jpg";
+import communityGroupPhotoLarge from "@/assets/community-group-photo-large.jpg";
+import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg";
 
 const classTypes = [
   {
     name: "Foundation Flow™",
     badge: "Beginner Friendly",
     badgeVariant: "secondary" as const,
-    image: mobilityClass,
+    image: membersOverheadLungeNaturalLight,
     description: "A gentle, mobility-based class that focuses on movement quality, breathing, stability, and basic strength patterns. Perfect for beginners or anyone returning to fitness.",
     details: "Start your day with mobility-first training. Focus on movement quality, breathwork, and stability.",
   },
@@ -54,7 +56,7 @@ const classTypes = [
     name: "Functional Strength™",
     badge: "Most Popular",
     badgeVariant: "default" as const,
-    image: classGroup,
+    image: membersDoubleKettlebellRack,
     description: "Mobility + kettlebell strength + functional conditioning in a coach-led, joint-smart format. Safe, scalable, sustainable.",
     details: "Our core program blending mobility, kettlebell strength, and functional conditioning. Lift with proper form and movement quality.",
   },
@@ -62,7 +64,7 @@ const classTypes = [
     name: "KB Strong™",
     badge: "Advanced",
     badgeVariant: "destructive" as const,
-    image: kbStrong,
+    image: groupPlankRowsKettlebells,
     description: "Higher-intensity kettlebell strength class with advanced progressions and technique refinement.",
     details: "Strength-intensive kettlebell training with technique refinement and progressive loading. Members ready to push harder with proper form and technique.",
   },
@@ -92,8 +94,10 @@ const classTypes = [
 const galleryImages = [
   { src: classesGallery1, alt: "Two members performing kettlebell overhead presses in studio" },
   { src: classesGallery2, alt: "Drake Fitness community group photo with members and coaches" },
+  { src: communityGroupPhotoLarge, alt: "Large outdoor community group photo at Drake Fitness" },
   { src: classesGallery3, alt: "Group kettlebell goblet squats with coach supervision and studio dog" },
   { src: classesGallery4, alt: "Three members performing synchronized kettlebell presses with dog watching" },
+  { src: groupOverheadPressClass, alt: "Group overhead kettlebell press during class" },
   { src: classesGallery5, alt: "Two female members doing Turkish get-ups with kettlebells" },
   { src: classesGallery6, alt: "Group class performing kettlebell goblet squats with coach instruction" },
   { src: classesGallery7, alt: "Outdoor training session with women at Drake Fitness studio exterior" },

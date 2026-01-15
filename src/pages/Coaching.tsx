@@ -16,6 +16,10 @@ import nickCoach from "@/assets/coach-nick-new.jpg";
 import coachingSession from "@/assets/coaching-session.jpg";
 import TestimonialHero from "@/components/TestimonialHero";
 import { FEATURED_REVIEWS } from "@/data/reviews";
+// New authentic training photos
+import davidCoachingTurkishGetup from "@/assets/david-coaching-turkish-getup.jpg";
+import memberWeightedVestBandTraining from "@/assets/member-weighted-vest-band-training.jpg";
+import memberLungeWithStudioDog from "@/assets/member-lunge-with-studio-dog.jpg";
 const Coaching = () => {
   const reasons = [{
     icon: Heart,
@@ -313,6 +317,40 @@ const Coaching = () => {
           </div>
         </section>
       </AnimatedSection>
+
+      {/* NEW: Training Atmosphere Strip */}
+      <section className="py-12 bg-background overflow-hidden">
+        <div className="container mx-auto px-4">
+          <p className="section-eyebrow text-primary text-center mb-8">TRAINING ATMOSPHERE</p>
+          <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory md:grid md:grid-cols-3 md:overflow-visible max-w-5xl mx-auto">
+            <div className="min-w-[280px] md:min-w-0 snap-center">
+              <OptimizedImage
+                src={davidCoachingTurkishGetup}
+                alt="David coaching Turkish get-up technique"
+                aspectRatio="square"
+                className="rounded-lg shadow-lg"
+              />
+            </div>
+            <div className="min-w-[280px] md:min-w-0 snap-center">
+              <OptimizedImage
+                src={memberWeightedVestBandTraining}
+                alt="Member training with weighted vest and bands"
+                aspectRatio="square"
+                className="rounded-lg shadow-lg"
+              />
+            </div>
+            <div className="min-w-[280px] md:min-w-0 snap-center">
+              <OptimizedImage
+                src={memberLungeWithStudioDog}
+                alt="Member training with studio dog nearby"
+                aspectRatio="square"
+                className="rounded-lg shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <AnimatedSection animation="fadeInUp">
         <section className="py-16 md:py-24 bg-drake-dark section-slant-top">

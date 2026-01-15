@@ -40,6 +40,11 @@ import studioGroupOverhead from "@/assets/studio-group-overhead.jpg";
 import ImageGallery from "@/components/ImageGallery";
 import TestimonialHero from "@/components/TestimonialHero";
 import { LONGEVITY_REVIEWS } from "@/data/reviews";
+// New authentic training photos
+import communityGroupPhotoLarge from "@/assets/community-group-photo-large.jpg";
+import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg";
+import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg";
+import davidCoachingTurkishGetup from "@/assets/david-coaching-turkish-getup.jpg";
 const About = () => {
   return (
     <>
@@ -446,11 +451,17 @@ His approach blends skill, science, and practical strength work to create long-t
             src: studioFullView,
             alt: "Wide view of Drake Fitness training studio interior"
           }, {
+            src: communityGroupPhotoLarge,
+            alt: "Large outdoor community group photo at Drake Fitness"
+          }, {
             src: studioNickDavidTogether,
             alt: "David Drake and Nick Poppa coaching team"
           }, {
             src: studioLargeGroup,
             alt: "Large training group with studio dog inside Drake Fitness"
+          }, {
+            src: membersOverheadLungeNaturalLight,
+            alt: "Members performing overhead lunges in natural light"
           }, {
             src: studioTeamThree,
             alt: "Drake Fitness coaching team of three"
@@ -458,11 +469,17 @@ His approach blends skill, science, and practical strength work to create long-t
             src: studioDavidStorefront,
             alt: "David Drake with sandbag outside Drake Fitness studio"
           }, {
+            src: groupOverheadPressClass,
+            alt: "Group overhead kettlebell press during class"
+          }, {
             src: studioOutdoorBanner,
             alt: "Outdoor training with Drake Fitness banner"
           }, {
             src: studioTeamPhoto,
             alt: "Drake Fitness training group outside the studio"
+          }, {
+            src: davidCoachingTurkishGetup,
+            alt: "David Drake coaching Turkish get-up technique"
           }, {
             src: studioGroupSquats,
             alt: "Group kettlebell squats with studio dog watching"
