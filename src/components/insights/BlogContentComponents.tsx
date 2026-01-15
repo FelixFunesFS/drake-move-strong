@@ -19,6 +19,7 @@ import kettlebellFormCheck from "@/assets/kettlebell-form-check.jpg";
 import studioFloorExercise from "@/assets/studio-floor-exercise.jpg";
 import studioFullView from "@/assets/studio-full-view.jpg";
 import outdoorTraining from "@/assets/outdoor-training.jpg";
+import blogKettlebellOverheadGroup from "@/assets/blog-kettlebell-overhead-group.jpg";
 
 // =====================================================
 // Why Traditional Workouts Stop Working After 40
@@ -1291,7 +1292,7 @@ export const HowMuchTimeContent = () => {
       </div>
 
       <div className="mb-16 rounded-2xl overflow-hidden shadow-2xl">
-        <img src={outdoorTraining} alt="Efficient outdoor training" className="w-full h-auto max-h-96 object-cover" />
+        <img src={blogKettlebellOverheadGroup} alt="Kettlebell overhead press group training" className="w-full h-auto max-h-96 object-cover" />
       </div>
 
       {/* The Truth */}
