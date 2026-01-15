@@ -7,6 +7,11 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { SEO } from "@/components/SEO";
 import { GoogleReviewsBadge, GOOGLE_REVIEWS } from "@/components/GoogleReviewsBadge";
 import { ExternalLink } from "lucide-react";
+// New authentic training photos
+import communityGroupPhotoLarge from "@/assets/community-group-photo-large.jpg";
+import groupPlankRowsKettlebells from "@/assets/group-plank-rows-kettlebells.jpg";
+import memberLungeWithStudioDog from "@/assets/member-lunge-with-studio-dog.jpg";
+import membersTurkishGetupLunge from "@/assets/members-turkish-getup-lunge.jpg";
 
 const SuccessStories = () => {
   // Verified Google Reviews - strategically mapped for conversion
@@ -109,6 +114,52 @@ const SuccessStories = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* NEW: Real Training in Action - Masonry Section */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <p className="section-eyebrow text-primary text-center">REAL TRAINING</p>
+          <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
+            Training in <span className="text-primary">Action</span>
+          </h2>
+          
+          {/* Masonry Grid - 3 columns with varying heights */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
+            <AnimatedSection animation="scaleIn" className="md:row-span-2">
+              <OptimizedImage
+                src={communityGroupPhotoLarge}
+                alt="Drake Fitness community group training outdoors"
+                aspectRatio="portrait"
+                className="rounded-lg shadow-xl h-full"
+              />
+            </AnimatedSection>
+            <AnimatedSection animation="scaleIn" delay={0.1}>
+              <OptimizedImage
+                src={groupPlankRowsKettlebells}
+                alt="Group plank rows with kettlebells"
+                aspectRatio="video"
+                className="rounded-lg shadow-xl"
+              />
+            </AnimatedSection>
+            <AnimatedSection animation="scaleIn" delay={0.2}>
+              <OptimizedImage
+                src={memberLungeWithStudioDog}
+                alt="Member training with studio dog nearby"
+                aspectRatio="video"
+                className="rounded-lg shadow-xl"
+              />
+            </AnimatedSection>
+            <AnimatedSection animation="scaleIn" delay={0.3} className="md:col-span-2">
+              <OptimizedImage
+                src={membersTurkishGetupLunge}
+                alt="Members practicing Turkish get-up and lunge variations"
+                aspectRatio="video"
+                className="rounded-lg shadow-xl"
+              />
+            </AnimatedSection>
           </div>
         </div>
       </section>

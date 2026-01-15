@@ -1,16 +1,16 @@
 // Image imports for proper Vite bundling
 import blogTraditionalWorkoutsHero from '@/assets/blog-traditional-workouts-hero.jpg';
-import coachingSession from '@/assets/coaching-session.jpg';
-import mobilityClass from '@/assets/mobility-class.jpg';
-import groupKettlebellTraining from '@/assets/group-kettlebell-training.jpg';
 import studioMobilityTraining from '@/assets/studio-mobility-training.jpg';
-import kettlebellFormCheck from '@/assets/kettlebell-form-check.jpg';
 import studioFloorExercise from '@/assets/studio-floor-exercise.jpg';
 import studioFullView from '@/assets/studio-full-view.jpg';
-import outdoorTraining from '@/assets/outdoor-training.jpg';
-import heroKettlebellTraining from '@/assets/hero-kettlebell-training.jpg';
-import coachNickPortrait from '@/assets/coach-nick-portrait.jpg';
 import nickHolisticCoaching from '@/assets/nick-holistic-coaching.jpg';
+// New authentic photos for blog thumbnails
+import davidCoachingTurkishGetup from '@/assets/david-coaching-turkish-getup.jpg';
+import membersOverheadLungeNaturalLight from '@/assets/members-overhead-lunge-natural-light.jpg';
+import groupOverheadPressClass from '@/assets/group-overhead-press-class.jpg';
+import memberWeightedVestBandTraining from '@/assets/member-weighted-vest-band-training.jpg';
+import membersTurkishGetupLunge from '@/assets/members-turkish-getup-lunge.jpg';
+import membersDoubleKettlebellRack from '@/assets/members-double-kettlebell-rack.jpg';
 
 export interface InsightPost {
   id: string;
@@ -34,7 +34,7 @@ export const authorInfo = {
     name: "Coach Drake",
     title: "Owner & Head Coach",
     bio: "25+ years experience in strength training and functional movement. StrongFirst Kettlebell Certified.",
-    image: outdoorTraining
+    image: davidCoachingTurkishGetup
   },
   nick: {
     name: "Coach Nick",
@@ -218,7 +218,7 @@ export const insightPosts: InsightPost[] = [
     author: 'david',
     publishedAt: '2025-11-15',
     readTime: 6,
-    thumbnail: coachingSession,
+    thumbnail: davidCoachingTurkishGetup,
     featured: true,
     tags: ['philosophy', 'coaching', 'values']
   },
@@ -268,7 +268,7 @@ export const insightPosts: InsightPost[] = [
     author: 'nick',
     publishedAt: '2025-10-20',
     readTime: 7,
-    thumbnail: mobilityClass,
+    thumbnail: membersOverheadLungeNaturalLight,
     featured: false,
     tags: ['mobility', 'flexibility', 'movement quality']
   },
@@ -314,7 +314,7 @@ export const insightPosts: InsightPost[] = [
     author: 'david',
     publishedAt: '2025-09-18',
     readTime: 5,
-    thumbnail: groupKettlebellTraining,
+    thumbnail: groupOverheadPressClass,
     featured: false,
     tags: ['beginners', 'getting started', 'reset week']
   },
@@ -406,7 +406,7 @@ export const insightPosts: InsightPost[] = [
     author: 'nick',
     publishedAt: '2025-07-25',
     readTime: 8,
-    thumbnail: kettlebellFormCheck,
+    thumbnail: memberWeightedVestBandTraining,
     featured: false,
     tags: ['injuries', 'modifications', 'safety']
   },
@@ -559,7 +559,7 @@ export const insightPosts: InsightPost[] = [
     author: 'david',
     publishedAt: '2025-04-22',
     readTime: 6,
-    thumbnail: outdoorTraining,
+    thumbnail: membersTurkishGetupLunge,
     featured: false,
     tags: ['time management', 'busy schedules', 'efficiency']
   },
@@ -574,7 +574,7 @@ export const insightPosts: InsightPost[] = [
     author: 'david',
     publishedAt: '2025-12-10',
     readTime: 9,
-    thumbnail: heroKettlebellTraining,
+    thumbnail: membersDoubleKettlebellRack,
     featured: true,
     tags: ['strength', 'functional training', 'philosophy']
   }
