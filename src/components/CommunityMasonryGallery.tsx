@@ -11,29 +11,22 @@ interface CommunityMasonryGalleryProps {
 }
 
 const CommunityMasonryGallery = ({ images }: CommunityMasonryGalleryProps) => {
-  // Define layout pattern for each image position
+  // 2-row masonry: varied sizes for visual interest
   const getLayoutClasses = (index: number): string => {
     switch (index) {
-      case 0: // Large featured image - tall on desktop
-        return "row-span-2";
-      case 4: // Wide image spans 2 columns on desktop
+      case 0: // First image spans 2 columns on desktop
+        return "md:col-span-2";
+      case 5: // Last image spans 2 columns on desktop
         return "md:col-span-2";
       default:
         return "";
     }
   };
 
-  const getAspectRatio = (index: number): "portrait" | "video" | "square" => {
-    switch (index) {
-      case 0:
-        return "portrait"; // Tall featured
-      case 3:
-        return "portrait"; // KB rack pair 
-      case 6:
-        return "square"; // Studio scene
-      default:
-        return "video"; // 16:9 for most
-    }
+  const getAspectRatio = (index: number): "video" | "square" => {
+    // Wide images for spanning, square for single cells
+    if (index === 0 || index === 5) return "video";
+    return "square";
   };
 
   return (
@@ -46,13 +39,13 @@ const CommunityMasonryGallery = ({ images }: CommunityMasonryGalleryProps) => {
           </h2>
         </AnimatedSection>
         
-        {/* Responsive Masonry Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto auto-rows-fr">
+        {/* 2-Row Full Width Masonry Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 w-full">
           {images.map((img, index) => (
             <AnimatedSection 
               key={index}
               animation="scaleIn"
-              delay={index * 0.1}
+              delay={index * 0.08}
               className={`${getLayoutClasses(index)} overflow-hidden rounded-xl shadow-lg group`}
             >
               <div className="h-full">
