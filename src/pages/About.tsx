@@ -14,7 +14,7 @@ import davidImage from "@/assets/david-double-kb-storefront-new.jpg";
 import davidImage2 from "@/assets/david-goblet-squat-kb-rack.jpg";
 import nickImage from "@/assets/coach-nick-new.jpg";
 import kbCollection from "@/assets/group-kettlebell-training.jpg";
-import communityMoment from "@/assets/community-gym-moment.jpg";
+import communityMoment from "@/assets/community-plank-rows-kettlebells.jpg";
 import memberYoga from "@/assets/member-yoga-pose.jpg";
 import outdoorKb from "@/assets/outdoor-kettlebell.jpg";
 import coachingSession from "@/assets/coaching-session.jpg";
