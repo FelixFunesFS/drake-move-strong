@@ -19,7 +19,7 @@ import coachNick from "@/assets/nick-holistic-coaching.jpg";
 import startHereImage from "@/assets/outdoor-sandbag-training.jpg";
 import kbCollection from "@/assets/kettlebell-collection.jpg";
 import maceTraining from "@/assets/david-mace-training.jpg";
-import communityMoment from "@/assets/community-gym-moment.jpg";
+import communityMoment from "@/assets/community-plank-rows-kettlebells.jpg";
 import memberYoga from "@/assets/member-yoga-pose.jpg";
 import coachingSession from "@/assets/coaching-session.jpg";
 import oneOnOneCoaching from "@/assets/one-on-one-coaching.jpg";
@@ -33,7 +33,7 @@ import studioGroupSquats from "@/assets/studio-group-squats.jpg";
 import Marquee from "@/components/Marquee";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
-import TestimonialHero from "@/components/TestimonialHero";
+import TestimonialCard from "@/components/TestimonialCard";
 import CommunityMasonryGallery from "@/components/CommunityMasonryGallery";
 import { FEATURED_REVIEWS } from "@/data/reviews";
 import { TodayClassesBanner } from "@/components/schedule/TodayClassesBanner";
@@ -378,7 +378,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       </section>
 
       {/* Testimonial Hero - Between Coaches and Results */}
-      <TestimonialHero quote={FEATURED_REVIEWS[0].quote} author={FEATURED_REVIEWS[0].name} result={FEATURED_REVIEWS[0].result} backgroundImage={studioGroupSquats} />
+      <TestimonialCard quote={FEATURED_REVIEWS[0].quote} author={FEATURED_REVIEWS[0].name} result={FEATURED_REVIEWS[0].result} />
 
       {/* Community in Action - 2-Row Masonry Gallery */}
       <CommunityMasonryGallery 
