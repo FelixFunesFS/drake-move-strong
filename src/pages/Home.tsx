@@ -34,7 +34,7 @@ import Marquee from "@/components/Marquee";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
 import TestimonialHero from "@/components/TestimonialHero";
-import CommunityParallaxGallery from "@/components/CommunityParallaxGallery";
+import CommunityMasonryGallery from "@/components/CommunityMasonryGallery";
 import { FEATURED_REVIEWS } from "@/data/reviews";
 import { TodayClassesBanner } from "@/components/schedule/TodayClassesBanner";
 // New authentic training photos
@@ -44,6 +44,11 @@ import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-na
 import gymInteriorWide from "@/assets/gym-interior-wide.jpg";
 import groupClassPlankWide from "@/assets/group-class-plank-wide.jpg";
 import groupPlankRowsKettlebells from "@/assets/group-plank-rows-kettlebells.jpg";
+// New community gallery images
+import communityPlankRowsGroup from "@/assets/community-plank-rows-group.jpg";
+import communityTurkishGetupClass from "@/assets/community-turkish-getup-class.jpg";
+import communityKettlebellRackPair from "@/assets/community-kettlebell-rack-pair.jpg";
+import communityStudioBarbellDog from "@/assets/community-studio-barbell-dog.jpg";
 interface HomeProps {
   bannerVisible?: boolean;
 }
@@ -375,12 +380,16 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       {/* Testimonial Hero - Between Coaches and Results */}
       <TestimonialHero quote={FEATURED_REVIEWS[0].quote} author={FEATURED_REVIEWS[0].name} result={FEATURED_REVIEWS[0].result} backgroundImage={studioGroupSquats} />
 
-      {/* Community in Action - Staggered Parallax Gallery */}
-      <CommunityParallaxGallery 
+      {/* Community in Action - Masonry Gallery */}
+      <CommunityMasonryGallery 
         images={[
-          { src: communityGroupPhotoLarge, alt: "Large community group photo" },
-          { src: groupOverheadPressClass, alt: "Group overhead press class" },
-          { src: membersOverheadLungeNaturalLight, alt: "Members training in natural light" },
+          { src: communityGroupPhotoLarge, alt: "Drake Fitness community group training outdoors Charleston SC" },
+          { src: communityPlankRowsGroup, alt: "Group plank rows with kettlebells in studio" },
+          { src: communityTurkishGetupClass, alt: "Large group Turkish get-up class with natural lighting" },
+          { src: communityKettlebellRackPair, alt: "Members holding kettlebells in rack position" },
+          { src: groupOverheadPressClass, alt: "Group overhead press class at Drake Fitness" },
+          { src: membersOverheadLungeNaturalLight, alt: "Members performing overhead lunges in natural light" },
+          { src: communityStudioBarbellDog, alt: "Welcoming studio atmosphere with barbell training" },
         ]}
       />
 
