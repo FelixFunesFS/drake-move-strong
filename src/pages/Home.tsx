@@ -380,10 +380,9 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       {/* Testimonial Hero - Between Coaches and Results */}
       <TestimonialHero quote={FEATURED_REVIEWS[0].quote} author={FEATURED_REVIEWS[0].name} result={FEATURED_REVIEWS[0].result} backgroundImage={studioGroupSquats} />
 
-      {/* Community in Action - Masonry Gallery */}
+      {/* Community in Action - 2-Row Masonry Gallery */}
       <CommunityMasonryGallery 
         images={[
-          { src: communityGroupPhotoLarge, alt: "Drake Fitness community group training outdoors Charleston SC" },
           { src: communityPlankRowsGroup, alt: "Group plank rows with kettlebells in studio" },
           { src: communityTurkishGetupClass, alt: "Large group Turkish get-up class with natural lighting" },
           { src: communityKettlebellRackPair, alt: "Members holding kettlebells in rack position" },
