@@ -43,6 +43,7 @@ import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg";
 import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg";
 import gymInteriorWide from "@/assets/gym-interior-wide.jpg";
 import groupClassPlankWide from "@/assets/group-class-plank-wide.jpg";
+import groupPlankRowsKettlebells from "@/assets/group-plank-rows-kettlebells.jpg";
 interface HomeProps {
   bannerVisible?: boolean;
 }
@@ -121,7 +122,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         {/* Background Image */}
         <div className="absolute inset-0">
           <OptimizedImage 
-            src={groupClassPlankWide} 
+            src={groupPlankRowsKettlebells} 
             alt="" 
             className="w-full h-full object-cover"
             aspectRatio="auto"
