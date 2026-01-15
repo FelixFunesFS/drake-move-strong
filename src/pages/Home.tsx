@@ -400,8 +400,8 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
           </h2>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-12">
             {[{
-              quote: "I came in with chronic knee pain and now live pain free thanks to their guidance.",
-              author: "Melissa F.",
+              quote: "I'm stronger in my 40s than ever before… His knowledge and adaptability have made a significant impact.",
+              author: "Aaron Q.",
               rating: 5
             }, {
               quote: "The coaches are incredibly attentive, they watch your form, make adjustments, and explain why certain movements matter.",
