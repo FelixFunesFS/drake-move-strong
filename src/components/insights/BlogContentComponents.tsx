@@ -1211,8 +1211,8 @@ export const WhatMakesDrakeDifferentContent = () => {
           {
             icon: Users,
             title: "Small Class Sizes",
-            highlight: "8 People Max",
-            desc: "Not 15. Not 20. Eight. This ensures every person gets individual attention during every session.",
+            highlight: "12 People Max",
+            desc: "Not 20. Not 30. Twelve max. This ensures every person gets individual attention during every session.",
           },
           {
             icon: UserCheck,

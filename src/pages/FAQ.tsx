@@ -57,7 +57,7 @@ const FAQ = () => {
         },
         {
           q: "What membership should I choose?",
-          a: "Foundation Membership (8 classes/month, $149) is great for beginners or busy schedules. Standard Unlimited ($199) is our most popular option for consistent training. VIP Unlimited ($249) includes unlimited classes plus one monthly 1:1 session.",
+          a: "Foundation Membership (8 classes/month, $180) is great for beginners or busy schedules. Longevity Unlimited ($225/month) is our most popular option for consistent training. Both include expert coaching and small group attention.",
         },
         {
           q: "Can I pause my membership?",
@@ -91,7 +91,7 @@ const FAQ = () => {
       questions: [
         {
           q: "Where are you located?",
-          a: "We're located at 123 West Ashley Blvd in Charleston, SC 29407. We have ample parking and are easily accessible from downtown Charleston and surrounding areas.",
+          a: "We're located at 2 Avondale Ave in the Avondale neighborhood of West Ashley, Charleston, SC 29407. We have ample parking and are easily accessible from downtown Charleston and surrounding areas.",
         },
         {
           q: "What are your hours?",

@@ -34,7 +34,7 @@ export const authorInfo = {
     name: "Coach Drake",
     title: "Owner & Head Coach",
     bio: "25+ years experience in strength training and functional movement. StrongFirst Kettlebell Certified.",
-    image: coachNickPortrait
+    image: outdoorTraining
   },
   nick: {
     name: "Coach Nick",

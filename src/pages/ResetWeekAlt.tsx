@@ -27,7 +27,7 @@ import { LongevityBlock } from "@/components/LongevityBlock";
 import heroImage from "@/assets/hero-kettlebell-training.jpg";
 import groupTrainingImage from "@/assets/group-kettlebell-training.jpg";
 
-const RESET_WEEK_URL = "https://app.punchpass.com/org/5765/passes?tags=reset-week";
+const RESET_WEEK_URL = "https://app.punchpass.com/org/9942/buy?passes=1023628";
 
 const audienceCards = [
   {

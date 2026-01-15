@@ -46,6 +46,21 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://drake.fitness/reset-week</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://drake.fitness/reset</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://drake.fitness/consultation</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://drake.fitness/privacy</loc>
     <priority>0.3</priority>
     <changefreq>yearly</changefreq>

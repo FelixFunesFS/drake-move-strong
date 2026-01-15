@@ -30,7 +30,7 @@ const offerIncludes = [
   "7 days of unlimited classes",
   "Access to all class types",
   "Expert coaching every session",
-  "Small group attention (max 8 people)",
+  "Small group attention (6-12 people)",
   "No commitment required",
 ];
 
@@ -43,7 +43,7 @@ const benefits = [
   {
     icon: Users,
     title: "Expert Coaching",
-    description: "Small classes led by David or Nick every session. Never more than 8 people.",
+    description: "Small classes led by David or Nick every session. 6-12 people max.",
   },
   {
     icon: TrendingUp,
@@ -90,7 +90,7 @@ const faqs = [
   },
   {
     question: "What happens after Reset Week?",
-    answer: "After your Reset Week, you can continue with our regular membership at $199/month (no contract), or choose a class pack that fits your schedule. No pressure—we want what's right for you.",
+    answer: "After your Reset Week, you can continue with Foundation ($180/month) or Unlimited ($225/month) membership — no contract required. Or choose a class pack that fits your schedule. No pressure—we want what's right for you.",
   },
   {
     question: "How is this different from a regular gym?",

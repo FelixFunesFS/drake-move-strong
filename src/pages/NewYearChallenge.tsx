@@ -42,7 +42,7 @@ const benefits = [
   {
     icon: Users,
     title: "Expert Coaching",
-    description: "Small classes led by David or Nick every session. Never more than 8 people.",
+    description: "Small classes led by David or Nick every session. 6-12 people max.",
   },
   {
     icon: TrendingUp,
