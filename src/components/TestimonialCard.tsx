@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import testimonialBg from "@/assets/testimonial-group-training.jpg";
 
 interface TestimonialCardProps {
   quote: string;
@@ -23,39 +23,51 @@ const TestimonialCard = ({
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto"
         >
-          <Card className="bg-card border-border shadow-card p-8 md:p-12 lg:p-16 relative overflow-hidden">
-            {/* Decorative accent */}
-            <div className="absolute top-0 left-0 w-2 h-full bg-drake-gold" />
+          <div className="relative rounded-xl overflow-hidden shadow-card">
+            {/* Background Image */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${testimonialBg})` }}
+            />
             
-            {/* Quote Icon */}
-            <Quote className="w-10 h-10 md:w-12 md:h-12 text-drake-gold mb-6 opacity-80" />
+            {/* Dark Overlay */}
+            <div className="absolute inset-0 bg-drake-dark/85" />
             
-            {/* Quote Text */}
-            <blockquote className="text-xl md:text-2xl lg:text-3xl text-foreground font-medium leading-relaxed mb-8 italic">
-              "{quote}"
-            </blockquote>
+            {/* Gold Left Accent Bar */}
+            <div className="absolute top-0 left-0 w-2 h-full bg-drake-gold z-10" />
             
-            {/* Author & Result */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <div className="flex flex-col gap-1">
-                <p className="text-lg md:text-xl font-semibold text-primary">
-                  — {author}
-                </p>
-                {result && (
-                  <p className="text-sm md:text-base text-muted-foreground">
-                    {result}
-                  </p>
-                )}
-              </div>
+            {/* Content */}
+            <div className="relative z-10 p-8 md:p-12 lg:p-16 pl-10 md:pl-14 lg:pl-20">
+              {/* Quote Icon */}
+              <Quote className="w-10 h-10 md:w-12 md:h-12 text-drake-gold mb-6 opacity-80" />
               
-              {/* Stars */}
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-drake-gold text-xl">★</span>
-                ))}
+              {/* Quote Text - White for contrast */}
+              <blockquote className="text-xl md:text-2xl lg:text-3xl text-white font-medium leading-relaxed mb-8 italic">
+                "{quote}"
+              </blockquote>
+              
+              {/* Author & Result */}
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div className="flex flex-col gap-1">
+                  <p className="text-lg md:text-xl font-semibold text-drake-gold">
+                    — {author}
+                  </p>
+                  {result && (
+                    <p className="text-sm md:text-base text-gray-300">
+                      {result}
+                    </p>
+                  )}
+                </div>
+                
+                {/* Stars */}
+                <div className="flex gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-drake-gold text-xl">★</span>
+                  ))}
+                </div>
               </div>
             </div>
-          </Card>
+          </div>
         </motion.div>
       </div>
     </section>
