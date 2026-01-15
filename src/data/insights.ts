@@ -11,6 +11,7 @@ import groupOverheadPressClass from '@/assets/group-overhead-press-class.jpg';
 import memberWeightedVestBandTraining from '@/assets/member-weighted-vest-band-training.jpg';
 import membersTurkishGetupLunge from '@/assets/members-turkish-getup-lunge.jpg';
 import membersDoubleKettlebellRack from '@/assets/members-double-kettlebell-rack.jpg';
+import blogKettlebellOverheadGroup from '@/assets/blog-kettlebell-overhead-group.jpg';
 
 export interface InsightPost {
   id: string;
@@ -559,7 +560,7 @@ export const insightPosts: InsightPost[] = [
     author: 'david',
     publishedAt: '2025-04-22',
     readTime: 6,
-    thumbnail: membersTurkishGetupLunge,
+    thumbnail: blogKettlebellOverheadGroup,
     featured: false,
     tags: ['time management', 'busy schedules', 'efficiency']
   },
