@@ -25,6 +25,7 @@ import memberSledRopeTraining from "@/assets/member-sled-rope-training.jpg";
 import membersKettlebellRackHold from "@/assets/members-kettlebell-rack-hold.jpg";
 import membersKettlebellSwingPair from "@/assets/members-kettlebell-swing-pair.jpg";
 import membersOverheadPressGroup from "@/assets/members-overhead-press-group.jpg";
+import membersPlankRowsStudio from "@/assets/members-plank-rows-studio.jpg";
 const Coaching = () => {
   const reasons = [{
     icon: Heart,
@@ -181,7 +182,7 @@ const Coaching = () => {
       </AnimatedSection>
 
       {/* Testimonial Hero - Before Video */}
-      <TestimonialHero quote={FEATURED_REVIEWS[1].quote} author={FEATURED_REVIEWS[1].name} result={FEATURED_REVIEWS[1].result} backgroundImage={coachingSession} />
+      <TestimonialHero quote={FEATURED_REVIEWS[1].quote} author={FEATURED_REVIEWS[1].name} result={FEATURED_REVIEWS[1].result} backgroundImage={membersPlankRowsStudio} />
 
       <AnimatedSection animation="fadeIn">
         <section className="py-16 md:py-24 bg-muted section-slant-top">
