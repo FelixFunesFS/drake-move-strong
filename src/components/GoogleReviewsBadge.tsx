@@ -11,12 +11,14 @@ export const GOOGLE_REVIEWS = {
   supportingText: 'Trusted by adults in Charleston who want to move better and stay pain-free.'
 };
 
-// Google brand "G" logo - sized responsively with text
+// Google brand "G" logo - sized responsively with text, explicit dimensions to prevent CLS
 const GoogleBrandedG = () => (
   <img 
     src={googleLogoG}
     alt="G"
-    className="inline-block h-[1em] w-auto align-baseline -mb-[0.1em]"
+    width={14}
+    height={14}
+    className="inline-block h-[1em] w-[1em] align-baseline -mb-[0.1em]"
   />
 );
 
