@@ -58,10 +58,15 @@ export function GoogleReviewsBadge({
       >
         <div className="flex gap-0.5">
           {[...Array(5)].map((_, i) => (
-            <Star key={i} size={14} className="text-drake-gold fill-drake-gold" />
+            <Star 
+              key={i} 
+              size={14} 
+              className="text-drake-gold fill-drake-gold animate-star-glow" 
+              style={{ animationDelay: `${i * 0.15}s` }}
+            />
           ))}
         </div>
-        <span className="text-white/70"><GoogleBrandedG />oogle Reviews</span>
+        <span className="text-white/70"><GoogleBrandedG />oogle Verified Ratings</span>
       </a>
     );
   }

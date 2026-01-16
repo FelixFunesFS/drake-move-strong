@@ -4,6 +4,7 @@ import { LazyMotion, m, domAnimation, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { STATS_CONFIG, StatKey } from "@/data/trustStats";
 import { MOTION_CONFIG, getStaggerDelay } from "@/lib/motionConfig";
+import { useCountUp, parseStatValue, formatNumber } from "@/hooks/useCountUp";
 
 const STAT_ICONS: Record<StatKey, React.ElementType> = {
   sessions: Trophy,
@@ -15,10 +16,33 @@ const STAT_ICONS: Record<StatKey, React.ElementType> = {
   classSize: Users,
 };
 
+// Colorful icon backgrounds - complementary to brand palette
+const STAT_COLORS: Record<StatKey, { bg: string; icon: string }> = {
+  sessions: { bg: "bg-amber-500/15", icon: "text-amber-500" },
+  charlestonians: { bg: "bg-drake-teal/15", icon: "text-drake-teal" },
+  experience: { bg: "bg-emerald-500/15", icon: "text-emerald-600" },
+  retention: { bg: "bg-violet-500/15", icon: "text-violet-600" },
+  rating: { bg: "bg-drake-gold/15", icon: "text-drake-gold" },
+  reviews: { bg: "bg-sky-500/15", icon: "text-sky-600" },
+  classSize: { bg: "bg-rose-500/15", icon: "text-rose-500" },
+};
+
 const statVariants = {
   hidden: { opacity: 0, y: 30, scale: 0.95 },
   visible: { opacity: 1, y: 0, scale: 1 }
 };
+
+// Count-up value component
+function CountUpValue({ value, isInView }: { value: string; isInView: boolean }) {
+  const { number, prefix, suffix } = parseStatValue(value);
+  const animatedNumber = useCountUp(number, isInView, 2000);
+
+  return (
+    <span>
+      {prefix}{formatNumber(animatedNumber)}{suffix}
+    </span>
+  );
+}
 
 interface TrustStatsBarProps {
   variant?: 'horizontal' | 'compact' | 'minimal' | 'vertical';
@@ -49,6 +73,7 @@ export function TrustStatsBar({
           {stats.map((statKey, index) => {
             const stat = STATS_CONFIG[statKey];
             const Icon = STAT_ICONS[statKey];
+            const colors = STAT_COLORS[statKey];
             return (
               <m.span 
                 key={statKey} 
@@ -63,8 +88,10 @@ export function TrustStatsBar({
                 }}
               >
                 {index > 0 && <span className="hidden sm:inline text-border">•</span>}
-                <Icon size={14} className="text-drake-teal" />
-                <span className="font-medium text-foreground">{stat.value}</span>
+                <Icon size={14} className={colors.icon} />
+                <span className="font-medium text-foreground">
+                  <CountUpValue value={stat.value} isInView={isInView} />
+                </span>
                 <span>{stat.label}</span>
               </m.span>
             );
@@ -87,6 +114,7 @@ export function TrustStatsBar({
           {stats.map((statKey, index) => {
             const stat = STATS_CONFIG[statKey];
             const Icon = STAT_ICONS[statKey];
+            const colors = STAT_COLORS[statKey];
             return (
               <m.div 
                 key={statKey} 
@@ -100,11 +128,16 @@ export function TrustStatsBar({
                   ease: MOTION_CONFIG.ease.default
                 }}
               >
-                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
-                  <Icon size={20} className="text-drake-teal" />
+                <div className={cn(
+                  "flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center",
+                  colors.bg
+                )}>
+                  <Icon size={20} className={colors.icon} />
                 </div>
                 <div>
-                  <div className="font-bold text-lg text-foreground">{stat.value}</div>
+                  <div className="font-bold text-lg text-foreground">
+                    <CountUpValue value={stat.value} isInView={isInView} />
+                  </div>
                   <div className="text-xs text-muted-foreground">{stat.label}</div>
                 </div>
               </m.div>
@@ -128,6 +161,7 @@ export function TrustStatsBar({
           {stats.map((statKey, index) => {
             const stat = STATS_CONFIG[statKey];
             const Icon = STAT_ICONS[statKey];
+            const colors = STAT_COLORS[statKey];
             return (
               <m.div 
                 key={statKey} 
@@ -141,11 +175,16 @@ export function TrustStatsBar({
                   ease: MOTION_CONFIG.ease.default
                 }}
               >
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-muted flex items-center justify-center">
-                  <Icon size={24} className="text-drake-teal" />
+                <div className={cn(
+                  "flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center",
+                  colors.bg
+                )}>
+                  <Icon size={24} className={colors.icon} />
                 </div>
                 <div>
-                  <div className="font-bold text-xl text-foreground">{stat.value}</div>
+                  <div className="font-bold text-xl text-foreground">
+                    <CountUpValue value={stat.value} isInView={isInView} />
+                  </div>
                   <div className="text-sm text-muted-foreground">{stat.label}</div>
                   {showSublabels && (
                     <div className="text-xs text-muted-foreground/70">{stat.sublabel}</div>
@@ -174,6 +213,7 @@ export function TrustStatsBar({
             {stats.map((statKey, index) => {
               const stat = STATS_CONFIG[statKey];
               const Icon = STAT_ICONS[statKey];
+              const colors = STAT_COLORS[statKey];
               return (
                 <m.div 
                   key={statKey} 
@@ -187,11 +227,14 @@ export function TrustStatsBar({
                     ease: MOTION_CONFIG.ease.default
                   }}
                 >
-                  <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-drake-teal/10 mb-3">
-                    <Icon size={24} className="text-drake-teal" />
+                  <div className={cn(
+                    "inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full mb-3",
+                    colors.bg
+                  )}>
+                    <Icon size={24} className={colors.icon} />
                   </div>
                   <div className="font-bold text-2xl md:text-3xl text-foreground font-heading">
-                    {stat.value}
+                    <CountUpValue value={stat.value} isInView={isInView} />
                   </div>
                   <div className="text-sm font-medium text-foreground mt-1">
                     {stat.label}
