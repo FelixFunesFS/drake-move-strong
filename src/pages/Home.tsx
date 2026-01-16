@@ -190,7 +190,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                   </div>
                   <div>
                     <h3 className="font-hero text-xl font-bold mb-3 uppercase">Expert coaching in a supportive, ego-free community</h3>
-                    <p className="text-gray-300">20+ years of experience helping real people achieve sustainable results. We welcome beginners, busy adults, and anyone wanting to move better and feel stronger.</p>
+                    <p className="text-gray-300">25+ years of experience helping real people achieve sustainable results. We welcome beginners, busy adults, and anyone wanting to move better and feel stronger.</p>
                   </div>
                 </div>
               </div>
