@@ -9,7 +9,7 @@ import {
   VolumeX, Bed, Flame, Home, CalendarDays, RefreshCw, Phone
 } from "lucide-react";
 
-import blogTraditionalWorkoutsHero from "@/assets/blog-traditional-workouts-hero.jpg";
+import davidCoachingForm from "@/assets/david-coaching-form.jpg";
 import blogNoPainNoGainHero from "@/assets/blog-no-pain-no-gain-hero.jpg";
 import coachingSession from "@/assets/coaching-session.jpg";
 import mobilityClass from "@/assets/mobility-class.jpg";
@@ -43,7 +43,7 @@ export const WhyTraditionalWorkoutsContent = () => {
       {/* Featured Image */}
       <div className="mb-16 rounded-2xl overflow-hidden shadow-2xl">
         <img
-          src={blogTraditionalWorkoutsHero}
+          src={davidCoachingForm}
           alt="Mature adult training with proper form and mobility focus"
           className="w-full h-auto max-h-96 object-cover"
         />
