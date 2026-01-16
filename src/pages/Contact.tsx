@@ -121,7 +121,7 @@ const Contact = () => {
                     <a href="https://www.facebook.com/profile.php?id=100063722011333" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors" aria-label="Facebook">
                       <Facebook size={22} />
                     </a>
-                    <a href="https://www.youtube.com/@drakefitnesschs" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors" aria-label="YouTube">
+                    <a href="https://www.youtube.com/@Drakefitness" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors" aria-label="YouTube">
                       <Youtube size={22} />
                     </a>
                   </div>

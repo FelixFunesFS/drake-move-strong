@@ -40,7 +40,8 @@ export const localBusinessSchema = {
   "sameAs": [
     "https://www.instagram.com/drakefitnesschs/",
     "https://www.facebook.com/profile.php?id=100063722011333",
-    "https://www.youtube.com/@drakefitnesschs"
+    "https://www.youtube.com/@Drakefitness",
+    "https://maps.app.goo.gl/opeP6dqsbidbY9GZ6"
   ],
   "aggregateRating": {
     "@type": "AggregateRating",
