@@ -53,21 +53,25 @@ import communityPlankRowsKettlebells from "@/assets/community-plank-rows-kettleb
 interface HomeProps {
   bannerVisible?: boolean;
 }
-const Home = ({
-  bannerVisible = false
-}: HomeProps) => {
+
+const Home = ({ bannerVisible = false }: HomeProps) => {
   return <>
       <SEO title="Charleston Mobility Training 2026 | Proven Results | Drake" description="Expert-led functional strength and mobility training in Charleston, SC. Join David Drake and Coach Nick for small-group classes, personal training, and sustainable results. 25+ years of coaching experience." canonical="https://drake.fitness" />
       <StructuredData data={localBusinessSchema} />
       
       <main>
-      <Hero bannerVisible={bannerVisible} fullViewport={true} eyebrow={<div className="flex flex-col md:flex-row md:items-center items-start gap-2 md:gap-4">
+      <Hero 
+        bannerVisible={bannerVisible}
+        fullViewport={true}
+        eyebrow={
+        <div className="flex flex-col md:flex-row md:items-center items-start gap-2 md:gap-4">
           <span className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-white/80 bg-white/10 px-3 py-1 rounded-full">
             <MapPin className="w-3 h-3" />
             Avondale • West Ashley • Charleston
           </span>
           <GoogleReviewsBadge variant="hero" />
-        </div>} title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 25+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
+        </div>
+      } title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 25+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
         text: "START RESET WEEK",
         link: "/reset-week"
       }} backgroundImages={["/images/hero-mobile.jpg", heroImage3Desktop]} backgroundImagesMobile={["/images/hero-mobile.jpg", heroImage3Mobile]} autoRotate={true} />
@@ -99,10 +103,11 @@ const Home = ({
               <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase">
                 Charleston's <span className="text-primary">Mobility-First</span> Fitness Studio
               </h2>
-              <p className="text-lg text-muted-foreground mb-6">Nick Poppa<Link to="/mobility-fitness-avondale" className="text-primary underline underline-offset-2 hover:text-primary/80">mobility training</Link>, <Link to="/strength-training-charleston" className="text-primary underline underline-offset-2 hover:text-primary/80">functional strength</Link>, corrective exercise, and expert coaching.
+              <p className="text-lg text-muted-foreground mb-6">
+                Drake Fitness helps adults build strong, mobile, pain-free bodies through a proven blend of <Link to="/mobility-fitness-avondale" className="text-primary underline underline-offset-2 hover:text-primary/80">mobility training</Link>, <Link to="/strength-training-charleston" className="text-primary underline underline-offset-2 hover:text-primary/80">functional strength</Link>, corrective exercise, and expert coaching.
               </p>
               <p className="text-lg text-muted-foreground mb-6">
-                Every session is led by <strong>Coach Nick Poppa</strong> or <strong>Coach Nick</strong>, using a science-based method that improves how your body moves, how it feels, and how it performs — not just in the gym, but in daily life. Explore our <Link to="/schedule" className="text-primary underline underline-offset-2 hover:text-primary/80">group classes</Link> or <Link to="/coaching" className="text-primary underline underline-offset-2 hover:text-primary/80">personal training</Link> options.
+                Every session is led by <strong>David Drake</strong> or <strong>Coach Nick</strong>, using a science-based method that improves how your body moves, how it feels, and how it performs — not just in the gym, but in daily life. Explore our <Link to="/schedule" className="text-primary underline underline-offset-2 hover:text-primary/80">group classes</Link> or <Link to="/coaching" className="text-primary underline underline-offset-2 hover:text-primary/80">personal training</Link> options.
               </p>
               <div className="border-l-4 border-drake-gold bg-drake-gold/10 p-6 rounded-r-lg mb-6">
                 <p className="text-lg text-foreground font-semibold">Our Mission</p>
@@ -124,7 +129,14 @@ const Home = ({
       <section className="relative py-16 md:py-24 text-white section-slant-bottom overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <OptimizedImage src={groupPlankRowsKettlebells} alt="" className="w-full h-full object-cover" aspectRatio="auto" transparent hideLoadingPlaceholder />
+          <OptimizedImage 
+            src={groupPlankRowsKettlebells} 
+            alt="" 
+            className="w-full h-full object-cover"
+            aspectRatio="auto"
+            transparent
+            hideLoadingPlaceholder
+          />
         </div>
         
         {/* Dark Overlay for Contrast */}
@@ -222,7 +234,14 @@ const Home = ({
       <section className="relative py-16 md:py-24 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <OptimizedImage src={gymInteriorWide} alt="" className="w-full h-full object-cover" aspectRatio="auto" transparent hideLoadingPlaceholder />
+          <OptimizedImage 
+            src={gymInteriorWide} 
+            alt="" 
+            className="w-full h-full object-cover"
+            aspectRatio="auto"
+            transparent
+            hideLoadingPlaceholder
+          />
         </div>
         
         {/* Dark Overlay for Contrast */}
@@ -264,13 +283,15 @@ const Home = ({
               title: "Progress",
               description: "We check mobility and strength regularly so you can see and feel your improvements.",
               bgColor: "bg-drake-teal"
-            }].map((step, index) => <AnimatedSection key={index} animation="scaleIn" delay={getStaggerDelay(index)} className="text-center relative z-10">
+            }].map((step, index) => (
+              <AnimatedSection key={index} animation="scaleIn" delay={getStaggerDelay(index)} className="text-center relative z-10">
                 <div className={`w-24 h-24 ${step.bgColor} rounded-full flex items-center justify-center ${step.bgColor === 'bg-white' ? 'text-drake-dark' : 'text-white'} text-3xl font-bold mx-auto mb-6 shadow-lg`}>
                   {step.number}
                 </div>
                 <h3 className="font-hero text-2xl font-bold mb-3 uppercase text-white">{step.title}</h3>
                 <p className="text-lg text-gray-200">{step.description}</p>
-              </AnimatedSection>)}
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
@@ -312,12 +333,14 @@ const Home = ({
             }, {
               name: "Functional Flow Online™",
               description: "Train live from anywhere."
-            }].map((classItem, index) => <AnimatedSection key={index} animation="fadeInUp" delay={getStaggerDelay(index)}>
+            }].map((classItem, index) => (
+              <AnimatedSection key={index} animation="fadeInUp" delay={getStaggerDelay(index)}>
                 <div className="bg-drake-dark-muted p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-colors bg-gray-800 h-full">
                   <h3 className="font-hero text-xl font-bold mb-2 text-drake-gold uppercase">{classItem.name}</h3>
                   <p className="text-gray-300">{classItem.description}</p>
                 </div>
-              </AnimatedSection>)}
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
@@ -375,25 +398,16 @@ const Home = ({
       </AnimatedSection>
 
       {/* Community in Action - 2-Row Masonry Gallery */}
-      <CommunityMasonryGallery images={[{
-        src: communityGroupPhotoNew,
-        alt: "Drake Fitness community group photo in studio"
-      }, {
-        src: communityTurkishGetupClass,
-        alt: "Large group Turkish get-up class with natural lighting"
-      }, {
-        src: communityKettlebellRackPair,
-        alt: "Members holding kettlebells in rack position"
-      }, {
-        src: groupOverheadPressClass,
-        alt: "Group overhead press class at Drake Fitness"
-      }, {
-        src: membersOverheadLungeNaturalLight,
-        alt: "Members performing overhead lunges in natural light"
-      }, {
-        src: communityPlankRowsKettlebells,
-        alt: "Members doing plank rows with colorful kettlebells at Drake Fitness Charleston"
-      }]} />
+      <CommunityMasonryGallery 
+        images={[
+          { src: communityGroupPhotoNew, alt: "Drake Fitness community group photo in studio" },
+          { src: communityTurkishGetupClass, alt: "Large group Turkish get-up class with natural lighting" },
+          { src: communityKettlebellRackPair, alt: "Members holding kettlebells in rack position" },
+          { src: groupOverheadPressClass, alt: "Group overhead press class at Drake Fitness" },
+          { src: membersOverheadLungeNaturalLight, alt: "Members performing overhead lunges in natural light" },
+          { src: communityPlankRowsKettlebells, alt: "Members doing plank rows with colorful kettlebells at Drake Fitness Charleston" },
+        ]}
+      />
 
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
@@ -416,7 +430,8 @@ const Home = ({
               quote: "Better than any physical therapist or personal trainer I've ever had.",
               author: "Cara S.",
               rating: 5
-            }].map((testimonial, index) => <AnimatedSection key={index} animation="fadeInUp" delay={getStaggerDelay(index)}>
+            }].map((testimonial, index) => (
+              <AnimatedSection key={index} animation="fadeInUp" delay={getStaggerDelay(index)}>
                 <div className="bg-white p-6 rounded-lg shadow-card border border-border h-full">
                   <div className="flex gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => <span key={i} className="text-drake-gold text-xl">★</span>)}
@@ -424,7 +439,8 @@ const Home = ({
                   <p className="text-lg mb-4 italic">"{testimonial.quote}"</p>
                   <p className="font-semibold">— {testimonial.author}</p>
                 </div>
-              </AnimatedSection>)}
+              </AnimatedSection>
+            ))}
           </div>
           <AnimatedSection animation="fadeInUp" delay={0.3}>
             <div className="text-center mt-8">
