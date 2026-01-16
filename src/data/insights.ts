@@ -13,6 +13,7 @@ import memberWeightedVestBandTraining from '@/assets/member-weighted-vest-band-t
 import membersTurkishGetupLunge from '@/assets/members-turkish-getup-lunge.jpg';
 import membersDoubleKettlebellRack from '@/assets/members-double-kettlebell-rack.jpg';
 import blogKettlebellOverheadGroup from '@/assets/blog-kettlebell-overhead-group.jpg';
+import studioGroupOverhead from '@/assets/studio-group-overhead.jpg';
 
 export interface InsightPost {
   id: string;
@@ -576,7 +577,7 @@ export const insightPosts: InsightPost[] = [
     author: 'david',
     publishedAt: '2025-12-10',
     readTime: 9,
-    thumbnail: membersDoubleKettlebellRack,
+    thumbnail: studioGroupOverhead,
     featured: true,
     tags: ['strength', 'functional training', 'philosophy']
   }
