@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { Search, GraduationCap, ShieldCheck, Target, ArrowRight } from "lucide-react";
+import { Search, GraduationCap, ShieldCheck, Target } from "lucide-react";
 import { insightPosts, categoryInfo } from "@/data/insights";
-import BlogCategoryCard from "@/components/insights/BlogCategoryCard";
 import BlogArticleCard from "@/components/insights/BlogArticleCard";
 import AnimatedSection from "@/components/AnimatedSection";
 import CTASection from "@/components/CTASection";
 import heroImage from "@/assets/insights-hero-turkish-getup-class.jpg";
 import { SEO } from "@/components/SEO";
 import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
 
 type CategoryFilter = 'all' | 'education' | 'trust' | 'conversion';
 
@@ -125,34 +123,6 @@ const Insights = () => {
         </div>
       </section>
 
-      {/* Category Overview Cards */}
-      {activeCategory === 'all' && searchQuery === '' && (
-        <section className="py-20 bg-muted/50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <AnimatedSection animation="fadeInUp">
-              <div className="text-center max-w-3xl mx-auto mb-16">
-                <h2 className="font-hero text-4xl md:text-5xl font-bold text-foreground mb-6 uppercase">Explore By Category</h2>
-                <p className="text-xl text-muted-foreground">
-                  Each article is designed to help you understand movement better, trust our approach, and make confident decisions about your fitness journey
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {(['education', 'trust', 'conversion'] as const).map((category, index) => (
-                <AnimatedSection key={category} animation="fadeInUp" delay={index * 0.1}>
-                  <BlogCategoryCard
-                    category={category}
-                    name={categoryInfo[category].name}
-                    description={categoryInfo[category].description}
-                    articleCount={getCategoryCount(category)}
-                  />
-                </AnimatedSection>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Featured Articles */}
       {activeCategory === 'all' && searchQuery === '' && featuredPosts.length > 0 && (
