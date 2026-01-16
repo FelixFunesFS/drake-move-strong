@@ -169,9 +169,7 @@ const Coaching = () => {
                         Expert Focus
                       </span>
                       <span className="text-white/50">|</span>
-                      <span className="text-white text-sm">
-                        David & Nick Coaching
-                      </span>
+                      <span className="text-white text-sm">David Drake Coaching</span>
                     </div>
                   </motion.div>
                 </motion.div>
@@ -329,25 +327,33 @@ const Coaching = () => {
         <div className="container mx-auto px-4">
           <p className="section-eyebrow text-primary text-center mb-8">TRAINING ATMOSPHERE</p>
           <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory md:grid md:grid-cols-4 md:overflow-visible max-w-6xl mx-auto">
-            {[
-              { src: davidCoachingTurkishGetup, alt: "David coaching Turkish get-up technique" },
-              { src: membersTurkishGetupPair, alt: "Two members practicing Turkish get-up together" },
-              { src: membersKettlebellRackHold, alt: "Members in kettlebell rack hold position" },
-              { src: membersKettlebellSwingPair, alt: "Two members performing kettlebell swings" },
-              { src: memberSledRopeTraining, alt: "Member training with sled and rope" },
-              { src: membersOverheadPressGroup, alt: "Group performing overhead kettlebell press" },
-              { src: memberWeightedVestBandTraining, alt: "Member training with weighted vest and bands" },
-              { src: memberLungeWithStudioDog, alt: "Member training with studio dog nearby" },
-            ].map((img, i) => (
-              <div key={i} className="min-w-[220px] md:min-w-0 snap-center">
-                <OptimizedImage
-                  src={img.src}
-                  alt={img.alt}
-                  aspectRatio="square"
-                  className="rounded-lg shadow-lg"
-                />
-              </div>
-            ))}
+            {[{
+              src: davidCoachingTurkishGetup,
+              alt: "David coaching Turkish get-up technique"
+            }, {
+              src: membersTurkishGetupPair,
+              alt: "Two members practicing Turkish get-up together"
+            }, {
+              src: membersKettlebellRackHold,
+              alt: "Members in kettlebell rack hold position"
+            }, {
+              src: membersKettlebellSwingPair,
+              alt: "Two members performing kettlebell swings"
+            }, {
+              src: memberSledRopeTraining,
+              alt: "Member training with sled and rope"
+            }, {
+              src: membersOverheadPressGroup,
+              alt: "Group performing overhead kettlebell press"
+            }, {
+              src: memberWeightedVestBandTraining,
+              alt: "Member training with weighted vest and bands"
+            }, {
+              src: memberLungeWithStudioDog,
+              alt: "Member training with studio dog nearby"
+            }].map((img, i) => <div key={i} className="min-w-[220px] md:min-w-0 snap-center">
+                <OptimizedImage src={img.src} alt={img.alt} aspectRatio="square" className="rounded-lg shadow-lg" />
+              </div>)}
           </div>
         </div>
       </section>
