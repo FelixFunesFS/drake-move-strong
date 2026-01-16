@@ -234,6 +234,42 @@ export type Database = {
           },
         ]
       }
+      contact_submissions: {
+        Row: {
+          created_at: string | null
+          email: string
+          first_name: string
+          id: string
+          interest: string | null
+          last_name: string
+          message: string
+          phone: string | null
+          status: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          first_name: string
+          id?: string
+          interest?: string | null
+          last_name: string
+          message: string
+          phone?: string | null
+          status?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          first_name?: string
+          id?: string
+          interest?: string | null
+          last_name?: string
+          message?: string
+          phone?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
       contract_templates: {
         Row: {
           content: string

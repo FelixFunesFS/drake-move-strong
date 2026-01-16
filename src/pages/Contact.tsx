@@ -4,15 +4,17 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MapPin, Mail, Phone, Instagram, Facebook, Youtube, Clock, Car, Navigation } from "lucide-react";
+import { MapPin, Mail, Phone, Instagram, Facebook, Youtube, Clock, Car, Navigation, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { GoogleMapEmbed } from "@/components/GoogleMapEmbed";
 import AnimatedSection from "@/components/AnimatedSection";
+import { supabase } from "@/integrations/supabase/client";
 import contactHeroClass from "@/assets/contact-hero-class-turkish-getup.jpg";
 import davidStorefrontPortrait from "@/assets/david-kettlebell-storefront-portrait.jpg";
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -22,18 +24,44 @@ const Contact = () => {
     interest: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Message sent! We'll get back to you within 24 hours.");
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      interest: "",
-      message: "",
-    });
+    
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    try {
+      const { data, error } = await supabase.functions.invoke('send-contact-form', {
+        body: formData
+      });
+      
+      if (error) {
+        console.error("Error submitting form:", error);
+        toast.error("Something went wrong. Please try again or call us directly.");
+        return;
+      }
+      
+      toast.success("Thanks for reaching out! We'll get back to you within 24 hours.");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        interest: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Something went wrong. Please try again or call us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -249,8 +277,20 @@ const Contact = () => {
                       />
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold">
-                      Send Message
+                    <Button 
+                      type="submit" 
+                      size="lg" 
+                      className="w-full bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        "Send Message"
+                      )}
                     </Button>
                   </form>
                 </div>
