@@ -88,7 +88,7 @@ export function MicroTrustBadges({
         return (
           <div 
             key={badge.key}
-            className="flex items-center gap-1.5 text-muted-foreground"
+            className="flex items-center gap-1.5"
           >
             <Icon size={iconSize} className="text-drake-teal" />
             <span>{badge.label}</span>
