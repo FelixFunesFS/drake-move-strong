@@ -1,5 +1,5 @@
 // Image imports for proper Vite bundling
-import blogTraditionalWorkoutsHero from '@/assets/blog-traditional-workouts-hero.jpg';
+import davidCoachingForm from '@/assets/david-coaching-form.jpg';
 import studioMobilityTraining from '@/assets/studio-mobility-training.jpg';
 import studioFloorExercise from '@/assets/studio-floor-exercise.jpg';
 import studioFullView from '@/assets/studio-full-view.jpg';
@@ -174,7 +174,7 @@ export const insightPosts: InsightPost[] = [
     author: 'david',
     publishedAt: '2026-01-05', // Most recent
     readTime: 8,
-    thumbnail: blogTraditionalWorkoutsHero,
+    thumbnail: davidCoachingForm,
     featured: true,
     tags: ['training philosophy', 'over 40', 'smart training']
   },

@@ -57,18 +57,9 @@ const InsightPost = () => {
             src={post.thumbnail}
             alt=""
             className="w-full h-full object-cover"
+            style={{ objectPosition: 'center 30%' }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/85 to-primary/95" />
-        </div>
-
-        {/* Pattern Overlay - Athletic Diagonal Lines */}
-        <div className="absolute inset-0 z-10 opacity-[0.08]">
-          <div 
-            className="absolute inset-0" 
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.5'%3E%3Cline x1='0' y1='100' x2='100' y2='0'/%3E%3Cline x1='20' y1='100' x2='100' y2='20' stroke-opacity='0.6'/%3E%3Cline x1='-20' y1='100' x2='80' y2='0' stroke-opacity='0.4'/%3E%3Cline x1='40' y1='100' x2='100' y2='40' stroke-opacity='0.3'/%3E%3C/g%3E%3C/svg%3E")`,
-            }}
-          />
         </div>
 
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white text-center py-24 md:py-32">

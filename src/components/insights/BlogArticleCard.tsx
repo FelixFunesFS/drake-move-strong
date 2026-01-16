@@ -27,6 +27,7 @@ const BlogArticleCard = ({ post, variant = 'default' }: BlogArticleCardProps) =>
             src={post.thumbnail}
             alt={post.title}
             className="group-hover:scale-110 transition-transform duration-500"
+            objectPosition="center 30%"
           />
           <div className="absolute top-4 left-4">
             <span className={`px-3 py-1 ${badgeClass} text-xs font-bold rounded-full uppercase tracking-wide`}>
@@ -73,6 +74,7 @@ const BlogArticleCard = ({ post, variant = 'default' }: BlogArticleCardProps) =>
             src={post.thumbnail}
             alt={post.title}
             className="group-hover:scale-110 transition-transform duration-500"
+            objectPosition="center 30%"
           />
           <div className="absolute top-3 left-3">
             <span className={`px-2 py-1 ${badgeClass} text-xs font-bold rounded uppercase`}>
@@ -107,11 +109,12 @@ const BlogArticleCard = ({ post, variant = 'default' }: BlogArticleCardProps) =>
   return (
     <article className="bg-card rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all group">
       <div className="relative h-56 overflow-hidden">
-        <OptimizedImage
-          src={post.thumbnail}
-          alt={post.title}
-          className="group-hover:scale-110 transition-transform duration-500"
-        />
+          <OptimizedImage
+            src={post.thumbnail}
+            alt={post.title}
+            className="group-hover:scale-110 transition-transform duration-500"
+            objectPosition="center 30%"
+          />
         <div className="absolute top-3 left-3">
           <span className={`px-2 py-1 ${badgeClass} text-xs font-bold rounded uppercase`}>
             {post.category}
