@@ -11,7 +11,7 @@ const Footer = () => {
           <div>
             <img src={drakeLogo} alt="Drake Fitness" width={134} height={64} className="h-12 md:h-16 w-auto mb-4 brightness-200" style={{ aspectRatio: '134/64' }} />
             <p className="text-sm text-gray-300 mb-4">
-              Mobility-first functional strength training in, Charleston. Move better, live stronger.     
+              Mobility-first functional strength training in Charleston. Move better, live stronger.
             </p>
             <div className="flex space-x-4">
               <a href="https://www.instagram.com/drakefitnesschs/" target="_blank" rel="noopener noreferrer" className="text-drake-teal-light hover:text-drake-gold transition-colors" aria-label="Instagram">
