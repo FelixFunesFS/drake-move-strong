@@ -48,7 +48,6 @@ const Consultation = lazy(() => import("./pages/Consultation"));
 
 // Landing pages
 const NewYearChallenge = lazy(() => import("./pages/NewYearChallenge"));
-const ResetWeek = lazy(() => import("./pages/ResetWeek"));
 const ResetWeekAlt = lazy(() => import("./pages/ResetWeekAlt"));
 
 // Service pages
@@ -96,7 +95,7 @@ const ChatBot = lazy(() => import("./components/chat/ChatBot"));
 // QueryClient is now defined at the top of the file with optimized settings
 
 // Routes that should not show the standard navigation and footer
-const STANDALONE_ROUTES = ['/new-year', '/reset-week', '/reset', '/auth', '/consultation'];
+const STANDALONE_ROUTES = ['/new-year', '/reset', '/auth', '/consultation'];
 
 // Route prefixes that use custom layouts (no standard nav/footer)
 const CUSTOM_LAYOUT_PREFIXES = ['/member/', '/admin/', '/coach/'];
@@ -164,7 +163,6 @@ const AppLayout = () => {
               
             {/* Landing Pages */}
             <Route path="/new-year" element={<NewYearChallenge />} />
-            <Route path="/reset-week" element={<ResetWeek />} />
             <Route path="/reset" element={<ResetWeekAlt />} />
             <Route path="/consultation" element={<Consultation />} />
             

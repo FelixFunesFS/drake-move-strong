@@ -26,6 +26,9 @@ const Navigation = ({ transparent = false, isScrolled = false }: NavigationProps
     name: "Pricing",
     path: "/pricing"
   }, {
+    name: "1:1 Coaching",
+    path: "/coaching"
+  }, {
     name: "Insights",
     path: "/insights"
   }, {

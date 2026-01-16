@@ -1,5 +1,7 @@
 // Image imports for proper Vite bundling
+// Image imports for proper Vite bundling
 import davidCoachingForm from '@/assets/david-coaching-form.jpg';
+import studioNickDavidTogether from '@/assets/studio-nick-david-together.jpg';
 import studioMobilityTraining from '@/assets/studio-mobility-training.jpg';
 import studioFloorExercise from '@/assets/studio-floor-exercise.jpg';
 import studioFullView from '@/assets/studio-full-view.jpg';
@@ -219,7 +221,7 @@ export const insightPosts: InsightPost[] = [
     author: 'david',
     publishedAt: '2025-11-15',
     readTime: 6,
-    thumbnail: davidCoachingTurkishGetup,
+    thumbnail: studioNickDavidTogether,
     featured: true,
     tags: ['philosophy', 'coaching', 'values']
   },
