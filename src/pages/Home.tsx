@@ -99,8 +99,7 @@ const Home = ({
               <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase">
                 Charleston's <span className="text-primary">Mobility-First</span> Fitness Studio
               </h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                Drake Fitness helps adults build strong, mobile, pain-free bodies through a proven blend of <Link to="/mobility-fitness-avondale" className="text-primary underline underline-offset-2 hover:text-primary/80">mobility training</Link>, <Link to="/strength-training-charleston" className="text-primary underline underline-offset-2 hover:text-primary/80">functional strength</Link>, corrective exercise, and expert coaching.
+              <p className="text-lg text-muted-foreground mb-6">Nick Poppa<Link to="/mobility-fitness-avondale" className="text-primary underline underline-offset-2 hover:text-primary/80">mobility training</Link>, <Link to="/strength-training-charleston" className="text-primary underline underline-offset-2 hover:text-primary/80">functional strength</Link>, corrective exercise, and expert coaching.
               </p>
               <p className="text-lg text-muted-foreground mb-6">
                 Every session is led by <strong>Coach Nick Poppa</strong> or <strong>Coach Nick</strong>, using a science-based method that improves how your body moves, how it feels, and how it performs — not just in the gym, but in daily life. Explore our <Link to="/schedule" className="text-primary underline underline-offset-2 hover:text-primary/80">group classes</Link> or <Link to="/coaching" className="text-primary underline underline-offset-2 hover:text-primary/80">personal training</Link> options.
