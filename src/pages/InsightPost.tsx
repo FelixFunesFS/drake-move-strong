@@ -2,6 +2,7 @@ import { useParams, Navigate, Link } from "react-router-dom";
 import { Calendar, Clock, Tag, ArrowRight, ArrowLeft } from "lucide-react";
 import { insightPosts, authorInfo, categoryInfo } from "@/data/insights";
 import OptimizedImage from "@/components/OptimizedImage";
+import SmartGalleryImage from "@/components/SmartGalleryImage";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import BlogArticleCard from "@/components/insights/BlogArticleCard";
 import { blogContentMap } from "@/components/insights/BlogContentComponents";
@@ -53,11 +54,11 @@ const InsightPost = () => {
       <section className="relative min-h-[500px] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <img
+          <SmartGalleryImage
             src={post.thumbnail}
-            alt=""
-            className="w-full h-full object-cover"
-            style={{ objectPosition: 'center 30%' }}
+            alt={post.title}
+            aspectRatio="auto"
+            className="w-full h-full"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/85 to-primary/95" />
         </div>
