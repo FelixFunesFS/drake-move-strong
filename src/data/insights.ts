@@ -1,5 +1,4 @@
 // Image imports for proper Vite bundling
-// Image imports for proper Vite bundling
 import davidCoachingForm from '@/assets/david-coaching-form.jpg';
 import studioNickDavidTogether from '@/assets/studio-nick-david-together.jpg';
 import studioMobilityTraining from '@/assets/studio-mobility-training.jpg';
