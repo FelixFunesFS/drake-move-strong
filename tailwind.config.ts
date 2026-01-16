@@ -127,6 +127,16 @@ export default {
             transform: "scale(1) translateX(0) translateY(0)",
           },
         },
+        "star-glow": {
+          "0%, 100%": {
+            filter: "drop-shadow(0 0 2px hsl(40 87% 61%))",
+            opacity: "1",
+          },
+          "50%": {
+            filter: "drop-shadow(0 0 8px hsl(40 87% 70%))",
+            opacity: "0.85",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -136,6 +146,7 @@ export default {
         "fade-in": "fade-in 0.6s ease-out",
         "scale-in": "scale-in 0.4s ease-out",
         "ken-burns": "ken-burns 20s ease-in-out infinite",
+        "star-glow": "star-glow 2s ease-in-out infinite",
       },
     },
   },
