@@ -82,7 +82,7 @@ const Footer = () => {
             <MicroTrustBadges 
               badges={['local', 'experience', 'safe']} 
               variant="row"
-              className="text-gray-400"
+              className="text-gray-300"
             />
           </div>
           {/* Micro Trust Line */}
