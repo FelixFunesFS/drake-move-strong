@@ -1,7 +1,7 @@
 import { Star, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { TRUST_STATS } from "@/data/trustStats";
-import googleLogoG from "@/assets/google-logo-g.png";
+import googleLogoG from "@/assets/google-logo-g.png?format=webp&w=32";
 
 // Re-export for backward compatibility - now pulls from centralized trustStats
 export const GOOGLE_REVIEWS = {

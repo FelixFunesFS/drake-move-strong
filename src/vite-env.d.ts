@@ -21,6 +21,11 @@ declare module '*?format=webp&w=268' {
   export default src;
 }
 
+declare module '*?format=webp&w=32' {
+  const src: string;
+  export default src;
+}
+
 declare module '*?format=webp' {
   const src: string;
   export default src;
