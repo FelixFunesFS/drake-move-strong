@@ -79,12 +79,18 @@
   <body>
     <div id="root"></div>
     <!-- Pre-rendered hero skeleton for instant FCP - hidden once React mounts -->
-    <div class="hero-skeleton" aria-hidden="true">
+    <div id="hero-skeleton" class="hero-skeleton" aria-hidden="true">
       <div class="hero-skeleton-content">
         <h1>Move Better. Live Stronger. Stay Pain-Free.</h1>
         <p>Mobility-first functional strength training in Charleston, SC</p>
       </div>
     </div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var skeleton = document.getElementById('hero-skeleton');
+        if (skeleton) skeleton.remove();
+      });
+    </script>
   </body>
 </html>
