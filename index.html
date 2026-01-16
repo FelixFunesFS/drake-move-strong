@@ -28,12 +28,12 @@
     <link rel="preconnect" href="https://ktktwcbvambkcrpfflxi.supabase.co" crossorigin>
     <link rel="dns-prefetch" href="https://ktktwcbvambkcrpfflxi.supabase.co">
     
-    <!-- Google Fonts - Non-blocking load with reduced weights -->
+    <!-- Google Fonts - Preload for zero-CLS font swap with optional display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Oswald:wght@600;700&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Oswald:wght@600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Oswald:wght@600;700&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/oswald/v57/TK3IWkUHHAIjg75cFRf3bXL8LICs1_Fv40pKlN4NNSeSASz7FmlWHYjMdZwl.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Oswald:wght@600;700&display=optional" rel="stylesheet">
     
     <!-- YouTube Performance Hints - deferred since not critical -->
     <link rel="dns-prefetch" href="https://www.youtube.com">
@@ -62,11 +62,13 @@
     .hero-skeleton{position:relative;min-height:100vh;min-height:100svh;background:linear-gradient(180deg,hsl(222.2 84% 4.9%) 0%,hsl(222.2 84% 8%) 100%)}
     .hero-skeleton::before{content:"";position:absolute;inset:0;background:url('/images/hero-mobile.jpg') center/cover no-repeat;opacity:0.6}
     .hero-skeleton-content{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;padding:6rem 1rem 4rem;max-width:600px}
-    .hero-skeleton h1{font-size:2.25rem;font-weight:700;line-height:0.95;text-transform:uppercase;color:hsl(210 40% 98%);margin:0 0 1rem}
+    .hero-skeleton h1{font-size:2.25rem;font-weight:700;line-height:0.95;text-transform:uppercase;color:hsl(210 40% 98%);margin:0 0 1rem;font-size-adjust:0.5;letter-spacing:-0.025em}
     .hero-skeleton p{font-size:1rem;color:hsl(210 40% 90%);margin:0;opacity:0.9}
     @media(min-width:640px){.hero-skeleton h1{font-size:3rem}}
     @media(min-width:768px){.hero-skeleton h1{font-size:3.75rem}}
     @media(min-width:1024px){.hero-skeleton h1{font-size:4.5rem};.hero-skeleton-content{padding-left:4rem}}
+    /* Prevent CLS from skeleton removal */
+    #root:empty{min-height:100vh;min-height:100svh}
     /* Hide skeleton once React mounts */
     #root:not(:empty)+.hero-skeleton{display:none}
   </style>
