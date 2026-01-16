@@ -37,13 +37,21 @@ const OptimizedImage = ({
     auto: "",
   };
 
+  // Build inline style for aspect ratio when width/height provided but no explicit aspectRatio
+  const containerStyle = width && height && aspectRatio === "auto" 
+    ? { aspectRatio: `${width} / ${height}` } 
+    : undefined;
+
   return (
-    <div className={cn(
-      "relative overflow-hidden",
-      !transparent && "bg-muted",
-      aspectRatioClasses[aspectRatio],
-      className
-    )}>
+    <div 
+      className={cn(
+        "relative overflow-hidden",
+        !transparent && "bg-muted",
+        aspectRatioClasses[aspectRatio],
+        className
+      )}
+      style={containerStyle}
+    >
       <img
         src={src}
         alt={alt}

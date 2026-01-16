@@ -67,10 +67,10 @@
     @media(min-width:640px){.hero-skeleton h1{font-size:3rem}}
     @media(min-width:768px){.hero-skeleton h1{font-size:3.75rem}}
     @media(min-width:1024px){.hero-skeleton h1{font-size:4.5rem};.hero-skeleton-content{padding-left:4rem}}
-    /* Prevent CLS from skeleton removal */
+    /* Prevent CLS from skeleton removal - match exact React layout */
     #root:empty{min-height:100vh;min-height:100svh}
-    /* Hide skeleton once React mounts */
-    #root:not(:empty)+.hero-skeleton{display:none}
+    /* Ensure smooth skeleton-to-React transition by hiding skeleton immediately when React renders */
+    #root:not(:empty)+.hero-skeleton{display:none!important;height:0!important;overflow:hidden!important}
   </style>
   
   
