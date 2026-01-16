@@ -66,7 +66,7 @@ export function GoogleReviewsBadge({
             />
           ))}
         </div>
-        <span className="text-white/70"><GoogleBrandedG />oogle Verified Ratings</span>
+        <span className="text-white/70"><GoogleBrandedG />oogle Reviews</span>
       </a>
     );
   }
