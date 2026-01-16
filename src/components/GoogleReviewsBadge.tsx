@@ -52,12 +52,15 @@ export function GoogleReviewsBadge({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          "inline-flex items-center gap-1.5 text-sm sm:text-base text-white/90 hover:text-white transition-colors",
+          "inline-flex items-center gap-2 text-sm sm:text-base text-white/90 hover:text-white transition-colors",
           className
         )}
       >
-        <span className="text-white font-semibold">5</span>
-        <Star size={14} className="text-drake-gold fill-drake-gold" />
+        <div className="flex gap-0.5">
+          {[...Array(5)].map((_, i) => (
+            <Star key={i} size={14} className="text-drake-gold fill-drake-gold" />
+          ))}
+        </div>
         <span className="text-white/70"><GoogleBrandedG />oogle Reviews</span>
       </a>
     );
