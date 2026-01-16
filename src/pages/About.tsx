@@ -435,7 +435,7 @@ His approach blends skill, science, and practical strength work to create long-t
       </AnimatedSection>
 
       {/* Philosophy Quote - Before Studio Section */}
-      <PhilosophyQuote variant="hero" quote="philosophy" />
+      <PhilosophyQuote variant="hero" quote="purpose" />
 
       <AnimatedSection animation="fadeInUp">
         <section className="py-16 md:py-24 section-slant-top bg-secondary-foreground">

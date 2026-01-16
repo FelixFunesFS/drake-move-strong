@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { STATS_CONFIG, StatKey } from "@/data/trustStats";
 import { MOTION_CONFIG, getStaggerDelay } from "@/lib/motionConfig";
 import { useCountUp, parseStatValue, formatNumber } from "@/hooks/useCountUp";
+import googleLogoG from "@/assets/google-logo-g.png";
 
 const STAT_ICONS: Record<StatKey, React.ElementType> = {
   sessions: Trophy,
@@ -15,6 +16,27 @@ const STAT_ICONS: Record<StatKey, React.ElementType> = {
   reviews: CheckCircle,
   classSize: Users,
 };
+
+// Google branded "G" for inline use in stats
+const GoogleG = () => (
+  <img 
+    src={googleLogoG} 
+    alt="G" 
+    className="inline-block h-[0.85em] w-auto align-baseline -mb-[0.05em]"
+  />
+);
+
+// Helper to render label with Google branding for reviews stat
+function StatLabel({ statKey, label }: { statKey: StatKey; label: string }) {
+  if (statKey === 'reviews') {
+    return (
+      <span>
+        <GoogleG />oogle Verified Reviews
+      </span>
+    );
+  }
+  return <span>{label}</span>;
+}
 
 // Colorful icon backgrounds - complementary to brand palette
 const STAT_COLORS: Record<StatKey, { bg: string; icon: string }> = {
@@ -92,7 +114,7 @@ export function TrustStatsBar({
                 <span className="font-medium text-foreground">
                   <CountUpValue value={stat.value} isInView={isInView} />
                 </span>
-                <span>{stat.label}</span>
+                <StatLabel statKey={statKey} label={stat.label} />
               </m.span>
             );
           })}
@@ -138,7 +160,7 @@ export function TrustStatsBar({
                   <div className="font-bold text-lg text-foreground">
                     <CountUpValue value={stat.value} isInView={isInView} />
                   </div>
-                  <div className="text-xs text-muted-foreground">{stat.label}</div>
+                  <div className="text-xs text-muted-foreground"><StatLabel statKey={statKey} label={stat.label} /></div>
                 </div>
               </m.div>
             );
@@ -185,7 +207,7 @@ export function TrustStatsBar({
                   <div className="font-bold text-xl text-foreground">
                     <CountUpValue value={stat.value} isInView={isInView} />
                   </div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  <div className="text-sm text-muted-foreground"><StatLabel statKey={statKey} label={stat.label} /></div>
                   {showSublabels && (
                     <div className="text-xs text-muted-foreground/70">{stat.sublabel}</div>
                   )}
@@ -237,7 +259,7 @@ export function TrustStatsBar({
                     <CountUpValue value={stat.value} isInView={isInView} />
                   </div>
                   <div className="text-sm font-medium text-foreground mt-1">
-                    {stat.label}
+                    <StatLabel statKey={statKey} label={stat.label} />
                   </div>
                   {showSublabels && (
                     <div className="text-xs text-muted-foreground mt-0.5">

@@ -57,6 +57,10 @@ export const BRAND_QUOTES = {
   collaboration: {
     text: "David and Nick work together to design personalized programs that combine mobility, corrective movement, and functional strength — meeting you exactly where you are and guiding you toward sustainable results.",
     attribution: null
+  },
+  purpose: {
+    text: "We help adults build strong, mobile, pain-free bodies that support their everyday lives.",
+    attribution: "Drake Fitness"
   }
 };
 
