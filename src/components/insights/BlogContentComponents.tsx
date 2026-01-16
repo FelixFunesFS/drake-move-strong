@@ -8,6 +8,7 @@ import {
   SlidersHorizontal, Infinity, Moon, Frown, Trophy, Hourglass,
   VolumeX, Bed, Flame, Home, CalendarDays, RefreshCw, Phone
 } from "lucide-react";
+import SmartGalleryImage from "@/components/SmartGalleryImage";
 
 import davidCoachingForm from "@/assets/david-coaching-form.jpg";
 import blogNoPainNoGainHero from "@/assets/blog-no-pain-no-gain-hero.jpg";
@@ -42,10 +43,10 @@ export const WhyTraditionalWorkoutsContent = () => {
 
       {/* Featured Image */}
       <div className="mb-16 rounded-2xl overflow-hidden shadow-2xl">
-        <img
+        <SmartGalleryImage
           src={davidCoachingForm}
           alt="Mature adult training with proper form and mobility focus"
-          className="w-full h-auto max-h-96 object-cover"
+          aspectRatio="video"
         />
       </div>
 
@@ -343,7 +344,7 @@ export const DrakePhilosophyContent = () => {
       </div>
 
       <div className="mb-16 rounded-2xl overflow-hidden shadow-2xl">
-        <img src={coachingSession} alt="Coach guiding proper movement form" className="w-full h-auto max-h-96 object-cover" />
+        <SmartGalleryImage src={coachingSession} alt="Coach guiding proper movement form" aspectRatio="video" />
       </div>
 
       {/* Visual Break: 4 Pillars */}
@@ -464,7 +465,7 @@ export const MobilityVsFlexibilityContent = () => {
       </div>
 
       <div className="mb-16 rounded-2xl overflow-hidden shadow-2xl">
-        <img src={mobilityClass} alt="Mobility training session" className="w-full h-auto max-h-96 object-cover" />
+        <SmartGalleryImage src={mobilityClass} alt="Mobility training session" aspectRatio="video" />
       </div>
 
       {/* Definition Boxes - Comparison Table */}
@@ -624,7 +625,7 @@ export const TooOutOfShapeContent = () => {
       </div>
 
       <div className="mb-16 rounded-2xl overflow-hidden shadow-2xl">
-        <img src={groupKettlebellTraining} alt="Beginner-friendly group training" className="w-full h-auto max-h-96 object-cover" />
+        <SmartGalleryImage src={groupKettlebellTraining} alt="Beginner-friendly group training" aspectRatio="video" />
       </div>
 
       {/* The Problem */}
@@ -713,7 +714,7 @@ export const NoPainNoGainContent = () => {
 
       {/* Featured Image */}
       <div className="mb-16 rounded-2xl overflow-hidden shadow-2xl">
-        <img src={blogNoPainNoGainHero} alt="Smart coaching emphasizing proper form over intensity" className="w-full h-auto max-h-96 object-cover" />
+        <SmartGalleryImage src={blogNoPainNoGainHero} alt="Smart coaching emphasizing proper form over intensity" aspectRatio="video" />
       </div>
 
       {/* Section 1: Pain Is Not Progress */}
@@ -981,7 +982,7 @@ export const TrainingWithInjuryContent = () => {
       </div>
 
       <div className="mb-16 rounded-2xl overflow-hidden shadow-2xl">
-        <img src={kettlebellFormCheck} alt="Coach helping with form" className="w-full h-auto max-h-96 object-cover" />
+        <SmartGalleryImage src={kettlebellFormCheck} alt="Coach helping with form" aspectRatio="video" />
       </div>
 
       {/* FAQ-style Key Message */}
@@ -1097,7 +1098,7 @@ export const BreathingControlsMovementContent = () => {
       </div>
 
       <div className="mb-16 rounded-2xl overflow-hidden shadow-2xl">
-        <img src={studioFloorExercise} alt="Floor exercise focusing on breathing" className="w-full h-auto max-h-96 object-cover" />
+        <SmartGalleryImage src={studioFloorExercise} alt="Floor exercise focusing on breathing" aspectRatio="video" />
       </div>
 
       {/* Breathing Isn't Just About Oxygen */}
@@ -1203,7 +1204,7 @@ export const WhatMakesDrakeDifferentContent = () => {
       </div>
 
       <div className="mb-16 rounded-2xl overflow-hidden shadow-2xl">
-        <img src={studioFullView} alt="Drake Fitness studio" className="w-full h-auto max-h-96 object-cover" />
+        <SmartGalleryImage src={studioFullView} alt="Drake Fitness studio" aspectRatio="video" />
       </div>
 
       {/* Key Differentiators */}
@@ -1292,7 +1293,7 @@ export const HowMuchTimeContent = () => {
       </div>
 
       <div className="mb-16 rounded-2xl overflow-hidden shadow-2xl">
-        <img src={blogKettlebellOverheadGroup} alt="Kettlebell overhead press group training" className="w-full h-auto max-h-96 object-cover" />
+        <SmartGalleryImage src={blogKettlebellOverheadGroup} alt="Kettlebell overhead press group training" aspectRatio="video" />
       </div>
 
       {/* The Truth */}
