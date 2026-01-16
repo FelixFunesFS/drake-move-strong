@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import drakeLogo from "@/assets/drake-logo-new.png";
+import drakeLogo from "@/assets/drake-logo-new.png?format=webp&w=268";
 
 interface NavigationProps {
   transparent?: boolean;

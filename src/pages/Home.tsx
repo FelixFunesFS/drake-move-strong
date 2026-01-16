@@ -42,9 +42,9 @@ import { TodayClassesBanner } from "@/components/schedule/TodayClassesBanner";
 import communityGroupPhotoLarge from "@/assets/community-group-photo-large.jpg";
 import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg";
 import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg";
-import gymInteriorWide from "@/assets/gym-interior-wide.jpg";
+import gymInteriorWide from "@/assets/gym-interior-wide.jpg?format=webp&w=1920";
 import groupClassPlankWide from "@/assets/group-class-plank-wide.jpg";
-import groupPlankRowsKettlebells from "@/assets/group-plank-rows-kettlebells.jpg";
+import groupPlankRowsKettlebells from "@/assets/group-plank-rows-kettlebells.jpg?format=webp&w=1920";
 // New community gallery images
 import communityGroupPhotoNew from "@/assets/community-group-photo-new.jpg";
 import communityTurkishGetupClass from "@/assets/community-turkish-getup-class.jpg";
