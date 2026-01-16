@@ -20,7 +20,7 @@ const Footer = () => {
               <a href="https://www.facebook.com/profile.php?id=100063722011333" target="_blank" rel="noopener noreferrer" className="text-drake-teal-light hover:text-drake-gold transition-colors" aria-label="Facebook">
                 <Facebook size={20} />
               </a>
-              <a href="https://www.youtube.com/@drakefitnesschs" target="_blank" rel="noopener noreferrer" className="text-drake-teal-light hover:text-drake-gold transition-colors" aria-label="YouTube">
+              <a href="https://www.youtube.com/@Drakefitness" target="_blank" rel="noopener noreferrer" className="text-drake-teal-light hover:text-drake-gold transition-colors" aria-label="YouTube">
                 <Youtube size={20} />
               </a>
             </div>
