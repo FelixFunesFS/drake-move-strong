@@ -99,7 +99,7 @@ export const STATS_CONFIG = {
     sublabel: "Trust that lasts"
   },
   rating: {
-    value: TRUST_STATS.googleRating.toString(),
+    value: "5", // Static value
     label: "Google Rating",
     sublabel: "Real feedback from real people"
   },

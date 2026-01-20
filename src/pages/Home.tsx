@@ -19,14 +19,6 @@ import kbCollection from "@/assets/kettlebell-collection.jpg";
 import maceTraining from "@/assets/david-mace-training.jpg";
 import communityMoment from "@/assets/community-plank-rows-kettlebells.jpg";
 import memberYoga from "@/assets/member-yoga-pose.jpg";
-import coachingSession from "@/assets/coaching-session.jpg";
-import oneOnOneCoaching from "@/assets/one-on-one-coaching.jpg";
-import kettlebellFormCheck from "@/assets/kettlebell-form-check.jpg";
-import groupTraining from "@/assets/group-training.jpg";
-import mobilityClass from "@/assets/mobility-class.jpg";
-import outdoorTrainingNew from "@/assets/outdoor-training.jpg?format=webp&w=768";
-import davidOutside from "@/assets/david-outside.jpg";
-import oneOnOne from "@/assets/one-on-one.jpg";
 import studioGroupSquats from "@/assets/studio-group-squats.jpg";
 import Marquee from "@/components/Marquee";
 import OptimizedImage from "@/components/OptimizedImage";
@@ -123,6 +115,23 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       <AnimatedSection animation="fadeInUp">
         <TrustStatsBar variant="horizontal" stats={['sessions', 'charlestonians', 'experience', 'rating']} className="border-y border-border" />
       </AnimatedSection>
+
+      {/* Testimonial Hero - After Trust Stats */}
+      <AnimatedSection animation="fadeInUp">
+        <TestimonialCard quote={FEATURED_REVIEWS[0].quote} author={FEATURED_REVIEWS[0].name} result={FEATURED_REVIEWS[0].result} />
+      </AnimatedSection>
+
+      {/* Community in Action - 2-Row Masonry Gallery */}
+      <CommunityMasonryGallery 
+        images={[
+          { src: communityGroupPhotoNew, alt: "Drake Fitness community group photo in studio" },
+          { src: communityTurkishGetupClass, alt: "Large group Turkish get-up class with natural lighting" },
+          { src: communityKettlebellRackPair, alt: "Members holding kettlebells in rack position" },
+          { src: groupOverheadPressClass, alt: "Group overhead press class at Drake Fitness" },
+          { src: membersOverheadLungeNaturalLight, alt: "Members performing overhead lunges in natural light" },
+          { src: communityPlankRowsKettlebells, alt: "Members doing plank rows with colorful kettlebells at Drake Fitness Charleston" },
+        ]}
+      />
 
       <section className="relative py-16 md:py-24 text-white section-slant-bottom overflow-hidden">
         {/* Background Image */}
@@ -390,22 +399,6 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         </div>
       </section>
 
-      {/* Testimonial Hero - Between Coaches and Results */}
-      <AnimatedSection animation="fadeInUp">
-        <TestimonialCard quote={FEATURED_REVIEWS[0].quote} author={FEATURED_REVIEWS[0].name} result={FEATURED_REVIEWS[0].result} />
-      </AnimatedSection>
-
-      {/* Community in Action - 2-Row Masonry Gallery */}
-      <CommunityMasonryGallery 
-        images={[
-          { src: communityGroupPhotoNew, alt: "Drake Fitness community group photo in studio" },
-          { src: communityTurkishGetupClass, alt: "Large group Turkish get-up class with natural lighting" },
-          { src: communityKettlebellRackPair, alt: "Members holding kettlebells in rack position" },
-          { src: groupOverheadPressClass, alt: "Group overhead press class at Drake Fitness" },
-          { src: membersOverheadLungeNaturalLight, alt: "Members performing overhead lunges in natural light" },
-          { src: communityPlankRowsKettlebells, alt: "Members doing plank rows with colorful kettlebells at Drake Fitness Charleston" },
-        ]}
-      />
 
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
@@ -450,27 +443,6 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         </div>
       </section>
 
-      <section className="py-16 bg-muted overflow-hidden">
-        <div className="container mx-auto px-4 mb-8">
-          <AnimatedSection animation="fadeInUp">
-            <p className="section-eyebrow text-primary text-center">THE STUDIO</p>
-            <h2 className="font-hero text-2xl md:text-3xl font-bold text-center mb-2 uppercase">
-              Inside <span className="text-primary">Drake Fitness</span>
-            </h2>
-            <p className="text-center text-muted-foreground">Real training. Real results. Real community.</p>
-          </AnimatedSection>
-        </div>
-        <Marquee speed="slow" pauseOnHover={true}>
-          <OptimizedImage src={coachingSession} alt="Battle rope training with personal coaching" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={oneOnOneCoaching} alt="One-on-one coaching session at Drake Fitness" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={kettlebellFormCheck} alt="Form check during sled training" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={groupTraining} alt="Group training class at Drake Fitness studio" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={mobilityClass} alt="Mobility and recovery equipment at Drake Fitness" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={outdoorTrainingNew} alt="Outdoor group training session" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={davidOutside} alt="David Drake outdoor functional training" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
-          <OptimizedImage src={oneOnOne} alt="Member with kettlebells at Drake Fitness" className="h-80 w-72 sm:w-80 md:w-96 rounded-lg mx-2" aspectRatio="auto" />
-        </Marquee>
-      </section>
 
       {/* Longevity Block - Before Final CTA */}
       <AnimatedSection animation="fadeInUp">
