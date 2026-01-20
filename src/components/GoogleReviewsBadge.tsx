@@ -5,7 +5,7 @@ import googleLogoG from "@/assets/google-logo-g.png?format=webp&w=32";
 
 // Re-export for backward compatibility - now pulls from centralized trustStats
 export const GOOGLE_REVIEWS = {
-  rating: TRUST_STATS.googleRating,
+  rating: 5, // Static value
   count: TRUST_STATS.googleReviewCount,
   url: TRUST_STATS.googleReviewUrl,
   supportingText: 'Trusted by adults in Charleston who want to move better and stay pain-free.'
