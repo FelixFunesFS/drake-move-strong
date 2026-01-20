@@ -11,7 +11,7 @@ import LongevityBlock from "@/components/LongevityBlock";
 // WebP hero images with responsive sizes
 import heroImage1Desktop from "@/assets/hero-group-turkish-getup.jpg?format=webp&w=1920";
 import heroImage1Mobile from "@/assets/hero-group-turkish-getup.jpg?format=webp&w=768";
-import outdoorTraining from "@/assets/david-outdoor-dumbbell.jpg?format=webp&w=768";
+import outdoorTraining from "@/assets/studio-group-goblet-squats.jpg?format=webp&w=768";
 import davidCoach from "@/assets/david-goblet-squat-kb-rack.jpg";
 import coachNick from "@/assets/nick-holistic-coaching.jpg";
 import startHereImage from "@/assets/outdoor-sandbag-training.jpg";
@@ -83,9 +83,9 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <AnimatedSection animation="scaleIn" delay={0.2} className="relative overflow-hidden rounded-lg">
-              <OptimizedImage src={outdoorTraining} alt="Outdoor functional training with kettlebells" className="shadow-2xl w-full" aspectRatio="square" transparent={true} hideLoadingPlaceholder={true} sizes="(max-width: 768px) 100vw, 580px" width={768} height={768} />
+              <OptimizedImage src={outdoorTraining} alt="Group goblet squat training at Drake Fitness studio" className="shadow-2xl w-full" aspectRatio="square" transparent={true} hideLoadingPlaceholder={true} sizes="(max-width: 768px) 100vw, 580px" width={768} height={768} />
               <div className="absolute inset-0 bg-gradient-to-t from-drake-dark/90 via-drake-dark/50 to-transparent flex items-end p-6 md:p-8">
-                <p className="font-hero text-white md:text-2xl font-bold leading-tight text-base">"NOT JUST A GYM. A MOVEMENT STUDIO."</p>
+                <p className="font-hero text-white md:text-2xl font-bold leading-tight text-base">"NOT JUST A GYM. A <span className="text-drake-gold">MOVEMENT</span> STUDIO."</p>
               </div>
             </AnimatedSection>
             <AnimatedSection animation="fadeInUp" delay={0.1}>
