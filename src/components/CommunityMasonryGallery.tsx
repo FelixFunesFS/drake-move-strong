@@ -34,9 +34,12 @@ const CommunityMasonryGallery = ({ images }: CommunityMasonryGalleryProps) => {
       <div className="container mx-auto px-4">
         <AnimatedSection animation="fadeInUp">
           <p className="section-eyebrow text-primary text-center">COMMUNITY</p>
-          <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
+          <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
             Training <span className="text-primary">Together</span>
           </h2>
+          <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-12">
+            At Drake Fitness, you're never alone. Our supportive community of all ages and fitness levels trains side-by-side, lifting each other up every step of the way.
+          </p>
         </AnimatedSection>
         
         {/* 2-Row Full Width Masonry Grid */}
