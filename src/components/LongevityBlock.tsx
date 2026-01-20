@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { BRAND_QUOTES } from "@/data/trustStats";
-import { Heart } from "lucide-react";
+import drakeLogo from "@/assets/drake-logo-new.png";
 
 interface LongevityBlockProps {
   className?: string;
@@ -33,8 +33,8 @@ export function LongevityBlock({
         className
       )}>
         <div className="flex items-start gap-4">
-          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-drake-gold/20 flex items-center justify-center">
-            <Heart size={20} className="text-drake-gold" />
+          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-drake-gold/20 flex items-center justify-center p-1.5">
+            <img src={drakeLogo} alt="Drake Fitness" className="w-full h-full object-contain" />
           </div>
           <div>
             <p className="text-foreground font-medium leading-relaxed">
@@ -49,13 +49,31 @@ export function LongevityBlock({
   // Default variant - prominent section
   return (
     <section className={cn(
-      "py-12 md:py-16 bg-drake-teal text-white",
+      "py-12 md:py-16 bg-drake-teal text-white relative overflow-hidden",
       className
     )}>
-      <div className="container mx-auto px-4">
+      {/* Background design patterns */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-drake-gold/10" />
+      <div 
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 20px,
+            rgba(255,255,255,0.5) 20px,
+            rgba(255,255,255,0.5) 21px
+          )`
+        }}
+      />
+      {/* Decorative blurred circles */}
+      <div className="absolute -top-20 -left-20 w-64 h-64 bg-white/5 rounded-full blur-3xl" />
+      <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-drake-gold/10 rounded-full blur-3xl" />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/10 mb-6">
-            <Heart size={28} className="text-drake-gold" />
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm mb-6 p-3">
+            <img src={drakeLogo} alt="Drake Fitness" className="w-full h-full object-contain" />
           </div>
           <blockquote className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed">
             "{quote.text}"
