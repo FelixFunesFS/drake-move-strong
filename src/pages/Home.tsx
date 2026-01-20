@@ -9,10 +9,10 @@ import { StructuredData, localBusinessSchema } from "@/components/StructuredData
 import TrustStatsBar from "@/components/TrustStatsBar";
 import LongevityBlock from "@/components/LongevityBlock";
 // WebP hero images with responsive sizes
-import heroImage2Desktop from "@/assets/hero-barbell-deadlift.jpg?format=webp&w=1920";
-import heroImage2Mobile from "@/assets/hero-barbell-deadlift.jpg?format=webp&w=768";
-import heroImage3Desktop from "@/assets/hero-coaching-session.jpg?format=webp&w=1920";
-import heroImage3Mobile from "@/assets/hero-coaching-session.jpg?format=webp&w=768";
+import heroImage1Desktop from "@/assets/hero-group-turkish-getup.jpg?format=webp&w=1920";
+import heroImage1Mobile from "@/assets/hero-group-turkish-getup.jpg?format=webp&w=768";
+import heroImage2Desktop from "@/assets/hero-coaching-session.jpg?format=webp&w=1920";
+import heroImage2Mobile from "@/assets/hero-coaching-session.jpg?format=webp&w=768";
 import outdoorTraining from "@/assets/david-outdoor-dumbbell.jpg?format=webp&w=768";
 import davidCoach from "@/assets/david-goblet-squat-kb-rack.jpg";
 import coachNick from "@/assets/nick-holistic-coaching.jpg";
@@ -74,7 +74,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       } title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 25+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
         text: "START RESET WEEK",
         link: "/reset-week"
-      }} backgroundImages={["/images/hero-mobile.jpg", heroImage3Desktop]} backgroundImagesMobile={["/images/hero-mobile.jpg", heroImage3Mobile]} autoRotate={true} />
+      }} backgroundImages={[heroImage1Desktop, heroImage2Desktop]} backgroundImagesMobile={[heroImage1Mobile, heroImage2Mobile]} autoRotate={true} />
 
       {/* Brand Values Marquee */}
       <section className="py-4 md:py-6 bg-drake-dark overflow-hidden border-y border-drake-gold/20">
