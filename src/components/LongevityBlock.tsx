@@ -72,9 +72,7 @@ export function LongevityBlock({
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm mb-6 p-3">
-            <img src={drakeLogo} alt="Drake Fitness" className="w-full h-full object-contain" />
-          </div>
+          <img src={drakeLogo} alt="Drake Fitness" className="w-16 h-16 md:w-20 md:h-20 object-contain mb-6 mx-auto" />
           <blockquote className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed">
             "{quote.text}"
           </blockquote>
