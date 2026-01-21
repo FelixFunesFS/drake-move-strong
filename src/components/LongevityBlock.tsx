@@ -63,7 +63,10 @@ export function LongevityBlock({
             {/* Decorative line with number */}
             <div className="flex items-center justify-center gap-4 mb-2">
               <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent to-drake-gold/60" />
-              <span className="font-hero text-6xl md:text-7xl lg:text-8xl text-white tracking-tight">
+              <span 
+                className="font-hero text-6xl md:text-7xl lg:text-8xl text-white tracking-tight"
+                style={{ textShadow: '0 0 40px rgba(242, 181, 68, 0.4), 0 0 80px rgba(242, 181, 68, 0.2)' }}
+              >
                 10+
               </span>
               <div className="h-px w-16 md:w-24 bg-gradient-to-l from-transparent to-drake-gold/60" />
