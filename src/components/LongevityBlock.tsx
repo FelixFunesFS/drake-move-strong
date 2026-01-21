@@ -52,9 +52,12 @@ export function LongevityBlock({
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <img src={drakeLogo} alt="Drake Fitness" className="w-auto h-auto max-w-full mb-6 mx-auto" />
-          <blockquote className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed">
-            "{quote.text}"
-          </blockquote>
+          {/* Complementary quote card */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 md:p-8 shadow-lg">
+            <blockquote className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed">
+              "{quote.text}"
+            </blockquote>
+          </div>
         </div>
       </div>
     </section>;
