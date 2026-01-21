@@ -51,12 +51,36 @@ export function LongevityBlock({
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <img src={drakeLogo} alt="Drake Fitness" className="w-auto h-auto max-w-full mb-6 mx-auto" />
-          {/* Complementary quote card */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl border border-drake-gold/30 p-6 md:p-8 shadow-lg">
-            <blockquote className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed">
-              "{quote.text}"
-            </blockquote>
+          {/* Logo */}
+          <img 
+            src={drakeLogo} 
+            alt="Drake Fitness" 
+            className="w-auto h-auto max-w-full mb-8 mx-auto" 
+          />
+          
+          {/* Bold metric display */}
+          <div className="mb-6">
+            {/* Decorative line with number */}
+            <div className="flex items-center justify-center gap-4 mb-2">
+              <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent to-drake-gold/60" />
+              <span className="font-hero text-6xl md:text-7xl lg:text-8xl text-white tracking-tight">
+                10+
+              </span>
+              <div className="h-px w-16 md:w-24 bg-gradient-to-l from-transparent to-drake-gold/60" />
+            </div>
+            <p className="font-hero text-xl md:text-2xl text-drake-gold uppercase tracking-widest">
+              Years
+            </p>
+          </div>
+          
+          {/* Supporting statement */}
+          <div className="space-y-3 text-white/90">
+            <p className="text-lg md:text-xl font-medium">
+              Clients training with us for over a decade.
+            </p>
+            <p className="text-base md:text-lg text-white/70 max-w-xl mx-auto leading-relaxed">
+              That doesn't happen from trends or hype. It happens because the work is thoughtful, safe, and built for real life.
+            </p>
           </div>
         </div>
       </div>
