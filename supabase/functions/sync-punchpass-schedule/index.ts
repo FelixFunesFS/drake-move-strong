@@ -21,6 +21,7 @@ interface ClassData {
 }
 
 function parseTime(timeStr: string): { hours: number; minutes: number } {
+  // Handle formats like "8:00 am", "11:00 amGMT-05:00", "6:45 am"
   const match = timeStr.match(/(\d{1,2}):(\d{2})\s*(am|pm)?/i);
   if (!match) return { hours: 0, minutes: 0 };
   
@@ -46,21 +47,23 @@ function parseScheduleFromMarkdown(markdown: string): ClassData[] {
   let currentYear = new Date().getFullYear();
   let i = 0;
   
+  // Month name to number mapping
+  const monthMap: Record<string, number> = {
+    january: 0, february: 1, march: 2, april: 3, may: 4, june: 5,
+    july: 6, august: 7, september: 8, october: 9, november: 10, december: 11
+  };
+  
   while (i < lines.length) {
     const line = lines[i].trim();
     
-    // Match date headers like "January 5", "January 6", etc.
+    // Match date headers like "January 26" or "January 5"
     const dateMatch = line.match(/^(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})$/i);
     if (dateMatch) {
       const monthName = dateMatch[1];
       const day = parseInt(dateMatch[2]);
-      const monthMap: Record<string, number> = {
-        january: 0, february: 1, march: 2, april: 3, may: 4, june: 5,
-        july: 6, august: 7, september: 8, october: 9, november: 10, december: 11
-      };
       const month = monthMap[monthName.toLowerCase()];
       
-      // Handle year rollover
+      // Handle year rollover (if we see January but we're past June, it's next year)
       const today = new Date();
       if (month < today.getMonth() - 6) {
         currentYear = today.getFullYear() + 1;
@@ -72,8 +75,8 @@ function parseScheduleFromMarkdown(markdown: string): ClassData[] {
       continue;
     }
     
-    // Match time like "8:00 am" or "11:00 am"
-    const timeMatch = line.match(/^(\d{1,2}:\d{2}\s*(?:am|pm))/i);
+    // Match time like "8:00 am" or "6:45 am" (but not "8:00 amGMT-05:00" which is a ZOOM duplicate)
+    const timeMatch = line.match(/^(\d{1,2}:\d{2}\s*(?:am|pm))$/i);
     if (timeMatch && currentDate) {
       const rawTimeString = timeMatch[1];
       const { hours, minutes } = parseTime(rawTimeString);
@@ -87,62 +90,87 @@ function parseScheduleFromMarkdown(markdown: string): ClassData[] {
       let instructor: string | null = null;
       let isOnline = false;
       let spotsRemaining: number | null = null;
-      let spotsTotal: number | null = null;
       
-      // Check next lines for class info
-      for (let j = i + 1; j < Math.min(i + 10, lines.length); j++) {
+      // Check next lines for class info (up to 8 lines ahead)
+      for (let j = i + 1; j < Math.min(i + 8, lines.length); j++) {
         const nextLine = lines[j].trim();
         
-        // Class name with URL
+        // Skip empty lines
+        if (!nextLine) continue;
+        
+        // Class name with URL - [KB STrong Group Fitness](https://drakefitness.punchpass.com/classes/18023313)
         const classMatch = nextLine.match(/\[([^\]]+)\]\((https:\/\/drakefitness\.punchpass\.com\/classes\/\d+)\)/);
-        if (classMatch) {
+        if (classMatch && !className) {
           className = classMatch[1];
           punchpassUrl = classMatch[2];
+          // Check if class name indicates ZOOM/online
+          if (className.toLowerCase().includes('zoom')) {
+            isOnline = true;
+            location = 'Online (Zoom)';
+          }
+          continue;
         }
         
         // ONLINE indicator
-        if (nextLine === 'ONLINE' || nextLine.toLowerCase().includes('zoom')) {
+        if (nextLine === 'ONLINE') {
           isOnline = true;
+          continue;
         }
         
-        // Duration
-        const durationMatch = nextLine.match(/(\d+)\s*(?:hour|hr|min)/i);
+        // Duration - "1 hour"
+        const durationMatch = nextLine.match(/^(\d+)\s*hour/i);
         if (durationMatch) {
-          const value = parseInt(durationMatch[1]);
-          duration = nextLine.toLowerCase().includes('min') ? value : value * 60;
+          duration = parseInt(durationMatch[1]) * 60;
+          continue;
         }
         
         // Location
         if (nextLine.includes('Drake Fitness In Studio')) {
           location = 'Drake Fitness Studio';
-        } else if (nextLine.includes('Zoom') || nextLine.includes('Online')) {
+          continue;
+        }
+        if (nextLine.includes('KB Strong Zoom Online') || nextLine.includes('Zoom')) {
           location = 'Online (Zoom)';
           isOnline = true;
+          continue;
         }
         
-        // Instructor
-        if (['David', 'Nick', 'Coach Nick'].includes(nextLine)) {
+        // Instructor (David, Nick, or Coach Nick)
+        const instructorLower = nextLine.toLowerCase();
+        if (instructorLower === 'david' || instructorLower === 'nick' || instructorLower === 'coach nick') {
           instructor = nextLine;
+          continue;
+        }
+        // Also check if line contains just a name at the end of class details
+        if (/^(David|Nick|Coach Nick)$/i.test(nextLine)) {
+          instructor = nextLine;
+          continue;
         }
         
-        // Spots - look for patterns like "5/12 spots" or "5 spots"
-        const spotsMatch = nextLine.match(/(\d+)(?:\/(\d+))?\s*spots?/i);
+        // Spots - "5 SPOTS LEFT" or "9 SPOTS LEFT"
+        const spotsMatch = nextLine.match(/^(\d+)\s*SPOTS?\s*LEFT/i);
         if (spotsMatch) {
           spotsRemaining = parseInt(spotsMatch[1]);
-          if (spotsMatch[2]) {
-            spotsTotal = parseInt(spotsMatch[2]);
-          }
+          continue;
         }
         
-        // Stop if we hit another time or date
-        if (nextLine.match(/^\d{1,2}:\d{2}\s*(?:am|pm)/i) && j > i + 1) {
+        // Stop if we hit another time (next class entry)
+        if (nextLine.match(/^\d{1,2}:\d{2}\s*(?:am|pm)$/i)) {
           break;
         }
+        
+        // Stop if we hit a date header
         if (nextLine.match(/^(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2}$/i)) {
+          break;
+        }
+        
+        // Stop if we hit month marker like "Jan"
+        if (nextLine.match(/^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)$/i)) {
           break;
         }
       }
       
+      // Only add if we found a valid class name
       if (className && currentDate) {
         // Calculate end time
         const endHours = hours + Math.floor(duration / 60);
@@ -160,7 +188,7 @@ function parseScheduleFromMarkdown(markdown: string): ClassData[] {
           location,
           instructor,
           spots_remaining: spotsRemaining,
-          spots_total: spotsTotal,
+          spots_total: null,
           is_online: isOnline,
           punchpass_url: punchpassUrl,
           raw_time_string: rawTimeString,
@@ -271,7 +299,7 @@ Deno.serve(async (req) => {
 
     console.log('Extracting PunchPass schedule with Tavily...');
 
-    // Extract the PunchPass schedule page using Tavily Extract API
+    // Extract the PunchPass schedule page using Tavily Extract API with advanced depth for JS-rendered content
     const extractResponse = await fetch('https://api.tavily.com/extract', {
       method: 'POST',
       headers: {
@@ -280,6 +308,7 @@ Deno.serve(async (req) => {
       body: JSON.stringify({
         api_key: tavilyApiKey,
         urls: ['https://drakefitness.punchpass.com/classes'],
+        extract_depth: 'advanced',
       }),
     });
 
@@ -296,6 +325,7 @@ Deno.serve(async (req) => {
     // Tavily returns results array with raw_content
     const content = extractData.results?.[0]?.raw_content || '';
     console.log('Extracted content length:', content.length);
+    console.log('Content preview:', content.substring(0, 1000));
 
     // Parse the schedule
     const classes = parseScheduleFromMarkdown(content);
