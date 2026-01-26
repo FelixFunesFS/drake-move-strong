@@ -75,10 +75,11 @@ function parseScheduleFromMarkdown(markdown: string): ClassData[] {
       continue;
     }
     
-    // Match time like "8:00 am" or "6:45 am" (but not "8:00 amGMT-05:00" which is a ZOOM duplicate)
-    const timeMatch = line.match(/^(\d{1,2}:\d{2}\s*(?:am|pm))$/i);
+    // Match time like "8:00 am", "6:45 am", or "8:00 amGMT-05:00" (ZOOM classes have timezone suffix)
+    const timeMatch = line.match(/^(\d{1,2}:\d{2}\s*(?:am|pm))(GMT[+-]\d{2}:\d{2})?$/i);
     if (timeMatch && currentDate) {
       const rawTimeString = timeMatch[1];
+      const hasTimezone = !!timeMatch[2]; // GMT suffix indicates ZOOM class
       const { hours, minutes } = parseTime(rawTimeString);
       const startTime = formatTimeForDb(hours, minutes);
       
@@ -88,11 +89,11 @@ function parseScheduleFromMarkdown(markdown: string): ClassData[] {
       let duration = 60;
       let location: string | null = null;
       let instructor: string | null = null;
-      let isOnline = false;
+      let isOnline = hasTimezone; // Pre-set for ZOOM classes detected via timezone
       let spotsRemaining: number | null = null;
       
-      // Check next lines for class info (up to 8 lines ahead)
-      for (let j = i + 1; j < Math.min(i + 8, lines.length); j++) {
+      // Check next lines for class info (up to 12 lines ahead for instructor capture)
+      for (let j = i + 1; j < Math.min(i + 12, lines.length); j++) {
         const nextLine = lines[j].trim();
         
         // Skip empty lines
@@ -135,15 +136,14 @@ function parseScheduleFromMarkdown(markdown: string): ClassData[] {
           continue;
         }
         
-        // Instructor (David, Nick, or Coach Nick)
-        const instructorLower = nextLine.toLowerCase();
-        if (instructorLower === 'david' || instructorLower === 'nick' || instructorLower === 'coach nick') {
-          instructor = nextLine;
-          continue;
-        }
-        // Also check if line contains just a name at the end of class details
-        if (/^(David|Nick|Coach Nick)$/i.test(nextLine)) {
-          instructor = nextLine;
+        // Instructor (David, Nick, or Coach Nick) - normalize the name
+        if (/^(David|Nick|Coach\s*Nick)$/i.test(nextLine)) {
+          const normalized = nextLine.toLowerCase().trim();
+          if (normalized === 'david') {
+            instructor = 'David';
+          } else if (normalized === 'nick' || normalized.includes('nick')) {
+            instructor = 'Nick';
+          }
           continue;
         }
         
