@@ -187,8 +187,24 @@ Deno.serve(async (req) => {
     // Check authorization header
     const authHeader = req.headers.get('Authorization');
     
-    // Check if this is a cron-triggered request (service role key)
-    const isCronRequest = authHeader === `Bearer ${serviceRoleKey}`;
+    // Check if this is a cron-triggered request
+    // Cron uses service role key OR special cron secret from body
+    let isCronRequest = authHeader === `Bearer ${serviceRoleKey}`;
+    
+    // Also check for cron source in body (for pg_cron which may not pass service role correctly)
+    let body: { source?: string; cron_secret?: string } = {};
+    try {
+      const text = await req.text();
+      if (text) {
+        body = JSON.parse(text);
+      }
+    } catch { /* ignore parse errors */ }
+    
+    // Check if cron_secret matches (allows pg_cron to work without embedding service role in SQL)
+    const cronSecret = Deno.env.get('CRON_SECRET');
+    if (body.cron_secret && cronSecret && body.cron_secret === cronSecret) {
+      isCronRequest = true;
+    }
     
     // Create service role client for database operations
     const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey);
