@@ -7,6 +7,8 @@ import { ChevronLeft, ChevronRight, ExternalLink, Calendar, Monitor } from "luci
 import { WeekDayColumn } from "./WeekDayColumn";
 import { ScheduleFilters } from "./ScheduleFilters";
 import { BookingModal } from "./BookingModal";
+import { ScheduleFallbackBanner } from "./ScheduleFallbackBanner";
+import { useScheduleStaleness } from "@/hooks/useScheduleStaleness";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 
@@ -53,6 +55,9 @@ export function NativeWeeklySchedule() {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState<Date>(new Date());
   const isMobile = useIsMobile();
+  
+  // Check if schedule data is stale (>24 hours old)
+  const { isStale, hoursStale, isEmpty } = useScheduleStaleness(24);
 
   const weekEnd = addDays(weekStart, 6);
   const weekDays = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
@@ -125,6 +130,8 @@ export function NativeWeeklySchedule() {
   if (isMobile) {
     return (
       <div className="space-y-4">
+        {/* Staleness Banner */}
+        {isStale && <ScheduleFallbackBanner hoursStale={hoursStale} isEmpty={isEmpty} />}
         {/* Week Navigation - Compact */}
         <div className="flex items-center justify-between gap-2">
           <Button
@@ -265,7 +272,8 @@ export function NativeWeeklySchedule() {
   // Desktop: Week grid view
   return (
     <div className="space-y-4">
-      {/* Header with Navigation */}
+      {/* Staleness Banner */}
+      {isStale && <ScheduleFallbackBanner hoursStale={hoursStale} isEmpty={isEmpty} />}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <Button

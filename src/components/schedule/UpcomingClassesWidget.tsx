@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Calendar } from "lucide-react";
+import { ChevronRight, Calendar, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ClassCard } from "./ClassCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import AnimatedSection from "@/components/AnimatedSection";
 import { BookingModal } from "./BookingModal";
+import { useScheduleStaleness } from "@/hooks/useScheduleStaleness";
 
 interface ScheduleClass {
   id: string;
@@ -34,6 +35,9 @@ export function UpcomingClassesWidget() {
   const [loading, setLoading] = useState(true);
   const [selectedClass, setSelectedClass] = useState<ScheduleClass | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  
+  // Check if schedule data is stale
+  const { isStale, hoursStale, isEmpty } = useScheduleStaleness(24);
 
   const handleClassClick = (classItem: ScheduleClass) => {
     setSelectedClass(classItem);
@@ -128,8 +132,39 @@ export function UpcomingClassesWidget() {
     );
   }
 
-  // Don't render if no classes
+  // Show fallback with PunchPass link if stale or empty
   if (groupedClasses.length === 0) {
+    // If data is stale, show a helpful message with direct link
+    if (isStale || isEmpty) {
+      return (
+        <section className="py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4">
+            <AnimatedSection animation="fadeInUp">
+              <div className="text-center max-w-2xl mx-auto">
+                <p className="section-eyebrow text-primary mb-2">THIS WEEK</p>
+                <h2 className="font-hero text-3xl md:text-4xl font-bold uppercase mb-4">
+                  Upcoming <span className="text-primary">Classes</span>
+                </h2>
+                <p className="text-lg text-muted-foreground mb-6">
+                  View our current class schedule on PunchPass to reserve your spot
+                </p>
+                <Button asChild size="lg" className="shrink-0">
+                  <a
+                    href="https://drakefitness.punchpass.com/classes"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2"
+                  >
+                    View Schedule on PunchPass
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </Button>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+      );
+    }
     return null;
   }
 

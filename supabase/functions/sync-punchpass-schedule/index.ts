@@ -180,61 +180,69 @@ Deno.serve(async (req) => {
   }
 
   try {
-    // Validate JWT token
-    const authHeader = req.headers.get('Authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      console.error('[sync-punchpass-schedule] Missing or invalid authorization header');
-      return new Response(
-        JSON.stringify({ error: 'Unauthorized - Missing authentication token' }),
-        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
-    }
-
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
+    const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     
-    // Create authenticated Supabase client
-    const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-      global: { headers: { Authorization: authHeader } }
-    });
-
-    // Validate the JWT using getClaims (more reliable than getUser for edge functions)
-    const token = authHeader.replace('Bearer ', '');
-    const { data: claimsData, error: claimsError } = await supabase.auth.getClaims(token);
+    // Check authorization header
+    const authHeader = req.headers.get('Authorization');
     
-    if (claimsError || !claimsData?.claims?.sub) {
-      console.error('[sync-punchpass-schedule] Invalid token:', claimsError);
-      return new Response(
-        JSON.stringify({ error: 'Unauthorized - Invalid authentication token' }),
-        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+    // Check if this is a cron-triggered request (service role key)
+    const isCronRequest = authHeader === `Bearer ${serviceRoleKey}`;
+    
+    // Create service role client for database operations
+    const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey);
+    
+    if (isCronRequest) {
+      // Cron-triggered sync - no user auth needed
+      console.log('[sync-punchpass-schedule] Cron-triggered sync starting...');
+    } else {
+      // Manual trigger - validate user is admin
+      if (!authHeader?.startsWith('Bearer ')) {
+        console.error('[sync-punchpass-schedule] Missing or invalid authorization header');
+        return new Response(
+          JSON.stringify({ error: 'Unauthorized - Missing authentication token' }),
+          { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
+
+      // Create authenticated Supabase client for user validation
+      const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+        global: { headers: { Authorization: authHeader } }
+      });
+
+      // Validate the JWT using getClaims
+      const token = authHeader.replace('Bearer ', '');
+      const { data: claimsData, error: claimsError } = await supabase.auth.getClaims(token);
+      
+      if (claimsError || !claimsData?.claims?.sub) {
+        console.error('[sync-punchpass-schedule] Invalid token:', claimsError);
+        return new Response(
+          JSON.stringify({ error: 'Unauthorized - Invalid authentication token' }),
+          { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
+
+      const userId = claimsData.claims.sub;
+
+      // Check if user has admin role
+      const { data: roleData, error: roleError } = await supabaseAdmin
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', userId)
+        .eq('role', 'admin')
+        .maybeSingle();
+
+      if (roleError || !roleData) {
+        console.error(`[sync-punchpass-schedule] Access denied - User ${userId} is not admin`);
+        return new Response(
+          JSON.stringify({ error: 'Forbidden - Admin access required' }),
+          { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
+
+      console.log(`[sync-punchpass-schedule] Admin access granted for user: ${userId}`);
     }
-
-    const userId = claimsData.claims.sub;
-
-    // Create service role client for role check and database operations
-    const supabaseAdmin = createClient(
-      supabaseUrl,
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
-    );
-
-    // Check if user has admin role
-    const { data: roleData, error: roleError } = await supabaseAdmin
-      .from('user_roles')
-      .select('role')
-      .eq('user_id', userId)
-      .eq('role', 'admin')
-      .maybeSingle();
-
-    if (roleError || !roleData) {
-      console.error(`[sync-punchpass-schedule] Access denied - User ${userId} is not admin`);
-      return new Response(
-        JSON.stringify({ error: 'Forbidden - Admin access required' }),
-        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
-    }
-
-    console.log(`[sync-punchpass-schedule] Admin access granted for user: ${userId}`);
 
     const tavilyApiKey = Deno.env.get('TAVILY_API_KEY');
     if (!tavilyApiKey) {

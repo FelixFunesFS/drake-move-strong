@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { Loader2, Plus, Calendar, Users, Clock, Trash2 } from 'lucide-react';
+import { Loader2, Plus, Calendar, Users, Clock, Trash2, RefreshCw } from 'lucide-react';
 import { format, addDays, startOfWeek } from 'date-fns';
 
 interface ClassType {
@@ -38,6 +38,7 @@ export default function ScheduleManager() {
   const [schedules, setSchedules] = useState<ScheduledClass[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [isSyncing, setIsSyncing] = useState(false);
   const [showCreateForm, setShowCreateForm] = useState(false);
   
   // Form state
@@ -46,6 +47,35 @@ export default function ScheduleManager() {
   const [startTime, setStartTime] = useState('09:00');
   const [duration, setDuration] = useState(60);
   const [capacity, setCapacity] = useState(12);
+
+  // Sync PunchPass schedule manually
+  const handleSyncPunchPass = async () => {
+    setIsSyncing(true);
+    try {
+      const { data: session } = await supabase.auth.getSession();
+      if (!session?.session?.access_token) {
+        toast.error('You must be logged in to sync');
+        return;
+      }
+
+      const { error } = await supabase.functions.invoke('sync-punchpass-schedule', {
+        headers: { Authorization: `Bearer ${session.session.access_token}` }
+      });
+
+      if (error) {
+        console.error('Sync error:', error);
+        toast.error('Failed to sync PunchPass schedule');
+        return;
+      }
+
+      toast.success('PunchPass schedule synced successfully');
+    } catch (error) {
+      console.error('Sync error:', error);
+      toast.error('Failed to sync PunchPass schedule');
+    } finally {
+      setIsSyncing(false);
+    }
+  };
 
   useEffect(() => {
     fetchData();
@@ -225,10 +255,24 @@ export default function ScheduleManager() {
                 Manage class schedules
               </p>
             </div>
-            <Button onClick={() => setShowCreateForm(!showCreateForm)}>
-              <Plus className="mr-2 h-4 w-4" />
-              Add Class
-            </Button>
+            <div className="flex gap-2">
+              <Button 
+                variant="outline" 
+                onClick={handleSyncPunchPass}
+                disabled={isSyncing}
+              >
+                {isSyncing ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <RefreshCw className="mr-2 h-4 w-4" />
+                )}
+                Sync PunchPass
+              </Button>
+              <Button onClick={() => setShowCreateForm(!showCreateForm)}>
+                <Plus className="mr-2 h-4 w-4" />
+                Add Class
+              </Button>
+            </div>
           </div>
 
           {/* Create Schedule Form */}
