@@ -56,8 +56,8 @@ function parseScheduleFromMarkdown(markdown: string): ClassData[] {
   while (i < lines.length) {
     const line = lines[i].trim();
     
-    // Match date headers like "January 26" or "January 5"
-    const dateMatch = line.match(/^(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})$/i);
+    // Match date headers like "January 26" or "January 5" (with optional trailing whitespace)
+    const dateMatch = line.match(/^(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})\s*$/i);
     if (dateMatch) {
       const monthName = dateMatch[1];
       const day = parseInt(dateMatch[2]);
@@ -99,11 +99,21 @@ function parseScheduleFromMarkdown(markdown: string): ClassData[] {
         // Skip empty lines
         if (!nextLine) continue;
         
-        // Class name with URL - [KB STrong Group Fitness](https://drakefitness.punchpass.com/classes/18023313)
-        const classMatch = nextLine.match(/\[([^\]]+)\]\((https:\/\/drakefitness\.punchpass\.com\/classes\/\d+)\)/);
+        // Skip day-of-week indicators like "Monday TODAY", "Tuesday", etc.
+        if (nextLine.match(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)/i)) {
+          continue;
+        }
+        
+        // Class name with URL - handles both relative and absolute URLs
+        // e.g., [KB STrong Group Fitness](/classes/18023313) or [KB STrong Group Fitness](https://drakefitness.punchpass.com/classes/18023313)
+        const classMatch = nextLine.match(/\[([^\]]+)\]\(((?:https:\/\/drakefitness\.punchpass\.com)?\/classes\/\d+)\)/);
         if (classMatch && !className) {
           className = classMatch[1];
           punchpassUrl = classMatch[2];
+          // Normalize relative URLs to absolute
+          if (punchpassUrl && punchpassUrl.startsWith('/')) {
+            punchpassUrl = 'https://drakefitness.punchpass.com' + punchpassUrl;
+          }
           // Check if class name indicates ZOOM/online
           if (className.toLowerCase().includes('zoom')) {
             isOnline = true;
