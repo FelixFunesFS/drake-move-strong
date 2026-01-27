@@ -132,7 +132,7 @@ const Schedule = () => {
           title="Book Your Class"
           subtitle="All classes are coach-led, mobility-first, and beginner-friendly. Click any class to book your spot."
           backgroundImage={scheduleCommunityImage}
-          className="h-[400px] md:h-[500px] lg:h-[600px]"
+          className="h-[300px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
         />
 
         <section className="py-6 md:py-8 bg-primary text-white">
