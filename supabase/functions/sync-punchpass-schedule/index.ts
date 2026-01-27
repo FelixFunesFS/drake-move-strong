@@ -182,6 +182,11 @@ function parseScheduleFromMarkdown(markdown: string): ClassData[] {
       
       // Only add if we found a valid class name
       if (className && currentDate) {
+        // Final check: ensure ZOOM classes are always flagged correctly
+        if (className.toLowerCase().includes('zoom')) {
+          isOnline = true;
+          if (!location) location = 'Online (Zoom)';
+        }
         // Calculate end time
         const endHours = hours + Math.floor(duration / 60);
         const endMinutes = minutes + (duration % 60);
