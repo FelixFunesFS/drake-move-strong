@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { LazyAuthProvider } from "@/contexts/LazyAuthContext";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
 import Navigation from "./components/Navigation";
@@ -164,6 +164,7 @@ const AppLayout = () => {
             {/* Landing Pages */}
             <Route path="/new-year" element={<NewYearChallenge />} />
             <Route path="/reset" element={<ResetWeekAlt />} />
+            <Route path="/reset-week" element={<Navigate to="/reset" replace />} />
             <Route path="/consultation" element={<Consultation />} />
             
             {/* Local SEO Service Pages */}
