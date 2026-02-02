@@ -1,4 +1,3 @@
-import Hero from "@/components/Hero";
 import CTASection from "@/components/CTASection";
 import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
@@ -19,7 +18,6 @@ import {
 
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import scheduleCommunityImage from "@/assets/schedule-community-group.jpg";
 import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { NativeWeeklySchedule } from "@/components/schedule/NativeWeeklySchedule";
@@ -127,14 +125,18 @@ const Schedule = () => {
       <StructuredData data={faqSchema} />
       
       <main>
-        <Hero
-          eyebrow="CLASSES & SCHEDULE"
-          title="Book Your Class"
-          subtitle="All classes are coach-led, mobility-first, and beginner-friendly. Click any class to book your spot."
-          backgroundImage={scheduleCommunityImage}
-          className="h-[300px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
-        />
-
+        {/* Compact Header */}
+        <section className="pt-24 pb-8 md:pt-28 md:pb-12 bg-drake-dark text-white">
+          <div className="container mx-auto px-4 text-center">
+            <p className="section-eyebrow text-drake-gold mb-2">CLASSES & SCHEDULE</p>
+            <h1 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold uppercase mb-4">
+              Book Your <span className="text-drake-gold">Class</span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+              All classes are coach-led, mobility-first, and beginner-friendly. Click any class to book your spot.
+            </p>
+          </div>
+        </section>
 
         {/* Weekly Schedule - Primary Focus */}
         <section className="py-8 md:py-12 bg-background">
