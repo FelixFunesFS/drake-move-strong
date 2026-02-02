@@ -59,7 +59,7 @@ const FAQ = () => {
         },
         {
           q: "What membership should I choose?",
-          a: "Foundation Membership (8 classes/month, $180) is great for beginners or busy schedules. Longevity Unlimited ($225/month) is our most popular option for consistent training. Both include expert coaching and small group attention.",
+          a: "Foundation Membership (8 classes/month, $209) is great for beginners or busy schedules. Longevity Unlimited ($239/month) is our most popular option for consistent training. Both include expert coaching and small group attention.",
         },
         {
           q: "Can I pause my membership?",

@@ -12,14 +12,14 @@ export const PRICING = {
   
   // Monthly Memberships
   foundation: {
-    price: 180,
+    price: 209,
     frequency: "month",
     classes: "8 classes/month",
     label: "Foundation Membership",
     description: "8 classes per month, perfect for beginners"
   },
   unlimited: {
-    price: 225,
+    price: 239,
     frequency: "month",
     classes: "Unlimited",
     label: "Longevity Unlimited",
@@ -47,9 +47,12 @@ export const PRICING = {
   }
 } as const;
 
-// PunchPass URLs
+// PunchPass URLs - Direct checkout links
 export const PUNCHPASS_URLS = {
-  resetWeek: "https://app.punchpass.com/org/9942/buy?passes=1023628",
+  resetWeek: "https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219",
+  foundation: "https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784",
+  unlimited: "https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211",
+  remoteSupport: "https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776",
   schedule: "https://drakefitness.punchpass.com/classes",
   passes: "https://drakefitness.punchpass.com/passes",
   catalog: "https://drakefitness.punchpass.com/catalog"

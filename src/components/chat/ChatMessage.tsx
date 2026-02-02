@@ -17,8 +17,14 @@ const friendlyLabels: Record<string, string> = {
   'https://drakefitness.punchpass.com': '📅 Book on PunchPass',
   
   // Intro offer links
+  'https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219': '🎁 Start Reset Week — $50',
   'https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/46002': '🎁 Get Intro Week Special',
   'https://drakefitness.punchpass.com/org/5950/catalogs/purchase': '🎁 Get Started - Intro Offers',
+  
+  // Membership purchase links
+  'https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784': '💪 Join Foundation Membership',
+  'https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211': '⭐ Join Longevity Unlimited',
+  'https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776': '🌐 Get Remote Support',
   
   // Drake Fitness website links
   'https://drake.fitness': '🏠 Drake Fitness',
