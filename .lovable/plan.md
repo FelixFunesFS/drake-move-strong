@@ -1,42 +1,24 @@
 
-# Remove Hero Section from Schedule Page
+# Remove Header, Integrate Title into Schedule Section
 
 ## Overview
-Replace the large hero image section with a compact, task-focused header that puts the weekly schedule immediately in view.
+Eliminate the separate header section entirely and merge the page title into the Weekly Schedule section, making the schedule grid the immediate first content after navigation.
 
 ## Rationale
-- Users visiting `/schedule` have clear intent: book a class
-- Removes scroll barrier to the primary action
-- Better mobile experience with schedule visible on load
-- Matches UX patterns of booking-focused pages
+- Users visiting `/schedule` want to book immediately
+- Removes all barriers between navigation and schedule
+- Maintains SEO with inline H1
+- Creates a focused, task-driven experience
 
 ## Changes Required
 
 ### File: `src/pages/Schedule.tsx`
 
-**1. Remove Hero component and related import**
+**1. Remove the compact header section (lines 128-139)**
 
-Remove the import:
+Delete this entire section:
 ```tsx
-import Hero from "@/components/Hero";
-import scheduleCommunityImage from "@/assets/schedule-community-group.jpg";
-```
-
-**2. Replace Hero section with compact header**
-
-Remove:
-```tsx
-<Hero
-  eyebrow="CLASSES & SCHEDULE"
-  title="Book Your Class"
-  subtitle="All classes are coach-led, mobility-first, and beginner-friendly. Click any class to book your spot."
-  backgroundImage={scheduleCommunityImage}
-  className="h-[300px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
-/>
-```
-
-Replace with a compact, styled header section:
-```tsx
+{/* Compact Header */}
 <section className="pt-24 pb-8 md:pt-28 md:pb-12 bg-drake-dark text-white">
   <div className="container mx-auto px-4 text-center">
     <p className="section-eyebrow text-drake-gold mb-2">CLASSES & SCHEDULE</p>
@@ -50,52 +32,70 @@ Replace with a compact, styled header section:
 </section>
 ```
 
-**3. Adjust Weekly Schedule section spacing**
+**2. Update Weekly Schedule section to be the first section**
 
-Update the Weekly Schedule section to flow naturally from the new header:
+Modify the Weekly Schedule section (lines 141-151) to:
+- Add top padding to account for fixed navigation (`pt-24`)
+- Include an inline H1 title for SEO
+- Add helper text below the title
+
 ```tsx
-<section className="py-8 md:py-12 bg-background">
+{/* Weekly Schedule - Primary Focus */}
+<section className="pt-24 pb-8 md:pt-28 md:pb-12 bg-background">
+  <div className="container mx-auto px-4">
+    <div className="mb-6">
+      <h1 className="font-hero text-xl md:text-2xl font-bold uppercase">
+        Weekly <span className="text-primary">Schedule</span>
+      </h1>
+      <p className="text-sm text-muted-foreground">Click any class to book your spot</p>
+    </div>
+    <NativeWeeklySchedule />
+  </div>
+</section>
 ```
-This remains the same, as it already has appropriate spacing.
 
 ## Visual Result
 
 ### Before (Current)
 ```
 ┌─────────────────────────────┐
-│                             │
-│      HERO IMAGE             │
-│      (300-550px tall)       │
-│                             │
-│      "Book Your Class"      │
-│                             │
+│  [Navigation]               │
 ├─────────────────────────────┤
-│                             │
-│    WEEKLY SCHEDULE          │
-│    (below the fold)         │
+│  CLASSES & SCHEDULE         │
+│  Book Your Class            │  ← Separate header (~120px)
+│  (compact header section)   │
+├─────────────────────────────┤
+│  Weekly Schedule            │
+│  ┌───────────────────────┐  │
+│  │  Calendar Grid        │  │
+│  └───────────────────────┘  │
 └─────────────────────────────┘
 ```
 
 ### After (Proposed)
 ```
 ┌─────────────────────────────┐
-│  CLASSES & SCHEDULE         │
-│  Book Your Class            │
-│  (Compact ~100px header)    │
+│  [Navigation]               │
 ├─────────────────────────────┤
-│                             │
-│    WEEKLY SCHEDULE          │
-│    (immediately visible)    │
-│                             │
+│  Weekly Schedule            │  ← Inline title (minimal height)
+│  Click any class to book    │
+│  ┌───────────────────────┐  │
+│  │  Calendar Grid        │  │  ← Immediately visible
+│  └───────────────────────┘  │
 └─────────────────────────────┘
 ```
 
-## Mobile Optimization
-- Header takes minimal vertical space (~120px with nav)
-- Schedule grid visible immediately on page load
-- Faster time-to-action for users wanting to book
+## Technical Details
 
-## SEO Considerations
-- H1 tag preserved with "Book Your Class" text
-- Page title and meta description unchanged
-- Structured data and FAQ schema remain intact
+- **Navigation clearance**: `pt-24` ensures content clears the fixed nav
+- **SEO**: H1 tag preserved with "Weekly Schedule" text
+- **Responsive**: Compact title scales appropriately on mobile/desktop
+- **Visual hierarchy**: Primary color accent on "Schedule" maintains brand styling
+
+## Files to Edit
+- `src/pages/Schedule.tsx` - Remove header section, update schedule section
+
+## Mobile Optimization
+- Schedule grid visible immediately on page load
+- Title takes ~40px vertical space vs ~120px before
+- Faster time-to-action for booking
