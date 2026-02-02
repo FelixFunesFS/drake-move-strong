@@ -1,133 +1,157 @@
 
-# Comprehensive Pricing & Link Update Plan
+
+# Add "Pressing Reset" Mobility Warm-Up Video
 
 ## Overview
-Update all membership pricing and purchase links across the entire site to reflect new pricing and direct PunchPass checkout URLs.
+Add a dedicated video section featuring the "Pressing Reset" mobility warm-up (inspired by Original Strength) with brand-aligned messaging that emphasizes David's approach to starting every training session with mobility work.
 
-## New Values to Apply
-
-| Item | Old Price | New Price | New PunchPass URL |
-|------|-----------|-----------|-------------------|
-| **Foundation Membership** | $180 | **$209** | `https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784` |
-| **Unlimited Membership** | $225 | **$239** | `https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211` |
-| **Remote Support** | N/A | N/A | `https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776` |
-| **Reset Week** | $50 (old URL) | $50 | `https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219` |
+## Video Details
+- **YouTube URL**: `https://youtu.be/Vb91A46rLr8?si=OGqXuPl0ranAL-Rv`
+- **Extracted Video ID**: `Vb91A46rLr8`
+- **Title**: "Pressing Reset" Mobility Warm-Up
 
 ---
 
-## Files Requiring Updates (8 Total)
+## Placement Options (Recommendation: About Page)
 
-### 1. `src/data/pricing.ts` — Centralized Data (Source of Truth)
-| Line | Current | New |
-|------|---------|-----|
-| 15 | `price: 180` | `price: 209` |
-| 22 | `price: 225` | `price: 239` |
-| 52 | `resetWeek: "https://app.punchpass.com/org/9942/buy?passes=1023628"` | New Reset Week URL |
-| New | — | Add `foundation`, `unlimited`, `remoteSupport` URLs |
+Based on the existing site structure, there are three strategic locations:
 
-### 2. `src/pages/Pricing.tsx` — Main Pricing Page
-| Line | Element | Change |
-|------|---------|--------|
-| 35 | SEO description | Update "$180" → "$209", "$225" → "$239" |
-| 100 | Reset Week button URL | Update to new Reset Week URL |
-| 139 | Foundation price display | "$180" → "$209" |
-| 161-163 | Foundation button | Change from `/contact` Link to external `<a>` with Foundation URL |
-| 190 | Unlimited price display | "$225" → "$239" |
-| 217 | Unlimited button URL | Update to new Unlimited URL |
-| 324-330 | Remote Support button | Change from `/contact` Link to external `<a>` with Remote Support URL |
-| 489 | Bottom Reset Week button | Update to new Reset Week URL |
+| Location | Pros | Cons |
+|----------|------|------|
+| **About Page** (after "Coaching Philosophy" video) | Expands the coaching methodology showcase; creates a "video duo" | May lengthen page |
+| **Schedule Page** (in "Training Videos" section) | Shows how sessions begin; practical context | Already has 2 videos |
+| **Reset Week Page** (new section) | Thematically aligned with "reset" concept | SEO page, less about methodology |
 
-### 3. `src/pages/FAQ.tsx` — FAQ Content
-| Line | Current | New |
-|------|---------|-----|
-| 62 | "Foundation Membership (8 classes/month, $180)...Longevity Unlimited ($225/month)" | Update to "$209" and "$239" |
-
-### 4. `src/pages/ResetWeekAlt.tsx` — Reset Week Landing Page
-| Line | Current | New |
-|------|---------|-----|
-| 30 | `RESET_WEEK_URL = "https://app.punchpass.com/org/9942/buy?passes=1023628"` | New Reset Week URL |
-
-### 5. `src/pages/services/ResetWeekCharleston.tsx` — SEO Landing Page
-All Reset Week CTAs currently point to `/reset-week` internal route. These should be updated to the new direct purchase URL for better conversion.
-
-| Location | Current | New |
-|----------|---------|-----|
-| Hero CTA (line ~85) | `<Link to="/reset-week">` | External `<a>` with new Reset Week URL |
-| Bottom CTA (line ~226) | `<Link to="/reset-week">` | External `<a>` with new Reset Week URL |
-
-### 6. `src/components/chat/ChatMessage.tsx` — Chatbot Link Labels
-| Line | Current | New |
-|------|---------|-----|
-| 20 | Old intro week URL mapping | Add new Reset Week URL to `friendlyLabels` |
-
-### 7. `supabase/functions/chat-assistant/index.ts` — AI Assistant System Prompt
-| Lines | Current | New |
-|-------|---------|-----|
-| 162 | `https://drake.fitness/reset-week` | Update to direct PunchPass purchase URL |
-| 169 | "Purchase Reset Week: https://drake.fitness/reset-week" | Update to new PunchPass URL |
-
-### 8. `src/pages/Home.tsx` — Hero CTA (Optional)
-| Line | Current | New |
-|------|---------|-----|
-| 66 | `link: "/reset-week"` | Can change to new direct PunchPass URL (external) |
+**Recommendation**: **About Page** — Add as a second video in the "See It In Action" section, creating a 2-column grid that showcases both the coaching philosophy and the mobility warm-up method.
 
 ---
 
-## Technical Notes
+## Design Approach
 
-### Converting Internal Links to External
-When changing from internal `Link` to external purchase URLs:
+Transform the existing single-video section into a 2-video grid with individual titles and descriptions:
 
+```text
+┌─────────────────────────────────────────────────────────────┐
+│         SEE IT IN ACTION                                    │
+│    Our Training Approach in Action                          │
+│                                                             │
+│  ┌─────────────────────┐  ┌─────────────────────┐          │
+│  │                     │  │                     │          │
+│  │   [Coaching         │  │   [Pressing Reset   │          │
+│  │    Philosophy       │  │    Video]           │          │
+│  │    Video]           │  │                     │          │
+│  │                     │  │                     │          │
+│  └─────────────────────┘  └─────────────────────┘          │
+│   Our Coaching           Pressing Reset                     │
+│   Philosophy             The Method                         │
+│   "Watch how we help     "Every session begins              │
+│    clients move better"   with this..."                     │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Brand-Aligned Messaging
+
+### Video Title
+**"Pressing Reset"** — The Method
+
+### Video Description
+*"I start every training session with this mobility warm-up inspired by Original Strength. It helps reset your nervous system and prepare your body for movement."*
+
+### Supporting Copy (for the section)
+- **Eyebrow**: `SEE IT IN ACTION`
+- **Section Title**: `Our Training Approach in Action`
+- **Section Subtitle**: `Watch how we warm up the body, coach movement, and build strength`
+
+---
+
+## Technical Implementation
+
+### File: `src/pages/About.tsx`
+
+**Current structure** (lines 331-347):
 ```tsx
-// BEFORE (internal route)
-<Button asChild>
-  <Link to="/reset-week">Start Reset Week</Link>
-</Button>
-
-// AFTER (direct checkout)
-<Button asChild>
-  <a 
-    href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" 
-    target="_blank" 
-    rel="noopener noreferrer"
-    className="inline-flex items-center gap-2"
-  >
-    Start Reset Week
-    <ExternalLink className="h-4 w-4" />
-  </a>
-</Button>
+<section className="py-16 md:py-24 bg-drake-dark section-slant-top">
+  <div className="container mx-auto px-4">
+    <div className="max-w-4xl mx-auto">
+      <p className="section-eyebrow text-drake-gold text-center">SEE IT IN ACTION</p>
+      <h2 className="...">Our <span className="text-primary">Coaching Philosophy</span></h2>
+      <p className="text-xl text-center text-gray-300 mb-12">Watch how we help clients move better</p>
+      <YouTubeEmbed videoId="wDtDMNnrF00" title="Drake Fitness Coaching Philosophy" />
+    </div>
+  </div>
+</section>
 ```
 
-### Chatbot Label Mapping Update
-```typescript
-// Add to friendlyLabels in ChatMessage.tsx
-'https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219': '🎁 Get Intro Week Special',
+**New structure**:
+```tsx
+<section className="py-16 md:py-24 bg-drake-dark section-slant-top">
+  <div className="container mx-auto px-4">
+    <div className="max-w-7xl mx-auto">
+      <p className="section-eyebrow text-drake-gold text-center">SEE IT IN ACTION</p>
+      <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase text-white">
+        Our Training <span className="text-primary">Approach in Action</span>
+      </h2>
+      <p className="text-xl text-center text-gray-300 mb-12">
+        Watch how we warm up the body, coach movement, and build strength
+      </p>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Video 1: Coaching Philosophy */}
+        <div>
+          <YouTubeEmbed videoId="wDtDMNnrF00" title="Drake Fitness Coaching Philosophy" />
+          <h3 className="font-hero text-xl font-bold mt-4 text-white uppercase">
+            Our Coaching Philosophy
+          </h3>
+          <p className="text-gray-400 mt-2">
+            Watch how we help clients move better and build sustainable strength.
+          </p>
+        </div>
+        
+        {/* Video 2: Pressing Reset */}
+        <div>
+          <YouTubeEmbed videoId="Vb91A46rLr8" title="Pressing Reset Mobility Warm-Up" />
+          <h3 className="font-hero text-xl font-bold mt-4 text-white uppercase">
+            Pressing Reset — <span className="text-primary">The Method</span>
+          </h3>
+          <p className="text-gray-400 mt-2">
+            I start every training session with this mobility warm-up inspired by Original Strength. 
+            It helps reset your nervous system and prepare your body for movement.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 ```
 
 ---
 
-## Decision Point: Internal vs External Reset Week Links
+## Responsive Behavior
 
-The site currently has two patterns for Reset Week CTAs:
-
-1. **Internal route** (`/reset-week` or `/reset-week-charleston`) — Takes users to a landing page first
-2. **Direct external** — Goes straight to PunchPass checkout
-
-**Recommendation**: Update primary CTAs on conversion-focused pages (Pricing, ResetWeekCharleston hero, etc.) to direct checkout, but keep the landing pages accessible for SEO and users who want more information.
+| Screen Size | Layout |
+|-------------|--------|
+| Mobile (<768px) | Single column, videos stacked |
+| Tablet/Desktop (≥768px) | 2-column grid side by side |
 
 ---
 
-## Summary: All Locations
+## Files to Modify
 
-| File | Updates |
+| File | Changes |
 |------|---------|
-| `src/data/pricing.ts` | Foundation price, Unlimited price, all new PunchPass URLs |
-| `src/pages/Pricing.tsx` | 6 updates (prices, SEO, buttons) |
-| `src/pages/FAQ.tsx` | 1 text update |
-| `src/pages/ResetWeekAlt.tsx` | 1 URL constant |
-| `src/pages/services/ResetWeekCharleston.tsx` | 2 CTAs |
-| `src/components/chat/ChatMessage.tsx` | 1 label mapping |
-| `supabase/functions/chat-assistant/index.ts` | 2 URL references |
-| `src/pages/Home.tsx` | 1 hero CTA (optional) |
+| `src/pages/About.tsx` | Update "See It In Action" section with 2-video grid |
 
-**Total: 8 files, ~15 individual changes**
+---
+
+## Summary
+
+This approach:
+1. Expands the existing video section rather than creating a new one
+2. Uses brand-aligned messaging connecting to David's "mobility-first" philosophy  
+3. Keeps the page flow logical: Philosophy → Coaches → Videos → Values
+4. Creates a visually balanced 2-column layout
+5. Uses descriptive copy that connects "Pressing Reset" to the Original Strength methodology
+
