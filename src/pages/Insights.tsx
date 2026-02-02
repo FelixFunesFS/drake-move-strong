@@ -257,7 +257,7 @@ const Insights = () => {
         title="Start Your Reset Week"
         subtitle="No pressure. No contracts. Just smart training that actually works for bodies over 40."
         ctaText="Start Your Reset Week"
-        ctaLink="/reset-week"
+        ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219"
         variant="primary"
       />
     </>

@@ -88,10 +88,10 @@ export default function LowImpactFitnessCharleston() {
                 A joint-friendly fitness program for adults who want results without aggravating pain.
               </p>
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-8 py-4 md:py-5 text-base md:text-lg whitespace-normal text-center">
-                <Link to="/reset-week">
+                <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">
                   Start Reset Week — $50
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
-                </Link>
+                </a>
               </Button>
             </div>
           </AnimatedSection>
@@ -350,10 +350,10 @@ export default function LowImpactFitnessCharleston() {
               </h2>
               <p className="text-base md:text-lg text-accent-foreground/80 mb-4 md:mb-6">Start with Reset Week — 7 days of unlimited classes for just $50.</p>
               <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 md:px-8 py-4 md:py-5 text-base md:text-lg whitespace-normal text-center">
-                <Link to="/reset-week">
+                <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">
                   Start Reset Week — $50
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
-                </Link>
+                </a>
               </Button>
             </div>
           </AnimatedSection>

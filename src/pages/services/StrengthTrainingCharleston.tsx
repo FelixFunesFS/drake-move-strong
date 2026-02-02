@@ -118,10 +118,10 @@ export default function StrengthTrainingCharleston() {
                 Train Smarter. Move Better. Get Strong Without Pain.
               </p>
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
-                <Link to="/reset-week">
+                <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">
                   <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
                   Start Reset Week — $50
-                </Link>
+                </a>
               </Button>
               <div className="mt-10 flex flex-wrap gap-6 text-sm text-primary-foreground">
                 <div className="flex items-center gap-2">
@@ -292,10 +292,10 @@ export default function StrengthTrainingCharleston() {
                 </div>
 
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-6 text-lg font-bold uppercase tracking-wide">
-                  <Link to="/reset-week">
+                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">
                     Claim Your Reset Week Spot
                     <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
+                  </a>
                 </Button>
               </div>
             </AnimatedSection>

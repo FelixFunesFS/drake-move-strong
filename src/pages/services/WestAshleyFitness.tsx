@@ -92,10 +92,10 @@ export default function WestAshleyFitness() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
-                  <Link to="/reset-week">
+                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">
                     Start Reset Week — $50
                     <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
-                  </Link>
+                  </a>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/20 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
                   <Link to="/contact">
@@ -296,10 +296,10 @@ export default function WestAshleyFitness() {
               <p className="text-base md:text-lg lg:text-xl text-primary-foreground/70 mb-8 md:mb-10">Avondale's choice for pain-free strength training.</p>
               
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
-                <Link to="/reset-week">
+                <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">
                   Start Reset Week — $50
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
-                </Link>
+                </a>
               </Button>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 mt-6 md:mt-8 text-primary-foreground/80 text-sm md:text-base">

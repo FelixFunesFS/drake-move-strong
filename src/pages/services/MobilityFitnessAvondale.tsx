@@ -161,10 +161,10 @@ export default function MobilityFitnessAvondale() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-start">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
-                  <Link to="/reset-week">
+                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">
                     <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
                     Start Reset Week — $50
-                  </Link>
+                  </a>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/20 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
                   <Link to="/contact">

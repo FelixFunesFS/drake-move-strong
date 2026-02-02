@@ -572,7 +572,7 @@ His approach blends skill, science, and practical strength work to create long-t
         </section>
       </AnimatedSection>
 
-      <CTASection eyebrow="GET STARTED" title="Ready to Reset How You Move?" subtitle="Start with Reset Week — 7 days of unlimited classes for just $50. No commitment required." ctaText="Start Reset Week — $50" ctaLink="/reset-week" variant="primary" slanted={true} />
+      <CTASection eyebrow="GET STARTED" title="Ready to Reset How You Move?" subtitle="Start with Reset Week — 7 days of unlimited classes for just $50. No commitment required." ctaText="Start Reset Week — $50" ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" variant="primary" slanted={true} />
     </main>
     </>
   );
