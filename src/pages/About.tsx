@@ -58,7 +58,9 @@ const About = () => {
       {/* Negative margin pulls hero up to header edge */}
       <div className="-mt-[112px]">
         <VideoHero 
-          videoId="RX9zOxhayFk" 
+          videoId="cHcFBxvLNaQ" 
+          startTime={24}
+          endTime={43}
           fallbackImage={kbCollection} 
           eyebrow="OUR PURPOSE" 
           title={<>Why We <span className="text-primary">Exist</span></>} 

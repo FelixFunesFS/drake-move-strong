@@ -19,6 +19,8 @@ interface VideoHeroProps {
   className?: string;
   eyebrow?: string;
   accentedSubtitle?: boolean;
+  startTime?: number;
+  endTime?: number;
 }
 
 // Extend Window interface for YouTube API
@@ -38,7 +40,9 @@ const VideoHero = ({
   fallbackImage,
   className,
   eyebrow,
-  accentedSubtitle = false
+  accentedSubtitle = false,
+  startTime = 30,
+  endTime = 42
 }: VideoHeroProps) => {
   const [isPlayerReady, setIsPlayerReady] = useState(false);
   const [showFallback, setShowFallback] = useState(true);
@@ -76,7 +80,7 @@ const VideoHero = ({
           playerVars: {
             autoplay: 1,
             mute: 1,
-            start: 30,
+            start: startTime,
             controls: 0,
             modestbranding: 1,
             showinfo: 0,
@@ -92,7 +96,7 @@ const VideoHero = ({
           events: {
             onReady: (event: any) => {
               setIsPlayerReady(true);
-              event.target.seekTo(30, true);
+              event.target.seekTo(startTime, true);
               event.target.playVideo();
               event.target.mute();
               
@@ -101,12 +105,12 @@ const VideoHero = ({
                 setShowFallback(false);
               }, 1500);
               
-              // Start time monitoring for segment loop (30s-42s)
+              // Start time monitoring for segment loop
               timeCheckRef.current = setInterval(() => {
                 if (playerRef.current && playerRef.current.getCurrentTime) {
                   const currentTime = playerRef.current.getCurrentTime();
-                  if (currentTime >= 42) {
-                    playerRef.current.seekTo(30, true);
+                  if (currentTime >= endTime) {
+                    playerRef.current.seekTo(startTime, true);
                   }
                 }
               }, 200);
@@ -151,8 +155,8 @@ const VideoHero = ({
               timeCheckRef.current = setInterval(() => {
                 if (playerRef.current && playerRef.current.getCurrentTime) {
                   const currentTime = playerRef.current.getCurrentTime();
-                  if (currentTime >= 42) {
-                    playerRef.current.seekTo(30, true);
+                  if (currentTime >= endTime) {
+                    playerRef.current.seekTo(startTime, true);
                   }
                 }
               }, 200);
