@@ -46,7 +46,7 @@ const Navigation = ({ transparent = false, isScrolled = false }: NavigationProps
       <div className="container mx-auto px-4">
         <div className={cn("flex items-center justify-between transition-all duration-300", isScrolled ? "h-14" : "h-16")}>
           <Link to="/" className="flex-shrink-0">
-            <img src={drakeLogo} alt="Drake Fitness" width={134} height={64} className={cn("w-auto transition-all duration-300", isScrolled ? "h-8 md:h-9" : "h-10 md:h-12")} style={{ aspectRatio: '134/64' }} />
+            <img src={drakeLogo} alt="Drake Fitness" width={134} height={64} className={cn("w-auto transition-all duration-300", isScrolled ? "h-10 md:h-11" : "h-[52px] md:h-14")} style={{ aspectRatio: '134/64' }} />
           </Link>
 
           <div className="hidden lg:flex items-center space-x-1">
