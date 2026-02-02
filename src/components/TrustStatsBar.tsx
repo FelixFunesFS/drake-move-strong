@@ -49,6 +49,17 @@ const STAT_COLORS: Record<StatKey, { bg: string; icon: string }> = {
   classSize: { bg: "bg-rose-500/15", icon: "text-rose-500" },
 };
 
+// Colorful number text for horizontal variant
+const STAT_NUMBER_COLORS: Record<StatKey, string> = {
+  sessions: "text-drake-gold",
+  charlestonians: "text-cyan-300",
+  experience: "text-emerald-300",
+  retention: "text-rose-300",
+  rating: "text-amber-300",
+  reviews: "text-sky-300",
+  classSize: "text-violet-300",
+};
+
 const statVariants = {
   hidden: { opacity: 0, y: 30, scale: 0.95 },
   visible: { opacity: 1, y: 0, scale: 1 }
@@ -259,7 +270,10 @@ export function TrustStatsBar({
                   <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full mb-3 bg-white/20">
                     <Icon size={24} className="text-white" />
                   </div>
-                  <div className="font-bold text-2xl md:text-3xl text-white font-heading">
+                  <div className={cn(
+                    "font-bold text-2xl md:text-3xl font-heading",
+                    STAT_NUMBER_COLORS[statKey]
+                  )}>
                     <CountUpValue value={stat.value} isInView={isInView} />
                   </div>
                   <div className="text-sm font-medium text-white/90 mt-1">
