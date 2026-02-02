@@ -1,38 +1,101 @@
 
-
-# Remove "New or Unsure Where to Start" Note
+# Remove Hero Section from Schedule Page
 
 ## Overview
-Remove the informational alert banner that appears below the hero section on the Classes & Schedule page.
+Replace the large hero image section with a compact, task-focused header that puts the weekly schedule immediately in view.
 
-## Current State
-
-The banner displays the message: **"New or unsure where to start? We recommend beginning with Foundation Flow™ or Mobility Reset™"**
-
-This section is located at lines 138-147 in `src/pages/Schedule.tsx`.
+## Rationale
+- Users visiting `/schedule` have clear intent: book a class
+- Removes scroll barrier to the primary action
+- Better mobile experience with schedule visible on load
+- Matches UX patterns of booking-focused pages
 
 ## Changes Required
 
 ### File: `src/pages/Schedule.tsx`
 
-**Remove the entire section (lines 138-147):**
+**1. Remove Hero component and related import**
+
+Remove the import:
 ```tsx
-<section className="py-6 md:py-8 bg-primary text-white">
-  <div className="container mx-auto px-4">
-    <Alert className="max-w-3xl mx-auto bg-drake-gold/20 border-drake-gold text-white">
-      <Info className="h-5 w-5" />
-      <AlertDescription className="text-base">
-        <strong>New or unsure where to start?</strong> We recommend beginning with <strong>Foundation Flow™</strong> or <strong>Mobility Reset™</strong>
-      </AlertDescription>
-    </Alert>
+import Hero from "@/components/Hero";
+import scheduleCommunityImage from "@/assets/schedule-community-group.jpg";
+```
+
+**2. Replace Hero section with compact header**
+
+Remove:
+```tsx
+<Hero
+  eyebrow="CLASSES & SCHEDULE"
+  title="Book Your Class"
+  subtitle="All classes are coach-led, mobility-first, and beginner-friendly. Click any class to book your spot."
+  backgroundImage={scheduleCommunityImage}
+  className="h-[300px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
+/>
+```
+
+Replace with a compact, styled header section:
+```tsx
+<section className="pt-24 pb-8 md:pt-28 md:pb-12 bg-drake-dark text-white">
+  <div className="container mx-auto px-4 text-center">
+    <p className="section-eyebrow text-drake-gold mb-2">CLASSES & SCHEDULE</p>
+    <h1 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold uppercase mb-4">
+      Book Your <span className="text-drake-gold">Class</span>
+    </h1>
+    <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+      All classes are coach-led, mobility-first, and beginner-friendly. Click any class to book your spot.
+    </p>
   </div>
 </section>
 ```
 
-**Clean up unused imports:**
-- Remove `Info` from lucide-react imports (if no longer used elsewhere)
-- Remove `Alert` and `AlertDescription` from UI component imports (if no longer used elsewhere)
+**3. Adjust Weekly Schedule section spacing**
 
-## Result
-The Schedule page will flow directly from the Hero section to the Weekly Schedule section without the intermediate info banner.
+Update the Weekly Schedule section to flow naturally from the new header:
+```tsx
+<section className="py-8 md:py-12 bg-background">
+```
+This remains the same, as it already has appropriate spacing.
 
+## Visual Result
+
+### Before (Current)
+```
+┌─────────────────────────────┐
+│                             │
+│      HERO IMAGE             │
+│      (300-550px tall)       │
+│                             │
+│      "Book Your Class"      │
+│                             │
+├─────────────────────────────┤
+│                             │
+│    WEEKLY SCHEDULE          │
+│    (below the fold)         │
+└─────────────────────────────┘
+```
+
+### After (Proposed)
+```
+┌─────────────────────────────┐
+│  CLASSES & SCHEDULE         │
+│  Book Your Class            │
+│  (Compact ~100px header)    │
+├─────────────────────────────┤
+│                             │
+│    WEEKLY SCHEDULE          │
+│    (immediately visible)    │
+│                             │
+└─────────────────────────────┘
+```
+
+## Mobile Optimization
+- Header takes minimal vertical space (~120px with nav)
+- Schedule grid visible immediately on page load
+- Faster time-to-action for users wanting to book
+
+## SEO Considerations
+- H1 tag preserved with "Book Your Class" text
+- Page title and meta description unchanged
+- Structured data and FAQ schema remain intact
