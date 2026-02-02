@@ -1,93 +1,85 @@
 
-# Replace TrustStatsBar Background with Brand-Aligned Design
+# Add Complementary Accessible Colors to Stat Numbers
 
 ## Current State
 
-The 4-stat section (Sessions, Charlestonians, Experience, Rating) currently has a simple gray background:
-- `bg-muted/30` - a light gray tinted background
-- No visual interest or brand connection
+All 4 stat numbers currently use `text-white` against the teal gradient background:
+- 10,000+ (Sessions)
+- 500+ (Charlestonians)
+- 25+ (Experience)
+- 5 (Rating)
 
-## Proposed Design
+## Proposed Color Palette
 
-Replace with a Drake Fitness branded background using the signature **teal color** with subtle depth elements:
+Each stat will get a unique, accessible color that complements the dark teal background while maintaining brand consistency:
 
-| Element | Current | Proposed |
-|---------|---------|----------|
-| **Background** | `bg-muted/30` | Dark teal gradient with subtle texture |
-| **Text Colors** | Dark on light | White/light on dark for contrast |
-| **Visual Depth** | Flat | Gradient overlay with gold accent borders |
+| Stat | Color | Tailwind Class | Reasoning |
+|------|-------|----------------|-----------|
+| **Sessions** | Brand Gold | `text-drake-gold` | Primary brand accent, high impact |
+| **Charlestonians** | Soft Cyan/Light Teal | `text-cyan-300` | Analogous to teal, community warmth |
+| **Experience** | Emerald/Light Green | `text-emerald-300` | Growth, longevity, freshness |
+| **Rating** | Amber/Warm Yellow | `text-amber-300` | Matches star rating theme |
+
+All colors have been chosen for:
+- High contrast against dark teal (WCAG AA compliant)
+- Visual harmony with brand palette
+- Distinct differentiation between each stat
 
 ## Technical Implementation
 
 **File:** `src/components/TrustStatsBar.tsx`
 
-### Changes to Horizontal Variant (lines 224-275):
+### Step 1: Add color mapping for stat numbers
 
-1. **Update wrapper styling** - Add brand teal background with gradient overlay
-2. **Update text colors** - Switch to white/light text for contrast on dark background
-3. **Add decorative elements** - Subtle gold accent borders top/bottom
-4. **Adjust icon backgrounds** - Lighter versions that pop on dark background
-
-```tsx
-// Horizontal variant wrapper changes:
-<div 
-  ref={ref}
-  className={cn(
-    "py-8 md:py-12 relative overflow-hidden",
-    className
-  )}
->
-  {/* Brand teal background with gradient */}
-  <div className="absolute inset-0 bg-drake-teal" />
-  <div className="absolute inset-0 bg-gradient-to-br from-drake-teal via-drake-teal/95 to-drake-dark/80" />
-  
-  {/* Subtle gold accent borders */}
-  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-drake-gold/50 to-transparent" />
-  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-drake-gold/50 to-transparent" />
-  
-  {/* Content with updated colors */}
-  <div className="container mx-auto px-4 relative z-10">
-    ...
-    {/* Value text: text-white */}
-    {/* Label text: text-white/90 */}
-    {/* Sublabel text: text-white/70 */}
-    {/* Icon backgrounds: Semi-transparent white for pop */}
-  </div>
-</div>
+```typescript
+// Add after STAT_COLORS constant (around line 35)
+const STAT_NUMBER_COLORS: Record<StatKey, string> = {
+  sessions: "text-drake-gold",
+  charlestonians: "text-cyan-300",
+  experience: "text-emerald-300",
+  retention: "text-rose-300",
+  rating: "text-amber-300",
+  reviews: "text-sky-300",
+  classSize: "text-violet-300",
+};
 ```
 
-### Updated Color Scheme for Dark Background
+### Step 2: Apply colors in horizontal variant
 
-| Element | Before | After |
-|---------|--------|-------|
-| Value number | `text-foreground` | `text-white` |
-| Label text | `text-foreground` | `text-white/90` |
-| Sublabel text | `text-muted-foreground` | `text-white/70` |
-| Icon circles | Colored backgrounds | `bg-white/20` with lighter icon colors |
+Update the number display (around line 264) to use the color mapping:
+
+```tsx
+// Before
+<div className="font-bold text-2xl md:text-3xl text-white font-heading">
+
+// After
+<div className={cn(
+  "font-bold text-2xl md:text-3xl font-heading",
+  STAT_NUMBER_COLORS[statKey]
+)}>
+```
 
 ## Visual Result
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
-│ ═══════════════ subtle gold top border ═══════════════════ │
+│ ═══════════════ gold top border ══════════════════════════ │
 │                                                             │
-│   ████████████████████████████████████████████████████████  │
-│   ████   TEAL GRADIENT BACKGROUND   ██████████████████████  │
-│   ████████████████████████████████████████████████████████  │
+│   ████████  TEAL GRADIENT BACKGROUND  ████████████████████  │
 │                                                             │
-│     🏋️            👥            📅            ⭐            │
-│    10,000+       500+          25+           5.0            │
-│   Sessions   Charlestonians  Years Exp   Google Rating      │
+│      🏋️            👥            📅            ⭐          │
+│   10,000+        500+          25+           5.0           │
+│    (gold)       (cyan)      (emerald)      (amber)         │
+│   Sessions   Charlestonians  Years Exp   Google Rating     │
+│    (white)      (white)       (white)       (white)        │
 │                                                             │
-│ ═══════════════ subtle gold bottom border ════════════════ │
+│ ═══════════════ gold bottom border ═══════════════════════ │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## Summary
+## Accessibility Notes
 
-- Deep brand teal background with subtle gradient depth
-- White text for high contrast and readability
-- Gold accent borders for brand consistency
-- Icon circles get semi-transparent white backgrounds to pop
-- Maintains all existing animations and count-up functionality
-- Only affects the horizontal variant (the one used on the Home page)
+- All chosen colors (300 shade) provide excellent contrast against dark teal
+- Colors are distinct enough for colorblind users
+- Labels remain white for consistency and hierarchy
+- Numbers become the visual focal point with color differentiation
