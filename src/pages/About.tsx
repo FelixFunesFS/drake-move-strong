@@ -56,7 +56,7 @@ const About = () => {
       
       <main>
       {/* Negative margin pulls hero up to header edge */}
-      <div className="-mt-[112px]">
+      <div className="-mt-[80px]">
         <VideoHero 
           videoId="cHcFBxvLNaQ" 
           startTime={24}
