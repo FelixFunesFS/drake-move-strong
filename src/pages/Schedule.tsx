@@ -126,7 +126,7 @@ const Schedule = () => {
       
       <main>
         {/* Weekly Schedule - Primary Focus */}
-        <section className="pt-24 pb-8 md:pt-28 md:pb-12 bg-background">
+        <section className="pt-20 pb-8 md:pt-24 md:pb-12 bg-background">
           <div className="container mx-auto px-4">
             <div className="mb-6">
               <h1 className="font-hero text-xl md:text-2xl font-bold uppercase">
