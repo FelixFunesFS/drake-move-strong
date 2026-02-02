@@ -1,33 +1,47 @@
 
-# Reduce Negative Margin on About Page Hero
+# Fix Grey Gap Below About Page Hero
 
-## Current State
-The About page hero section uses `-mt-[112px]` to pull the VideoHero up under the navigation header for the edge-to-edge cinematic effect.
+## Problem Identified
+There is a visible grey strip (approximately half inch) appearing between the bottom of the VideoHero section and the "Our Mobility-First Training Philosophy" section on the About page.
 
-## Proposed Change
+## Root Cause
+The VideoHero uses `h-screen` (100vh), and the next section has no overlap with it. The gap appears because:
+1. The VideoHero's dark gradient overlay doesn't extend seamlessly into the next section
+2. The next section starts with normal positioning, creating a small visual gap where the page background shows through
 
-| Property | Current | Proposed |
-|----------|---------|----------|
-| Negative margin | `-mt-[112px]` | `-mt-[80px]` |
-
-This reduces the negative pull by 32px, which will show more of the header spacer area and position the hero lower on the page.
+## Solution
+Add a negative top margin to the first content section after the hero, pulling it up slightly to overlap with the bottom of the hero section and eliminate the visual gap.
 
 ## File to Modify
-`src/pages/About.tsx` (line 59)
+`src/pages/About.tsx` (line 73-74)
 
 ## Implementation
-```tsx
-// BEFORE
-<div className="-mt-[112px]">
 
-// AFTER  
-<div className="-mt-[80px]">
+```tsx
+// BEFORE (lines 73-74)
+<AnimatedSection animation="fadeInUp">
+  <section className="py-16 md:py-24 bg-background">
+
+// AFTER
+<AnimatedSection animation="fadeInUp" className="-mt-1">
+  <section className="py-16 md:py-24 bg-background">
 ```
 
-## Alternative Options
-If `-80px` doesn't feel right, other common values to consider:
-- `-mt-[64px]` — Even less overlap
-- `-mt-[96px]` — Slight reduction from current
+This adds a 4px negative margin (`-mt-1`) to pull the next section up slightly, eliminating the visible gap while maintaining the visual flow.
+
+## Alternative Approach
+If the AnimatedSection component doesn't accept a className prop, we can wrap the section differently:
+
+```tsx
+// Wrap the section to add negative margin
+<div className="-mt-1">
+  <AnimatedSection animation="fadeInUp">
+    <section className="py-16 md:py-24 bg-background">
+      ...
+    </section>
+  </AnimatedSection>
+</div>
+```
 
 ## Result
-The hero video will sit slightly lower, reducing the overlap with the navigation area while still maintaining a clean visual connection.
+The grey gap will be eliminated, creating a seamless transition from the video hero to the philosophy section.
