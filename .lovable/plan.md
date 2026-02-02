@@ -1,100 +1,56 @@
 
-# Fix Schedule Page Layout: Remove Redundant Banner & Improve Hero Visibility
+# Enlarge Navigation Logo Without Changing Nav Bar Height
 
-## Current Issue
+## Current State
 
-On the Schedule page (especially mobile/tablet), there's a confusing visual hierarchy:
-1. **Announcement Banner** (Reset Week promo) - ~48px
-2. **Navigation** - ~64px  
-3. **TodayClassesBanner** (showing today's classes) - ~160px on mobile
-4. **Hero** ("BOOK YOUR CLASS") - pushed far down
+| Element | Mobile | Desktop |
+|---------|--------|---------|
+| Nav bar height | 64px (h-16) | 64px (h-16) |
+| Logo height (default) | 40px (h-10) | 48px (h-12) |
+| Logo height (scrolled) | 32px (h-8) | 36px (h-9) |
 
-This creates **420+ pixels** of content before users see the main hero, and the TodayClassesBanner is redundant since the Schedule page already displays the full class schedule below the hero.
+The logo currently uses only ~63% of the available nav bar height on mobile.
 
-## Solution Overview
+## Proposed Changes
 
-### Option A: Remove TodayClassesBanner from Schedule Page (Recommended)
-Since the Schedule page already has a comprehensive class display with `NativeWeeklySchedule`, the TodayClassesBanner is redundant. Remove it from the Schedule page only.
+Increase logo size to fill more of the nav bar while maintaining proper padding:
 
-**User Experience Improvement:**
-- Hero appears immediately after navigation
-- Clean, focused entry point
-- Schedule content is immediately visible after scrolling past hero
-- No redundant class listings
+| Element | Mobile | Desktop |
+|---------|--------|---------|
+| Nav bar height | 64px (unchanged) | 64px (unchanged) |
+| Logo height (default) | 52px (h-13) | 56px (h-14) |
+| Logo height (scrolled) | 40px (h-10) | 44px (h-11) |
 
-### Option B: Hero-First with Scroll Reveal
-Make the hero pull up behind the header (similar to VideoHero on About page) and slide into view on page load.
+This gives the logo ~81% of the nav height on mobile - significantly larger while still having breathing room.
 
-## Technical Implementation (Option A)
+## Technical Details
 
-**File:** `src/App.tsx`
+**File:** `src/components/Navigation.tsx`
 
-Update the TodayClassesBanner conditional to also exclude the Schedule page:
+Update line 49 to increase logo heights:
 
 ```typescript
-// Current (Line 142):
-{!hideNavFooter && location.pathname !== '/' && location.pathname !== '/about' && <TodayClassesBanner />}
+// Current:
+className={cn("w-auto transition-all duration-300", isScrolled ? "h-8 md:h-9" : "h-10 md:h-12")}
 
 // Updated:
-{!hideNavFooter && 
- location.pathname !== '/' && 
- location.pathname !== '/about' && 
- location.pathname !== '/schedule' && 
- <TodayClassesBanner />
-}
+className={cn("w-auto transition-all duration-300", isScrolled ? "h-10 md:h-11" : "h-13 md:h-14")}
 ```
 
-**Reasoning:**
-- Home (`/`) has its own marquee + TodayClassesBanner placement
-- About (`/about`) has VideoHero with edge-to-edge design
-- Schedule (`/schedule`) already shows the full schedule - TodayClassesBanner is redundant
+Since Tailwind doesn't have `h-13` by default, I'll use the closest available values:
+- `h-[52px]` for mobile default (custom value)
+- `h-14` (56px) for desktop default
 
-## Additional Mobile Optimization
-
-**File:** `src/pages/Schedule.tsx`
-
-Update the Hero height to be more compact on mobile to quickly reveal the schedule:
-
+Final implementation:
 ```typescript
-// Current (Line 130-136):
-<Hero
-  eyebrow="CLASSES & SCHEDULE"
-  title="Book Your Class"
-  subtitle="All classes are coach-led, mobility-first, and beginner-friendly. Click any class to book your spot."
-  backgroundImage={scheduleCommunityImage}
-  className="h-[400px] md:h-[500px] lg:h-[600px]"
-/>
-
-// Updated - Shorter hero on mobile:
-<Hero
-  eyebrow="CLASSES & SCHEDULE"
-  title="Book Your Class"
-  subtitle="All classes are coach-led, mobility-first, and beginner-friendly. Click any class to book your spot."
-  backgroundImage={scheduleCommunityImage}
-  className="h-[300px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
-/>
+className={cn("w-auto transition-all duration-300", isScrolled ? "h-10 md:h-11" : "h-[52px] md:h-14")}
 ```
 
-This reduces the hero height on mobile by 100px, allowing users to see the schedule faster when scrolling.
-
-## Visual Comparison
-
-| Device | Before | After |
-|--------|--------|-------|
-| Mobile | Banner→Nav→TodayClasses→Hero→Schedule (~420px before hero) | Banner→Nav→Hero→Schedule (~112px before hero) |
-| Tablet | Same stacking issue | Clean hero immediately after nav |
-| Desktop | Less impactful but still redundant | Streamlined experience |
-
-## Summary of Changes
-
-| File | Change |
-|------|--------|
-| `src/App.tsx` | Add `/schedule` to TodayClassesBanner exclusion list |
-| `src/pages/Schedule.tsx` | Reduce hero height on mobile for faster schedule reveal |
+Also update the width/height attributes and aspect ratio to match the new logo's dimensions for proper sizing.
 
 ## Result
 
-- **Mobile:** Hero immediately after navigation, scroll to see schedule
-- **Tablet:** Same improved experience
-- **Desktop:** Cleaner hero area without redundant class preview
-- **Consistency:** TodayClassesBanner appears on pages where it adds value (Pricing, Contact, Coaching, etc.) but not where the schedule is already the main content
+- Logo appears significantly larger, especially on mobile
+- Nav bar height remains unchanged at 64px/56px
+- Smooth transition maintained when scrolling
+- Proper visual balance with navigation links
