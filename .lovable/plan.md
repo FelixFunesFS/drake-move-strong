@@ -1,76 +1,56 @@
 
-# Replace About Hero Video with New YouTube Video
+# Remove Staleness Banner and Increase Sync Frequency
 
 ## Overview
-Replace the About page hero background video with a new YouTube video (`cHcFBxvLNaQ`) that loops from 24 seconds to 43 seconds.
+This plan removes the "schedule may be outdated" notification from the Schedule page and increases the PunchPass sync frequency from once daily to 4 times per day (every 6 hours).
 
 ## Current State
 
-| Element | Current Value |
+| Setting | Current Value |
 |---------|---------------|
-| Video ID | `RX9zOxhayFk` |
-| Start Time | 30 seconds (hardcoded) |
-| End Time | 42 seconds (hardcoded) |
-| Location | About page hero section |
+| Staleness Banner | Shown when schedule is >24h old |
+| Sync Frequency | Once daily at 5:00 AM UTC |
+| Cron Schedule | `0 5 * * *` |
 
 ## Proposed Changes
 
-| Element | New Value |
+| Setting | New Value |
 |---------|-----------|
-| Video ID | `cHcFBxvLNaQ` |
-| Start Time | 24 seconds |
-| End Time | 43 seconds |
+| Staleness Banner | Removed from UI |
+| Sync Frequency | Every 6 hours (4 times daily) |
+| Cron Schedule | `0 5,11,17,23 * * *` |
 
 ## Technical Implementation
 
-### Step 1: Update VideoHero Component Props
-Add optional `startTime` and `endTime` props to make the component configurable:
+### Step 1: Remove Staleness Banner from NativeWeeklySchedule
+Remove the staleness check and banner display from both mobile and desktop views.
 
-```typescript
-interface VideoHeroProps {
-  videoId: string;
-  startTime?: number;  // NEW - defaults to 30
-  endTime?: number;    // NEW - defaults to 42
-  // ... existing props
-}
-```
+**Changes:**
+- Remove the `useScheduleStaleness` hook import and usage
+- Remove the `ScheduleFallbackBanner` import
+- Remove the banner conditional rendering on lines 134 and 276
 
-### Step 2: Update VideoHero Logic
-Replace hardcoded values with prop-driven configuration:
+### Step 2: Update Cron Job Frequency
+Update the database cron job to run 4 times per day instead of once:
 
-| Location | Current | Updated |
-|----------|---------|---------|
-| `playerVars.start` | `30` | `startTime` prop |
-| `seekTo()` calls | `30` | `startTime` prop |
-| Time check condition | `>= 42` | `>= endTime` prop |
+**New Schedule**: `0 5,11,17,23 * * *`
+- 5:00 AM UTC (12:00 AM EST)
+- 11:00 AM UTC (6:00 AM EST)
+- 5:00 PM UTC (12:00 PM EST)  
+- 11:00 PM UTC (6:00 PM EST)
 
-### Step 3: Update About Page
-Update the VideoHero usage on the About page:
-
-```tsx
-// BEFORE
-<VideoHero 
-  videoId="RX9zOxhayFk" 
-  fallbackImage={kbCollection}
-  ...
-/>
-
-// AFTER
-<VideoHero 
-  videoId="cHcFBxvLNaQ"
-  startTime={24}
-  endTime={43}
-  fallbackImage={kbCollection}
-  ...
-/>
-```
+This ensures the schedule is refreshed every 6 hours.
 
 ## Files to Modify
 
 | File | Change |
 |------|--------|
-| `src/components/VideoHero.tsx` | Add `startTime` and `endTime` props with defaults |
-| `src/pages/About.tsx` | Update video ID and add timing props |
+| `src/components/schedule/NativeWeeklySchedule.tsx` | Remove staleness banner and related imports |
+
+## Database Changes
+Update the existing cron job schedule from `0 5 * * *` to `0 5,11,17,23 * * *` using a SQL command.
 
 ## Result
-The About page hero will display the new video (`cHcFBxvLNaQ`) playing the segment from 24s to 43s on a seamless loop, maintaining the same visual styling and behavior (muted autoplay, scroll-aware pause/resume, HD quality).
+- Users will no longer see "schedule may be outdated" warnings
+- Schedule data will be refreshed 4 times daily, ensuring more current class information
+- The direct PunchPass link remains available in the UI for users who want to book directly
