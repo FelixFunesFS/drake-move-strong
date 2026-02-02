@@ -1,14 +1,13 @@
 
 
-# Reduce Schedule Section Spacing by Half
+# Reduce Schedule Section Spacing by Additional 10px
 
 ## Overview
-Further reduce the top padding on the Schedule section to bring content even closer to the navigation bar.
+Further reduce the top padding on the Schedule section by approximately 10px on both mobile and desktop breakpoints.
 
 ## Current State
-The schedule section currently uses:
-- Mobile: `pt-20` (80px)
-- Desktop: `md:pt-24` (96px)
+- Mobile: `pt-16` (64px)
+- Desktop: `md:pt-20` (80px)
 
 ## Proposed Change
 
@@ -16,20 +15,19 @@ The schedule section currently uses:
 
 **Current:**
 ```tsx
-<section className="pt-20 pb-8 md:pt-24 md:pb-12 bg-background">
+<section className="pt-16 pb-8 md:pt-20 md:pb-12 bg-background">
 ```
 
 **Updated:**
 ```tsx
-<section className="pt-16 pb-8 md:pt-20 md:pb-12 bg-background">
+<section className="pt-14 pb-8 md:pt-[70px] md:pb-12 bg-background">
 ```
 
 ## Technical Details
-- **Mobile**: Reduce from `pt-20` (80px) to `pt-16` (64px) - saves 16px
-- **Desktop**: Reduce from `md:pt-24` (96px) to `md:pt-20` (80px) - saves 16px
-- Navigation height is ~56-64px, so `pt-16` (64px) is the minimum safe clearance
-- This cuts the visible gap between nav and content roughly in half
+- **Mobile**: Reduce from `pt-16` (64px) to `pt-14` (56px) - saves 8px (closest Tailwind value)
+- **Desktop**: Reduce from `md:pt-20` (80px) to `md:pt-[70px]` (70px) - saves exactly 10px
+- Note: `pt-14` is 56px (8px reduction) since Tailwind doesn't have a 54px preset
 
-## Note
-Going below `pt-16` on mobile would risk content being hidden behind the fixed navigation bar. If it still feels too spacious after this change, we can explore reducing the nav height or adjusting the title margin instead.
+## Caution
+The navigation bar is approximately 56-64px tall. With `pt-14` (56px) on mobile, content will be right at the edge of the nav. If any content gets hidden behind the nav, we may need to adjust back up slightly.
 
