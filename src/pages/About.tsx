@@ -56,7 +56,7 @@ const About = () => {
       
       <main>
       {/* Negative margin pulls hero up to header edge */}
-      <div className="-mt-[80px]">
+      <div className="-mt-[112px]">
         <VideoHero 
           videoId="cHcFBxvLNaQ" 
           startTime={24}
@@ -70,7 +70,7 @@ const About = () => {
         />
       </div>
 
-      <AnimatedSection animation="fadeInUp" className="-mt-1">
+      <AnimatedSection animation="fadeInUp">
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
