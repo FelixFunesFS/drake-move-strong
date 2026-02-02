@@ -6,7 +6,7 @@ import ImageGallery from "@/components/ImageGallery";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
   ComparisonTable,
@@ -16,7 +16,7 @@ import {
   ComparisonTableHeaderCell,
   ComparisonTableCell,
 } from "@/components/ui/comparison-table";
-import { Info } from "lucide-react";
+
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import scheduleCommunityImage from "@/assets/schedule-community-group.jpg";
@@ -135,16 +135,6 @@ const Schedule = () => {
           className="h-[300px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
         />
 
-        <section className="py-6 md:py-8 bg-primary text-white">
-          <div className="container mx-auto px-4">
-            <Alert className="max-w-3xl mx-auto bg-drake-gold/20 border-drake-gold text-white">
-              <Info className="h-5 w-5" />
-              <AlertDescription className="text-base">
-                <strong>New or unsure where to start?</strong> We recommend beginning with <strong>Foundation Flow™</strong> or <strong>Mobility Reset™</strong>
-              </AlertDescription>
-            </Alert>
-          </div>
-        </section>
 
         {/* Weekly Schedule - Primary Focus */}
         <section className="py-8 md:py-12 bg-background">
