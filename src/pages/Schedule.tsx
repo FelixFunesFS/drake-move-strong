@@ -125,26 +125,13 @@ const Schedule = () => {
       <StructuredData data={faqSchema} />
       
       <main>
-        {/* Compact Header */}
-        <section className="pt-24 pb-8 md:pt-28 md:pb-12 bg-drake-dark text-white">
-          <div className="container mx-auto px-4 text-center">
-            <p className="section-eyebrow text-drake-gold mb-2">CLASSES & SCHEDULE</p>
-            <h1 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold uppercase mb-4">
-              Book Your <span className="text-drake-gold">Class</span>
-            </h1>
-            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-              All classes are coach-led, mobility-first, and beginner-friendly. Click any class to book your spot.
-            </p>
-          </div>
-        </section>
-
         {/* Weekly Schedule - Primary Focus */}
-        <section className="py-8 md:py-12 bg-background">
+        <section className="pt-24 pb-8 md:pt-28 md:pb-12 bg-background">
           <div className="container mx-auto px-4">
             <div className="mb-6">
-              <h2 className="font-hero text-xl md:text-2xl font-bold uppercase">
+              <h1 className="font-hero text-xl md:text-2xl font-bold uppercase">
                 Weekly <span className="text-primary">Schedule</span>
-              </h2>
+              </h1>
               <p className="text-sm text-muted-foreground">Click any class to book your spot</p>
             </div>
             <NativeWeeklySchedule />
