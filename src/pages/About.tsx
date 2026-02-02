@@ -349,7 +349,7 @@ His approach blends skill, science, and practical strength work to create long-t
                     Our Coaching Philosophy
                   </h3>
                   <p className="text-gray-400 mt-2">
-                    Watch how we help clients move better and build sustainable strength.
+                    Here's a glimpse of our group training in action. The Coyote Complex — Swings, Goblet Squats, and Push-ups — can be scaled from 5 to 20 rounds based on your fitness level. We meet you where you are.
                   </p>
                 </div>
                 
