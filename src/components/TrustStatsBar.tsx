@@ -226,16 +226,23 @@ export function TrustStatsBar({
       <div 
         ref={ref}
         className={cn(
-          "py-8 md:py-12 bg-muted/30",
+          "py-8 md:py-12 relative overflow-hidden",
           className
         )}
       >
-        <div className="container mx-auto px-4">
+        {/* Brand teal background with gradient */}
+        <div className="absolute inset-0 bg-drake-teal" />
+        <div className="absolute inset-0 bg-gradient-to-br from-drake-teal via-drake-teal/95 to-drake-dark/80" />
+        
+        {/* Subtle gold accent borders */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-drake-gold/50 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-drake-gold/50 to-transparent" />
+        
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {stats.map((statKey, index) => {
               const stat = STATS_CONFIG[statKey];
               const Icon = STAT_ICONS[statKey];
-              const colors = STAT_COLORS[statKey];
               return (
                 <m.div 
                   key={statKey} 
@@ -249,20 +256,17 @@ export function TrustStatsBar({
                     ease: MOTION_CONFIG.ease.default
                   }}
                 >
-                  <div className={cn(
-                    "inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full mb-3",
-                    colors.bg
-                  )}>
-                    <Icon size={24} className={colors.icon} />
+                  <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full mb-3 bg-white/20">
+                    <Icon size={24} className="text-white" />
                   </div>
-                  <div className="font-bold text-2xl md:text-3xl text-foreground font-heading">
+                  <div className="font-bold text-2xl md:text-3xl text-white font-heading">
                     <CountUpValue value={stat.value} isInView={isInView} />
                   </div>
-                  <div className="text-sm font-medium text-foreground mt-1">
+                  <div className="text-sm font-medium text-white/90 mt-1">
                     <StatLabel statKey={statKey} label={stat.label} />
                   </div>
                   {showSublabels && (
-                    <div className="text-xs text-muted-foreground mt-0.5">
+                    <div className="text-xs text-white/70 mt-0.5">
                       {stat.sublabel}
                     </div>
                   )}
