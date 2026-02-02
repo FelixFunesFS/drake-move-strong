@@ -9,6 +9,7 @@ import ProtectedRoute from "@/components/auth/ProtectedRoute";
 import Navigation from "./components/Navigation";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollToTopButton from "./components/ScrollToTopButton";
+import MobileContactBar from "./components/MobileContactBar";
 import Footer from "./components/Footer";
 import AnnouncementBanner from "./components/AnnouncementBanner";
 import { TodayClassesBanner } from "./components/schedule/TodayClassesBanner";
@@ -323,6 +324,7 @@ const AppLayout = () => {
         )}
       </div>
       <ScrollToTopButton />
+      <MobileContactBar />
     </>
   );
 };
