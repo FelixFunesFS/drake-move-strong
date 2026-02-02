@@ -1,56 +1,38 @@
 
-# Remove Staleness Banner and Increase Sync Frequency
+
+# Remove "New or Unsure Where to Start" Note
 
 ## Overview
-This plan removes the "schedule may be outdated" notification from the Schedule page and increases the PunchPass sync frequency from once daily to 4 times per day (every 6 hours).
+Remove the informational alert banner that appears below the hero section on the Classes & Schedule page.
 
 ## Current State
 
-| Setting | Current Value |
-|---------|---------------|
-| Staleness Banner | Shown when schedule is >24h old |
-| Sync Frequency | Once daily at 5:00 AM UTC |
-| Cron Schedule | `0 5 * * *` |
+The banner displays the message: **"New or unsure where to start? We recommend beginning with Foundation Flow™ or Mobility Reset™"**
 
-## Proposed Changes
+This section is located at lines 138-147 in `src/pages/Schedule.tsx`.
 
-| Setting | New Value |
-|---------|-----------|
-| Staleness Banner | Removed from UI |
-| Sync Frequency | Every 6 hours (4 times daily) |
-| Cron Schedule | `0 5,11,17,23 * * *` |
+## Changes Required
 
-## Technical Implementation
+### File: `src/pages/Schedule.tsx`
 
-### Step 1: Remove Staleness Banner from NativeWeeklySchedule
-Remove the staleness check and banner display from both mobile and desktop views.
+**Remove the entire section (lines 138-147):**
+```tsx
+<section className="py-6 md:py-8 bg-primary text-white">
+  <div className="container mx-auto px-4">
+    <Alert className="max-w-3xl mx-auto bg-drake-gold/20 border-drake-gold text-white">
+      <Info className="h-5 w-5" />
+      <AlertDescription className="text-base">
+        <strong>New or unsure where to start?</strong> We recommend beginning with <strong>Foundation Flow™</strong> or <strong>Mobility Reset™</strong>
+      </AlertDescription>
+    </Alert>
+  </div>
+</section>
+```
 
-**Changes:**
-- Remove the `useScheduleStaleness` hook import and usage
-- Remove the `ScheduleFallbackBanner` import
-- Remove the banner conditional rendering on lines 134 and 276
-
-### Step 2: Update Cron Job Frequency
-Update the database cron job to run 4 times per day instead of once:
-
-**New Schedule**: `0 5,11,17,23 * * *`
-- 5:00 AM UTC (12:00 AM EST)
-- 11:00 AM UTC (6:00 AM EST)
-- 5:00 PM UTC (12:00 PM EST)  
-- 11:00 PM UTC (6:00 PM EST)
-
-This ensures the schedule is refreshed every 6 hours.
-
-## Files to Modify
-
-| File | Change |
-|------|--------|
-| `src/components/schedule/NativeWeeklySchedule.tsx` | Remove staleness banner and related imports |
-
-## Database Changes
-Update the existing cron job schedule from `0 5 * * *` to `0 5,11,17,23 * * *` using a SQL command.
+**Clean up unused imports:**
+- Remove `Info` from lucide-react imports (if no longer used elsewhere)
+- Remove `Alert` and `AlertDescription` from UI component imports (if no longer used elsewhere)
 
 ## Result
-- Users will no longer see "schedule may be outdated" warnings
-- Schedule data will be refreshed 4 times daily, ensuring more current class information
-- The direct PunchPass link remains available in the UI for users who want to book directly
+The Schedule page will flow directly from the Hero section to the Weekly Schedule section without the intermediate info banner.
+
