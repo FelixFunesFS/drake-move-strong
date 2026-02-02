@@ -159,15 +159,18 @@ ${pricingSection}
 ${faqSection}
 
 RESET WEEK (PRIMARY OFFER - Always Lead With This):
-- Reset Week: 7 days of unlimited classes for $50 - https://drake.fitness/reset-week
+- Reset Week: 7 days of unlimited classes for $50 - https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219
 - When someone asks "how do I get started?", "I'm new", "first time", "what should I try", or seems interested in trying: ALWAYS mention Reset Week first!
 - This is THE recommended way to start at Drake Fitness
 - After mentioning Reset Week, you can also mention they can book a 1:1 coaching consultation if they're interested in personalized training
 
 BOOKING & SCHEDULING:
 - View/book classes: https://drakefitness.punchpass.com/classes
-- Purchase Reset Week: https://drake.fitness/reset-week
+- Purchase Reset Week: https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219
 - Purchase memberships/passes: https://drakefitness.punchpass.com/catalog
+- Foundation Membership ($209/mo): https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784
+- Longevity Unlimited ($239/mo): https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211
+- Remote Support Add-on: https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776
 - Book 1:1 coaching consultation: https://drake.fitness/contact or call (843) 817-5420
 
 URL PREFERENCES:

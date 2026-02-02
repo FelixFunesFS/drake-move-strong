@@ -32,7 +32,7 @@ const Pricing = () => {
     <>
       <SEO
         title="Gym Membership Charleston | From $50 | Simple Plans 2026"
-        description="Simple, transparent membership options. Reset Week $50, Foundation $180/mo, Longevity Unlimited $225/mo. No contracts, real results at Drake Fitness Charleston."
+        description="Simple, transparent membership options. Reset Week $50, Foundation $209/mo, Longevity Unlimited $239/mo. No contracts, real results at Drake Fitness Charleston."
         canonical="https://drake.fitness/pricing"
       />
       <StructuredData data={faqSchema} />
@@ -97,7 +97,7 @@ const Pricing = () => {
                     </div>
                     <div className="flex-1 w-full sm:w-auto">
                       <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold w-full sm:w-auto">
-                        <a href="https://app.punchpass.com/org/9942/buy?passes=1023628" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                        <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
                           Start Reset Week
                           <ExternalLink className="h-4 w-4" />
                         </a>
@@ -136,7 +136,7 @@ const Pricing = () => {
                     Build strength and consistency—without overdoing it.
                   </p>
                   <div className="mt-4">
-                    <span className="text-5xl font-bold text-foreground">$180</span>
+                    <span className="text-5xl font-bold text-foreground">$209</span>
                     <span className="text-muted-foreground ml-1">/ month</span>
                   </div>
                 </CardHeader>
@@ -159,7 +159,10 @@ const Pricing = () => {
                     Feel stronger, move better, and stay consistent week to week.
                   </p>
                   <Button asChild variant="outline" className="w-full">
-                    <Link to="/contact">Choose Foundation</Link>
+                    <a href="https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
+                      Choose Foundation
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
                   </Button>
                 </CardContent>
                 <CardFooter className="pt-0">
@@ -187,7 +190,7 @@ const Pricing = () => {
                     Train without limits. Protect your body for the long run.
                   </p>
                   <div className="mt-4">
-                    <span className="text-5xl font-bold text-white">$225</span>
+                    <span className="text-5xl font-bold text-white">$239</span>
                     <span className="text-gray-400 ml-1">/ month</span>
                   </div>
                 </CardHeader>
@@ -214,7 +217,7 @@ const Pricing = () => {
                     "I'm stronger in my 40s than ever before." — Aaron Q.
                   </div>
                   <Button asChild className="w-full bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold">
-                    <a href="https://drakefitness.punchpass.com/org/5950/catalogs/purchase/membership/219877" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
+                    <a href="https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
                       Go Unlimited
                       <ExternalLink className="h-4 w-4" />
                     </a>
@@ -321,13 +324,15 @@ const Pricing = () => {
                   </ul>
                 </CardContent>
                 <CardFooter className="pt-0">
-                  <Link 
-                    to="/contact" 
+                  <a 
+                    href="https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776" 
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1"
                   >
-                    Learn More
-                    <ArrowRight className="w-3 h-3" />
-                  </Link>
+                    Buy Now
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
                 </CardFooter>
                 </Card>
               </AnimatedSection>
@@ -486,7 +491,7 @@ const Pricing = () => {
               Start with the Reset Week—we'll help you choose after.
             </p>
             <Button asChild variant="outline" size="lg">
-              <a href="https://app.punchpass.com/org/9942/buy?passes=1023628" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+              <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
                 Start Reset Week
                 <ExternalLink className="h-4 w-4" />
               </a>

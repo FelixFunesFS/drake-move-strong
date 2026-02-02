@@ -105,10 +105,10 @@ export default function ResetWeekCharleston() {
                 Most people don't need more workouts — they need a better starting point.
               </p>
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
-                <Link to="/reset-week">
+                <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">
                   Start Reset Week — $50
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
-                </Link>
+                </a>
               </Button>
             </div>
           </AnimatedSection>
@@ -315,10 +315,10 @@ export default function ResetWeekCharleston() {
 
               <div className="text-center">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal">
-                  <Link to="/reset-week">
+                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">
                     <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
                     Start Reset Week — $50
-                  </Link>
+                  </a>
                 </Button>
                 <p className="text-muted-foreground text-xs md:text-sm mt-4">Available spots are limited to maintain small group sizes</p>
               </div>

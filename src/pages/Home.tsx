@@ -63,7 +63,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         </div>
       } title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 25+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
         text: "START RESET WEEK",
-        link: "/reset-week"
+        link: "https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219"
       }} backgroundImages={[heroImage1Desktop]} backgroundImagesMobile={[heroImage1Mobile]} autoRotate={false} />
 
       {/* Brand Values Marquee */}
