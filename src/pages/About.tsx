@@ -70,7 +70,7 @@ const About = () => {
         />
       </div>
 
-      <AnimatedSection animation="fadeInUp">
+      <AnimatedSection animation="fadeInUp" className="-mt-1">
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
