@@ -1,182 +1,138 @@
 
-# Link & URL Audit: Findings and Remediation Plan
+# Update All Primary Reset Week CTAs to Direct PunchPass Checkout
 
-## Executive Summary
+## Overview
+Following the **Key First Click (KFC) methodology**, all primary conversion CTAs for Reset Week will be updated to link directly to the PunchPass checkout URL, bypassing internal landing pages to reduce friction and maximize conversions.
 
-I've conducted a comprehensive review of all links, buttons, and CTAs across the Drake Fitness website. The most critical issue is that **the `/reset-week` route does not exist**, yet it's referenced in **20+ locations** across the site. This means visitors clicking these CTAs land on a 404 error page.
+## Strategy
 
----
+**Direct to Checkout (Primary CTAs)**: Any button or CTA where the user's intent is to purchase or start the program should link directly to PunchPass.
 
-## Critical Issues Found
-
-### 1. Broken Route: `/reset-week` Does Not Exist
-
-**Impact**: High - Users clicking primary CTAs get a 404 error
-
-**Current Valid Routes**:
-- `/reset` - Landing page (ResetWeekAlt.tsx) - standalone page with its own header
-- `/reset-week-charleston` - SEO service page with full site navigation
-
-**Files with Broken `/reset-week` Links**:
-
-| File | Line(s) | Context |
-|------|---------|---------|
-| `src/pages/Home.tsx` | 230, 474, 483 | "Start Reset Week" buttons and CTASection |
-| `src/pages/Pricing.tsx` | 481, 550 | Text link and CTASection |
-| `src/pages/FAQ.tsx` | 182 | CTASection |
-| `src/pages/About.tsx` | ~575 | CTASection (estimated) |
-| `src/pages/Schedule.tsx` | 324, 397 | CTA buttons |
-| `src/pages/SuccessStories.tsx` | ~211 | CTASection |
-| `src/pages/Insights.tsx` | ~260 | CTASection |
-| `src/pages/services/LowImpactFitnessCharleston.tsx` | 353 | Primary CTA button |
-| `src/pages/services/MobilityFitnessAvondale.tsx` | Similar pattern |
-| `src/pages/services/StrengthTrainingCharleston.tsx` | Similar pattern |
-| `src/pages/services/WestAshleyFitness.tsx` | Similar pattern |
-| `src/components/CTASection.tsx` | 48 | Uses `<Link>` which breaks for external URLs |
+**Keep as Internal (Informational Links)**: Contextual "learn more" links within text, footer navigation, and blog posts will continue pointing to internal pages for SEO and user education.
 
 ---
 
-### 2. CTASection Component Cannot Handle External URLs
+## Files to Update
 
-**Issue**: The `CTASection` component uses React Router's `<Link>` for all CTAs:
+### High Priority: CTASection Components (7 pages)
+
+These pages use `CTASection` with `ctaLink="/reset-week"`. Each will be updated to use the centralized URL.
+
+| File | Current Link | New Link |
+|------|--------------|----------|
+| `src/pages/Home.tsx` | `/reset-week` | `PUNCHPASS_URLS.resetWeek` |
+| `src/pages/About.tsx` | `/reset-week` | `PUNCHPASS_URLS.resetWeek` |
+| `src/pages/Pricing.tsx` | `/reset-week` | `PUNCHPASS_URLS.resetWeek` |
+| `src/pages/FAQ.tsx` | `/reset-week` | `PUNCHPASS_URLS.resetWeek` |
+| `src/pages/Schedule.tsx` | `/reset-week` | `PUNCHPASS_URLS.resetWeek` |
+| `src/pages/SuccessStories.tsx` | `/reset-week` | `PUNCHPASS_URLS.resetWeek` |
+| `src/pages/Insights.tsx` | `/reset-week` | `PUNCHPASS_URLS.resetWeek` |
+
+### High Priority: Primary Conversion Buttons (12+ instances)
+
+These are standalone buttons where the user clicks with intent to purchase.
+
+| File | Location | Change |
+|------|----------|--------|
+| `src/pages/Home.tsx` | Hero button (line ~65) | Direct to PunchPass |
+| `src/pages/Home.tsx` | "You're in the Right Place" button (line ~230) | Direct to PunchPass |
+| `src/pages/Schedule.tsx` | Comparison section button (line ~324) | Direct to PunchPass |
+| `src/pages/Pricing.tsx` | "Still unsure?" inline link (line ~481) | Direct to PunchPass |
+| `src/pages/services/LowImpactFitnessCharleston.tsx` | Hero + CTA buttons | Direct to PunchPass |
+| `src/pages/services/MobilityFitnessAvondale.tsx` | Hero + CTA buttons | Direct to PunchPass |
+| `src/pages/services/StrengthTrainingCharleston.tsx` | Hero + CTA buttons | Direct to PunchPass |
+| `src/pages/services/WestAshleyFitness.tsx` | Hero + CTA buttons | Direct to PunchPass |
+| `src/components/chat/ChatBot.tsx` | Quick action button | Direct to PunchPass |
+
+### No Changes Required (Informational Links)
+
+These will remain as internal links for SEO and education purposes:
+
+- `src/components/Footer.tsx` - Footer navigation links to `/reset-week-charleston`
+- `src/pages/About.tsx` - Inline text mentions ("Experience our approach through Reset Week")
+- `src/components/insights/BlogContentComponents.tsx` - Blog post contextual links
+- `src/pages/InsightPost.tsx` - Post footer links
+
+---
+
+## Implementation Pattern
+
+### Step 1: Import Centralized URL
+
+Add to each file being updated:
 ```tsx
-<Link to={ctaLink}>{ctaText}</Link>
+import { PUNCHPASS_URLS } from "@/data/pricing";
 ```
 
-This breaks if you want to send users directly to PunchPass (external URL). The component needs to detect external links and use `<a>` tags instead.
+### Step 2: Update CTASection Components
 
----
-
-### 3. Inconsistent Link Strategy
-
-The codebase has **two competing patterns**:
-
-| Pattern | Example | Where Used |
-|---------|---------|------------|
-| Internal Route | `<Link to="/reset-week">` | Most pages |
-| Direct PunchPass | `<a href="https://drakefitness.punchpass.com/...">` | ResetWeekAlt.tsx, Pricing.tsx (some) |
-
-**Per the project memory (Key First Click methodology)**: Primary CTAs should link **directly to PunchPass checkout** to reduce friction.
-
----
-
-### 4. Centralized URLs Not Being Used
-
-`src/data/pricing.ts` defines a `PUNCHPASS_URLS` constant that **is not imported anywhere**:
-
-```ts
-export const PUNCHPASS_URLS = {
-  resetWeek: "https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219",
-  foundation: "...",
-  unlimited: "...",
-  // etc.
-}
+**Before:**
+```tsx
+<CTASection
+  title="Ready to Start?"
+  ctaText="Start Reset Week — $50"
+  ctaLink="/reset-week"
+/>
 ```
 
-Currently, each file hardcodes its own URLs, making updates error-prone.
-
----
-
-### 5. Missing URL in Centralized Data
-
-The **10-Class Flex Pack** URL is used in `Pricing.tsx` (line 374) but missing from `PUNCHPASS_URLS`:
-```
-https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/219932
+**After:**
+```tsx
+<CTASection
+  title="Ready to Start?"
+  ctaText="Start Reset Week — $50"
+  ctaLink={PUNCHPASS_URLS.resetWeek}
+/>
 ```
 
----
+The `CTASection` component (already updated) will automatically detect the external URL and render an `<a>` tag with `target="_blank"`.
 
-## Correct Links Reference
+### Step 3: Update Standalone Button Links
 
-| Destination | Correct URL |
-|------------|-------------|
-| Reset Week Checkout | `https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219` |
-| Foundation Membership | `https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784` |
-| Unlimited Membership | `https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211` |
-| Remote Support | `https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776` |
-| 10-Class Pack | `https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/219932` |
-| Schedule | `https://drakefitness.punchpass.com/classes` |
+**Before:**
+```tsx
+<Button asChild>
+  <Link to="/reset-week">Start Reset Week — $50</Link>
+</Button>
+```
 
----
+**After:**
+```tsx
+<Button asChild>
+  <a href={PUNCHPASS_URLS.resetWeek} target="_blank" rel="noopener noreferrer">
+    Start Reset Week — $50
+  </a>
+</Button>
+```
 
-## Recommended Fix Strategy
+### Step 4: Update ChatBot Quick Action
 
-### Option A: Add Redirect (Quick Fix)
-Add a route in `App.tsx` that redirects `/reset-week` to either:
-- `/reset` (landing page without main nav)
-- `/reset-week-charleston` (SEO page with full nav)
-- Direct to PunchPass (requires different approach)
+**Before:**
+```tsx
+{ label: "Reset Week", path: "/reset-week-charleston" }
+```
 
-### Option B: Direct-to-Checkout (Best for Conversions)
-Per the "Key First Click" methodology in project memory:
-1. Update `CTASection` to support external URLs
-2. Change all primary "Reset Week" CTAs to link directly to PunchPass checkout
-3. Keep `/reset-week-charleston` for SEO and informational purposes
-
-### Option C: Hybrid Approach (Recommended)
-1. Add `/reset-week` as a redirect to `/reset` in `App.tsx`
-2. Update `CTASection.tsx` to detect external URLs
-3. Gradually migrate high-intent CTAs to direct PunchPass links
-4. Import `PUNCHPASS_URLS` from centralized data file
+**After:**
+```tsx
+{ label: "Reset Week", path: PUNCHPASS_URLS.resetWeek, external: true }
+```
 
 ---
 
-## Implementation Steps
+## Summary of Changes
 
-1. **Add redirect route** in `App.tsx`:
-   ```tsx
-   import { Navigate } from "react-router-dom";
-   // Add route:
-   <Route path="/reset-week" element={<Navigate to="/reset" replace />} />
-   ```
-
-2. **Update CTASection.tsx** to handle external URLs:
-   ```tsx
-   const isExternal = ctaLink.startsWith('http');
-   {isExternal ? (
-     <a href={ctaLink} target="_blank" rel="noopener noreferrer">
-       {ctaText}
-     </a>
-   ) : (
-     <Link to={ctaLink}>{ctaText}</Link>
-   )}
-   ```
-
-3. **Add missing URL** to `PUNCHPASS_URLS` in `src/data/pricing.ts`:
-   ```ts
-   flexPack: "https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/219932",
-   ```
-
-4. **Update ChatMessage.tsx** to include the internal route mapping:
-   ```ts
-   'https://drake.fitness/reset-week-charleston': '🎁 Reset Week Info',
-   ```
+| Category | Files | Instances |
+|----------|-------|-----------|
+| CTASection updates | 7 pages | 7 |
+| Primary button updates | 8 pages | ~15 |
+| ChatBot quick action | 1 component | 1 |
+| **Total** | **10 unique files** | **~23 instances** |
 
 ---
 
-## Files Requiring Updates
+## Benefits
 
-| Priority | File | Change |
-|----------|------|--------|
-| Critical | `src/App.tsx` | Add `/reset-week` redirect |
-| High | `src/components/CTASection.tsx` | Support external URLs |
-| High | `src/data/pricing.ts` | Add flexPack URL |
-| Medium | All 10+ pages with `/reset-week` links | Consider updating to direct PunchPass |
-
----
-
-## Footer & Navigation Links (Verified Working)
-
-The Footer correctly links to:
-- `/reset-week-charleston` (valid route)
-- All other internal routes are valid
-- External social links are correct
-
----
-
-## Best Practice for Future Links
-
-1. **Primary conversion CTAs** (e.g., "Start Reset Week"): Link directly to PunchPass checkout
-2. **Informational links** (e.g., "Learn about Reset Week"): Link to internal pages
-3. **Always import** from `PUNCHPASS_URLS` for external checkout links
-4. **Use the CTASection** component consistently for major CTAs (after updating it)
+1. **Reduced friction**: Users go directly to checkout without extra clicks
+2. **Centralized management**: All URLs in one file (`src/data/pricing.ts`)
+3. **Consistent experience**: All primary CTAs behave the same way
+4. **SEO preserved**: Internal pages remain linked from footer and informational contexts
+5. **Follows KFC methodology**: Single, high-intent primary action across the site
