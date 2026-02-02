@@ -332,15 +332,39 @@ His approach blends skill, science, and practical strength work to create long-t
       <AnimatedSection animation="fadeIn">
         <section className="py-16 md:py-24 bg-drake-dark section-slant-top">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-7xl mx-auto">
               <p className="section-eyebrow text-drake-gold text-center">SEE IT IN ACTION</p>
               <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase text-white">
-                Our <span className="text-primary">Coaching Philosophy</span>
+                Our Training <span className="text-primary">Approach in Action</span>
               </h2>
               <p className="text-xl text-center text-gray-300 mb-12">
-                Watch how we help clients move better
+                Watch how we warm up the body, coach movement, and build strength
               </p>
-              <YouTubeEmbed videoId="wDtDMNnrF00" title="Drake Fitness Coaching Philosophy" />
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Video 1: Coaching Philosophy */}
+                <div>
+                  <YouTubeEmbed videoId="wDtDMNnrF00" title="Drake Fitness Coaching Philosophy" />
+                  <h3 className="font-hero text-xl font-bold mt-4 text-white uppercase">
+                    Our Coaching Philosophy
+                  </h3>
+                  <p className="text-gray-400 mt-2">
+                    Watch how we help clients move better and build sustainable strength.
+                  </p>
+                </div>
+                
+                {/* Video 2: Pressing Reset */}
+                <div>
+                  <YouTubeEmbed videoId="Vb91A46rLr8" title="Pressing Reset Mobility Warm-Up" />
+                  <h3 className="font-hero text-xl font-bold mt-4 text-white uppercase">
+                    Pressing Reset — <span className="text-primary">The Method</span>
+                  </h3>
+                  <p className="text-gray-400 mt-2">
+                    I start every training session with this mobility warm-up inspired by Original Strength. 
+                    It helps reset your nervous system and prepare your body for movement.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
