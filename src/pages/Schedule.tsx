@@ -128,7 +128,7 @@ const Schedule = () => {
         {/* Weekly Schedule - Primary Focus */}
         <section className="pt-14 pb-8 md:pt-[70px] md:pb-12 bg-background">
           <div className="container mx-auto px-4">
-            <div className="mb-6">
+            <div className="mb-3">
               <h1 className="font-hero text-xl md:text-2xl font-bold uppercase">
                 Weekly <span className="text-primary">Schedule</span>
               </h1>
