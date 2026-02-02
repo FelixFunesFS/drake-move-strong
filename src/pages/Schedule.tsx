@@ -321,7 +321,7 @@ const Schedule = () => {
                 </p>
                 <div className="grid md:grid-cols-2 gap-4 mb-8">
                   <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                    <Link to="/reset-week">Start Reset Week — $50</Link>
+                    <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">Start Reset Week — $50</a>
                   </Button>
                   <Button asChild size="lg" variant="outline" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                     <a href="#top">Back to Schedule</a>
@@ -394,7 +394,7 @@ const Schedule = () => {
           title="Ready to Feel Stronger, Move Better, and Train Smarter?"
           subtitle="Start with Reset Week — 7 days of unlimited classes for just $50."
           ctaText="Start Reset Week — $50"
-          ctaLink="/reset-week"
+          ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219"
           variant="primary"
           slanted={true}
         />

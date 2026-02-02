@@ -168,7 +168,8 @@ const ChatBot = () => {
   const handleQuickAction = (action: string) => {
     switch (action) {
       case 'reset-week':
-        sendMessage("What is Reset Week and how do I get started?");
+        // Direct to PunchPass checkout per Key First Click methodology
+        window.open("https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219", "_blank", "noopener,noreferrer");
         break;
       case 'schedule':
         sendMessage("What classes do you offer and how can I book one?");

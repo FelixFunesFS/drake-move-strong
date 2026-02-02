@@ -227,7 +227,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                   No experience needed. No pressure. Just expert guidance.
                 </p>
                 <Button asChild size="lg" className="bg-primary hover:bg-primary/90 w-full md:w-auto text-balance">
-                  <Link to="/reset-week" className="text-center">Start Reset Week — $50</Link>
+                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer" className="text-center">Start Reset Week — $50</a>
                 </Button>
               </AnimatedSection>
               <AnimatedSection animation="slideInRight" delay={0.1} className="relative h-full min-h-[400px] md:min-h-[600px]">
@@ -471,7 +471,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                   </a>
                 </Button>
                 <Button asChild size="lg">
-                  <Link to="/reset-week">Start Reset Week</Link>
+                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">Start Reset Week</a>
                 </Button>
               </div>
             </div>
@@ -480,7 +480,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       </AnimatedSection>
 
       <AnimatedSection animation="fadeInUp">
-        <CTASection eyebrow="GET STARTED" title="Ready to Reset How You Move?" ctaText="Start Reset Week — $50" ctaLink="/reset-week" variant="primary" slanted={true} />
+        <CTASection eyebrow="GET STARTED" title="Ready to Reset How You Move?" ctaText="Start Reset Week — $50" ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" variant="primary" slanted={true} />
       </AnimatedSection>
     </main>
     </>;
