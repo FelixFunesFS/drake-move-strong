@@ -1,234 +1,129 @@
 
 
-# Mobile Contact Buttons & Floating UI Reorganization
+# Chat Reset Week Button: Overview First, Then Purchase Link
 
-## Problem Analysis
+## The Question
 
-### Current Overlap Issue
-Both the ChatBot toggle button and ScrollToTopButton are positioned at `fixed bottom-6 right-6 z-50`, causing them to overlap completely. This creates:
-- Visual clutter
-- Tap target conflicts on mobile
-- Confusion about which button does what
+When a user clicks the "Reset Week" quick action in chat, should it:
+- **A) Go directly to checkout** (current behavior)
+- **B) Send a chat message that triggers an AI response with overview + purchase link**
 
-### UX & Conversion Strategy
+## Recommendation: Option B (Overview + Masked Link)
 
-**Mobile Contact Buttons (High Value)**
-- For a local fitness studio, **tap-to-call and tap-to-text are the highest-converting mobile actions**
-- These eliminate friction entirely - one tap connects the user directly
-- Per "Key First Click" methodology: remove steps between intent and action
+For a $50 fitness intro offer, users benefit from a brief explanation before purchasing. The AI should provide:
+1. What Reset Week is
+2. What's included
+3. Who it's perfect for
+4. A clear, friendly-labeled purchase link
 
-**AI Chat (Discovery & Education)**
-- Serves users who want to learn more before committing
-- Should be accessible but not obstruct primary conversion actions
-- Best positioned as secondary, not blocking utility elements
-
-**Scroll-to-Top (Utility)**
-- Improves navigation UX on long pages
-- Low priority compared to conversion elements
-- Should be visible but unobtrusive
+This builds trust and answers potential objections, while still making the purchase path clear.
 
 ---
 
-## Proposed Layout: Vertical FAB Stack
+## Changes Required
 
-Create a coordinated floating action button (FAB) system that stacks vertically without overlap:
+### 1. Update ChatBot.tsx Quick Action
 
-```text
-┌─────────────────────────────────────────┐
-│                                         │
-│                                         │
-│                                         │
-│                          ┌───────────┐  │
-│                          │  Chat     │  │ ← Desktop + Mobile (always visible)
-│                          └───────────┘  │
-│                          ┌───────────┐  │
-│                          │  Scroll ↑ │  │ ← Appears after scrolling
-│                          └───────────┘  │
-│  ┌─────────────────────────────────┐    │
-│  │ 📞 Call  │  💬 Text             │    │ ← MOBILE ONLY: sticky footer bar
-│  └─────────────────────────────────┘    │
-└─────────────────────────────────────────┘
+**Current behavior (line 170-172):**
+```tsx
+case 'reset-week':
+  window.open("https://drakefitness.punchpass.com/...", "_blank");
+  break;
 ```
 
-### Mobile-Specific Design
-On mobile (< 768px), add a **sticky footer contact bar** that:
-- Provides one-tap access to call (843-817-5420) and text
-- Uses the existing phone number from custom knowledge
-- Stays fixed at the bottom of the viewport
-- The chat and scroll buttons move up to avoid overlap
+**New behavior:**
+```tsx
+case 'reset-week':
+  sendMessage("Tell me about Reset Week - what is it and how do I get started?");
+  break;
+```
 
-### Desktop Design
-On desktop, the call/text buttons are less critical (users can easily find contact info) so:
-- Keep ChatBot at bottom-right
-- ScrollToTop appears above it when scrolling
-- No sticky contact bar needed
+This triggers the AI to respond with the Reset Week overview from its knowledge base, including the purchase link with a friendly label.
 
----
+### 2. Verify Edge Function System Prompt
 
-## Technical Implementation
+The system prompt already has excellent Reset Week guidance:
 
-### 1. Create New Component: `MobileContactBar.tsx`
+```
+RESET WEEK (PRIMARY OFFER - Always Lead With This):
+- Reset Week: 7 days of unlimited classes for $50
+- When someone asks "how do I get started?"... ALWAYS mention Reset Week first!
+```
 
-A new component that renders only on mobile, providing tap-to-call and tap-to-text buttons.
+The AI will respond with something like:
 
-**Features:**
-- Uses `useIsMobile()` hook for conditional rendering
-- Fixed at bottom of viewport
-- Full-width on mobile for easy thumb access
-- Uses `tel:` and `sms:` protocols for native device actions
-- Branded with Drake Fitness colors
+> Reset Week is the perfect way to get started! For just $50, you get 7 days of unlimited classes - try everything we offer and see what fits your goals.
+>
+> It includes:
+> - All class types (kettlebell, mobility, strength)
+> - Coach-led sessions with David or Nick
+> - No pressure, no commitment
+>
+> [🎁 Start Reset Week — $50](https://drakefitness.punchpass.com/...)
+>
+> Want me to tell you more about what to expect in your first class?
 
-**Position:** `fixed bottom-0 left-0 right-0` with height ~56px
+### 3. ChatMessage Already Handles Link Display
 
-### 2. Update `ScrollToTopButton.tsx`
+The `friendlyLabels` map already converts the raw PunchPass URL into a user-friendly label:
 
-Adjust positioning to account for the new mobile contact bar:
-- **Mobile:** `bottom-[72px]` (above the contact bar)
-- **Desktop:** Keep `bottom-6` (unchanged)
-
-### 3. Update `ChatBot.tsx`
-
-Adjust the chat toggle button positioning:
-- **Mobile:** `bottom-[136px]` (above scroll button + contact bar)
-- **Desktop:** Keep `bottom-6` but shift left OR up to avoid scroll button overlap
-
-**Alternative approach:** Stack the chat button above the scroll button on both platforms:
-- Chat button: `bottom-24` (96px)
-- Scroll button: `bottom-6` (24px)
-- Mobile contact bar: `bottom-0`
-
-### 4. Update `App.tsx`
-
-Import and render the new `MobileContactBar` component alongside other global elements.
+```tsx
+'https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219': '🎁 Start Reset Week — $50',
+```
 
 ---
 
-## File Changes Summary
+## Why This Is Better for Conversion
+
+| Factor | Direct Checkout | Chat First + Link |
+|--------|----------------|-------------------|
+| Trust Building | ❌ None | ✅ AI explains value |
+| Objection Handling | ❌ None | ✅ AI can answer questions |
+| Context | ❌ User may not know what they're buying | ✅ User understands the offer |
+| Friction | ✅ Lowest | ⚠️ One extra step |
+| Qualified Leads | ⚠️ May bounce at checkout | ✅ More likely to complete purchase |
+
+**Key insight:** The mobile contact bar already provides instant-action (Call/Text). The chat is for users who want to learn before committing - let them learn.
+
+---
+
+## Visual Flow
+
+```text
+User clicks "🎁 Reset Week" button
+        ↓
+Chat sends: "Tell me about Reset Week..."
+        ↓
+AI responds with overview + purchase link
+        ↓
+User clicks "🎁 Start Reset Week — $50" link
+        ↓
+Opens PunchPass checkout in new tab
+```
+
+---
+
+## File Changes
 
 | File | Change |
 |------|--------|
-| `src/components/MobileContactBar.tsx` | **NEW** - Mobile sticky contact bar |
-| `src/components/ScrollToTopButton.tsx` | Adjust positioning for mobile |
-| `src/components/chat/ChatBot.tsx` | Adjust positioning to avoid overlap |
-| `src/App.tsx` | Import and render MobileContactBar |
+| `src/components/chat/ChatBot.tsx` | Change reset-week action from `window.open()` to `sendMessage()` |
 
 ---
 
-## Detailed Code Changes
+## Optional Enhancement
 
-### New: `MobileContactBar.tsx`
+Update the quick action button label to set expectations:
 
+**Current:**
 ```tsx
-import { Phone, MessageSquare } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
-
-const MobileContactBar = () => {
-  const isMobile = useIsMobile();
-  
-  if (!isMobile) return null;
-  
-  return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-primary border-t border-primary-foreground/20 safe-area-pb">
-      <div className="flex">
-        <a 
-          href="tel:8438175420" 
-          className="flex-1 flex items-center justify-center gap-2 py-4 text-primary-foreground font-semibold hover:bg-primary/90 transition-colors"
-        >
-          <Phone className="w-5 h-5" />
-          Call Now
-        </a>
-        <div className="w-px bg-primary-foreground/20" />
-        <a 
-          href="sms:8438175420" 
-          className="flex-1 flex items-center justify-center gap-2 py-4 text-primary-foreground font-semibold hover:bg-primary/90 transition-colors"
-        >
-          <MessageSquare className="w-5 h-5" />
-          Text Us
-        </a>
-      </div>
-    </div>
-  );
-};
-
-export default MobileContactBar;
+🎁 Reset Week
 ```
 
-### Update: `ScrollToTopButton.tsx`
-
-Change the button positioning to be responsive:
+**Enhanced:**
 ```tsx
-// Before
-className="fixed bottom-6 right-6 z-50 ..."
-
-// After
-className="fixed bottom-6 right-6 z-50 md:bottom-6 bottom-[72px] ..."
+🎁 What's Reset Week?
 ```
 
-This moves the button up on mobile to clear the 56px contact bar.
-
-### Update: `ChatBot.tsx`
-
-Adjust the chat toggle button:
-```tsx
-// Before (line 247)
-className="fixed bottom-6 right-6 z-50 ..."
-
-// After - Stack above scroll button
-className="fixed bottom-24 right-6 z-50 md:bottom-24 ..."
-```
-
-Also adjust the chat window position (line 259):
-```tsx
-// Before
-className="fixed bottom-24 right-6 z-50 ..."
-
-// After
-className="fixed bottom-40 right-6 z-50 md:bottom-40 ..."
-```
-
-### Update: `App.tsx`
-
-Add the MobileContactBar:
-```tsx
-import MobileContactBar from "./components/MobileContactBar";
-
-// In AppLayout return, after ScrollToTopButton:
-<ScrollToTopButton />
-<MobileContactBar />
-```
-
----
-
-## Z-Index Strategy
-
-All floating elements use `z-50` (same level), but stacking is controlled by DOM order and vertical positioning:
-
-| Element | Desktop Position | Mobile Position |
-|---------|-----------------|-----------------|
-| MobileContactBar | Hidden | `bottom-0` |
-| ScrollToTopButton | `bottom-6` | `bottom-[72px]` |
-| ChatBot toggle | `bottom-24` | `bottom-[136px]` |
-| ChatBot window | `bottom-40` | `bottom-40` |
-
----
-
-## UX Rationale
-
-1. **Mobile Contact Bar at Bottom:** Follows the "thumb zone" principle - most accessible area on mobile
-2. **Scroll Button Above Contact Bar:** Utility action, secondary priority
-3. **Chat Above Scroll:** Discovery tool, available but not obstructing
-4. **Safe Area Padding:** `safe-area-pb` ensures buttons don't hide behind iPhone home indicators
-
----
-
-## Conversion Impact
-
-| Action | Friction Before | Friction After |
-|--------|----------------|----------------|
-| Call Studio | Find contact page → Find number → Tap | **Single tap** |
-| Text Studio | Find contact page → Find number → Copy → Open SMS | **Single tap** |
-| Start Chat | Tap chat button | Tap chat button (unchanged) |
-| Scroll to Top | Tap (if visible under chat) | Tap (no overlap) |
-
-**Expected Result:** Increase in direct phone inquiries from mobile users, which are the highest-converting leads for a local fitness studio.
+This makes it clear clicking will start a conversation, not open a new page.
 
