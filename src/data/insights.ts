@@ -580,5 +580,50 @@ export const insightPosts: InsightPost[] = [
     thumbnail: studioGroupOverhead,
     featured: true,
     tags: ['strength', 'functional training', 'philosophy']
+  },
+  {
+    id: "11",
+    slug: "the-power-of-pressing-reset",
+    title: 'The Power of "Pressing Reset" at Drake Fitness',
+    seoTitle: "The Power of Pressing Reset: Mobility Warm-Up Guide (2025)",
+    excerpt: "How our signature warm-up circuit activates your nervous system and prepares your body to train with purpose.",
+    content: `
+      <p class="lead">At Drake Fitness, our training philosophy is built on three pillars: <strong>movement</strong>, <strong>strength</strong>, and <strong>purpose</strong>. To help our clients achieve their best results, we utilize a specialized warm-up mobility circuit known as "Pressing Reset." This sequence is designed to bridge the gap between daily life and intense training by activating the nervous system and preparing the spine.</p>
+
+      <h2>Warming Up the Spine and Neck</h2>
+
+      <p>The circuit begins with foundational movements like <strong>Baby Rocks</strong> (between 3 to 20 repetitions) and <strong>Head Nods</strong> performed from a squat position. By using your eyes to create a full range of motion during head nods and rotations, you effectively activate spinal mobility.</p>
+
+      <p>We also incorporate <strong>Baby Hindu Push-ups</strong>, focusing on a tight belly and a smooth range of motion while staying low to the ground.</p>
+
+      <h2>Activating the Mind-Body Connection</h2>
+
+      <p>A key component of "Pressing Reset" is creating a strong mind-body connection through deliberate movement. We utilize:</p>
+
+      <ul>
+        <li><strong>Segment Rolls:</strong> Using both the legs and arms to lead the body in a full 360-degree rotation to warm up the spine non-aggressively.</li>
+        <li><strong>Dead Bugs:</strong> To activate the brain, we alternate dropping the right arm and left leg while keeping the belly tight and back flat to the floor.</li>
+        <li><strong>Glute and Hip Activation:</strong> We use hip extensions (glute bridges) and supine shin boxes to open the hips and activate the glutes, typically in the 10 to 20-rep range.</li>
+      </ul>
+
+      <h2>Finishing with Dynamic Movement</h2>
+
+      <p>To complete the reset, we focus on the lumbar spine with <strong>Russian Twists</strong> before moving into <strong>Leopard Crawls</strong>. When performing a leopard crawl, it is vital to keep your knees just one inch off the ground and your hips lower than your shoulders. Remember to breathe through your nose and let your belly relax as you alternate patterns between the right and left sides of the body.</p>
+
+      <div class="key-insight">
+        <h3>The Result</h3>
+        <p>By the time you finish this circuit, your body is no longer just "awake" — it is <strong>ready to train</strong>. Whether you are a seasoned athlete or just starting your fitness journey, Pressing Reset ensures you move with the purpose and strength required for a successful workout.</p>
+      </div>
+
+      <p><strong>Want to experience Pressing Reset for yourself?</strong> Join us for a class or start with Reset Week to see how this warm-up transforms your training.</p>
+    `,
+    category: 'education',
+    author: 'david',
+    publishedAt: '2025-05-15',
+    readTime: 5,
+    thumbnail: studioFloorExercise,
+    videoId: "Vb91A46rLr8",
+    featured: true,
+    tags: ['mobility', 'warm-up', 'pressing reset', 'nervous system', 'spine health']
   }
 ];
