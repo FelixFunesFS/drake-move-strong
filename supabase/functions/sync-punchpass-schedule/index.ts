@@ -264,55 +264,48 @@ Deno.serve(async (req) => {
     const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
     const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     
-    // Check authorization header
+    // --- Authentication: check bypasses first, then fall back to admin JWT ---
     const authHeader = req.headers.get('Authorization');
     
-    // Check if this is a cron-triggered request
-    // Cron uses service role key OR special cron secret from body
+    // Bypass 1: Service role key in Authorization header
     let isCronRequest = authHeader === `Bearer ${serviceRoleKey}`;
     
-    // Also check for cron source in body (for pg_cron which may not pass service role correctly)
+    // Read body once (needed for cron_secret check)
+    let bodyText = '';
+    try { bodyText = await req.text(); } catch { /* ignore */ }
     let body: { source?: string; cron_secret?: string } = {};
-    try {
-      const text = await req.text();
-      if (text) {
-        body = JSON.parse(text);
-      }
-    } catch { /* ignore parse errors */ }
+    try { if (bodyText) body = JSON.parse(bodyText); } catch { /* ignore */ }
     
-    // Check if cron_secret matches (allows pg_cron to work without embedding service role in SQL)
-    const cronSecret = Deno.env.get('CRON_SECRET');
-    if (body.cron_secret && cronSecret && body.cron_secret === cronSecret) {
-      isCronRequest = true;
+    // Bypass 2: cron_secret in body
+    if (!isCronRequest) {
+      const cronSecret = Deno.env.get('CRON_SECRET');
+      if (body.cron_secret && cronSecret && body.cron_secret === cronSecret) {
+        isCronRequest = true;
+      }
     }
     
     // Create service role client for database operations
     const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey);
     
     if (isCronRequest) {
-      // Cron-triggered sync - no user auth needed
-      console.log('[sync-punchpass-schedule] Cron-triggered sync starting...');
+      console.log('[sync-punchpass-schedule] Cron/bypass-triggered sync starting...');
     } else {
-      // Manual trigger - validate user is admin
+      // No bypass matched — require admin JWT
       if (!authHeader?.startsWith('Bearer ')) {
-        console.error('[sync-punchpass-schedule] Missing or invalid authorization header');
         return new Response(
           JSON.stringify({ error: 'Unauthorized - Missing authentication token' }),
           { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );
       }
 
-      // Create authenticated Supabase client for user validation
       const supabase = createClient(supabaseUrl, supabaseAnonKey, {
         global: { headers: { Authorization: authHeader } }
       });
 
-      // Validate the JWT using getClaims
       const token = authHeader.replace('Bearer ', '');
       const { data: claimsData, error: claimsError } = await supabase.auth.getClaims(token);
       
       if (claimsError || !claimsData?.claims?.sub) {
-        console.error('[sync-punchpass-schedule] Invalid token:', claimsError);
         return new Response(
           JSON.stringify({ error: 'Unauthorized - Invalid authentication token' }),
           { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -320,8 +313,6 @@ Deno.serve(async (req) => {
       }
 
       const userId = claimsData.claims.sub;
-
-      // Check if user has admin role
       const { data: roleData, error: roleError } = await supabaseAdmin
         .from('user_roles')
         .select('role')
@@ -330,7 +321,6 @@ Deno.serve(async (req) => {
         .maybeSingle();
 
       if (roleError || !roleData) {
-        console.error(`[sync-punchpass-schedule] Access denied - User ${userId} is not admin`);
         return new Response(
           JSON.stringify({ error: 'Forbidden - Admin access required' }),
           { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
