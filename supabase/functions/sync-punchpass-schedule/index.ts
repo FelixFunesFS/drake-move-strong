@@ -284,6 +284,15 @@ Deno.serve(async (req) => {
       }
     }
     
+    // Bypass 3: x-cron-secret header
+    if (!isCronRequest) {
+      const cronSecret = Deno.env.get('CRON_SECRET');
+      const headerSecret = req.headers.get('x-cron-secret');
+      if (headerSecret && cronSecret && headerSecret === cronSecret) {
+        isCronRequest = true;
+      }
+    }
+    
     // Create service role client for database operations
     const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey);
     
