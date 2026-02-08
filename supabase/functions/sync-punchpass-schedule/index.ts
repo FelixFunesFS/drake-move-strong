@@ -5,6 +5,43 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// Default instructor mapping for classes where PunchPass doesn't show the instructor
+const DEFAULT_INSTRUCTORS: Record<string, string> = {
+  'kettlebell flow': 'Nick',
+  'ruckathon': 'David',
+};
+
+function resolveInstructors(classes: ClassData[]): void {
+  // Pass 1: Copy instructor from ZOOM twin to in-studio twin (same date + time)
+  const grouped = new Map<string, ClassData[]>();
+  for (const c of classes) {
+    const key = `${c.class_date}|${c.start_time}`;
+    if (!grouped.has(key)) grouped.set(key, []);
+    grouped.get(key)!.push(c);
+  }
+  for (const group of grouped.values()) {
+    const withInstructor = group.find(c => c.instructor);
+    if (withInstructor) {
+      for (const c of group) {
+        if (!c.instructor) c.instructor = withInstructor.instructor;
+      }
+    }
+  }
+
+  // Pass 2: Apply default mapping for remaining nulls
+  for (const c of classes) {
+    if (!c.instructor) {
+      const nameLower = c.class_name.toLowerCase();
+      for (const [pattern, instructor] of Object.entries(DEFAULT_INSTRUCTORS)) {
+        if (nameLower.includes(pattern)) {
+          c.instructor = instructor;
+          break;
+        }
+      }
+    }
+  }
+}
+
 interface ClassData {
   class_name: string;
   class_date: string;
@@ -344,7 +381,9 @@ Deno.serve(async (req) => {
 
     // Parse the schedule
     const classes = parseScheduleFromMarkdown(content);
-    console.log(`Parsed ${classes.length} classes from schedule`);
+    resolveInstructors(classes);
+    const resolvedCount = classes.filter(c => c.instructor).length;
+    console.log(`Parsed ${classes.length} classes, ${resolvedCount} with instructors after resolution`);
 
     if (classes.length === 0) {
       console.warn('No classes parsed from schedule. Content preview:', content.substring(0, 500));
