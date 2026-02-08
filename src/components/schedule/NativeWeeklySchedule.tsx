@@ -3,7 +3,7 @@ import { format, addDays, isSameDay, isToday } from "date-fns";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ChevronLeft, ChevronRight, ExternalLink, Calendar, Monitor } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Calendar, Monitor, RefreshCw } from "lucide-react";
 import { WeekDayColumn } from "./WeekDayColumn";
 import { ScheduleFilters } from "./ScheduleFilters";
 import { BookingModal } from "./BookingModal";
@@ -54,7 +54,17 @@ export function NativeWeeklySchedule() {
   const [selectedClass, setSelectedClass] = useState<ScheduleClass | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState<Date>(new Date());
+  const [refreshing, setRefreshing] = useState(false);
   const isMobile = useIsMobile();
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    try {
+      await fetchClasses();
+    } finally {
+      setRefreshing(false);
+    }
+  };
 
   const weekEnd = addDays(weekStart, 6);
   const weekDays = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
@@ -151,6 +161,16 @@ export function NativeWeeklySchedule() {
             className="h-9 w-9"
           >
             <ChevronRight className="w-4 h-4" />
+          </Button>
+
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={handleRefresh}
+            disabled={refreshing}
+            className="h-9 w-9"
+          >
+            <RefreshCw className={cn("w-4 h-4", refreshing && "animate-spin")} />
           </Button>
         </div>
 
@@ -301,6 +321,15 @@ export function NativeWeeklySchedule() {
             className="text-xs"
           >
             Today
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={handleRefresh}
+            disabled={refreshing}
+            className="h-9 w-9"
+          >
+            <RefreshCw className={cn("w-4 h-4", refreshing && "animate-spin")} />
           </Button>
         </div>
 
