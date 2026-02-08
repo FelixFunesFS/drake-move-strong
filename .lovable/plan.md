@@ -1,72 +1,66 @@
 
 
-# Schedule: Rolling 7-Day View Starting From Today
+# Fix Missing Instructors on Schedule Classes
 
 ## The Problem
 
-The schedule currently displays a fixed Monday-Sunday calendar week. This means:
-- On a Sunday, 6 of 7 days are already in the past (empty or irrelevant)
-- Users see a mostly blank grid and have to click "next week" to find classes
-- This hurts the booking-first design goal
+The PunchPass page doesn't consistently show instructor names as standalone text lines. The parser only captures instructors when they appear as a plain "David" or "Nick" line in the extracted content. The result:
+
+| Class | Instructor Found? |
+|-------|------------------|
+| ZOOM KB STrong | Yes (David or Nick) |
+| KB STrong Group Fitness (in-studio) | Never |
+| Kettlebell Flow (both versions) | Never |
+| Ruckathon Prep 2026 | Never |
+
+29 out of 69 upcoming classes are missing their instructor.
 
 ## The Solution
 
-Change from a fixed calendar week to a **rolling 7-day window that always starts from today**. Users always see the next 7 days of upcoming classes with no blank past days.
+Add a **two-pass instructor resolution** step in the sync edge function, right after parsing and before saving to the database.
+
+### Pass 1: Copy from ZOOM twin
+
+Every in-studio class has a ZOOM counterpart at the same date and time. If the ZOOM version has an instructor but the in-studio version doesn't, copy it over.
 
 ```text
-BEFORE (Fixed Mon-Sun):
-Mon 3 | Tue 4 | Wed 5 | Thu 6 | Fri 7 | Sat 8 | Sun 9
-(past)  (past)  (past)  (past)  (past)  (today)  (tmrw)
-
-AFTER (Rolling 7 days from today):
-Sun 8 | Mon 9 | Tue 10 | Wed 11 | Thu 12 | Fri 13 | Sat 14
-(today) (tmrw)  ...classes visible across all 7 days...
+Same date + same time:
+  ZOOM KB STrong     → instructor: "David"
+  KB STrong In-Studio → instructor: null  -->  "David"
 ```
 
-## Navigation Behavior
+### Pass 2: Default instructor mapping
 
-- **Forward/Back arrows**: Shift the window by 7 days (so you can still browse future weeks)
-- **"Today" button**: Resets the start back to today's date
-- **Mobile day selector**: Same rolling 7-day pills starting from today
+For classes where neither version has an instructor (like Kettlebell Flow), apply a configurable default mapping based on class name patterns:
 
-## File Changes
-
-### `src/components/schedule/NativeWeeklySchedule.tsx`
-
-1. **Change initial state** (line 45-47): Replace `startOfWeek(new Date(), { weekStartsOn: 1 })` with just `new Date()` (start of today). Remove the `startOfWeek` import usage for the initial value.
-
-2. **Update navigation** (lines ~230, ~260): Change `subWeeks`/`addWeeks` to subtract/add 7 days using `addDays(weekStart, -7)` and `addDays(weekStart, 7)`.
-
-3. **Update "Today" button** (line ~270): Reset to `new Date()` instead of `startOfWeek(new Date(), { weekStartsOn: 1 })`.
-
-4. **Update header label**: The date range display already works generically (`MMM d - MMM d`), so no change needed there.
-
-5. **Mobile day selector**: Already uses `weekDays` array, which derives from `weekStart` -- no changes needed, it will automatically show the correct 7 days.
-
-## What Stays the Same
-
-- 7-column desktop grid layout
-- Mobile horizontal day selector pills
-- Filters (location, time)
-- Booking modal
-- Class card styling and instructor badges
-- Data fetching logic (already queries by date range)
-
-## Technical Details
-
-The key change is approximately 3 lines:
-
-```tsx
-// Line 45-47: Initial state
-const [weekStart, setWeekStart] = useState(() => {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  return today;
-});
-
-// Navigation handlers: use addDays(..., 7) / addDays(..., -7) instead of addWeeks/subWeeks
-
-// Today button: reset to new Date() with hours zeroed
+```text
+"Kettlebell Flow"  → "Nick"
+"Ruckathon Prep"   → "David"
 ```
 
-Everything else (the 7-day array, date range query, column rendering) already works generically off `weekStart` and will adapt automatically.
+This mapping lives in a simple object at the top of the edge function, making it easy to update when class assignments change.
+
+## File Change
+
+### `supabase/functions/sync-punchpass-schedule/index.ts`
+
+1. Add a `DEFAULT_INSTRUCTORS` mapping object near the top of the file:
+   ```
+   Kettlebell Flow → Nick
+   Ruckathon → David
+   ```
+
+2. After the `parseScheduleFromMarkdown()` call and before the database upsert, add an instructor resolution function that:
+   - Groups parsed classes by date + start_time
+   - For each group, if any class has an instructor and others don't, copies it to the others
+   - For remaining nulls, checks class name against the default mapping
+
+This ensures every class gets an instructor regardless of what PunchPass shows, and it runs automatically on every sync (4x daily).
+
+## What This Fixes
+
+- All 29 in-studio "KB STrong Group Fitness" classes will show the correct instructor
+- All 6 "Kettlebell Flow" classes will show "Nick"
+- "Ruckathon Prep" classes will show "David"
+- Future syncs will automatically resolve instructors the same way
+- No manual intervention needed when classes are added or changed
