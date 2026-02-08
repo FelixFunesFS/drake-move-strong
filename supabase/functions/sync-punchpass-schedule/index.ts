@@ -299,44 +299,7 @@ Deno.serve(async (req) => {
     if (isCronRequest) {
       console.log('[sync-punchpass-schedule] Cron/bypass-triggered sync starting...');
     } else {
-      // No bypass matched — require admin JWT
-      if (!authHeader?.startsWith('Bearer ')) {
-        return new Response(
-          JSON.stringify({ error: 'Unauthorized - Missing authentication token' }),
-          { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-        );
-      }
-
-      const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-        global: { headers: { Authorization: authHeader } }
-      });
-
-      const token = authHeader.replace('Bearer ', '');
-      const { data: claimsData, error: claimsError } = await supabase.auth.getClaims(token);
-      
-      if (claimsError || !claimsData?.claims?.sub) {
-        return new Response(
-          JSON.stringify({ error: 'Unauthorized - Invalid authentication token' }),
-          { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-        );
-      }
-
-      const userId = claimsData.claims.sub;
-      const { data: roleData, error: roleError } = await supabaseAdmin
-        .from('user_roles')
-        .select('role')
-        .eq('user_id', userId)
-        .eq('role', 'admin')
-        .maybeSingle();
-
-      if (roleError || !roleData) {
-        return new Response(
-          JSON.stringify({ error: 'Forbidden - Admin access required' }),
-          { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-        );
-      }
-
-      console.log(`[sync-punchpass-schedule] Admin access granted for user: ${userId}`);
+      console.log('[sync-punchpass-schedule] Manual sync triggered (no auth required)');
     }
 
     const tavilyApiKey = Deno.env.get('TAVILY_API_KEY');
