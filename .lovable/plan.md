@@ -1,44 +1,72 @@
 
 
-# Add "The Power of Pressing Reset" Blog Post
+# Schedule: Rolling 7-Day View Starting From Today
 
-## Overview
+## The Problem
 
-Add a new blog post (id: "11") to the insights data file with the provided content and embedded YouTube video.
+The schedule currently displays a fixed Monday-Sunday calendar week. This means:
+- On a Sunday, 6 of 7 days are already in the past (empty or irrelevant)
+- Users see a mostly blank grid and have to click "next week" to find classes
+- This hurts the booking-first design goal
 
-## File Change
+## The Solution
 
-### `src/data/insights.ts`
+Change from a fixed calendar week to a **rolling 7-day window that always starts from today**. Users always see the next 7 days of upcoming classes with no blank past days.
 
-Append a new entry to the `insightPosts` array after the existing post #10 (line 583):
+```text
+BEFORE (Fixed Mon-Sun):
+Mon 3 | Tue 4 | Wed 5 | Thu 6 | Fri 7 | Sat 8 | Sun 9
+(past)  (past)  (past)  (past)  (past)  (today)  (tmrw)
 
-**Post metadata:**
-- **id**: `"11"`
-- **slug**: `"the-power-of-pressing-reset"`
-- **title**: `The Power of "Pressing Reset" at Drake Fitness`
-- **seoTitle**: `The Power of Pressing Reset: Mobility Warm-Up Guide (2025)`
-- **excerpt**: `How our signature warm-up circuit activates your nervous system and prepares your body to train with purpose.`
-- **videoId**: `"Vb91A46rLr8"` (the YouTube video will auto-embed above the content)
-- **category**: `education`
-- **author**: `david`
-- **publishedAt**: `2025-05-15`
-- **readTime**: `5`
-- **thumbnail**: `studioFloorExercise` (already imported)
-- **featured**: `true`
-- **tags**: `['mobility', 'warm-up', 'pressing reset', 'nervous system', 'spine health']`
+AFTER (Rolling 7 days from today):
+Sun 8 | Mon 9 | Tue 10 | Wed 11 | Thu 12 | Fri 13 | Sat 14
+(today) (tmrw)  ...classes visible across all 7 days...
+```
 
-**HTML content** will include the full article text structured with:
-- Lead paragraph introducing the three pillars
-- H2 sections: "Warming Up the Spine and Neck", "Activating the Mind-Body Connection", "Finishing with Dynamic Movement"
-- Bullet lists for the exercises in the mind-body section
-- Closing paragraph about readiness to train
+## Navigation Behavior
 
-The existing `InsightPost.tsx` page will automatically render the YouTube video embed above the HTML content since `videoId` is provided.
+- **Forward/Back arrows**: Shift the window by 7 days (so you can still browse future weeks)
+- **"Today" button**: Resets the start back to today's date
+- **Mobile day selector**: Same rolling 7-day pills starting from today
+
+## File Changes
+
+### `src/components/schedule/NativeWeeklySchedule.tsx`
+
+1. **Change initial state** (line 45-47): Replace `startOfWeek(new Date(), { weekStartsOn: 1 })` with just `new Date()` (start of today). Remove the `startOfWeek` import usage for the initial value.
+
+2. **Update navigation** (lines ~230, ~260): Change `subWeeks`/`addWeeks` to subtract/add 7 days using `addDays(weekStart, -7)` and `addDays(weekStart, 7)`.
+
+3. **Update "Today" button** (line ~270): Reset to `new Date()` instead of `startOfWeek(new Date(), { weekStartsOn: 1 })`.
+
+4. **Update header label**: The date range display already works generically (`MMM d - MMM d`), so no change needed there.
+
+5. **Mobile day selector**: Already uses `weekDays` array, which derives from `weekStart` -- no changes needed, it will automatically show the correct 7 days.
+
+## What Stays the Same
+
+- 7-column desktop grid layout
+- Mobile horizontal day selector pills
+- Filters (location, time)
+- Booking modal
+- Class card styling and instructor badges
+- Data fetching logic (already queries by date range)
 
 ## Technical Details
 
-- No new files or components needed
-- No new image imports needed (`studioFloorExercise` is already imported at line 5)
-- The `InsightPost.tsx` rendering pipeline handles `videoId` + HTML content automatically
-- The `friendlyLabels` in `ChatMessage.tsx` already cover any Reset Week links if referenced
+The key change is approximately 3 lines:
 
+```tsx
+// Line 45-47: Initial state
+const [weekStart, setWeekStart] = useState(() => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return today;
+});
+
+// Navigation handlers: use addDays(..., 7) / addDays(..., -7) instead of addWeeks/subWeeks
+
+// Today button: reset to new Date() with hours zeroed
+```
+
+Everything else (the 7-day array, date range query, column rendering) already works generically off `weekStart` and will adapt automatically.
