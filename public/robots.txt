@@ -1,8 +1,16 @@
 User-agent: Googlebot
 Allow: /
+Disallow: /member/
+Disallow: /admin/
+Disallow: /coach/
+Disallow: /auth
 
 User-agent: Bingbot
 Allow: /
+Disallow: /member/
+Disallow: /admin/
+Disallow: /coach/
+Disallow: /auth
 
 User-agent: Twitterbot
 Allow: /
@@ -12,5 +20,9 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /member/
+Disallow: /admin/
+Disallow: /coach/
+Disallow: /auth
 
 Sitemap: https://drake.fitness/sitemap.xml
