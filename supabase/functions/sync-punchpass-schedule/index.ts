@@ -382,7 +382,7 @@ Deno.serve(async (req) => {
     const classes = parseScheduleFromMarkdown(content);
     resolveInstructors(classes);
     const resolvedCount = classes.filter(c => c.instructor).length;
-    console.log(`Parsed ${classes.length} classes, ${resolvedCount} with instructors after resolution`);
+    console.log(`Parsed ${classes.length} classes, ${resolvedCount} with instructors after in-batch resolution`);
 
     if (classes.length === 0) {
       console.warn('No classes parsed from schedule. Content preview:', content.substring(0, 500));
@@ -396,6 +396,61 @@ Deno.serve(async (req) => {
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
+
+    // --- Pass 3: DB-aware instructor resolution ---
+    // Query existing rows that already have instructors for the date range being synced
+    const uniqueDates = [...new Set(classes.map(c => c.class_date))];
+    const { data: existingRows } = await supabaseAdmin
+      .from('punchpass_schedule')
+      .select('class_date, start_time, class_name, is_online, instructor')
+      .in('class_date', uniqueDates)
+      .not('instructor', 'is', null);
+
+    if (existingRows && existingRows.length > 0) {
+      let dbResolvedCount = 0;
+      for (const c of classes) {
+        if (!c.instructor) {
+          // Look for any existing row at the same date+time that has an instructor
+          const twin = existingRows.find(
+            e => e.class_date === c.class_date && e.start_time === c.start_time && e.instructor
+          );
+          if (twin) {
+            c.instructor = twin.instructor;
+            dbResolvedCount++;
+          }
+        }
+      }
+      if (dbResolvedCount > 0) {
+        console.log(`Pass 3 (DB lookup): resolved ${dbResolvedCount} additional instructors`);
+      }
+    }
+
+    // --- Preserve existing instructors on upsert ---
+    // For any class still with null instructor, check if the DB already has one for the same conflict key
+    if (existingRows && existingRows.length > 0) {
+      let preservedCount = 0;
+      for (const c of classes) {
+        if (!c.instructor) {
+          const existing = existingRows.find(
+            e => e.class_date === c.class_date
+              && e.start_time === c.start_time
+              && e.class_name === c.class_name
+              && e.is_online === c.is_online
+              && e.instructor
+          );
+          if (existing) {
+            c.instructor = existing.instructor;
+            preservedCount++;
+          }
+        }
+      }
+      if (preservedCount > 0) {
+        console.log(`Preserved ${preservedCount} existing instructor values from DB`);
+      }
+    }
+
+    const finalResolvedCount = classes.filter(c => c.instructor).length;
+    console.log(`Final: ${finalResolvedCount}/${classes.length} classes have instructors`);
 
     // Clear old entries (classes that have passed)
     const today = new Date().toISOString().split('T')[0];
