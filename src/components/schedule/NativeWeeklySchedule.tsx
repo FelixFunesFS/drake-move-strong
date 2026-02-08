@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { format, startOfWeek, addDays, addWeeks, subWeeks, isSameDay, isToday } from "date-fns";
+import { format, addDays, isSameDay, isToday } from "date-fns";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -42,9 +42,11 @@ interface ScheduleClass {
 }
 
 export function NativeWeeklySchedule() {
-  const [weekStart, setWeekStart] = useState(() => 
-    startOfWeek(new Date(), { weekStartsOn: 1 })
-  );
+  const [weekStart, setWeekStart] = useState(() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return today;
+  });
   const [classes, setClasses] = useState<ScheduleClass[]>([]);
   const [loading, setLoading] = useState(true);
   const [locationFilter, setLocationFilter] = useState<"all" | "studio" | "zoom">("all");
@@ -130,7 +132,7 @@ export function NativeWeeklySchedule() {
           <Button
             variant="outline"
             size="icon"
-            onClick={() => setWeekStart(subWeeks(weekStart, 1))}
+            onClick={() => setWeekStart(addDays(weekStart, -7))}
             className="h-9 w-9"
           >
             <ChevronLeft className="w-4 h-4" />
@@ -145,7 +147,7 @@ export function NativeWeeklySchedule() {
           <Button
             variant="outline"
             size="icon"
-            onClick={() => setWeekStart(addWeeks(weekStart, 1))}
+            onClick={() => setWeekStart(addDays(weekStart, 7))}
             className="h-9 w-9"
           >
             <ChevronRight className="w-4 h-4" />
@@ -270,7 +272,7 @@ export function NativeWeeklySchedule() {
           <Button
             variant="outline"
             size="icon"
-            onClick={() => setWeekStart(subWeeks(weekStart, 1))}
+            onClick={() => setWeekStart(addDays(weekStart, -7))}
             className="h-9 w-9"
           >
             <ChevronLeft className="h-4 w-4" />
@@ -283,7 +285,7 @@ export function NativeWeeklySchedule() {
           <Button
             variant="outline"
             size="icon"
-            onClick={() => setWeekStart(addWeeks(weekStart, 1))}
+            onClick={() => setWeekStart(addDays(weekStart, 7))}
             className="h-9 w-9"
           >
             <ChevronRight className="h-4 w-4" />
@@ -291,7 +293,11 @@ export function NativeWeeklySchedule() {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => setWeekStart(startOfWeek(new Date(), { weekStartsOn: 1 }))}
+            onClick={() => {
+              const today = new Date();
+              today.setHours(0, 0, 0, 0);
+              setWeekStart(today);
+            }}
             className="text-xs"
           >
             Today
