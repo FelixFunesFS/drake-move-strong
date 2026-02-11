@@ -12,14 +12,14 @@ import LongevityBlock from "@/components/LongevityBlock";
 import heroImage1Desktop from "@/assets/hero-group-turkish-getup.jpg?format=webp&w=1920";
 import heroImage1Mobile from "@/assets/hero-group-turkish-getup.jpg?format=webp&w=768";
 import outdoorTraining from "@/assets/studio-group-goblet-squats.jpg?format=webp&w=768";
-import davidCoach from "@/assets/david-goblet-squat-kb-rack.jpg";
-import coachNick from "@/assets/nick-holistic-coaching.jpg";
-import startHereImage from "@/assets/outdoor-sandbag-training.jpg";
-import kbCollection from "@/assets/kettlebell-collection.jpg";
-import maceTraining from "@/assets/david-mace-training.jpg";
-import communityMoment from "@/assets/community-plank-rows-kettlebells.jpg";
-import memberYoga from "@/assets/member-yoga-pose.jpg";
-import studioGroupSquats from "@/assets/studio-group-squats.jpg";
+import davidCoach from "@/assets/david-goblet-squat-kb-rack.jpg?format=webp&w=768";
+import coachNick from "@/assets/nick-holistic-coaching.jpg?format=webp&w=768";
+import startHereImage from "@/assets/outdoor-sandbag-training.jpg?format=webp&w=768";
+import kbCollection from "@/assets/kettlebell-collection.jpg?format=webp&w=768";
+import maceTraining from "@/assets/david-mace-training.jpg?format=webp&w=768";
+import communityMoment from "@/assets/community-plank-rows-kettlebells.jpg?format=webp&w=768";
+import memberYoga from "@/assets/member-yoga-pose.jpg?format=webp&w=768";
+import studioGroupSquats from "@/assets/studio-group-squats.jpg?format=webp&w=768";
 import Marquee from "@/components/Marquee";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -29,17 +29,17 @@ import CommunityMasonryGallery from "@/components/CommunityMasonryGallery";
 import { FEATURED_REVIEWS } from "@/data/reviews";
 import { TodayClassesBanner } from "@/components/schedule/TodayClassesBanner";
 // New authentic training photos
-import communityGroupPhotoLarge from "@/assets/community-group-photo-large.jpg";
-import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg";
-import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg";
+import communityGroupPhotoLarge from "@/assets/community-group-photo-large.jpg?format=webp&w=768";
+import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg?format=webp&w=768";
+import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg?format=webp&w=768";
 import gymInteriorWide from "@/assets/gym-interior-wide.jpg?format=webp&w=1920";
-import groupClassPlankWide from "@/assets/group-class-plank-wide.jpg";
+import groupClassPlankWide from "@/assets/group-class-plank-wide.jpg?format=webp&w=768";
 import groupPlankRowsKettlebells from "@/assets/group-plank-rows-kettlebells.jpg?format=webp&w=1920";
 // New community gallery images
-import communityGroupPhotoNew from "@/assets/community-group-photo-new.jpg";
-import communityTurkishGetupClass from "@/assets/community-turkish-getup-class.jpg";
-import communityKettlebellRackPair from "@/assets/community-kettlebell-rack-pair.jpg";
-import communityPlankRowsKettlebells from "@/assets/community-plank-rows-kettlebells.jpg";
+import communityGroupPhotoNew from "@/assets/community-group-photo-new.jpg?format=webp&w=768";
+import communityTurkishGetupClass from "@/assets/community-turkish-getup-class.jpg?format=webp&w=768";
+import communityKettlebellRackPair from "@/assets/community-kettlebell-rack-pair.jpg?format=webp&w=768";
+import communityPlankRowsKettlebells from "@/assets/community-plank-rows-kettlebells.jpg?format=webp&w=768";
 interface HomeProps {
   bannerVisible?: boolean;
 }
