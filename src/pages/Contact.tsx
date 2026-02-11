@@ -43,11 +43,18 @@ const Contact = () => {
       
       if (error) {
         console.error("Error submitting form:", error);
-        toast.error("Something went wrong. Please try again or call us directly.");
-        return;
       }
       
-      toast.success("Thanks for reaching out! We'll get back to you within 24 hours.");
+      // Open mailto with pre-filled data
+      const subject = encodeURIComponent(
+        `New Inquiry from ${formData.firstName} ${formData.lastName}${formData.interest ? ` - ${formData.interest}` : ''}`
+      );
+      const body = encodeURIComponent(
+        `Name: ${formData.firstName} ${formData.lastName}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'Not provided'}\nInterest: ${formData.interest || 'Not specified'}\n\nMessage:\n${formData.message}`
+      );
+      window.location.href = `mailto:ddrake311@gmail.com?subject=${subject}&body=${body}`;
+      
+      toast.success("Thanks for reaching out! Your email client should open shortly.");
       setFormData({
         firstName: "",
         lastName: "",
