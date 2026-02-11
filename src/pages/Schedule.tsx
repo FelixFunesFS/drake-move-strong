@@ -118,8 +118,8 @@ const Schedule = () => {
   return (
     <>
       <SEO
-        title="Class Schedule & Programs Charleston | Book Today | Drake Fitness"
-        description="View our weekly class schedule and programs in Charleston. Foundation Flow, Functional Strength, KB Strong, and more. Morning and evening sessions available."
+        title="Group Fitness Classes Charleston | Weekly Schedule | Drake Fitness"
+        description="Book group fitness and workout classes in Charleston. Morning & evening sessions: Foundation Flow, Functional Strength, KB Strong. Small groups, expert coaching."
         canonical="https://drake.fitness/schedule"
       />
       <StructuredData data={faqSchema} />

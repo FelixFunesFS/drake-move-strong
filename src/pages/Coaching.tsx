@@ -79,7 +79,7 @@ const Coaching = () => {
   }];
   const faqSchema = buildFAQSchema(coachingFAQs);
   return <>
-      <SEO title="1:1 Personal Training Charleston | Complete Guide 2026" description="Personalized coaching with David Drake or Coach Nick. Custom programs for mobility, strength, and injury recovery. Expert one-on-one training in Charleston, SC." canonical="https://drake.fitness/coaching" />
+      <SEO title="Personal Trainer Charleston SC | 1:1 Coaching | Drake Fitness" description="Top-rated personal trainer in Charleston, SC. Custom programs for mobility, strength, and injury recovery with 25+ years experience. Book your consultation." canonical="https://drake.fitness/coaching" />
       <StructuredData data={faqSchema} />
       
       <main>

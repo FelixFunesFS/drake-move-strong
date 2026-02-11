@@ -46,7 +46,7 @@ interface HomeProps {
 
 const Home = ({ bannerVisible = false }: HomeProps) => {
   return <>
-      <SEO title="Charleston Mobility Training 2026 | Proven Results | Drake" description="Expert-led functional strength and mobility training in Charleston, SC. Join David Drake and Coach Nick for small-group classes, personal training, and sustainable results. 25+ years of coaching experience." canonical="https://drake.fitness" />
+      <SEO title="Drake Fitness Charleston | Gym & Mobility Training | Proven Results" description="Charleston's coach-led gym for functional strength, mobility, and group fitness classes. Small groups, 25+ years experience. Start Reset Week — $50." canonical="https://drake.fitness" />
       <StructuredData data={localBusinessSchema} />
       
       <main>
