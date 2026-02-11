@@ -23,23 +23,23 @@ import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { NativeWeeklySchedule } from "@/components/schedule/NativeWeeklySchedule";
 
 // Class images - using new authentic photos
-import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg";
-import membersDoubleKettlebellRack from "@/assets/members-double-kettlebell-rack.jpg";
-import groupPlankRowsKettlebells from "@/assets/group-plank-rows-kettlebells.jpg";
+import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg?format=webp&w=768";
+import membersDoubleKettlebellRack from "@/assets/members-double-kettlebell-rack.jpg?format=webp&w=768";
+import groupPlankRowsKettlebells from "@/assets/group-plank-rows-kettlebells.jpg?format=webp&w=768";
 
 // Gallery images
-import classesGallery1 from "@/assets/classes-gallery-1.jpg";
-import classesGallery2 from "@/assets/classes-gallery-2.jpg";
-import classesGallery3 from "@/assets/classes-gallery-3.jpg";
-import classesGallery4 from "@/assets/classes-gallery-4.jpg";
-import classesGallery5 from "@/assets/classes-gallery-5.jpg";
-import classesGallery6 from "@/assets/classes-gallery-6.jpg";
-import classesGallery7 from "@/assets/classes-gallery-7.jpg";
-import classesGallery8 from "@/assets/classes-gallery-8.jpg";
-import classesGallery9 from "@/assets/classes-gallery-9.jpg";
-import classesGallery10 from "@/assets/classes-gallery-10.jpg";
-import communityGroupPhotoLarge from "@/assets/community-group-photo-large.jpg";
-import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg";
+import classesGallery1 from "@/assets/classes-gallery-1.jpg?format=webp&w=768";
+import classesGallery2 from "@/assets/classes-gallery-2.jpg?format=webp&w=768";
+import classesGallery3 from "@/assets/classes-gallery-3.jpg?format=webp&w=768";
+import classesGallery4 from "@/assets/classes-gallery-4.jpg?format=webp&w=768";
+import classesGallery5 from "@/assets/classes-gallery-5.jpg?format=webp&w=768";
+import classesGallery6 from "@/assets/classes-gallery-6.jpg?format=webp&w=768";
+import classesGallery7 from "@/assets/classes-gallery-7.jpg?format=webp&w=768";
+import classesGallery8 from "@/assets/classes-gallery-8.jpg?format=webp&w=768";
+import classesGallery9 from "@/assets/classes-gallery-9.jpg?format=webp&w=768";
+import classesGallery10 from "@/assets/classes-gallery-10.jpg?format=webp&w=768";
+import communityGroupPhotoLarge from "@/assets/community-group-photo-large.jpg?format=webp&w=768";
+import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg?format=webp&w=768";
 
 const classTypes = [
   {

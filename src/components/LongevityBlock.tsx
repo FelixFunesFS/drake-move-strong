@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { BRAND_QUOTES } from "@/data/trustStats";
-import drakeLogo from "@/assets/drake-logo-new.png";
+import drakeLogo from "@/assets/drake-logo-new.png?format=webp&w=176";
 interface LongevityBlockProps {
   className?: string;
   variant?: 'default' | 'card' | 'minimal';
