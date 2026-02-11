@@ -1,37 +1,42 @@
 
 
-# Use mailto: for Contact Form Submission
+# Optimize Remaining Unoptimized Images
 
-## Overview
-Replace the edge function call with a `mailto:` link approach. When the user submits the contact form, it will open their email client with a pre-filled email to `ddrake311@gmail.com` containing all the form details. The database save via the edge function will remain as a backup record.
+## Problem
+PageSpeed still flags large unoptimized assets from two files not covered by the previous optimization pass:
+
+| File | Asset | Size |
+|------|-------|------|
+| `LongevityBlock.tsx` | `drake-logo-new.png` | 64 KiB |
+| `Schedule.tsx` | 10 gallery JPGs + 2 community JPGs + 3 class JPGs | 215+ KiB each |
 
 ## Changes
 
-### `src/pages/Contact.tsx` -- Update `handleSubmit`
-
-Modify the form submission handler to:
-1. Still save the submission to the database via the edge function (keeps a record of inquiries)
-2. After saving, open a `mailto:ddrake311@gmail.com` link with the form data pre-filled in the subject and body
-3. Subject line: "New Inquiry from [First] [Last] - [Interest]"
-4. Body: formatted with name, email, phone, interest, and message
-
-```typescript
-// After successful DB save, open mailto
-const subject = encodeURIComponent(
-  `New Inquiry from ${formData.firstName} ${formData.lastName}${formData.interest ? ` - ${formData.interest}` : ''}`
-);
-const body = encodeURIComponent(
-  `Name: ${formData.firstName} ${formData.lastName}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'Not provided'}\nInterest: ${formData.interest || 'Not specified'}\n\nMessage:\n${formData.message}`
-);
-window.location.href = `mailto:ddrake311@gmail.com?subject=${subject}&body=${body}`;
+### 1. `src/components/LongevityBlock.tsx`
+Convert the logo import to WebP:
+```
+- import drakeLogo from "@/assets/drake-logo-new.png";
++ import drakeLogo from "@/assets/drake-logo-new.png?format=webp&w=176";
 ```
 
-The success toast and form reset will still fire after opening the email client.
+### 2. `src/pages/Schedule.tsx`
+Convert all 15 raw JPG imports to WebP with 768px width:
+```
+- import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg";
++ import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg?format=webp&w=768";
+```
+Same pattern for all other imports on lines 26-42:
+- `membersDoubleKettlebellRack`
+- `groupPlankRowsKettlebells`
+- `classesGallery1` through `classesGallery10`
+- `communityGroupPhotoLarge`
+- `groupOverheadPressClass`
 
-### No other file changes needed
-- The edge function stays as-is for database recording
-- The existing `mailto:ddrake311@gmail.com` link in the contact details card remains unchanged
+### 3. Publish reminder
+After these changes, you will need to **publish** the site for both this batch and the previous Home.tsx/Navigation.tsx optimizations to take effect on the live `drake.fitness` domain. The PageSpeed results currently reflect the old published build.
 
-## Note
-The `mailto:` approach requires the visitor to have an email client configured on their device. The form data is also saved to the database as a fallback so no inquiries are lost.
+### 4. Cloudflare cache headers (no code change)
+The "Cache TTL: None" warnings require a Cloudflare Page Rule:
+- `/assets/*`: `Cache-Control: public, max-age=31536000, immutable`
+- This is configured in your Cloudflare dashboard, not in the codebase.
 
