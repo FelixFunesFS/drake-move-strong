@@ -1,20 +1,21 @@
 
 
-# Update Mobile Contact Bar: Replace "Call Now" with "View Schedule"
+# White Contact Bar + Teal Utility Buttons
 
-## Current State
-The `MobileContactBar` component at the bottom of mobile screens has two buttons:
-- **Call Now** (links to `tel:8438175420`)
-- **Text Us** (links to `sms:8438175420`)
+## Summary
+Change the sticky mobile contact bar to a white background with teal text/icons, keeping the scroll-to-top and chat buttons teal.
 
-## Change
-Replace the "Call Now" button with a "View Schedule" button that navigates to `/schedule`.
+## Changes
 
 ### `src/components/MobileContactBar.tsx`
-- Replace the `Phone` icon import with `Calendar` from lucide-react
-- Change the first button from an `<a href="tel:...">` to a React Router `<Link to="/schedule">`
-- Update label from "Call Now" to "View Schedule"
-- Import `Link` from `react-router-dom`
+- Background: `bg-primary` → `bg-white`
+- Border: `border-primary-foreground/20` → `border-border`
+- Text/icons: `text-primary-foreground` → `text-primary`
+- Hover states: `hover:bg-primary/90` → `hover:bg-gray-50`
+- Active states: `active:bg-primary/80` → `active:bg-gray-100`
+- Divider: `bg-primary-foreground/20` → `bg-border`
 
-The "Text Us" button remains unchanged.
+### No changes to:
+- `src/components/ScrollToTopButton.tsx` (stays teal)
+- `src/components/chat/ChatBot.tsx` (stays teal)
 
