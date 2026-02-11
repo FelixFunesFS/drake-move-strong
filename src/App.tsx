@@ -45,7 +45,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const Insights = lazy(() => import("./pages/Insights"));
 const InsightPost = lazy(() => import("./pages/InsightPost"));
 const Auth = lazy(() => import("./pages/Auth"));
-const Consultation = lazy(() => import("./pages/Consultation"));
+
 
 // Landing pages
 const NewYearChallenge = lazy(() => import("./pages/NewYearChallenge"));
@@ -96,7 +96,7 @@ const ChatBot = lazy(() => import("./components/chat/ChatBot"));
 // QueryClient is now defined at the top of the file with optimized settings
 
 // Routes that should not show the standard navigation and footer
-const STANDALONE_ROUTES = ['/new-year', '/reset', '/auth', '/consultation'];
+const STANDALONE_ROUTES = ['/new-year', '/reset', '/auth'];
 
 // Route prefixes that use custom layouts (no standard nav/footer)
 const CUSTOM_LAYOUT_PREFIXES = ['/member/', '/admin/', '/coach/'];
@@ -166,7 +166,7 @@ const AppLayout = () => {
             <Route path="/new-year" element={<NewYearChallenge />} />
             <Route path="/reset" element={<ResetWeekAlt />} />
             <Route path="/reset-week" element={<Navigate to="/reset" replace />} />
-            <Route path="/consultation" element={<Consultation />} />
+            
             
             {/* Local SEO Service Pages */}
             <Route path="/low-impact-fitness-charleston" element={<LowImpactFitnessCharleston />} />
