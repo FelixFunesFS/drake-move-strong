@@ -1,28 +1,31 @@
 
-# Clean Up Footer, SEO Files, and Remove Admin Auth from Sync
 
-## Overview
-
-Three targeted changes: remove the Member Login link from the footer, clean up SEO files to block private routes, and simplify the sync function so it no longer requires admin authentication for manual triggers.
+# Remove Consultation Page and Finalize SEO Files
 
 ## Changes
 
-### 1. `src/components/Footer.tsx`
-- Remove the `<li><Link to="/auth">Member Login</Link></li>` line from the "Start Here" column
+### 1. Delete `src/pages/Consultation.tsx`
+Remove the entire file -- the standalone consultation form page.
 
-### 2. `public/robots.txt`
-- Add `Disallow` rules for `/member/`, `/admin/`, `/coach/`, and `/auth` to prevent search engines from indexing private routes
+### 2. `src/App.tsx`
+- Remove the `Consultation` lazy import
+- Remove `/consultation` from `STANDALONE_ROUTES`
+- Remove the `<Route path="/consultation" ...>` line
 
 ### 3. `public/sitemap.xml`
-- Already clean -- no admin/member/coach URLs are listed. No changes needed.
+- Remove the `/consultation` entry (lines 58-62)
+- Remove the `/reset-week` entry (lines 48-52) since it just redirects to `/reset` which is already listed -- search engines penalize redirect URLs in sitemaps
 
-### 4. `supabase/functions/sync-punchpass-schedule/index.ts`
-- Remove the entire admin JWT fallback block (lines 301-339) -- the `else` branch that checks for Bearer token, validates claims, and queries `user_roles` for admin role
-- Keep the three cron/bypass checks (Authorization header matching anon key, body `cron_secret`, and `x-cron-secret` header)
-- If none of the bypass checks match, simply allow the sync to proceed anyway (no auth gate) -- this makes the function callable by anyone, which is fine since it only reads from PunchPass and writes to the schedule table
-- This means the client-side refresh button can trigger a sync directly if desired, without needing a logged-in admin
+### 4. No changes to `public/robots.txt`
+Already properly configured with all private route blocks and the sitemap reference.
 
-### What stays unchanged
-- All admin, member, and coach routes/pages remain in `App.tsx`
-- The pg_cron automatic 6-hour sync continues as-is
-- All database tables and RLS policies remain intact
+## SEO Readiness Summary
+
+After these changes, both files are ready for publishing:
+
+- **Sitemap URL:** `https://drake.fitness/sitemap.xml`
+- **robots.txt** blocks private routes, allows social crawlers, and references the sitemap
+- **Sitemap** contains only live, non-redirecting public pages: core pages, blog posts, and local SEO service pages
+
+You can submit the sitemap directly in Google Search Console at `https://drake.fitness/sitemap.xml`.
+
