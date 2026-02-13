@@ -12,7 +12,7 @@ export function LongevityBlock({
   const quote = BRAND_QUOTES.longevity;
   if (variant === 'minimal') {
     return <div className={cn("py-6 text-center", className)}>
-        <p className="text-muted-foreground italic max-w-2xl mx-auto">
+        <p className="italic max-w-2xl mx-auto text-2xl font-medium text-primary-foreground">
           "{quote.text}"
         </p>
       </div>;
@@ -52,21 +52,21 @@ export function LongevityBlock({
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           {/* Logo */}
-          <img 
-            src={drakeLogo} 
-            alt="Drake Fitness" 
-            className="w-auto h-auto max-w-full mb-8 mx-auto" 
-          />
+          <img
+          src={drakeLogo}
+          alt="Drake Fitness"
+          className="w-auto h-auto max-w-full mb-8 mx-auto" />
+
           
           {/* Bold metric display */}
           <div className="mb-6">
             {/* Decorative line with number */}
             <div className="flex items-center justify-center gap-4 mb-2">
               <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent to-drake-gold/60" />
-              <span 
-                className="font-hero text-6xl md:text-7xl lg:text-8xl text-white tracking-tight"
-                style={{ textShadow: '0 0 40px rgba(242, 181, 68, 0.4), 0 0 80px rgba(242, 181, 68, 0.2)' }}
-              >
+              <span
+              className="font-hero text-6xl md:text-7xl lg:text-8xl text-white tracking-tight"
+              style={{ textShadow: '0 0 40px rgba(242, 181, 68, 0.4), 0 0 80px rgba(242, 181, 68, 0.2)' }}>
+
                 10+
               </span>
               <div className="h-px w-16 md:w-24 bg-gradient-to-l from-transparent to-drake-gold/60" />
