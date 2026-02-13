@@ -275,17 +275,31 @@ const ResetWeekAlt = () => {
             )}
           </div>
           
-          {/* Testimonial for Reset Week Audience */}
+          {/* Customer Proof — Two Reviews */}
           <AnimatedSection delay={0.3} className="mt-12">
-            <div className="max-w-2xl mx-auto bg-card p-8 rounded-2xl border border-primary/20 shadow-lg">
-              <div className="flex gap-1 mb-4 justify-center">
-                {[...Array(5)].map((_, i) => <span key={i} className="text-drake-gold text-xl">★</span>)}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {/* Caitlin P. — Post-Surgery Safety */}
+              <div className="bg-card p-8 rounded-2xl border border-primary/20 shadow-lg">
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => <span key={i} className="text-drake-gold text-xl">★</span>)}
+                </div>
+                <p className="text-lg text-foreground italic mb-4">
+                  "I have had 3 lower back surgeries… they helped me get back to working out consistently."
+                </p>
+                <p className="font-semibold text-foreground">— Caitlin P.</p>
+                <p className="text-sm text-primary">Back to training after 3 surgeries</p>
               </div>
-              <p className="text-lg text-foreground italic text-center mb-4">
-                "I wasn't comfortable in this new body and didn't know how to move it correctly… He really assesses your needs and makes sure you don't get hurt."
-              </p>
-              <p className="text-center font-semibold text-foreground">— D. Ramos</p>
-              <p className="text-center text-sm text-primary">Started with Reset Week</p>
+              {/* Turner W. — Group Class Comfort */}
+              <div className="bg-card p-8 rounded-2xl border border-primary/20 shadow-lg">
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => <span key={i} className="text-drake-gold text-xl">★</span>)}
+                </div>
+                <p className="text-lg text-foreground italic mb-4">
+                  "Even in the group classes, if you're a beginner, he will make sure you are comfortable and learn proper form."
+                </p>
+                <p className="font-semibold text-foreground">— Turner W.</p>
+                <p className="text-sm text-primary">Beginner-friendly group training</p>
+              </div>
             </div>
           </AnimatedSection>
 
