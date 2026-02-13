@@ -23,6 +23,7 @@ import { TrustStatsBar } from "@/components/TrustStatsBar";
 import { MicroTrustBadges } from "@/components/MicroTrustBadges";
 import { PhilosophyQuote } from "@/components/PhilosophyQuote";
 import { LongevityBlock } from "@/components/LongevityBlock";
+import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
 
 import heroImage from "@/assets/hero-kettlebell-training.jpg";
 import groupTrainingImage from "@/assets/group-kettlebell-training.jpg";
@@ -302,6 +303,10 @@ const ResetWeekAlt = () => {
                 <p className="text-sm text-primary">Beginner-friendly group training</p>
               </div>
             </div>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.4} className="mt-8 flex justify-center">
+            <GoogleReviewsBadge variant="compact" />
           </AnimatedSection>
 
           {/* Micro Trust Badges */}
