@@ -1,61 +1,24 @@
 
 
-# SEO Meta Tag Optimization for Zero-Click Queries
+# Reset Week Landing Page Improvements
 
-## Goal
-Improve click-through rates on queries that have impressions but zero or low clicks by rewriting meta titles and descriptions to better match searcher intent.
-
-## Target Queries and Page Mapping
-
-| Query | Impressions | Clicks | Target Page | Issue |
-|-------|------------|--------|-------------|-------|
-| gyms near me (27) | 27 | 0 | Home | Title says "Mobility Training" -- searchers expect "gym" |
-| group fitness classes near me (12) | 12 | 0 | Schedule | Title doesn't mention "group fitness classes" |
-| workout classes near me (7) | 7 | 1 | Schedule | Same -- missing "workout classes" keyword |
-| charleston personal trainer (7) | 7 | 1 | Coaching | Title says "1:1 Personal Training" but not "Personal Trainer" |
-| drake gym (34) | 34 | 0 | Home | "Gym" not in title or description |
+## Overview
+Three changes to the /reset landing page: swap the nav logo to the full branded logo linking home, move the philosophy quote below the "Why Different" section as a centered visual bridge, and add a trust bar with the specific badges requested.
 
 ## Changes
 
-### 1. `src/pages/Home.tsx` -- SEO tag
-**Current:**
-- Title: `Charleston Mobility Training 2026 | Proven Results | Drake`
-- Description: `Expert-led functional strength and mobility training in Charleston, SC...`
+### 1. Full Logo in Nav Bar (lines 155-161)
+Replace the favicon.png with the full Drake Fitness kettlebell logo (`drake-fitness-logo-kettlebell.png`) already used in the main Navigation. The Link already points to "/" (home), so no routing change needed -- just swap the image source and sizing.
 
-**Proposed:**
-- Title: `Drake Fitness Charleston | Gym & Mobility Training | Proven Results`
-- Description: `Charleston's coach-led gym for functional strength, mobility, and group fitness classes. Small groups, 25+ years experience. Start Reset Week -- $50.`
+### 2. Move Philosophy Quote After "Why Different" Section
+Currently the PhilosophyQuote sits at line 299 between "Who It's For" and "What Happens During Reset Week." Move it to after the "Why Drake Fitness Is Different" section (after line 383) so it acts as a reinforcing statement after the differentiation pitch. Change to `variant="hero"` for a full-width centered display that visually complements the dark/light section rhythm.
 
-**Why:** Adds "gym" and "group fitness classes" to capture "gyms near me," "drake gym," and "group fitness classes near me."
+### 3. Add Trust Badge Bar After the Quote
+Insert a MicroTrustBadges row with the four specific badges: `['local', 'reviews', 'safe', 'coaching']` -- mapping to "Charleston-Based," "Verified Google Reviews," "Safe & Personal," and "Proven Coaching." This sits directly below the centered quote as a compact trust reinforcement before the "After Reset Week" section.
 
-### 2. `src/pages/Schedule.tsx` -- SEO tag
-**Current:**
-- Title: `Class Schedule & Programs Charleston | Book Today | Drake Fitness`
-- Description: `View our weekly class schedule and programs in Charleston...`
-
-**Proposed:**
-- Title: `Group Fitness Classes Charleston | Weekly Schedule | Drake Fitness`
-- Description: `Book group fitness and workout classes in Charleston. Morning & evening sessions: Foundation Flow, Functional Strength, KB Strong. Small groups, expert coaching.`
-
-**Why:** Leads with "Group Fitness Classes" and adds "workout classes" to match both zero-click queries.
-
-### 3. `src/pages/Coaching.tsx` -- SEO tag
-**Current:**
-- Title: `1:1 Personal Training Charleston | Complete Guide 2026`
-- Description: `Personalized coaching with David Drake or Coach Nick...`
-
-**Proposed:**
-- Title: `Personal Trainer Charleston SC | 1:1 Coaching | Drake Fitness`
-- Description: `Top-rated personal trainer in Charleston, SC. Custom programs for mobility, strength, and injury recovery with 25+ years experience. Book your consultation.`
-
-**Why:** Puts "Personal Trainer" as the lead keyword to match "charleston personal trainer" exactly.
+## Landing Page Strategy Note
+For a conversion-focused landing page like /reset, the key principle is: **remove navigation options, reinforce a single action.** The current page already does this well -- minimal header with one CTA button, no full nav menu, sticky mobile CTA. Adding the full logo linking to the homepage gives visitors an escape route if they want to explore (good for trust), while keeping the page itself focused on the Reset Week offer. The quote + trust badges after "Why Different" creates a natural persuasion flow: differentiation claims followed by credibility proof followed by "what's next."
 
 ## Files Changed
-- `src/pages/Home.tsx` (1 line -- SEO component props)
-- `src/pages/Schedule.tsx` (2 lines -- SEO component props)
-- `src/pages/Coaching.tsx` (1 line -- SEO component props)
+- `src/pages/ResetWeekAlt.tsx` -- logo import, swap image in header, move PhilosophyQuote block, add MicroTrustBadges placement
 
-## Notes
-- No structural or layout changes -- only meta title and description strings
-- Canonical URLs stay the same
-- Keeps brand name "Drake Fitness" in all titles for branded query reinforcement
