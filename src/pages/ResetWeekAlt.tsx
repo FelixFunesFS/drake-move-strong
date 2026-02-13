@@ -384,7 +384,7 @@ const ResetWeekAlt = () => {
       </section>
 
       {/* Philosophy Quote — reinforcement after differentiation */}
-      <PhilosophyQuote variant="hero" quote="philosophy" />
+      <PhilosophyQuote variant="hero" quote="resetPromise" />
 
       {/* Trust Badge Bar */}
       <div className="py-8 bg-drake-dark border-t border-white/10">
