@@ -26,6 +26,7 @@ import { LongevityBlock } from "@/components/LongevityBlock";
 
 import heroImage from "@/assets/hero-kettlebell-training.jpg";
 import groupTrainingImage from "@/assets/group-kettlebell-training.jpg";
+import ctaBgImage from "@/assets/cta-group-turkish-getup.jpg";
 import drakeLogo from "@/assets/drake-fitness-logo-kettlebell.png?format=webp&w=268";
 
 const RESET_WEEK_URL = "https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219";
@@ -482,13 +483,22 @@ const ResetWeekAlt = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-24 bg-drake-dark text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative py-24 text-white overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-drake-dark/85 z-10" />
+          <img
+            src={ctaBgImage}
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover object-center"
+          />
+        </div>
+        <div className="relative z-20 container mx-auto px-4 text-center">
           <AnimatedSection>
             <h2 className="font-hero text-4xl md:text-5xl font-bold mb-6 uppercase">
               Ready to <span className="text-drake-gold">Reset</span>?
             </h2>
-            <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-200 mb-10 max-w-2xl mx-auto">
               Seven days. Unlimited classes. Zero commitment. Just a chance to see if Drake Fitness is right for you.
             </p>
             
@@ -499,7 +509,6 @@ const ResetWeekAlt = () => {
               asChild
               size="lg"
               className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-bold text-lg px-10 py-6 h-auto shadow-[var(--shadow-gold)] hover:scale-105 transition-transform group">
-
               <a href={RESET_WEEK_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
                 Start Your Reset Week – $50
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
