@@ -19,6 +19,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { SEO } from "@/components/SEO";
 
 import heroImage from "@/assets/outdoor-sandbag-training.jpg";
+import ruckathonImage from "@/assets/ruckathon-sandbag-lunge.jpg";
 import drakeLogo from "@/assets/drake-fitness-logo-kettlebell.png?format=webp&w=268";
 
 const RALLYUP_URL = "https://warriorsurf.rallyup.com/ruckathon2026/Campaign/Details";
@@ -256,29 +257,41 @@ const Ruckathon = () => {
       {/* What to Bring */}
       <section className="py-16 md:py-24 bg-muted">
         <div className="container mx-auto px-4">
-          <AnimatedSection className="max-w-2xl mx-auto">
-            <div className="text-center mb-10">
-              <span className="section-eyebrow text-primary">Come Prepared</span>
-              <h2 className="font-hero text-3xl md:text-5xl font-bold text-foreground uppercase">
-                What to <span className="text-primary">Bring</span>
-              </h2>
-            </div>
-            <div className="space-y-4">
-              {bringList.map((item, index) => (
-                <motion.div
-                  key={item}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="flex items-center gap-4 bg-card p-5 rounded-xl border border-border"
-                >
-                  <CheckCircle2 className="text-primary w-6 h-6 flex-shrink-0" />
-                  <span className="text-foreground text-lg">{item}</span>
-                </motion.div>
-              ))}
-            </div>
-          </AnimatedSection>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center max-w-5xl mx-auto">
+            <AnimatedSection>
+              <div className="mb-8 lg:mb-0">
+                <span className="section-eyebrow text-primary">Come Prepared</span>
+                <h2 className="font-hero text-3xl md:text-5xl font-bold text-foreground uppercase mb-8">
+                  What to <span className="text-primary">Bring</span>
+                </h2>
+                <div className="space-y-4">
+                  {bringList.map((item, index) => (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      className="flex items-center gap-4 bg-card p-5 rounded-xl border border-border"
+                    >
+                      <CheckCircle2 className="text-primary w-6 h-6 flex-shrink-0" />
+                      <span className="text-foreground text-lg">{item}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection delay={0.2}>
+              <div className="relative">
+                <div className="absolute -inset-3 bg-drake-gold/20 rounded-2xl transform rotate-2" />
+                <img
+                  src={ruckathonImage}
+                  alt="Sandbag overhead lunge during outdoor ruck training"
+                  className="relative rounded-2xl shadow-2xl w-full h-auto object-cover"
+                />
+              </div>
+            </AnimatedSection>
+          </div>
         </div>
       </section>
 
