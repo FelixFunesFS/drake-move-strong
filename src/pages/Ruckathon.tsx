@@ -408,7 +408,7 @@ const Ruckathon = () => {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="border-white/30 text-white hover:bg-white/10 font-bold text-base md:text-lg px-8 md:px-10 py-5 md:py-6 h-auto group"
+                  className="border-drake-gold text-drake-gold hover:bg-drake-gold/10 font-bold text-base md:text-lg px-8 md:px-10 py-5 md:py-6 h-auto group"
                 >
                   <a href={classes[0].punchpass_url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
                     Reserve Prep Class
