@@ -26,6 +26,7 @@ import { LongevityBlock } from "@/components/LongevityBlock";
 
 import heroImage from "@/assets/hero-kettlebell-training.jpg";
 import groupTrainingImage from "@/assets/group-kettlebell-training.jpg";
+import drakeLogo from "@/assets/drake-fitness-logo-kettlebell.png?format=webp&w=268";
 
 const RESET_WEEK_URL = "https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219";
 
@@ -154,10 +155,12 @@ const ResetWeekAlt = () => {
           <div className="flex justify-between items-center h-20">
             <Link to="/" className="flex items-center gap-3">
               <img 
-                src="/favicon.png" 
-                alt="Drake Fitness" 
-                className="h-12 w-auto"
-              />
+                 src={drakeLogo} 
+                 alt="Drake Fitness" 
+                 className="h-12 md:h-14 w-auto"
+                 width={134}
+                 height={64}
+               />
             </Link>
             <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
               <a href={RESET_WEEK_URL} target="_blank" rel="noopener noreferrer">
@@ -295,8 +298,6 @@ const ResetWeekAlt = () => {
         </div>
       </section>
 
-      {/* Philosophy Quote */}
-      <PhilosophyQuote variant="inline" quote="philosophy" className="bg-muted/30" />
 
       {/* What Happens During Reset Week */}
       <section className="py-12 md:py-24 bg-drake-dark text-white md:[clip-path:polygon(0_0,100%_0,100%_85%,0_100%)]">
@@ -381,6 +382,21 @@ const ResetWeekAlt = () => {
           </div>
         </div>
       </section>
+
+      {/* Philosophy Quote — reinforcement after differentiation */}
+      <PhilosophyQuote variant="hero" quote="philosophy" />
+
+      {/* Trust Badge Bar */}
+      <div className="py-8 bg-drake-dark border-t border-white/10">
+        <div className="container mx-auto px-4">
+          <MicroTrustBadges 
+            badges={['local', 'reviews', 'safe', 'coaching']} 
+            variant="row" 
+            size="md"
+            className="text-white/80"
+          />
+        </div>
+      </div>
 
       {/* After Reset Week Section */}
       <section className="py-24 bg-muted">
