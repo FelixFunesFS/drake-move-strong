@@ -61,6 +61,10 @@ export const BRAND_QUOTES = {
   purpose: {
     text: "We help adults build strong, mobile, pain-free bodies that support their everyday lives.",
     attribution: "Drake Fitness"
+  },
+  resetPromise: {
+    text: "You don't need to be in shape to start. You just need to show up. We'll handle the rest.",
+    attribution: "David Drake, Drake Fitness"
   }
 };
 
