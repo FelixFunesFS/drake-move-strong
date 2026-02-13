@@ -18,7 +18,7 @@ import {
 import AnimatedSection from "@/components/AnimatedSection";
 import { SEO } from "@/components/SEO";
 
-import heroImage from "@/assets/outdoor-sandbag-training.jpg";
+import heroImage from "@/assets/ruckathon-hero-group.jpg";
 import ruckathonImage from "@/assets/ruckathon-sandbag-lunge.jpg";
 import drakeLogo from "@/assets/drake-fitness-logo-kettlebell.png?format=webp&w=268";
 
@@ -145,7 +145,7 @@ const Ruckathon = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-drake-dark/95 via-drake-dark/80 to-drake-dark/50 z-10" />
           <img
             src={heroImage}
-            alt="Outdoor training at Drake Fitness"
+            alt="Drake Fitness ruckathon group photo outdoors"
             className="w-full h-full object-cover object-center"
           />
         </div>
