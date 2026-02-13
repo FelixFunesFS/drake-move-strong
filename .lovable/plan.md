@@ -1,48 +1,18 @@
 
 
-# Replace Single Testimonial with Two Higher-Converting Reviews
+# Add Linked Google Reviews Badge After Testimonial Quotes
 
-## Conversion Strategy
+## What Changes
+Add the existing `GoogleReviewsBadge` component (compact variant) directly below the two testimonial cards in the "Who It's For" section. It will link to the Google Reviews page so visitors can verify the reviews themselves -- a strong trust signal for conversion.
 
-The current single D. Ramos quote sits after the "Who It's For" cards. For maximum conversion, customer proof should do two things:
+## Technical Details
 
-1. **Match the audience segment above it** -- the "Who It's For" cards target beginners, adults 30-65, and consistency seekers
-2. **Show a specific result**, not just a feeling -- results-based testimonials convert 2-3x better than sentiment-only quotes
+### `src/pages/ResetWeekAlt.tsx`
+1. Import `GoogleReviewsBadge` from `@/components/GoogleReviewsBadge`
+2. After the testimonial grid's closing `AnimatedSection` (around line 303), add a centered `GoogleReviewsBadge` with the `compact` variant, wrapped in an `AnimatedSection` for consistent entrance animation
 
-The best two reviews from the existing data for this placement:
-
-- **Caitlin P.** -- "I have had 3 lower back surgeries... they helped me get back to working out consistently." Has a concrete result ("Back to training after 3 surgeries") and directly addresses the fear of injury that the audience cards describe.
-- **Turner W.** -- "Even in the group classes, if you're a beginner, he will make sure you are comfortable and learn proper form." Directly speaks to beginners and group class comfort -- matching two of the three audience cards.
-
-These two together cover the full emotional range: safety after injury (Caitlin) and beginner welcome (Turner).
-
-## Layout Change
-
-Replace the single centered card (lines 278-290) with a side-by-side 2-column grid of testimonial cards. Each card gets: 5-star rating, quote text, author name, and a result/theme tagline. On mobile, they stack vertically.
-
-## Changes
-
-### `src/pages/ResetWeekAlt.tsx` (lines 278-290)
-Replace the single hardcoded D. Ramos testimonial block with a 2-column grid using data from `RESET_WEEK_REVIEWS`:
-
-```tsx
-<AnimatedSection delay={0.3} className="mt-12">
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-    {/* Caitlin P. - Post-Surgery Safety */}
-    <div className="bg-card p-8 rounded-2xl border border-primary/20 shadow-lg">
-      <div className="flex gap-1 mb-4">★★★★★</div>
-      <p className="italic">"I have had 3 lower back surgeries... they helped me get back to working out consistently."</p>
-      <p className="font-semibold">— Caitlin P.</p>
-      <p className="text-sm text-primary">Back to training after 3 surgeries</p>
-    </div>
-    {/* Turner W. - Group Class Comfort */}
-    <div className="bg-card p-8 rounded-2xl border border-primary/20 shadow-lg">
-      ...same structure with Turner's quote...
-    </div>
-  </div>
-</AnimatedSection>
-```
+The badge already links to the Google Reviews URL internally, so no additional wiring is needed.
 
 ## Files Changed
-- `src/pages/ResetWeekAlt.tsx` -- replace single testimonial with 2-card grid (lines 278-290)
+- `src/pages/ResetWeekAlt.tsx` -- add import + badge placement (2 small edits)
 
