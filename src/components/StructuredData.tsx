@@ -22,7 +22,7 @@ export const localBusinessSchema = {
   "image": "https://drake.fitness/og-image.jpg",
   "url": "https://drake.fitness",
   "telephone": "(843) 817-5420",
-  "email": "ddrake311@gmail.com",
+  "email": "david@drake.fitness",
   "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",

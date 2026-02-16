@@ -103,7 +103,7 @@ const testimonials = [
 const locationDetails = [
   { icon: MapPin, title: "Address", description: "2 Avondale Ave\nCharleston, SC 29407", link: "https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" },
   { icon: Clock, title: "Hours", description: "Monday - Friday: 5:30 AM - 8:00 PM\nSaturday: 7:00 AM - 12:00 PM\nSunday: Closed" },
-  { icon: Phone, title: "Contact", description: "Phone: (843) 817-5420\nEmail: ddrake311@gmail.com" },
+  { icon: Phone, title: "Contact", description: "Phone: (843) 817-5420\nEmail: david@drake.fitness" },
   { icon: Car, title: "Parking", description: "Free parking available on-site\nStreet parking also available" }
 ];
 

@@ -80,7 +80,7 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Submission saved successfully:", data.id);
 
     // Note: Email sending requires RESEND_API_KEY to be configured
-    // When configured, emails will be sent to ddrake311@gmail.com
+    // When configured, emails will be sent to david@drake.fitness
     const resendApiKey = Deno.env.get("RESEND_API_KEY");
     let emailSent = false;
 
