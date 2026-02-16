@@ -1,53 +1,39 @@
 
+# Remove the Mobility Fitness Avondale Page
 
-# Fix Pricing Consistency Across All Pages, Components, and Database
+## What Changes
 
-## Overview
-Correct all pricing values so they match across the centralized data file, UI pages, and database.
+### 1. Delete the page file
+- **Delete**: `src/pages/services/MobilityFitnessAvondale.tsx`
 
-## Correct Pricing (Source of Truth)
+### 2. Remove route and import from App.tsx
+- Remove the lazy import for `MobilityFitnessAvondale` (line 57)
+- Remove the `<Route>` for `/mobility-fitness-avondale` (line 175)
+- Add a redirect so any existing links or Google-indexed URLs go to a relevant page instead of a 404:
+  ```
+  /mobility-fitness-avondale --> /classes (or /west-ashley-fitness)
+  ```
 
-| Plan | Correct Price |
+### 3. Update internal links (7 locations)
+All links pointing to `/mobility-fitness-avondale` need to be redirected to a suitable alternative (likely `/classes` or `/west-ashley-fitness`):
+
+| File | What to change |
 |---|---|
-| Reset Week | $50 (7 days unlimited) |
-| Foundation Membership | $209/month (8 classes) |
-| Longevity Unlimited | $239/month |
-| Drop-In | $40/session |
-| 10-Class Flex Pack | $350 one-time |
+| `src/components/Footer.tsx` (line 43) | Change "Mobility Training" link target or remove the list item |
+| `src/pages/About.tsx` (line 285) | Update the "mobility" link in the coach description |
+| `src/pages/Coaching.tsx` (line 267) | Update the "Mobility Training" link |
+| `src/pages/Pricing.tsx` (line 528) | Update the "Mobility Training" link |
+| `src/components/CommunityReasonsSection.tsx` (line 33) | Update the "Mobility before intensity" card link |
+| `src/components/insights/BlogContentComponents.tsx` (line 550) | Update the "Avondale studio" link |
 
-## Current Inconsistencies
+### 4. Remove from sitemap
+- **`public/sitemap.xml`**: Remove the `<url>` block for `https://drake.fitness/mobility-fitness-avondale` (lines ~121-125)
 
-| Location | Drop-In | 10-Class Pack | Foundation | Unlimited |
-|---|---|---|---|---|
-| `pricing.ts` | **$30** (wrong) | **$300** (wrong) | $209 (ok) | $239 (ok) |
-| `Pricing.tsx` (hardcoded) | n/a | **$200** (wrong) | $209 (ok) | $239 (ok) |
-| `FAQ.tsx` (hardcoded) | **$30** (wrong) | **$300** (wrong) | -- | -- |
-| Database `membership_plans` | $40 (ok) | **missing** | **$199** (wrong) | **$249** (wrong) |
-| Chatbot edge function | pulls from DB | pulls from DB | pulls from DB | pulls from DB |
+## Redirect Strategy
+A `<Navigate to="/classes" replace />` route will catch any bookmarked or Google-indexed traffic and send it to the Classes page, preventing 404 errors while Google de-indexes the old URL.
 
-## Changes
-
-### 1. `src/data/pricing.ts`
-- Line 31: Change `price: 30` to `price: 40` (Drop-In)
-- Line 36: Change `price: 300` to `price: 350` (Flex Pack)
-
-### 2. `src/pages/Pricing.tsx`
-- Line 353: Change hardcoded `$200` to `$350` for the 10-Class Pack card
-
-### 3. `src/pages/FAQ.tsx`
-- Line 70: Change `"Drop-in classes are $30 per session"` to `"$40 per session"` and `"10-Pack Flex Pass ($300)"` to `"10-Pack Flex Pass ($350)"`
-
-### 4. Database: `membership_plans` table
-Update rows to match correct pricing:
-- "8 Classes" row: price $199 -> $209, rename to "Foundation Membership"
-- "Unlimited" row: price $249 -> $239, rename to "Longevity Unlimited"
-- Insert new row for "10-Class Flex Pack" at $350, billing_interval "one_time", class_credits 10
-
-The Drop-In row is already correct at $40 in the database.
-
-### 5. No changes needed to `chat-assistant/index.ts`
-The chatbot dynamically pulls pricing from the database, so fixing the database rows will automatically fix chatbot responses.
-
-## Impact
-After these changes, all pricing will be consistent across the Pricing page, FAQ page, centralized data file, database, and AI chatbot.
-
+## Technical Details
+- **Files deleted**: 1 (`MobilityFitnessAvondale.tsx`)
+- **Files edited**: 7 (App.tsx, Footer.tsx, About.tsx, Coaching.tsx, Pricing.tsx, CommunityReasonsSection.tsx, BlogContentComponents.tsx, sitemap.xml)
+- No database changes needed
+- No edge function changes needed
