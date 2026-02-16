@@ -1,35 +1,38 @@
 
-# Pricing Page Cleanup and Reset Week Enhancement
 
-## Changes (all in `src/pages/Pricing.tsx` unless noted)
+# Fix Longevity Unlimited "Best Value" Badge Cropping and Card Sizing
 
-### 1. Keep Google Reviews badge above Reset Week -- remove only the arrow icon
-Above the Reset Week card (lines 61-63), keep the `GoogleReviewsBadge` but switch from `variant="compact"` (which includes an `ExternalLink` arrow) to `variant="micro"`. The micro variant shows the star rating and "Google-rated in Charleston" text without the arrow icon.
+## Problem
 
-**Alternative (if micro isn't the right look):** Replace the badge with inline stars + text directly, giving full control over what appears -- 5 gold stars, "5.0 on Google", no arrow, still a clickable link.
+The "Best Value" badge on the Longevity Unlimited card is cropped because:
+- The badge is positioned with `absolute -top-4` (16px above the card edge)
+- The card itself shifts up with `md:-translate-y-2` (8px)
+- The parent grid container has no extra space (overflow or padding) to accommodate this
 
-### 2. Remove Google Reviews badge, "Real people" text, and "Still unsure?" text below comparison table (lines 448-482)
-Delete these three elements after the testimonial quotes:
-- The `GoogleReviewsBadge` compact variant (line 450)
-- "Real people. Real results. No gimmicks." (lines 451-453)
-- "Still unsure? Start with the Reset Week..." paragraph (lines 480-482)
+Additionally, the `-translate-y-2` on the right card makes the two cards visually uneven in height.
 
-### 3. Enhance the Movement Reset Week card with additional "What's Included" details
-Expand the existing 3-item benefit list (lines 79-91) to clearly show what's included:
-- 7 days of unlimited classes (already there)
-- All class types: Foundation Flow, KB Strong, Mobility Reset, and more
-- Movement-first, joint-friendly coaching (already there)
-- Go at your own pace -- no pressure to keep up (already there, slightly expanded)
-- No commitment required
+## Fix (1 file: `src/pages/Pricing.tsx`)
 
-### 4. Update Reassurance Block text (lines 489-491)
-Change the text to include the offer detail:
-> "Not sure which option fits you? Try 7 days of unlimited classes for $50 -- we'll help you decide which membership is right for your goals after your first week."
+### 1. Add overflow-visible and top padding to the grid container (line 135)
+Change the grid wrapper from:
+```
+grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto
+```
+to:
+```
+grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto pt-6 overflow-visible
+```
 
-### 5. Clean up unused imports
-If `GoogleReviewsBadge` is only used once (above Reset Week) after removing the second instance, keep the import. If fully removed, delete the import.
+The `pt-6` gives the badge room to render above the card. The `overflow-visible` ensures nothing clips it.
 
-## Summary
-- **File:** `src/pages/Pricing.tsx` (1 file)
-- **File:** `src/components/GoogleReviewsBadge.tsx` -- no changes needed; the `micro` variant already omits the arrow
-- **Net effect:** Cleaner page, stronger Reset Week card, star rating kept above Reset Week without the distracting arrow icon
+### 2. Remove the upward shift from the Longevity card (line 186)
+Remove `md:-translate-y-2` from the card's className. This was making the right card sit higher than the left card and contributing to the badge being cropped. Both cards will now align at the same top edge, and `h-full` on both cards already ensures they match height within the grid.
+
+### 3. Ensure the AnimatedSection wrapper allows overflow (line 185)
+Add `overflow-visible` to the AnimatedSection wrapping the Longevity card so the badge isn't clipped by the animation container.
+
+## Result
+- Badge fully visible above the card
+- Both cards aligned and equal height
+- Fully responsive -- `pt-6` scales well on all screens
+
