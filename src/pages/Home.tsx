@@ -26,7 +26,7 @@ import { TodayClassesBanner } from "@/components/schedule/TodayClassesBanner";
 import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg?format=webp&w=768";
 import gymInteriorWide from "@/assets/gym-interior-wide.jpg?format=webp&w=1920";
 import communityTurkishGetupClass from "@/assets/community-turkish-getup-class.jpg?format=webp&w=768";
-import communityKettlebellRackPair from "@/assets/community-kettlebell-rack-pair.jpg?format=webp&w=768";
+import communityKettlebellRackPair from "@/assets/community-plank-rows-kettlebells-new.jpg?format=webp&w=768";
 interface HomeProps {
   bannerVisible?: boolean;
 }
