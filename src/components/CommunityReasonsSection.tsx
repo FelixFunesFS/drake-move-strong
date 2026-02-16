@@ -30,7 +30,7 @@ const CommunityReasonsSection = ({ images }: CommunityReasonsSectionProps) => {
       icon: <CheckCircle2 className="w-5 h-5" />,
       title: "Mobility before intensity",
       description: "We improve how your joints move before adding load — eliminating pain and preventing injury.",
-      link: "/mobility-fitness-avondale",
+      link: "/schedule",
     },
     {
       image: images.kettlebellRack,
