@@ -61,7 +61,7 @@ const AnimatedSection = ({
         className={className}
         style={{ 
           willChange: isInView ? "transform, opacity" : "auto",
-          contain: "layout style paint"
+          contain: className?.includes("overflow-visible") ? "style" : "layout style paint"
         }}
       >
         {children}

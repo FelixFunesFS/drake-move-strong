@@ -132,7 +132,7 @@ const Pricing = () => {
               </p>
             </AnimatedSection>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto pt-6 overflow-visible">
               {/* LEFT CARD — FOUNDATION MEMBERSHIP */}
               <AnimatedSection animation="slideInLeft" delay={0.1}>
                 <Card className="shadow-card relative h-full">
@@ -182,8 +182,8 @@ const Pricing = () => {
               </AnimatedSection>
 
               {/* RIGHT CARD — LONGEVITY UNLIMITED (ANCHOR) */}
-              <AnimatedSection animation="slideInRight" delay={0.2}>
-                <Card className="shadow-lg relative bg-drake-dark text-white border-2 border-drake-gold md:-translate-y-2 h-full">
+              <AnimatedSection animation="slideInRight" delay={0.2} className="overflow-visible">
+                <Card className="shadow-lg relative bg-drake-dark text-white border-2 border-drake-gold h-full">
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                   <span className="bg-drake-gold text-drake-dark px-4 py-1.5 rounded-full text-sm font-semibold inline-flex items-center gap-1.5">
                     <Star className="w-4 h-4 fill-current" />
