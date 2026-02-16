@@ -59,7 +59,7 @@ const Pricing = () => {
           <div className="container mx-auto px-4">
             {/* Trust Signal - Above Reset Week Card */}
             <AnimatedSection animation="fadeIn" className="text-center mb-8">
-              <GoogleReviewsBadge variant="compact" />
+              <GoogleReviewsBadge variant="micro" />
             </AnimatedSection>
             
             <AnimatedSection animation="scaleIn" delay={0.1} className="max-w-4xl mx-auto">
@@ -79,7 +79,11 @@ const Pricing = () => {
                   <ul className="space-y-3 mb-8">
                     <li className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-primary" />
-                      <span className="text-foreground">Unlimited classes for 7 days</span>
+                      <span className="text-foreground">7 days of unlimited classes</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle2 className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-primary" />
+                      <span className="text-foreground">All class types: Foundation Flow, KB Strong, Mobility Reset & more</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-primary" />
@@ -87,7 +91,11 @@ const Pricing = () => {
                     </li>
                     <li className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-primary" />
-                      <span className="text-foreground">Go at your own pace</span>
+                      <span className="text-foreground">Go at your own pace — no pressure to keep up</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle2 className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-primary" />
+                      <span className="text-foreground">No commitment required</span>
                     </li>
                   </ul>
                   <div className="flex flex-col sm:flex-row items-center gap-6">
@@ -445,13 +453,6 @@ const Pricing = () => {
               </table>
             </AnimatedSection>
             
-            {/* Trust Reinforcement - Below Table */}
-            <AnimatedSection animation="fadeIn" delay={0.3} className="text-center mt-10 mb-4">
-              <GoogleReviewsBadge variant="compact" />
-              <p className="text-sm text-muted-foreground mt-2">
-                Real people. Real results. No gimmicks.
-              </p>
-            </AnimatedSection>
             
             {/* Tier-Mapped Testimonials */}
             <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-10">
@@ -477,18 +478,14 @@ const Pricing = () => {
               </AnimatedSection>
             </div>
             
-            <p className="text-center text-muted-foreground mt-10">
-              Still unsure? <Link to="/reset-week" className="text-primary hover:text-primary/80 font-medium underline underline-offset-2">Start with the Reset Week</Link> — it's designed to help you decide with confidence.
-            </p>
           </div>
         </section>
 
         {/* REASSURANCE BLOCK */}
         <section className="py-12 md:py-16 bg-muted">
           <div className="container mx-auto px-4 text-center">
-            <p className="text-lg text-muted-foreground mb-6">
-              Not sure which option fits you?<br />
-              Start with the Reset Week—we'll help you choose after.
+            <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+              Not sure which option fits you? Try 7 days of unlimited classes for $50 — we'll help you decide which membership is right for your goals after your first week.
             </p>
             <Button asChild variant="outline" size="lg">
               <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
