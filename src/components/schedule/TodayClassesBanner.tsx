@@ -196,7 +196,7 @@ export function TodayClassesBanner() {
           </div>
 
           {/* CTA */}
-          <Button asChild size="sm" variant="outline" className="border-drake-gold/50 text-drake-gold hover:bg-drake-gold hover:text-drake-dark shrink-0 w-full md:w-auto">
+          <Button asChild size="sm" className="bg-primary hover:bg-primary/90 text-white shrink-0 w-full md:w-auto">
             <Link to="/schedule" className="inline-flex items-center gap-1.5">
               Full Schedule
               <ChevronRight className="w-4 h-4" />
