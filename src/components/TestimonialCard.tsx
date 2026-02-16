@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import testimonialBg from "@/assets/testimonial-group-training.jpg";
+import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
 
 interface TestimonialCardProps {
   quote: string;
@@ -65,6 +66,11 @@ const TestimonialCard = ({
                     <span key={i} className="text-drake-gold text-xl">★</span>
                   ))}
                 </div>
+              </div>
+              
+              {/* Google Reviews Badge */}
+              <div className="mt-6 flex justify-center">
+                <GoogleReviewsBadge variant="hero" />
               </div>
             </div>
           </div>

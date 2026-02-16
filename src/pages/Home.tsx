@@ -52,15 +52,12 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         bannerVisible={bannerVisible}
         fullViewport={true}
         eyebrow={
-        <div className="flex flex-col md:flex-row md:items-center items-start gap-2 md:gap-4">
           <span className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-white/80 bg-white/10 px-3 py-1 rounded-full">
             <MapPin className="w-3 h-3" />
             Avondale • West Ashley • Charleston
           </span>
-          <GoogleReviewsBadge variant="hero" />
-        </div>
-      } title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="Mobility-first functional strength training in Charleston, SC — coached by experts with 25+ years of experience helping real people move better, feel stronger, and build bodies that last." primaryCTA={{
-        text: "START RESET WEEK",
+      } title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="7-Day Mobility Reset Week — Unlimited Classes for $50. Start feeling the difference in just one week with small-group, mobility-first training at Drake Fitness in Avondale." primaryCTA={{
+        text: "Start Your Reset Week for $50",
         link: "https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219"
       }} backgroundImages={[heroImage1Desktop]} backgroundImagesMobile={[heroImage1Mobile]} autoRotate={false} />
 
