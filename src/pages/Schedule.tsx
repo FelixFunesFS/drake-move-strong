@@ -196,19 +196,6 @@ const Schedule = () => {
           </section>
         </AnimatedSection>
 
-        {/* Full-width Training Video */}
-        <AnimatedSection animation="fadeIn">
-          <section className="py-0 bg-drake-dark">
-            <div className="w-full">
-              <YouTubeEmbed
-                videoId="DZ_T9ROQlos"
-                title="Drake Fitness Training Experience"
-                className="w-full aspect-video rounded-none"
-              />
-            </div>
-          </section>
-        </AnimatedSection>
-
         <CTASection
           eyebrow="GET STARTED"
           title="Ready to Feel Stronger, Move Better, and Train Smarter?"
