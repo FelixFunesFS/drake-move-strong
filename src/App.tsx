@@ -54,7 +54,7 @@ const Ruckathon = lazy(() => import("./pages/Ruckathon"));
 
 // Service pages
 const LowImpactFitnessCharleston = lazy(() => import("./pages/services/LowImpactFitnessCharleston"));
-const MobilityFitnessAvondale = lazy(() => import("./pages/services/MobilityFitnessAvondale"));
+
 const StrengthTrainingCharleston = lazy(() => import("./pages/services/StrengthTrainingCharleston"));
 const WestAshleyFitness = lazy(() => import("./pages/services/WestAshleyFitness"));
 const ResetWeekCharleston = lazy(() => import("./pages/services/ResetWeekCharleston"));
@@ -172,7 +172,7 @@ const AppLayout = () => {
             
             {/* Local SEO Service Pages */}
             <Route path="/low-impact-fitness-charleston" element={<LowImpactFitnessCharleston />} />
-            <Route path="/mobility-fitness-avondale" element={<MobilityFitnessAvondale />} />
+            <Route path="/mobility-fitness-avondale" element={<Navigate to="/schedule" replace />} />
             <Route path="/strength-training-charleston" element={<StrengthTrainingCharleston />} />
             <Route path="/west-ashley-fitness" element={<WestAshleyFitness />} />
             <Route path="/reset-week-charleston" element={<ResetWeekCharleston />} />

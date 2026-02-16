@@ -264,10 +264,6 @@ const Coaching = () => {
                 <div className="rounded-lg p-4 bg-[drake-teal-light] bg-gray-100">
                   <p className="text-sm mb-3 text-center text-secondary-foreground">Looking for a specific focus?</p>
                   <div className="flex flex-wrap justify-center gap-3">
-                    <Link to="/mobility-fitness-avondale" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
-                      Mobility Training
-                    </Link>
-                    <span className="text-muted-foreground">•</span>
                     <Link to="/low-impact-fitness-charleston" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
                       Joint-Friendly Fitness
                     </Link>

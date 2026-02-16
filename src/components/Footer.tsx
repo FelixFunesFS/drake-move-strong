@@ -40,7 +40,7 @@ const Footer = () => {
           <div>
             <h3 className="font-hero font-bold text-lg mb-4 text-accent uppercase">Services</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/mobility-fitness-avondale" className="text-gray-300 hover:text-drake-gold transition-colors">Mobility Training</Link></li>
+              <li><Link to="/low-impact-fitness-charleston" className="text-gray-300 hover:text-drake-gold transition-colors">Low-Impact Fitness</Link></li>
               <li><Link to="/strength-training-charleston" className="text-gray-300 hover:text-drake-gold transition-colors">Strength Training</Link></li>
               <li><Link to="/west-ashley-fitness" className="text-gray-300 hover:text-drake-gold transition-colors">West Ashley Fitness</Link></li>
               <li><Link to="/reset-week-charleston" className="text-gray-300 hover:text-drake-gold transition-colors">Reset Week Charleston</Link></li>

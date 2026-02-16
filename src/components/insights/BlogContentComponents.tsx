@@ -547,7 +547,7 @@ export const MobilityVsFlexibilityContent = () => {
       <div className="bg-drake-gold/10 border-l-4 border-drake-gold p-8 rounded-r-2xl mb-16">
         <h3 className="font-hero text-xl font-bold text-foreground mb-4 uppercase">Why This Matters for Charleston Residents</h3>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          Whether you spend your day at a desk in downtown Charleston, stand for long shifts in the service industry, or enjoy the active lifestyle our area offers—from paddleboarding to hiking—mobility is what determines how you feel afterward. Our <Link to="/mobility-fitness-avondale" className="text-primary font-semibold hover:underline">Avondale studio</Link> specializes in building the active control you need for pain-free movement in real life.
+          Whether you spend your day at a desk in downtown Charleston, stand for long shifts in the service industry, or enjoy the active lifestyle our area offers—from paddleboarding to hiking—mobility is what determines how you feel afterward. Our <Link to="/west-ashley-fitness" className="text-primary font-semibold hover:underline">Avondale studio</Link> specializes in building the active control you need for pain-free movement in real life.
         </p>
       </div>
 

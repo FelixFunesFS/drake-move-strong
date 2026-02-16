@@ -525,9 +525,6 @@ const Pricing = () => {
             <AnimatedSection animation="fadeIn" delay={0.2} className="mt-12 text-center max-w-3xl mx-auto">
                 <p className="text-gray-400 mb-4">Learn more about our specialized programs:</p>
                 <div className="flex flex-wrap justify-center gap-4">
-                  <Link to="/mobility-fitness-avondale" className="text-drake-gold hover:text-drake-gold/80 underline underline-offset-2">
-                    Mobility Training
-                  </Link>
                   <Link to="/strength-training-charleston" className="text-drake-gold hover:text-drake-gold/80 underline underline-offset-2">
                     Strength Training
                   </Link>
