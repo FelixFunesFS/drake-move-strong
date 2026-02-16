@@ -1,38 +1,55 @@
 
 
-# Fix Longevity Unlimited "Best Value" Badge Cropping and Card Sizing
+# Add Reset Week Purchase Card with Smooth Scroll on Home Page
 
-## Problem
+## Strategy
 
-The "Best Value" badge on the Longevity Unlimited card is cropped because:
-- The badge is positioned with `absolute -top-4` (16px above the card edge)
-- The card itself shifts up with `md:-translate-y-2` (8px)
-- The parent grid container has no extra space (overflow or padding) to accommodate this
+Instead of duplicating pricing info across multiple sections, convert the hero CTA into a smooth scroll that lands on an enhanced "START HERE" section. This keeps visitors on-site longer, gives them the "what's included" context, and then sends them to PunchPass with confidence.
 
-Additionally, the `-translate-y-2` on the right card makes the two cards visually uneven in height.
+## Changes (1 file: `src/pages/Home.tsx`)
 
-## Fix (1 file: `src/pages/Pricing.tsx`)
+### 1. Hero CTA becomes a smooth scroll anchor
 
-### 1. Add overflow-visible and top padding to the grid container (line 135)
-Change the grid wrapper from:
-```
-grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto
-```
-to:
-```
-grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto pt-6 overflow-visible
-```
+Change the hero `primaryCTA` from linking directly to PunchPass to scrolling down to `#reset-week`. This keeps the visitor on the page and builds intent before the external checkout.
 
-The `pt-6` gives the badge room to render above the card. The `overflow-visible` ensures nothing clips it.
+The hero subtitle already says "7-Day Mobility Reset Week: Unlimited Classes for $50" so visitors know the price before scrolling.
 
-### 2. Remove the upward shift from the Longevity card (line 186)
-Remove `md:-translate-y-2` from the card's className. This was making the right card sit higher than the left card and contributing to the badge being cropped. Both cards will now align at the same top edge, and `h-full` on both cards already ensures they match height within the grid.
+### 2. Add `id="reset-week"` to the START HERE section
 
-### 3. Ensure the AnimatedSection wrapper allows overflow (line 185)
-Add `overflow-visible` to the AnimatedSection wrapping the Longevity card so the badge isn't clipped by the animation container.
+Add the anchor target to the existing START HERE section container so the smooth scroll lands there.
 
-## Result
-- Badge fully visible above the card
-- Both cards aligned and equal height
-- Fully responsive -- `pt-6` scales well on all screens
+### 3. Replace the simple "Start Reset Week -- $50" button with a Reset Week purchase card
+
+Inside the START HERE section, after the bullet list and "No experience needed" text, replace the single button with a compact purchase card containing:
+
+- **Price callout**: "$50" large, "for 7 days" beside it
+- **What's included** (compact list, reusing the details from Pricing page):
+  - 7 days of unlimited classes
+  - All class types: Foundation Flow, KB Strong, Mobility Reset, and more
+  - Expert, joint-friendly coaching
+  - No commitment required
+- **Purchase button**: "Start Your Reset Week" linking to PunchPass (external)
+
+This card sits naturally inside the existing START HERE layout -- no new sections, no extra scroll depth.
+
+### 4. Add smooth scroll CSS
+
+Add `scroll-behavior: smooth` to the html element (via index.css) and a small scroll-margin-top on the target section to account for the fixed nav.
+
+## What stays the same
+
+- The Method step 1 still says "Try 7 days of unlimited classes for just $50" (reinforcement, not redundancy -- it's in a different visual context)
+- The final CTA at the bottom still links directly to PunchPass (for visitors who scroll all the way down and are ready)
+- The START HERE bullet list and image remain unchanged
+
+## Technical Details
+
+| Area | Detail |
+|---|---|
+| Hero CTA link | Changes from PunchPass URL to `#reset-week` |
+| Hero CTA behavior | Uses an `<a href="#reset-week">` with native smooth scroll |
+| START HERE section | Gets `id="reset-week"` and `scroll-mt-20` for nav offset |
+| New purchase card | Compact card inside existing grid, no new section |
+| CSS | `scroll-behavior: smooth` added to `html` in `index.css` |
+| Files changed | `src/pages/Home.tsx`, `src/index.css` |
 
