@@ -1,4 +1,3 @@
-import Hero from "@/components/Hero";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -12,7 +11,6 @@ import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { GoogleMapEmbed } from "@/components/GoogleMapEmbed";
 import AnimatedSection from "@/components/AnimatedSection";
 import { supabase } from "@/integrations/supabase/client";
-import contactHeroClass from "@/assets/contact-hero-class-turkish-getup.jpg";
 import davidStorefrontPortrait from "@/assets/david-kettlebell-storefront-portrait.jpg";
 
 const Contact = () => {
@@ -80,106 +78,16 @@ const Contact = () => {
       />
       
       <main>
-        <Hero
-          eyebrow="GET IN TOUCH"
-          title="We'd Love to Help You Move Better"
-          subtitle="Have questions about our classes, membership, or personal training? Fill out the form below and we'll reach out within 24 hours."
-          backgroundImages={[contactHeroClass]}
-        />
-
-        {/* Find Us Section - Map-Centric with ALL contact details */}
-        <section className="py-16 md:py-24 bg-secondary">
-          <div className="container mx-auto px-4">
-            <AnimatedSection animation="fadeInUp" className="text-center mb-12">
-              <p className="section-eyebrow text-primary">FIND US</p>
-              <h2 className="font-hero text-3xl md:text-4xl font-bold uppercase">
-                Visit <span className="text-primary">Drake Fitness</span>
-              </h2>
-              <p className="text-muted-foreground mt-4">Located in the heart of Avondale, West Ashley</p>
-            </AnimatedSection>
-            
-            <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {/* Map Embed */}
-              <AnimatedSection animation="slideInLeft" delay={0.1}>
-                <GoogleMapEmbed height="400px" className="lg:h-full lg:min-h-[450px]" />
-              </AnimatedSection>
-              
-              {/* Contact Details Card - Consolidated */}
-              <AnimatedSection animation="slideInRight" delay={0.2}>
-                <div className="bg-background p-8 rounded-2xl flex flex-col justify-center shadow-lg h-full">
-                <h3 className="font-hero text-2xl font-bold mb-6 uppercase">Contact Details</h3>
-                <div className="space-y-4">
-                  {/* Address */}
-                  <div className="flex items-start gap-3">
-                    <MapPin className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
-                    <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                      2 Avondale Ave<br />Charleston, SC 29407
-                    </a>
-                  </div>
-                  
-                  {/* Email */}
-                  <div className="flex items-center gap-3">
-                    <Mail className="text-primary h-5 w-5 flex-shrink-0" />
-                    <a href="mailto:david@drake.fitness" className="hover:text-primary transition-colors">
-                      david@drake.fitness
-                    </a>
-                  </div>
-                  
-                  {/* Phone */}
-                  <div className="flex items-center gap-3">
-                    <Phone className="text-primary h-5 w-5 flex-shrink-0" />
-                    <a href="tel:8438175420" className="hover:text-primary transition-colors">
-                      (843) 817-5420
-                    </a>
-                  </div>
-                  
-                  {/* Hours */}
-                  <div className="flex items-center gap-3">
-                    <Clock className="text-primary h-5 w-5 flex-shrink-0" />
-                    <span>Mon-Fri: 5:30 AM - 7:00 PM</span>
-                  </div>
-                  
-                  {/* Parking */}
-                  <div className="flex items-center gap-3">
-                    <Car className="text-primary h-5 w-5 flex-shrink-0" />
-                    <span>Free on-site parking</span>
-                  </div>
-                </div>
-                
-                {/* Social Links */}
-                <div className="mt-6 pt-6 border-t border-border">
-                  <p className="text-sm font-semibold mb-3 text-muted-foreground">Follow Us</p>
-                  <div className="flex gap-4">
-                    <a href="https://www.instagram.com/drakefitnesschs/" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors" aria-label="Instagram">
-                      <Instagram size={22} />
-                    </a>
-                    <a href="https://www.facebook.com/profile.php?id=100063722011333" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors" aria-label="Facebook">
-                      <Facebook size={22} />
-                    </a>
-                    <a href="https://www.youtube.com/@Drakefitness" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors" aria-label="YouTube">
-                      <Youtube size={22} />
-                    </a>
-                  </div>
-                </div>
-                
-                {/* CTA Buttons */}
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <Button asChild>
-                    <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer">
-                      <Navigation className="mr-2 h-4 w-4" />
-                      Get Directions
-                    </a>
-                  </Button>
-                  <Button asChild variant="outline">
-                    <a href="tel:8438175420">
-                      <Phone className="mr-2 h-4 w-4" />
-                      Call Us
-                    </a>
-                  </Button>
-                </div>
-                </div>
-              </AnimatedSection>
-            </div>
+        {/* Condensed Header */}
+        <section className="bg-drake-dark py-16 md:py-20">
+          <div className="container mx-auto px-4 text-center">
+            <p className="section-eyebrow text-drake-gold mb-2 md:mb-4">GET IN TOUCH</p>
+            <h1 className="font-hero text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-tighter leading-[0.95] mb-3 md:mb-5">
+              We'd Love to Help You Move Better
+            </h1>
+            <p className="text-sm sm:text-base md:text-lg text-gray-200 leading-relaxed max-w-xl mx-auto">
+              Have questions about our classes, membership, or personal training? Fill out the form below and we'll reach out within 24 hours.
+            </p>
           </div>
         </section>
 
@@ -197,7 +105,6 @@ const Contact = () => {
                     className="w-full h-auto object-cover"
                   />
                 </div>
-                {/* Decorative accent */}
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full -z-10" />
               </AnimatedSection>
               
@@ -303,6 +210,87 @@ const Contact = () => {
                 </div>
               </AnimatedSection>
               
+            </div>
+          </div>
+        </section>
+
+        {/* Find Us Section - Map-Centric with ALL contact details */}
+        <section className="py-16 md:py-24 bg-secondary">
+          <div className="container mx-auto px-4">
+            <AnimatedSection animation="fadeInUp" className="text-center mb-12">
+              <p className="section-eyebrow text-primary">FIND US</p>
+              <h2 className="font-hero text-3xl md:text-4xl font-bold uppercase">
+                Visit <span className="text-primary">Drake Fitness</span>
+              </h2>
+              <p className="text-muted-foreground mt-4">Located in the heart of Avondale, West Ashley</p>
+            </AnimatedSection>
+            
+            <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              <AnimatedSection animation="slideInLeft" delay={0.1}>
+                <GoogleMapEmbed height="400px" className="lg:h-full lg:min-h-[450px]" />
+              </AnimatedSection>
+              
+              <AnimatedSection animation="slideInRight" delay={0.2}>
+                <div className="bg-background p-8 rounded-2xl flex flex-col justify-center shadow-lg h-full">
+                <h3 className="font-hero text-2xl font-bold mb-6 uppercase">Contact Details</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
+                    <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                      2 Avondale Ave<br />Charleston, SC 29407
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Mail className="text-primary h-5 w-5 flex-shrink-0" />
+                    <a href="mailto:david@drake.fitness" className="hover:text-primary transition-colors">
+                      david@drake.fitness
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Phone className="text-primary h-5 w-5 flex-shrink-0" />
+                    <a href="tel:8438175420" className="hover:text-primary transition-colors">
+                      (843) 817-5420
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Clock className="text-primary h-5 w-5 flex-shrink-0" />
+                    <span>Mon-Fri: 5:30 AM - 7:00 PM</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Car className="text-primary h-5 w-5 flex-shrink-0" />
+                    <span>Free on-site parking</span>
+                  </div>
+                </div>
+                <div className="mt-6 pt-6 border-t border-border">
+                  <p className="text-sm font-semibold mb-3 text-muted-foreground">Follow Us</p>
+                  <div className="flex gap-4">
+                    <a href="https://www.instagram.com/drakefitnesschs/" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors" aria-label="Instagram">
+                      <Instagram size={22} />
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=100063722011333" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors" aria-label="Facebook">
+                      <Facebook size={22} />
+                    </a>
+                    <a href="https://www.youtube.com/@Drakefitness" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors" aria-label="YouTube">
+                      <Youtube size={22} />
+                    </a>
+                  </div>
+                </div>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Button asChild>
+                    <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer">
+                      <Navigation className="mr-2 h-4 w-4" />
+                      Get Directions
+                    </a>
+                  </Button>
+                  <Button asChild variant="outline">
+                    <a href="tel:8438175420">
+                      <Phone className="mr-2 h-4 w-4" />
+                      Call Us
+                    </a>
+                  </Button>
+                </div>
+                </div>
+              </AnimatedSection>
             </div>
           </div>
         </section>
