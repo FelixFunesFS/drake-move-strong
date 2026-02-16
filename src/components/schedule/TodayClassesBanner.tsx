@@ -26,6 +26,7 @@ export function TodayClassesBanner() {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [selectedClass, setSelectedClass] = useState<ScheduleClass | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [isTomorrow, setIsTomorrow] = useState(false);
 
   const handleClassClick = (classItem: ScheduleClass) => {
     setSelectedClass(classItem);
@@ -34,8 +35,8 @@ export function TodayClassesBanner() {
 
   const fetchTodayClasses = async () => {
     try {
-      const today = new Date().toISOString().split('T')[0];
       const now = new Date();
+      const today = now.toISOString().split('T')[0];
       const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:00`;
 
       // Lazy load Supabase to reduce initial bundle
@@ -53,7 +54,31 @@ export function TodayClassesBanner() {
         return;
       }
 
-      setClasses(data || []);
+      if (data && data.length > 0) {
+        setClasses(data);
+        setIsTomorrow(false);
+      } else {
+        // Fallback: fetch tomorrow's classes
+        const tomorrow = new Date(now);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const tomorrowDate = tomorrow.toISOString().split('T')[0];
+
+        const { data: tomorrowData, error: tomorrowError } = await supabase
+          .from('punchpass_schedule')
+          .select('*')
+          .eq('class_date', tomorrowDate)
+          .order('start_time', { ascending: true })
+          .limit(3);
+
+        if (tomorrowError) {
+          console.error('Error fetching tomorrow classes:', tomorrowError);
+          setClasses([]);
+        } else {
+          setClasses(tomorrowData || []);
+          setIsTomorrow(true);
+        }
+      }
+
       setLastUpdated(new Date());
     } catch (error) {
       console.error('Error fetching today classes:', error);
@@ -113,7 +138,7 @@ export function TodayClassesBanner() {
           <div className="flex items-center justify-center gap-2">
             <Calendar className="w-4 h-4 md:w-5 md:h-5 text-drake-gold" />
             <span className="text-sm md:text-base text-white/70">
-              No more classes today — <Link to="/schedule" className="text-drake-gold hover:underline">see tomorrow's schedule</Link>
+              No upcoming classes — <Link to="/schedule" className="text-drake-gold hover:underline">see the full schedule</Link>
             </span>
           </div>
         </div>
@@ -129,7 +154,7 @@ export function TodayClassesBanner() {
           <div className="flex items-center gap-2 shrink-0">
             <Calendar className="w-4 h-4 md:w-5 md:h-5 text-drake-gold" />
             <span className="text-sm md:text-base font-semibold text-white uppercase tracking-wide">
-              Today's Classes
+              {isTomorrow ? "Tomorrow's Classes" : "Today's Classes"}
             </span>
           </div>
 
