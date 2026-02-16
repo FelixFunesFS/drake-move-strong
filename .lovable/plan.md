@@ -1,61 +1,35 @@
 
-# Contact Page Restructure and Zoom Class Filtering
+# Pricing Page Cleanup and Reset Week Enhancement
 
-## Changes Overview
+## Changes (all in `src/pages/Pricing.tsx` unless noted)
 
-Three changes across two files:
+### 1. Keep Google Reviews badge above Reset Week -- remove only the arrow icon
+Above the Reset Week card (lines 61-63), keep the `GoogleReviewsBadge` but switch from `variant="compact"` (which includes an `ExternalLink` arrow) to `variant="micro"`. The micro variant shows the star rating and "Google-rated in Charleston" text without the arrow icon.
 
----
+**Alternative (if micro isn't the right look):** Replace the badge with inline stars + text directly, giving full control over what appears -- 5 gold stars, "5.0 on Google", no arrow, still a clickable link.
 
-## 1. Filter Zoom Classes from TodayClassesBanner (Home Page)
+### 2. Remove Google Reviews badge, "Real people" text, and "Still unsure?" text below comparison table (lines 448-482)
+Delete these three elements after the testimonial quotes:
+- The `GoogleReviewsBadge` compact variant (line 450)
+- "Real people. Real results. No gimmicks." (lines 451-453)
+- "Still unsure? Start with the Reset Week..." paragraph (lines 480-482)
 
-**File:** `src/components/schedule/TodayClassesBanner.tsx`
+### 3. Enhance the Movement Reset Week card with additional "What's Included" details
+Expand the existing 3-item benefit list (lines 79-91) to clearly show what's included:
+- 7 days of unlimited classes (already there)
+- All class types: Foundation Flow, KB Strong, Mobility Reset, and more
+- Movement-first, joint-friendly coaching (already there)
+- Go at your own pace -- no pressure to keep up (already there, slightly expanded)
+- No commitment required
 
-The `TodayClassesBanner` component (the dark bar showing today's/tomorrow's classes) currently displays all classes including Zoom classes. Add a filter to exclude classes where `is_online` is `true`.
+### 4. Update Reassurance Block text (lines 489-491)
+Change the text to include the offer detail:
+> "Not sure which option fits you? Try 7 days of unlimited classes for $50 -- we'll help you decide which membership is right for your goals after your first week."
 
-**How:** Add `.eq('is_online', false)` to both Supabase queries (today's classes at ~line 47, and the tomorrow fallback at ~line 68). This filters at the database level so we don't waste query slots on classes we won't show.
+### 5. Clean up unused imports
+If `GoogleReviewsBadge` is only used once (above Reset Week) after removing the second instance, keep the import. If fully removed, delete the import.
 
----
-
-## 2. Contact Page: Replace Full Hero with Condensed Header
-
-**File:** `src/pages/Contact.tsx`
-
-Remove the full `<Hero>` component (lines 83-88) and replace it with a compact, responsive page header -- a dark strip with the eyebrow, title, and subtitle text. This eliminates the large hero image on the contact page, saving load time and getting visitors to the form/map faster.
-
-The condensed header will be:
-- A `bg-drake-dark` section with responsive vertical padding (`py-16 md:py-20`)
-- Same text content (eyebrow, title, subtitle) styled consistently with the Hero component
-- Fully responsive -- stacks naturally on mobile
-- No background image, no import needed for `contactHeroClass`
-
----
-
-## 3. Contact Page: Swap "Find Us" and "Send a Message" Sections
-
-**File:** `src/pages/Contact.tsx`
-
-Move the "Send a Message" form section (currently lines 186-308) above the "Find Us" map section (currently lines 90-184). The new order will be:
-
-1. Condensed header (new)
-2. Send a Message (contact form with David portrait)
-3. Find Us (map + contact details)
-4. FAQ section (unchanged)
-
-This puts the primary action (sending a message) first, which is better for conversion.
-
----
-
-## Responsiveness Considerations
-
-- The condensed header uses tiered text sizing (`text-3xl` to `text-5xl`) and responsive padding
-- Both the form and map sections already use `grid lg:grid-cols-2` with single-column stacking on mobile -- no changes needed
-- The David portrait is already `hidden lg:block` so it only shows on desktop
-- No layout shifts or fixed heights to worry about
-
-## Technical Summary
-
-| File | Change |
-|---|---|
-| `TodayClassesBanner.tsx` | Add `.eq('is_online', false)` to both queries |
-| `Contact.tsx` | Replace Hero with condensed header, swap form and map section order, remove unused hero image import |
+## Summary
+- **File:** `src/pages/Pricing.tsx` (1 file)
+- **File:** `src/components/GoogleReviewsBadge.tsx` -- no changes needed; the `micro` variant already omits the arrow
+- **Net effect:** Cleaner page, stronger Reset Week card, star rating kept above Reset Week without the distracting arrow icon
