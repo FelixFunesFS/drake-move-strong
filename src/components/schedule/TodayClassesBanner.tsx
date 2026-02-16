@@ -45,6 +45,7 @@ export function TodayClassesBanner() {
         .from('punchpass_schedule')
         .select('*')
         .eq('class_date', today)
+        .eq('is_online', false)
         .gte('start_time', currentTime)
         .order('start_time', { ascending: true })
         .limit(3);
@@ -66,8 +67,9 @@ export function TodayClassesBanner() {
         const { data: tomorrowData, error: tomorrowError } = await supabase
           .from('punchpass_schedule')
           .select('*')
-          .eq('class_date', tomorrowDate)
-          .order('start_time', { ascending: true })
+        .eq('class_date', tomorrowDate)
+        .eq('is_online', false)
+        .order('start_time', { ascending: true })
           .limit(3);
 
         if (tomorrowError) {
