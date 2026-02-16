@@ -350,7 +350,7 @@ const Pricing = () => {
                     </span>
                   </div>
                   <div className="mt-2">
-                    <span className="text-2xl font-bold text-foreground">$200</span>
+                    <span className="text-2xl font-bold text-foreground">$350</span>
                     <span className="text-sm text-muted-foreground"> one-time</span>
                   </div>
                 </CardHeader>

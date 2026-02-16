@@ -67,7 +67,7 @@ const FAQ = () => {
         },
         {
           q: "Do you offer drop-ins?",
-          a: "Yes. Drop-in classes are $30 per session. We also offer a 10-Pack Flex Pass ($300) that's valid for 6 months, perfect for irregular schedules.",
+          a: "Yes. Drop-in classes are $40 per session. We also offer a 10-Pack Flex Pass ($350) that's valid for 6 months, perfect for irregular schedules.",
         },
       ],
     },
