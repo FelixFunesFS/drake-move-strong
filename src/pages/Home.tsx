@@ -167,9 +167,14 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         <TrustStatsBar variant="horizontal" stats={['sessions', 'charlestonians', 'experience', 'rating']} className="border-y border-border" />
       </AnimatedSection>
 
-      {/* Testimonial Hero */}
+      {/* Testimonial Carousel */}
       <AnimatedSection animation="fadeInUp">
-        <TestimonialCard quote={FEATURED_REVIEWS[0].quote} author={FEATURED_REVIEWS[0].name} result={FEATURED_REVIEWS[0].result} />
+        <TestimonialCard testimonials={[
+          ...FEATURED_REVIEWS.map(r => ({ quote: r.quote, author: r.name, result: r.result })),
+          { quote: "I'm stronger in my 40s than ever before… His knowledge and adaptability have made a significant impact.", author: "Aaron Q.", result: "Stronger than ever at 40+" },
+          { quote: "The coaches are incredibly attentive, they watch your form, make adjustments, and explain why certain movements matter.", author: "Felix F." },
+          { quote: "Better than any physical therapist or personal trainer I've ever had.", author: "Cara S.", result: "Expert coaching" },
+        ]} />
       </AnimatedSection>
 
       {/* Community + Reasons Section */}
@@ -228,49 +233,6 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         </div>
       </section>
 
-      {/* RESULTS */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <AnimatedSection animation="fadeInUp">
-            <p className="section-eyebrow text-primary text-center">RESULTS</p>
-            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-              Real People. <span className="text-primary">Real Results.</span>
-            </h2>
-          </AnimatedSection>
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-12">
-            {[{
-              quote: "I'm stronger in my 40s than ever before… His knowledge and adaptability have made a significant impact.",
-              author: "Aaron Q.",
-              rating: 5
-            }, {
-              quote: "The coaches are incredibly attentive, they watch your form, make adjustments, and explain why certain movements matter.",
-              author: "Felix F.",
-              rating: 5
-            }, {
-              quote: "Better than any physical therapist or personal trainer I've ever had.",
-              author: "Cara S.",
-              rating: 5
-            }].map((testimonial, index) => (
-              <AnimatedSection key={index} animation="fadeInUp" delay={getStaggerDelay(index)}>
-                <div className="bg-white p-6 rounded-lg shadow-card border border-border h-full">
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => <span key={i} className="text-drake-gold text-xl">★</span>)}
-                  </div>
-                  <p className="text-lg mb-4 italic">"{testimonial.quote}"</p>
-                  <p className="font-semibold">— {testimonial.author}</p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-          <AnimatedSection animation="fadeInUp" delay={0.3}>
-            <div className="text-center mt-8">
-              <Button asChild size="lg" variant="outline">
-                <Link to="/success-stories">See More Success Stories</Link>
-              </Button>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
 
 
       {/* Longevity Block - Before Final CTA */}
