@@ -47,7 +47,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
           </span>
       } title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="7-Day Mobility Reset Week: Unlimited Classes for $50. Start feeling the difference with small-group, mobility-first training at Drake Fitness in Avondale." primaryCTA={{
         text: "Start Your Reset Week for $50",
-        link: "https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219"
+        link: "#reset-week"
       }} backgroundImages={[heroImage1Desktop]} backgroundImagesMobile={[heroImage1Mobile]} autoRotate={false} />
 
       {/* Brand Values Marquee */}
@@ -64,7 +64,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       <TodayClassesBanner />
 
       {/* START HERE - Moved up after Today's Classes */}
-      <section className="py-16 md:py-24 bg-muted">
+      <section id="reset-week" className="py-16 md:py-24 bg-muted scroll-mt-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto bg-white rounded-none shadow-lg overflow-hidden">
             <div className="grid md:grid-cols-2">
@@ -84,9 +84,29 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                 <p className="text-base font-semibold mb-6">
                   No experience needed. No pressure. Just expert guidance.
                 </p>
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90 w-full md:w-auto text-balance">
-                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer" className="text-center">Start Reset Week — $50</a>
-                </Button>
+                {/* Reset Week Purchase Card */}
+                <div className="bg-muted border border-border rounded-xl p-6">
+                  <div className="flex items-baseline gap-2 mb-4">
+                    <span className="text-4xl font-hero font-bold text-primary">$50</span>
+                    <span className="text-muted-foreground text-lg">for 7 days</span>
+                  </div>
+                  <ul className="space-y-2 mb-6 text-sm">
+                    {[
+                      "7 days of unlimited classes",
+                      "All class types: Foundation Flow, KB Strong, Mobility Reset & more",
+                      "Expert, joint-friendly coaching",
+                      "No commitment required"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button asChild size="lg" className="w-full">
+                    <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer" className="text-center">Start Your Reset Week</a>
+                  </Button>
+                </div>
               </AnimatedSection>
               <AnimatedSection animation="slideInRight" delay={0.1} className="relative h-full min-h-[400px] md:min-h-[600px]">
                 <OptimizedImage src={startHereImage} alt="Personal coaching session at Drake Fitness" className="h-full w-full" aspectRatio="auto" />
