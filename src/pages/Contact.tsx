@@ -52,7 +52,7 @@ const Contact = () => {
       const body = encodeURIComponent(
         `Name: ${formData.firstName} ${formData.lastName}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'Not provided'}\nInterest: ${formData.interest || 'Not specified'}\n\nMessage:\n${formData.message}`
       );
-      window.location.href = `mailto:ddrake311@gmail.com?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:david@drake.fitness?subject=${subject}&body=${body}`;
       
       toast.success("Thanks for reaching out! Your email client should open shortly.");
       setFormData({
@@ -120,8 +120,8 @@ const Contact = () => {
                   {/* Email */}
                   <div className="flex items-center gap-3">
                     <Mail className="text-primary h-5 w-5 flex-shrink-0" />
-                    <a href="mailto:ddrake311@gmail.com" className="hover:text-primary transition-colors">
-                      ddrake311@gmail.com
+                    <a href="mailto:david@drake.fitness" className="hover:text-primary transition-colors">
+                      david@drake.fitness
                     </a>
                   </div>
                   

@@ -77,59 +77,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       {/* Today's Classes Banner - After Marquee on all devices */}
       <TodayClassesBanner />
 
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <AnimatedSection animation="scaleIn" delay={0.2} className="relative overflow-hidden rounded-lg">
-              <OptimizedImage src={outdoorTraining} alt="Group goblet squat training at Drake Fitness studio" className="shadow-2xl w-full" aspectRatio="square" transparent={true} hideLoadingPlaceholder={true} sizes="(max-width: 768px) 100vw, 580px" width={768} height={768} />
-              <div className="absolute inset-0 bg-gradient-to-t from-drake-dark/90 via-drake-dark/50 to-transparent flex items-end p-6 md:p-8">
-                <p className="font-hero text-white md:text-2xl font-bold leading-tight text-base">"NOT JUST A GYM. A <span className="text-drake-gold">MOVEMENT</span> STUDIO."</p>
-              </div>
-            </AnimatedSection>
-            <AnimatedSection animation="fadeInUp" delay={0.1}>
-              <p className="section-eyebrow text-primary">WHO WE ARE</p>
-              <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase">
-                Charleston's <span className="text-primary">Mobility-First</span> Fitness Studio
-              </h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                Drake Fitness helps adults build strong, mobile, pain-free bodies through a proven blend of <Link to="/mobility-fitness-avondale" className="text-primary underline underline-offset-2 hover:text-primary/80">mobility training</Link>, <Link to="/strength-training-charleston" className="text-primary underline underline-offset-2 hover:text-primary/80">functional strength</Link>, corrective exercise, and expert coaching.
-              </p>
-              <p className="text-lg text-muted-foreground mb-6">
-                Every session is led by <strong>David Drake</strong> or <strong>Coach Nick</strong>, using a science-based method that improves how your body moves, how it feels, and how it performs — not just in the gym, but in daily life. Explore our <Link to="/schedule" className="text-primary underline underline-offset-2 hover:text-primary/80">group classes</Link> or <Link to="/coaching" className="text-primary underline underline-offset-2 hover:text-primary/80">personal training</Link> options.
-              </p>
-              <div className="border-l-4 border-drake-gold bg-drake-gold/10 p-6 rounded-r-lg mb-6">
-                <p className="text-lg text-foreground font-semibold">Our Mission</p>
-                <p className="text-base text-foreground italic">Build bodies that move well, feel great, and last a lifetime.</p>
-              </div>
-              <Button asChild size="lg" className="mt-6 bg-primary hover:bg-primary/90 whitespace-nowrap">
-                <Link to="/about">Meet the Team</Link>
-              </Button>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Stats Bar - After Who We Are */}
-      <AnimatedSection animation="fadeInUp">
-        <TrustStatsBar variant="horizontal" stats={['sessions', 'charlestonians', 'experience', 'rating']} className="border-y border-border" />
-      </AnimatedSection>
-
-      {/* Testimonial Hero - After Trust Stats */}
-      <AnimatedSection animation="fadeInUp">
-        <TestimonialCard quote={FEATURED_REVIEWS[0].quote} author={FEATURED_REVIEWS[0].name} result={FEATURED_REVIEWS[0].result} />
-      </AnimatedSection>
-
-      {/* Community + 5 Reasons Combined Section */}
-      <CommunityReasonsSection
-        images={{
-          communityGroupPhoto: communityGroupPhotoNew,
-          turkishGetup: communityTurkishGetupClass,
-          kettlebellRack: communityKettlebellRackPair,
-          overheadPress: groupOverheadPressClass,
-          plankRows: communityPlankRowsKettlebells,
-        }}
-      />
-
+      {/* START HERE - Moved up after Today's Classes */}
       <section className="py-16 md:py-24 bg-muted">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto bg-white rounded-none shadow-lg overflow-hidden">
@@ -162,6 +110,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         </div>
       </section>
 
+      {/* THE METHOD - Moved up after START HERE */}
       <section className="relative py-16 md:py-24 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
@@ -227,6 +176,108 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         </div>
       </section>
 
+      {/* Trust Stats Bar */}
+      <AnimatedSection animation="fadeInUp">
+        <TrustStatsBar variant="horizontal" stats={['sessions', 'charlestonians', 'experience', 'rating']} className="border-y border-border" />
+      </AnimatedSection>
+
+      {/* Testimonial Hero */}
+      <AnimatedSection animation="fadeInUp">
+        <TestimonialCard quote={FEATURED_REVIEWS[0].quote} author={FEATURED_REVIEWS[0].name} result={FEATURED_REVIEWS[0].result} />
+      </AnimatedSection>
+
+      {/* Community + 5 Reasons Combined Section */}
+      <CommunityReasonsSection
+        images={{
+          communityGroupPhoto: communityGroupPhotoNew,
+          turkishGetup: communityTurkishGetupClass,
+          kettlebellRack: communityKettlebellRackPair,
+          overheadPress: groupOverheadPressClass,
+          plankRows: communityPlankRowsKettlebells,
+        }}
+      />
+
+      {/* WHO WE ARE - Moved before MEET THE TEAM */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <AnimatedSection animation="scaleIn" delay={0.2} className="relative overflow-hidden rounded-lg">
+              <OptimizedImage src={outdoorTraining} alt="Group goblet squat training at Drake Fitness studio" className="shadow-2xl w-full" aspectRatio="square" transparent={true} hideLoadingPlaceholder={true} sizes="(max-width: 768px) 100vw, 580px" width={768} height={768} />
+              <div className="absolute inset-0 bg-gradient-to-t from-drake-dark/90 via-drake-dark/50 to-transparent flex items-end p-6 md:p-8">
+                <p className="font-hero text-white md:text-2xl font-bold leading-tight text-base">"NOT JUST A GYM. A <span className="text-drake-gold">MOVEMENT</span> STUDIO."</p>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection animation="fadeInUp" delay={0.1}>
+              <p className="section-eyebrow text-primary">WHO WE ARE</p>
+              <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase">
+                Charleston's <span className="text-primary">Mobility-First</span> Fitness Studio
+              </h2>
+              <p className="text-lg text-muted-foreground mb-6">
+                Drake Fitness helps adults build strong, mobile, pain-free bodies through a proven blend of <Link to="/mobility-fitness-avondale" className="text-primary underline underline-offset-2 hover:text-primary/80">mobility training</Link>, <Link to="/strength-training-charleston" className="text-primary underline underline-offset-2 hover:text-primary/80">functional strength</Link>, corrective exercise, and expert coaching.
+              </p>
+              <p className="text-lg text-muted-foreground mb-6">
+                Every session is led by <strong>David Drake</strong> or <strong>Coach Nick</strong>, using a science-based method that improves how your body moves, how it feels, and how it performs — not just in the gym, but in daily life. Explore our <Link to="/schedule" className="text-primary underline underline-offset-2 hover:text-primary/80">group classes</Link> or <Link to="/coaching" className="text-primary underline underline-offset-2 hover:text-primary/80">personal training</Link> options.
+              </p>
+              <div className="border-l-4 border-drake-gold bg-drake-gold/10 p-6 rounded-r-lg mb-6">
+                <p className="text-lg text-foreground font-semibold">Our Mission</p>
+                <p className="text-base text-foreground italic">Build bodies that move well, feel great, and last a lifetime.</p>
+              </div>
+              <Button asChild size="lg" className="mt-6 bg-primary hover:bg-primary/90 whitespace-nowrap">
+                <Link to="/about">Meet the Team</Link>
+              </Button>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* MEET THE TEAM */}
+      <section className="py-16 md:py-24 bg-muted section-slant-top-reverse">
+        <div className="container mx-auto px-4">
+          <AnimatedSection animation="fadeInUp">
+            <p className="section-eyebrow text-primary text-center">MEET THE TEAM</p>
+            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+              Expert Coaches with <span className="text-primary">25+ Years Experience</span>
+            </h2>
+            <p className="text-xl text-center text-muted-foreground mb-12">
+              Experience, Expertise & Care
+            </p>
+          </AnimatedSection>
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <AnimatedSection animation="fadeInUp" delay={0.1}>
+              <div className="bg-gray-50 p-6 rounded-xl shadow-card hover:shadow-xl transition-shadow">
+                <div className="h-96 mb-4 overflow-hidden rounded-lg">
+                  <OptimizedImage src={davidCoach} alt="David Drake coaching kettlebell technique" className="w-full h-full" aspectRatio="auto" />
+                </div>
+                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">David Drake</h3>
+                <p className="text-primary font-semibold mb-3 uppercase text-sm tracking-wide">Owner & Head Coach</p>
+                <p className="text-muted-foreground mb-4">
+                  With more than 25 years of training experience, a degree in Health and Exercise Science, and a career recognized early as Charleston's Best Personal Trainer, David is a master of movement and functional strength.
+                </p>
+                <Button asChild variant="outline" className="w-full">
+                  <Link to="/about">Learn More About David</Link>
+                </Button>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection animation="fadeInUp" delay={0.2}>
+              <div className="bg-gray-50 p-6 rounded-xl shadow-card hover:shadow-xl transition-shadow">
+                <div className="h-96 mb-4 overflow-hidden rounded-lg">
+                  <OptimizedImage src={coachNick} alt="Coach Nick Poppa demonstrating sandbag training" className="w-full h-full" aspectRatio="auto" />
+                </div>
+                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Coach Nick Poppa</h3>
+                <p className="text-primary font-semibold mb-3 uppercase text-sm tracking-wide">Holistic Movement Specialist</p>
+                <p className="text-muted-foreground mb-4">
+                  Nick bridges the gap between rehabilitation and performance. His approach helps clients improve posture, stability, mobility, and strength through sustainable lifestyle and movement habits.
+                </p>
+                <Button asChild variant="outline" className="w-full">
+                  <Link to="/about">Learn More About Nick</Link>
+                </Button>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* OUR PROGRAMS */}
       <section className="py-16 md:py-24 bg-drake-dark text-white section-slant-top">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
@@ -276,54 +327,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         </div>
       </section>
 
-
-      <section className="py-16 md:py-24 bg-muted section-slant-top-reverse">
-        <div className="container mx-auto px-4">
-          <AnimatedSection animation="fadeInUp">
-            <p className="section-eyebrow text-primary text-center">MEET THE TEAM</p>
-            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-              Expert Coaches with <span className="text-primary">25+ Years Experience</span>
-            </h2>
-            <p className="text-xl text-center text-muted-foreground mb-12">
-              Experience, Expertise & Care
-            </p>
-          </AnimatedSection>
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <AnimatedSection animation="fadeInUp" delay={0.1}>
-              <div className="bg-gray-50 p-6 rounded-xl shadow-card hover:shadow-xl transition-shadow">
-                <div className="h-96 mb-4 overflow-hidden rounded-lg">
-                  <OptimizedImage src={davidCoach} alt="David Drake coaching kettlebell technique" className="w-full h-full" aspectRatio="auto" />
-                </div>
-                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">David Drake</h3>
-                <p className="text-primary font-semibold mb-3 uppercase text-sm tracking-wide">Owner & Head Coach</p>
-                <p className="text-muted-foreground mb-4">
-                  With more than 25 years of training experience, a degree in Health and Exercise Science, and a career recognized early as Charleston's Best Personal Trainer, David is a master of movement and functional strength.
-                </p>
-                <Button asChild variant="outline" className="w-full">
-                  <Link to="/about">Learn More About David</Link>
-                </Button>
-              </div>
-            </AnimatedSection>
-            <AnimatedSection animation="fadeInUp" delay={0.2}>
-              <div className="bg-gray-50 p-6 rounded-xl shadow-card hover:shadow-xl transition-shadow">
-                <div className="h-96 mb-4 overflow-hidden rounded-lg">
-                  <OptimizedImage src={coachNick} alt="Coach Nick Poppa demonstrating sandbag training" className="w-full h-full" aspectRatio="auto" />
-                </div>
-                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Coach Nick Poppa</h3>
-                <p className="text-primary font-semibold mb-3 uppercase text-sm tracking-wide">Holistic Movement Specialist</p>
-                <p className="text-muted-foreground mb-4">
-                  Nick bridges the gap between rehabilitation and performance. His approach helps clients improve posture, stability, mobility, and strength through sustainable lifestyle and movement habits.
-                </p>
-                <Button asChild variant="outline" className="w-full">
-                  <Link to="/about">Learn More About Nick</Link>
-                </Button>
-              </div>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
-
+      {/* RESULTS */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">

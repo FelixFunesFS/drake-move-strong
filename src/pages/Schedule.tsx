@@ -3,29 +3,15 @@ import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
 import ImageGallery from "@/components/ImageGallery";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import {
-  ComparisonTable,
-  ComparisonTableHead,
-  ComparisonTableBody,
-  ComparisonTableRow,
-  ComparisonTableHeaderCell,
-  ComparisonTableCell,
-} from "@/components/ui/comparison-table";
 
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { NativeWeeklySchedule } from "@/components/schedule/NativeWeeklySchedule";
-
-// Class images - using new authentic photos
-import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg?format=webp&w=768";
-import membersDoubleKettlebellRack from "@/assets/members-double-kettlebell-rack.jpg?format=webp&w=768";
-import groupPlankRowsKettlebells from "@/assets/group-plank-rows-kettlebells.jpg?format=webp&w=768";
+import { getStaggerDelay } from "@/lib/motionConfig";
 
 // Gallery images
 import classesGallery1 from "@/assets/classes-gallery-1.jpg?format=webp&w=768";
@@ -40,54 +26,6 @@ import classesGallery9 from "@/assets/classes-gallery-9.jpg?format=webp&w=768";
 import classesGallery10 from "@/assets/classes-gallery-10.jpg?format=webp&w=768";
 import communityGroupPhotoLarge from "@/assets/community-group-photo-large.jpg?format=webp&w=768";
 import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg?format=webp&w=768";
-
-const classTypes = [
-  {
-    name: "Foundation Flow™",
-    badge: "Beginner Friendly",
-    badgeVariant: "secondary" as const,
-    image: membersOverheadLungeNaturalLight,
-    description: "A gentle, mobility-based class that focuses on movement quality, breathing, stability, and basic strength patterns. Perfect for beginners or anyone returning to fitness.",
-    details: "Start your day with mobility-first training. Focus on movement quality, breathwork, and stability.",
-  },
-  {
-    name: "Functional Strength™",
-    badge: "Most Popular",
-    badgeVariant: "default" as const,
-    image: membersDoubleKettlebellRack,
-    description: "Mobility + kettlebell strength + functional conditioning in a coach-led, joint-smart format. Safe, scalable, sustainable.",
-    details: "Our core program blending mobility, kettlebell strength, and functional conditioning. Lift with proper form and movement quality.",
-  },
-  {
-    name: "KB Strong™",
-    badge: "Advanced",
-    badgeVariant: "destructive" as const,
-    image: groupPlankRowsKettlebells,
-    description: "Higher-intensity kettlebell strength class with advanced progressions and technique refinement.",
-    details: "Strength-intensive kettlebell training with technique refinement and progressive loading. Members ready to push harder with proper form and technique.",
-  },
-  {
-    name: "Mobility Reset™",
-    badge: "Recovery",
-    badgeVariant: "secondary" as const,
-    description: "Slow, controlled mobility work designed to improve flexibility, restore range of motion, and reduce stiffness.",
-    details: "Focused on restoration, mobility work, deep stretches, joint health, and movement restoration.",
-  },
-  {
-    name: "Functional Flow Online™",
-    badge: "🔵 Live Zoom",
-    badgeVariant: "outline" as const,
-    description: "Live Zoom classes focused on mobility, bodyweight patterns, and functional movement. Train from anywhere.",
-    details: "Train live from your living room. Focused on mobility, bodyweight patterns, and functional movement when you can't make it to the studio.",
-  },
-  {
-    name: "Weekend Warrior™",
-    badge: "Saturday Community Strength",
-    badgeVariant: "secondary" as const,
-    description: "Full-body strength and conditioning with dynamic energy. A great way to start your weekend with the community.",
-    details: "Community-focused weekend strength class with mobility prep and joint-friendly conditioning.",
-  },
-];
 
 const galleryImages = [
   { src: classesGallery1, alt: "Two members performing kettlebell overhead presses in studio" },
@@ -138,127 +76,51 @@ const Schedule = () => {
           </div>
         </section>
 
-        {/* Class Types Grid */}
-        <AnimatedSection animation="fadeInUp">
-          <section className="py-12 md:py-16 lg:py-24 bg-muted section-slant-top">
-            <div className="container mx-auto px-4">
-              <p className="section-eyebrow text-primary text-center">OUR PROGRAMS</p>
-              <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 uppercase">
-                Class Types That Build <span className="text-primary">Strength & Mobility</span>
-              </h2>
-              <p className="text-base md:text-lg text-center text-muted-foreground mb-8 md:mb-12 max-w-2xl mx-auto">
-                Every class is coached, structured, and designed for long-term, pain-free progress.
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                {classTypes.map((classItem, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ y: -8, boxShadow: "0 20px 40px -10px rgba(0,0,0,0.2)" }}
-                    className="bg-card rounded-xl overflow-hidden border border-border shadow-card transition-shadow"
-                  >
-                    {classItem.image && (
-                      <div className="overflow-hidden">
-                        <OptimizedImage
-                          src={classItem.image}
-                          alt={classItem.name}
-                          aspectRatio="video"
-                        />
-                      </div>
-                    )}
-                    <div className="p-5 md:p-6">
-                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 gap-2">
-                        <h3 className="font-hero text-xl md:text-2xl font-bold uppercase">{classItem.name}</h3>
-                        <Badge variant={classItem.badgeVariant} className="shrink-0 self-start sm:ml-2 text-xs">
-                          {classItem.badge}
-                        </Badge>
-                      </div>
-                      <p className="text-sm md:text-base text-muted-foreground mb-4">{classItem.description}</p>
-                      <p className="text-xs md:text-sm text-foreground">{classItem.details}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-              
-              {/* Class Type Comparison Table */}
-              <div className="mt-12 max-w-4xl mx-auto">
-                <h3 className="font-hero text-xl md:text-2xl font-bold text-center mb-6 uppercase">
-                  Quick Class <span className="text-primary">Comparison</span>
-                </h3>
-                <ComparisonTable>
-                  <ComparisonTableHead>
-                    <ComparisonTableRow>
-                      <ComparisonTableHeaderCell>Class</ComparisonTableHeaderCell>
-                      <ComparisonTableHeaderCell>Level</ComparisonTableHeaderCell>
-                      <ComparisonTableHeaderCell>Focus</ComparisonTableHeaderCell>
-                      <ComparisonTableHeaderCell>Duration</ComparisonTableHeaderCell>
-                      <ComparisonTableHeaderCell>Best For</ComparisonTableHeaderCell>
-                    </ComparisonTableRow>
-                  </ComparisonTableHead>
-                  <ComparisonTableBody>
-                    <ComparisonTableRow highlighted>
-                      <ComparisonTableCell className="font-bold">Foundation Flow™</ComparisonTableCell>
-                      <ComparisonTableCell>Beginner</ComparisonTableCell>
-                      <ComparisonTableCell>Mobility</ComparisonTableCell>
-                      <ComparisonTableCell>45 min</ComparisonTableCell>
-                      <ComparisonTableCell>New members</ComparisonTableCell>
-                    </ComparisonTableRow>
-                    <ComparisonTableRow>
-                      <ComparisonTableCell className="font-bold">Functional Strength™</ComparisonTableCell>
-                      <ComparisonTableCell>All Levels</ComparisonTableCell>
-                      <ComparisonTableCell>Strength + Mobility</ComparisonTableCell>
-                      <ComparisonTableCell>50 min</ComparisonTableCell>
-                      <ComparisonTableCell>Core program</ComparisonTableCell>
-                    </ComparisonTableRow>
-                    <ComparisonTableRow>
-                      <ComparisonTableCell className="font-bold">KB Strong™</ComparisonTableCell>
-                      <ComparisonTableCell>Advanced</ComparisonTableCell>
-                      <ComparisonTableCell>Kettlebell Power</ComparisonTableCell>
-                      <ComparisonTableCell>50 min</ComparisonTableCell>
-                      <ComparisonTableCell>Experienced</ComparisonTableCell>
-                    </ComparisonTableRow>
-                    <ComparisonTableRow>
-                      <ComparisonTableCell className="font-bold">Mobility Reset™</ComparisonTableCell>
-                      <ComparisonTableCell>All Levels</ComparisonTableCell>
-                      <ComparisonTableCell>Recovery</ComparisonTableCell>
-                      <ComparisonTableCell>45 min</ComparisonTableCell>
-                      <ComparisonTableCell>Active recovery</ComparisonTableCell>
-                    </ComparisonTableRow>
-                    <ComparisonTableRow>
-                      <ComparisonTableCell className="font-bold">Weekend Warrior™</ComparisonTableCell>
-                      <ComparisonTableCell>All Levels</ComparisonTableCell>
-                      <ComparisonTableCell>Community Strength</ComparisonTableCell>
-                      <ComparisonTableCell>60 min</ComparisonTableCell>
-                      <ComparisonTableCell>Weekend training</ComparisonTableCell>
-                    </ComparisonTableRow>
-                  </ComparisonTableBody>
-                </ComparisonTable>
-              </div>
-            </div>
-          </section>
-        </AnimatedSection>
-
-        {/* Class Level Guide */}
-        <section className="py-16 md:py-24 bg-background section-slant-top-reverse">
+        {/* OUR PROGRAMS - Simple compact version */}
+        <section className="py-12 md:py-16 lg:py-24 bg-drake-dark text-white section-slant-top">
           <div className="container mx-auto px-4">
-            <p className="section-eyebrow text-primary text-center">CLASS LEVELS</p>
-            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 uppercase">
-              Class Type <span className="text-primary">Guide</span>
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {[
-                { badge: "Beginner Friendly", desc: "Perfect for newcomers. Gentle pacing with detailed instruction.", variant: "secondary" },
-                { badge: "All Levels", desc: "Scalable for everyone. Modifications provided for all fitness levels.", variant: "default" },
-                { badge: "Intermediate+", desc: "Some experience recommended. Higher intensity with complex movements.", variant: "destructive" }
-              ].map((level, idx) => (
-                <div key={idx} className="bg-card p-6 rounded-xl shadow-card text-center border border-border">
-                  <Badge variant={level.variant as any} className="mb-4 text-sm px-4 py-1">{level.badge}</Badge>
-                  <p className="text-muted-foreground">{level.desc}</p>
+            <AnimatedSection animation="fadeInUp">
+              <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-6">
+                <div className="text-left">
+                  <p className="section-eyebrow text-drake-gold mb-2">OUR PROGRAMS</p>
+                  <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold mb-2 uppercase">
+                    Class Types That Build <span className="text-drake-gold">Strength & Mobility</span>
+                  </h2>
+                  <p className="text-base md:text-lg text-gray-300">
+                    Every class is coached, structured, and designed for long-term, pain-free progress.
+                  </p>
                 </div>
+                <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark shrink-0 whitespace-nowrap">
+                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">Start Reset Week — $50</a>
+                </Button>
+              </div>
+            </AnimatedSection>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[{
+                name: "Foundation Flow™",
+                description: "Beginner-friendly, mobility-first."
+              }, {
+                name: "Functional Strength™",
+                description: "Our core program for sustainable strength and better movement."
+              }, {
+                name: "KB Strong™",
+                description: "Advanced strength & kettlebell training."
+              }, {
+                name: "Mobility Reset™",
+                description: "Recovery-based mobility and flexibility work."
+              }, {
+                name: "Weekend Warrior™",
+                description: "Saturday full body strength & conditioning."
+              }, {
+                name: "Functional Flow Online™",
+                description: "Train live from anywhere."
+              }].map((classItem, index) => (
+                <AnimatedSection key={index} animation="fadeInUp" delay={getStaggerDelay(index)}>
+                  <div className="bg-drake-dark-muted p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-colors bg-gray-800 h-full">
+                    <h3 className="font-hero text-xl font-bold mb-2 text-drake-gold uppercase">{classItem.name}</h3>
+                    <p className="text-gray-300">{classItem.description}</p>
+                  </div>
+                </AnimatedSection>
               ))}
             </div>
           </div>
@@ -304,48 +166,6 @@ const Schedule = () => {
                 Experience the Drake Fitness atmosphere
               </p>
               <ImageGallery images={galleryImages} />
-            </div>
-          </section>
-        </AnimatedSection>
-
-        {/* Not Sure CTA */}
-        <AnimatedSection animation="fadeInUp">
-          <section className="py-16 md:py-24 bg-background">
-            <div className="container mx-auto px-4">
-              <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-                Not Sure Which Class is <span className="text-primary">Right For You?</span>
-              </h2>
-              <div className="max-w-3xl mx-auto bg-card p-8 rounded-xl shadow-card border border-border text-center">
-                <p className="text-lg mb-6">
-                  We recommend beginning with <strong>Foundation Flow™</strong> or <strong>Mobility Reset™</strong>. These classes build the groundwork for everything else we do.
-                </p>
-                <div className="grid md:grid-cols-2 gap-4 mb-8">
-                  <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                    <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">Start Reset Week — $50</a>
-                  </Button>
-                  <Button asChild size="lg" variant="outline" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                    <a href="#top">Back to Schedule</a>
-                  </Button>
-                </div>
-                
-                {/* Internal Links to Local SEO Pages */}
-                <div className="border-t border-border pt-6 mt-6">
-                  <p className="text-sm text-muted-foreground mb-4">Explore our specialized programs:</p>
-                  <div className="flex flex-wrap justify-center gap-3">
-                    <Link to="/mobility-fitness-avondale" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
-                      Mobility Training
-                    </Link>
-                    <span className="text-muted-foreground">•</span>
-                    <Link to="/strength-training-charleston" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
-                      Strength Training
-                    </Link>
-                    <span className="text-muted-foreground">•</span>
-                    <Link to="/low-impact-fitness-charleston" className="text-sm text-primary hover:text-primary/80 underline underline-offset-2">
-                      Low-Impact Fitness
-                    </Link>
-                  </div>
-                </div>
-              </div>
             </div>
           </section>
         </AnimatedSection>

@@ -60,7 +60,7 @@ const Privacy = () => {
               <p>
                 If you have questions about this privacy policy, please contact us at:
                 <br />
-                <a href="mailto:ddrake311@gmail.com" className="text-primary hover:underline">ddrake311@gmail.com</a>
+                <a href="mailto:david@drake.fitness" className="text-primary hover:underline">david@drake.fitness</a>
               </p>
             </section>
           </div>
