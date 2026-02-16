@@ -11,15 +11,9 @@ import LongevityBlock from "@/components/LongevityBlock";
 // WebP hero images with responsive sizes
 import heroImage1Desktop from "@/assets/hero-group-turkish-getup.jpg?format=webp&w=1920";
 import heroImage1Mobile from "@/assets/hero-group-turkish-getup.jpg?format=webp&w=768";
-import outdoorTraining from "@/assets/studio-group-goblet-squats.jpg?format=webp&w=768";
 import davidCoach from "@/assets/david-goblet-squat-kb-rack.jpg?format=webp&w=768";
 import coachNick from "@/assets/nick-holistic-coaching.jpg?format=webp&w=768";
 import startHereImage from "@/assets/outdoor-sandbag-training.jpg?format=webp&w=768";
-import kbCollection from "@/assets/kettlebell-collection.jpg?format=webp&w=768";
-import maceTraining from "@/assets/david-mace-training.jpg?format=webp&w=768";
-import communityMoment from "@/assets/community-plank-rows-kettlebells.jpg?format=webp&w=768";
-import memberYoga from "@/assets/member-yoga-pose.jpg?format=webp&w=768";
-import studioGroupSquats from "@/assets/studio-group-squats.jpg?format=webp&w=768";
 import Marquee from "@/components/Marquee";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -29,15 +23,10 @@ import CommunityReasonsSection from "@/components/CommunityReasonsSection";
 import { FEATURED_REVIEWS } from "@/data/reviews";
 import { TodayClassesBanner } from "@/components/schedule/TodayClassesBanner";
 // New authentic training photos
-import communityGroupPhotoLarge from "@/assets/community-group-photo-large.jpg?format=webp&w=768";
 import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg?format=webp&w=768";
 import gymInteriorWide from "@/assets/gym-interior-wide.jpg?format=webp&w=1920";
-import groupPlankRowsKettlebells from "@/assets/group-plank-rows-kettlebells.jpg?format=webp&w=1920";
-// New community gallery images
-import communityGroupPhotoNew from "@/assets/community-group-photo-new.jpg?format=webp&w=768";
 import communityTurkishGetupClass from "@/assets/community-turkish-getup-class.jpg?format=webp&w=768";
 import communityKettlebellRackPair from "@/assets/community-kettlebell-rack-pair.jpg?format=webp&w=768";
-import communityPlankRowsKettlebells from "@/assets/community-plank-rows-kettlebells.jpg?format=webp&w=768";
 interface HomeProps {
   bannerVisible?: boolean;
 }
@@ -56,7 +45,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
             <MapPin className="w-3 h-3" />
             Avondale • West Ashley • Charleston
           </span>
-      } title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="7-Day Mobility Reset Week — Unlimited Classes for $50. Start feeling the difference in just one week with small-group, mobility-first training at Drake Fitness in Avondale." primaryCTA={{
+      } title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="7-Day Mobility Reset Week — Unlimited Classes for $50. Start feeling the difference with small-group, mobility-first training at Drake Fitness in Avondale." primaryCTA={{
         text: "Start Your Reset Week for $50",
         link: "https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219"
       }} backgroundImages={[heroImage1Desktop]} backgroundImagesMobile={[heroImage1Mobile]} autoRotate={false} />
@@ -183,49 +172,14 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         <TestimonialCard quote={FEATURED_REVIEWS[0].quote} author={FEATURED_REVIEWS[0].name} result={FEATURED_REVIEWS[0].result} />
       </AnimatedSection>
 
-      {/* Community + 5 Reasons Combined Section */}
+      {/* Community + Reasons Section */}
       <CommunityReasonsSection
         images={{
-          communityGroupPhoto: communityGroupPhotoNew,
           turkishGetup: communityTurkishGetupClass,
           kettlebellRack: communityKettlebellRackPair,
           overheadPress: groupOverheadPressClass,
-          plankRows: communityPlankRowsKettlebells,
         }}
       />
-
-      {/* WHO WE ARE - Moved before MEET THE TEAM */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <AnimatedSection animation="scaleIn" delay={0.2} className="relative overflow-hidden rounded-lg">
-              <OptimizedImage src={outdoorTraining} alt="Group goblet squat training at Drake Fitness studio" className="shadow-2xl w-full" aspectRatio="square" transparent={true} hideLoadingPlaceholder={true} sizes="(max-width: 768px) 100vw, 580px" width={768} height={768} />
-              <div className="absolute inset-0 bg-gradient-to-t from-drake-dark/90 via-drake-dark/50 to-transparent flex items-end p-6 md:p-8">
-                <p className="font-hero text-white md:text-2xl font-bold leading-tight text-base">"NOT JUST A GYM. A <span className="text-drake-gold">MOVEMENT</span> STUDIO."</p>
-              </div>
-            </AnimatedSection>
-            <AnimatedSection animation="fadeInUp" delay={0.1}>
-              <p className="section-eyebrow text-primary">WHO WE ARE</p>
-              <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase">
-                Charleston's <span className="text-primary">Mobility-First</span> Fitness Studio
-              </h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                Drake Fitness helps adults build strong, mobile, pain-free bodies through a proven blend of <Link to="/mobility-fitness-avondale" className="text-primary underline underline-offset-2 hover:text-primary/80">mobility training</Link>, <Link to="/strength-training-charleston" className="text-primary underline underline-offset-2 hover:text-primary/80">functional strength</Link>, corrective exercise, and expert coaching.
-              </p>
-              <p className="text-lg text-muted-foreground mb-6">
-                Every session is led by <strong>David Drake</strong> or <strong>Coach Nick</strong>, using a science-based method that improves how your body moves, how it feels, and how it performs — not just in the gym, but in daily life. Explore our <Link to="/schedule" className="text-primary underline underline-offset-2 hover:text-primary/80">group classes</Link> or <Link to="/coaching" className="text-primary underline underline-offset-2 hover:text-primary/80">personal training</Link> options.
-              </p>
-              <div className="border-l-4 border-drake-gold bg-drake-gold/10 p-6 rounded-r-lg mb-6">
-                <p className="text-lg text-foreground font-semibold">Our Mission</p>
-                <p className="text-base text-foreground italic">Build bodies that move well, feel great, and last a lifetime.</p>
-              </div>
-              <Button asChild size="lg" className="mt-6 bg-primary hover:bg-primary/90 whitespace-nowrap">
-                <Link to="/about">Meet the Team</Link>
-              </Button>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
 
       {/* MEET THE TEAM */}
       <section className="py-16 md:py-24 bg-muted section-slant-top-reverse">
@@ -270,56 +224,6 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                 </Button>
               </div>
             </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
-      {/* OUR PROGRAMS */}
-      <section className="py-16 md:py-24 bg-drake-dark text-white section-slant-top">
-        <div className="container mx-auto px-4">
-          <AnimatedSection animation="fadeInUp">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-6">
-              <div className="text-left">
-                <p className="section-eyebrow text-drake-gold mb-2">OUR PROGRAMS</p>
-                <h2 className="font-hero text-3xl md:text-4xl font-bold mb-2 uppercase">
-                  Group Fitness Classes in Charleston <span className="text-drake-gold">for All Levels</span>
-                </h2>
-                <p className="text-xl text-gray-300">
-                  Better Movement. Better Strength. Better Life.
-                </p>
-              </div>
-              <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark shrink-0 whitespace-nowrap">
-                <Link to="/schedule">Explore All Classes</Link>
-              </Button>
-            </div>
-          </AnimatedSection>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[{
-              name: "Foundation Flow™",
-              description: "Beginner-friendly, mobility-first."
-            }, {
-              name: "Functional Strength™",
-              description: "Our core program for sustainable strength and better movement."
-            }, {
-              name: "KB Strong™",
-              description: "Advanced strength & kettlebell training."
-            }, {
-              name: "Mobility Reset™",
-              description: "Recovery-based mobility and flexibility work."
-            }, {
-              name: "Weekend Warrior™",
-              description: "Saturday full body strength & conditioning."
-            }, {
-              name: "Functional Flow Online™",
-              description: "Train live from anywhere."
-            }].map((classItem, index) => (
-              <AnimatedSection key={index} animation="fadeInUp" delay={getStaggerDelay(index)}>
-                <div className="bg-drake-dark-muted p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-colors bg-gray-800 h-full">
-                  <h3 className="font-hero text-xl font-bold mb-2 text-drake-gold uppercase">{classItem.name}</h3>
-                  <p className="text-gray-300">{classItem.description}</p>
-                </div>
-              </AnimatedSection>
-            ))}
           </div>
         </div>
       </section>
