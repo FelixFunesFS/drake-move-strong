@@ -28,12 +28,12 @@ export const PRICING = {
   
   // Class Packs & Add-ons
   dropIn: {
-    price: 30,
+    price: 40,
     per: "session",
     label: "Drop-In Class"
   },
   flexPack: {
-    price: 300,
+    price: 350,
     sessions: 10,
     validity: "6 months",
     label: "10-Class Flex Pack"
