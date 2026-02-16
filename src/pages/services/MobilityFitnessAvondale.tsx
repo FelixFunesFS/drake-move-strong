@@ -166,7 +166,7 @@ export default function MobilityFitnessAvondale() {
                     Start Reset Week — $50
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/20 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
+                <Button asChild variant="outline" size="lg" className="border-2 border-primary text-primary hover:bg-primary/10 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
                   <Link to="/contact">
                     <MapPin className="mr-2 h-5 w-5 flex-shrink-0" />
                     Get Directions
