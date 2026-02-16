@@ -2,7 +2,7 @@ import Hero from "@/components/Hero";
 import CTASection from "@/components/CTASection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { CheckCircle2, Users, Trophy, Target, TrendingUp, Heart, MapPin, Navigation } from "lucide-react";
+import { CheckCircle2, MapPin, Navigation } from "lucide-react";
 import { GoogleReviewsBadge, GOOGLE_REVIEWS } from "@/components/GoogleReviewsBadge";
 import { SEO } from "@/components/SEO";
 import { StructuredData, localBusinessSchema } from "@/components/StructuredData";
@@ -25,15 +25,13 @@ import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
 import TestimonialCard from "@/components/TestimonialCard";
 import { getStaggerDelay } from "@/lib/motionConfig";
-import CommunityMasonryGallery from "@/components/CommunityMasonryGallery";
+import CommunityReasonsSection from "@/components/CommunityReasonsSection";
 import { FEATURED_REVIEWS } from "@/data/reviews";
 import { TodayClassesBanner } from "@/components/schedule/TodayClassesBanner";
 // New authentic training photos
 import communityGroupPhotoLarge from "@/assets/community-group-photo-large.jpg?format=webp&w=768";
 import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg?format=webp&w=768";
-import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg?format=webp&w=768";
 import gymInteriorWide from "@/assets/gym-interior-wide.jpg?format=webp&w=1920";
-import groupClassPlankWide from "@/assets/group-class-plank-wide.jpg?format=webp&w=768";
 import groupPlankRowsKettlebells from "@/assets/group-plank-rows-kettlebells.jpg?format=webp&w=1920";
 // New community gallery images
 import communityGroupPhotoNew from "@/assets/community-group-photo-new.jpg?format=webp&w=768";
@@ -121,90 +119,16 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         <TestimonialCard quote={FEATURED_REVIEWS[0].quote} author={FEATURED_REVIEWS[0].name} result={FEATURED_REVIEWS[0].result} />
       </AnimatedSection>
 
-      {/* Community in Action - 2-Row Masonry Gallery */}
-      <CommunityMasonryGallery 
-        images={[
-          { src: communityGroupPhotoNew, alt: "Drake Fitness community group photo in studio" },
-          { src: communityTurkishGetupClass, alt: "Large group Turkish get-up class with natural lighting" },
-          { src: communityKettlebellRackPair, alt: "Members holding kettlebells in rack position" },
-          { src: groupOverheadPressClass, alt: "Group overhead press class at Drake Fitness" },
-          { src: membersOverheadLungeNaturalLight, alt: "Members performing overhead lunges in natural light" },
-          { src: communityPlankRowsKettlebells, alt: "Members doing plank rows with colorful kettlebells at Drake Fitness Charleston" },
-        ]}
+      {/* Community + 5 Reasons Combined Section */}
+      <CommunityReasonsSection
+        images={{
+          communityGroupPhoto: communityGroupPhotoNew,
+          turkishGetup: communityTurkishGetupClass,
+          kettlebellRack: communityKettlebellRackPair,
+          overheadPress: groupOverheadPressClass,
+          plankRows: communityPlankRowsKettlebells,
+        }}
       />
-
-      <section className="relative py-16 md:py-24 text-white section-slant-bottom overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <OptimizedImage 
-            src={groupPlankRowsKettlebells} 
-            alt="" 
-            className="w-full h-full object-cover"
-            aspectRatio="auto"
-            transparent
-            hideLoadingPlaceholder
-          />
-        </div>
-        
-        {/* Dark Overlay for Contrast */}
-        <div className="absolute inset-0 bg-drake-dark/85" />
-        
-        {/* Subtle Teal/Gold Gradient Accent */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-drake-gold/10" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <AnimatedSection animation="fadeInUp">
-            <p className="section-eyebrow text-drake-gold text-center">WHAT MAKES US DIFFERENT</p>
-            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-              5 Reasons Charleston Chooses <span className="text-drake-gold">Drake Fitness</span>
-            </h2>
-            <p className="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto">
-              This isn't a gym. It's a studio built around joint health, mobility, and sustainable strength.
-            </p>
-          </AnimatedSection>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[{
-              icon: <CheckCircle2 className="w-6 h-6" />,
-              title: "Mobility before intensity",
-              description: "We improve how your joints move before adding load — eliminating pain and preventing injury.",
-              link: "/mobility-fitness-avondale"
-            }, {
-              icon: <Target className="w-6 h-6" />,
-              title: "Functional strength that carries into daily life",
-              description: "Lift, carry, bend, twist, and move with confidence."
-            }, {
-              icon: <Users className="w-6 h-6" />,
-              title: "Small classes with real coaching",
-              description: "You get attention, guidance, and form corrections every time."
-            }, {
-              icon: <TrendingUp className="w-6 h-6" />,
-              title: "Progress tracking that keeps you motivated",
-              description: "Assessments every 4–8 weeks so you can see your progress."
-            }].map((feature, index) => <AnimatedSection key={index} animation="fadeInUp" delay={index * 0.1}>
-                <div className="bg-drake-dark/70 border border-white/10 p-8 rounded-xl h-full hover:bg-drake-dark/80 transition-colors backdrop-blur-sm shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),inset_0_-1px_0_0_rgba(0,0,0,0.3)]">
-                  <div className="w-12 h-12 bg-drake-teal rounded-xl flex items-center justify-center text-white mb-4">
-                    {feature.icon}
-                  </div>
-                  <h3 className="font-hero text-xl font-bold mb-3 uppercase">{feature.title}</h3>
-                  <p className="text-gray-300">{feature.description}</p>
-                </div>
-              </AnimatedSection>)}
-            <AnimatedSection animation="fadeInUp" delay={0.4} className="md:col-span-2">
-              <div className="bg-drake-dark/70 border border-white/10 p-8 rounded-xl hover:bg-drake-dark/80 transition-colors backdrop-blur-sm shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),inset_0_-1px_0_0_rgba(0,0,0,0.3)]">
-                <div className="flex items-start gap-6">
-                  <div className="w-12 h-12 bg-drake-teal rounded-xl flex items-center justify-center text-white flex-shrink-0">
-                    <Heart className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-hero text-xl font-bold mb-3 uppercase">Expert coaching in a supportive, ego-free community</h3>
-                    <p className="text-gray-300">25+ years of experience helping real people achieve sustainable results. We welcome beginners, busy adults, and anyone wanting to move better and feel stronger.</p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
 
       <section className="py-16 md:py-24 bg-muted">
         <div className="container mx-auto px-4">
