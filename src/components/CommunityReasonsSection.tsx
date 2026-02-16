@@ -98,7 +98,7 @@ const CommunityReasonsSection = ({ images }: CommunityReasonsSectionProps) => {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="border-white/30 text-white hover:bg-white/10 font-semibold text-base px-6 py-5 h-auto"
+                  className="border-drake-gold/50 text-drake-gold hover:bg-drake-gold/10 bg-transparent font-semibold text-base px-6 py-5 h-auto"
                 >
                   <Link to="/schedule" className="flex items-center gap-2">
                     <Calendar className="w-4 h-4" />
