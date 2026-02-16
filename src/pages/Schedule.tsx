@@ -128,9 +128,9 @@ const Schedule = () => {
 
         {/* Training Videos */}
         <AnimatedSection animation="fadeIn">
-          <section className="py-12 md:py-16 lg:py-24 bg-muted section-slant-top">
+          <section className="pt-16 pb-8 md:pt-24 md:pb-8 lg:pt-28 lg:pb-12 bg-muted section-slant-top">
             <div className="container mx-auto px-4">
-              <div className="max-w-7xl mx-auto mb-8 md:mb-12">
+              <div className="max-w-7xl mx-auto mb-0">
                 <p className="section-eyebrow text-primary text-center">SEE IT IN ACTION</p>
                 <h2 className="font-hero text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 uppercase">
                   How Our <span className="text-primary">Training Sessions</span> Work
