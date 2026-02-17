@@ -19,6 +19,7 @@ interface CommunityReasonsSectionProps {
     turkishGetup: string;
     kettlebellRack: string;
     overheadPress: string;
+    communityGroup: string;
   };
 }
 
@@ -70,41 +71,53 @@ const CommunityReasonsSection = ({ images }: CommunityReasonsSectionProps) => {
 
           {/* Reset Week CTA Card - full width */}
           <AnimatedSection animation="fadeInUp" delay={0.3} className="md:col-span-3">
-            <div className="bg-primary rounded-xl p-6 md:p-8 flex flex-col justify-center min-h-[220px]">
-              <p className="section-eyebrow text-drake-gold mb-1">YOUR FIRST STEP</p>
-              <h3 className="font-hero text-2xl md:text-3xl font-bold text-white uppercase mb-3">
-                Reset Week — <span className="text-drake-gold">$50</span>
-              </h3>
-              <p className="text-gray-200 mb-6 text-base md:text-lg max-w-lg">
-                7 days of unlimited classes. No commitment. No experience needed. See what mobility-first training feels like.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-bold text-base px-6 py-5 h-auto"
-                >
-                  <a
-                    href={PUNCHPASS_URLS.resetWeek}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
+            <div className="bg-primary rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-5 min-h-[220px]">
+              {/* Image */}
+              <div className="md:col-span-2 h-48 md:h-auto order-1 md:order-2">
+                <OptimizedImage
+                  src={images.communityGroup}
+                  alt="Drake Fitness community group photo after class"
+                  className="w-full h-full"
+                  aspectRatio="auto"
+                />
+              </div>
+              {/* Text */}
+              <div className="md:col-span-3 p-6 md:p-8 flex flex-col justify-center order-2 md:order-1">
+                <p className="section-eyebrow text-drake-gold mb-1">YOUR FIRST STEP</p>
+                <h3 className="font-hero text-2xl md:text-3xl font-bold text-white uppercase mb-3">
+                  Reset Week — <span className="text-drake-gold">$50</span>
+                </h3>
+                <p className="text-gray-200 mb-6 text-base md:text-lg max-w-lg">
+                  7 days of unlimited classes. No commitment. No experience needed. See what mobility-first training feels like.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-bold text-base px-6 py-5 h-auto"
                   >
-                    Start Reset Week
-                    <ArrowRight className="w-4 h-4" />
-                  </a>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="border-drake-gold/50 text-drake-gold hover:bg-drake-gold/10 bg-transparent font-semibold text-base px-6 py-5 h-auto"
-                >
-                  <Link to="/schedule" className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4" />
-                    View Schedule
-                  </Link>
-                </Button>
+                    <a
+                      href={PUNCHPASS_URLS.resetWeek}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2"
+                    >
+                      Start Reset Week
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </Button>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="border-drake-gold/50 text-drake-gold hover:bg-drake-gold/10 bg-transparent font-semibold text-base px-6 py-5 h-auto"
+                  >
+                    <Link to="/schedule" className="flex items-center gap-2">
+                      <Calendar className="w-4 h-4" />
+                      View Schedule
+                    </Link>
+                  </Button>
+                </div>
               </div>
             </div>
           </AnimatedSection>
@@ -144,11 +157,11 @@ const ReasonOverlayContent = ({ reason }: { reason: ReasonCard }) => {
           <span aria-hidden="true" className="w-8 h-8 rounded-lg bg-primary/90 flex items-center justify-center text-white flex-shrink-0">
             {reason.icon}
           </span>
-          <h3 className="font-hero text-lg md:text-xl font-bold text-white uppercase leading-tight">
+          <h3 className="font-hero text-base sm:text-lg md:text-xl font-bold text-white uppercase leading-tight">
             {reason.title}
           </h3>
         </div>
-        <p className="text-gray-200 text-sm md:text-base leading-snug max-w-md">
+        <p className="text-gray-200 text-xs sm:text-sm md:text-base leading-snug max-w-md">
           {reason.description}
         </p>
         {reason.link && (
