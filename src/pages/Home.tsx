@@ -107,7 +107,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                       </li>
                     ))}
                   </ul>
-                  <Button asChild size="lg" className="w-full">
+                  <Button asChild size="lg" className="w-full px-4 sm:px-8 py-3 sm:py-6 text-sm sm:text-base min-h-[48px]">
                     <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer" className="text-center">Purchase Reset Week</a>
                   </Button>
                   <p className="text-xs text-center text-muted-foreground mt-3">
