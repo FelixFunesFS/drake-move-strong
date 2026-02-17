@@ -24,7 +24,7 @@ import { FEATURED_REVIEWS } from "@/data/reviews";
 import { TodayClassesBanner } from "@/components/schedule/TodayClassesBanner";
 // New authentic training photos
 import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg?format=webp&w=768";
-import gymInteriorWide from "@/assets/gym-interior-wide.jpg?format=webp&w=1920";
+
 import communityTurkishGetupClass from "@/assets/community-turkish-getup-class.jpg?format=webp&w=768";
 import communityKettlebellRackPair from "@/assets/community-plank-rows-kettlebells-new.jpg?format=webp&w=768";
 interface HomeProps {
@@ -112,72 +112,6 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                 <OptimizedImage src={startHereImage} alt="Personal coaching session at Drake Fitness" className="h-full w-full" aspectRatio="auto" />
               </AnimatedSection>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* THE METHOD - Moved up after START HERE */}
-      <section className="relative py-16 md:py-24 overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <OptimizedImage 
-            src={gymInteriorWide} 
-            alt="" 
-            className="w-full h-full object-cover"
-            aspectRatio="auto"
-            transparent
-            hideLoadingPlaceholder
-          />
-        </div>
-        
-        {/* Dark Overlay for Contrast */}
-        <div className="absolute inset-0 bg-drake-dark/85" />
-        
-        {/* Subtle Teal/Gold Gradient Accent */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-drake-gold/10" />
-        
-        {/* Content */}
-        <div className="container mx-auto px-4 relative z-10">
-          <AnimatedSection animation="fadeInUp">
-            <p className="section-eyebrow text-drake-gold text-center">THE METHOD</p>
-            <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase text-white">
-              A Simple System That <span className="text-drake-gold">Delivers Real Results</span>
-            </h2>
-            <p className="text-xl text-center text-gray-300 mb-12">
-              Expert-Guided Training That Works
-            </p>
-          </AnimatedSection>
-          <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto relative">
-            {/* Connecting line for desktop */}
-            <div className="hidden md:block absolute top-12 left-[16.67%] right-[16.67%] h-0.5 bg-white/30" style={{
-              width: '66.67%',
-              left: '16.67%'
-            }} />
-            
-            {[{
-              number: "1",
-              title: "Start Reset Week",
-              description: "Try 7 days of unlimited classes for just $50 — no commitment, no pressure.",
-              bgColor: "bg-white"
-            }, {
-              number: "2",
-              title: "Train",
-              description: "Join the right class track — Foundation Flow, Functional Strength, Mobility Reset, KB Strong, or Weekend Warrior.",
-              bgColor: "bg-drake-gold"
-            }, {
-              number: "3",
-              title: "Progress",
-              description: "We check mobility and strength regularly so you can see and feel your improvements.",
-              bgColor: "bg-drake-teal"
-            }].map((step, index) => (
-              <AnimatedSection key={index} animation="scaleIn" delay={getStaggerDelay(index)} className="text-center relative z-10">
-                <div className={`w-24 h-24 ${step.bgColor} rounded-full flex items-center justify-center ${step.bgColor === 'bg-white' ? 'text-drake-dark' : 'text-white'} text-3xl font-bold mx-auto mb-6 shadow-lg`}>
-                  {step.number}
-                </div>
-                <h3 className="font-hero text-2xl font-bold mb-3 uppercase text-white">{step.title}</h3>
-                <p className="text-lg text-gray-200">{step.description}</p>
-              </AnimatedSection>
-            ))}
           </div>
         </div>
       </section>
