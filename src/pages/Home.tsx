@@ -112,7 +112,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                   </p>
                 </div>
               </AnimatedSection>
-              <AnimatedSection animation="slideInRight" delay={0.1} className="relative h-full min-h-[400px] md:min-h-[500px]">
+              <AnimatedSection animation="slideInRight" delay={0.1} className="relative h-full min-h-[400px] md:min-h-[500px] hidden md:block">
                 <OptimizedImage src={startHereImage} alt="Personal coaching session at Drake Fitness" className="h-full w-full" aspectRatio="auto" />
               </AnimatedSection>
             </div>
