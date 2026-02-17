@@ -187,7 +187,7 @@ const VideoHero = ({
     <section 
       ref={containerRef}
       className={cn(
-        "relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px] flex items-start pt-[160px] md:pt-[180px] overflow-hidden",
+        "relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px] flex items-center overflow-hidden",
         className
       )}
     >
