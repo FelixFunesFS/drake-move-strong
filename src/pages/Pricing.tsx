@@ -25,16 +25,16 @@ const Pricing = () => {
     question: "What if I have an injury?",
     answer: "We modify movements for every individual. Our priority is keeping you safe while progressively building strength around your limitations. Every session can be adapted to your needs."
   }];
-  
-  const faqSchema = buildFAQSchema(faqs.map(faq => ({ q: faq.question, a: faq.answer })));
-  
+
+  const faqSchema = buildFAQSchema(faqs.map((faq) => ({ q: faq.question, a: faq.answer })));
+
   return (
     <>
       <SEO
         title="Gym Membership Charleston | From $50 | Simple Plans 2026"
         description="Simple, transparent membership options. Reset Week $50, Foundation $209/mo, Longevity Unlimited $239/mo. No contracts, real results at Drake Fitness Charleston."
-        canonical="https://drake.fitness/pricing"
-      />
+        canonical="https://drake.fitness/pricing" />
+
       <StructuredData data={faqSchema} />
       
       <main>
@@ -288,10 +288,10 @@ const Pricing = () => {
                   </ul>
                 </CardContent>
                 <CardFooter className="pt-0">
-                  <Link 
-                    to="/contact" 
-                    className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1"
-                  >
+                  <Link
+                      to="/contact"
+                      className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1">
+
                     Learn More
                     <ArrowRight className="w-3 h-3" />
                   </Link>
@@ -332,12 +332,12 @@ const Pricing = () => {
                   </ul>
                 </CardContent>
                 <CardFooter className="pt-0">
-                  <a 
-                    href="https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1"
-                  >
+                  <a
+                      href="https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1">
+
                     Buy Now
                     <ExternalLink className="w-3 h-3" />
                   </a>
@@ -378,12 +378,12 @@ const Pricing = () => {
                   </ul>
                 </CardContent>
                 <CardFooter className="pt-0">
-                  <a 
-                    href="https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/219932" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1"
-                  >
+                  <a
+                      href="https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/219932"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1">
+
                     Buy Pack
                     <ExternalLink className="w-3 h-3" />
                   </a>
@@ -408,10 +408,10 @@ const Pricing = () => {
             
             {/* Trust Stats Bar */}
             <AnimatedSection animation="fadeIn" delay={0.1} className="max-w-4xl mx-auto mb-8">
-              <TrustStatsBar 
-                variant="minimal" 
-                stats={['sessions', 'experience', 'reviews']} 
-              />
+              <TrustStatsBar
+                variant="minimal"
+                stats={['sessions', 'experience', 'reviews']} />
+
             </AnimatedSection>
             
             <AnimatedSection animation="fadeInUp" delay={0.2} className="max-w-4xl mx-auto overflow-x-auto">
@@ -488,7 +488,7 @@ const Pricing = () => {
               Not sure which option fits you? Try 7 days of unlimited classes for $50 — we'll help you decide which membership is right for your goals after your first week.
             </p>
             <Button asChild variant="outline" size="lg">
-              <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+              <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent">
                 Start Reset Week
                 <ExternalLink className="h-4 w-4" />
               </a>
@@ -536,18 +536,18 @@ const Pricing = () => {
           </div>
         </section>
 
-        <CTASection 
-          eyebrow="GET STARTED" 
-          title="Ready to Reset How You Move?" 
-          subtitle="Start with Reset Week — 7 days of unlimited classes for just $50." 
-          ctaText="Start Reset Week — $50" 
-          ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" 
-          variant="primary" 
-          slanted={true} 
-        />
+        <CTASection
+          eyebrow="GET STARTED"
+          title="Ready to Reset How You Move?"
+          subtitle="Start with Reset Week — 7 days of unlimited classes for just $50."
+          ctaText="Start Reset Week — $50"
+          ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219"
+          variant="primary"
+          slanted={true} />
+
       </main>
-    </>
-  );
+    </>);
+
 };
 
 export default Pricing;
