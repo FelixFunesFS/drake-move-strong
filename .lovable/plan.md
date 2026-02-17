@@ -1,29 +1,21 @@
 
-
-# Hide Reset Week Image on Mobile
-
-## Rationale
-
-The outdoor sandbag training image (right column of the Reset Week section) stacks **below** the purchase card on mobile. By that point the visitor has already:
-1. Read the headline and bullet points
-2. Seen the $50 price and feature list
-3. Passed the "Purchase Reset Week" button
-
-A 400px image after the CTA adds scroll depth without adding conversion value. On desktop/tablet it sits side-by-side and provides visual balance -- worth keeping.
+# Replace Footer Logo with Navigation Logo
 
 ## Change
 
-**File: `src/pages/Home.tsx`** (line 115)
+Swap the footer logo from `drake-fitness-logo-kettlebell.png` to `drake-fitness-logo2.png` (the same logo used in the navigation bar).
 
-Add `hidden md:block` to the image wrapper so it only renders on md+ screens:
+## Technical Detail
 
+**File: `src/components/Footer.tsx`** (line 3)
+
+Change the import from:
 ```
-// Current
-<AnimatedSection animation="slideInRight" delay={0.1} className="relative h-full min-h-[400px] md:min-h-[500px]">
-
-// Updated
-<AnimatedSection animation="slideInRight" delay={0.1} className="relative h-full min-h-[400px] md:min-h-[500px] hidden md:block">
+import drakeLogo from "@/assets/drake-fitness-logo-kettlebell.png";
+```
+to:
+```
+import drakeLogo from "@/assets/drake-fitness-logo2.png";
 ```
 
-This is a single class addition -- no content removed, no layout changes on desktop.
-
+No other changes needed -- the variable name (`drakeLogo`) stays the same, so the `<img>` tag continues to work as-is.
