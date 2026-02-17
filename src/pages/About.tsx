@@ -262,12 +262,6 @@ const About = () => {
                       </p>
                     </div>
 
-                    {/* Team Callout Box */}
-                    <div className="bg-white border-l-4 border-primary rounded-lg p-6 shadow-sm mt-6">
-                      <p className="text-sm md:text-base text-muted-foreground">
-                        <strong className="text-foreground">David and Nick work together</strong> to create personalized training programs that combine mobility, corrective movement, and <Link to="/strength-training-charleston" className="text-primary underline underline-offset-2 hover:text-primary/80">functional strength</Link> — meeting you exactly where you are and guiding you toward sustainable results. Start with <Link to="/reset-week-charleston" className="text-primary underline underline-offset-2 hover:text-primary/80">Reset Week</Link> to experience our approach.
-                      </p>
-                    </div>
 
                     <Button asChild className="mt-6">
                       <Link to="/schedule">Try a Class This Week</Link>
