@@ -187,7 +187,7 @@ const VideoHero = ({
     <section 
       ref={containerRef}
       className={cn(
-        "relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px] flex items-center overflow-hidden",
+        "relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px] flex items-start pt-[20vh] md:pt-[18vh] overflow-hidden",
         className
       )}
     >
@@ -235,7 +235,7 @@ const VideoHero = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-drake-gold font-semibold text-sm uppercase tracking-wide mb-4"
+              className="section-eyebrow text-drake-gold mb-2 md:mb-4"
             >
               {eyebrow}
             </motion.p>
@@ -255,7 +255,7 @@ const VideoHero = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className={cn(
-              "text-sm sm:text-base md:text-lg mb-6 md:mb-8 text-gray-200 leading-relaxed max-w-xl",
+              "text-base sm:text-lg md:text-xl mb-5 md:mb-6 text-white/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] leading-relaxed max-w-xl",
               accentedSubtitle && "border-l-4 border-drake-gold pl-6"
             )}
           >
