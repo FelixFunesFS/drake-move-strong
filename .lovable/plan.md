@@ -1,50 +1,36 @@
 
-# Align About Page VideoHero with Site-Wide Hero Standards
 
-## Problems Found
+# Fix VideoHero Content Spacing Below Nav
 
-1. **Content positioning mismatch**: VideoHero uses `flex items-center` (vertical center) while the standard Hero uses `items-start` with explicit `pt-[15vh] md:pt-[8vh]`. This places About hero content in the dead center of the screen rather than the upper-third like every other page.
+## Root Cause
 
-2. **No nav overlap compensation**: The About page wrapper uses `-mt-[112px]` to pull the hero under the nav, but VideoHero has no padding-top to push content below the navbar. On shorter viewports, content can sit behind or very close to the nav.
+The current `pt-[20vh] md:pt-[18vh]` uses viewport-relative padding, but the nav is a fixed 112px. On shorter viewports the math breaks down:
 
-3. **Typography inconsistencies between VideoHero and Hero**:
-   - Eyebrow: VideoHero uses `text-sm`, Hero uses `section-eyebrow` class (`text-xs md:text-sm`)
-   - Subtitle: VideoHero uses `text-sm sm:text-base md:text-lg`, Hero uses `text-base sm:text-lg md:text-xl`
+- Mobile (672px tall): 20vh = 134px, only 22px gap below nav
+- Tablet (768px tall): 20vh = 154px, only 42px gap below nav
+- Short desktop (900px): 18vh = 162px, only 50px gap below nav
 
-4. **Excessive empty space on mobile**: `h-screen` with centered content leaves large dark gaps above and below the text block on mobile.
+The Home page Hero avoids this by using `pt-[15vh]` combined with a different height system (`h-[calc(100vh-Xpx)]`) that already accounts for the nav offset. The VideoHero uses `-mt-[112px]` with `h-screen`, so content padding must independently clear the full 112px nav height plus breathing room.
 
 ## Solution
 
-Update `VideoHero.tsx` to match the standard Hero component's content positioning pattern -- content starts from the top with explicit padding, accounting for the nav overlap.
+Replace the viewport-relative padding with a fixed value that guarantees consistent spacing below the nav on all screen sizes. The nav is 112px, so we need 112px + ~40-48px breathing room = ~152-160px.
+
+Using Tailwind's fixed spacing ensures the gap never shrinks on short viewports.
 
 ## Technical Details
 
-### File: `src/components/VideoHero.tsx`
+### File: `src/components/VideoHero.tsx` (line 190)
 
-**Change 1 -- Content positioning (line 190)**:
-Replace `flex items-center` with `flex items-start` and add responsive top padding that accounts for the 112px nav overlap:
-- From: `"relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px] flex items-center overflow-hidden"`
-- To: `"relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px] flex items-start pt-[20vh] md:pt-[18vh] overflow-hidden"`
+**Change**: Replace viewport-relative padding with fixed padding:
+- From: `pt-[20vh] md:pt-[18vh]`
+- To: `pt-[160px] md:pt-[180px]`
 
-This mirrors the Home Hero pattern: content sits in the upper-third, with enough padding to clear the navbar (112px + breathing room).
+This gives:
+- Mobile: 160px total, minus 112px nav = 48px visible gap (comfortable)
+- Desktop: 180px total, minus 112px nav = 68px visible gap (matches Home hero feel)
 
-**Change 2 -- Eyebrow styling (line 238)**:
-- From: `"text-drake-gold font-semibold text-sm uppercase tracking-wide mb-4"`
-- To: `"section-eyebrow text-drake-gold mb-2 md:mb-4"`
+These values are stable regardless of viewport height -- whether on a 600px phone or a 1440px monitor, the content always sits with proper breathing room below the nav.
 
-Uses the shared `section-eyebrow` utility class for consistency with the standard Hero.
+No other files need changes.
 
-**Change 3 -- Subtitle sizing (line 257-259)**:
-- From: `"text-sm sm:text-base md:text-lg mb-6 md:mb-8 text-gray-200 leading-relaxed max-w-xl"`
-- To: `"text-base sm:text-lg md:text-xl mb-5 md:mb-6 text-white/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] leading-relaxed max-w-xl"`
-
-Matches the Hero component's subtitle sizing and text styling.
-
-### No changes to mobile layout
-Mobile benefits from the same fix -- `pt-[20vh]` on small screens (~168px) provides proper clearance below the banner + nav, and keeps content in the upper portion rather than dead center.
-
-### Expected Result
-- Content positioned consistently with the Home page hero (upper-third, not vertically centered)
-- Proper visual breathing room below the navbar on all viewports
-- Eyebrow and subtitle typography match the site-wide Hero pattern
-- Less wasted dark space below the content block on mobile
