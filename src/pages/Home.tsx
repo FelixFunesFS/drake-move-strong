@@ -88,9 +88,6 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                 <p className="text-base font-semibold mb-2">
                   No experience needed. No pressure. Just expert coaching, ego-free community.
                 </p>
-                <p className="text-sm text-muted-foreground mb-6">
-                  25+ years helping real people achieve sustainable results. All ages and levels welcome.
-                </p>
                 {/* Reset Week Purchase Card */}
                 <div className="bg-muted border border-border rounded-xl p-6">
                   <div className="flex items-baseline gap-2 mb-4">
@@ -113,6 +110,9 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                   <Button asChild size="lg" className="w-full">
                     <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer" className="text-center">Purchase Reset Week</a>
                   </Button>
+                  <p className="text-xs text-center text-muted-foreground mt-3">
+                    25+ years of expert coaching. All ages &amp; levels welcome.
+                  </p>
                 </div>
               </AnimatedSection>
               <AnimatedSection animation="slideInRight" delay={0.1} className="relative h-full min-h-[400px] md:min-h-[600px]">
