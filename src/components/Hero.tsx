@@ -107,7 +107,7 @@ const Hero = ({
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="section-eyebrow text-drake-gold mb-2 md:mb-4"
+                className="hidden sm:block section-eyebrow text-drake-gold mb-2 md:mb-4"
               >
                 {eyebrow}
               </m.p>
