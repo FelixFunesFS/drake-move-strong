@@ -72,14 +72,14 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto bg-white rounded-none shadow-lg overflow-hidden">
             <div className="grid md:grid-cols-2">
-              <AnimatedSection animation="slideInLeft" className="p-8 md:p-12">
+              <AnimatedSection animation="slideInLeft" className="p-8 md:p-8 lg:p-12">
                 <p className="section-eyebrow text-primary mb-4">PURCHASE YOUR RESET WEEK</p>
-                <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase leading-tight">
+                <h2 className="font-hero text-3xl md:text-3xl lg:text-4xl font-bold mb-6 uppercase leading-tight">
                   If You Feel Stiff, Achy, or Out of Shape...<br />
                   <span className="text-primary">You're in the Right Place.</span>
                 </h2>
                 <p className="text-lg mb-6 text-muted-foreground">We specialize in helping:</p>
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-2 md:space-y-2 mb-6 md:mb-6 lg:mb-8">
                   {["Adults 30–65 with limited time", "Desk workers with back/hip stiffness", "People returning from injury", "Anyone wanting long-term, pain-free strength"].map((item, index) => <li key={index} className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 text-primary mr-3 mt-1 flex-shrink-0" />
                       <span className="text-base">{item}</span>
@@ -89,7 +89,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                   No experience needed. No pressure. Just expert coaching, ego-free community.
                 </p>
                 {/* Reset Week Purchase Card */}
-                <div className="bg-muted border border-border rounded-xl p-6">
+                <div className="bg-muted border border-border rounded-xl p-4 md:p-4 lg:p-6">
                   <div className="flex items-baseline gap-2 mb-4">
                     <span className="text-4xl font-hero font-bold text-primary">$50</span>
                     <span className="text-muted-foreground text-lg">for 7 days</span>
@@ -115,7 +115,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                   </p>
                 </div>
               </AnimatedSection>
-              <AnimatedSection animation="slideInRight" delay={0.1} className="relative h-full min-h-[400px] md:min-h-[600px]">
+              <AnimatedSection animation="slideInRight" delay={0.1} className="relative h-full min-h-[400px] md:min-h-[500px]">
                 <OptimizedImage src={startHereImage} alt="Personal coaching session at Drake Fitness" className="h-full w-full" aspectRatio="auto" />
               </AnimatedSection>
             </div>
