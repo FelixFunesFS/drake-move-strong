@@ -1,51 +1,33 @@
 
 
-# Relocate "25+ Years" Credibility Line for Better Conversion
+# Refine Purchase Reset Week Button Sizing on Mobile
 
-## The Problem
-
-The line "25+ years helping real people achieve sustainable results. All ages and levels welcome." currently sits above the purchase card as muted body text. At that position it reads as filler — the user has already scrolled past the headline and bullet points, and this line delays them from reaching the price and CTA button.
-
-## Conversion Thinking
-
-Credibility statements work best at the **moment of decision**, not during the persuasion phase. The ideal placement is directly beneath the purchase button as a small trust reinforcement — the user sees the price, reads the CTA, and right before (or after) clicking, gets a final confidence nudge. This is the same pattern used by SaaS checkout pages ("Trusted by 10,000+ teams" below the Buy button).
+## Current State
+The "PURCHASE RESET WEEK" button text wraps to two lines on mobile (390px), creating an oversized button. This is caused by:
+- `size="lg"` applies `px-8 py-6 text-base` (32px horizontal padding, 24px vertical padding)
+- The uppercase text + generous padding makes the button taller than needed when text wraps
 
 ## Changes
 
-### 1. Remove the line from its current position
-Delete the `<p>` element containing "25+ years helping real people achieve sustainable results..." from above the purchase card in the Reset Week section.
+### File: `src/pages/Home.tsx` (line 110)
 
-### 2. Add it as a micro-trust line below the Purchase button
-Inside the purchase card (the `bg-muted border` box), add a centered, small muted-text line beneath the "Purchase Reset Week" button:
+**Reduce horizontal padding on mobile** so the text fits on one line, and slightly reduce vertical padding for a more balanced button:
 
-```
-25+ years of expert coaching. All ages & levels welcome.
-```
+- Add responsive padding overrides: `px-4 sm:px-8 py-4 sm:py-6 text-sm sm:text-base`
+- This keeps the desktop button unchanged while making mobile more compact and single-line
 
-This keeps the card focused: price, benefits, button, then a final trust nudge.
-
-## Technical Details
-
-| File | Change |
-|---|---|
-| `src/pages/Home.tsx` | Remove lines ~107-109 (the `<p>` with "25+ years..." text) |
-| `src/pages/Home.tsx` | Add a `<p className="text-xs text-center text-muted-foreground mt-3">` line after the Purchase button inside the card (after the closing `</Button>` around line 123) |
-
-### Before (simplified)
-```
-"No experience needed..."
-"25+ years helping..."     <-- remove from here
-[$50 Purchase Card]
-  - benefits
-  - [Purchase Button]
+Current:
+```tsx
+<Button asChild size="lg" className="w-full">
 ```
 
-### After
+Proposed:
+```tsx
+<Button asChild size="lg" className="w-full px-4 sm:px-8 py-3 sm:py-6 text-sm sm:text-base min-h-[48px]">
 ```
-"No experience needed..."
-[$50 Purchase Card]
-  - benefits
-  - [Purchase Button]
-  - "25+ years of expert coaching. All ages & levels welcome."  <-- trust nudge at decision point
-```
+
+This ensures:
+- On mobile: tighter horizontal padding allows "PURCHASE RESET WEEK" to fit on one line, 12px vertical padding keeps a comfortable touch target (48px min-height), smaller text (14px)
+- On desktop (sm+): original sizing preserved (32px horizontal, 24px vertical, 16px text)
+- The `min-h-[48px]` guarantees the touch target meets accessibility standards
 
