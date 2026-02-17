@@ -88,7 +88,7 @@ const Hero = ({
                   loading={index === 0 ? "eager" : "lazy"}
                   decoding={index === 0 ? "sync" : "async"}
                   sizes="100vw"
-                  className="absolute inset-0 w-full h-full object-cover animate-ken-burns"
+                  className="absolute inset-0 w-full h-full object-cover object-left md:object-center animate-ken-burns"
                   aria-hidden="true"
                 />
               </m.div>
