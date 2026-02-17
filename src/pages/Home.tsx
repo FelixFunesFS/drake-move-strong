@@ -76,13 +76,16 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                 </h2>
                 <p className="text-lg mb-6 text-muted-foreground">We specialize in helping:</p>
                 <ul className="space-y-3 mb-8">
-                  {["Adults 30–65 with limited time", "Desk workers with back/hip stiffness", "Busy parents who need flexibility & results", "Former athletes seeking longevity", "People returning from injury", "Anyone wanting long-term, pain-free strength"].map((item, index) => <li key={index} className="flex items-start">
+                  {["Adults 30–65 with limited time", "Desk workers with back/hip stiffness", "People returning from injury", "Anyone wanting long-term, pain-free strength"].map((item, index) => <li key={index} className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 text-primary mr-3 mt-1 flex-shrink-0" />
                       <span className="text-base">{item}</span>
                     </li>)}
                 </ul>
-                <p className="text-base font-semibold mb-6">
-                  No experience needed. No pressure. Just expert guidance.
+                <p className="text-base font-semibold mb-2">
+                  No experience needed. No pressure. Just expert coaching, ego-free community.
+                </p>
+                <p className="text-sm text-muted-foreground mb-6">
+                  25+ years helping real people achieve sustainable results. All ages and levels welcome.
                 </p>
                 {/* Reset Week Purchase Card */}
                 <div className="bg-muted border border-border rounded-xl p-6">
