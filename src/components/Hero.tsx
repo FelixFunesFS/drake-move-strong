@@ -88,7 +88,7 @@ const Hero = ({
                   loading={index === 0 ? "eager" : "lazy"}
                   decoding={index === 0 ? "sync" : "async"}
                   sizes="100vw"
-                  className="absolute inset-0 w-full h-full object-cover object-right-top md:object-[center_40%] animate-ken-burns"
+                  className="absolute inset-0 w-full h-full object-cover object-[center_30%] md:object-[center_40%] animate-ken-burns"
                   aria-hidden="true"
                 />
               </m.div>
@@ -120,7 +120,7 @@ const Hero = ({
               initial={{ opacity: 0, y: 30 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.8, delay: 0.4 }} 
-              className={cn("text-base sm:text-lg md:text-xl mb-4 md:mb-6 text-white/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] leading-relaxed max-w-xl", accentedSubtitle && "border-l-4 border-drake-gold pl-6")}
+              className={cn("text-base sm:text-lg md:text-xl mb-5 md:mb-6 text-white/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] leading-relaxed max-w-xl", accentedSubtitle && "border-l-4 border-drake-gold pl-6")}
             >
               {subtitle}
             </m.p>
