@@ -1,28 +1,39 @@
 
-# Shift Hero Content Down 15%
+# Right-Align Hero Content on Mobile
 
-## What changes
+## Change
 
-In `src/components/Hero.tsx`, update the content positioning for the `fullViewport` variant (used on the home page) to push text and CTAs lower.
+In `src/components/Hero.tsx`, update the content wrapper (line 104) to right-align text on mobile and revert to left-align on desktop.
 
-### Current (line 65)
+### Current (line 104)
 ```
-items-start pt-20 md:items-center md:pt-0
+"max-w-2xl text-white", centered ? "text-center mx-auto" : "text-left"
 ```
 
 ### Proposed
 ```
-items-start pt-[25vh] md:items-start md:pt-[15vh]
+"max-w-2xl text-white", centered ? "text-center mx-auto" : "text-right md:text-left ml-auto md:ml-0"
 ```
 
-**Why `pt-[25vh]` / `pt-[15vh]`?**
-- Using viewport-relative units (`vh`) ensures the 15% offset scales proportionally across all screen sizes
-- Mobile gets `25vh` (slightly more than 15% to account for the taller aspect ratio and smaller text block)
-- Desktop gets `15vh` which is literally 15% of the viewport height
-- Switching desktop from `items-center` to `items-start` with explicit top padding gives precise control over vertical placement
+- `text-right` -- right-aligns all text on mobile
+- `md:text-left` -- restores left-alignment on desktop
+- `ml-auto` -- pushes the content block to the right on mobile
+- `md:ml-0` -- resets to default positioning on desktop
+
+The CTA button container (line 131) also needs updating to align buttons to the right on mobile:
+
+### Current (line 131)
+```
+"items-start"
+```
+
+### Proposed
+```
+"items-end md:items-start"
+```
 
 ## File changed
 
 | File | Change |
 |---|---|
-| `src/components/Hero.tsx` | Line 65: update `contentPositionClass` padding values |
+| `src/components/Hero.tsx` | Lines 104, 131: add mobile right-alignment classes |
