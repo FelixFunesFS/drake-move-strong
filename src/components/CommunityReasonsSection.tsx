@@ -124,8 +124,8 @@ const ReasonImageCard = ({ reason, index }: { reason: ReasonCard; index: number 
 const ReasonOverlayContent = ({ reason }: { reason: ReasonCard }) => {
   const Wrapper = reason.link ? Link : "div";
   const wrapperProps = reason.link
-    ? { to: reason.link, className: "block relative overflow-hidden rounded-xl group aspect-[4/3]" }
-    : { className: "relative overflow-hidden rounded-xl group aspect-[4/3]" };
+    ? { to: reason.link, className: "block relative overflow-hidden rounded-xl group aspect-[4/3] min-h-[240px]" }
+    : { className: "relative overflow-hidden rounded-xl group aspect-[4/3] min-h-[240px]" };
 
   return (
     // @ts-ignore - dynamic wrapper
@@ -141,7 +141,7 @@ const ReasonOverlayContent = ({ reason }: { reason: ReasonCard }) => {
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 p-4 md:p-6 flex flex-col gap-1">
         <div className="flex items-center gap-2 mb-1">
-          <span className="w-8 h-8 rounded-lg bg-primary/90 flex items-center justify-center text-white flex-shrink-0">
+          <span aria-hidden="true" className="w-8 h-8 rounded-lg bg-primary/90 flex items-center justify-center text-white flex-shrink-0">
             {reason.icon}
           </span>
           <h3 className="font-hero text-lg md:text-xl font-bold text-white uppercase leading-tight">
