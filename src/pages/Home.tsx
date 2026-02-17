@@ -69,7 +69,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
           <div className="max-w-6xl mx-auto bg-white rounded-none shadow-lg overflow-hidden">
             <div className="grid md:grid-cols-2">
               <AnimatedSection animation="slideInLeft" className="p-8 md:p-12">
-                <p className="section-eyebrow text-primary mb-4">START HERE</p>
+                <p className="section-eyebrow text-primary mb-4">PURCHASE YOUR RESET WEEK</p>
                 <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase leading-tight">
                   If You Feel Stiff, Achy, or Out of Shape...<br />
                   <span className="text-primary">You're in the Right Place.</span>
@@ -104,7 +104,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                     ))}
                   </ul>
                   <Button asChild size="lg" className="w-full">
-                    <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer" className="text-center">Start Your Reset Week</a>
+                    <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer" className="text-center">Purchase Reset Week</a>
                   </Button>
                 </div>
               </AnimatedSection>
