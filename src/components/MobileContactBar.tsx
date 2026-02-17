@@ -1,14 +1,28 @@
 import { Calendar, MessageSquare } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 const MobileContactBar = () => {
   const isMobile = useIsMobile();
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsVisible(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   if (!isMobile) return null;
   
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-primary border-t border-primary/80 pb-safe">
+    <div className={cn(
+      "fixed bottom-0 left-0 right-0 z-50 bg-primary border-t border-primary/80 pb-safe transition-transform duration-300 ease-out",
+      isVisible ? "translate-y-0" : "translate-y-full"
+    )}>
       <div className="flex">
         <Link 
           to="/schedule" 
