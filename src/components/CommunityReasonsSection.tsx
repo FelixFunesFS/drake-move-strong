@@ -59,18 +59,18 @@ const CommunityReasonsSection = ({ images }: CommunityReasonsSectionProps) => {
             Why Charleston Chooses <span className="text-drake-gold">Drake Fitness</span>
           </h2>
           <p className="text-center text-gray-300 max-w-2xl mx-auto mb-10 md:mb-14 text-lg">
-            This isn't a gym. It's a studio built around joint health, mobility, and sustainable strength.
+            This isn't just a gym. It's a studio built around joint health, mobility, and sustainable strength.
           </p>
         </AnimatedSection>
 
         {/* Grid: mobile single-col, desktop 3-col */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 max-w-6xl mx-auto">
           {reasons.map((reason, index) => (
             <ReasonImageCard key={index} reason={reason} index={index} />
           ))}
 
           {/* Reset Week CTA Card - full width */}
-          <AnimatedSection animation="fadeInUp" delay={0.3} className="md:col-span-3">
+          <AnimatedSection animation="fadeInUp" delay={0.3} className="md:col-span-2 lg:col-span-3">
             <div className="bg-primary rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-5 min-h-[220px]">
               {/* Image */}
               <div className="md:col-span-2 h-48 md:h-auto order-1 md:order-2">
