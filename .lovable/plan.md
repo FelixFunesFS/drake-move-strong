@@ -1,33 +1,59 @@
 
-# Update Start Here Card CTA Text and Reduce Trust Stats Size
 
-## Changes (2 files)
+# Fix Hero Hash Link, Image Card Responsiveness, and Accessibility
 
-### 1. Update CTA text in the Start Here purchase card (`src/pages/Home.tsx`, line 107)
+## 3 Changes across 2 files
 
-Change the button text from "Start Your Reset Week" to **"Purchase Reset Week"** -- clearer purchase intent language that tells visitors exactly what clicking does.
+### 1. Hero CTA: Use native `<a>` for hash links (`src/components/Hero.tsx`, ~line 133-136)
 
-### 2. Also update the eyebrow label (line 72)
+The primary CTA currently renders `<Link to="#reset-week">` via React Router. Hash anchors should use a native `<a href>` for reliable smooth scrolling.
 
-Change "START HERE" to **"PURCHASE YOUR RESET WEEK"** so the section header matches the action-oriented language.
+Add hash/external link detection to match how `secondaryCTA` already works:
 
-### 3. Reduce Trust Stats Bar size (`src/components/TrustStatsBar.tsx`)
+- If `primaryCTA.link` starts with `#` or `http` --> render `<a href>`
+- Otherwise --> render `<Link to>`
 
-For the horizontal variant (the one used on Home), make these sizing reductions:
+### 2. Image card text responsiveness (`src/components/CommunityReasonsSection.tsx`, ~line 127-128)
 
-- **Padding**: Reduce from `py-8 md:py-12` to `py-5 md:py-8` (less vertical space)
-- **Icon circles**: Reduce from `w-12 h-12 md:w-14 md:h-14` to `w-10 h-10 md:w-12 md:h-12`
-- **Icon size**: Reduce from `size={24}` to `size={20}`
-- **Number text**: Reduce from `text-2xl md:text-3xl` to `text-xl md:text-2xl`
-- **Label text**: Keep at `text-sm` (already compact)
-- **Gap**: Reduce from `gap-6 md:gap-8` to `gap-4 md:gap-6`
+On 320px screens, the `aspect-[4/3]` cards are only ~240px tall, and the gradient overlay text (title + description) can crowd the bottom edge.
 
-This makes the trust stats feel like a supporting accent band rather than a full section, keeping the page focused on conversion without losing credibility signals.
+Fix: Add `min-h-[240px]` to the card wrapper so on very narrow screens the card grows taller to accommodate the text overlay. On wider screens, the aspect ratio still governs.
 
-### Conversion thinking
+Change:
+```
+className: "relative overflow-hidden rounded-xl group aspect-[4/3]"
+```
+to:
+```
+className: "relative overflow-hidden rounded-xl group aspect-[4/3] min-h-[240px]"
+```
 
-The page flow becomes: Hero (price visible) --> smooth scroll --> "PURCHASE YOUR RESET WEEK" card with benefits + price + purchase button --> trust stats (compact, reinforcing) --> testimonials. Every element either builds intent or enables purchase -- no wasted scroll depth.
+Apply to both the link and div variants (lines 127-128).
+
+### 3. Icon accessibility (`src/components/CommunityReasonsSection.tsx`, ~line 144)
+
+Add `aria-hidden="true"` to the icon `<span>` since the adjacent `<h3>` already communicates the content to screen readers. This prevents redundant announcements.
+
+Change:
+```
+<span className="w-8 h-8 rounded-lg bg-primary/90 flex items-center justify-center text-white flex-shrink-0">
+```
+to:
+```
+<span aria-hidden="true" className="w-8 h-8 rounded-lg bg-primary/90 flex items-center justify-center text-white flex-shrink-0">
+```
 
 ## Files
-- `src/pages/Home.tsx` -- CTA text and eyebrow update
-- `src/components/TrustStatsBar.tsx` -- horizontal variant sizing reduction
+
+| File | Changes |
+|---|---|
+| `src/components/Hero.tsx` | Smart link detection for primaryCTA (hash/external use `<a>`, internal use `<Link>`) |
+| `src/components/CommunityReasonsSection.tsx` | `min-h-[240px]` on image cards, `aria-hidden="true"` on icon spans |
+
+## What stays the same
+
+- All text content, images, layout structure, and grid breakpoints
+- The `#reset-week` anchor target on Home
+- The Reset Week CTA card at the bottom of the section
+- All other responsive behavior
+
