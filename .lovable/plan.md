@@ -1,31 +1,51 @@
 
 
-# Center Hero Image on Mobile + Minor Spacing Refinements
+# Relocate "25+ Years" Credibility Line for Better Conversion
 
-## What changes
+## The Problem
 
-### 1. Center the background image on mobile
-Change `object-right-top` to `object-[center_30%]` on mobile. This centers the image horizontally and crops slightly toward the top (30%) so you see the people training rather than the ceiling or floor.
+The line "25+ years helping real people achieve sustainable results. All ages and levels welcome." currently sits above the purchase card as muted body text. At that position it reads as filler — the user has already scrolled past the headline and bullet points, and this line delays them from reaching the price and CTA button.
 
-### 2. Keep current button sizing (already optimal)
-Your buttons are already well-sized:
-- 56px min-height on mobile (exceeds the 44-48px touch target standard)
-- Full-width on mobile, auto-width on desktop
-- 14px font on mobile, 16px on desktop
-- 12px gap between buttons
+## Conversion Thinking
 
-No changes needed here.
+Credibility statements work best at the **moment of decision**, not during the persuasion phase. The ideal placement is directly beneath the purchase button as a small trust reinforcement — the user sees the price, reads the CTA, and right before (or after) clicking, gets a final confidence nudge. This is the same pattern used by SaaS checkout pages ("Trusted by 10,000+ teams" below the Buy button).
 
-### 3. Minor spacing tightening
-Reduce subtitle bottom margin from `mb-4` to `mb-5` on mobile to give slightly more breathing room before the CTA zone, creating a clearer visual break between "reading" and "acting."
+## Changes
 
-## Technical details
+### 1. Remove the line from its current position
+Delete the `<p>` element containing "25+ years helping real people achieve sustainable results..." from above the purchase card in the Reset Week section.
 
-| File | Line | Current | Proposed |
-|---|---|---|---|
-| `src/components/Hero.tsx` | 91 | `object-right-top md:object-[center_40%]` | `object-[center_30%] md:object-[center_40%]` |
-| `src/components/Hero.tsx` | 123 | `mb-4 md:mb-6` | `mb-5 md:mb-6` |
+### 2. Add it as a micro-trust line below the Purchase button
+Inside the purchase card (the `bg-muted border` box), add a centered, small muted-text line beneath the "Purchase Reset Week" button:
 
-### Why `object-[center_30%]` instead of plain `object-center`
-Plain `object-center` crops at 50% vertically, which often shows too much floor in gym photos. Using 30% biases the crop upward, keeping heads and movement in frame while staying horizontally centered.
+```
+25+ years of expert coaching. All ages & levels welcome.
+```
+
+This keeps the card focused: price, benefits, button, then a final trust nudge.
+
+## Technical Details
+
+| File | Change |
+|---|---|
+| `src/pages/Home.tsx` | Remove lines ~107-109 (the `<p>` with "25+ years..." text) |
+| `src/pages/Home.tsx` | Add a `<p className="text-xs text-center text-muted-foreground mt-3">` line after the Purchase button inside the card (after the closing `</Button>` around line 123) |
+
+### Before (simplified)
+```
+"No experience needed..."
+"25+ years helping..."     <-- remove from here
+[$50 Purchase Card]
+  - benefits
+  - [Purchase Button]
+```
+
+### After
+```
+"No experience needed..."
+[$50 Purchase Card]
+  - benefits
+  - [Purchase Button]
+  - "25+ years of expert coaching. All ages & levels welcome."  <-- trust nudge at decision point
+```
 
