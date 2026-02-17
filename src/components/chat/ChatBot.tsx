@@ -22,9 +22,20 @@ const ChatBot = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [isSubmittingLead, setIsSubmittingLead] = useState(false);
+  const [isPastHero, setIsPastHero] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
+
+  // Hide chat while hero is in view
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsPastHero(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Auto-scroll to bottom when messages change - using RAF to prevent forced reflow
   useEffect(() => {
@@ -245,7 +256,8 @@ const ChatBot = () => {
         className={cn(
           "fixed bottom-[136px] md:bottom-24 right-6 z-50 w-14 h-14 rounded-full shadow-lg transition-all duration-300",
           "bg-primary hover:bg-primary/90 text-primary-foreground",
-          isOpen && "rotate-90"
+          isOpen && "rotate-90",
+          !isPastHero && "opacity-0 translate-y-4 pointer-events-none"
         )}
         size="icon"
         aria-label={isOpen ? "Close chat" : "Open chat"}
@@ -256,7 +268,7 @@ const ChatBot = () => {
       {/* Chat Window */}
       <div className={cn(
         "fixed bottom-[200px] md:bottom-40 right-6 z-50 w-[360px] max-w-[calc(100vw-3rem)] bg-background border border-border rounded-2xl shadow-2xl transition-all duration-300 overflow-hidden",
-        isOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"
+        isOpen && isPastHero ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"
       )}>
         {/* Header */}
         <div className="bg-primary text-primary-foreground px-4 py-3 flex items-center justify-between">
