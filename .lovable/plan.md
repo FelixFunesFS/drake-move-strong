@@ -1,36 +1,15 @@
 
+# Center VideoHero Content Vertically, Left-Aligned
 
-# Fix VideoHero Content Spacing Below Nav
+## Change
 
-## Root Cause
-
-The current `pt-[20vh] md:pt-[18vh]` uses viewport-relative padding, but the nav is a fixed 112px. On shorter viewports the math breaks down:
-
-- Mobile (672px tall): 20vh = 134px, only 22px gap below nav
-- Tablet (768px tall): 20vh = 154px, only 42px gap below nav
-- Short desktop (900px): 18vh = 162px, only 50px gap below nav
-
-The Home page Hero avoids this by using `pt-[15vh]` combined with a different height system (`h-[calc(100vh-Xpx)]`) that already accounts for the nav offset. The VideoHero uses `-mt-[112px]` with `h-screen`, so content padding must independently clear the full 112px nav height plus breathing room.
-
-## Solution
-
-Replace the viewport-relative padding with a fixed value that guarantees consistent spacing below the nav on all screen sizes. The nav is 112px, so we need 112px + ~40-48px breathing room = ~152-160px.
-
-Using Tailwind's fixed spacing ensures the gap never shrinks on short viewports.
+Update the section's flex alignment from `items-start pt-[160px] md:pt-[180px]` to `items-center` so the content block (eyebrow, heading, subtitle, CTAs) is vertically centered within the hero viewport while remaining left-aligned horizontally (which it already is via `text-left` on the content div).
 
 ## Technical Details
 
 ### File: `src/components/VideoHero.tsx` (line 190)
 
-**Change**: Replace viewport-relative padding with fixed padding:
-- From: `pt-[20vh] md:pt-[18vh]`
-- To: `pt-[160px] md:pt-[180px]`
+- From: `"relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px] flex items-start pt-[160px] md:pt-[180px] overflow-hidden"`
+- To: `"relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px] flex items-center overflow-hidden"`
 
-This gives:
-- Mobile: 160px total, minus 112px nav = 48px visible gap (comfortable)
-- Desktop: 180px total, minus 112px nav = 68px visible gap (matches Home hero feel)
-
-These values are stable regardless of viewport height -- whether on a 600px phone or a 1440px monitor, the content always sits with proper breathing room below the nav.
-
-No other files need changes.
-
+Removing the fixed top padding and switching to `items-center` vertically centers the text block. The horizontal left alignment is already handled by the existing `text-left` class on the content container -- no changes needed there.
