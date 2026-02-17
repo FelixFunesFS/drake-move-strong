@@ -62,7 +62,7 @@ const Hero = ({
   
   // Content positioning: mobile starts higher, desktop centers
   const contentPositionClass = fullViewport
-    ? "items-start pt-20 md:items-center md:pt-0"
+    ? "items-start pt-[25vh] md:items-start md:pt-[15vh]"
     : "items-center md:items-start md:pt-8 lg:pt-12";
     
   return (
