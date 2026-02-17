@@ -27,6 +27,7 @@ import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg?for
 
 import communityTurkishGetupClass from "@/assets/community-turkish-getup-class.jpg?format=webp&w=768";
 import communityKettlebellRackPair from "@/assets/community-plank-rows-kettlebells-new.jpg?format=webp&w=768";
+import communityGroupClass from "@/assets/community-group-class.jpg?format=webp&w=768";
 interface HomeProps {
   bannerVisible?: boolean;
 }
@@ -140,6 +141,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
           turkishGetup: communityTurkishGetupClass,
           kettlebellRack: communityKettlebellRackPair,
           overheadPress: groupOverheadPressClass,
+          communityGroup: communityGroupClass,
         }}
       />
 
