@@ -1,15 +1,33 @@
 
-# Center VideoHero Content Vertically, Left-Aligned
+# Add CTA Buttons to About Page VideoHero
 
 ## Change
 
-Update the section's flex alignment from `items-start pt-[160px] md:pt-[180px]` to `items-center` so the content block (eyebrow, heading, subtitle, CTAs) is vertically centered within the hero viewport while remaining left-aligned horizontally (which it already is via `text-left` on the content div).
+Add `primaryCTA` and `secondaryCTA` props to the `VideoHero` on the About page so visitors have immediate next steps after reading the purpose statement.
 
 ## Technical Details
 
-### File: `src/components/VideoHero.tsx` (line 190)
+### File: `src/pages/About.tsx` (lines 60-70)
 
-- From: `"relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px] flex items-start pt-[160px] md:pt-[180px] overflow-hidden"`
-- To: `"relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px] flex items-center overflow-hidden"`
+Add two props to the existing `VideoHero` component:
 
-Removing the fixed top padding and switching to `items-center` vertically centers the text block. The horizontal left alignment is already handled by the existing `text-left` class on the content container -- no changes needed there.
+- `primaryCTA`: "View Schedule" linking to `/schedule`
+- `secondaryCTA`: "See Pricing" linking to `/pricing`
+
+```tsx
+<VideoHero 
+  videoId="cHcFBxvLNaQ" 
+  startTime={24}
+  endTime={43}
+  fallbackImage={kbCollection} 
+  eyebrow="OUR PURPOSE" 
+  title={<>Why We <span className="text-primary">Exist</span></>} 
+  subtitle="To help adults move better and build strong, mobile, pain-free bodies that support their everyday lives." 
+  accentedSubtitle={true}
+  className="h-screen"
+  primaryCTA={{ text: "View Schedule", link: "/schedule" }}
+  secondaryCTA={{ text: "See Pricing", link: "/pricing" }}
+/>
+```
+
+No other files need changes.
