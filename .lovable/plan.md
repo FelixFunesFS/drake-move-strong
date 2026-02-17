@@ -1,24 +1,24 @@
 
 
-# Remove "The Method" Section
-
-## What's being removed
-
-The 3-step "The Method" section (lines ~115-170 in `src/pages/Home.tsx`) -- the "Start Reset Week / Train / Progress" steps with the gym interior background, dark overlay, and numbered circles.
+# Update Reset Week Copy
 
 ## Change
 
-**`src/pages/Home.tsx`**: Delete the entire Method section block (the `<section>` with the background image, dark overlay, 3-step grid, and connecting line). This is roughly lines 115-170.
+**`src/pages/Home.tsx`** -- two edits in the Reset Week section:
 
-## Result
+1. **Remove two bullet points** from the "We specialize in helping" list:
+   - "Busy parents who need flexibility & results"
+   - "Former athletes seeking longevity"
 
-The page flow becomes:
+2. **Replace the paragraph** below the list:
+   - Old: `No experience needed. No pressure. Just expert guidance.`
+   - New: `No experience needed. No pressure. Just expert coaching, ego-free community.` followed by a new line: `25+ years helping real people achieve sustainable results. All ages and levels welcome.`
 
-Purchase Card --> Trust Stats --> Testimonials --> Why Us --> Meet the Team --> Longevity --> Local Trust --> Final CTA
+## Technical Detail
 
-This removes ~400px of scroll depth and gets social proof (testimonials) directly after the trust stats, tightening the conversion funnel.
+Lines ~85-87: Remove the two `<li>` items from the `.map()` array.
+
+Lines ~92-94: Replace the single `<p>` tag text with updated copy split across two sentences (or two `<p>` tags for visual separation).
 
 ## No other files affected
-
-The Method section is self-contained markup within Home.tsx -- no shared components or data files to clean up. The gym interior image import (`gymInteriorWide`) can also be removed since it's no longer used.
 
