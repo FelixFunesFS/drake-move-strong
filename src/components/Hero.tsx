@@ -113,7 +113,7 @@ const Hero = ({
               </m.p>
             )}
             {/* H1 uses regular element for faster LCP - no motion wrapper */}
-            <h1 className="font-hero text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-3 md:mb-5 leading-[0.95] tracking-tighter uppercase -mt-[10px]">
+            <h1 className="font-hero text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-3 md:mb-5 leading-[0.95] tracking-tighter uppercase -mt-[20px]">
               {title}
             </h1>
             <m.p 
