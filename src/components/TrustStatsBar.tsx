@@ -237,7 +237,7 @@ export function TrustStatsBar({
       <div 
         ref={ref}
         className={cn(
-          "py-8 md:py-12 relative overflow-hidden",
+          "py-5 md:py-8 relative overflow-hidden",
           className
         )}
       >
@@ -250,7 +250,7 @@ export function TrustStatsBar({
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-drake-gold/50 to-transparent" />
         
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {stats.map((statKey, index) => {
               const stat = STATS_CONFIG[statKey];
               const Icon = STAT_ICONS[statKey];
@@ -267,11 +267,11 @@ export function TrustStatsBar({
                     ease: MOTION_CONFIG.ease.default
                   }}
                 >
-                  <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full mb-3 bg-white/20">
-                    <Icon size={24} className="text-white" />
+                  <div className="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full mb-2 bg-white/20">
+                    <Icon size={20} className="text-white" />
                   </div>
                   <div className={cn(
-                    "font-bold text-2xl md:text-3xl font-heading",
+                    "font-bold text-xl md:text-2xl font-heading",
                     STAT_NUMBER_COLORS[statKey]
                   )}>
                     <CountUpValue value={stat.value} isInView={isInView} />
