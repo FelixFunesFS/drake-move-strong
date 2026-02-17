@@ -1,18 +1,29 @@
 
 
-# Remove Tagline from Reset Week Card
+# Hide Reset Week Image on Mobile
+
+## Rationale
+
+The outdoor sandbag training image (right column of the Reset Week section) stacks **below** the purchase card on mobile. By that point the visitor has already:
+1. Read the headline and bullet points
+2. Seen the $50 price and feature list
+3. Passed the "Purchase Reset Week" button
+
+A 400px image after the CTA adds scroll depth without adding conversion value. On desktop/tablet it sits side-by-side and provides visual balance -- worth keeping.
 
 ## Change
 
-Remove the line "No experience needed. No pressure. Just expert coaching, ego-free community." from the Reset Week section on the Home page.
+**File: `src/pages/Home.tsx`** (line 115)
 
-## Technical Detail
-
-**File: `src/pages/Home.tsx`** -- Delete the `<p>` tag around line 120 that contains this text:
+Add `hidden md:block` to the image wrapper so it only renders on md+ screens:
 
 ```
-No experience needed. No pressure. Just expert coaching, ego-free community.
+// Current
+<AnimatedSection animation="slideInRight" delay={0.1} className="relative h-full min-h-[400px] md:min-h-[500px]">
+
+// Updated
+<AnimatedSection animation="slideInRight" delay={0.1} className="relative h-full min-h-[400px] md:min-h-[500px] hidden md:block">
 ```
 
-This sits between the bullet list and the Reset Week purchase card. Removing it tightens the section without losing any conversion-critical information (the bullet points above already communicate accessibility and the card below handles the CTA).
+This is a single class addition -- no content removed, no layout changes on desktop.
 
