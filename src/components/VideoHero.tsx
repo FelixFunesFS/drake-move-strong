@@ -267,13 +267,13 @@ const VideoHero = ({
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-3 md:gap-4 items-start max-w-xl"
+              className="flex flex-row gap-3 md:gap-4 items-center max-w-xl"
             >
               {primaryCTA && (
                 <Button
                   asChild
                   size="lg"
-                  className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-base md:text-lg px-8 py-5 md:py-6 shadow-[var(--shadow-gold)] hover:scale-105 transition-transform w-full sm:w-auto"
+                  className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-base md:text-lg px-8 py-5 md:py-6 shadow-[var(--shadow-gold)] hover:scale-105 transition-transform w-auto"
                 >
                   <Link to={primaryCTA.link} className="text-center text-sm">
                     {primaryCTA.text}
