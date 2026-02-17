@@ -1,44 +1,23 @@
 
 
-# Fix Tablet Reason Cards, Text Update, and Desktop Hero Review
+# Fix Desktop Hero Content Spacing Below Navbar
 
-## Issues Found
+## Problem
+On desktop, the hero section's eyebrow text sits too close to the navigation bar. The current content positioning uses `md:pt-[5vh]` (approximately 54px on a 1080p screen), which doesn't provide enough breathing room between the nav and the first hero element.
 
-### 1. Tablet View (834px): Reason Card Text Cutoff
-On tablet, the grid uses `md:grid-cols-3` which kicks in at 768px. At 834px, each card is only ~260px wide, causing titles like "MOBILITY BEFORE INTEN..." and descriptions like "We improve how your joints m..." to be truncated/clipped.
+## Root Cause
+In `src/components/Hero.tsx` (line 65), the `fullViewport` content positioning is set to `md:items-start md:pt-[5vh]`. Combined with the `-mt-[20px]` on the h1, the content cluster feels cramped against the navbar on desktop.
 
-**Fix**: Use a 2-column layout at `md` (tablet) and only switch to 3-column at `lg` (1024px+). This gives each card ~400px on tablet -- plenty of room for text. On mobile, cards remain single-column stacked.
+## Fix
+Increase the desktop top padding from `md:pt-[5vh]` to `md:pt-[8vh]` (~86px on 1080p). This provides proper visual separation without affecting mobile, which remains at `pt-[15vh]`.
 
-### 2. Text Fix: "This isn't a gym" -> "This isn't just a gym"
-Simple copy change in the subtitle text of the CommunityReasonsSection header.
+## Technical Details
 
-### 3. Desktop Hero Review
-After reviewing at 1920x1080, the desktop hero is well-positioned:
-- Headline, subtitle, and dual CTA buttons are all visible and properly sized
-- Content sits in the upper-left third with good visual hierarchy
-- Background image loads correctly with proper gradient overlay
-- No changes needed -- the current layout follows best practices for conversion-focused hero sections
+### File: `src/components/Hero.tsx`
 
-## Technical Changes
+**Line 65** - Update desktop padding only:
+- From: `"items-start pt-[15vh] md:items-start md:pt-[5vh]"`
+- To: `"items-start pt-[15vh] md:items-start md:pt-[8vh]"`
 
-### File: `src/components/CommunityReasonsSection.tsx`
-
-**Change 1 (line 62)**: Update subtitle text
-- From: `This isn't a gym.`
-- To: `This isn't just a gym.`
-
-**Change 2 (line 67)**: Update grid breakpoints for tablet
-- From: `grid grid-cols-1 md:grid-cols-3`
-- To: `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3`
-
-This ensures:
-- Mobile (below 768px): single column, full-width cards
-- Tablet (768px-1023px): 2 columns, cards are ~380px wide with room for all text
-- Desktop (1024px+): 3 columns as currently designed
-
-**Change 3 (line 73)**: Update the CTA card span to match new breakpoints
-- From: `md:col-span-3`
-- To: `md:col-span-2 lg:col-span-3`
-
-This keeps the Reset Week CTA card full-width across all breakpoints.
+Mobile view (`pt-[15vh]`) remains completely unchanged.
 
