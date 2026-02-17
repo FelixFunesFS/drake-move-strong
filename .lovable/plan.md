@@ -1,21 +1,22 @@
 
-# Replace Footer Logo with Navigation Logo
+# Remove "David and Nick" Paragraph from About Page
 
 ## Change
 
-Swap the footer logo from `drake-fitness-logo-kettlebell.png` to `drake-fitness-logo2.png` (the same logo used in the navigation bar).
+Remove the callout box that reads: "David and Nick work together to create personalized training programs that combine mobility, corrective movement, and functional strength -- meeting you exactly where you are and guiding you toward sustainable results. Start with Reset Week to experience our approach."
 
 ## Technical Detail
 
-**File: `src/components/Footer.tsx`** (line 3)
+**File: `src/pages/About.tsx`** (lines 266-270)
 
-Change the import from:
+Delete the entire `<div>` block containing this paragraph:
+
 ```
-import drakeLogo from "@/assets/drake-fitness-logo-kettlebell.png";
-```
-to:
-```
-import drakeLogo from "@/assets/drake-fitness-logo2.png";
+<div className="bg-white border-l-4 border-primary rounded-lg p-6 shadow-sm mt-6">
+  <p className="text-sm md:text-base text-muted-foreground">
+    <strong className="text-foreground">David and Nick work together</strong> to create personalized training programs...
+  </p>
+</div>
 ```
 
-No other changes needed -- the variable name (`drakeLogo`) stays the same, so the `<img>` tag continues to work as-is.
+This sits below the coach profiles section. The information is redundant since the individual coach bios above already communicate the team's approach, and the Reset Week CTA appears elsewhere on the site.
