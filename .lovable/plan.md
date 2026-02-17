@@ -1,39 +1,18 @@
 
-# Right-Align Hero Content on Mobile
 
-## Change
+# Revert Hero Text to Left-Aligned
 
-In `src/components/Hero.tsx`, update the content wrapper (line 104) to right-align text on mobile and revert to left-align on desktop.
+Undo the previous right-alignment changes and restore left-aligned text on mobile.
 
-### Current (line 104)
-```
-"max-w-2xl text-white", centered ? "text-center mx-auto" : "text-left"
-```
+## Changes in `src/components/Hero.tsx`
 
-### Proposed
-```
-"max-w-2xl text-white", centered ? "text-center mx-auto" : "text-right md:text-left ml-auto md:ml-0"
-```
+### 1. Content wrapper (line 104)
+**Current:** `"text-right md:text-left ml-auto md:ml-0"`
+**Restore to:** `"text-left"`
 
-- `text-right` -- right-aligns all text on mobile
-- `md:text-left` -- restores left-alignment on desktop
-- `ml-auto` -- pushes the content block to the right on mobile
-- `md:ml-0` -- resets to default positioning on desktop
+### 2. CTA container (line 131)
+**Current:** `"items-end md:items-start"`
+**Restore to:** `"items-start"`
 
-The CTA button container (line 131) also needs updating to align buttons to the right on mobile:
+This reverts both changes from the last edit, putting all hero text and buttons back to left-aligned on all screen sizes.
 
-### Current (line 131)
-```
-"items-start"
-```
-
-### Proposed
-```
-"items-end md:items-start"
-```
-
-## File changed
-
-| File | Change |
-|---|---|
-| `src/components/Hero.tsx` | Lines 104, 131: add mobile right-alignment classes |
