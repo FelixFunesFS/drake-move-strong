@@ -67,6 +67,8 @@ const About = () => {
           subtitle="To help adults move better and build strong, mobile, pain-free bodies that support their everyday lives." 
           accentedSubtitle={true}
           className="h-screen"
+          primaryCTA={{ text: "View Schedule", link: "/schedule" }}
+          secondaryCTA={{ text: "See Pricing", link: "/pricing" }}
         />
       </div>
 
