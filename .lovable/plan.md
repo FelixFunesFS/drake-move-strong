@@ -1,23 +1,46 @@
 
-
-# Fix Desktop Hero Content Spacing Below Navbar
+# Fix Tablet View: Purchase Your Reset Week Card
 
 ## Problem
-On desktop, the hero section's eyebrow text sits too close to the navigation bar. The current content positioning uses `md:pt-[5vh]` (approximately 54px on a 1080p screen), which doesn't provide enough breathing room between the nav and the first hero element.
+On tablet (768-1023px), the Reset Week purchase card is excessively tall because:
+- The left text column contains a large headline, 4 "who we help" bullets, reassurance text, AND the full $50 purchase box -- all stacked vertically
+- The image column stretches to match, creating a ~1100px tall card
+- This requires excessive scrolling and dilutes the conversion impact
 
-## Root Cause
-In `src/components/Hero.tsx` (line 65), the `fullViewport` content positioning is set to `md:items-start md:pt-[5vh]`. Combined with the `-mt-[20px]` on the h1, the content cluster feels cramped against the navbar on desktop.
+## Solution: Tighten Spacing on Tablet
 
-## Fix
-Increase the desktop top padding from `md:pt-[5vh]` to `md:pt-[8vh]` (~86px on 1080p). This provides proper visual separation without affecting mobile, which remains at `pt-[15vh]`.
+Rather than restructuring the layout (which works well conceptually), we reduce spacing and sizing in the text column specifically at the `md` breakpoint to make the card more compact on tablet.
 
-## Technical Details
+### File: `src/pages/Home.tsx`
 
-### File: `src/components/Hero.tsx`
+**Change 1** - Reduce text column padding on tablet (line 78):
+- From: `p-8 md:p-12`
+- To: `p-8 md:p-8 lg:p-12`
 
-**Line 65** - Update desktop padding only:
-- From: `"items-start pt-[15vh] md:items-start md:pt-[5vh]"`
-- To: `"items-start pt-[15vh] md:items-start md:pt-[8vh]"`
+Keeps generous padding for desktop but tightens it on tablet.
 
-Mobile view (`pt-[15vh]`) remains completely unchanged.
+**Change 2** - Reduce heading size on tablet (line 80):
+- From: `text-3xl md:text-4xl`
+- To: `text-3xl md:text-3xl lg:text-4xl`
 
+Prevents the headline from consuming too much vertical space at 768-1023px.
+
+**Change 3** - Tighten bullet list spacing on tablet (line 82):
+- From: `space-y-3 mb-8`
+- To: `space-y-2 md:space-y-2 mb-6 md:mb-6 lg:mb-8`
+
+**Change 4** - Compact the purchase box padding on tablet (line 92):
+- From: `p-6`
+- To: `p-4 md:p-4 lg:p-6`
+
+**Change 5** - Reduce image minimum height on tablet (line 118):
+- From: `min-h-[400px] md:min-h-[600px]`
+- To: `min-h-[400px] md:min-h-[500px]`
+
+The image no longer needs to stretch as tall since the text column is more compact.
+
+### Expected Result
+- The card will be approximately 150-200px shorter on tablet
+- All content remains visible and readable
+- The conversion flow (problem identification -> offer -> purchase button) stays intact
+- Mobile and desktop layouts are unaffected
