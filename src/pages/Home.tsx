@@ -85,9 +85,6 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                       <span className="text-base">{item}</span>
                     </li>)}
                 </ul>
-                <p className="text-base font-semibold mb-2">
-                  No experience needed. No pressure. Just expert coaching, ego-free community.
-                </p>
                 {/* Reset Week Purchase Card */}
                 <div className="bg-muted border border-border rounded-xl p-4 md:p-4 lg:p-6">
                   <div className="flex items-baseline gap-2 mb-4">
