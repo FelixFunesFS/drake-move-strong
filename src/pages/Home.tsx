@@ -49,6 +49,9 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       } title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="7-Day Mobility Reset Week: Unlimited Classes for $50. Start feeling the difference with small-group, mobility-first training at Drake Fitness in Avondale." primaryCTA={{
         text: "Start Your Reset Week for $50",
         link: "#reset-week"
+      }} secondaryCTA={{
+        text: "View Schedule",
+        link: "/schedule"
       }} backgroundImages={[heroImage1Desktop]} backgroundImagesMobile={[heroImage1Mobile]} autoRotate={false} />
 
       {/* Brand Values Marquee */}
