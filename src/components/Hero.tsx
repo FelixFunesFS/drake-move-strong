@@ -131,9 +131,15 @@ const Hero = ({
               className={cn("flex flex-col sm:flex-row gap-3 md:gap-4 max-w-xl", centered ? "items-center justify-center mx-auto" : "items-start")}
             >
               {primaryCTA && (
-                <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-sm sm:text-base md:text-base px-6 sm:px-8 md:px-8 py-4 sm:py-5 md:py-4 h-auto min-h-[56px] md:min-h-[44px] shadow-[var(--shadow-gold)] hover:scale-105 transition-transform w-full sm:w-auto">
-                  <Link to={primaryCTA.link} className="text-center">{primaryCTA.text}</Link>
-                </Button>
+                primaryCTA.link.startsWith('#') || primaryCTA.link.startsWith('http') ? (
+                  <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-sm sm:text-base md:text-base px-6 sm:px-8 md:px-8 py-4 sm:py-5 md:py-4 h-auto min-h-[56px] md:min-h-[44px] shadow-[var(--shadow-gold)] hover:scale-105 transition-transform w-full sm:w-auto">
+                    <a href={primaryCTA.link} {...(primaryCTA.link.startsWith('http') ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="text-center">{primaryCTA.text}</a>
+                  </Button>
+                ) : (
+                  <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-sm sm:text-base md:text-base px-6 sm:px-8 md:px-8 py-4 sm:py-5 md:py-4 h-auto min-h-[56px] md:min-h-[44px] shadow-[var(--shadow-gold)] hover:scale-105 transition-transform w-full sm:w-auto">
+                    <Link to={primaryCTA.link} className="text-center">{primaryCTA.text}</Link>
+                  </Button>
+                )
               )}
               {secondaryCTA && (
                 secondaryCTA.link.startsWith('http') ? (
