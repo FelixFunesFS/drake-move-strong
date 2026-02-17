@@ -1,55 +1,33 @@
 
+# Update Start Here Card CTA Text and Reduce Trust Stats Size
 
-# Add Reset Week Purchase Card with Smooth Scroll on Home Page
+## Changes (2 files)
 
-## Strategy
+### 1. Update CTA text in the Start Here purchase card (`src/pages/Home.tsx`, line 107)
 
-Instead of duplicating pricing info across multiple sections, convert the hero CTA into a smooth scroll that lands on an enhanced "START HERE" section. This keeps visitors on-site longer, gives them the "what's included" context, and then sends them to PunchPass with confidence.
+Change the button text from "Start Your Reset Week" to **"Purchase Reset Week"** -- clearer purchase intent language that tells visitors exactly what clicking does.
 
-## Changes (1 file: `src/pages/Home.tsx`)
+### 2. Also update the eyebrow label (line 72)
 
-### 1. Hero CTA becomes a smooth scroll anchor
+Change "START HERE" to **"PURCHASE YOUR RESET WEEK"** so the section header matches the action-oriented language.
 
-Change the hero `primaryCTA` from linking directly to PunchPass to scrolling down to `#reset-week`. This keeps the visitor on the page and builds intent before the external checkout.
+### 3. Reduce Trust Stats Bar size (`src/components/TrustStatsBar.tsx`)
 
-The hero subtitle already says "7-Day Mobility Reset Week: Unlimited Classes for $50" so visitors know the price before scrolling.
+For the horizontal variant (the one used on Home), make these sizing reductions:
 
-### 2. Add `id="reset-week"` to the START HERE section
+- **Padding**: Reduce from `py-8 md:py-12` to `py-5 md:py-8` (less vertical space)
+- **Icon circles**: Reduce from `w-12 h-12 md:w-14 md:h-14` to `w-10 h-10 md:w-12 md:h-12`
+- **Icon size**: Reduce from `size={24}` to `size={20}`
+- **Number text**: Reduce from `text-2xl md:text-3xl` to `text-xl md:text-2xl`
+- **Label text**: Keep at `text-sm` (already compact)
+- **Gap**: Reduce from `gap-6 md:gap-8` to `gap-4 md:gap-6`
 
-Add the anchor target to the existing START HERE section container so the smooth scroll lands there.
+This makes the trust stats feel like a supporting accent band rather than a full section, keeping the page focused on conversion without losing credibility signals.
 
-### 3. Replace the simple "Start Reset Week -- $50" button with a Reset Week purchase card
+### Conversion thinking
 
-Inside the START HERE section, after the bullet list and "No experience needed" text, replace the single button with a compact purchase card containing:
+The page flow becomes: Hero (price visible) --> smooth scroll --> "PURCHASE YOUR RESET WEEK" card with benefits + price + purchase button --> trust stats (compact, reinforcing) --> testimonials. Every element either builds intent or enables purchase -- no wasted scroll depth.
 
-- **Price callout**: "$50" large, "for 7 days" beside it
-- **What's included** (compact list, reusing the details from Pricing page):
-  - 7 days of unlimited classes
-  - All class types: Foundation Flow, KB Strong, Mobility Reset, and more
-  - Expert, joint-friendly coaching
-  - No commitment required
-- **Purchase button**: "Start Your Reset Week" linking to PunchPass (external)
-
-This card sits naturally inside the existing START HERE layout -- no new sections, no extra scroll depth.
-
-### 4. Add smooth scroll CSS
-
-Add `scroll-behavior: smooth` to the html element (via index.css) and a small scroll-margin-top on the target section to account for the fixed nav.
-
-## What stays the same
-
-- The Method step 1 still says "Try 7 days of unlimited classes for just $50" (reinforcement, not redundancy -- it's in a different visual context)
-- The final CTA at the bottom still links directly to PunchPass (for visitors who scroll all the way down and are ready)
-- The START HERE bullet list and image remain unchanged
-
-## Technical Details
-
-| Area | Detail |
-|---|---|
-| Hero CTA link | Changes from PunchPass URL to `#reset-week` |
-| Hero CTA behavior | Uses an `<a href="#reset-week">` with native smooth scroll |
-| START HERE section | Gets `id="reset-week"` and `scroll-mt-20` for nav offset |
-| New purchase card | Compact card inside existing grid, no new section |
-| CSS | `scroll-behavior: smooth` added to `html` in `index.css` |
-| Files changed | `src/pages/Home.tsx`, `src/index.css` |
-
+## Files
+- `src/pages/Home.tsx` -- CTA text and eyebrow update
+- `src/components/TrustStatsBar.tsx` -- horizontal variant sizing reduction
