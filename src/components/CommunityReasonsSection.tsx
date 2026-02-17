@@ -157,11 +157,11 @@ const ReasonOverlayContent = ({ reason }: { reason: ReasonCard }) => {
           <span aria-hidden="true" className="w-8 h-8 rounded-lg bg-primary/90 flex items-center justify-center text-white flex-shrink-0">
             {reason.icon}
           </span>
-          <h3 className="font-hero text-base sm:text-lg md:text-xl font-bold text-white uppercase leading-tight">
+          <h3 className="font-hero text-lg sm:text-xl md:text-xl font-bold text-white uppercase leading-tight">
             {reason.title}
           </h3>
         </div>
-        <p className="text-gray-200 text-xs sm:text-sm md:text-base leading-snug max-w-md">
+        <p className="text-gray-200 text-sm sm:text-base md:text-base leading-snug max-w-md">
           {reason.description}
         </p>
         {reason.link && (
