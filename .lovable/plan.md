@@ -1,35 +1,45 @@
 
-# Hide Chat Button Until Past Hero + Fix Subtitle Contrast
+
+# Improve Mobile Text Readability: Hero Subtitle + Image Overlay Cards
+
+## Problem
+
+Two areas have text that's undersized on mobile screens:
+
+1. **Hero subtitle** starts at `text-sm` (14px) -- too small for a conversion-critical paragraph over a busy hero image
+2. **"What Makes Us Different" card descriptions** start at `text-xs` (12px) -- the smallest Tailwind size, hard to read over gradient-darkened images
+
+**Principle**: Text overlaid on images needs to be 1 step larger than the same text on a plain background, because visual noise behind the text reduces perceived contrast and readability.
 
 ## Changes
 
-### 1. Make ChatBot scroll-aware (`src/components/chat/ChatBot.tsx`)
+### 1. Hero subtitle -- bump mobile size (`src/components/Hero.tsx`)
 
-The chat toggle button is fixed-position and always visible, overlapping the Hero CTAs. Add scroll detection (same pattern as MobileContactBar) so it only appears after scrolling ~400px past the hero.
+**Line 123** -- change `text-sm sm:text-base md:text-lg` to `text-base sm:text-lg md:text-xl`
 
-- Add `useState` + `useEffect` scroll listener with 400px threshold
-- Hide both the toggle button and chat window when at the top
-- Smooth transition: use `opacity-0 translate-y-4` (hidden) to `opacity-100 translate-y-0` (visible)
-- When chat is already open and user scrolls back up, it stays hidden until they scroll down again
+This moves the mobile floor from 14px to 16px and scales up across breakpoints, making the Reset Week value proposition easier to scan on small screens.
 
-### 2. Improve subtitle contrast (`src/components/Hero.tsx`)
+### 2. Image overlay card text -- bump mobile sizes (`src/components/CommunityReasonsSection.tsx`)
 
-The subtitle paragraph currently uses `text-gray-200` which can lack contrast against busy hero images. Update to `text-white/90` with a subtle text shadow for guaranteed readability.
+**Line 160 (card title)** -- change `text-base sm:text-lg md:text-xl` to `text-lg sm:text-xl md:text-xl`
 
-**Line 123** -- change:
-```
-text-gray-200
-```
-To:
-```
-text-white/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]
-```
+Bumps the mobile title from 16px to 18px so it reads as a clear heading even at small widths.
 
-This ensures the subtitle text remains legible over any hero background image while maintaining a softer visual weight than the H1.
+**Line 164 (card description)** -- change `text-xs sm:text-sm md:text-base` to `text-sm sm:text-base md:text-base`
+
+Raises the mobile floor from 12px to 14px -- the minimum comfortable reading size for text on image overlays.
+
+## Summary
+
+| Element | Current mobile | Proposed mobile |
+|---|---|---|
+| Hero subtitle | `text-sm` (14px) | `text-base` (16px) |
+| Card title | `text-base` (16px) | `text-lg` (18px) |
+| Card description | `text-xs` (12px) | `text-sm` (14px) |
 
 ## Files changed
 
 | File | Change |
 |---|---|
-| `src/components/chat/ChatBot.tsx` | Add scroll threshold (400px) to hide toggle button and chat window while hero is in view |
-| `src/components/Hero.tsx` | Update subtitle from `text-gray-200` to `text-white/90` with drop shadow for better contrast |
+| `src/components/Hero.tsx` | Line 123: bump subtitle responsive sizes up one tier |
+| `src/components/CommunityReasonsSection.tsx` | Lines 160, 164: bump card title and description sizes up one tier |
