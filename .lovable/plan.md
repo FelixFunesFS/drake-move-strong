@@ -1,24 +1,28 @@
 
 
-# Move Hero Content Up 10% on Home Page
+# Move Hero Background Image Position Higher by 10%
 
 ## Change
 
-In `src/components/Hero.tsx`, reduce the top padding that pushes the content down. Currently the content starts at `pt-[25vh]` on mobile and `pt-[15vh]` on desktop. Subtract roughly 10vh from each.
+In `src/components/Hero.tsx`, adjust the background `<img>` element's vertical object position so the image itself is cropped higher (showing more of the top of the photo).
 
-### Current (line 73)
+### Current (line 91)
 ```
-"items-start pt-[25vh] md:items-start md:pt-[15vh]"
+className="absolute inset-0 w-full h-full object-cover object-right md:object-center animate-ken-burns"
 ```
 
 ### Proposed
 ```
-"items-start pt-[15vh] md:items-start md:pt-[5vh]"
+className="absolute inset-0 w-full h-full object-cover object-right-top md:object-[center_40%] animate-ken-burns"
 ```
+
+This uses:
+- `object-right-top` on mobile: keeps the right alignment but shifts the crop toward the top of the image
+- `md:object-[center_40%]` on desktop: centers horizontally but crops at 40% from the top (instead of the default 50%), effectively shifting the visible area up by 10%
 
 ## File changed
 
 | File | Change |
 |---|---|
-| `src/components/Hero.tsx` | Line 73: change `pt-[25vh]` to `pt-[15vh]` and `md:pt-[15vh]` to `md:pt-[5vh]` |
+| `src/components/Hero.tsx` | Line 91: update object-position classes to shift image crop upward |
 
