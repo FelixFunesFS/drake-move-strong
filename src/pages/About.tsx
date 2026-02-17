@@ -3,45 +3,29 @@ import CTASection from "@/components/CTASection";
 import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
-import { Target, Heart, TrendingUp, Users, CheckCircle2, Activity, Shield } from "lucide-react";
+import { Target, Heart, Users, CheckCircle2, Activity, Shield } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
 
-import PhilosophyQuote from "@/components/PhilosophyQuote";
 import davidImage from "@/assets/david-double-kb-storefront-new.jpg";
-import davidImage2 from "@/assets/david-goblet-squat-kb-rack.jpg";
 import nickImage from "@/assets/coach-nick-new.jpg";
 import kbCollection from "@/assets/group-kettlebell-training.jpg";
-import communityMoment from "@/assets/community-plank-rows-kettlebells.jpg";
-import memberYoga from "@/assets/member-yoga-pose.jpg";
-import outdoorKb from "@/assets/outdoor-kettlebell.jpg";
-import coachingSession from "@/assets/coaching-session.jpg";
 import studioKettlebells from "@/assets/studio-kettlebells.jpg";
 import studioDavidStorefront from "@/assets/studio-david-storefront.jpg";
-import studioDavidDogArt from "@/assets/studio-david-dog-art.jpg";
-import studioBarbellPlatform from "@/assets/studio-barbell-platform.jpg";
 import studioTeamPhoto from "@/assets/studio-team-photo.jpg";
 import studioMobilityTraining from "@/assets/studio-mobility-training.jpg";
 import studioFullView from "@/assets/studio-full-view.jpg";
-import studioKettlebellClass from "@/assets/studio-kettlebell-class.jpg";
-import studioFloorExercise from "@/assets/studio-floor-exercise.jpg";
-import studioDavidDog from "@/assets/studio-david-dog.jpg";
 import studioDualTraining from "@/assets/studio-dual-training.jpg";
 import studioOutdoorBanner from "@/assets/studio-outdoor-banner.jpg";
 import studioNickDavidTogether from "@/assets/studio-nick-david-together.jpg";
 import studioLargeGroup from "@/assets/studio-large-group.jpg";
 import studioTeamThree from "@/assets/studio-team-three.jpg";
-import studioTrainingWithDog from "@/assets/studio-training-with-dog.jpg";
 import studioGroupSquats from "@/assets/studio-group-squats.jpg";
-import studioKbCloseup from "@/assets/studio-kb-closeup.jpg";
-import studioGroupOverhead from "@/assets/studio-group-overhead.jpg";
 import ImageGallery from "@/components/ImageGallery";
 import TestimonialHero from "@/components/TestimonialHero";
 import { LONGEVITY_REVIEWS } from "@/data/reviews";
-// New authentic training photos
-import communityGroupPhotoLarge from "@/assets/community-group-photo-large.jpg";
 import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg";
 import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg";
 import davidCoachingTurkishGetup from "@/assets/david-coaching-turkish-getup.jpg";
@@ -209,11 +193,8 @@ const About = () => {
                       Charleston's Best Personal Trainer (City Paper)
                     </p>
                     <div className="space-y-4 text-sm md:text-base text-gray-300">
-                      <p>​David brings more than<strong className="text-white">25 years</strong> of experience helping people <strong className="text-white">move better</strong>, <strong className="text-white">eliminate pain</strong>, and <strong className="text-white">build strength</strong> that supports real life. With formal training in corrective exercise, mobility development, and StrongFirst-style kettlebell methodology, he coaches with the precision of a <strong className="text-white">body mechanic</strong>—someone who understands how the body is designed to move and how to restore that natural function when injuries, stress, or modern habits get in the way. 
-
-His approach blends skill, science, and practical strength work to create long-term results that keep clients capable, confident, and resilient.
-                      </p>
-                      
+                      <p>David brings <strong className="text-white">25+ years</strong> of experience helping people <strong className="text-white">move better</strong>, <strong className="text-white">eliminate pain</strong>, and <strong className="text-white">build real-world strength</strong>. Trained in corrective exercise, mobility development, and StrongFirst kettlebell methodology, he coaches like a <strong className="text-white">body mechanic</strong> — restoring how your body was designed to move.</p>
+                      <p>His approach blends skill, science, and practical strength work for results that last.</p>
                     </div>
 
                     {/* Specialties Card - Semi-transparent */}
@@ -274,10 +255,10 @@ His approach blends skill, science, and practical strength work to create long-t
                     </p>
                     <div className="space-y-4 text-sm md:text-base text-muted-foreground">
                       <p>
-                        Originally from Long Island, Nick's own journey through football injuries, a torn labrum, concussions, chronic back pain, and gut issues led him to discover a deeper world of human movement, lifestyle balance, and functional wellness.
+                        Nick specializes in bridging the gap between <strong className="text-foreground">rehabilitation and performance</strong> — helping clients improve posture, stability, and functional strength through corrective exercise and holistic coaching.
                       </p>
                       <p>
-                        His approach bridges the gap between <strong className="text-foreground">rehabilitation and performance</strong>, helping clients improve posture, stability, mobility, and functional strength through corrective exercise and holistic lifestyle coaching.
+                        His own journey through sports injuries and chronic pain gave him firsthand understanding of what it takes to rebuild from the ground up.
                       </p>
                     </div>
 
@@ -332,6 +313,58 @@ His approach blends skill, science, and practical strength work to create long-t
         backgroundImage={studioDualTraining}
       />
 
+      {/* Values Section - Moved above videos */}
+      <AnimatedSection animation="fadeInUp">
+        <section className="py-16 md:py-24 bg-background section-slant-top">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <p className="section-eyebrow text-primary text-center">OUR VALUES</p>
+              <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
+                3 Core Values That <span className="text-primary">Guide Our Training</span>
+              </h2>
+              <p className="text-lg text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+                Our commitment to quality coaching, safe training environments, and real results.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                {/* Community Card */}
+                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} whileHover={{ y: -8 }} className="bg-card rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-border">
+                  <div className="w-16 h-16 bg-drake-gold rounded-full flex items-center justify-center mb-6 mx-auto">
+                    <Users className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="font-hero text-xl md:text-2xl font-bold text-center mb-4 uppercase">Community</h3>
+                  <p className="text-sm md:text-base text-muted-foreground text-center">
+                    We foster a supportive, ego-free environment where everyone is welcomed, encouraged, and celebrated for their progress.
+                  </p>
+                </motion.div>
+
+                {/* Safety Card */}
+                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} whileHover={{ y: -8 }} className="bg-card rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-border">
+                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 mx-auto">
+                    <Shield className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="font-hero text-xl md:text-2xl font-bold text-center mb-4 uppercase">Safety</h3>
+                  <p className="text-sm md:text-base text-muted-foreground text-center">
+                    Proper form, intelligent programming, and injury prevention guide every movement and every session we coach.
+                  </p>
+                </motion.div>
+
+                {/* Results Card */}
+                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} whileHover={{ y: -8 }} className="bg-card rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-border">
+                  <div className="w-16 h-16 bg-drake-dark rounded-full flex items-center justify-center mb-6 mx-auto">
+                    <Target className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="font-hero text-xl md:text-2xl font-bold text-center mb-4 uppercase">Results</h3>
+                  <p className="text-sm md:text-base text-muted-foreground text-center">
+                    We deliver measurable improvements in mobility, strength, and quality of life through proven methods and expert coaching.
+                  </p>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
       {/* See It In Action - Video Section */}
       <AnimatedSection animation="fadeIn">
         <section className="py-16 md:py-24 bg-drake-dark section-slant-top">
@@ -346,18 +379,13 @@ His approach blends skill, science, and practical strength work to create long-t
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Video 1: Coaching Philosophy */}
                 <div>
                   <YouTubeEmbed videoId="wDtDMNnrF00" title="Drake Fitness Coaching Philosophy" />
-                  <h3 className="font-hero text-xl font-bold mt-4 text-white uppercase">
-                    Our Coaching Philosophy
-                  </h3>
+                  <h3 className="font-hero text-xl font-bold mt-4 text-white uppercase">Our Coaching Philosophy</h3>
                   <p className="text-gray-400 mt-2">
                     A glimpse of our group training in action. The Coyote Complex (Swings, Goblet Squats, and Push-ups) can be scaled from 5 to 20 rounds based on your fitness level. We meet you where you are.
                   </p>
                 </div>
-                
-                {/* Video 2: Pressing Reset */}
                 <div>
                   <YouTubeEmbed videoId="Vb91A46rLr8" title="Pressing Reset Mobility Warm-Up" />
                   <h3 className="font-hero text-xl font-bold mt-4 text-white uppercase">
@@ -374,97 +402,6 @@ His approach blends skill, science, and practical strength work to create long-t
         </section>
       </AnimatedSection>
 
-      {/* Values Section */}
-      <AnimatedSection animation="fadeInUp">
-        <section className="py-16 md:py-24 bg-background section-slant-top">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <p className="section-eyebrow text-primary text-center">OUR VALUES</p>
-              <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-4 uppercase">
-                3 Core Values That <span className="text-primary">Guide Our Training</span>
-              </h2>
-              <p className="text-lg text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-                Our commitment to quality coaching, safe training environments, and real results.
-              </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                {/* Community Card */}
-                <motion.div initial={{
-                opacity: 0,
-                y: 30
-              }} whileInView={{
-                opacity: 1,
-                y: 0
-              }} viewport={{
-                once: true
-              }} transition={{
-                delay: 0.1
-              }} whileHover={{
-                y: -8
-              }} className="bg-card rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-border">
-                  <div className="w-16 h-16 bg-drake-gold rounded-full flex items-center justify-center mb-6 mx-auto">
-                    <Users className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="font-hero text-xl md:text-2xl font-bold text-center mb-4 uppercase">Community</h3>
-                  <p className="text-sm md:text-base text-muted-foreground text-center">
-                    We foster a supportive, ego-free environment where everyone is welcomed, encouraged, and celebrated for their progress.
-                  </p>
-                </motion.div>
-
-                {/* Safety Card */}
-                <motion.div initial={{
-                opacity: 0,
-                y: 30
-              }} whileInView={{
-                opacity: 1,
-                y: 0
-              }} viewport={{
-                once: true
-              }} transition={{
-                delay: 0.2
-              }} whileHover={{
-                y: -8
-              }} className="bg-card rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-border">
-                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 mx-auto">
-                    <Shield className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="font-hero text-xl md:text-2xl font-bold text-center mb-4 uppercase">Safety</h3>
-                  <p className="text-sm md:text-base text-muted-foreground text-center">
-                    Proper form, intelligent programming, and injury prevention guide every movement and every session we coach.
-                  </p>
-                </motion.div>
-
-                {/* Results Card */}
-                <motion.div initial={{
-                opacity: 0,
-                y: 30
-              }} whileInView={{
-                opacity: 1,
-                y: 0
-              }} viewport={{
-                once: true
-              }} transition={{
-                delay: 0.3
-              }} whileHover={{
-                y: -8
-              }} className="bg-card rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-border">
-                  <div className="w-16 h-16 bg-drake-dark rounded-full flex items-center justify-center mb-6 mx-auto">
-                    <Target className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="font-hero text-xl md:text-2xl font-bold text-center mb-4 uppercase">Results</h3>
-                  <p className="text-sm md:text-base text-muted-foreground text-center">
-                    We deliver measurable improvements in mobility, strength, and quality of life through proven methods and expert coaching.
-                  </p>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
-
-      {/* Philosophy Quote - Before Studio Section */}
-      <PhilosophyQuote variant="hero" quote="purpose" />
-
       <AnimatedSection animation="fadeInUp">
         <section className="py-16 md:py-24 section-slant-top bg-secondary-foreground">
           <div className="container mx-auto px-4">
@@ -478,9 +415,6 @@ His approach blends skill, science, and practical strength work to create long-t
             <ImageGallery images={[{
             src: studioFullView,
             alt: "Wide view of Drake Fitness training studio interior"
-          }, {
-            src: communityGroupPhotoLarge,
-            alt: "Large outdoor community group photo at Drake Fitness"
           }, {
             src: studioNickDavidTogether,
             alt: "David Drake and Nick Poppa coaching team"
@@ -512,63 +446,14 @@ His approach blends skill, science, and practical strength work to create long-t
             src: studioGroupSquats,
             alt: "Group kettlebell squats with studio dog watching"
           }, {
-            src: studioGroupOverhead,
-            alt: "Group overhead kettlebell training session"
-          }, {
-            src: studioDualTraining,
-            alt: "Dual kettlebell training session in progress"
-          }, {
-            src: studioKettlebellClass,
-            alt: "Kettlebell training class demonstration"
-          }, {
-            src: studioTrainingWithDog,
-            alt: "Training session with studio dog supervising"
+            src: studioMobilityTraining,
+            alt: "Mobility and flexibility training session"
           }, {
             src: studioKettlebells,
             alt: "Professional kettlebell collection at Drake Fitness"
           }, {
-            src: studioBarbellPlatform,
-            alt: "Barbell platform and weight training area"
-          }, {
-            src: studioMobilityTraining,
-            alt: "Mobility and flexibility training session"
-          }, {
-            src: studioFloorExercise,
-            alt: "Floor-based kettlebell training exercise"
-          }, {
-            src: studioKbCloseup,
-            alt: "Close-up of kettlebell exercise form"
-          }, {
-            src: studioDavidDogArt,
-            alt: "David Drake with studio dog and custom artwork"
-          }, {
-            src: studioDavidDog,
-            alt: "David Drake with his dog at the studio"
-          }, {
-            src: kbCollection,
-            alt: "Group kettlebell training session"
-          }, {
-            src: communityMoment,
-            alt: "Community training moment at Drake Fitness"
-          }, {
-            src: memberYoga,
-            alt: "Member practicing mobility and yoga"
-          }, {
-            src: outdoorKb,
-            alt: "Outdoor kettlebell training session"
-          }, {
-            src: coachingSession,
-            alt: "Personal coaching session at Drake Fitness",
-            objectPosition: "center top"
-          }, {
-            src: davidImage2,
-            alt: "David Drake coaching kettlebell technique"
-          }, {
-            src: davidImage,
-            alt: "Drake Fitness storefront with kettlebells"
-          }, {
-            src: nickImage,
-            alt: "Coach Nick demonstrating functional training"
+            src: studioDualTraining,
+            alt: "Dual kettlebell training session in progress"
           }]} />
           </div>
         </section>
