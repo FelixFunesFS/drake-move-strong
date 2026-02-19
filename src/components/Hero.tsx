@@ -128,7 +128,7 @@ const Hero = ({
               initial={{ opacity: 0, y: 30 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.8, delay: 0.6 }} 
-              className={cn("flex flex-col sm:flex-row gap-3 md:gap-4 max-w-xl", centered ? "items-center justify-center mx-auto" : "items-start")}
+              className={cn("flex flex-col sm:flex-row sm:items-stretch gap-3 md:gap-4 max-w-xl", centered ? "items-center justify-center mx-auto" : "items-start")}
             >
               {primaryCTA && (
                 primaryCTA.link.startsWith('#') || primaryCTA.link.startsWith('http') ? (
