@@ -271,7 +271,7 @@ export function TrustStatsBar({
                     <Icon size={20} className="text-white" />
                   </div>
                   <div className={cn(
-                    "font-bold text-xl md:text-2xl font-heading",
+                    "font-bold text-xl md:text-2xl font-hero",
                     STAT_NUMBER_COLORS[statKey]
                   )}>
                     <CountUpValue value={stat.value} isInView={isInView} />
