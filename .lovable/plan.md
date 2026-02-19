@@ -1,27 +1,20 @@
 
 
-# More Aggressive Mobile Hero Image Crop
-
-## Current State
-The hero image in `src/components/Hero.tsx` (line 91) uses:
-- Mobile: `object-[center_15%]` (recently changed from 20%)
-- Desktop: `md:object-[center_40%]` (unchanged)
-
-The desktop class (`md:object-[center_40%]`) overrides on screens 768px+, so it will NOT be affected.
+# Change Trust Stats Numbers to Oswald (font-hero)
 
 ## Change
 
-### File: `src/components/Hero.tsx` (line 91)
+### File: `src/components/TrustStatsBar.tsx` (line 274)
 
-Update the mobile-only object-position from `center_15%` to `center_5%` for a much more noticeable shift that hides the ceiling lights:
+Update the stat number font class from `font-heading` (Montserrat) to `font-hero` (Oswald) to match the site's typography standard for bold, impactful numbers.
 
 ```
 // Before:
-object-[center_15%] md:object-[center_40%]
+font-bold text-xl md:text-2xl font-heading
 
 // After:
-object-[center_5%] md:object-[center_40%]
+font-bold text-xl md:text-2xl font-hero
 ```
 
-Desktop stays at `center_40%` -- completely untouched. If 5% crops too aggressively on mobile, we can adjust back up to 8% or 10%.
+This only affects the horizontal (default) variant of the trust stats bar -- the 4-column teal bar shown on the homepage.
 
