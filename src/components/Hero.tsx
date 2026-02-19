@@ -100,8 +100,8 @@ const Hero = ({
         )}
 
         {/* Content */}
-        <div className="container mx-auto px-4 pb-20 md:pb-0 relative z-10">
-          <div className={cn("max-w-2xl text-white", centered ? "text-center mx-auto" : "text-left")}>
+        <div className="container mx-auto px-4 pb-20 md:pb-0 relative z-10 flex justify-end md:justify-start">
+          <div className={cn("max-w-2xl text-white", centered ? "text-center mx-auto" : "text-right md:text-left")}>
             {eyebrow && (
               <m.p
                 initial={{ opacity: 0, y: 30 }}
@@ -128,7 +128,7 @@ const Hero = ({
               initial={{ opacity: 0, y: 30 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.8, delay: 0.6 }} 
-              className={cn("flex flex-col sm:flex-row gap-3 md:gap-4 max-w-xl", centered ? "items-center justify-center mx-auto" : "items-start")}
+              className={cn("flex flex-col sm:flex-row gap-3 md:gap-4 max-w-xl", centered ? "items-center justify-center mx-auto" : "items-end md:items-start")}
             >
               {primaryCTA && (
                 primaryCTA.link.startsWith('#') || primaryCTA.link.startsWith('http') ? (
