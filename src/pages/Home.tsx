@@ -10,7 +10,7 @@ import TrustStatsBar from "@/components/TrustStatsBar";
 import LongevityBlock from "@/components/LongevityBlock";
 // WebP hero images with responsive sizes
 import heroImage1Desktop from "@/assets/hero-group-turkish-getup.jpg?format=webp&w=1920";
-import heroImage1Mobile from "@/assets/hero-mobile-new.jpg?format=webp&w=768";
+
 import davidCoach from "@/assets/david-goblet-squat-kb-rack.jpg?format=webp&w=768";
 import coachNick from "@/assets/nick-holistic-coaching.jpg?format=webp&w=768";
 import startHereImage from "@/assets/outdoor-sandbag-training.jpg?format=webp&w=768";
@@ -46,13 +46,13 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
             <MapPin className="w-3 h-3" />
             Avondale • West Ashley • Charleston
           </span>
-      } title={<>Move Better.<span className="hidden sm:inline"><br /></span> <span className="text-accent">Live Stronger.</span><span className="hidden sm:inline"><br /></span> Stay Pain-Free.</>} subtitle="7-Day Mobility Reset Week: Unlimited Classes for $50. Start feeling the difference with small-group, mobility-first training at Drake Fitness in Avondale." primaryCTA={{
+} title={<>Move Better.<br />Live <span className="text-accent">Stronger.</span> Stay<br />Pain-Free.</>} subtitle="7-Day Mobility Reset Week: Unlimited Classes for $50. Start feeling the difference with small-group, mobility-first training at Drake Fitness in Avondale." primaryCTA={{
         text: "Start Your Reset Week for $50",
         link: "#reset-week"
       }} secondaryCTA={{
         text: "View Schedule",
         link: "/schedule"
-      }} backgroundImages={[heroImage1Desktop]} backgroundImagesMobile={[heroImage1Mobile]} autoRotate={false} />
+      }} backgroundImages={[heroImage1Desktop]} autoRotate={false} />
 
       {/* Brand Values Marquee */}
       <section className="py-4 md:py-6 bg-drake-dark overflow-hidden border-y border-drake-gold/20">
