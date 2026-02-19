@@ -47,7 +47,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
             Avondale • West Ashley • Charleston
           </span>
 } title={<>Move Better.<br /><span className="text-accent">Live Stronger.</span><br />Stay Pain-Free.</>} subtitle="7-Day Mobility Reset Week: Unlimited Classes for $50. Start feeling the difference with small-group, mobility-first training at Drake Fitness in Avondale." primaryCTA={{
-        text: "Start Your Reset Week for $50",
+        text: <>Start Your Reset<br className="hidden md:block" /> Week for $50</>,
         link: "#reset-week"
       }} secondaryCTA={{
         text: "View Schedule",
