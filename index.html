@@ -47,7 +47,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   
   <!-- Preload LCP hero image for faster discovery -->
-  <link rel="preload" as="image" href="/images/hero-mobile.jpg" fetchpriority="high">
+  <!-- Hero image preloaded via fetchPriority="high" in React component -->
   
   <!-- Critical CSS for hero - prevents flash of unstyled content -->
   <style>
@@ -61,7 +61,7 @@
     @media(min-width:1280px){.container{max-width:1280px}}
     /* Pre-render hero skeleton for instant FCP */
     .hero-skeleton{position:relative;min-height:100vh;min-height:100svh;background:linear-gradient(180deg,hsl(222.2 84% 4.9%) 0%,hsl(222.2 84% 8%) 100%)}
-    .hero-skeleton::before{content:"";position:absolute;inset:0;background:url('/images/hero-mobile.jpg') center/cover no-repeat;opacity:0.6}
+    .hero-skeleton::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,hsl(222.2 84% 6%) 0%,hsl(222.2 84% 10%) 100%);opacity:0.6}
     .hero-skeleton-content{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;padding:6rem 1rem 4rem;max-width:600px}
     .hero-skeleton h1{font-size:2.25rem;font-weight:700;line-height:0.95;text-transform:uppercase;color:hsl(210 40% 98%);margin:0 0 1rem;font-size-adjust:0.5;letter-spacing:-0.025em}
     .hero-skeleton p{font-size:1rem;color:hsl(210 40% 90%);margin:0;opacity:0.9}
