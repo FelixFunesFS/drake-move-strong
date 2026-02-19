@@ -1,44 +1,43 @@
 
 
-# Fix: Mobile Hero Image Still Showing Old Photo
+# Right-Align Home Page Hero Section on Mobile
 
-## Root Cause
+## Overview
 
-The code change in `Home.tsx` (switching to a Vite import) was correct, but `index.html` has **two hardcoded references** to the old `/images/hero-mobile.jpg` file that load before React even mounts:
+Shift the hero text content (title, subtitle, CTAs) to right-aligned on mobile screens only, while keeping the current left-alignment on desktop.
 
-1. **Line 50** -- A `<link rel="preload">` tag that eagerly fetches the old image
-2. **Line 64** -- The hero skeleton CSS uses the old image as a background while the page loads
+## Changes
 
-These references cause the browser to display the old public directory image immediately, and since the `srcSet` in the Hero component offers both the old-path image (via preload/cache) and the new Vite-processed image, the browser may prefer the already-cached old one.
+### File: `src/components/Hero.tsx`
 
-## Solution
-
-### File: `index.html`
-
-**Change 1 (Line 50):** Remove or update the preload link. Since the Vite-processed image URL is dynamic (content-hashed), we cannot hardcode it in `index.html`. The best approach is to remove this preload entirely -- the `<img>` tag in Hero.tsx already uses `fetchPriority="high"` and `loading="eager"` which achieves the same fast loading.
-
+**Line 103 -- Content container:**
+Add `justify-end` on mobile to push content to the right, keeping default on desktop:
 ```
-// Remove this line:
-<link rel="preload" as="image" href="/images/hero-mobile.jpg" fetchpriority="high">
+// Before:
+<div className="container mx-auto px-4 pb-20 md:pb-0 relative z-10">
+
+// After:
+<div className="container mx-auto px-4 pb-20 md:pb-0 relative z-10 flex justify-end md:justify-start">
 ```
 
-**Change 2 (Line 64):** Remove the old image reference from the skeleton CSS. Replace it with a simple dark gradient background so the skeleton still looks correct without referencing any specific image file.
+**Line 104 -- Text wrapper:**
+Add `text-right md:text-left` so text aligns right on mobile, left on desktop:
+```
+// Before:
+<div className={cn("max-w-2xl text-white", centered ? "text-center mx-auto" : "text-left")}>
 
-```css
-/* Before: */
-.hero-skeleton::before{content:"";position:absolute;inset:0;background:url('/images/hero-mobile.jpg') center/cover no-repeat;opacity:0.6}
-
-/* After: */
-.hero-skeleton::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,hsl(222.2 84% 6%) 0%,hsl(222.2 84% 10%) 100%);opacity:0.6}
+// After:
+<div className={cn("max-w-2xl text-white", centered ? "text-center mx-auto" : "text-right md:text-left")}>
 ```
 
-No changes needed in `Home.tsx` or `Hero.tsx` -- the Vite import and srcSet logic are already correct.
+**Line 131 -- CTA buttons container:**
+Align buttons to the right on mobile:
+```
+// Before:
+"items-start"
 
-## Summary
+// After:
+"items-end md:items-start"
+```
 
-| File | Line | Change |
-|------|------|--------|
-| `index.html` | 50 | Remove preload of old `/images/hero-mobile.jpg` |
-| `index.html` | 64 | Replace old image URL in skeleton CSS with gradient |
-
-After these changes, the browser will only load the new Vite-processed mobile image through the `srcSet` in Hero.tsx.
+These are mobile-only changes (below the `md:` breakpoint). Desktop layout remains unchanged.
