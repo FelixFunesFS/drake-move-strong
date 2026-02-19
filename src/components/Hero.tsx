@@ -93,7 +93,7 @@ const Hero = ({
                 />
               </m.div>
             ))}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/30 md:bg-gradient-to-r md:from-black/80 md:via-black/50 md:to-transparent" />
           </div>
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-drake-dark via-drake-dark-muted to-primary/20" />
@@ -120,7 +120,7 @@ const Hero = ({
               initial={{ opacity: 0, y: 30 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.8, delay: 0.4 }} 
-              className={cn("text-base sm:text-lg md:text-xl mb-5 md:mb-6 text-white/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] leading-relaxed max-w-xl", accentedSubtitle && "border-l-4 border-drake-gold pl-6")}
+              className={cn("text-base sm:text-lg md:text-xl mb-5 md:mb-6 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)] leading-relaxed max-w-xl", accentedSubtitle && "border-l-4 border-drake-gold pl-6")}
             >
               {subtitle}
             </m.p>
