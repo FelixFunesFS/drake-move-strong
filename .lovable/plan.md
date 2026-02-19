@@ -1,45 +1,22 @@
 
+# Fix Hero Button Height Mismatch
 
-# Hero Section Updates
+## Problem
 
-## Changes
+The "View Schedule" outline button has `border-2` (2px top + 2px bottom = 4px extra height) making it visually taller than the primary button.
 
-### 1. `src/pages/Home.tsx` -- Fix title structure and gold color
+## Fix
 
-Update the `title` prop so "Live" and "Stronger." are both gold, and each phrase is on its own line:
+### File: `src/components/Hero.tsx`
 
-```tsx
-title={
-  <>
-    Move Better.<br />
-    <span className="text-accent">Live Stronger.</span><br />
-    Stay Pain-Free.
-  </>
-}
-```
-
-This wraps both "Live" and "Stronger." in the gold accent span, and uses `<br />` to force three distinct lines.
-
-### 2. `src/components/Hero.tsx` -- Shift mobile image 10% higher
-
-On line 91, change the mobile `object-position` from `center_30%` to `center_20%` to crop higher and hide the building lights:
+On **lines 146 and 150** (both secondary CTA button instances), reduce `min-h` values by 4px to compensate for the border:
 
 ```
 // Before:
-object-[center_30%] md:object-[center_40%]
+min-h-[56px] md:min-h-[44px]
 
 // After:
-object-[center_20%] md:object-[center_40%]
+min-h-[52px] md:min-h-[40px]
 ```
 
-### 3. Schedule page loading -- No issue found
-
-The Schedule page is correctly lazy-loaded via `React.lazy()`. The `TodayClassesBanner` on the home page dynamically imports the database client to avoid blocking the initial render. This is expected behavior -- no fix needed.
-
-## Summary
-
-| File | Change |
-|------|--------|
-| `src/pages/Home.tsx` | Wrap "Live Stronger." in gold accent span, ensure 3 separate `<br />` lines |
-| `src/components/Hero.tsx` | Change mobile object-position from 30% to 20% to crop higher |
-
+No other changes needed -- the `py-4` padding is already handled by `min-h`, so adjusting the min-height alone aligns both buttons.
