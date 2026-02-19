@@ -1,20 +1,33 @@
 
+# Increase Hero Title Font Size — Mobile AND Desktop
 
-# Change Trust Stats Numbers to Oswald (font-hero)
+## Changes
 
-## Change
+### 1. Hero title font sizes — `src/components/Hero.tsx` (line 116)
 
-### File: `src/components/TrustStatsBar.tsx` (line 274)
-
-Update the stat number font class from `font-heading` (Montserrat) to `font-hero` (Oswald) to match the site's typography standard for bold, impactful numbers.
+Bump sizes across all breakpoints:
 
 ```
-// Before:
-font-bold text-xl md:text-2xl font-heading
-
-// After:
-font-bold text-xl md:text-2xl font-hero
+Before: text-4xl  sm:text-5xl  md:text-6xl  lg:text-7xl
+After:  text-5xl  sm:text-6xl  md:text-7xl  lg:text-8xl
 ```
 
-This only affects the horizontal (default) variant of the trust stats bar -- the 4-column teal bar shown on the homepage.
+| Breakpoint | Before | After |
+|---|---|---|
+| Mobile (<640px) | text-4xl (36px) | text-5xl (48px) |
+| sm (640px+) | text-5xl (48px) | text-6xl (60px) |
+| md (768px+) | text-6xl (60px) | text-7xl (72px) |
+| lg (1024px+) | text-7xl (72px) | text-8xl (96px) |
 
+Every size steps up one notch, giving a bigger, more commanding title on both mobile and desktop.
+
+### 2. Gold accent text contrast — `src/pages/Home.tsx` (line ~49)
+
+Add a dark drop shadow to the gold "Live Stronger." span:
+
+```
+Before: <span className="text-accent">Live Stronger.</span>
+After:  <span className="text-accent drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">Live Stronger.</span>
+```
+
+Improves legibility of the gold text against the background image on all screen sizes.
