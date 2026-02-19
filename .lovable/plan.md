@@ -1,82 +1,46 @@
 
+# Backdrop Blur on "View Schedule" + Hide Scroll Button on Mobile
 
-# Home Page Cleanup: Trust Nudge, Longevity Clarity, and Button Removal
+## 1. Add Backdrop Blur to Secondary CTA
 
-## Changes Overview
+The "View Schedule" button in the hero uses `bg-white/10` (semi-transparent) but no blur, making it hard to read over busy background images on mobile.
 
-Three targeted edits to the Home page to reduce redundancy and fix a messaging confusion.
+**File: `src/components/Hero.tsx`** (lines 146 and 150)
 
----
+Add `backdrop-blur-md` to both secondary CTA button variants:
 
-## 1. Remove Trust Nudge Below Reset Week CTA
-
-**Why:** The Trust Stats bar appears immediately after the Reset Week section, making the inline "25+ years of expert coaching. All ages & levels welcome." text redundant.
-
-**File: `src/pages/Home.tsx`** (lines 110-112)
-
-Delete:
 ```
-<p className="text-xs text-center text-muted-foreground mt-3">
-  25+ years of expert coaching. All ages &amp; levels welcome.
-</p>
+// Current
+"bg-white/10 border-2 border-white text-white ..."
+
+// Updated
+"bg-white/10 backdrop-blur-md border-2 border-white text-white ..."
 ```
 
----
+This creates a frosted glass effect. On hover (desktop), the button goes fully white so the blur is invisible -- no regression.
 
-## 2. Remove "Start Reset Week" Button from Local Trust Block
+## 2. Hide Scroll-to-Top Button on Mobile
 
-**Why:** The final CTA section directly below already has a "Start Reset Week" button, making this one redundant next to "Get Directions."
+**File: `src/components/ScrollToTopButton.tsx`** (line 37)
 
-**File: `src/pages/Home.tsx`** (lines 223-225)
+Update the button className:
 
-Delete:
 ```
-<Button asChild size="lg">
-  <a href="...">Start Reset Week</a>
-</Button>
-```
+// Current
+"fixed bottom-[72px] md:bottom-6 right-6 z-50 w-12 h-12 bg-primary ... flex items-center justify-center ... md:w-14 md:h-14"
 
----
-
-## 3. Reframe the Longevity Block for Clarity
-
-**The problem:** Users see "10+ Years" and assume it means coaching experience (which is already stated as "25+ years" elsewhere). The actual message is about client retention -- people staying with Drake Fitness for over a decade.
-
-**Recommended approach -- reframe the headline to lead with "clients," not "years":**
-
-**File: `src/components/LongevityBlock.tsx`**
-
-Instead of the current layout:
-```
-10+
-Years
-Clients training with us for over a decade.
+// Updated
+"fixed bottom-6 right-6 z-50 hidden md:flex w-14 h-14 bg-primary ... items-center justify-center ..."
 ```
 
-Change to:
-```
-10+ Year
-Client Retention
-Clients training with us for over a decade.
-That doesn't happen from trends or hype...
-```
-
-Specific changes:
-- Change the large "10+" text to **"10+ Year"** (keep the dramatic sizing)
-- Change "Years" label to **"Client Retention"** (immediately clarifies what the number means)
-- Keep the two supporting paragraphs as-is -- they reinforce the retention message perfectly once the headline is clear
-
-This keeps the visual impact of the big number while eliminating the confusion. The word "Year" next to "10+" anchors it as a duration qualifier, and "Client Retention" makes the subject unmistakable.
-
-**Why not merge with the final CTA:** The Longevity Block serves as a trust/social-proof moment between the team section and the location block. Merging it into the CTA would lose that emotional pause. The reframe solves the confusion without removing the section.
-
----
+Changes:
+- `hidden md:flex` -- only shows on desktop
+- Remove `bottom-[72px]` mobile offset (no longer needed)
+- Simplify to single `w-14 h-14` size (desktop only now)
 
 ## Summary
 
 | File | Change |
 |------|--------|
-| `src/pages/Home.tsx` | Remove trust nudge text (lines 110-112) |
-| `src/pages/Home.tsx` | Remove "Start Reset Week" button from Local Trust Block (lines 223-225) |
-| `src/components/LongevityBlock.tsx` | Change "10+" to "10+ Year" and "Years" to "Client Retention" |
-
+| `src/components/Hero.tsx` | Add `backdrop-blur-md` to secondary CTA buttons (lines 146, 150) |
+| `src/components/ScrollToTopButton.tsx` | Hide on mobile with `hidden md:flex`, simplify positioning |
