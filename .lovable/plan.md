@@ -1,48 +1,44 @@
 
 
-# Fix: Mobile Hero Image Not Updating
+# Fix: Mobile Hero Image Still Showing Old Photo
 
 ## Root Cause
 
-The file at `public/images/hero-mobile.jpg` has failed to update across three separate copy attempts. The old indoor group class photo persists. This is likely a file system caching or overwrite issue with the public directory.
+The code change in `Home.tsx` (switching to a Vite import) was correct, but `index.html` has **two hardcoded references** to the old `/images/hero-mobile.jpg` file that load before React even mounts:
 
-## Solution: Bypass the Problem Entirely
+1. **Line 50** -- A `<link rel="preload">` tag that eagerly fetches the old image
+2. **Line 64** -- The hero skeleton CSS uses the old image as a background while the page loads
 
-Instead of trying to overwrite the same file again, we will:
+These references cause the browser to display the old public directory image immediately, and since the `srcSet` in the Hero component offers both the old-path image (via preload/cache) and the new Vite-processed image, the browser may prefer the already-cached old one.
 
-1. Save the uploaded image to a **new path** with a unique name to avoid any caching/overwrite conflicts
-2. Import it through Vite's asset pipeline (like the desktop image) for reliable cache-busting
+## Solution
 
-### Changes
+### File: `index.html`
 
-**Step 1: Copy the uploaded image to a new location**
-
-Copy `user-uploads://IMG_6990-4.jpg` to `src/assets/hero-mobile-new.jpg` (inside `src/assets/`, not `public/`).
-
-**Step 2: Update `src/pages/Home.tsx`**
-
-Replace the static path reference with a Vite-processed import:
+**Change 1 (Line 50):** Remove or update the preload link. Since the Vite-processed image URL is dynamic (content-hashed), we cannot hardcode it in `index.html`. The best approach is to remove this preload entirely -- the `<img>` tag in Hero.tsx already uses `fetchPriority="high"` and `loading="eager"` which achieves the same fast loading.
 
 ```
 // Remove this line:
-const heroImage1Mobile = "/images/hero-mobile.jpg";
-
-// Add this import near the top with the other image imports:
-import heroImage1Mobile from "@/assets/hero-mobile-new.jpg?format=webp&w=768";
+<link rel="preload" as="image" href="/images/hero-mobile.jpg" fetchpriority="high">
 ```
 
-This approach:
-- Uses a brand new filename, eliminating any overwrite issues
-- Goes through Vite's image pipeline (format=webp, resized to 768w) for optimization
-- Gets automatic cache-busting via content hashing in the built URL
-- Matches the pattern already used for the desktop hero image
+**Change 2 (Line 64):** Remove the old image reference from the skeleton CSS. Replace it with a simple dark gradient background so the skeleton still looks correct without referencing any specific image file.
 
-## Technical Details
+```css
+/* Before: */
+.hero-skeleton::before{content:"";position:absolute;inset:0;background:url('/images/hero-mobile.jpg') center/cover no-repeat;opacity:0.6}
 
-| File | Change |
-|------|--------|
-| `src/assets/hero-mobile-new.jpg` | New file: copy of uploaded image |
-| `src/pages/Home.tsx` (line 13) | Change from static path to Vite import |
+/* After: */
+.hero-skeleton::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,hsl(222.2 84% 6%) 0%,hsl(222.2 84% 10%) 100%);opacity:0.6}
+```
 
-No changes needed in `Hero.tsx` -- the `srcSet` logic already handles the mobile image correctly.
+No changes needed in `Home.tsx` or `Hero.tsx` -- the Vite import and srcSet logic are already correct.
 
+## Summary
+
+| File | Line | Change |
+|------|------|--------|
+| `index.html` | 50 | Remove preload of old `/images/hero-mobile.jpg` |
+| `index.html` | 64 | Replace old image URL in skeleton CSS with gradient |
+
+After these changes, the browser will only load the new Vite-processed mobile image through the `srcSet` in Hero.tsx.
