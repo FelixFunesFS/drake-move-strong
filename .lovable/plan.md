@@ -1,23 +1,36 @@
 
 
-# Match "View Schedule" Button Height to Primary CTA
+# Reposition AI Chat Button on Mobile
 
 ## Problem
-The secondary "View Schedule" button appears shorter than the primary "Start Your Reset" button because the primary button has two lines of text (due to the `<br>` tag), making it taller. Both buttons share the same `min-h` and `py` values, but the primary button's two-line text pushes it beyond the minimum height.
+The AI chat bubble on mobile is floating too high (136px from bottom). The user wants it positioned in the bottom-right corner, directly above the "Text Us" section of the sticky bottom bar.
 
 ## Solution
 
-### File: `src/components/Hero.tsx`
+### File: `src/components/chat/ChatBot.tsx`
 
-Increase the desktop minimum height on the secondary (outline) button instances (lines 145 and 150) to match the rendered height of the two-line primary button:
+**1. Chat toggle button (line ~179):** Adjust the mobile bottom offset so the button sits just above the MobileContactBar (~60px tall including safe area padding):
 
 ```
-// Before (secondary CTA, both instances):
-min-h-[52px] md:min-h-[40px]
+// Before:
+bottom-[136px] md:bottom-24 right-6
 
 // After:
-min-h-[52px] md:min-h-[56px]
+bottom-[72px] md:bottom-24 right-4
 ```
 
-The primary button renders taller on desktop because its text wraps to two lines. Setting `md:min-h-[56px]` on the secondary button ensures it stretches to match, including the 2px border on each side. Mobile sizing remains unchanged since both buttons already match at `min-h-[52px]`.
+- `bottom-[72px]` places it snugly above the bottom bar on mobile
+- `right-4` shifts it slightly inward to align better with the "Text Us" side
+
+**2. Chat window (line ~190):** Adjust the mobile bottom offset so the chat window opens above the repositioned button:
+
+```
+// Before:
+bottom-[200px] md:bottom-40
+
+// After:
+bottom-[136px] md:bottom-40
+```
+
+This keeps the chat window above the button with enough clearance, while the desktop positioning remains unchanged.
 
