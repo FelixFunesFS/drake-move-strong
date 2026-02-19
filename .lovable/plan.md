@@ -1,22 +1,22 @@
 
-# Remove "David and Nick" Paragraph from About Page
+# Center Hero Content Vertically on Desktop
 
-## Change
+## What Changes
 
-Remove the callout box that reads: "David and Nick work together to create personalized training programs that combine mobility, corrective movement, and functional strength -- meeting you exactly where you are and guiding you toward sustainable results. Start with Reset Week to experience our approach."
+The home page hero content (headline, subtitle, CTAs) currently sits near the top of the viewport on desktop due to `md:items-start md:pt-[8vh]`. This will be changed to vertically center the content on desktop while keeping the mobile position unchanged.
 
 ## Technical Detail
 
-**File: `src/pages/About.tsx`** (lines 266-270)
+**File: `src/components/Hero.tsx`** (around line 71)
 
-Delete the entire `<div>` block containing this paragraph:
+Update the `contentPositionClass` for the `fullViewport` case:
 
 ```
-<div className="bg-white border-l-4 border-primary rounded-lg p-6 shadow-sm mt-6">
-  <p className="text-sm md:text-base text-muted-foreground">
-    <strong className="text-foreground">David and Nick work together</strong> to create personalized training programs...
-  </p>
-</div>
+// Current
+"items-start pt-[15vh] md:items-start md:pt-[8vh]"
+
+// Updated
+"items-start pt-[15vh] md:items-center md:pt-0"
 ```
 
-This sits below the coach profiles section. The information is redundant since the individual coach bios above already communicate the team's approach, and the Reset Week CTA appears elsewhere on the site.
+This centers the content block vertically on md+ screens while preserving the existing mobile positioning.
