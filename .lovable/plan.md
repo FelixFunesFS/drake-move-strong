@@ -1,20 +1,21 @@
 
+# Widen Primary CTA Button & Match Heights on Desktop
 
-# Split Reset Week Button Text to Two Lines (Desktop Only)
+## Changes
 
-## Change
+### File: `src/components/Hero.tsx`
 
-### File: `src/pages/Home.tsx`
+**1. Make primary button wider on desktop** -- increase desktop horizontal padding from `md:px-8` to `md:px-12` on both primary CTA instances (lines 135 and 139).
 
-Update the primary CTA text so "Week for $50" wraps to a second line only on desktop (md+), staying single-line on mobile:
+**2. Ensure both buttons have matching rendered heights** -- both buttons already have `border-2` and `min-h-[52px] md:min-h-[40px]`, so heights are aligned. No height changes needed.
 
-```tsx
+#### Lines 135 and 139 (primary CTA):
+```
 // Before:
-text: "Start Your Reset Week for $50"
+px-6 sm:px-8 md:px-8
 
 // After:
-text: <>Start Your Reset<br className="hidden md:block" /> Week for $50</>
+px-6 sm:px-8 md:px-12
 ```
 
-The `hidden md:block` class hides the line break on mobile/tablet and only shows it at the `md` breakpoint and above.
-
+This widens the primary "Start Your Reset / Week for $50" button on desktop while keeping mobile sizing unchanged. The secondary "View Schedule" button stays at `md:px-8`, creating a clear visual hierarchy where the primary CTA is more prominent.
