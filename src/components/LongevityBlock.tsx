@@ -67,12 +67,12 @@ export function LongevityBlock({
               className="font-hero text-6xl md:text-7xl lg:text-8xl text-white tracking-tight"
               style={{ textShadow: '0 0 40px rgba(242, 181, 68, 0.4), 0 0 80px rgba(242, 181, 68, 0.2)' }}>
 
-                10+
+                10+ Year
               </span>
               <div className="h-px w-16 md:w-24 bg-gradient-to-l from-transparent to-drake-gold/60" />
             </div>
             <p className="font-hero text-xl md:text-2xl text-drake-gold uppercase tracking-widest">
-              Years
+              Client Retention
             </p>
           </div>
           

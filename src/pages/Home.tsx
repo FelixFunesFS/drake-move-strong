@@ -107,9 +107,6 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                   <Button asChild size="lg" className="w-full px-4 sm:px-8 py-3 sm:py-6 text-sm sm:text-base min-h-[48px]">
                     <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer" className="text-center">Purchase Reset Week</a>
                   </Button>
-                  <p className="text-xs text-center text-muted-foreground mt-3">
-                    25+ years of expert coaching. All ages &amp; levels welcome.
-                  </p>
                 </div>
               </AnimatedSection>
               <AnimatedSection animation="slideInRight" delay={0.1} className="relative h-full min-h-[400px] md:min-h-[500px] hidden md:block">
@@ -219,9 +216,6 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                     <Navigation className="w-4 h-4 mr-2" />
                     Get Directions
                   </a>
-                </Button>
-                <Button asChild size="lg">
-                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">Start Reset Week</a>
                 </Button>
               </div>
             </div>
