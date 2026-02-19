@@ -1,43 +1,51 @@
 
 
-# Right-Align Home Page Hero Section on Mobile
-
-## Overview
-
-Shift the hero text content (title, subtitle, CTAs) to right-aligned on mobile screens only, while keeping the current left-alignment on desktop.
+# Revert Mobile Hero Image, Left-Align Text, and Restructure Title
 
 ## Changes
 
-### File: `src/components/Hero.tsx`
+### 1. `src/pages/Home.tsx` -- Title restructure and remove mobile image
 
-**Line 103 -- Content container:**
-Add `justify-end` on mobile to push content to the right, keeping default on desktop:
+**Remove the mobile image import** (line 13):
 ```
-// Before:
-<div className="container mx-auto px-4 pb-20 md:pb-0 relative z-10">
-
-// After:
-<div className="container mx-auto px-4 pb-20 md:pb-0 relative z-10 flex justify-end md:justify-start">
+// Remove:
+import heroImage1Mobile from "@/assets/hero-mobile-new.jpg?format=webp&w=768";
 ```
 
-**Line 104 -- Text wrapper:**
-Add `text-right md:text-left` so text aligns right on mobile, left on desktop:
-```
-// Before:
-<div className={cn("max-w-2xl text-white", centered ? "text-center mx-auto" : "text-left")}>
+**Update the Hero title prop** to break across 3 lines:
+- Line 1: Move Better.
+- Line 2: Live Stronger.
+- Line 3: Stay Pain-Free.
 
-// After:
-<div className={cn("max-w-2xl text-white", centered ? "text-center mx-auto" : "text-right md:text-left")}>
-```
-
-**Line 131 -- CTA buttons container:**
-Align buttons to the right on mobile:
-```
-// Before:
-"items-start"
-
-// After:
-"items-end md:items-start"
+```tsx
+title={<>Move Better.<br />Live <span className="text-accent">Stronger.</span> Stay<br />Pain-Free.</>}
 ```
 
-These are mobile-only changes (below the `md:` breakpoint). Desktop layout remains unchanged.
+**Remove `backgroundImagesMobile` prop** from the Hero component so it falls back to the desktop image on all screen sizes.
+
+### 2. `src/components/Hero.tsx` -- Revert to left-align on mobile
+
+Undo the right-alignment changes from the last edit:
+
+- **Line 103**: Remove `flex justify-end md:justify-start`, revert to original:
+  ```
+  <div className="container mx-auto px-4 pb-20 md:pb-0 relative z-10">
+  ```
+
+- **Line 104**: Change `text-right md:text-left` back to `text-left`:
+  ```
+  <div className={cn("max-w-2xl text-white", centered ? "text-center mx-auto" : "text-left")}>
+  ```
+
+- **Line 131**: Change `items-end md:items-start` back to `items-start`:
+  ```
+  className={cn("... ", centered ? "..." : "items-start")}
+  ```
+
+## Summary
+
+| File | Change |
+|------|--------|
+| `src/pages/Home.tsx` | Remove mobile image import, remove `backgroundImagesMobile` prop, restructure title to 3 lines |
+| `src/components/Hero.tsx` | Revert text alignment to left on all screen sizes |
+
