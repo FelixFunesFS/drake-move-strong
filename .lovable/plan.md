@@ -1,51 +1,45 @@
 
 
-# Revert Mobile Hero Image, Left-Align Text, and Restructure Title
+# Hero Section Updates
 
 ## Changes
 
-### 1. `src/pages/Home.tsx` -- Title restructure and remove mobile image
+### 1. `src/pages/Home.tsx` -- Fix title structure and gold color
 
-**Remove the mobile image import** (line 13):
-```
-// Remove:
-import heroImage1Mobile from "@/assets/hero-mobile-new.jpg?format=webp&w=768";
-```
-
-**Update the Hero title prop** to break across 3 lines:
-- Line 1: Move Better.
-- Line 2: Live Stronger.
-- Line 3: Stay Pain-Free.
+Update the `title` prop so "Live" and "Stronger." are both gold, and each phrase is on its own line:
 
 ```tsx
-title={<>Move Better.<br />Live <span className="text-accent">Stronger.</span> Stay<br />Pain-Free.</>}
+title={
+  <>
+    Move Better.<br />
+    <span className="text-accent">Live Stronger.</span><br />
+    Stay Pain-Free.
+  </>
+}
 ```
 
-**Remove `backgroundImagesMobile` prop** from the Hero component so it falls back to the desktop image on all screen sizes.
+This wraps both "Live" and "Stronger." in the gold accent span, and uses `<br />` to force three distinct lines.
 
-### 2. `src/components/Hero.tsx` -- Revert to left-align on mobile
+### 2. `src/components/Hero.tsx` -- Shift mobile image 10% higher
 
-Undo the right-alignment changes from the last edit:
+On line 91, change the mobile `object-position` from `center_30%` to `center_20%` to crop higher and hide the building lights:
 
-- **Line 103**: Remove `flex justify-end md:justify-start`, revert to original:
-  ```
-  <div className="container mx-auto px-4 pb-20 md:pb-0 relative z-10">
-  ```
+```
+// Before:
+object-[center_30%] md:object-[center_40%]
 
-- **Line 104**: Change `text-right md:text-left` back to `text-left`:
-  ```
-  <div className={cn("max-w-2xl text-white", centered ? "text-center mx-auto" : "text-left")}>
-  ```
+// After:
+object-[center_20%] md:object-[center_40%]
+```
 
-- **Line 131**: Change `items-end md:items-start` back to `items-start`:
-  ```
-  className={cn("... ", centered ? "..." : "items-start")}
-  ```
+### 3. Schedule page loading -- No issue found
+
+The Schedule page is correctly lazy-loaded via `React.lazy()`. The `TodayClassesBanner` on the home page dynamically imports the database client to avoid blocking the initial render. This is expected behavior -- no fix needed.
 
 ## Summary
 
 | File | Change |
 |------|--------|
-| `src/pages/Home.tsx` | Remove mobile image import, remove `backgroundImagesMobile` prop, restructure title to 3 lines |
-| `src/components/Hero.tsx` | Revert text alignment to left on all screen sizes |
+| `src/pages/Home.tsx` | Wrap "Live Stronger." in gold accent span, ensure 3 separate `<br />` lines |
+| `src/components/Hero.tsx` | Change mobile object-position from 30% to 20% to crop higher |
 
