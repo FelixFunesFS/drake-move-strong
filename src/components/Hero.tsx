@@ -132,11 +132,11 @@ const Hero = ({
             >
               {primaryCTA && (
                 primaryCTA.link.startsWith('#') || primaryCTA.link.startsWith('http') ? (
-                  <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-sm sm:text-base md:text-base px-6 sm:px-8 md:px-12 py-4 sm:py-5 md:py-4 h-auto min-h-[52px] md:min-h-[40px] border-2 border-transparent shadow-[var(--shadow-gold)] hover:scale-105 transition-transform w-full sm:w-auto">
+                  <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-sm sm:text-base md:text-base px-6 sm:px-8 md:px-16 py-4 sm:py-5 md:py-4 h-auto min-h-[52px] md:min-h-[40px] border-2 border-transparent shadow-[var(--shadow-gold)] hover:scale-105 transition-transform w-full sm:w-auto">
                     <a href={primaryCTA.link} {...(primaryCTA.link.startsWith('http') ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="text-center">{primaryCTA.text}</a>
                   </Button>
                 ) : (
-                  <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-sm sm:text-base md:text-base px-6 sm:px-8 md:px-12 py-4 sm:py-5 md:py-4 h-auto min-h-[52px] md:min-h-[40px] border-2 border-transparent shadow-[var(--shadow-gold)] hover:scale-105 transition-transform w-full sm:w-auto">
+                  <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold text-sm sm:text-base md:text-base px-6 sm:px-8 md:px-16 py-4 sm:py-5 md:py-4 h-auto min-h-[52px] md:min-h-[40px] border-2 border-transparent shadow-[var(--shadow-gold)] hover:scale-105 transition-transform w-full sm:w-auto">
                     <Link to={primaryCTA.link} className="text-center">{primaryCTA.text}</Link>
                   </Button>
                 )
