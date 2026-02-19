@@ -46,7 +46,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
             <MapPin className="w-3 h-3" />
             Avondale • West Ashley • Charleston
           </span>
-} title={<>Move Better.<br />Live <span className="text-accent">Stronger.</span> Stay<br />Pain-Free.</>} subtitle="7-Day Mobility Reset Week: Unlimited Classes for $50. Start feeling the difference with small-group, mobility-first training at Drake Fitness in Avondale." primaryCTA={{
+} title={<>Move Better.<br /><span className="text-accent">Live Stronger.</span><br />Stay Pain-Free.</>} subtitle="7-Day Mobility Reset Week: Unlimited Classes for $50. Start feeling the difference with small-group, mobility-first training at Drake Fitness in Avondale." primaryCTA={{
         text: "Start Your Reset Week for $50",
         link: "#reset-week"
       }} secondaryCTA={{
