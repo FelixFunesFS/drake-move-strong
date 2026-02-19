@@ -10,7 +10,7 @@ import TrustStatsBar from "@/components/TrustStatsBar";
 import LongevityBlock from "@/components/LongevityBlock";
 // WebP hero images with responsive sizes
 import heroImage1Desktop from "@/assets/hero-group-turkish-getup.jpg?format=webp&w=1920";
-import heroImage1Mobile from "@/assets/hero-group-turkish-getup.jpg?format=webp&w=768";
+const heroImage1Mobile = "/images/hero-mobile.jpg";
 import davidCoach from "@/assets/david-goblet-squat-kb-rack.jpg?format=webp&w=768";
 import coachNick from "@/assets/nick-holistic-coaching.jpg?format=webp&w=768";
 import startHereImage from "@/assets/outdoor-sandbag-training.jpg?format=webp&w=768";
