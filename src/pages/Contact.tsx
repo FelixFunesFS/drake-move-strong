@@ -7,6 +7,7 @@ import { MapPin, Mail, Phone, Instagram, Facebook, Youtube, Clock, Car, Navigati
 import { useState } from "react";
 import { toast } from "sonner";
 import { SEO } from "@/components/SEO";
+import { PUNCHPASS_URLS } from "@/data/pricing";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { GoogleMapEmbed } from "@/components/GoogleMapEmbed";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -335,12 +336,18 @@ const Contact = () => {
                 {
                   q: "How do I get started at Drake Fitness?",
                   a: "Start with Reset Week — 7 days of unlimited classes for $50. It's the best way to experience our training style and find the right class for you.",
+                  cta: { label: "Start Reset Week — $50", url: PUNCHPASS_URLS.resetWeek },
                 },
               ].map((faq, index) => (
                 <AnimatedSection key={index} animation="fadeInUp" delay={index * 0.1}>
                   <div className="bg-white p-6 rounded-xl border border-border shadow-card">
                     <h3 className="font-hero font-bold text-lg mb-2 uppercase">{faq.q}</h3>
                     <p className="text-muted-foreground">{faq.a}</p>
+                    {'cta' in faq && faq.cta && (
+                      <Button asChild size="sm" className="mt-3 bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold">
+                        <a href={faq.cta.url} target="_blank" rel="noopener noreferrer">{faq.cta.label}</a>
+                      </Button>
+                    )}
                   </div>
                 </AnimatedSection>
               ))}
