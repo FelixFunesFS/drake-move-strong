@@ -92,12 +92,12 @@ const Hero = ({
                   loading={index === 0 ? "eager" : "lazy"}
                   decoding={index === 0 ? "sync" : "async"}
                   sizes="100vw"
-                  className="absolute inset-0 w-full h-full object-cover object-[center_5%] md:object-[center_40%] animate-ken-burns"
+                  className="absolute inset-0 w-full h-full object-cover object-[center_30%] md:object-[center_40%] animate-ken-burns"
                   aria-hidden="true"
                 />
               </m.div>
             ))}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/30 md:bg-gradient-to-r md:from-black/80 md:via-black/50 md:to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/20 md:bg-gradient-to-r md:from-black/80 md:via-black/50 md:to-transparent" />
           </div>
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-drake-dark via-drake-dark-muted to-primary/20" />
