@@ -40,6 +40,10 @@ const Hero = ({
   bannerVisible = false
 }: HeroProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isMobileView, setIsMobileView] = useState(false);
+  useEffect(() => {
+    setIsMobileView(window.innerWidth < 768);
+  }, []);
   const images = backgroundImages || (backgroundImage ? [backgroundImage] : []);
   const mobileImages = backgroundImagesMobile || [];
   const hasMultipleImages = images.length > 1;
@@ -113,9 +117,14 @@ const Hero = ({
               </m.p>
             )}
             {/* H1 uses regular element for faster LCP - no motion wrapper */}
-            <h1 className="font-hero text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-3 md:mb-5 leading-[0.95] tracking-tighter uppercase -mt-[20px]">
+            <m.h1
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: isMobileView ? 0.8 : 0 }}
+              className="font-hero text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-3 md:mb-5 leading-[0.95] tracking-tighter uppercase -mt-[20px]"
+            >
               {title}
-            </h1>
+            </m.h1>
             <m.p 
               initial={{ opacity: 0, y: 30 }} 
               animate={{ opacity: 1, y: 0 }} 
