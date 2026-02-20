@@ -1,44 +1,58 @@
 
-# Replace Home Hero Image on Mobile Only
 
-## What's Changing
+# Fix: Force Mobile Hero Image with `<picture>` Element
 
-The uploaded photo (kettlebell overhead press group class) will replace the current hero background image on mobile screens only. Desktop continues showing the existing Turkish getup group image.
+## Problem
 
-## How It Works
+The current `srcSet` approach uses width descriptors (`768w`, `1920w`), but browsers pick the image based on **device pixel ratio x viewport width**. A typical phone (390px CSS width, 3x DPR) calculates 1170 effective pixels, which is closer to 1920w -- so the browser always picks the desktop image.
 
-The Hero component already supports a `backgroundImagesMobile` prop that generates a `srcSet` with the mobile image at 768w and the desktop image at 1920w. The browser automatically picks the right one based on screen width.
+## Solution
 
-### Steps
+Replace the `<img>` with a `<picture>` element that uses a `<source media="(max-width: 767px)">` query. This forces the mobile image on small screens regardless of pixel density.
 
-1. **Copy the uploaded image** into `src/assets/hero-mobile-kb-press.jpg`
+## File: `src/components/Hero.tsx` (lines 88-100)
 
-2. **`src/pages/Home.tsx`** -- Import the new mobile image and pass it via `backgroundImagesMobile`:
+```
+Before:
+  <img 
+    src={img} 
+    srcSet={mobileImages[index] ? `${mobileImages[index]} 768w, ${img} 1920w` : undefined}
+    alt="" 
+    fetchPriority={index === 0 ? "high" : undefined}
+    loading={index === 0 ? "eager" : "lazy"}
+    decoding={index === 0 ? "sync" : "async"}
+    sizes="100vw"
+    style={{ objectPosition: imagePositionMobile ?? "center 30%" }}
+    className="absolute inset-0 w-full h-full object-cover md:!object-[center_40%] animate-ken-burns"
+    aria-hidden="true"
+  />
 
-```tsx
-import heroMobileImage from "@/assets/hero-mobile-kb-press.jpg?format=webp&w=768";
-
-<Hero
-  backgroundImages={[heroImage1Desktop]}
-  backgroundImagesMobile={[heroMobileImage]}
-  imagePositionMobile="center 40%"
-  // ... all other props unchanged
-/>
+After:
+  <picture>
+    {mobileImages[index] && (
+      <source media="(max-width: 767px)" srcSet={mobileImages[index]} />
+    )}
+    <img 
+      src={img} 
+      alt="" 
+      fetchPriority={index === 0 ? "high" : undefined}
+      loading={index === 0 ? "eager" : "lazy"}
+      decoding={index === 0 ? "sync" : "async"}
+      style={{ objectPosition: imagePositionMobile ?? "center 30%" }}
+      className="absolute inset-0 w-full h-full object-cover md:!object-[center_40%] animate-ken-burns"
+      aria-hidden="true"
+    />
+  </picture>
 ```
 
-The `imagePositionMobile` value changes from `"center 56%"` to `"center 40%"` since this new photo has a better composition -- the subjects are more centered, so less aggressive cropping is needed.
-
-3. **No changes to `Hero.tsx`** -- the `srcSet` logic (line 91) already handles this:
-```tsx
-srcSet={mobileImages[index] ? `${mobileImages[index]} 768w, ${img} 1920w` : undefined}
-```
+The `<source media="(max-width: 767px)">` tells the browser: "on screens 767px wide or less, use this image" -- no DPR math involved.
 
 ## Impact
 
-| Screen | Image Shown |
-|---|---|
-| Mobile (under 768px) | New kettlebell overhead press group photo |
-| Desktop (768px+) | Current Turkish getup group photo (unchanged) |
+| Screen | Before | After |
+|---|---|---|
+| Mobile (under 768px) | Desktop image (DPR issue) | New kettlebell press photo |
+| Desktop (768px+) | Turkish getup group photo | Turkish getup group photo (unchanged) |
 
-**Files modified:** `src/pages/Home.tsx` (import + prop addition)
-**Files added:** `src/assets/hero-mobile-kb-press.jpg` (copied from upload)
+**File modified:** `src/components/Hero.tsx` only (1 section, lines 88-100)
+
