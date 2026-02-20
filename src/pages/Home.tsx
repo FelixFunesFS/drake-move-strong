@@ -10,6 +10,7 @@ import TrustStatsBar from "@/components/TrustStatsBar";
 import LongevityBlock from "@/components/LongevityBlock";
 // WebP hero images with responsive sizes
 import heroImage1Desktop from "@/assets/hero-group-turkish-getup.jpg?format=webp&w=1920";
+import heroMobileImage from "@/assets/hero-mobile-kb-press.jpg?format=webp&w=768";
 
 import davidCoach from "@/assets/david-goblet-squat-kb-rack.jpg?format=webp&w=768";
 import coachNick from "@/assets/nick-holistic-coaching.jpg?format=webp&w=768";
@@ -41,7 +42,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       <Hero 
         bannerVisible={bannerVisible}
         fullViewport={true}
-        imagePositionMobile="center 56%"
+        imagePositionMobile="center 40%"
         eyebrow={
           <span className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-white/80 bg-white/10 px-3 py-1 rounded-full">
             <MapPin className="w-3 h-3" />
@@ -53,7 +54,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       }} secondaryCTA={{
         text: "View Schedule",
         link: "/schedule"
-      }} backgroundImages={[heroImage1Desktop]} autoRotate={false} />
+      }} backgroundImages={[heroImage1Desktop]} backgroundImagesMobile={[heroMobileImage]} autoRotate={false} />
 
       {/* Brand Values Marquee */}
       <section className="py-4 md:py-6 bg-drake-dark overflow-hidden border-y border-drake-gold/20">
