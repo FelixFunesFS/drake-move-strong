@@ -41,6 +41,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       <Hero 
         bannerVisible={bannerVisible}
         fullViewport={true}
+        imagePositionMobile="center 56%"
         eyebrow={
           <span className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-white/80 bg-white/10 px-3 py-1 rounded-full">
             <MapPin className="w-3 h-3" />
@@ -65,7 +66,9 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       </section>
 
       {/* Today's Classes Banner - After Marquee on all devices */}
-      <TodayClassesBanner />
+      <div className="md:hidden">
+        <TodayClassesBanner />
+      </div>
 
       {/* START HERE - Moved up after Today's Classes */}
       <section id="reset-week" className="py-16 md:py-24 bg-muted scroll-mt-20">
