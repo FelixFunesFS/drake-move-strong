@@ -111,7 +111,7 @@ const Hero = ({
 
         {/* Content */}
         <div className="container mx-auto px-4 pb-20 md:pb-0 relative z-10">
-          <div className={cn("max-w-2xl text-white", centered ? "text-center mx-auto" : "text-left")}>
+          <div className={cn("max-w-3xl text-white", centered ? "text-center mx-auto" : "text-left")}>
             {eyebrow && (
               <m.p
                 initial={{ opacity: 0, y: 30 }}
