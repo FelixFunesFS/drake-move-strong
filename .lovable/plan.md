@@ -1,58 +1,44 @@
 
 
-# Fix: Force Mobile Hero Image with `<picture>` Element
+# Fix: Hero Title Wrapping to 5 Lines on Laptop
 
 ## Problem
 
-The current `srcSet` approach uses width descriptors (`768w`, `1920w`), but browsers pick the image based on **device pixel ratio x viewport width**. A typical phone (390px CSS width, 3x DPR) calculates 1170 effective pixels, which is closer to 1920w -- so the browser always picks the desktop image.
+The H1 title in the hero is defined as three phrases separated by `<br />` tags:
+- "Move Better."
+- "Live Stronger." (gold accent)
+- "Stay Pain-Free."
+
+At the `lg` breakpoint (1024px+), the font size jumps to `text-8xl` (96px). Combined with the `max-w-2xl` (672px) container constraint, the longer phrases "LIVE STRONGER." and "STAY PAIN-FREE." each wrap onto two lines, producing 5 visual rows instead of 3.
 
 ## Solution
 
-Replace the `<img>` with a `<picture>` element that uses a `<source media="(max-width: 767px)">` query. This forces the mobile image on small screens regardless of pixel density.
+Increase the content container width from `max-w-2xl` (672px) to `max-w-3xl` (768px). This gives the large title text enough room to stay on 3 lines at all desktop breakpoints while keeping the layout left-aligned and not overly wide.
 
-## File: `src/components/Hero.tsx` (lines 88-100)
+## File: `src/components/Hero.tsx` (line ~111)
 
 ```
 Before:
-  <img 
-    src={img} 
-    srcSet={mobileImages[index] ? `${mobileImages[index]} 768w, ${img} 1920w` : undefined}
-    alt="" 
-    fetchPriority={index === 0 ? "high" : undefined}
-    loading={index === 0 ? "eager" : "lazy"}
-    decoding={index === 0 ? "sync" : "async"}
-    sizes="100vw"
-    style={{ objectPosition: imagePositionMobile ?? "center 30%" }}
-    className="absolute inset-0 w-full h-full object-cover md:!object-[center_40%] animate-ken-burns"
-    aria-hidden="true"
-  />
+  <div className={cn("max-w-2xl text-white", centered ? "text-center mx-auto" : "text-left")}>
 
 After:
-  <picture>
-    {mobileImages[index] && (
-      <source media="(max-width: 767px)" srcSet={mobileImages[index]} />
-    )}
-    <img 
-      src={img} 
-      alt="" 
-      fetchPriority={index === 0 ? "high" : undefined}
-      loading={index === 0 ? "eager" : "lazy"}
-      decoding={index === 0 ? "sync" : "async"}
-      style={{ objectPosition: imagePositionMobile ?? "center 30%" }}
-      className="absolute inset-0 w-full h-full object-cover md:!object-[center_40%] animate-ken-burns"
-      aria-hidden="true"
-    />
-  </picture>
+  <div className={cn("max-w-3xl text-white", centered ? "text-center mx-auto" : "text-left")}>
 ```
 
-The `<source media="(max-width: 767px)">` tells the browser: "on screens 767px wide or less, use this image" -- no DPR math involved.
+## Why This Approach
+
+- `max-w-3xl` (768px) accommodates "STAY PAIN-FREE." at `text-8xl` without wrapping
+- Minimal change -- only 1 class name updated
+- Does not affect mobile sizing (mobile text is `text-5xl` which fits easily)
+- Other pages using `Hero` with shorter titles are unaffected by the wider max-width
+- The subtitle and CTA buttons already have their own `max-w-xl` constraint, so they stay contained
 
 ## Impact
 
-| Screen | Before | After |
+| Viewport | Before | After |
 |---|---|---|
-| Mobile (under 768px) | Desktop image (DPR issue) | New kettlebell press photo |
-| Desktop (768px+) | Turkish getup group photo | Turkish getup group photo (unchanged) |
+| Desktop (1024px+) | 5 lines (wrapping) | 3 lines (as designed) |
+| Tablet (768-1023px) | 3 lines | 3 lines (unchanged) |
+| Mobile (under 768px) | 3 lines | 3 lines (unchanged) |
 
-**File modified:** `src/components/Hero.tsx` only (1 section, lines 88-100)
-
+**File modified:** `src/components/Hero.tsx` -- 1 line change
