@@ -23,13 +23,34 @@ const Contact = () => {
     interest: "",
     message: "",
   });
+  const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+
+  const validateFields = () => {
+    const errors: Record<string, string> = {};
+    if (!formData.firstName.trim()) errors.firstName = "First name is required";
+    if (!formData.lastName.trim()) errors.lastName = "Last name is required";
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = "Please enter a valid email address";
+    }
+    if (formData.phone && !/^[\d\s()+-]{7,20}$/.test(formData.phone)) {
+      errors.phone = "Please enter a valid phone number";
+    }
+    if (!formData.message.trim()) errors.message = "Message is required";
+    setFieldErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
-      toast.error("Please fill in all required fields");
+    if (honeypot) return; // Bot detected
+    
+    if (!validateFields()) {
+      toast.error("Please fix the highlighted fields");
       return;
     }
     
@@ -108,26 +129,42 @@ const Contact = () => {
                 </div>
                 <div className="bg-white border border-border rounded-xl p-8 shadow-card">
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Honeypot — hidden from humans, bots fill it */}
+                    <div className="absolute opacity-0 h-0 w-0 overflow-hidden" aria-hidden="true" tabIndex={-1}>
+                      <label htmlFor="website">Website</label>
+                      <input
+                        id="website"
+                        name="website"
+                        type="text"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
+                        autoComplete="off"
+                        tabIndex={-1}
+                      />
+                    </div>
+
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="firstName">First Name</Label>
                         <Input
                           id="firstName"
                           value={formData.firstName}
-                          onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                          onChange={(e) => { setFormData({ ...formData, firstName: e.target.value }); setFieldErrors(prev => ({ ...prev, firstName: "" })); }}
                           placeholder="Jane"
-                          required
+                          className={fieldErrors.firstName ? "border-destructive" : ""}
                         />
+                        {fieldErrors.firstName && <p className="text-destructive text-xs mt-1">{fieldErrors.firstName}</p>}
                       </div>
                       <div>
                         <Label htmlFor="lastName">Last Name</Label>
                         <Input
                           id="lastName"
                           value={formData.lastName}
-                          onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                          onChange={(e) => { setFormData({ ...formData, lastName: e.target.value }); setFieldErrors(prev => ({ ...prev, lastName: "" })); }}
                           placeholder="Doe"
-                          required
+                          className={fieldErrors.lastName ? "border-destructive" : ""}
                         />
+                        {fieldErrors.lastName && <p className="text-destructive text-xs mt-1">{fieldErrors.lastName}</p>}
                       </div>
                     </div>
 
@@ -138,10 +175,11 @@ const Contact = () => {
                           id="email"
                           type="email"
                           value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          onChange={(e) => { setFormData({ ...formData, email: e.target.value }); setFieldErrors(prev => ({ ...prev, email: "" })); }}
                           placeholder="jane@example.com"
-                          required
+                          className={fieldErrors.email ? "border-destructive" : ""}
                         />
+                        {fieldErrors.email && <p className="text-destructive text-xs mt-1">{fieldErrors.email}</p>}
                       </div>
                       <div>
                         <Label htmlFor="phone">Phone Number</Label>
@@ -149,9 +187,11 @@ const Contact = () => {
                           id="phone"
                           type="tel"
                           value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          onChange={(e) => { setFormData({ ...formData, phone: e.target.value }); setFieldErrors(prev => ({ ...prev, phone: "" })); }}
                           placeholder="(555) 123-4567"
+                          className={fieldErrors.phone ? "border-destructive" : ""}
                         />
+                        {fieldErrors.phone && <p className="text-destructive text-xs mt-1">{fieldErrors.phone}</p>}
                       </div>
                     </div>
 
@@ -175,10 +215,12 @@ const Contact = () => {
                       <Textarea
                         id="message"
                         value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        onChange={(e) => { setFormData({ ...formData, message: e.target.value }); setFieldErrors(prev => ({ ...prev, message: "" })); }}
                         placeholder="Tell us about your goals or questions..."
                         rows={6}
+                        className={fieldErrors.message ? "border-destructive" : ""}
                       />
+                      {fieldErrors.message && <p className="text-destructive text-xs mt-1">{fieldErrors.message}</p>}
                     </div>
 
                     <Button 

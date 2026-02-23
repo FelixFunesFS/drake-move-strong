@@ -22,7 +22,16 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const formData: ContactFormData = await req.json();
+    const formData: ContactFormData & { website?: string } = await req.json();
+    
+    // Honeypot check — bots fill hidden fields
+    if (formData.website) {
+      console.log("Honeypot triggered, rejecting spam submission");
+      return new Response(
+        JSON.stringify({ success: true, id: "filtered" }),
+        { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
     
     // Validate required fields
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
