@@ -1,44 +1,61 @@
 
 
-# Fix: Hero Title Wrapping to 5 Lines on Laptop
+# Fix: Remove Confusing mailto Redirect from Contact Form
 
 ## Problem
 
-The H1 title in the hero is defined as three phrases separated by `<br />` tags:
-- "Move Better."
-- "Live Stronger." (gold accent)
-- "Stay Pain-Free."
+When a visitor submits the contact form, two things happen simultaneously:
+1. The form data is saved to the database via the `send-contact-form` edge function (working correctly)
+2. The browser tries to open the visitor's email client via a `mailto:` link
 
-At the `lg` breakpoint (1024px+), the font size jumps to `text-8xl` (96px). Combined with the `max-w-2xl` (672px) container constraint, the longer phrases "LIVE STRONGER." and "STAY PAIN-FREE." each wrap onto two lines, producing 5 visual rows instead of 3.
+This creates a jarring, confusing experience -- the user sees "Thanks for reaching out!" but then their email app pops open asking them to manually send an email they thought was already submitted.
+
+## Root Cause
+
+The `mailto:` redirect (line 54) was likely added as a fallback before the edge function was fully working. Now that the edge function reliably saves to `contact_submissions`, the mailto is redundant.
 
 ## Solution
 
-Increase the content container width from `max-w-2xl` (672px) to `max-w-3xl` (768px). This gives the large title text enough room to stay on 3 lines at all desktop breakpoints while keeping the layout left-aligned and not overly wide.
+Remove the `mailto:` redirect and update the success flow to clearly confirm the submission was received.
 
-## File: `src/components/Hero.tsx` (line ~111)
+### File: `src/pages/Contact.tsx` (lines 38-64)
 
+**Remove:**
+- The `mailto:` URL construction and `window.location.href` redirect (lines 47-54)
+
+**Update:**
+- Only show success toast after confirming the edge function succeeded
+- If the edge function fails, show an error toast with a fallback suggestion to call directly
+- Improve the success message to set clear expectations
+
+```tsx
+// Simplified flow:
+try {
+  const { data, error } = await supabase.functions.invoke('send-contact-form', {
+    body: formData
+  });
+
+  if (error) throw error;
+
+  toast.success("Message sent! We'll get back to you within 24 hours.");
+  setFormData({ firstName: "", lastName: "", ... });
+} catch (error) {
+  toast.error("Something went wrong. Please try again or call us at (843) 817-5420.");
+}
 ```
-Before:
-  <div className={cn("max-w-2xl text-white", centered ? "text-center mx-auto" : "text-left")}>
 
-After:
-  <div className={cn("max-w-3xl text-white", centered ? "text-center mx-auto" : "text-left")}>
-```
+## What This Changes
 
-## Why This Approach
-
-- `max-w-3xl` (768px) accommodates "STAY PAIN-FREE." at `text-8xl` without wrapping
-- Minimal change -- only 1 class name updated
-- Does not affect mobile sizing (mobile text is `text-5xl` which fits easily)
-- Other pages using `Hero` with shorter titles are unaffected by the wider max-width
-- The subtitle and CTA buttons already have their own `max-w-xl` constraint, so they stay contained
+| Aspect | Before | After |
+|---|---|---|
+| Form submit | Saves to DB + opens email client | Saves to DB only |
+| Success feedback | Confusing dual action | Clear confirmation message |
+| Error handling | Silently continues to mailto | Shows error with phone fallback |
 
 ## Impact
 
-| Viewport | Before | After |
-|---|---|---|
-| Desktop (1024px+) | 5 lines (wrapping) | 3 lines (as designed) |
-| Tablet (768-1023px) | 3 lines | 3 lines (unchanged) |
-| Mobile (under 768px) | 3 lines | 3 lines (unchanged) |
+- Visitors get a clean, modern form experience with no unexpected redirects
+- All submissions are still saved to `contact_submissions` for David to review
+- No changes needed to the edge function -- it already works correctly
 
-**File modified:** `src/components/Hero.tsx` -- 1 line change
+**File modified:** `src/pages/Contact.tsx` (handleSubmit function only)
