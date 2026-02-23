@@ -107,6 +107,12 @@ const AppLayout = () => {
   const { isScrolled, isPastHeader } = useScrollDirection(100);
   const [isBannerVisible, setIsBannerVisible] = useState(false);
   const isHomePage = location.pathname === '/';
+
+  // Redirect legacy blog query params to /insights
+  const searchParams = new URLSearchParams(location.search);
+  if (searchParams.has('blog') || searchParams.has('blogcategory')) {
+    return <Navigate to="/insights" replace />;
+  }
   const isStandalonePage = STANDALONE_ROUTES.includes(location.pathname);
   const hasCustomLayout = CUSTOM_LAYOUT_PREFIXES.some(prefix => location.pathname.startsWith(prefix));
   const hideNavFooter = isStandalonePage || hasCustomLayout;
@@ -313,6 +319,12 @@ const AppLayout = () => {
               </ProtectedRoute>
             } />
             
+            {/* Legacy URL Redirects (Search Console fixes) */}
+            <Route path="/personal-training" element={<Navigate to="/coaching" replace />} />
+            <Route path="/group-fitness" element={<Navigate to="/classes" replace />} />
+            <Route path="/meet-the-team" element={<Navigate to="/about" replace />} />
+            <Route path="/videos" element={<Navigate to="/member/videos" replace />} />
+
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
