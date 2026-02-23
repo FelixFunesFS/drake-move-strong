@@ -40,20 +40,9 @@ const Contact = () => {
         body: formData
       });
       
-      if (error) {
-        console.error("Error submitting form:", error);
-      }
+      if (error) throw error;
       
-      // Open mailto with pre-filled data
-      const subject = encodeURIComponent(
-        `New Inquiry from ${formData.firstName} ${formData.lastName}${formData.interest ? ` - ${formData.interest}` : ''}`
-      );
-      const body = encodeURIComponent(
-        `Name: ${formData.firstName} ${formData.lastName}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'Not provided'}\nInterest: ${formData.interest || 'Not specified'}\n\nMessage:\n${formData.message}`
-      );
-      window.location.href = `mailto:david@drake.fitness?subject=${subject}&body=${body}`;
-      
-      toast.success("Thanks for reaching out! Your email client should open shortly.");
+      toast.success("Message sent! We'll get back to you within 24 hours.");
       setFormData({
         firstName: "",
         lastName: "",
@@ -64,7 +53,7 @@ const Contact = () => {
       });
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("Something went wrong. Please try again or call us directly.");
+      toast.error("Something went wrong. Please try again or call us at (843) 817-5420.");
     } finally {
       setIsSubmitting(false);
     }
