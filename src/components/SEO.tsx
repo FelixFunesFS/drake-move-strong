@@ -13,6 +13,11 @@ interface SEOProps {
   };
 }
 
+function toAbsoluteUrl(path: string): string {
+  if (path.startsWith('http')) return path;
+  return `https://drake.fitness${path.startsWith('/') ? '' : '/'}${path}`;
+}
+
 export function SEO({
   title,
   seoTitle,
@@ -22,6 +27,7 @@ export function SEO({
   ogType = 'website',
   article,
 }: SEOProps) {
+  const absoluteOgImage = toAbsoluteUrl(ogImage);
   // Use seoTitle for meta tags if available, otherwise fall back to title
   const metaTitle = seoTitle || title;
   const fullTitle = metaTitle.includes('Drake Fitness') ? metaTitle : `${metaTitle} | Drake Fitness`;
@@ -39,14 +45,14 @@ export function SEO({
       <meta property="og:url" content={canonical} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={ogImage} />
+      <meta property="og:image" content={absoluteOgImage} />
 
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content={canonical} />
       <meta property="twitter:title" content={fullTitle} />
       <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={ogImage} />
+      <meta property="twitter:image" content={absoluteOgImage} />
 
       {/* Article Meta (if applicable) */}
       {article && <meta property="article:published_time" content={article.publishedAt} />}

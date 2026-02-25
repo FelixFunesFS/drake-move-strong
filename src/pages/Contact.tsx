@@ -85,6 +85,7 @@ const Contact = () => {
       <SEO
         title="Contact Drake Fitness Charleston | Start Today"
         description="Get in touch with Drake Fitness in Charleston, SC. Located at 2 Avondale Ave, Charleston, SC 29407. Call (843) 817-5420."
+        ogImage={davidStorefrontPortrait}
         canonical="https://drake.fitness/contact"
       />
       
