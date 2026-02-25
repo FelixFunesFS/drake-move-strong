@@ -35,7 +35,7 @@ interface HomeProps {
 
 const Home = ({ bannerVisible = false }: HomeProps) => {
   return <>
-      <SEO title="Drake Fitness Charleston | Gym & Mobility Training | Proven Results" description="Charleston's coach-led gym for functional strength, mobility, and group fitness classes. Small groups, 25+ years experience. Start Reset Week — $50." canonical="https://drake.fitness" ogImage={heroImage1Desktop} />
+      <SEO title="Drake Fitness Charleston | Gym & Mobility Training | Proven Results" description="Charleston's coach-led gym for functional strength, mobility, and group fitness classes. Small groups, 25+ years experience. Start Reset Week — $50." canonical="https://drake.fitness" />
       <StructuredData data={localBusinessSchema} />
       
       <main>
