@@ -10,7 +10,7 @@ import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
 import TrustStatsBar from "@/components/TrustStatsBar";
 import AnimatedSection from "@/components/AnimatedSection";
 import { getStaggerDelay } from "@/lib/motionConfig";
-import studioFullView from "@/assets/studio-full-view.jpg";
+
 
 const Pricing = () => {
   const faqs = [{
@@ -35,7 +35,7 @@ const Pricing = () => {
         title="Gym Membership Charleston | From $50 | Simple Plans 2026"
         description="Simple, transparent membership options. Reset Week $50, Foundation $209/mo, Longevity Unlimited $239/mo. No contracts, real results at Drake Fitness Charleston."
         canonical="https://drake.fitness/pricing"
-        ogImage={studioFullView}
+        
       />
 
       <StructuredData data={faqSchema} />
