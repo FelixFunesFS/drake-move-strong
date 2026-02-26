@@ -1,36 +1,47 @@
 
 
-# Blog OG Tag Strategy: Ensure Correct Social Previews
+# Upload Blog Thumbnails to Permanent Cloud Storage
 
-## Current State
-- All 11 blog posts have unique `seoTitle`, `excerpt`, and `thumbnail` values passed to the `<SEO>` component
-- Thumbnails are Vite-hashed asset imports that resolve to valid deployed URLs
-- `react-helmet` injects `og:title`, `og:description`, `og:image`, and `og:type="article"` dynamically
+## Why This Matters
+Currently, blog thumbnails are Vite-imported assets that get hashed filenames on each build (e.g., `/assets/david-coaching-form-abc123.jpg`). When these URLs are used in OG meta tags, they break every time you redeploy because the hash changes. Uploading them to Lovable Cloud file storage gives each image a permanent, stable URL.
 
-## Problem
-Social media crawlers have varying JavaScript support. While Facebook and LinkedIn generally execute JS, some crawlers (X/Twitter, Slack, Discord, iMessage) may not — meaning they see a blank `<head>` with no OG tags.
+## Implementation Steps
 
-## Recommended Fix: Crawler-Aware Edge Function
+### 1. Create a public storage bucket for blog images
+Create a `blog-images` storage bucket with public read access and appropriate RLS policies so images are accessible to anyone (crawlers included).
 
-Create a backend function that detects social media crawler user-agents and returns pre-built HTML with the correct OG tags for each blog URL. Regular users still get the normal SPA.
+### 2. Upload the 11 blog thumbnail images to the bucket
+Upload each of the following assets to the `blog-images` bucket with clean, permanent filenames:
 
-### Steps
+| Current Asset | Storage Filename |
+|---|---|
+| `david-coaching-form.jpg` | `david-coaching-form.jpg` |
+| `studio-nick-david-together.jpg` | `studio-nick-david-together.jpg` |
+| `members-overhead-lunge-natural-light.jpg` | `members-overhead-lunge-natural-light.jpg` |
+| `group-overhead-press-class.jpg` | `group-overhead-press-class.jpg` |
+| `studio-mobility-training.jpg` | `studio-mobility-training.jpg` |
+| `member-weighted-vest-band-training.jpg` | `member-weighted-vest-band-training.jpg` |
+| `studio-floor-exercise.jpg` | `studio-floor-exercise.jpg` |
+| `studio-full-view.jpg` | `studio-full-view.jpg` |
+| `blog-kettlebell-overhead-group.jpg` | `blog-kettlebell-overhead-group.jpg` |
+| `studio-group-overhead.jpg` | `studio-group-overhead.jpg` |
+| `nick-holistic-coaching.jpg` | `nick-holistic-coaching.jpg` |
 
-1. **Create a `social-meta` edge function** that:
-   - Checks the `User-Agent` for known crawlers (facebookexternalhit, Twitterbot, LinkedInBot, Slackbot, etc.)
-   - If it's a crawler hitting `/insights/:slug`, looks up the post data and returns a minimal HTML page with the correct `og:title`, `og:description`, `og:image`, and a redirect meta tag for real users
-   - If it's not a crawler, passes through to the normal SPA
+### 3. Create a helper for permanent OG image URLs
+Add a utility function that builds the public storage URL for any blog image:
+```
+https://ktktwcbvambkcrpfflxi.supabase.co/storage/v1/object/public/blog-images/{filename}
+```
 
-2. **Create a static blog metadata JSON** at build time or hardcoded in the edge function containing each post's slug, seoTitle, excerpt, and a **stable absolute URL** for the thumbnail image
+### 4. Update `src/data/insights.ts` with a dual-image approach
+Each post keeps its existing Vite-imported `thumbnail` (used for rendering on the page with optimized loading) and gains a new `ogImage` field pointing to the permanent storage URL (used only for social sharing meta tags).
 
-3. **For thumbnail URLs**: Since Vite-hashed paths change on each build, the most reliable approach is to upload the blog thumbnails to file storage (Lovable Cloud) and use permanent URLs in OG tags. This ensures the `og:image` URL never breaks.
+### 5. Update the `<SEO>` component usage in `InsightPost.tsx`
+Pass `post.ogImage` (the permanent URL) to the `ogImage` prop of `<SEO>`, while continuing to use `post.thumbnail` (the Vite asset) for the visible page image.
 
-### Alternative: Simpler Approach (if crawlers do run JS)
-If testing confirms Facebook/LinkedIn/X all pick up the current `react-helmet` tags correctly, no changes are needed — the current setup already works. We can verify this by:
-- Pasting a blog URL into Facebook Sharing Debugger
-- Checking LinkedIn Post Inspector
-- Testing with X Card Validator
+## Limitation
+The actual file upload to the storage bucket must be done manually through the Lovable Cloud UI — I can create the bucket and policies via migration, set up all the code to reference the permanent URLs, but you'll need to upload the image files themselves through the storage interface.
 
-### What I Recommend
-Test the current setup first with the Facebook Sharing Debugger after publishing. If the blog-specific title and image appear correctly, no code changes are needed. If they don't, we implement the edge function approach.
+## Alternative: Skip the Upload
+Since we confirmed Facebook/LinkedIn execute JavaScript and read `react-helmet` tags, the Vite-hashed URLs do work for those platforms as long as the deployment stays live. The permanent URLs are mainly insurance against hash changes breaking cached OG images. If you're comfortable republishing and re-scraping when needed, the current setup may be sufficient.
 
