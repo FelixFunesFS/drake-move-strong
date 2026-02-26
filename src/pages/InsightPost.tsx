@@ -1,5 +1,5 @@
 import { useParams, Navigate, Link } from "react-router-dom";
-import { Calendar, Clock, Tag, ArrowRight, ArrowLeft } from "lucide-react";
+import { Calendar, Clock, Tag, ArrowRight, ArrowLeft, Share2 } from "lucide-react";
 import { insightPosts, authorInfo, categoryInfo } from "@/data/insights";
 import OptimizedImage from "@/components/OptimizedImage";
 import SmartGalleryImage from "@/components/SmartGalleryImage";
@@ -11,9 +11,13 @@ import { StructuredData, buildArticleSchema } from "@/components/StructuredData"
 import { format } from "date-fns";
 import AnimatedSection from "@/components/AnimatedSection";
 import SocialShareButtons, { getShareUrl } from "@/components/insights/SocialShareButtons";
+import { useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const InsightPost = () => {
   const { slug } = useParams<{ slug: string }>();
+  const isMobile = useIsMobile();
+  const [showFabShare, setShowFabShare] = useState(false);
   const post = insightPosts.find(p => p.slug === slug);
 
   if (!post) {
@@ -97,8 +101,8 @@ const InsightPost = () => {
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Back to All Articles */}
-          <div className="mb-8 pb-6 border-b border-border">
+          {/* Back to All Articles + Share Prompt */}
+          <div className="mb-8 pb-6 border-b border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <Link 
               to="/insights" 
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-medium"
@@ -106,6 +110,14 @@ const InsightPost = () => {
               <ArrowLeft className="w-4 h-4" />
               Back to All Articles
             </Link>
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-muted-foreground font-medium hidden sm:inline">Share:</span>
+              <SocialShareButtons 
+                url={getShareUrl(post.slug)}
+                title={post.title}
+                excerpt={post.excerpt}
+              />
+            </div>
           </div>
 
           {/* Render custom content component if available, otherwise use HTML fallback */}
@@ -269,6 +281,28 @@ const InsightPost = () => {
           </div>
         </div>
       </section>
+      {/* Mobile Floating Share FAB */}
+      {isMobile && (
+        <div className="fixed bottom-20 right-4 z-50">
+          <button
+            onClick={() => setShowFabShare(!showFabShare)}
+            className="w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center hover:bg-primary/90 transition-colors"
+            aria-label="Share this article"
+          >
+            <Share2 className="w-6 h-6" />
+          </button>
+          {showFabShare && (
+            <div className="absolute bottom-16 right-0 bg-card border border-border rounded-xl p-4 shadow-2xl min-w-[200px]">
+              <p className="text-sm text-muted-foreground mb-3 font-medium">Share this article</p>
+              <SocialShareButtons 
+                url={getShareUrl(post.slug)}
+                title={post.title}
+                excerpt={post.excerpt}
+              />
+            </div>
+          )}
+        </div>
+      )}
     </>
   );
 };
