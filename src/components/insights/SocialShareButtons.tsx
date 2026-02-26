@@ -37,7 +37,7 @@ const SocialShareButtons = ({ url, title, excerpt }: SocialShareButtonsProps) =>
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
-      toast.success("Link copied to clipboard!");
+      toast.success("Share-optimized link copied! Previews will show correctly on all platforms.");
       setTimeout(() => setCopied(false), 2000);
     } catch {
       toast.error("Failed to copy link");
