@@ -46,7 +46,7 @@ const InsightPost = () => {
         description={post.excerpt}
         canonical={`https://drake.fitness/insights/${post.slug}`}
         ogType="article"
-        ogImage={post.thumbnail}
+        ogImage={post.ogImage}
         article={{ publishedAt: post.publishedAt, author: author.name }}
       />
       <StructuredData data={articleSchema} />
