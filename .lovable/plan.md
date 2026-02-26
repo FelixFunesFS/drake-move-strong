@@ -1,37 +1,36 @@
 
 
-# Fix Blog Posts Showing Homepage Info When Shared
+# Blog OG Tag Strategy: Ensure Correct Social Previews
+
+## Current State
+- All 11 blog posts have unique `seoTitle`, `excerpt`, and `thumbnail` values passed to the `<SEO>` component
+- Thumbnails are Vite-hashed asset imports that resolve to valid deployed URLs
+- `react-helmet` injects `og:title`, `og:description`, `og:image`, and `og:type="article"` dynamically
 
 ## Problem
+Social media crawlers have varying JavaScript support. While Facebook and LinkedIn generally execute JS, some crawlers (X/Twitter, Slack, Discord, iMessage) may not — meaning they see a blank `<head>` with no OG tags.
 
-`index.html` still contains hardcoded Open Graph and Twitter meta tags with the homepage title and description (lines 14–16, 19, 25, 88–91). When a blog post is shared on social media, crawlers read these static tags from the raw HTML instead of the dynamic tags injected by `react-helmet`. This causes every shared blog link to display "Drake Fitness - Mobility-First Functional Strength Training in Charleston, SC" instead of the actual article title and excerpt.
+## Recommended Fix: Crawler-Aware Edge Function
 
-## Root Cause
+Create a backend function that detects social media crawler user-agents and returns pre-built HTML with the correct OG tags for each blog URL. Regular users still get the normal SPA.
 
-Social media crawlers (Facebook, LinkedIn, X) read raw HTML. When they find duplicate meta tags — one hardcoded in `index.html` and one injected by `react-helmet` — they typically use the first occurrence. The hardcoded homepage tags always win.
+### Steps
 
-## Fix
+1. **Create a `social-meta` edge function** that:
+   - Checks the `User-Agent` for known crawlers (facebookexternalhit, Twitterbot, LinkedInBot, Slackbot, etc.)
+   - If it's a crawler hitting `/insights/:slug`, looks up the post data and returns a minimal HTML page with the correct `og:title`, `og:description`, `og:image`, and a redirect meta tag for real users
+   - If it's not a crawler, passes through to the normal SPA
 
-### `index.html` — Remove all hardcoded OG/Twitter meta tags
+2. **Create a static blog metadata JSON** at build time or hardcoded in the edge function containing each post's slug, seoTitle, excerpt, and a **stable absolute URL** for the thumbnail image
 
-Remove these duplicated tags that conflict with the `<SEO>` component:
+3. **For thumbnail URLs**: Since Vite-hashed paths change on each build, the most reliable approach is to upload the blog thumbnails to file storage (Lovable Cloud) and use permanent URLs in OG tags. This ensures the `og:image` URL never breaks.
 
-- **Line 14**: `<meta property="og:type" content="website" />`
-- **Line 15**: `<meta property="og:url" content="https://drake.fitness" />`
-- **Line 19**: `<meta name="twitter:card" content="summary_large_image" />`
-- **Line 25**: `<link rel="canonical" href="https://drake.fitness" />`
-- **Line 88**: `<meta property="og:title" content="Drake Fitness - ...">`
-- **Line 89**: `<meta name="twitter:title" content="Drake Fitness - ...">`
-- **Line 90**: `<meta property="og:description" content="Charleston's premier ...">`
-- **Line 91**: `<meta name="twitter:description" content="Charleston's premier ...">`
+### Alternative: Simpler Approach (if crawlers do run JS)
+If testing confirms Facebook/LinkedIn/X all pick up the current `react-helmet` tags correctly, no changes are needed — the current setup already works. We can verify this by:
+- Pasting a blog URL into Facebook Sharing Debugger
+- Checking LinkedIn Post Inspector
+- Testing with X Card Validator
 
-The `<SEO>` component (via `react-helmet`) already injects all of these dynamically on every page, including blog posts. Removing the static duplicates ensures `react-helmet` is the sole source of truth, allowing each blog post's unique title, description, and image to appear correctly.
-
-### No other file changes needed
-
-The `InsightPost.tsx` component already correctly passes `post.title`, `post.excerpt`, `post.thumbnail`, and `ogType="article"` to the `<SEO>` component. The issue is purely the conflicting static tags in `index.html`.
-
-## Technical Note
-
-`react-helmet` works by manipulating the `<head>` DOM after React renders. Modern social crawlers (Facebook, LinkedIn) do execute JavaScript before reading meta tags. By removing the hardcoded duplicates, the dynamically injected blog-specific tags become the only tags present, and crawlers will read the correct article information.
+### What I Recommend
+Test the current setup first with the Facebook Sharing Debugger after publishing. If the blog-specific title and image appear correctly, no code changes are needed. If they don't, we implement the edge function approach.
 
