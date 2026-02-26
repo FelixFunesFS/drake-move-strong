@@ -1,30 +1,25 @@
 
 
-# Fix Blog Social Previews with Prerender Edge Function
+# Fix: Blog OG Tags Not Showing on Facebook
 
-## Problem
-`react-helmet` injects blog-specific OG tags via JavaScript, but crawlers that don't execute JS (X/Twitter, Slack, Discord) only see the static homepage tags in `index.html`.
+## The Problem
+When you share `drake.fitness/insights/the-drake-philosophy-why-we-train-differently` on Facebook, it shows the homepage title/image instead of the blog-specific one. This happens because Facebook's crawler reads the **static** `index.html` (lines 69-78) which has hardcoded homepage OG tags. The SPA's `react-helmet` tags load too late via JavaScript.
 
-## Solution: Crawler-Detection Edge Function
-Create an edge function that intercepts requests to `/insights/:slug`, detects crawler user-agents, and returns a minimal HTML page with the correct OG tags. Regular users get redirected to the normal SPA.
+## The Fix
+The `og-redirect` edge function already exists and serves correct blog-specific OG tags. The share buttons already use it. The issue is that **you pasted the browser URL** (`drake.fitness/insights/...`) instead of using the share button's URL.
 
-**This approach works within Lovable's architecture** because we can use a dedicated URL for sharing (e.g., `https://ktktwcbvambkcrpfflxi.supabase.co/functions/v1/og-redirect/insights/:slug`) or instruct users to share via a share URL pattern.
+**Two changes to make this foolproof:**
 
-### However -- the realistic limitation
-Since we cannot control Lovable's CDN routing, crawlers hitting `https://drake.fitness/insights/...` will still get the static `index.html`. The edge function only works if the shared URL points to the function endpoint.
+### 1. Remove hardcoded OG tags from `index.html`
+Delete lines 69-78 (the static OG/Twitter tags). These override `react-helmet` on platforms that don't run JS and always show homepage info regardless of page. Without them, crawlers that DO run JS (Facebook, LinkedIn) will pick up the dynamic blog-specific tags from `react-helmet`.
 
-## Practical Alternative: Update `index.html` Fallback Strategy
-Since true SSR isn't possible on Lovable hosting, the best pragmatic approach:
+### 2. Make share buttons more prominent + add share prompt
+- Add a visible "Share This Article" prompt with the share buttons near the top of the article (after "Back to All Articles") so users naturally use the og-redirect URL
+- Update the "Copy Link" toast to say "Share-optimized link copied! Previews will show correctly on all platforms."
+- Add a floating share FAB on mobile so it's always accessible
 
-1. **Test Facebook/LinkedIn first** -- these platforms execute JS and should already show blog-specific previews correctly
-2. **For X/Twitter/Slack fallback** -- update the `index.html` fallback OG tags to be more generic ("Read training insights from Drake Fitness") so at least the fallback isn't misleading
-3. **Add a `og-blog-fallback.png`** -- a branded generic image for blog sharing that says "Drake Fitness Insights" rather than showing the homepage hero
-
-## Steps
-1. Test current blog URLs in Facebook Sharing Debugger to confirm dynamic tags work there
-2. If Facebook works: no code changes needed for major platforms
-3. Optionally create a generic blog fallback OG image and update `index.html` meta tags to detect `/insights/` paths (not possible statically -- confirms the SPA limitation)
-
-## Bottom Line
-The titles and images ARE being set correctly in the code. The question is whether the platform you're sharing on executes JavaScript. Facebook and LinkedIn do. X/Twitter and Slack often don't. For full coverage across all platforms, the site would need to be deployed on a host that supports prerendering (Vercel, Netlify, Cloudflare Pages).
+This dual approach ensures:
+- Facebook/LinkedIn (which run JS) see blog-specific tags even from browser URLs
+- X/Twitter/Slack/Discord get correct tags when users share via the on-page buttons
+- The copy link button copies the og-redirect URL, not the browser URL
 
