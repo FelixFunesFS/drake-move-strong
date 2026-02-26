@@ -15,6 +15,10 @@ import membersDoubleKettlebellRack from '@/assets/members-double-kettlebell-rack
 import blogKettlebellOverheadGroup from '@/assets/blog-kettlebell-overhead-group.jpg';
 import studioGroupOverhead from '@/assets/studio-group-overhead.jpg';
 
+// Permanent storage URL builder for OG images (won't change between builds)
+const BLOG_IMAGE_BASE = 'https://ktktwcbvambkcrpfflxi.supabase.co/storage/v1/object/public/blog-images';
+export const getBlogOgImageUrl = (filename: string) => `${BLOG_IMAGE_BASE}/${filename}`;
+
 export interface InsightPost {
   id: string;
   slug: string;
@@ -27,6 +31,7 @@ export interface InsightPost {
   publishedAt: string;
   readTime: number;
   thumbnail: string;
+  ogImage: string;
   videoId?: string;
   featured?: boolean;
   tags: string[];
@@ -177,6 +182,7 @@ export const insightPosts: InsightPost[] = [
     publishedAt: '2026-01-05', // Most recent
     readTime: 8,
     thumbnail: davidCoachingForm,
+    ogImage: getBlogOgImageUrl('david-coaching-form.jpg'),
     featured: true,
     tags: ['training philosophy', 'over 40', 'smart training']
   },
@@ -222,6 +228,7 @@ export const insightPosts: InsightPost[] = [
     publishedAt: '2025-11-15',
     readTime: 6,
     thumbnail: studioNickDavidTogether,
+    ogImage: getBlogOgImageUrl('studio-nick-david-together.jpg'),
     featured: true,
     tags: ['philosophy', 'coaching', 'values']
   },
@@ -272,6 +279,7 @@ export const insightPosts: InsightPost[] = [
     publishedAt: '2025-10-20',
     readTime: 7,
     thumbnail: membersOverheadLungeNaturalLight,
+    ogImage: getBlogOgImageUrl('members-overhead-lunge-natural-light.jpg'),
     featured: false,
     tags: ['mobility', 'flexibility', 'movement quality']
   },
@@ -318,6 +326,7 @@ export const insightPosts: InsightPost[] = [
     publishedAt: '2025-09-18',
     readTime: 5,
     thumbnail: groupOverheadPressClass,
+    ogImage: getBlogOgImageUrl('group-overhead-press-class.jpg'),
     featured: false,
     tags: ['beginners', 'getting started', 'reset week']
   },
@@ -363,6 +372,7 @@ export const insightPosts: InsightPost[] = [
     publishedAt: '2025-08-12',
     readTime: 6,
     thumbnail: studioMobilityTraining,
+    ogImage: getBlogOgImageUrl('studio-mobility-training.jpg'),
     featured: false,
     tags: ['philosophy', 'pain', 'training approach']
   },
@@ -410,6 +420,7 @@ export const insightPosts: InsightPost[] = [
     publishedAt: '2025-07-25',
     readTime: 8,
     thumbnail: memberWeightedVestBandTraining,
+    ogImage: getBlogOgImageUrl('member-weighted-vest-band-training.jpg'),
     featured: false,
     tags: ['injuries', 'modifications', 'safety']
   },
@@ -461,6 +472,7 @@ export const insightPosts: InsightPost[] = [
     publishedAt: '2025-06-08',
     readTime: 5,
     thumbnail: studioFloorExercise,
+    ogImage: getBlogOgImageUrl('studio-floor-exercise.jpg'),
     featured: false,
     tags: ['breathing', 'core stability', 'fundamentals']
   },
@@ -511,6 +523,7 @@ export const insightPosts: InsightPost[] = [
     publishedAt: '2025-05-14',
     readTime: 5,
     thumbnail: studioFullView,
+    ogImage: getBlogOgImageUrl('studio-full-view.jpg'),
     featured: false,
     tags: ['about us', 'Charleston', 'comparison']
   },
@@ -563,6 +576,7 @@ export const insightPosts: InsightPost[] = [
     publishedAt: '2025-04-22',
     readTime: 6,
     thumbnail: blogKettlebellOverheadGroup,
+    ogImage: getBlogOgImageUrl('blog-kettlebell-overhead-group.jpg'),
     featured: false,
     tags: ['time management', 'busy schedules', 'efficiency']
   },
@@ -578,6 +592,7 @@ export const insightPosts: InsightPost[] = [
     publishedAt: '2025-12-10',
     readTime: 9,
     thumbnail: studioGroupOverhead,
+    ogImage: getBlogOgImageUrl('studio-group-overhead.jpg'),
     featured: true,
     tags: ['strength', 'functional training', 'philosophy']
   },
@@ -622,6 +637,7 @@ export const insightPosts: InsightPost[] = [
     publishedAt: '2025-05-15',
     readTime: 5,
     thumbnail: studioFloorExercise,
+    ogImage: getBlogOgImageUrl('studio-floor-exercise.jpg'),
     videoId: "Vb91A46rLr8",
     featured: true,
     tags: ['mobility', 'warm-up', 'pressing reset', 'nervous system', 'spine health']
