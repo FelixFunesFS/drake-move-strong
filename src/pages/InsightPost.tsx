@@ -10,7 +10,7 @@ import { SEO } from "@/components/SEO";
 import { StructuredData, buildArticleSchema } from "@/components/StructuredData";
 import { format } from "date-fns";
 import AnimatedSection from "@/components/AnimatedSection";
-import SocialShareButtons from "@/components/insights/SocialShareButtons";
+import SocialShareButtons, { getShareUrl } from "@/components/insights/SocialShareButtons";
 
 const InsightPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -175,7 +175,7 @@ const InsightPost = () => {
           <div className="mt-8 pt-8 border-t border-border">
             <p className="text-sm text-muted-foreground mb-4">Share this article:</p>
             <SocialShareButtons 
-              url={`https://drake.fitness/insights/${post.slug}`}
+              url={getShareUrl(post.slug)}
               title={post.title}
               excerpt={post.excerpt}
             />
