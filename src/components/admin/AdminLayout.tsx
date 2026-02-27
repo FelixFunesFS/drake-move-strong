@@ -18,7 +18,8 @@ import {
   FileText,
   Dumbbell,
   ClipboardList,
-  BarChart3
+  BarChart3,
+  BookOpen
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -38,6 +39,7 @@ const navItems = [
   { href: '/admin/contracts', label: 'Contracts', icon: FileText },
   { href: '/admin/notifications', label: 'Notifications', icon: Mail },
   { href: '/admin/promotions', label: 'Promotions', icon: Megaphone },
+  { href: '/admin/blog', label: 'Blog Posts', icon: BookOpen },
   { href: '/admin/social-generator', label: 'Content Studio', icon: Image },
 ];
 

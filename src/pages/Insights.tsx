@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Search, GraduationCap, ShieldCheck, Target } from "lucide-react";
-import { insightPosts, categoryInfo } from "@/data/insights";
+import { categoryInfo } from "@/data/insights";
+import { useBlogPosts } from "@/hooks/useBlogPosts";
 import BlogArticleCard from "@/components/insights/BlogArticleCard";
 import AnimatedSection from "@/components/AnimatedSection";
 import CTASection from "@/components/CTASection";
@@ -25,6 +26,7 @@ const categoryColors = {
 const Insights = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const { data: insightPosts = [], isLoading } = useBlogPosts();
 
   const filteredPosts = insightPosts
     .filter(post => activeCategory === 'all' || post.category === activeCategory)
@@ -39,15 +41,11 @@ const Insights = () => {
   const getPostsByCategory = (category: 'education' | 'trust' | 'conversion') => 
     insightPosts.filter(post => post.category === category);
 
-  const getCategoryCount = (category: 'education' | 'trust' | 'conversion') =>
-    insightPosts.filter(post => post.category === category).length;
-
   return (
     <>
       <SEO
         title="Drake Fitness Blog | Training Insights & Education"
         description="Evidence-based insights on movement, strength training, and sustainable fitness for real people. Learn from expert coaches at Drake Fitness in Charleston."
-        
         canonical="https://drake.fitness/insights"
       />
 
@@ -67,7 +65,7 @@ const Insights = () => {
             <div className="inline-block px-4 py-2 bg-drake-gold/20 border border-drake-gold rounded-full mb-6">
               <span className="text-drake-gold font-bold uppercase tracking-wider text-sm">Knowledge & Insights</span>
             </div>
-<h1 className="font-hero text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 uppercase tracking-tight">
+            <h1 className="font-hero text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 uppercase tracking-tight">
               Drake Fitness Blog
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
@@ -80,7 +78,7 @@ const Insights = () => {
       {/* Category Filter Bar */}
       <section className="py-8 bg-background border-b border-border sticky top-20 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6">
             <div className="flex flex-wrap gap-2 md:gap-3">
               <button
                 onClick={() => setActiveCategory('all')}
@@ -124,9 +122,17 @@ const Insights = () => {
         </div>
       </section>
 
+      {/* Loading State */}
+      {isLoading && (
+        <section className="py-20 bg-background">
+          <div className="max-w-7xl mx-auto px-4 text-center">
+            <p className="text-muted-foreground text-lg">Loading articles...</p>
+          </div>
+        </section>
+      )}
 
       {/* Featured Articles */}
-      {activeCategory === 'all' && searchQuery === '' && featuredPosts.length > 0 && (
+      {!isLoading && activeCategory === 'all' && searchQuery === '' && featuredPosts.length > 0 && (
         <section className="py-20 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between mb-12">
@@ -148,7 +154,7 @@ const Insights = () => {
       )}
 
       {/* Category Sections (when showing all) */}
-      {activeCategory === 'all' && searchQuery === '' && (
+      {!isLoading && activeCategory === 'all' && searchQuery === '' && (
         <>
           {/* Education Articles */}
           <section className="py-20 bg-muted/50">
@@ -222,7 +228,7 @@ const Insights = () => {
       )}
 
       {/* Filtered Results */}
-      {(activeCategory !== 'all' || searchQuery !== '') && (
+      {!isLoading && (activeCategory !== 'all' || searchQuery !== '') && (
         <section className="py-20 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-12">

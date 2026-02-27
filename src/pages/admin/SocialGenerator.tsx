@@ -11,7 +11,8 @@ import { toast } from "sonner";
 import { Copy, Loader2, Instagram, Facebook, Linkedin, Twitter, Sparkles, Youtube, X, FileText, Eye, Code, ImageIcon } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
-import { insightPosts, authorInfo } from "@/data/insights";
+import { authorInfo } from "@/data/insights";
+import { useBlogPosts } from "@/hooks/useBlogPosts";
 import { PlatformPreview } from "@/components/admin/PlatformPreview";
 import { ImageAdGenerator } from "@/components/admin/ImageAdGenerator";
 
@@ -86,6 +87,7 @@ const SocialGenerator = () => {
   
   // Blog post state
   const [selectedPostId, setSelectedPostId] = useState<string>("");
+  const { data: insightPosts = [] } = useBlogPosts();
 
   const handlePlatformToggle = (platformId: string) => {
     setSelectedPlatforms(prev =>
