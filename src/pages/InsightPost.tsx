@@ -1,6 +1,7 @@
 import { useParams, Navigate, Link } from "react-router-dom";
 import { Calendar, Clock, Tag, ArrowRight, ArrowLeft, Share2 } from "lucide-react";
-import { insightPosts, authorInfo, categoryInfo } from "@/data/insights";
+import { authorInfo, categoryInfo } from "@/data/insights";
+import { useBlogPost, useBlogPosts } from "@/hooks/useBlogPosts";
 import OptimizedImage from "@/components/OptimizedImage";
 import SmartGalleryImage from "@/components/SmartGalleryImage";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
@@ -18,14 +19,23 @@ const InsightPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const isMobile = useIsMobile();
   const [showFabShare, setShowFabShare] = useState(false);
-  const post = insightPosts.find(p => p.slug === slug);
+  const { data: post, isLoading, error } = useBlogPost(slug);
+  const { data: allPosts = [] } = useBlogPosts();
 
-  if (!post) {
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-muted-foreground text-lg">Loading article...</p>
+      </div>
+    );
+  }
+
+  if (error || !post) {
     return <Navigate to="/insights" replace />;
   }
 
   const author = authorInfo[post.author];
-  const relatedPosts = insightPosts
+  const relatedPosts = allPosts
     .filter(p => p.id !== post.id)
     .filter(p => p.category === post.category || p.featured)
     .slice(0, 3);
@@ -57,7 +67,6 @@ const InsightPost = () => {
 
       {/* Hero Section with Background Image */}
       <section className="relative min-h-[500px] flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <SmartGalleryImage
             src={post.thumbnail}
