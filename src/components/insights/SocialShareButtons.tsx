@@ -3,13 +3,6 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useState } from "react";
 
-// Build the OG redirect URL for social sharing so crawlers get proper meta tags
-const OG_REDIRECT_BASE = `https://${import.meta.env.VITE_SUPABASE_PROJECT_ID}.supabase.co/functions/v1/og-redirect`;
-
-export function getShareUrl(slug: string): string {
-  return `${OG_REDIRECT_BASE}/insights/${slug}`;
-}
-
 interface SocialShareButtonsProps {
   url: string;
   title: string;
@@ -37,7 +30,7 @@ const SocialShareButtons = ({ url, title, excerpt }: SocialShareButtonsProps) =>
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
-      toast.success("Share-optimized link copied! Previews will show correctly on all platforms.");
+      toast.success("Link copied!");
       setTimeout(() => setCopied(false), 2000);
     } catch {
       toast.error("Failed to copy link");
