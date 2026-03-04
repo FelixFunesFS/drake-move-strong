@@ -11,7 +11,7 @@ import { SEO } from "@/components/SEO";
 import { StructuredData, buildArticleSchema } from "@/components/StructuredData";
 import { format } from "date-fns";
 import AnimatedSection from "@/components/AnimatedSection";
-import SocialShareButtons, { getShareUrl } from "@/components/insights/SocialShareButtons";
+import SocialShareButtons from "@/components/insights/SocialShareButtons";
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -122,7 +122,7 @@ const InsightPost = () => {
             <div className="flex items-center gap-3">
               <span className="text-sm text-muted-foreground font-medium hidden sm:inline">Share:</span>
               <SocialShareButtons 
-                url={getShareUrl(post.slug)}
+                url={`https://drake.fitness/insights/${post.slug}`}
                 title={post.title}
                 excerpt={post.excerpt}
               />
@@ -196,7 +196,7 @@ const InsightPost = () => {
           <div className="mt-8 pt-8 border-t border-border">
             <p className="text-sm text-muted-foreground mb-4">Share this article:</p>
             <SocialShareButtons 
-              url={getShareUrl(post.slug)}
+              url={`https://drake.fitness/insights/${post.slug}`}
               title={post.title}
               excerpt={post.excerpt}
             />
@@ -304,7 +304,7 @@ const InsightPost = () => {
             <div className="absolute bottom-16 right-0 bg-card border border-border rounded-xl p-4 shadow-2xl min-w-[200px]">
               <p className="text-sm text-muted-foreground mb-3 font-medium">Share this article</p>
               <SocialShareButtons 
-                url={getShareUrl(post.slug)}
+                url={`https://drake.fitness/insights/${post.slug}`}
                 title={post.title}
                 excerpt={post.excerpt}
               />
