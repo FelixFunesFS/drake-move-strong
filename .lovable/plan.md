@@ -1,83 +1,51 @@
 
 
-# Blog CMS Migration Plan
+# Plan: Cloudflare Worker Crawler Proxy + Expanded OG Tags
 
-## Overview
-Migrate blog data from hardcoded `src/data/insights.ts` to a database-driven CMS, while keeping the rich custom React content components as code-side overrides. This also includes fixing the og-redirect edge function so Facebook reads blog-specific OG tags.
+## What This Solves
 
-## Important Design Decision
-10 of the 11 blog posts have **custom React components** in `BlogContentComponents.tsx` (1,675 lines of rich, interactive JSX with icons, images, internal links). These cannot be stored in a database. The approach:
-- **Database** stores post metadata (title, slug, excerpt, category, author, dates, tags, OG image, featured flag) and a basic HTML `content` fallback
-- **Code** keeps the rich React component overrides via `blogContentMap` -- if a slug has a custom component, it renders that instead of the DB content
-- **New posts** created via admin will use the HTML content field (no custom React component needed)
-- **No visual/UX changes** to any existing blog page
+When anyone shares a `drake.fitness` URL (blog post, classes page, etc.) on Facebook, LinkedIn, Slack, or iMessage, the social platform's crawler will be intercepted by a Cloudflare Worker and served the correct title, description, and image -- instead of the generic SPA homepage metadata.
 
-## Step 1: Create `blog_posts` Database Table
+## Changes
 
-```sql
-CREATE TABLE public.blog_posts (
-  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  slug text UNIQUE NOT NULL,
-  title text NOT NULL,
-  seo_title text,
-  excerpt text NOT NULL,
-  content text DEFAULT '',
-  category text NOT NULL CHECK (category IN ('education', 'trust', 'conversion')),
-  author text NOT NULL CHECK (author IN ('david', 'nick')),
-  published_at date NOT NULL,
-  read_time integer NOT NULL DEFAULT 5,
-  thumbnail_url text,
-  og_image text,
-  video_id text,
-  featured boolean DEFAULT false,
-  tags text[] DEFAULT '{}',
-  is_active boolean DEFAULT true,
-  created_at timestamptz DEFAULT now(),
-  updated_at timestamptz DEFAULT now()
-);
+### 1. Update `og-redirect` edge function to support all site pages
 
--- RLS
-ALTER TABLE public.blog_posts ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Anyone can view active posts" ON public.blog_posts FOR SELECT USING (is_active = true);
-CREATE POLICY "Admins can manage posts" ON public.blog_posts FOR ALL USING (has_role(auth.uid(), 'admin'));
+Currently only handles blog posts. Expand to handle static pages with hardcoded OG data, plus keep the existing blog lookup.
 
--- Updated_at trigger
-CREATE TRIGGER update_blog_posts_updated_at BEFORE UPDATE ON public.blog_posts
-  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
-```
+**Route handling:**
+- `/insights/:slug` -- database lookup (existing, keep as-is)
+- `/classes`, `/coaching`, `/pricing`, `/about`, `/schedule`, `/contact`, `/faq`, `/reset-week-charleston`, `/success-stories` -- static OG metadata map
+- `/` (homepage) -- site-level OG tags
+- Remove the JS redirect (`window.location.replace`) since crawlers are the only consumers now
 
-## Step 2: Seed Existing Posts
-Insert all 11 existing blog posts into the table using the data insert tool. Thumbnail URLs will use the existing blog-images storage bucket URLs. HTML content stored as fallback.
+**File:** `supabase/functions/og-redirect/index.ts`
 
-## Step 3: Update og-redirect Edge Function
-- Remove hardcoded `blogPosts` map
-- Query `blog_posts` table by slug using Supabase client
-- Replace `<meta http-equiv="refresh">` with `<script>window.location.replace(...)</script>` to prevent Facebook crawler from following the redirect
+### 2. Simplify `SocialShareButtons` to use canonical URLs
 
-## Step 4: Update Frontend Data Layer
-- Create a new hook `useBlogPosts()` that fetches from the `blog_posts` table
-- Update `Insights.tsx` to use the hook instead of importing from `src/data/insights.ts`
-- Update `InsightPost.tsx` to fetch individual post by slug from DB
-- Keep `blogContentMap` for rich component overrides -- if slug has a custom component, render it; otherwise render DB HTML content
-- Keep `authorInfo` and `categoryInfo` as static data (small, rarely changing)
-- Preserve the `InsightPost` interface for type compatibility
+Remove the `OG_REDIRECT_BASE` and `getShareUrl` helper. Share buttons will pass the canonical `drake.fitness/insights/:slug` URL directly, since the Cloudflare Worker handles crawler routing at the domain level.
 
-## Step 5: Admin Blog Management Page
-- New page at `/admin/blog` with table listing all posts
-- Create/Edit form with fields: title, seo_title, slug (auto-generated from title), excerpt, category, author, published_at, read_time, tags, featured, is_active, content (rich text area)
-- Add nav item to `AdminLayout.tsx`
+**File:** `src/components/insights/SocialShareButtons.tsx`
 
-## Step 6: Remove Static Data
-- Remove blog post array from `src/data/insights.ts` (keep `authorInfo`, `categoryInfo`, `getBlogOgImageUrl`, and `InsightPost` interface)
+### 3. Update `InsightPost.tsx` share button calls
 
-## Files Changed
-- `supabase/functions/og-redirect/index.ts` -- query DB + JS redirect fix
-- `src/data/insights.ts` -- remove post array, keep types/utils
-- `src/pages/Insights.tsx` -- fetch from DB
-- `src/pages/InsightPost.tsx` -- fetch from DB
-- `src/components/admin/AdminLayout.tsx` -- add Blog nav item
-- New: `src/hooks/useBlogPosts.ts`
-- New: `src/pages/admin/Blog.tsx`
-- `src/App.tsx` -- add admin blog route
-- New DB migration for `blog_posts` table
+Replace `getShareUrl(post.slug)` with the canonical URL `https://drake.fitness/insights/${post.slug}` in all three places where `SocialShareButtons` is rendered.
+
+**File:** `src/pages/InsightPost.tsx`
+
+### 4. Provide Cloudflare Worker code (as a code block for manual deployment)
+
+The Worker cannot be deployed from within Lovable -- it must be added via the Cloudflare dashboard. I will provide the complete Worker script with:
+
+- User-Agent detection for: `facebookexternalhit`, `LinkedInBot`, `Twitterbot`, `Slackbot`, `WhatsApp`, `Discordbot`, `Googlebot`
+- If crawler: fetch `https://ktktwcbvambkcrpfflxi.supabase.co/functions/v1/og-redirect{path}` and return the HTML
+- If real user: `fetch(request)` passthrough to origin
+
+You will deploy this in **Cloudflare Dashboard > Workers & Pages > Create Worker**, then add a route `drake.fitness/*` under **Workers Routes** for your domain.
+
+## Deployment Steps (after implementation)
+
+1. I update the edge function and share button code within Lovable (automatic deploy)
+2. You copy the Cloudflare Worker code I provide into your Cloudflare dashboard
+3. You add the Worker route `drake.fitness/*`
+4. Test by pasting `drake.fitness/insights/any-slug` into [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/)
 
