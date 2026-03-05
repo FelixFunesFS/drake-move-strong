@@ -125,6 +125,7 @@ const InsightPost = () => {
                 url={`https://drake.fitness/insights/${post.slug}`}
                 title={post.title}
                 excerpt={post.excerpt}
+                slug={post.slug}
               />
             </div>
           </div>
@@ -199,6 +200,7 @@ const InsightPost = () => {
               url={`https://drake.fitness/insights/${post.slug}`}
               title={post.title}
               excerpt={post.excerpt}
+              slug={post.slug}
             />
           </div>
 
@@ -307,6 +309,7 @@ const InsightPost = () => {
                 url={`https://drake.fitness/insights/${post.slug}`}
                 title={post.title}
                 excerpt={post.excerpt}
+                slug={post.slug}
               />
             </div>
           )}
