@@ -174,6 +174,7 @@ function buildHtmlResponse(
 </head>
 <body>
   <p>Redirecting to <a href="${canonicalUrl}">${safeTitle}</a>...</p>
+  <script>window.location.replace("${canonicalUrl}")</script>
 </body>
 </html>`;
 

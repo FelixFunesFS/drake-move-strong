@@ -3,16 +3,21 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useState } from "react";
 
+const OG_REDIRECT_BASE = `https://ktktwcbvambkcrpfflxi.supabase.co/functions/v1/og-redirect`;
+
 interface SocialShareButtonsProps {
   url: string;
   title: string;
   excerpt?: string;
+  slug?: string;
 }
 
-const SocialShareButtons = ({ url, title, excerpt }: SocialShareButtonsProps) => {
+const SocialShareButtons = ({ url, title, excerpt, slug }: SocialShareButtonsProps) => {
   const [copied, setCopied] = useState(false);
 
-  const encodedUrl = encodeURIComponent(url);
+  // Use og-redirect URL for social sharing (crawlers get OG tags), canonical URL for copy
+  const shareUrl = slug ? `${OG_REDIRECT_BASE}/insights/${slug}` : url;
+  const encodedUrl = encodeURIComponent(shareUrl);
   const encodedTitle = encodeURIComponent(title);
   const encodedText = encodeURIComponent(excerpt ? `${title} - ${excerpt}` : title);
 
