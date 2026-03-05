@@ -1,51 +1,45 @@
 
 
-# Plan: Cloudflare Worker Crawler Proxy + Expanded OG Tags
+# Plan: Abandon Cloudflare Worker, Use Direct Edge Function URLs
 
-## What This Solves
+## The Problem
 
-When anyone shares a `drake.fitness` URL (blog post, classes page, etc.) on Facebook, LinkedIn, Slack, or iMessage, the social platform's crawler will be intercepted by a Cloudflare Worker and served the correct title, description, and image -- instead of the generic SPA homepage metadata.
+The `curl` output proves the Cloudflare Worker is **not intercepting traffic**. The `set-cookie` header shows `Domain=lovable.app` — meaning `drake.fitness` resolves to Lovable's own Cloudflare proxy (185.158.133.1), which handles the request before your Cloudflare Worker zone ever sees it. Your Worker routes exist but traffic never flows through your Cloudflare account. This is a fundamental limitation of Lovable's custom domain architecture and cannot be fixed from either side.
+
+## Solution
+
+Use the `og-redirect` edge function URL directly in share buttons. Crawlers read the OG meta tags from the HTML response; human visitors get redirected to the real page via JavaScript.
 
 ## Changes
 
-### 1. Update `og-redirect` edge function to support all site pages
+### 1. Add JavaScript redirect to `og-redirect` edge function
 
-Currently only handles blog posts. Expand to handle static pages with hardcoded OG data, plus keep the existing blog lookup.
-
-**Route handling:**
-- `/insights/:slug` -- database lookup (existing, keep as-is)
-- `/classes`, `/coaching`, `/pricing`, `/about`, `/schedule`, `/contact`, `/faq`, `/reset-week-charleston`, `/success-stories` -- static OG metadata map
-- `/` (homepage) -- site-level OG tags
-- Remove the JS redirect (`window.location.replace`) since crawlers are the only consumers now
+Add `<script>window.location.replace("${canonicalUrl}")</script>` to the HTML body in `buildHtmlResponse()`. Crawlers ignore JS and read the meta tags; real users get redirected instantly.
 
 **File:** `supabase/functions/og-redirect/index.ts`
 
-### 2. Simplify `SocialShareButtons` to use canonical URLs
+### 2. Update `SocialShareButtons` to use edge function URLs
 
-Remove the `OG_REDIRECT_BASE` and `getShareUrl` helper. Share buttons will pass the canonical `drake.fitness/insights/:slug` URL directly, since the Cloudflare Worker handles crawler routing at the domain level.
+Restore the `OG_REDIRECT_BASE` pattern. Share URLs become:
+`https://ktktwcbvambkcrpfflxi.supabase.co/functions/v1/og-redirect/insights/{slug}`
 
 **File:** `src/components/insights/SocialShareButtons.tsx`
 
-### 3. Update `InsightPost.tsx` share button calls
+### 3. Update `InsightPost.tsx` share URL generation
 
-Replace `getShareUrl(post.slug)` with the canonical URL `https://drake.fitness/insights/${post.slug}` in all three places where `SocialShareButtons` is rendered.
+Pass the og-redirect URL to share buttons instead of the canonical URL.
 
 **File:** `src/pages/InsightPost.tsx`
 
-### 4. Provide Cloudflare Worker code (as a code block for manual deployment)
+### 4. Delete Cloudflare Worker
 
-The Worker cannot be deployed from within Lovable -- it must be added via the Cloudflare dashboard. I will provide the complete Worker script with:
+You can remove the `drake-crawler-proxy` Worker from your Cloudflare dashboard and its routes — it serves no purpose since traffic never reaches it.
 
-- User-Agent detection for: `facebookexternalhit`, `LinkedInBot`, `Twitterbot`, `Slackbot`, `WhatsApp`, `Discordbot`, `Googlebot`
-- If crawler: fetch `https://ktktwcbvambkcrpfflxi.supabase.co/functions/v1/og-redirect{path}` and return the HTML
-- If real user: `fetch(request)` passthrough to origin
+### 5. Update plan document
 
-You will deploy this in **Cloudflare Dashboard > Workers & Pages > Create Worker**, then add a route `drake.fitness/*` under **Workers Routes** for your domain.
+Update `.lovable/plan.md` to reflect the new architecture.
 
-## Deployment Steps (after implementation)
+## Limitations
 
-1. I update the edge function and share button code within Lovable (automatic deploy)
-2. You copy the Cloudflare Worker code I provide into your Cloudflare dashboard
-3. You add the Worker route `drake.fitness/*`
-4. Test by pasting `drake.fitness/insights/any-slug` into [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/)
+This approach works for **intentional shares** (clicking share buttons). If someone manually pastes `drake.fitness/insights/slug` into Facebook, it will still show generic metadata because the SPA can't serve OG tags server-side. For most use cases (share buttons, social posting), this is sufficient.
 
