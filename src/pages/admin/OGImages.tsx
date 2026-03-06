@@ -4,12 +4,14 @@ import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { toast } from '@/hooks/use-toast';
 import { Loader2, ImageIcon, Trash2, Wand2, ExternalLink } from 'lucide-react';
 
-const OG_BUCKET_BASE = `https://ktktwcbvambkcrpfflxi.supabase.co/storage/v1/object/public/og-images`;
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const OG_BUCKET_BASE = `${SUPABASE_URL}/storage/v1/object/public/og-images`;
+const BLOG_IMAGE_BASE = `${SUPABASE_URL}/storage/v1/object/public/blog-images`;
 
 interface PageMapping {
   path: string;
@@ -37,8 +39,15 @@ interface OgRecord {
   source_description: string | null;
 }
 
+interface BlogPost {
+  slug: string;
+  title: string;
+  og_image: string | null;
+}
+
 export default function OGImages() {
   const [ogRecords, setOgRecords] = useState<OgRecord[]>([]);
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState<string | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -46,10 +55,12 @@ export default function OGImages() {
   const [sourceUrl, setSourceUrl] = useState('');
 
   const fetchRecords = async () => {
-    const { data } = await supabase
-      .from('page_og_images')
-      .select('path, image_filename, source_description');
-    setOgRecords((data as OgRecord[]) || []);
+    const [{ data: ogData }, { data: blogData }] = await Promise.all([
+      supabase.from('page_og_images').select('path, image_filename, source_description'),
+      supabase.from('blog_posts').select('slug, title, og_image').eq('is_active', true).order('published_at', { ascending: false }),
+    ]);
+    setOgRecords((ogData as OgRecord[]) || []);
+    setBlogPosts((blogData as BlogPost[]) || []);
     setLoading(false);
   };
 
@@ -71,7 +82,7 @@ export default function OGImages() {
       }
 
       const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-og-image`,
+        `${SUPABASE_URL}/functions/v1/generate-og-image`,
         {
           method: 'POST',
           headers: {
@@ -81,7 +92,7 @@ export default function OGImages() {
           body: JSON.stringify({
             sourceImageUrl: sourceUrl,
             pagePath: selectedPage.path,
-            description: `Hero image: ${selectedPage.suggestedSource}`,
+            description: `Source: ${selectedPage.suggestedSource}`,
           }),
         }
       );
@@ -131,8 +142,18 @@ export default function OGImages() {
 
   const openGenerateDialog = (page: PageMapping) => {
     setSelectedPage(page);
-    // Pre-populate with a full URL to the asset in the repo
-    setSourceUrl(`https://drake.fitness/src/assets/${page.suggestedSource}`);
+    setSourceUrl('');
+    setDialogOpen(true);
+  };
+
+  const openBlogGenerateDialog = (post: BlogPost) => {
+    const blogPage: PageMapping = {
+      path: `/insights/${post.slug}`,
+      label: post.title,
+      suggestedSource: post.og_image || '',
+    };
+    setSelectedPage(blogPage);
+    setSourceUrl(post.og_image ? `${BLOG_IMAGE_BASE}/${post.og_image}` : '');
     setDialogOpen(true);
   };
 
@@ -240,6 +261,100 @@ export default function OGImages() {
           </CardContent>
         </Card>
 
+        {/* Blog Post OG Images */}
+        {blogPosts.length > 0 && (
+          <Card>
+            <CardHeader>
+              <CardTitle>Blog Post OG Images</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Post</TableHead>
+                    <TableHead>Preview</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {blogPosts.map((post) => {
+                    const blogPath = `/insights/${post.slug}`;
+                    const record = getRecord(blogPath);
+                    const isGenerating = generating === blogPath;
+
+                    return (
+                      <TableRow key={post.slug}>
+                        <TableCell className="font-medium max-w-xs truncate">{post.title}</TableCell>
+                        <TableCell>
+                          {record ? (
+                            <a
+                              href={`${OG_BUCKET_BASE}/${record.image_filename}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block"
+                            >
+                              <img
+                                src={`${OG_BUCKET_BASE}/${record.image_filename}?t=${Date.now()}`}
+                                alt={`OG image for ${post.title}`}
+                                className="w-48 h-auto rounded border border-border object-cover"
+                              />
+                            </a>
+                          ) : post.og_image ? (
+                            <img
+                              src={`${BLOG_IMAGE_BASE}/${post.og_image}`}
+                              alt={`Current OG for ${post.title}`}
+                              className="w-48 h-auto rounded border border-border object-cover opacity-60"
+                            />
+                          ) : (
+                            <span className="text-muted-foreground text-sm italic">None</span>
+                          )}
+                        </TableCell>
+                        <TableCell>
+                          {record ? (
+                            <span className="inline-flex items-center gap-1 text-sm text-primary font-medium">
+                              <ImageIcon className="h-3.5 w-3.5" /> AI Cropped
+                            </span>
+                          ) : post.og_image ? (
+                            <span className="text-sm text-amber-600">Raw (uncropped)</span>
+                          ) : (
+                            <span className="text-sm text-muted-foreground">Missing</span>
+                          )}
+                        </TableCell>
+                        <TableCell className="text-right space-x-2">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => openBlogGenerateDialog(post)}
+                            disabled={isGenerating}
+                          >
+                            {isGenerating ? (
+                              <Loader2 className="h-4 w-4 animate-spin mr-1" />
+                            ) : (
+                              <Wand2 className="h-4 w-4 mr-1" />
+                            )}
+                            {isGenerating ? 'Generating…' : 'Generate'}
+                          </Button>
+                          {record && (
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => handleDelete(blogPath)}
+                              className="text-destructive hover:text-destructive"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Preview section for og-redirect links */}
         <Card>
           <CardHeader>
@@ -251,7 +366,7 @@ export default function OGImages() {
             </p>
             <div className="space-y-2">
               {PAGE_MAPPINGS.map((page) => {
-                const ogUrl = `https://ktktwcbvambkcrpfflxi.supabase.co/functions/v1/og-redirect${page.path}`;
+                const ogUrl = `${SUPABASE_URL}/functions/v1/og-redirect${page.path}`;
                 return (
                   <div key={page.path} className="flex items-center gap-3 text-sm">
                     <span className="font-medium w-32">{page.label}:</span>
@@ -284,11 +399,13 @@ export default function OGImages() {
               <Input
                 value={sourceUrl}
                 onChange={(e) => setSourceUrl(e.target.value)}
-                placeholder="https://example.com/image.jpg"
+                placeholder="Paste a public image URL (e.g. from storage bucket)"
               />
-              <p className="text-xs text-muted-foreground mt-1">
-                Suggested: <code>{selectedPage?.suggestedSource}</code>
-              </p>
+              {selectedPage?.suggestedSource && (
+                <p className="text-xs text-muted-foreground mt-1">
+                  Suggested source: <code>{selectedPage.suggestedSource}</code>
+                </p>
+              )}
             </div>
             {sourceUrl && (
               <div>
