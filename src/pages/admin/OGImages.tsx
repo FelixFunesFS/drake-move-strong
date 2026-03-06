@@ -8,6 +8,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Input } from '@/components/ui/input';
 import { toast } from '@/hooks/use-toast';
 import { Loader2, ImageIcon, Trash2, Wand2, ExternalLink } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import BucketImagePicker from '@/components/admin/BucketImagePicker';
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const OG_BUCKET_BASE = `${SUPABASE_URL}/storage/v1/object/public/og-images`;
@@ -394,26 +396,41 @@ export default function OGImages() {
             <DialogTitle>Generate OG Image for {selectedPage?.label}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
-            <div>
-              <label className="text-sm font-medium mb-1 block">Source Image URL</label>
-              <Input
-                value={sourceUrl}
-                onChange={(e) => setSourceUrl(e.target.value)}
-                placeholder="Paste a public image URL (e.g. from storage bucket)"
-              />
-              {selectedPage?.suggestedSource && (
-                <p className="text-xs text-muted-foreground mt-1">
-                  Suggested source: <code>{selectedPage.suggestedSource}</code>
-                </p>
-              )}
-            </div>
+            <Tabs defaultValue="picker" className="w-full">
+              <TabsList className="w-full grid grid-cols-2">
+                <TabsTrigger value="picker">Browse Images</TabsTrigger>
+                <TabsTrigger value="url">Paste URL</TabsTrigger>
+              </TabsList>
+              <TabsContent value="picker" className="mt-3">
+                <BucketImagePicker
+                  bucket="blog-images"
+                  selectedUrl={sourceUrl}
+                  onSelect={(url) => setSourceUrl(url)}
+                />
+              </TabsContent>
+              <TabsContent value="url" className="mt-3">
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Source Image URL</label>
+                  <Input
+                    value={sourceUrl}
+                    onChange={(e) => setSourceUrl(e.target.value)}
+                    placeholder="Paste a public image URL"
+                  />
+                  {selectedPage?.suggestedSource && (
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Suggested source: <code>{selectedPage.suggestedSource}</code>
+                    </p>
+                  )}
+                </div>
+              </TabsContent>
+            </Tabs>
             {sourceUrl && (
               <div>
-                <label className="text-sm font-medium mb-1 block">Source Preview</label>
+                <label className="text-sm font-medium mb-1 block">Selected Source Preview</label>
                 <img
                   src={sourceUrl}
                   alt="Source preview"
-                  className="w-full max-h-64 object-contain rounded border border-border bg-muted"
+                  className="w-full max-h-48 object-contain rounded border border-border bg-muted"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                 />
               </div>
