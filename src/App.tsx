@@ -84,6 +84,7 @@ const AdminExercises = lazy(() => import("./pages/admin/Exercises"));
 const WorkoutBuilder = lazy(() => import("./pages/admin/WorkoutBuilder"));
 const AdminAnalytics = lazy(() => import("./pages/admin/Analytics"));
 const AdminBlog = lazy(() => import("./pages/admin/Blog"));
+const AdminOGImages = lazy(() => import("./pages/admin/OGImages"));
 
 // Coach pages
 const CoachDashboard = lazy(() => import("./pages/coach/Dashboard"));
@@ -295,6 +296,11 @@ const AppLayout = () => {
             <Route path="/admin/blog" element={
               <ProtectedRoute requiredRoles={['admin']}>
                 <AdminBlog />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/og-images" element={
+              <ProtectedRoute requiredRoles={['admin']}>
+                <AdminOGImages />
               </ProtectedRoute>
             } />
             
