@@ -12,7 +12,7 @@ import AnimatedSection from '@/components/AnimatedSection';
 import drakeLogo from '@/assets/drake-logo.png?format=webp&w=176';
 import heroImage from '@/assets/group-training.jpg';
 import davidImage from '@/assets/david-outside.jpg';
-import nickImage from '@/assets/coach-nick-new.jpg';
+import mistyImage from '@/assets/coach-misty-lister.png';
 import studioImage from '@/assets/studio-full-view.jpg';
 
 // January 31, 2026 at midnight EST
@@ -394,19 +394,19 @@ const NewYearChallenge = () => {
               <Card className="overflow-hidden border-0 shadow-card">
                 <div className="aspect-[4/3] relative">
                   <OptimizedImage
-                    src={nickImage}
-                    alt="Coach Nick"
+                    src={mistyImage}
+                    alt="Coach Misty"
                     className="w-full h-full object-cover"
                     objectPosition="center 20%"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-drake-dark via-drake-dark/50 to-transparent" />
                   <div className="absolute bottom-4 left-4">
-                    <h3 className="font-hero text-2xl text-primary-foreground">Nick Poppa</h3>
-                    <p className="text-drake-gold">Corrective Exercise Specialist</p>
+                    <h3 className="font-hero text-2xl text-primary-foreground">Misty Lister</h3>
+                    <p className="text-drake-gold">Yoga & Mobility Coach</p>
                   </div>
                 </div>
                 <div className="p-6">
-                  <p className="text-drake-slate-gray">Holistic coaching specialist • Movement & mobility expert</p>
+                  <p className="text-drake-slate-gray">250/500-hour yoga teacher • Strength, mobility & breath specialist</p>
                 </div>
               </Card>
             </AnimatedSection>

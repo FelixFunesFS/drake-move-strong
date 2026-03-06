@@ -48,7 +48,7 @@ const whatResetWeekSolves = [
 ];
 
 const whatYoullExperience = [
-  { icon: User, title: "Coach-Led Sessions", description: "Every class is guided by David or Nick — you're never left to figure it out on your own." },
+  { icon: User, title: "Coach-Led Sessions", description: "Every class is guided by David or Misty — you're never left to figure it out on your own." },
   { icon: Dumbbell, title: "Movement Guidance", description: "Learn how your body should move before adding weight or intensity." },
   { icon: Dumbbell, title: "Strength Basics", description: "Introduction to functional movements like squats, hinges, carries, and presses." },
   { icon: Heart, title: "Confidence Building", description: "By the end of the week, you'll know you can do this — and you'll want to keep going." }
