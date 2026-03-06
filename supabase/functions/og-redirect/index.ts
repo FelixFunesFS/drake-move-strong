@@ -71,6 +71,21 @@ Deno.serve(async (req) => {
     // Reconstruct the page path
     const pagePath = '/' + remainingParts.join('/');
 
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const supabaseKey = Deno.env.get('SUPABASE_ANON_KEY')!;
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    // Look up custom OG image for this path
+    const { data: customOg } = await supabase
+      .from('page_og_images')
+      .select('image_filename')
+      .eq('path', pagePath)
+      .single();
+
+    const customOgUrl = customOg
+      ? `${supabaseUrl}/storage/v1/object/public/og-images/${customOg.image_filename}`
+      : null;
+
     // Check static pages first
     const staticMeta = STATIC_PAGES[pagePath];
     if (staticMeta) {
@@ -78,16 +93,13 @@ Deno.serve(async (req) => {
         staticMeta.title,
         staticMeta.description,
         `${SITE_URL}${pagePath === '/' ? '' : pagePath}`,
-        staticMeta.image || DEFAULT_OG_IMAGE
+        customOgUrl || staticMeta.image || DEFAULT_OG_IMAGE
       );
     }
 
     // Check for blog post: /insights/:slug
     if (remainingParts[0] === 'insights' && remainingParts[1]) {
       const slug = remainingParts[1];
-      const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-      const supabaseKey = Deno.env.get('SUPABASE_ANON_KEY')!;
-      const supabase = createClient(supabaseUrl, supabaseKey);
 
       const { data: post } = await supabase
         .from('blog_posts')
@@ -100,13 +112,13 @@ Deno.serve(async (req) => {
         const canonicalUrl = `${SITE_URL}/insights/${slug}`;
         const ogImageUrl = `${BLOG_IMAGE_BASE}/${post.og_image}`;
         const displayTitle = post.seo_title || post.title;
-        const authorName = post.author === 'david' ? 'Coach Drake' : 'Coach Nick';
+        const authorName = post.author === 'david' ? 'Coach Drake' : 'Coach Misty';
 
         return buildHtmlResponse(
           displayTitle,
           post.excerpt,
           canonicalUrl,
-          ogImageUrl,
+          customOgUrl || ogImageUrl,
           {
             type: 'article',
             publishedAt: post.published_at,
