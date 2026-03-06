@@ -21,6 +21,7 @@ import coachNickNew from "@/assets/coach-nick-new.jpg";
 import coachNickPortrait from "@/assets/coach-nick-portrait.jpg";
 import coachNick from "@/assets/coach-nick.jpg";
 import coachingSession from "@/assets/coaching-session.jpg";
+import coachMistyLister from "@/assets/coach-misty-lister.png";
 import communityGym from "@/assets/community-plank-rows-kettlebells.jpg";
 import davidCoachingForm from "@/assets/david-coaching-form.jpg";
 import davidDoubleKb from "@/assets/david-double-kb-storefront.jpg";
@@ -94,7 +95,9 @@ const IMAGES: ImageItem[] = [
   { src: davidOutside, name: "David Outside", category: "coaches" },
   { src: davidPlankRow, name: "David Plank Row", category: "coaches" },
   { src: davidRenegadeRow, name: "David Renegade Row", category: "coaches" },
-  // Coaches - Nick
+  // Coaches - Misty
+  { src: coachMistyLister, name: "Coach Misty Lister", category: "coaches" },
+  // Coaches - Nick (legacy studio photos)
   { src: coachNickNew, name: "Coach Nick New", category: "coaches" },
   { src: coachNickPortrait, name: "Coach Nick Portrait", category: "coaches" },
   { src: coachNick, name: "Coach Nick", category: "coaches" },

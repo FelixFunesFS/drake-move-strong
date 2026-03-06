@@ -8,7 +8,7 @@ import { GoogleMapEmbed } from "@/components/GoogleMapEmbed";
 import { Check, MapPin, ArrowRight, Activity, Users, Volume2, Star, Navigation, Clock, Car } from "lucide-react";
 
 import studioFloorExercise from "@/assets/studio-floor-exercise.jpg";
-import nickHolisticCoaching from "@/assets/nick-holistic-coaching.jpg";
+import coachMistyLister from "@/assets/coach-misty-lister.png";
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -150,8 +150,8 @@ export default function LowImpactFitnessCharleston() {
               </div>
               <div>
                 <OptimizedImage
-                  src={nickHolisticCoaching}
-                  alt="Coach Nick providing holistic coaching at Drake Fitness"
+                  src={coachMistyLister}
+                  alt="Coach Misty teaching mobility and yoga at Drake Fitness"
                   className="rounded-2xl shadow-lg"
                   aspectRatio="video"
                 />

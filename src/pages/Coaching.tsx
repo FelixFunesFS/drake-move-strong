@@ -12,7 +12,7 @@ import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import oneOnOneCoaching from "@/assets/one-on-one-coaching.jpg";
 import davidCoach from "@/assets/david-double-kb-storefront.jpg";
-import nickCoach from "@/assets/coach-nick-new.jpg";
+import mistyCoach from "@/assets/coach-misty-lister.png";
 import coachingSession from "@/assets/coaching-session.jpg";
 import TestimonialHero from "@/components/TestimonialHero";
 import { FEATURED_REVIEWS } from "@/data/reviews";
@@ -303,11 +303,11 @@ const Coaching = () => {
               <motion.div whileHover={{
                 y: -8
               }} className="bg-white p-6 rounded-xl shadow-card border border-border">
-              <OptimizedImage src={nickCoach} alt="Coach Nick Poppa at Drake Fitness" className="mb-4 rounded-lg aspect-[10/9] md:aspect-[6/5]" objectPosition="center 15%" sizes="(max-width: 768px) 100vw, 576px" />
-                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Coach Nick Poppa</h3>
-                <p className="text-primary font-semibold mb-3">Holistic Movement Specialist</p>
+              <OptimizedImage src={mistyCoach} alt="Coach Misty Lister at Drake Fitness" className="mb-4 rounded-lg aspect-[10/9] md:aspect-[6/5]" objectPosition="center 15%" sizes="(max-width: 768px) 100vw, 576px" />
+                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Coach Misty Lister</h3>
+                <p className="text-primary font-semibold mb-3">Yoga & Mobility Coach</p>
                 <p className="text-muted-foreground mb-4">
-                  Expert in bridging rehabilitation and performance. Patience and results can coexist.
+                  Strength, mobility, and breath — helping athletes discover how yoga supports performance and longevity.
                 </p>
                 <Button asChild variant="outline" className="w-full">
                   <Link to="/about">Read Bio</Link>

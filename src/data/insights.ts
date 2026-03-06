@@ -1,6 +1,6 @@
 // Image imports for author bios
 import davidCoachingTurkishGetup from '@/assets/david-coaching-turkish-getup.jpg';
-import nickHolisticCoaching from '@/assets/nick-holistic-coaching.jpg';
+import coachMistyLister from '@/assets/coach-misty-lister.png';
 
 // Permanent storage URL builder for OG images (won't change between builds)
 const BLOG_IMAGE_BASE = 'https://ktktwcbvambkcrpfflxi.supabase.co/storage/v1/object/public/blog-images';
@@ -14,7 +14,7 @@ export interface InsightPost {
   excerpt: string;
   content: string;
   category: 'education' | 'trust' | 'conversion';
-  author: 'david' | 'nick';
+  author: 'david' | 'misty';
   publishedAt: string;
   readTime: number;
   thumbnail: string;
@@ -31,11 +31,11 @@ export const authorInfo = {
     bio: "25+ years experience in strength training and functional movement. StrongFirst Kettlebell Certified.",
     image: davidCoachingTurkishGetup
   },
-  nick: {
-    name: "Coach Nick",
-    title: "Corrective Exercise & Holistic Coach",
-    bio: "Specializes in corrective exercise, mobility, and holistic wellness approaches.",
-    image: nickHolisticCoaching
+  misty: {
+    name: "Coach Misty",
+    title: "Yoga & Mobility Coach",
+    bio: "250/500-hour certified yoga teacher specializing in strength, mobility, and breath. Passionate about helping athletes discover how yoga supports performance and longevity.",
+    image: coachMistyLister
   }
 };
 

@@ -6,6 +6,8 @@ const getInstructorStyles = (instructor: string | null) => {
   switch (instructor?.toLowerCase()) {
     case 'david':
       return 'bg-amber-100 text-amber-700';
+    case 'misty':
+      return 'bg-rose-100 text-rose-700';
     case 'nick':
       return 'bg-violet-100 text-violet-700';
     default:

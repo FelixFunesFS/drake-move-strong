@@ -28,10 +28,10 @@ export const AUTHORITY_STATS = {
     "StrongFirst-style Kettlebell Methodology",
     "Charleston's Best Personal Trainer — Charleston City Paper"
   ],
-  nickCredentials: [
-    "Holistic Movement & Lifestyle Coaching",
-    "Posture • Stability • Mobility • Strength",
-    "Rehabilitation to Performance Bridge"
+  mistyCredentials: [
+    "250/500-Hour Certified Yoga Teacher (Satsang Yoga Charleston)",
+    "Strength • Mobility • Breath • Recovery",
+    "13 Years SUP Coaching & Fitness Instruction"
   ]
 };
 
@@ -55,7 +55,7 @@ export const BRAND_QUOTES = {
     attribution: null
   },
   collaboration: {
-    text: "David and Nick work together to design personalized programs that combine mobility, corrective movement, and functional strength — meeting you exactly where you are and guiding you toward sustainable results.",
+    text: "David and Misty work together to design personalized programs that combine mobility, corrective movement, and functional strength — meeting you exactly where you are and guiding you toward sustainable results.",
     attribution: null
   },
   purpose: {

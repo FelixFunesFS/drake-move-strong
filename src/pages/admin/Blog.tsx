@@ -285,7 +285,7 @@ export default function BlogAdmin() {
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="david">Coach Drake</SelectItem>
-                    <SelectItem value="nick">Coach Nick</SelectItem>
+                    <SelectItem value="misty">Coach Misty</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
