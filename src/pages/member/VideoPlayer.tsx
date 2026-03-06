@@ -1,7 +1,7 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/contexts/LazyAuthContext";
 import { useVideoAccess } from "@/hooks/useVideoAccess";
 import MemberLayout from "@/components/member/MemberLayout";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
