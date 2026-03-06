@@ -1,43 +1,46 @@
 
 
-# Plan: Fix Face Cropping in OG Images
+# Plan: Separate OG Source Image Selection for Blog Posts
 
-## Problem Analysis
+## The Problem
 
-Three issues are causing faces to be cut off in social previews:
+Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
 
-1. **No AI-generated OG images exist yet** -- the `page_og_images` table is empty, so every page (including blog posts) falls back to raw source images that Facebook crops arbitrarily at 1.91:1, cutting off heads.
+## The Right Approach
 
-2. **Blog posts aren't covered by the admin tool** -- the OG Image Manager only lists static pages. The "Why We Train Differently" post uses `studio-nick-david-together.jpg` directly from the `blog-images` bucket with no face-aware cropping. Facebook applies its own crop and cuts off the top.
+Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
 
-3. **Broken source URLs in admin tool** -- the generate dialog pre-fills `https://drake.fitness/src/assets/...` which doesn't resolve (Vite content-hashes asset paths). The AI edge function receives an invalid URL and fails silently.
+1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
 
-4. **Minor: og-redirect line 32 still says "Coach Nick"** in the About page description.
+2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
 
 ## Changes
 
-### 1. Fix source image URLs in Admin UI
+### 1. Add an image picker to the Generate dialog
 **File**: `src/pages/admin/OGImages.tsx`
-- Change the pre-populated URL from `https://drake.fitness/src/assets/...` to the deployed preview URL pattern or use the Supabase `blog-images` bucket for images that exist there
-- For local assets, use the preview origin + Vite-resolved import paths, or let admin paste a working URL manually (remove the broken default)
 
-### 2. Add blog posts to OG Image Manager
-**File**: `src/pages/admin/OGImages.tsx`
-- Add a second section: "Blog Post OG Images" that fetches all `blog_posts` and shows their current `og_image` with a Generate button
-- When generating for a blog post, store the result in `page_og_images` with path `/insights/{slug}`
-- The `og-redirect` function already checks `page_og_images` before falling back to blog_images (line 121), so this works without backend changes
+- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
+- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
+- Show thumbnails in a scrollable grid; clicking one fills the source URL field
+- Keep the manual URL input as a fallback
+- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
+- Add a filter/search to narrow down images by filename
 
-### 3. Improve AI prompt for face preservation
-**File**: `supabase/functions/generate-og-image/index.ts`
-- Strengthen the prompt: emphasize that heads/faces must never be cropped, prefer showing full heads with some padding above, and use the bottom portion of the image if faces are at the top
-- Add explicit instruction: "If faces are near the top of the image, position the crop so the top of their heads and hair are fully visible with at least 20px of space above"
+### 2. No database changes needed
 
-### 4. Fix "Coach Nick" reference
-**File**: `supabase/functions/og-redirect/index.ts`
-- Line 32: Change "Coach Nick" to "Coach Misty" in the About page description
+The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
+
+### 3. Workflow improvement
+
+The dialog flow becomes:
+1. Admin clicks "Generate" on a blog post row
+2. Dialog opens showing a grid of available images from the bucket
+3. Admin picks a wide landscape photo (or pastes a URL)
+4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
+5. Result is stored in `og-images` bucket and mapped via `page_og_images`
+6. The blog post's hero image and thumbnail remain unchanged
 
 ## Files Affected
-- **Edit**: `src/pages/admin/OGImages.tsx` (fix URLs + add blog post section)
-- **Edit**: `supabase/functions/generate-og-image/index.ts` (improve prompt)
-- **Edit**: `supabase/functions/og-redirect/index.ts` (Coach Nick → Misty on line 32)
+
+- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
 
