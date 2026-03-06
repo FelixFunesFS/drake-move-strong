@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useState } from "react";
 
+const OG_REDIRECT_BASE = `https://ktktwcbvambkcrpfflxi.supabase.co/functions/v1/og-redirect`;
+
 interface SocialShareButtonsProps {
   url: string;
   title: string;
@@ -10,11 +12,13 @@ interface SocialShareButtonsProps {
   slug?: string;
 }
 
-const SocialShareButtons = ({ url, title, excerpt }: SocialShareButtonsProps) => {
+const SocialShareButtons = ({ url, title, excerpt, slug }: SocialShareButtonsProps) => {
   const [copied, setCopied] = useState(false);
 
-  // Clean canonical URLs — Cloudflare Worker (drake-crawler-proxy) handles crawler detection
-  const encodedUrl = encodeURIComponent(url);
+  // Use og-redirect URL for social sharing (crawlers get OG tags), canonical URL fallback
+  const shareUrl = slug ? `${OG_REDIRECT_BASE}/insights/${slug}` : url;
+  const copyUrl = slug ? `${OG_REDIRECT_BASE}/insights/${slug}` : url;
+  const encodedUrl = encodeURIComponent(shareUrl);
   const encodedTitle = encodeURIComponent(title);
   const encodedText = encodeURIComponent(excerpt ? `${title} - ${excerpt}` : title);
 
@@ -30,9 +34,9 @@ const SocialShareButtons = ({ url, title, excerpt }: SocialShareButtonsProps) =>
 
   const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard.writeText(copyUrl);
       setCopied(true);
-      toast.success("Share link copied!");
+      toast.success("Share-optimized link copied!");
       setTimeout(() => setCopied(false), 2000);
     } catch {
       toast.error("Failed to copy link");
