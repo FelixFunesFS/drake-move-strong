@@ -13,7 +13,7 @@ import heroImage1Desktop from "@/assets/hero-group-turkish-getup.jpg?format=webp
 import heroMobileImage from "@/assets/hero-mobile-kb-press.jpg?format=webp&w=768";
 
 import davidCoach from "@/assets/david-goblet-squat-kb-rack.jpg?format=webp&w=768";
-import coachNick from "@/assets/nick-holistic-coaching.jpg?format=webp&w=768";
+import coachMisty from "@/assets/coach-misty-lister.png?format=webp&w=768";
 import startHereImage from "@/assets/outdoor-sandbag-training.jpg?format=webp&w=768";
 import Marquee from "@/components/Marquee";
 import OptimizedImage from "@/components/OptimizedImage";
@@ -177,15 +177,15 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
             <AnimatedSection animation="fadeInUp" delay={0.2}>
               <div className="bg-gray-50 p-6 rounded-xl shadow-card hover:shadow-xl transition-shadow">
                 <div className="h-96 mb-4 overflow-hidden rounded-lg">
-                  <OptimizedImage src={coachNick} alt="Coach Nick Poppa demonstrating sandbag training" className="w-full h-full" aspectRatio="auto" />
+                  <OptimizedImage src={coachMisty} alt="Coach Misty Lister yoga and mobility specialist" className="w-full h-full" aspectRatio="auto" />
                 </div>
-                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Coach Nick Poppa</h3>
-                <p className="text-primary font-semibold mb-3 uppercase text-sm tracking-wide">Holistic Movement Specialist</p>
+                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Coach Misty Lister</h3>
+                <p className="text-primary font-semibold mb-3 uppercase text-sm tracking-wide">Yoga & Mobility Coach</p>
                 <p className="text-muted-foreground mb-4">
-                  Nick bridges the gap between rehabilitation and performance. His approach helps clients improve posture, stability, mobility, and strength through sustainable lifestyle and movement habits.
+                  A 250/500-hour certified yoga teacher, Misty specializes in strength, mobility, and breath. Her classes help athletes and everyday movers recover better and move with confidence.
                 </p>
                 <Button asChild variant="outline" className="w-full">
-                  <Link to="/about">Learn More About Nick</Link>
+                  <Link to="/about">Learn More About Misty</Link>
                 </Button>
               </div>
             </AnimatedSection>

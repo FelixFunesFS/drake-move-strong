@@ -183,13 +183,13 @@ function parseScheduleFromMarkdown(markdown: string): ClassData[] {
           continue;
         }
         
-        // Instructor (David, Nick, or Coach Nick) - normalize the name
-        if (/^(David|Nick|Coach\s*Nick)$/i.test(nextLine)) {
+        // Instructor (David, Misty, or Coach Misty) - normalize the name
+        if (/^(David|Misty|Coach\s*Misty)$/i.test(nextLine)) {
           const normalized = nextLine.toLowerCase().trim();
           if (normalized === 'david') {
             instructor = 'David';
-          } else if (normalized === 'nick' || normalized.includes('nick')) {
-            instructor = 'Nick';
+          } else if (normalized === 'misty' || normalized.includes('misty')) {
+            instructor = 'Misty';
           }
           continue;
         }
