@@ -87,7 +87,7 @@ Deno.serve(async (req) => {
             content: [
               {
                 type: 'text',
-                text: 'Crop and reframe this fitness photo to exactly 1200x630 pixels for a social media Open Graph preview image. Keep all faces fully visible and centered in the frame. Maintain the original photo quality and colors. Do not add any text, watermarks, logos, or overlays. The result should be a clean crop of the original photo optimized for the 1200x630 aspect ratio.',
+                text: 'Crop and reframe this fitness photo to exactly 1200x630 pixels for a social media Open Graph preview image. CRITICAL: All heads and faces must be FULLY visible — never crop the top of anyone\'s head or hair. If people are near the top of the image, shift the crop downward so there is at least 30 pixels of space above the tallest person\'s head. Prefer showing people from chest/waist up rather than cutting off heads. Keep faces centered in the frame. Maintain the original photo quality and colors. Do not add any text, watermarks, logos, or overlays. The result should be a clean crop of the original photo optimized for the 1200x630 aspect ratio.',
               },
               {
                 type: 'image_url',
