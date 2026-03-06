@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuth } from '@/contexts/LazyAuthContext';
 import { useSearchParams } from 'react-router-dom';
 import { SEO } from '@/components/SEO';
 import CoachLayout from '@/components/coach/CoachLayout';
