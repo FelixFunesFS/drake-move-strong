@@ -1,7 +1,7 @@
 import { authorInfo } from "@/data/insights";
 
 interface AuthorBioProps {
-  author: 'david' | 'nick';
+  author: 'david' | 'misty';
 }
 
 const AuthorBio = ({ author }: AuthorBioProps) => {
