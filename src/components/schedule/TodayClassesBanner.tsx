@@ -36,7 +36,7 @@ export function TodayClassesBanner() {
   const fetchTodayClasses = async () => {
     try {
       const now = new Date();
-      const today = now.toISOString().split('T')[0];
+      const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
       const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:00`;
 
       // Lazy load Supabase to reduce initial bundle
