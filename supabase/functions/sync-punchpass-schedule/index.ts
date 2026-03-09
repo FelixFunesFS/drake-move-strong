@@ -302,42 +302,43 @@ Deno.serve(async (req) => {
       console.log('[sync-punchpass-schedule] Manual sync triggered (no auth required)');
     }
 
-    const tavilyApiKey = Deno.env.get('TAVILY_API_KEY');
-    if (!tavilyApiKey) {
-      console.error('TAVILY_API_KEY not configured');
+    const firecrawlApiKey = Deno.env.get('FIRECRAWL_API_KEY');
+    if (!firecrawlApiKey) {
+      console.error('FIRECRAWL_API_KEY not configured');
       return new Response(
-        JSON.stringify({ success: false, error: 'Tavily not configured' }),
+        JSON.stringify({ success: false, error: 'Firecrawl not configured' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    console.log('Extracting PunchPass schedule with Tavily...');
+    console.log('Extracting PunchPass schedule with Firecrawl...');
 
-    // Extract the PunchPass schedule page using Tavily Extract API with advanced depth for JS-rendered content
-    const extractResponse = await fetch('https://api.tavily.com/extract', {
+    // Use Firecrawl scrape API to get fresh (non-cached) content
+    const extractResponse = await fetch('https://api.firecrawl.dev/v1/scrape', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${firecrawlApiKey}`,
       },
       body: JSON.stringify({
-        api_key: tavilyApiKey,
-        urls: [`https://drakefitness.punchpass.com/classes?_t=${Date.now()}`],
-        extract_depth: 'advanced',
+        url: 'https://drakefitness.punchpass.com/classes',
+        formats: ['markdown'],
+        waitFor: 3000, // Wait for JS-rendered content
       }),
     });
 
     const extractData = await extractResponse.json();
 
-    if (!extractResponse.ok) {
-      console.error('Tavily extract failed:', extractData);
+    if (!extractResponse.ok || !extractData.success) {
+      console.error('Firecrawl scrape failed:', extractData);
       return new Response(
         JSON.stringify({ success: false, error: 'Failed to extract schedule', details: extractData }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    // Tavily returns results array with raw_content
-    const content = extractData.results?.[0]?.raw_content || '';
+    // Firecrawl returns data.markdown
+    const content = extractData.data?.markdown || '';
     console.log('Extracted content length:', content.length);
     console.log('Content preview:', content.substring(0, 1000));
 
