@@ -1,46 +1,26 @@
 
 
-# Plan: Separate OG Source Image Selection for Blog Posts
+# Fix: Stale Spot Counts & Increase Sync Frequency
 
-## The Problem
+## Problem
+1. **Spots are stale**: DB shows 10 spots for both classes, but PunchPass has 8 and 9. The sync captured data before recent bookings.
+2. **Cron runs every 6 hours**, not 4: Schedule is `0 5,11,17,23 * * *` (UTC 5/11/17/23 = EST 12am/6am/12pm/6pm).
 
-Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
+## Fix
 
-## The Right Approach
+### 1. Update cron to run every 4 hours
+Change schedule from `0 5,11,17,23 * * *` to `0 1,5,9,13,17,21 * * *` (every 4 hours UTC = every 4 hours EST: 8pm, 12am, 4am, 8am, 12pm, 4pm).
 
-Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
+This is a data operation — unschedule the old job and create a new one.
 
-1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
+### 2. Trigger a manual sync now
+Re-invoke the edge function to pull fresh spot counts immediately.
 
-2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
+### 3. (Optional consideration) More frequent syncs
+Even with 4-hour syncs, spots will still drift between syncs. The current 5-minute client-side refresh only re-reads the DB — it doesn't trigger a new PunchPass scrape. For truly live spots, you'd need syncs every 30-60 minutes, but that burns more Tavily API credits. The 4-hour cadence is a reasonable balance.
 
 ## Changes
-
-### 1. Add an image picker to the Generate dialog
-**File**: `src/pages/admin/OGImages.tsx`
-
-- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
-- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
-- Show thumbnails in a scrollable grid; clicking one fills the source URL field
-- Keep the manual URL input as a fallback
-- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
-- Add a filter/search to narrow down images by filename
-
-### 2. No database changes needed
-
-The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
-
-### 3. Workflow improvement
-
-The dialog flow becomes:
-1. Admin clicks "Generate" on a blog post row
-2. Dialog opens showing a grid of available images from the bucket
-3. Admin picks a wide landscape photo (or pastes a URL)
-4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
-5. Result is stored in `og-images` bucket and mapped via `page_og_images`
-6. The blog post's hero image and thumbnail remain unchanged
-
-## Files Affected
-
-- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
+- **Database**: Delete old cron job, create new one with 4-hour schedule
+- **Edge function**: Trigger manual sync for immediate freshness
+- **No code changes needed**
 
