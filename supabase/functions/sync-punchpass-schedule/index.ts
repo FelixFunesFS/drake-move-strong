@@ -321,7 +321,7 @@ Deno.serve(async (req) => {
       },
       body: JSON.stringify({
         api_key: tavilyApiKey,
-        urls: ['https://drakefitness.punchpass.com/classes'],
+        urls: [`https://drakefitness.punchpass.com/classes?_t=${Date.now()}`],
         extract_depth: 'advanced',
       }),
     });
