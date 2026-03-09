@@ -36,7 +36,7 @@ export function TodayClassesBanner() {
   const fetchTodayClasses = async () => {
     try {
       const now = new Date();
-      const today = now.toISOString().split('T')[0];
+      const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
       const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:00`;
 
       // Lazy load Supabase to reduce initial bundle
@@ -62,7 +62,7 @@ export function TodayClassesBanner() {
         // Fallback: fetch tomorrow's classes
         const tomorrow = new Date(now);
         tomorrow.setDate(tomorrow.getDate() + 1);
-        const tomorrowDate = tomorrow.toISOString().split('T')[0];
+        const tomorrowDate = `${tomorrow.getFullYear()}-${String(tomorrow.getMonth() + 1).padStart(2, '0')}-${String(tomorrow.getDate()).padStart(2, '0')}`;
 
         const { data: tomorrowData, error: tomorrowError } = await supabase
           .from('punchpass_schedule')
