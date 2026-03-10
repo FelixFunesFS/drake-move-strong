@@ -6,6 +6,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
 import { Check, ArrowRight, User, Dumbbell, Heart } from "lucide-react";
 import { INTRO_URL } from "@/data/pricing";
+import { TRUST_STATS } from "@/data/trustStats";
 
 import heroGroupClass from "@/assets/studio-group-goblet-squats.jpg";
 import groupKettlebellTraining from "@/assets/group-kettlebell-training.jpg";
