@@ -1056,7 +1056,7 @@ export const TrainingWithInjuryContent = () => {
           Still Unsure If Training Is Right for You?
         </h3>
         <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
-          Reset Week is designed for exactly this situation. We assess your movement, work around your limitations, and show you what's possible—safely.
+          The 3-Class Intro is designed for exactly this situation. We assess your movement, work around your limitations, and show you what's possible—safely.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link 
