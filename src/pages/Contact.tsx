@@ -203,7 +203,7 @@ const Contact = () => {
                           <SelectValue placeholder="Select an option" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="reset-week">Reset Week ($50)</SelectItem>
+                          <SelectItem value="intro-experience">3-Class Intro (Free)</SelectItem>
                           <SelectItem value="membership">Monthly Membership</SelectItem>
                           <SelectItem value="coaching">1:1 Coaching</SelectItem>
                           <SelectItem value="general">General Inquiry</SelectItem>
