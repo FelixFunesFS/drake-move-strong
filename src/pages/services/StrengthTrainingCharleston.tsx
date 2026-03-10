@@ -184,7 +184,7 @@ export default function StrengthTrainingCharleston() {
                 </div>
                 <div className="lg:absolute lg:-bottom-8 lg:-left-8 mt-6 lg:mt-0 bg-accent text-accent-foreground p-5 md:p-8 rounded-xl shadow-xl max-w-sm mx-auto lg:mx-0">
                   <p className="font-heading text-2xl md:text-3xl font-bold mb-2">85%</p>
-                  <p className="font-semibold text-sm md:text-base">of our members are over 30 and starting from scratch</p>
+                  <p className="font-semibold text-sm md:text-base">of our members are over 30 — and training smarter than ever</p>
                 </div>
               </div>
             </AnimatedSection>
