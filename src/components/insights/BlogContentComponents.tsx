@@ -232,7 +232,7 @@ export const WhyTraditionalWorkoutsContent = () => {
         <div className="space-y-6">
           {[
             { q: `"I don't have time to go slow. I need results now."`, a: "Going slow at the start actually gets you results faster. Skipping the foundation means you'll hit a wall sooner — or worse, get injured and have to start over. Smart training is faster than reckless training." },
-            { q: `"I'm not that out of shape. Can't I just jump into regular classes?"`, a: "Maybe. But most people overestimate their movement quality. Reset Week isn't about fitness level — it's about movement literacy. Even experienced lifters benefit from revisiting the basics." },
+            { q: `"I'm not that out of shape. Can't I just jump into regular classes?"`, a: "Maybe. But most people overestimate their movement quality. The Intro Experience isn't about fitness level — it's about movement literacy. Even experienced lifters benefit from revisiting the basics." },
             { q: `"Won't this be too easy? I like feeling challenged."`, a: "Controlling movement is harder than it looks. Most people discover muscles they didn't know they had. And once you've built the foundation, the challenge comes — but in a way your body can actually handle." },
             { q: `"I've tried everything. Why would this be different?"`, a: "Because most programs focus on what you do, not how you do it. We focus on movement quality, breathing mechanics, and progressive loading. That's not trendy — but it works." },
           ].map((item, i) => (
