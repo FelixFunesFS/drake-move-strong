@@ -87,18 +87,19 @@ export default function ResetWeekCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-4xl mx-auto">
               <h1 className="font-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
-                A Smarter Way to Start<br className="hidden sm:block" />
-                <span className="text-accent">Strength Training in Charleston</span>
+                Try 3 Classes Free<br className="hidden sm:block" />
+                <span className="text-accent">Charleston Strength Training</span>
               </h1>
               <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-8 md:mb-10 leading-relaxed max-w-3xl mx-auto">
-                Most people don't need more workouts — they need a better starting point.
+                No experience needed. No card required. Just show up.
               </p>
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
                 <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
-                  Claim 3 Free Classes
+                  Claim Your Free Classes
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                 </a>
               </Button>
+              <p className="text-primary-foreground/60 text-sm mt-4">Beginners & restarters welcome · West Ashley</p>
             </div>
           </AnimatedSection>
         </div>
