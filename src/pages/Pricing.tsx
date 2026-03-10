@@ -147,7 +147,7 @@ const Pricing = () => {
                     Build strength and consistency—without overdoing it.
                   </p>
                   <div className="mt-4">
-                    <span className="text-5xl font-bold text-foreground">$209</span>
+                    <span className="text-5xl font-bold text-foreground">$200</span>
                     <span className="text-muted-foreground ml-1">/ month</span>
                   </div>
                 </CardHeader>
