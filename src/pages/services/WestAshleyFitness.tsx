@@ -7,6 +7,7 @@ import OptimizedImage from "@/components/OptimizedImage";
 import { GoogleMapEmbed } from "@/components/GoogleMapEmbed";
 import { Check, MapPin, ArrowRight, Star, Shield, Heart, Dumbbell, Clock, Car, Navigation } from "lucide-react";
 import { INTRO_URL } from "@/data/pricing";
+import { TRUST_STATS } from "@/data/trustStats";
 
 import heroKettlebellTraining from "@/assets/hero-kettlebell-training.jpg";
 import groupKettlebellTraining from "@/assets/group-kettlebell-training.jpg";
