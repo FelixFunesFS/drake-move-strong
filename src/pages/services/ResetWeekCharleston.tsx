@@ -86,7 +86,7 @@ export default function ResetWeekCharleston() {
             transparent
             hideLoadingPlaceholder
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/20 md:bg-gradient-to-r md:from-black/80 md:via-black/50 md:to-transparent" />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
         <div className="container mx-auto px-4 relative z-10 py-20 md:py-28 text-center">
           <AnimatedSection animation="fadeInUp">
