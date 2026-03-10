@@ -341,7 +341,7 @@ const Contact = () => {
             },
             {
               q: "How do I get started at Drake Fitness?",
-              a: "Start with Reset Week — 7 days of unlimited classes for $50. It's the best way to experience our training style and find the right class for you.",
+              a: "Start with our 3-Class Intro Experience — 3 free classes over 30 days. It's the best way to experience our training style and find the right class for you.",
             },
           ];
           const faqSchema = buildFAQSchema(contactFAQs);
