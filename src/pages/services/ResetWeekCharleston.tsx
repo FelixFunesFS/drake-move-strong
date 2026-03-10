@@ -4,7 +4,7 @@ import { StructuredData, localBusinessSchema } from "@/components/StructuredData
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
-import { Check, ArrowRight, X, Shield, RotateCcw, Compass, Brain, User, Dumbbell, Heart, Sprout, RefreshCw, Calendar, Frown, HelpCircle, HeartHandshake, Gift } from "lucide-react";
+import { Check, ArrowRight, User, Dumbbell, Heart, Sprout, RefreshCw, Calendar, Frown, HelpCircle, HeartHandshake } from "lucide-react";
 import { INTRO_URL } from "@/data/pricing";
 
 import heroKettlebellTraining from "@/assets/hero-kettlebell-training.jpg";
@@ -34,19 +34,6 @@ const serviceSchema = {
   }
 };
 
-const problems = [
-  { text: "Most gyms throw you in", description: "No assessment. No foundation. Just workouts you're not ready for." },
-  { text: "You get hurt or frustrated", description: "Because your body wasn't prepared for the demands." },
-  { text: "You quit", description: "And blame yourself — when really, the system failed you." },
-  { text: "The cycle repeats", description: "You try again somewhere else, with the same result." }
-];
-
-const whatIntroSolves = [
-  { icon: Shield, title: "Fear of Injury", description: "We start with mobility and movement quality — teaching your body how to move safely before adding load.", cta: "You'll learn proper form from day one." },
-  { icon: RotateCcw, title: "Past Gym Failures", description: "The Intro Experience isn't about jumping into hard workouts. It's about building confidence, understanding your body, and creating sustainable habits.", cta: "This time will be different." },
-  { icon: Compass, title: "Confusion", description: "You'll get clear guidance on what to do, how to do it, and why it matters. No guessing. No YouTube rabbit holes.", cta: "Just a clear path forward." },
-  { icon: Brain, title: "Overwhelm", description: "The Intro Experience simplifies everything. Small group coaching. Three classes. One goal: help you feel ready.", cta: "No pressure. No chaos." }
-];
 
 const whatYoullExperience = [
   { icon: User, title: "Coach-Led Sessions", description: "Every class is guided by David or Misty — you're never left to figure it out on your own." },
@@ -140,80 +127,6 @@ export default function ResetWeekCharleston() {
         </div>
       </section>
 
-      {/* Problem Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <AnimatedSection animation="fadeInUp">
-            <div className="text-center mb-12 max-w-3xl mx-auto">
-              <span className="section-eyebrow text-primary">THE PROBLEM</span>
-              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">
-                You Don't Need More Workouts
-              </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                You need a better starting point.
-              </p>
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection animation="fadeInUp" delay={0.1}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 max-w-5xl mx-auto">
-              {problems.map((problem, index) => (
-                <div key={index} className="bg-secondary p-8 rounded-xl border-l-4 border-destructive">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-destructive/10 rounded-full flex items-center justify-center">
-                      <X className="text-destructive h-6 w-6" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-xl mb-2">{problem.text}</h3>
-                      <p className="text-muted-foreground">{problem.description}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection animation="fadeInUp" delay={0.2}>
-            <div className="bg-accent/10 border-l-4 border-accent p-8 rounded-r-xl mt-12 max-w-3xl mx-auto">
-              <p className="text-lg font-medium italic">
-                "I've tried gyms before, but I always end up sore, confused, or injured. I just want something that works for my body."
-              </p>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Solution Section */}
-      <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4">
-          <AnimatedSection animation="fadeInUp">
-            <div className="text-center mb-16 max-w-3xl mx-auto">
-              <span className="section-eyebrow text-primary">THE SOLUTION</span>
-              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">
-                What the Intro Experience Solves
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                The 3-Class Intro is designed to eliminate the four biggest obstacles that stop people from succeeding in fitness.
-              </p>
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection animation="fadeInUp" delay={0.1}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {whatIntroSolves.map((item, index) => (
-                <div key={index} className="bg-background p-10 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-6">
-                    <item.icon className="text-primary-foreground h-8 w-8" />
-                  </div>
-                  <h3 className="font-hero text-2xl font-bold mb-4 uppercase">{item.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{item.description}</p>
-                  <p className="text-primary font-semibold">{item.cta}</p>
-                </div>
-              ))}
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
 
       {/* Experience Section */}
       <section className="py-12 md:py-16 lg:py-20 lg:pb-28 bg-background overflow-x-clip">
