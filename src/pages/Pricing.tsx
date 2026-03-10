@@ -429,9 +429,9 @@ const Pricing = () => {
                 </thead>
                 <tbody>
                   <tr className="border-b border-border bg-primary/5">
-                    <td className="px-4 py-3 font-medium text-foreground">Movement Reset Week</td>
-                    <td className="px-4 py-3 text-muted-foreground">Unlimited (7 days)</td>
-                    <td className="px-4 py-3 text-muted-foreground">Safest place to start</td>
+                    <td className="px-4 py-3 font-medium text-foreground">3-Class Intro</td>
+                    <td className="px-4 py-3 text-muted-foreground">3 classes (30 days)</td>
+                    <td className="px-4 py-3 text-muted-foreground">Safest place to start — Free</td>
                     <td className="px-4 py-3 text-muted-foreground">None</td>
                   </tr>
                   <tr className="border-b border-border">
