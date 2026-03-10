@@ -46,7 +46,7 @@ const FAQ = () => {
         },
         {
           q: "What's the difference between the class types?",
-          a: "Foundation Flow is beginner-friendly and mobility-focused. Functional Strength is our core program blending mobility, kettlebell work, and conditioning. KB Strong is advanced strength training. Mobility Reset focuses on recovery and flexibility. Weekend Warrior is our Saturday community class.",
+          a: "Foundation Flow is beginner-friendly and mobility-focused. Functional Strength is our core program blending mobility, kettlebell work, and conditioning. KB Strong — Strength & Mobility — is our core kettlebell strength program. Mobility Reset focuses on recovery and flexibility. Weekend Warrior is our Saturday community class.",
         },
       ],
     },

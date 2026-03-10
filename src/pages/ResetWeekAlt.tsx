@@ -59,7 +59,7 @@ const whatHappens = [
   {
     icon: Gift,
     title: "3 Free Classes Over 30 Days",
-    description: "Try KB Strong classes at your own pace — no rush, no commitment.",
+    description: "Try Strength & Mobility classes at your own pace — no rush, no commitment.",
     iconBg: "bg-drake-gold",
     iconColor: "text-drake-dark"
   },
@@ -146,7 +146,7 @@ const ResetWeekAlt = () => {
     <>
       <SEO
         title="3-Class Intro Experience | Try Us Free | Drake Fitness Charleston"
-        description="Move better, feel stronger, stay pain-free. 3 free classes over 30 days — a safe, guided intro for people restarting fitness. KB Strong: Mon/Wed/Fri 8am & 11am, Thu 6pm."
+        description="Move better, feel stronger, stay pain-free. 3 free classes over 30 days — a safe, guided intro for people restarting fitness. Strength & Mobility classes (KB Strong): Mon/Wed/Fri 8am & 11am, Thu 6pm."
         canonical="https://drake.fitness/reset"
       />
 
@@ -232,7 +232,7 @@ const ResetWeekAlt = () => {
               </Button>
               <div className="flex flex-col text-sm text-gray-300 mt-2 sm:mt-0 sm:ml-4">
                 <span className="font-semibold text-white">3 Classes, Completely Free</span>
-                <span>KB Strong — Mon/Wed/Fri 8am & 11am, Thu 6pm</span>
+                <span>Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Thu 6pm</span>
               </div>
             </motion.div>
           </div>
