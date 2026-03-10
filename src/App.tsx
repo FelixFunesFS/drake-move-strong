@@ -51,6 +51,7 @@ const Auth = lazy(() => import("./pages/Auth"));
 const NewYearChallenge = lazy(() => import("./pages/NewYearChallenge"));
 const ResetWeekAlt = lazy(() => import("./pages/ResetWeekAlt"));
 const Ruckathon = lazy(() => import("./pages/Ruckathon"));
+const Welcome = lazy(() => import("./pages/Welcome"));
 
 // Service pages
 const LowImpactFitnessCharleston = lazy(() => import("./pages/services/LowImpactFitnessCharleston"));

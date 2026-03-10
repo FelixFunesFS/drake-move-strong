@@ -1,13 +1,23 @@
 // Centralized Pricing Data - Single Source of Truth
 // All pricing information for Drake Fitness
 
+export const INTRO_URL = "https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034";
+
 export const PRICING = {
   // Intro Offers
-  resetWeek: {
-    price: 50,
-    duration: "7 days",
-    label: "Reset Week",
-    description: "7 days unlimited access"
+  introExperience: {
+    price: 0,
+    duration: "30 days",
+    classes: 3,
+    label: "3-Class Intro Experience",
+    description: "3 free classes over 30 days",
+    schedule: "KB Strong — Mon/Wed/Fri 8am & 11am, Thu 6pm",
+    upsell: {
+      price: 110,
+      originalPrice: 225,
+      discount: "50%",
+      window: "7 days after 3rd class"
+    }
   },
   
   // Monthly Memberships
@@ -49,7 +59,9 @@ export const PRICING = {
 
 // PunchPass URLs - Direct checkout links
 export const PUNCHPASS_URLS = {
-  resetWeek: "https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219",
+  introExperience: INTRO_URL,
+  // Keep resetWeek as alias for backward compatibility
+  resetWeek: INTRO_URL,
   foundation: "https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784",
   unlimited: "https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211",
   remoteSupport: "https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776",
