@@ -34,19 +34,6 @@ const serviceSchema = {
   }
 };
 
-const problems = [
-  { text: "Most gyms throw you in", description: "No assessment. No foundation. Just workouts you're not ready for." },
-  { text: "You get hurt or frustrated", description: "Because your body wasn't prepared for the demands." },
-  { text: "You quit", description: "And blame yourself — when really, the system failed you." },
-  { text: "The cycle repeats", description: "You try again somewhere else, with the same result." }
-];
-
-const whatIntroSolves = [
-  { icon: Shield, title: "Fear of Injury", description: "We start with mobility and movement quality — teaching your body how to move safely before adding load.", cta: "You'll learn proper form from day one." },
-  { icon: RotateCcw, title: "Past Gym Failures", description: "The Intro Experience isn't about jumping into hard workouts. It's about building confidence, understanding your body, and creating sustainable habits.", cta: "This time will be different." },
-  { icon: Compass, title: "Confusion", description: "You'll get clear guidance on what to do, how to do it, and why it matters. No guessing. No YouTube rabbit holes.", cta: "Just a clear path forward." },
-  { icon: Brain, title: "Overwhelm", description: "The Intro Experience simplifies everything. Small group coaching. Three classes. One goal: help you feel ready.", cta: "No pressure. No chaos." }
-];
 
 const whatYoullExperience = [
   { icon: User, title: "Coach-Led Sessions", description: "Every class is guided by David or Misty — you're never left to figure it out on your own." },
