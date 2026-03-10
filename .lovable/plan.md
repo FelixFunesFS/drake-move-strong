@@ -1,46 +1,59 @@
 
 
-# Plan: Separate OG Source Image Selection for Blog Posts
+# Full Marketing Copy & Consistency Audit
 
-## The Problem
+## Findings
 
-Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
+### 1. "This Is For You If..." section on `/try-free-charleston` — UX issue
+Current: 5 bullets in a `sm:grid-cols-2` grid → 4 items pair up, 5th sits alone in a half-width column on the left. Visually unbalanced.
 
-## The Right Approach
+**Best approach: Add a 6th bullet to fill the grid.** This is better than spanning the 5th full-width (which draws disproportionate attention to one item) or switching to single-column (which increases scroll). The 6th bullet should address the experienced/returning athlete — the gap in the current list:
 
-Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
+Current bullets:
+1. New to strength training
+2. Restarting after time off
+3. Over 30 and need smarter training
+4. Tired of being sore for days
+5. Looking for guidance, not a generic workout app
 
-1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
+**Add:** "Experienced but want coaching that matches your level"
 
-2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
+This directly supports the "all levels" positioning and fills the grid.
 
-## Changes
+### 2. Remaining "beginner" language (missed in last round)
 
-### 1. Add an image picker to the Generate dialog
-**File**: `src/pages/admin/OGImages.tsx`
+| File | Line | Current | Proposed |
+|------|------|---------|----------|
+| `StrengthTrainingCharleston.tsx` | 186 | "85% of our members are over 30 and **starting from scratch**" | "85% of our members are over 30 — **and training smarter than ever**" |
+| `StrengthTrainingCharleston.tsx` | 272 | "beginner-friendly introduction" | "low-pressure introduction — **scaled to your level**" |
+| `WestAshleyFitness.tsx` | 45 | FAQ: "We specialize in helping **beginners** and people returning" | "We specialize in helping people at **every level** — whether you're starting fresh or returning" |
 
-- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
-- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
-- Show thumbnails in a scrollable grid; clicking one fills the source URL field
-- Keep the manual URL input as a fallback
-- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
-- Add a filter/search to narrow down images by filename
+### 3. Inconsistent CTA URLs
+`StrengthTrainingCharleston.tsx` hardcodes the PunchPass URL on lines 121 and 295 instead of using `INTRO_URL` from `data/pricing.ts`. Should use the centralized constant for maintainability.
 
-### 2. No database changes needed
+### 4. Consistency gaps across pages
 
-The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
+| Element | ResetWeek | StrengthTraining | WestAshley | LowImpact |
+|---------|-----------|-----------------|------------|-----------|
+| "All levels" messaging | Yes | Partial (hero badge updated, but body still says "beginner") | Partial (FAQ still says "beginners") | N/A (different intent) |
+| Uses `INTRO_URL` constant | Yes | No (hardcoded) | Yes | Hardcoded |
+| "Scaled to your level" | Yes | No | No | No |
 
-### 3. Workflow improvement
+## Implementation Plan — 4 files, ~8 edits
 
-The dialog flow becomes:
-1. Admin clicks "Generate" on a blog post row
-2. Dialog opens showing a grid of available images from the bucket
-3. Admin picks a wide landscape photo (or pastes a URL)
-4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
-5. Result is stored in `og-images` bucket and mapped via `page_og_images`
-6. The blog post's hero image and thumbnail remain unchanged
+### A. `ResetWeekCharleston.tsx`
+1. Add 6th bullet to `whoItsFor` array: `"Experienced but want coaching that matches your level"`
 
-## Files Affected
+### B. `StrengthTrainingCharleston.tsx`
+2. Line 186: "starting from scratch" → "and training smarter than ever"
+3. Line 272: "beginner-friendly" → "low-pressure introduction to Drake Fitness — scaled to your level. Try 3 classes free over 30 days."
+4. Lines 121, 295: Replace hardcoded PunchPass URL with `INTRO_URL` import (already imported? Will verify)
+5. Add import for `INTRO_URL` if missing
 
-- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
+### C. `WestAshleyFitness.tsx`
+6. Line 45 FAQ answer: "helping beginners and people returning to fitness" → "helping people at every level — whether you're starting fresh or returning to fitness"
+
+### D. `LowImpactFitnessCharleston.tsx`
+7. Line 91: Replace hardcoded PunchPass URL with `INTRO_URL` import
+8. Add `INTRO_URL` import if missing
 
