@@ -8,7 +8,7 @@ import { Check, ArrowRight, User, Dumbbell, Heart } from "lucide-react";
 import { INTRO_URL } from "@/data/pricing";
 import { TRUST_STATS } from "@/data/trustStats";
 
-import heroGroupClass from "@/assets/studio-group-goblet-squats.jpg";
+import heroGroupClass from "@/assets/group-turkish-getup-class.jpg";
 import groupKettlebellTraining from "@/assets/group-kettlebell-training.jpg";
 import davidCoachingForm from "@/assets/david-coaching-form.jpg";
 import proofStrip1 from "@/assets/community-plank-rows-kettlebells-new.jpg";
