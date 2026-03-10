@@ -261,7 +261,7 @@ const Pricing = () => {
                {/* Foundation Plus Card - Hidden for now */}
 
               {/* Remote Movement Support Card */}
-              <AnimatedSection animation="fadeInUp" delay={getStaggerDelay(1)}>
+              <AnimatedSection animation="fadeInUp" delay={getStaggerDelay(0)}>
                 <Card className="bg-card border border-border shadow-sm h-full">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
