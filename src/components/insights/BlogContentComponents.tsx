@@ -938,7 +938,7 @@ export const NoPainNoGainContent = () => {
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
           <Link 
-            to="/reset-week-charleston"
+            to="/try-free-charleston"
             className="inline-flex items-center gap-2 px-10 py-5 bg-drake-gold text-foreground font-bold text-lg rounded-lg hover:bg-yellow-400 transition-all transform hover:-translate-y-1 shadow-xl uppercase tracking-wide"
           >
             <CalendarCheck className="w-5 h-5" />
