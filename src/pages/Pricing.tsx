@@ -15,7 +15,7 @@ import { getStaggerDelay } from "@/lib/motionConfig";
 const Pricing = () => {
   const faqs = [{
     question: "Do I need experience to join?",
-    answer: "No. Foundation Flow is specifically designed for beginners. We meet you where you are, regardless of your starting point."
+    answer: "No experience needed. KB Strong classes are coached and scaled to every level — beginners get guided instruction, experienced athletes get challenged. We meet you where you are."
   }, {
     question: "Will this help my joint pain?",
     answer: "Yes. We are a mobility-first studio that focuses on safe, joint-friendly training that builds strength without aggravating existing issues."
