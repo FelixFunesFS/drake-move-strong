@@ -1,92 +1,46 @@
 
 
-# OG Images, Sharing Strategy & Google Business Profile — Marketing Analysis
+# Plan: Separate OG Source Image Selection for Blog Posts
 
-## Current State
+## The Problem
 
-Every page already has unique SEO meta tags (title, description, canonical) via the `<SEO>` component. The `og-redirect` edge function serves OG tags to social crawlers. The `page_og_images` table + admin UI supports per-page custom OG images. **The infrastructure is already built — it just needs to be fully utilized.**
+Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
 
-## Strategic Recommendations
+## The Right Approach
 
-### 1. Google Business Profile — Which Page to Link
+Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
 
-**Link: `https://drake.fitness/try-free-charleston`** (the 3-Class Intro landing page)
+1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
 
-Why: The GBP website link is the single highest-intent click a local searcher makes. It should go to the lowest-friction conversion page — not the home page. `/try-free-charleston` has:
-- A single clear CTA ("Claim 3 Free Classes")
-- Zero cost barrier
-- Location-specific copy (Charleston, West Ashley)
-- Structured data with `"price": "0"`
+2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
 
-The home page is a brand page — it educates. The intro page converts.
+## Changes
 
-### 2. Which Pages Should Be Shared (and Where)
+### 1. Add an image picker to the Generate dialog
+**File**: `src/pages/admin/OGImages.tsx`
 
-| Page | Share Channel | Why |
-|------|--------------|-----|
-| `/try-free-charleston` | Facebook Ads, Google Ads, GBP, Instagram bio | Primary conversion page — free offer, local intent |
-| `/insights/{slug}` | Organic social (FB, LinkedIn, X) | Content marketing — builds authority, shareable |
-| `/strength-training-charleston` | Google organic only | SEO money page — not for social sharing |
-| `/west-ashley-fitness` | Google organic only | Hyper-local SEO page |
-| `/low-impact-fitness-charleston` | Google organic only | Niche SEO page |
-| `/` (Home) | Brand mentions, press, directories | General brand awareness |
-| `/intro` | Direct outreach, email, text | Clean URL for personal referrals |
+- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
+- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
+- Show thumbnails in a scrollable grid; clicking one fills the source URL field
+- Keep the manual URL input as a fallback
+- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
+- Add a filter/search to narrow down images by filename
 
-**Key insight**: SEO pages rank — they shouldn't be shared socially. The intro page converts — it should be shared everywhere.
+### 2. No database changes needed
 
-### 3. OG Images — What Each Page Needs
+The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
 
-Yes, each page can (and should) have its own OG image. The system already supports this via `page_og_images`. Here's the strategy:
+### 3. Workflow improvement
 
-| Page | OG Image Strategy | Current Status |
-|------|------------------|----------------|
-| `/` (Home) | Group training action shot — community energy | Has default `og-image.png` |
-| `/try-free-charleston` | **Highest priority** — welcoming group photo, "3 FREE CLASSES" text overlay | Missing custom OG |
-| `/strength-training-charleston` | Kettlebell training action shot | Missing custom OG |
-| `/intro` | Same as `/try-free-charleston` or distinct referral-focused image | Missing custom OG |
-| `/insights/{slug}` | Per-post `og_image` from blog_images bucket | Already working |
-| All other pages | AI-cropped from hero images via admin tool | Partially done |
+The dialog flow becomes:
+1. Admin clicks "Generate" on a blog post row
+2. Dialog opens showing a grid of available images from the bucket
+3. Admin picks a wide landscape photo (or pastes a URL)
+4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
+5. Result is stored in `og-images` bucket and mapped via `page_og_images`
+6. The blog post's hero image and thumbnail remain unchanged
 
-**The `/try-free-charleston` OG image is the most important one to get right** — it's the page people will actually share and see in Facebook/LinkedIn previews.
+## Files Affected
 
-### 4. Fixes Needed
-
-**a) Stale copy in `StrengthTrainingCharleston.tsx`** — SEO description still says "Start with Reset Week — $50"
-
-**b) Missing OG image mappings** — Several pages in the admin `PAGE_MAPPINGS` are missing:
-- `/intro` (the referral-friendly intro page)
-- `/strength-training-charleston`
-- `/west-ashley-fitness`
-- `/low-impact-fitness-charleston`
-
-**c) og-redirect edge function** — Missing entries for `/intro`, `/strength-training-charleston`, `/west-ashley-fitness`, `/low-impact-fitness-charleston`
-
-## Implementation Plan (5 files)
-
-### 1. `src/pages/services/StrengthTrainingCharleston.tsx`
-- Fix SEO description: replace "Start with Reset Week — $50" with "Try 3 classes free."
-
-### 2. `src/pages/admin/OGImages.tsx`
-- Add missing page mappings: `/intro`, `/strength-training-charleston`, `/west-ashley-fitness`, `/low-impact-fitness-charleston`
-
-### 3. `supabase/functions/og-redirect/index.ts`
-- Add static page entries for `/intro`, `/strength-training-charleston`, `/west-ashley-fitness`, `/low-impact-fitness-charleston`
-
-### 4. `src/components/insights/SocialShareButtons.tsx`
-- No changes needed — already uses og-redirect URLs
-
-### 5. No new pages needed
-- The SEO component already supports per-page `ogImage` props. Once OG images are generated via the admin tool, the og-redirect function will serve them automatically from the `page_og_images` table.
-
-## Summary: How to Think About This
-
-```text
-Google Business Profile → /try-free-charleston (converts strangers)
-Social Sharing         → /try-free-charleston + blog posts (converts followers)  
-Email/Text Referrals   → /intro (clean URL for word-of-mouth)
-Google Organic         → /strength-training-charleston, /west-ashley-fitness (ranks for keywords)
-Brand/Press            → / (home page)
-```
-
-Each page gets its own OG image via the existing admin tool. Priority: generate the `/try-free-charleston` OG image first — it's the most shared URL.
+- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
 
