@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -25,6 +25,22 @@ const AnnouncementBanner = ({ onVisibilityChange }: AnnouncementBannerProps) => 
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
 
+  // Check if banner should show on current page
+  const shouldShowOnPage = useCallback(() => {
+    if (!promotion?.target_pages) return true;
+    if (promotion.target_pages.includes('all')) return true;
+    return promotion.target_pages.includes(location.pathname);
+  }, [promotion, location.pathname]);
+
+  const handleDismiss = useCallback(() => {
+    if (promotion) {
+      const dismissedPromotions = JSON.parse(localStorage.getItem('dismissedPromotions') || '[]');
+      dismissedPromotions.push(promotion.id);
+      localStorage.setItem('dismissedPromotions', JSON.stringify(dismissedPromotions));
+    }
+    setIsDismissed(true);
+  }, [promotion]);
+
   // Development helper to reset dismissed banners
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -38,7 +54,6 @@ const AnnouncementBanner = ({ onVisibilityChange }: AnnouncementBannerProps) => 
   useEffect(() => {
     const fetchPromotion = async () => {
       try {
-        // Lazy load Supabase to reduce initial bundle
         const { supabase } = await import('@/integrations/supabase/client');
         const { data, error } = await supabase
           .from('promotions')
@@ -50,13 +65,12 @@ const AnnouncementBanner = ({ onVisibilityChange }: AnnouncementBannerProps) => 
           .single();
 
         if (error) {
-          if (error.code !== 'PGRST116') { // No rows returned
+          if (error.code !== 'PGRST116') {
             console.error('Error fetching promotion:', error);
           }
           setPromotion(null);
         } else {
           setPromotion(data);
-          // Check if this promotion was dismissed
           const dismissedPromotions = JSON.parse(localStorage.getItem('dismissedPromotions') || '[]');
           if (dismissedPromotions.includes(data.id)) {
             setIsDismissed(true);
@@ -72,34 +86,13 @@ const AnnouncementBanner = ({ onVisibilityChange }: AnnouncementBannerProps) => 
     fetchPromotion();
   }, []);
 
-  // Report visibility state to parent - assume visible during loading to prevent CLS
+  // Report visibility - don't assume visible during loading to prevent CLS
   useEffect(() => {
-    const isVisible = isLoading || (!isLoading && !!promotion && !isDismissed && shouldShowOnPage());
+    const isVisible = !isLoading && !!promotion && !isDismissed && shouldShowOnPage();
     onVisibilityChange?.(isVisible);
-  }, [isLoading, promotion, isDismissed, location.pathname, onVisibilityChange]);
+  }, [isLoading, promotion, isDismissed, shouldShowOnPage, onVisibilityChange]);
 
-  const handleDismiss = () => {
-    if (promotion) {
-      const dismissedPromotions = JSON.parse(localStorage.getItem('dismissedPromotions') || '[]');
-      dismissedPromotions.push(promotion.id);
-      localStorage.setItem('dismissedPromotions', JSON.stringify(dismissedPromotions));
-    }
-    setIsDismissed(true);
-  };
-
-  // Check if banner should show on current page
-  const shouldShowOnPage = () => {
-    if (!promotion?.target_pages) return true;
-    if (promotion.target_pages.includes('all')) return true;
-    return promotion.target_pages.includes(location.pathname);
-  };
-
-  if (isLoading) {
-    // Reserve space during loading to prevent CLS when banner appears
-    return <div className="relative z-50" style={{ minHeight: '48px' }} />;
-  }
-
-  if (!promotion || isDismissed || !shouldShowOnPage()) {
+  if (isLoading || !promotion || isDismissed || !shouldShowOnPage()) {
     return null;
   }
 
