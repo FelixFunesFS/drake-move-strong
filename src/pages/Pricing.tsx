@@ -178,7 +178,7 @@ const Pricing = () => {
                 </CardContent>
                 <CardFooter className="pt-0">
                   <p className="text-xs text-muted-foreground text-center w-full">
-                    Most members start here after Reset Week.
+                    Most members start here after their free intro.
                   </p>
                 </CardFooter>
                 </Card>

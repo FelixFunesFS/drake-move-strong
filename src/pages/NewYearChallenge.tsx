@@ -113,7 +113,7 @@ const NewYearChallenge = () => {
     <>
       <SEO
         title="New Year Challenge - 50% Off First Month | Drake Fitness Charleston"
-        description="Start 2025 stronger with our January Challenge. Get 50% off your first month of unlimited classes at Drake Fitness Charleston. Expert coaching, mobility-first training."
+        description="Start 2026 stronger with our January Challenge. Get 50% off your first month of unlimited classes at Drake Fitness Charleston. Expert coaching, mobility-first training."
         canonical="https://drake.fitness/new-year"
       />
 
