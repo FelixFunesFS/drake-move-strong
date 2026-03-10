@@ -179,7 +179,7 @@ const ChatBot = () => {
   const handleQuickAction = (action: string) => {
     switch (action) {
       case 'reset-week':
-        sendMessage("Tell me about Reset Week - what is it and how do I get started?");
+        sendMessage("Tell me about the 3-Class Intro Experience - what is it and how do I get started?");
         break;
       case 'schedule':
         sendMessage("What classes do you offer and how can I book one?");
