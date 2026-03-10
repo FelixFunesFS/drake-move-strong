@@ -88,8 +88,8 @@ export default function LowImpactFitnessCharleston() {
                 A joint-friendly fitness program for adults who want results without aggravating pain.
               </p>
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-8 py-4 md:py-5 text-base md:text-lg whitespace-normal text-center">
-                <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">
-                  Start Reset Week — $50
+                <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer">
+                  Claim 3 Free Classes
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                 </a>
               </Button>
