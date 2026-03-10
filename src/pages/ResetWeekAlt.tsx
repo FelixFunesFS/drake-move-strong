@@ -59,7 +59,7 @@ const whatHappens = [
   {
     icon: Gift,
     title: "3 Free Classes Over 30 Days",
-    description: "Try KB Strong classes at your own pace — no rush, no commitment.",
+    description: "Try Strength & Mobility classes at your own pace — no rush, no commitment.",
     iconBg: "bg-drake-gold",
     iconColor: "text-drake-dark"
   },
