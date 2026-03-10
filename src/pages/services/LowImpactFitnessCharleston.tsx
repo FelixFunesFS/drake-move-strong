@@ -348,10 +348,10 @@ export default function LowImpactFitnessCharleston() {
               <h2 className="font-hero text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-accent-foreground uppercase">
                 Train Again Without Fear of Making Things Worse
               </h2>
-              <p className="text-base md:text-lg text-accent-foreground/80 mb-4 md:mb-6">Start with Reset Week — 7 days of unlimited classes for just $50.</p>
+              <p className="text-base md:text-lg text-accent-foreground/80 mb-4 md:mb-6">Try 3 classes free — experience joint-friendly training with no commitment.</p>
               <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 md:px-8 py-4 md:py-5 text-base md:text-lg whitespace-normal text-center">
-                <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">
-                  Start Reset Week — $50
+                <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer">
+                  Claim 3 Free Classes
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                 </a>
               </Button>

@@ -456,7 +456,7 @@ const About = () => {
         </section>
       </AnimatedSection>
 
-      <CTASection eyebrow="GET STARTED" title="Ready to Reset How You Move?" subtitle="Start with Reset Week — 7 days of unlimited classes for just $50. No commitment required." ctaText="Start Reset Week — $50" ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" variant="primary" slanted={true} />
+      <CTASection eyebrow="GET STARTED" title="Ready to Move Better?" subtitle="Try 3 classes free — experience mobility-first training with no commitment." ctaText="Try 3 Classes Free" ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" variant="primary" slanted={true} />
     </main>
     </>
   );

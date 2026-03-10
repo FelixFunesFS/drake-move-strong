@@ -533,7 +533,7 @@ export default function StrengthTrainingCharleston() {
                   <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer">
                     <ArrowRight className="mr-2 h-5 w-5" />
                     Claim 3 Free Classes Now
-                  </Link>
+                  </a>
                 </Button>
                 <p className="text-primary-foreground/60 mt-6 text-sm">Limited to 12 spots per week • No credit card required</p>
               </div>
