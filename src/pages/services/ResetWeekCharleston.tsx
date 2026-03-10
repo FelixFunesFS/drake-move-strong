@@ -48,7 +48,7 @@ const whatYoullExperience = [
 ];
 
 const whoItsFor = [
-  "Complete beginners",
+  "New to strength training",
   "Restarting after time off",
   "Over 30 and need smarter training",
   "Tired of being sore for days",

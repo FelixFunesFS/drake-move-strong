@@ -26,7 +26,7 @@ export const PRICING = {
     frequency: "month",
     classes: "8 classes/month",
     label: "Foundation Membership",
-    description: "8 classes per month, perfect for beginners"
+    description: "8 classes per month, perfect for getting started or flexible schedules"
   },
   unlimited: {
     price: 239,

@@ -34,7 +34,7 @@ const FAQ = () => {
         },
         {
           q: "How big are the classes?",
-          a: "We keep classes small (typically 6-12 people) to ensure everyone gets attention, coaching cues, and form corrections from David or Misty. You're never just a number in a crowded class.",
+          a: "We keep classes small (typically 6-12 people) to ensure everyone gets attention, coaching cues, and form corrections from David and our coaching team. You're never just a number in a crowded class.",
         },
         {
           q: "What if I have an injury?",

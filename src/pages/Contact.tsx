@@ -359,7 +359,7 @@ const Contact = () => {
               {[
                 {
                   q: "Do I need experience to join Drake Fitness?",
-                  a: "No. Our Foundation Flow classes are specifically designed for beginners. We meet you where you are, regardless of your starting point.",
+                  a: "No experience needed. KB Strong classes are coached and scaled to every level — beginners get guided instruction, experienced athletes get challenged. We meet you where you are.",
                 },
                 {
                   q: "Will this help my joint pain?",

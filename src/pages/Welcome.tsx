@@ -82,7 +82,7 @@ const Welcome = () => {
               <AnimatedSection animation="fadeInUp" delay={0.3}>
                 <div className="mt-10 bg-white p-6 md:p-8 rounded-xl border border-border shadow-card">
                   <h3 className="font-hero text-xl font-bold uppercase mb-4 text-primary">
-                    Available KB Strong Classes
+                    Available Strength & Mobility Classes
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {[
