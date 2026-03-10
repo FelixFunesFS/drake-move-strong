@@ -19,31 +19,31 @@ const serviceSchema = {
   "description": "Try 3 free classes at Drake Fitness in the Avondale neighborhood of West Ashley — Your Path to Pain-Free Movement.",
   "provider": localBusinessSchema,
   "areaServed": [
-    { "@type": "Place", "name": "West Ashley" },
-    { "@type": "Place", "name": "Avondale" },
-    { "@type": "City", "name": "Charleston" }
-  ],
+  { "@type": "Place", "name": "West Ashley" },
+  { "@type": "Place", "name": "Avondale" },
+  { "@type": "City", "name": "Charleston" }],
+
   "serviceType": "Fitness Training"
 };
 
 const whatWeOffer = [
-  { title: "Safe Strength Training", description: "Built on mobility first, not just heavy lifting" },
-  { title: "A Gym That Understands Pain & Recovery", description: "We specialize in helping people move better, not just harder" },
-  { title: "Coaching That Meets You Where You Are", description: "Personalized attention in every small group class" }
-];
+{ title: "Safe Strength Training", description: "Built on mobility first, not just heavy lifting" },
+{ title: "A Gym That Understands Pain & Recovery", description: "We specialize in helping people move better, not just harder" },
+{ title: "Coaching That Meets You Where You Are", description: "Personalized attention in every small group class" }];
+
 
 const whyIntroExperience = [
-  { icon: Shield, title: "Removes Guesswork", description: "You'll know exactly what to do, how to move, and why it matters — from day one." },
-  { icon: Heart, title: "Removes Pressure", description: "No judgment. No comparison. Just you, your coach, and your progress." },
-  { icon: Dumbbell, title: "Rebuilds Strength Right", description: "Mobility first, then strength — the foundation for lasting results." }
-];
+{ icon: Shield, title: "Removes Guesswork", description: "You'll know exactly what to do, how to move, and why it matters — from day one." },
+{ icon: Heart, title: "Removes Pressure", description: "No judgment. No comparison. Just you, your coach, and your progress." },
+{ icon: Dumbbell, title: "Rebuilds Strength Right", description: "Mobility first, then strength — the foundation for lasting results." }];
+
 
 const faqs = [
-  { question: "Where exactly is Drake Fitness located?", answer: "We're located at 2 Avondale Ave in the Avondale neighborhood of West Ashley, Charleston. We're right in the heart of the community — easy to access from anywhere in West Ashley, James Island, or downtown Charleston." },
-  { question: "What is the 3-Class Intro Experience?", answer: "It's our free intro program — 3 classes over 30 days designed to help you move better, build confidence, and see what makes Drake Fitness different. KB Strong classes run Mon/Wed/Fri at 8am & 11am and Thu at 6pm." },
-  { question: "Do I need experience?", answer: "Absolutely not. We specialize in helping beginners and people returning to fitness. Every movement is coached and scaled to your level." },
-  { question: "What if I have pain or injuries?", answer: "That's our specialty. We work with people managing pain, recovering from injuries, or dealing with chronic tightness. Our mobility-first approach is designed for exactly that." }
-];
+{ question: "Where exactly is Drake Fitness located?", answer: "We're located at 2 Avondale Ave in the Avondale neighborhood of West Ashley, Charleston. We're right in the heart of the community — easy to access from anywhere in West Ashley, James Island, or downtown Charleston." },
+{ question: "What is the 3-Class Intro Experience?", answer: "It's our free intro program — 3 classes over 30 days designed to help you move better, build confidence, and see what makes Drake Fitness different. KB Strong classes run Mon/Wed/Fri at 8am & 11am and Thu at 6pm." },
+{ question: "Do I need experience?", answer: "Absolutely not. We specialize in helping beginners and people returning to fitness. Every movement is coached and scaled to your level." },
+{ question: "What if I have pain or injuries?", answer: "That's our specialty. We work with people managing pain, recovering from injuries, or dealing with chronic tightness. Our mobility-first approach is designed for exactly that." }];
+
 
 export default function WestAshleyFitness() {
   return (
@@ -51,8 +51,8 @@ export default function WestAshleyFitness() {
       <SEO
         title="Strength & Mobility Training in West Ashley | Avondale | Drake Fitness"
         description="Located in Avondale, West Ashley — try 3 free classes at Drake Fitness. Safe, coach-led strength & mobility training for adults. KB Strong: Mon/Wed/Fri 8am & 11am, Thu 6pm."
-        canonical="https://drake.fitness/west-ashley-fitness"
-      />
+        canonical="https://drake.fitness/west-ashley-fitness" />
+      
       <StructuredData data={serviceSchema} />
 
       {/* Hero Section */}
@@ -64,8 +64,8 @@ export default function WestAshleyFitness() {
             className="w-full h-full"
             priority
             transparent
-            hideLoadingPlaceholder
-          />
+            hideLoadingPlaceholder />
+          
           <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/50" />
         </div>
         <div className="container mx-auto px-4 relative z-10 py-20 md:py-28">
@@ -90,7 +90,7 @@ export default function WestAshleyFitness() {
                   </a>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/20 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
-                  <Link to="/contact">
+                  <Link to="/contact" className="text-primary">
                     View Location & Hours
                   </Link>
                 </Button>
@@ -111,8 +111,8 @@ export default function WestAshleyFitness() {
                   Located in <span className="text-primary">Avondale</span>, Serving West Ashley
                 </h2>
                 <ul className="space-y-4 md:space-y-5 mb-6 md:mb-8">
-                  {whatWeOffer.map((item, index) => (
-                    <li key={index} className="flex items-start">
+                  {whatWeOffer.map((item, index) =>
+                  <li key={index} className="flex items-start">
                       <div className="flex-shrink-0 w-7 h-7 md:w-8 md:h-8 bg-primary rounded-full flex items-center justify-center mr-3 md:mr-4 mt-1">
                         <Check className="text-primary-foreground h-3.5 w-3.5 md:h-4 md:w-4" />
                       </div>
@@ -121,7 +121,7 @@ export default function WestAshleyFitness() {
                         <p className="text-muted-foreground text-sm md:text-base">{item.description}</p>
                       </div>
                     </li>
-                  ))}
+                  )}
                 </ul>
                 <div className="bg-secondary border-l-4 border-accent p-4 md:p-6 rounded-r-lg">
                   <p className="font-semibold text-base md:text-lg">Drake Fitness is in Avondale — and the 3-Class Intro Experience is the best place to start.</p>
@@ -133,8 +133,8 @@ export default function WestAshleyFitness() {
                 <OptimizedImage
                   src={groupKettlebellTraining}
                   alt="West Ashley members training at Drake Fitness"
-                  className="w-full h-full"
-                />
+                  className="w-full h-full" />
+                
               </div>
             </AnimatedSection>
           </div>
@@ -154,15 +154,15 @@ export default function WestAshleyFitness() {
 
           <AnimatedSection animation="fadeInUp" delay={0.1}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {whyIntroExperience.map((item, index) => (
-                <div key={index} className="bg-primary-foreground/10 backdrop-blur-sm p-8 rounded-xl border border-primary-foreground/10 hover:border-accent/50 transition-all group">
+              {whyIntroExperience.map((item, index) =>
+              <div key={index} className="bg-primary-foreground/10 backdrop-blur-sm p-8 rounded-xl border border-primary-foreground/10 hover:border-accent/50 transition-all group">
                   <div className="w-16 h-16 bg-accent rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     <item.icon className="h-8 w-8 text-accent-foreground" />
                   </div>
                   <h3 className="font-hero text-2xl font-bold mb-4 uppercase">{item.title}</h3>
                   <p className="text-primary-foreground/80 leading-relaxed">{item.description}</p>
                 </div>
-              ))}
+              )}
             </div>
           </AnimatedSection>
         </div>
@@ -325,12 +325,12 @@ export default function WestAshleyFitness() {
 
           <AnimatedSection animation="fadeInUp" delay={0.1}>
             <div className="max-w-4xl mx-auto space-y-6">
-              {faqs.map((faq, index) => (
-                <div key={index} className="bg-secondary p-8 rounded-xl">
+              {faqs.map((faq, index) =>
+              <div key={index} className="bg-secondary p-8 rounded-xl">
                   <h3 className="font-bold text-xl mb-3">{faq.question}</h3>
                   <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
                 </div>
-              ))}
+              )}
             </div>
           </AnimatedSection>
         </div>
@@ -368,6 +368,6 @@ export default function WestAshleyFitness() {
           </AnimatedSection>
         </div>
       </section>
-    </>
-  );
+    </>);
+
 }
