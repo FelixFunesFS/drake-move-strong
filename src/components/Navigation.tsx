@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import drakeLogo from "@/assets/drake-fitness-logo2.png";
+import drakeLogo from "@/assets/drake-fitness-logo2.png?format=webp&w=268";
 import { INTRO_URL } from "@/data/pricing";
 
 interface NavigationProps {
