@@ -143,7 +143,7 @@ export default function StrengthTrainingCharleston() {
       </section>
 
       {/* Who This Is For Section */}
-      <section className="py-12 md:py-16 lg:py-24 bg-background overflow-x-hidden">
+      <section className="py-12 md:py-16 lg:py-24 lg:pb-32 bg-background overflow-x-clip">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
             <AnimatedSection animation="fadeInUp">
@@ -167,7 +167,7 @@ export default function StrengthTrainingCharleston() {
 
                 <div className="bg-primary text-primary-foreground p-5 md:p-8 rounded-2xl">
                   <h3 className="font-hero text-xl md:text-2xl font-bold mb-3 uppercase">This Program Was Built for You</h3>
-                  <p className="text-primary-foreground/80 leading-relaxed text-sm md:text-base">Most of our members come to us after years of pushing through workouts that stopped helping. Reset Week exists to change that — safely and intentionally.</p>
+                  <p className="text-primary-foreground/80 leading-relaxed text-sm md:text-base">Most of our members come to us after years of pushing through workouts that stopped helping. Our 3-Class Intro exists to change that — safely and intentionally.</p>
                 </div>
               </div>
             </AnimatedSection>
