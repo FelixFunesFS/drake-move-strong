@@ -4,7 +4,7 @@ import { StructuredData, localBusinessSchema } from "@/components/StructuredData
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
-import { Check, ArrowRight, User, Dumbbell, Heart, Sprout, RefreshCw, Calendar, Frown, HelpCircle, HeartHandshake } from "lucide-react";
+import { Check, ArrowRight, User, Dumbbell, Heart } from "lucide-react";
 import { INTRO_URL } from "@/data/pricing";
 
 import heroKettlebellTraining from "@/assets/hero-kettlebell-training.jpg";
