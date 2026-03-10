@@ -17,7 +17,7 @@ const FAQ = () => {
         },
         {
           q: "How do I get started?",
-          a: "The best way to begin is to start with Reset Week ($50). This gives you 7 days of unlimited classes so you can experience our coaching style and find the right class schedule for you.",
+          a: "The best way to begin is with our 3-Class Intro Experience (free). This gives you 3 classes over 30 days so you can experience our coaching style and find the right class schedule for you.",
         },
         {
           q: "What should I wear and bring?",
