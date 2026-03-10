@@ -57,7 +57,7 @@ const whoItsFor = [
 
 const whatsIncluded = [
   "3 free classes over 30 days",
-  "KB Strong — Mon/Wed/Fri 8am & 11am, Thu 6pm",
+  "Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Thu 6pm",
   "Coach-guided introduction",
   "Mobility-focused, joint-friendly workouts",
   "Small group environment",
