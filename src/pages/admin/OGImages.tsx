@@ -31,7 +31,7 @@ const PAGE_MAPPINGS: PageMapping[] = [
   { path: '/contact', label: 'Contact', suggestedSource: 'contact-hero-class-turkish-getup.jpg' },
   { path: '/success-stories', label: 'Success Stories', suggestedSource: 'testimonial-group-training.jpg' },
   { path: '/insights', label: 'Insights', suggestedSource: 'insights-hero-turkish-getup-class.jpg' },
-  { path: '/reset-week-charleston', label: 'Reset Week', suggestedSource: 'ruckathon-hero-group.jpg' },
+  { path: '/try-free-charleston', label: '3-Class Intro', suggestedSource: 'ruckathon-hero-group.jpg' },
   { path: '/faq', label: 'FAQ', suggestedSource: 'community-group-photo-large.jpg' },
 ];
 

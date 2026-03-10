@@ -174,18 +174,19 @@ const AppLayout = () => {
               
             {/* Landing Pages */}
             <Route path="/new-year" element={<NewYearChallenge />} />
-            <Route path="/reset" element={<ResetWeekAlt />} />
-            <Route path="/reset-week" element={<Navigate to="/reset" replace />} />
+            <Route path="/intro" element={<ResetWeekAlt />} />
+            <Route path="/reset" element={<Navigate to="/intro" replace />} />
+            <Route path="/reset-week" element={<Navigate to="/intro" replace />} />
             <Route path="/ruckathon" element={<Ruckathon />} />
             <Route path="/welcome" element={<Welcome />} />
-            
             
             {/* Local SEO Service Pages */}
             <Route path="/low-impact-fitness-charleston" element={<LowImpactFitnessCharleston />} />
             <Route path="/mobility-fitness-avondale" element={<Navigate to="/schedule" replace />} />
             <Route path="/strength-training-charleston" element={<StrengthTrainingCharleston />} />
             <Route path="/west-ashley-fitness" element={<WestAshleyFitness />} />
-            <Route path="/reset-week-charleston" element={<ResetWeekCharleston />} />
+            <Route path="/try-free-charleston" element={<ResetWeekCharleston />} />
+            <Route path="/reset-week-charleston" element={<Navigate to="/try-free-charleston" replace />} />
             
             {/* Member Portal (Protected) */}
             <Route path="/member/dashboard" element={

@@ -410,7 +410,7 @@ export default function StrengthTrainingCharleston() {
                 <div className="flex text-accent text-xl mb-6">
                   {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
                 </div>
-                <p className="text-muted-foreground text-lg italic mb-6 leading-relaxed">"Reset Week changed how my body feels."</p>
+                <p className="text-muted-foreground text-lg italic mb-6 leading-relaxed">"The 3-Class Intro changed how my body feels."</p>
                 <p className="font-semibold">— Jennifer L., Mount Pleasant</p>
               </div>
             </div>
