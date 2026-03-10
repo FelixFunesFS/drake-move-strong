@@ -541,10 +541,10 @@ const Pricing = () => {
 
         <CTASection
           eyebrow="GET STARTED"
-          title="Ready to Reset How You Move?"
-          subtitle="Start with Reset Week — 7 days of unlimited classes for just $50."
-          ctaText="Start Reset Week — $50"
-          ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219"
+          title="Ready to Move Better?"
+          subtitle="Try 3 classes free — see if Drake Fitness is the right fit for you."
+          ctaText="Try 3 Classes Free"
+          ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034"
           variant="primary"
           slanted={true} />
 
