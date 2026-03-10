@@ -60,7 +60,7 @@ const Pricing = () => {
         {/* STEP 1: 3-CLASS INTRO EXPERIENCE (VISUAL PRIORITY #1) */}
         <section className="py-12 md:py-16 bg-muted">
           <div className="container mx-auto px-4">
-            {/* Trust Signal - Above Reset Week Card */}
+            {/* Trust Signal - Above Intro Card */}
             <AnimatedSection animation="fadeIn" className="text-center mb-8">
               <GoogleReviewsBadge variant="micro" />
             </AnimatedSection>
