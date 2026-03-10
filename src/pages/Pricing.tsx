@@ -307,7 +307,7 @@ const Pricing = () => {
               </AnimatedSection>
 
               {/* 10-Class Pack Card */}
-              <AnimatedSection animation="fadeInUp" delay={getStaggerDelay(2)}>
+              <AnimatedSection animation="fadeInUp" delay={getStaggerDelay(1)}>
                 <Card className="bg-card border border-border shadow-sm h-full">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
