@@ -261,10 +261,10 @@ const Insights = () => {
 
       <CTASection
         eyebrow="Ready to Train Smarter?"
-        title="Start Your Reset Week"
+        title="Try 3 Classes Free"
         subtitle="No pressure. No contracts. Just smart training that actually works for bodies over 40."
-        ctaText="Start Your Reset Week"
-        ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219"
+        ctaText="Claim 3 Free Classes"
+        ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034"
         variant="primary"
       />
     </>

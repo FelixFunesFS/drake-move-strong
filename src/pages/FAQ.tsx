@@ -17,7 +17,7 @@ const FAQ = () => {
         },
         {
           q: "How do I get started?",
-          a: "The best way to begin is to start with Reset Week ($50). This gives you 7 days of unlimited classes so you can experience our coaching style and find the right class schedule for you.",
+          a: "The best way to begin is with our 3-Class Intro Experience (free). This gives you 3 classes over 30 days so you can experience our coaching style and find the right class schedule for you.",
         },
         {
           q: "What should I wear and bring?",
@@ -177,9 +177,9 @@ const FAQ = () => {
       <CTASection
         eyebrow="GET STARTED"
         title="Ready to Get Started?"
-        subtitle="Try Reset Week — 7 days of unlimited classes for just $50. No commitment."
-        ctaText="Start Reset Week — $50"
-        ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219"
+        subtitle="Try 3 classes free — no commitment, no cost. See if Drake Fitness is right for you."
+        ctaText="Try 3 Classes Free"
+        ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034"
         variant="primary"
         slanted={true}
       />

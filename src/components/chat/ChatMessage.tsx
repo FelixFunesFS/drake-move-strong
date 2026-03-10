@@ -17,9 +17,9 @@ const friendlyLabels: Record<string, string> = {
   'https://drakefitness.punchpass.com': '📅 Book on PunchPass',
   
   // Intro offer links
-  'https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219': '🎁 Start Reset Week — $50',
-  'https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/46002': '🎁 Get Intro Week Special',
-  'https://drakefitness.punchpass.com/org/5950/catalogs/purchase': '🎁 Get Started - Intro Offers',
+  'https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034': '🎁 Claim 3 Free Classes',
+  'https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219': '🎁 Claim 3 Free Classes',
+  'https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/46002': '🎁 Claim 3 Free Classes',
   
   // Membership purchase links
   'https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784': '💪 Join Foundation Membership',
@@ -31,8 +31,8 @@ const friendlyLabels: Record<string, string> = {
   'https://drake.fitness/pricing': '💰 View Pricing',
   'https://drake.fitness/schedule': '📅 See Schedule',
   'https://drake.fitness/contact': '📞 Contact Us',
-  'https://drake.fitness/reset-week-charleston': '🎁 Reset Week Info',
-  'https://drake.fitness/reset': '🎁 Start Reset Week',
+  'https://drake.fitness/reset-week-charleston': '🎁 3-Class Intro Info',
+  'https://drake.fitness/reset': '🎁 3-Class Intro Experience',
   'https://drake.fitness/about': '👋 About Us',
   'https://drake.fitness/coaching': '🎯 Personal Coaching',
   'https://drake.fitness/consultation': '📋 Book Consultation',

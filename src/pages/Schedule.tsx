@@ -46,7 +46,7 @@ const classFAQs = [
   { q: "Which fitness class is best for beginners in Charleston?", a: "Foundation Flow is our beginner-friendly class focusing on mobility and movement quality. No experience needed." },
   { q: "How big are fitness classes at Drake Fitness?", a: "We keep classes small with 6-12 people to ensure personalized coaching and form correction from David or Misty." },
   { q: "Do I need to bring my own equipment to class?", a: "No equipment needed. We provide all kettlebells, maces, mats, and tools. Just wear comfortable workout clothes." },
-  { q: "How do I get started at Drake Fitness?", a: "Start with Reset Week — 7 days of unlimited classes for $50. It's the best way to experience our training style." },
+  { q: "How do I get started at Drake Fitness?", a: "Try our 3-Class Intro Experience — 3 free classes over 30 days. It's the best way to experience our training style." },
   { q: "What should I expect in my first fitness class?", a: "Arrive 10 minutes early. We'll do a quick movement screen, then guide you through class with modifications as needed." },
 ];
 
@@ -92,7 +92,7 @@ const Schedule = () => {
                   </p>
                 </div>
                 <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark shrink-0 whitespace-nowrap">
-                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">Start Reset Week — $50</a>
+                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer">Try 3 Classes Free</a>
                 </Button>
               </div>
             </AnimatedSection>
@@ -200,9 +200,9 @@ const Schedule = () => {
         <CTASection
           eyebrow="GET STARTED"
           title="Ready to Feel Stronger, Move Better, and Train Smarter?"
-          subtitle="Start with Reset Week — 7 days of unlimited classes for just $50."
-          ctaText="Start Reset Week — $50"
-          ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219"
+          subtitle="Try 3 classes free — experience mobility-first training with no commitment."
+          ctaText="Claim 3 Free Classes"
+          ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034"
           variant="primary"
           slanted={true}
         />

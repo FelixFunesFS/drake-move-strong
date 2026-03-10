@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { StructuredData, localBusinessSchema } from "@/components/StructuredData";
 import TrustStatsBar from "@/components/TrustStatsBar";
 import LongevityBlock from "@/components/LongevityBlock";
+import { INTRO_URL } from "@/data/pricing";
 // WebP hero images with responsive sizes
 import heroImage1Desktop from "@/assets/hero-group-turkish-getup.jpg?format=webp&w=1920";
 import heroMobileImage from "@/assets/hero-mobile-kb-press.jpg?format=webp&w=768";
@@ -35,7 +36,7 @@ interface HomeProps {
 
 const Home = ({ bannerVisible = false }: HomeProps) => {
   return <>
-      <SEO title="Drake Fitness Charleston | Gym & Mobility Training | Proven Results" description="Charleston's coach-led gym for functional strength, mobility, and group fitness classes. Small groups, 25+ years experience. Start Reset Week — $50." canonical="https://drake.fitness" />
+      <SEO title="Drake Fitness Charleston | Gym & Mobility Training | Try 3 Classes Free" description="Charleston's coach-led gym for functional strength, mobility, and group fitness classes. Small groups, 25+ years experience. Try 3 classes free." canonical="https://drake.fitness" />
       <StructuredData data={localBusinessSchema} />
       
       <main>
@@ -48,9 +49,9 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
             <MapPin className="w-3 h-3" />
             Avondale • West Ashley • Charleston
           </span>
-} title={<>Move Better.<br /><span className="text-accent drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">Live Stronger.</span><br />Stay Pain-Free.</>} subtitle="7-Day Mobility Reset Week: Unlimited Classes for $50. Start feeling the difference with small-group, mobility-first training at Drake Fitness in Avondale." primaryCTA={{
-        text: <>Start Your Reset<br className="hidden md:block" /> Week for $50</>,
-        link: "#reset-week"
+} title={<>Move Better.<br /><span className="text-accent drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">Live Stronger.</span><br />Stay Pain-Free.</>} subtitle="Try 3 classes free — experience small-group, mobility-first training at Drake Fitness in Avondale. No commitment, no cost." primaryCTA={{
+        text: "Try 3 Classes Free",
+        link: "#intro-experience"
       }} secondaryCTA={{
         text: "View Schedule",
         link: "/schedule"
@@ -71,13 +72,13 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         <TodayClassesBanner />
       </div>
 
-      {/* START HERE - Moved up after Today's Classes */}
-      <section id="reset-week" className="py-16 md:py-24 bg-muted scroll-mt-20">
+      {/* START HERE - 3-Class Intro Experience */}
+      <section id="intro-experience" className="py-16 md:py-24 bg-muted scroll-mt-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto bg-white rounded-none shadow-lg overflow-hidden">
             <div className="grid md:grid-cols-2">
               <AnimatedSection animation="slideInLeft" className="p-8 md:p-8 lg:p-12">
-                <p className="section-eyebrow text-primary mb-4">PURCHASE YOUR RESET WEEK</p>
+                <p className="section-eyebrow text-primary mb-4">TRY US FREE</p>
                 <h2 className="font-hero text-3xl md:text-3xl lg:text-4xl font-bold mb-6 uppercase leading-tight">
                   If You Feel Stiff, Achy, or Out of Shape...<br />
                   <span className="text-primary">You're in the Right Place.</span>
@@ -89,17 +90,35 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                       <span className="text-base">{item}</span>
                     </li>)}
                 </ul>
-                {/* Reset Week Purchase Card */}
+
+                {/* How It Works Steps */}
+                <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 mb-6">
+                  <p className="font-hero text-sm font-bold uppercase text-primary mb-3">How It Works</p>
+                  <div className="space-y-2">
+                    {[
+                      { step: "1", text: "Claim your free pass below" },
+                      { step: "2", text: "Pick a KB Strong class — Mon/Wed/Fri 8am or 11am, Thu 6pm" },
+                      { step: "3", text: "Show up — we handle the rest" },
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-3">
+                        <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center flex-shrink-0">{item.step}</span>
+                        <span className="text-sm">{item.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 3-Class Intro Card */}
                 <div className="bg-muted border border-border rounded-xl p-4 md:p-4 lg:p-6">
                   <div className="flex items-baseline gap-2 mb-4">
-                    <span className="text-4xl font-hero font-bold text-primary">$50</span>
-                    <span className="text-muted-foreground text-lg">for 7 days</span>
+                    <span className="text-4xl font-hero font-bold text-primary">FREE</span>
+                    <span className="text-muted-foreground text-lg">3 classes / 30 days</span>
                   </div>
                   <ul className="space-y-2 mb-6 text-sm">
                     {[
-                      "7 days of unlimited classes",
-                      "All class types: Foundation Flow, KB Strong, Mobility Reset & more",
-                      "Expert, joint-friendly coaching",
+                      "3 small-group classes free",
+                      "30 days from your first visit to use all 3",
+                      "Expert, joint-friendly coaching on kettlebells & movement",
                       "No commitment required"
                     ].map((item, i) => (
                       <li key={i} className="flex items-start gap-2">
@@ -109,8 +128,11 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                     ))}
                   </ul>
                   <Button asChild size="lg" className="w-full px-4 sm:px-8 py-3 sm:py-6 text-sm sm:text-base min-h-[48px]">
-                    <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer" className="text-center">Purchase Reset Week</a>
+                    <a href={INTRO_URL} target="_blank" rel="noopener noreferrer" className="text-center">Claim Your 3 Free Classes</a>
                   </Button>
+                  <p className="text-xs text-muted-foreground mt-3 text-center">
+                    Love it? Get your first month for $110 (50% off) when you join within 7 days of your 3rd class.
+                  </p>
                 </div>
               </AnimatedSection>
               <AnimatedSection animation="slideInRight" delay={0.1} className="relative h-full min-h-[400px] md:min-h-[500px] hidden md:block">
@@ -193,8 +215,6 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         </div>
       </section>
 
-
-
       {/* Longevity Block - Before Final CTA */}
       <AnimatedSection animation="fadeInUp">
         <LongevityBlock />
@@ -228,7 +248,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       </AnimatedSection>
 
       <AnimatedSection animation="fadeInUp">
-        <CTASection eyebrow="GET STARTED" title="Ready to Reset How You Move?" ctaText="Start Reset Week — $50" ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" variant="primary" slanted={true} />
+        <CTASection eyebrow="GET STARTED" title="Ready to Move Better, Feel Stronger?" ctaText="Try 3 Classes Free" ctaLink={INTRO_URL} variant="primary" slanted={true} />
       </AnimatedSection>
     </main>
     </>;

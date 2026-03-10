@@ -203,7 +203,7 @@ const Contact = () => {
                           <SelectValue placeholder="Select an option" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="reset-week">Reset Week ($50)</SelectItem>
+                          <SelectItem value="intro-experience">3-Class Intro (Free)</SelectItem>
                           <SelectItem value="membership">Monthly Membership</SelectItem>
                           <SelectItem value="coaching">1:1 Coaching</SelectItem>
                           <SelectItem value="general">General Inquiry</SelectItem>
@@ -341,7 +341,7 @@ const Contact = () => {
             },
             {
               q: "How do I get started at Drake Fitness?",
-              a: "Start with Reset Week — 7 days of unlimited classes for $50. It's the best way to experience our training style and find the right class for you.",
+              a: "Start with our 3-Class Intro Experience — 3 free classes over 30 days. It's the best way to experience our training style and find the right class for you.",
             },
           ];
           const faqSchema = buildFAQSchema(contactFAQs);
@@ -367,8 +367,8 @@ const Contact = () => {
                 },
                 {
                   q: "How do I get started at Drake Fitness?",
-                  a: "Start with Reset Week — 7 days of unlimited classes for $50. It's the best way to experience our training style and find the right class for you.",
-                  cta: { label: "Start Reset Week — $50", url: PUNCHPASS_URLS.resetWeek },
+                  a: "Try our 3-Class Intro Experience — 3 free classes over 30 days. It's the best way to experience our training style and find the right class for you.",
+                  cta: { label: "Claim 3 Free Classes", url: PUNCHPASS_URLS.introExperience },
                 },
               ].map((faq, index) => (
                 <AnimatedSection key={index} animation="fadeInUp" delay={index * 0.1}>

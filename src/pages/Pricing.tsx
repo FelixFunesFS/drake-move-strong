@@ -32,8 +32,8 @@ const Pricing = () => {
   return (
     <>
       <SEO
-        title="Gym Membership Charleston | From $50 | Simple Plans 2026"
-        description="Simple, transparent membership options. Reset Week $50, Foundation $209/mo, Longevity Unlimited $239/mo. No contracts, real results at Drake Fitness Charleston."
+        title="Gym Membership Charleston | Try Free | Simple Plans 2026"
+        description="Simple, transparent membership options. Try 3 classes free. Foundation $209/mo, Longevity Unlimited $239/mo. No contracts, real results at Drake Fitness Charleston."
         canonical="https://drake.fitness/pricing"
         
       />
@@ -72,29 +72,29 @@ const Pricing = () => {
                     Best Place to Start
                   </span>
                   <h2 className="font-hero text-3xl md:text-4xl font-bold uppercase text-foreground">
-                    Movement Reset Week
+                    3-Class Intro Experience
                   </h2>
                   <p className="text-lg text-muted-foreground mt-2">
-                    A guided, no-pressure way to restart your body and see if Drake Fitness is right for you.
+                    Three free opportunities to experience Drake Fitness and see if our mobility-first training is right for you.
                   </p>
                 </CardHeader>
                 <CardContent className="pb-6">
                   <ul className="space-y-3 mb-8">
                     <li className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-primary" />
-                      <span className="text-foreground">7 days of unlimited classes</span>
+                      <span className="text-foreground">3 small-group classes free</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-primary" />
-                      <span className="text-foreground">All class types: Foundation Flow, KB Strong, Mobility Reset & more</span>
+                      <span className="text-foreground">30 days from your first visit to use all 3</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-primary" />
-                      <span className="text-foreground">Movement-first, joint-friendly coaching</span>
+                      <span className="text-foreground">KB Strong classes: Mon/Wed/Fri 8am & 11am, Thu 6pm</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-primary" />
-                      <span className="text-foreground">Go at your own pace — no pressure to keep up</span>
+                      <span className="text-foreground">Expert, joint-friendly coaching — no experience needed</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-primary" />
@@ -103,13 +103,13 @@ const Pricing = () => {
                   </ul>
                   <div className="flex flex-col sm:flex-row items-center gap-6">
                     <div className="text-center sm:text-left">
-                      <span className="text-5xl md:text-6xl font-bold text-foreground">$50</span>
-                      <span className="text-muted-foreground ml-2">/ 7 days</span>
+                      <span className="text-5xl md:text-6xl font-bold text-foreground">FREE</span>
+                      <span className="text-muted-foreground ml-2">/ 3 classes</span>
                     </div>
                     <div className="flex-1 w-full sm:w-auto">
                       <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold w-full sm:w-auto">
-                        <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-                          Start Reset Week
+                        <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                          Claim 3 Free Classes
                           <ExternalLink className="h-4 w-4" />
                         </a>
                       </Button>
@@ -118,7 +118,7 @@ const Pricing = () => {
                 </CardContent>
                 <CardFooter className="bg-primary/5 border-t border-primary/10 py-4">
                   <p className="text-sm text-muted-foreground text-center w-full">
-                    No commitment. Choose a membership only if it feels right.
+                    Love it? Get your first month for $110 (50% off) when you join within 7 days of your 3rd class.
                   </p>
                 </CardFooter>
               </Card>
@@ -429,9 +429,9 @@ const Pricing = () => {
                 </thead>
                 <tbody>
                   <tr className="border-b border-border bg-primary/5">
-                    <td className="px-4 py-3 font-medium text-foreground">Movement Reset Week</td>
-                    <td className="px-4 py-3 text-muted-foreground">Unlimited (7 days)</td>
-                    <td className="px-4 py-3 text-muted-foreground">Safest place to start</td>
+                    <td className="px-4 py-3 font-medium text-foreground">3-Class Intro</td>
+                    <td className="px-4 py-3 text-muted-foreground">3 classes (30 days)</td>
+                    <td className="px-4 py-3 text-muted-foreground">Safest place to start — Free</td>
                     <td className="px-4 py-3 text-muted-foreground">None</td>
                   </tr>
                   <tr className="border-b border-border">
@@ -487,15 +487,15 @@ const Pricing = () => {
         {/* REASSURANCE BLOCK */}
         <section className="py-12 md:py-16 bg-muted">
           <div className="container mx-auto px-4 text-center">
-            <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Not sure which option fits you? Try 7 days of unlimited classes for $50 — we'll help you decide which membership is right for your goals after your first week.
-            </p>
-            <Button asChild variant="outline" size="lg">
-              <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent">
-                Start Reset Week
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            </Button>
+             <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+               Not sure which option fits you? Try 3 classes free — we'll help you decide which membership is right for your goals.
+             </p>
+             <Button asChild variant="outline" size="lg">
+               <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent">
+                 Claim 3 Free Classes
+                 <ExternalLink className="h-4 w-4" />
+               </a>
+             </Button>
           </div>
         </section>
 
@@ -541,10 +541,10 @@ const Pricing = () => {
 
         <CTASection
           eyebrow="GET STARTED"
-          title="Ready to Reset How You Move?"
-          subtitle="Start with Reset Week — 7 days of unlimited classes for just $50."
-          ctaText="Start Reset Week — $50"
-          ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219"
+          title="Ready to Move Better?"
+          subtitle="Try 3 classes free — see if Drake Fitness is the right fit for you."
+          ctaText="Try 3 Classes Free"
+          ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034"
           variant="primary"
           slanted={true} />
 
