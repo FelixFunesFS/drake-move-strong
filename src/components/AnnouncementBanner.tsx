@@ -72,9 +72,9 @@ const AnnouncementBanner = ({ onVisibilityChange }: AnnouncementBannerProps) => 
     fetchPromotion();
   }, []);
 
-  // Report visibility state to parent
+  // Report visibility state to parent - assume visible during loading to prevent CLS
   useEffect(() => {
-    const isVisible = !isLoading && !!promotion && !isDismissed && shouldShowOnPage();
+    const isVisible = isLoading || (!isLoading && !!promotion && !isDismissed && shouldShowOnPage());
     onVisibilityChange?.(isVisible);
   }, [isLoading, promotion, isDismissed, location.pathname, onVisibilityChange]);
 
