@@ -158,15 +158,17 @@ ${pricingSection}
 
 ${faqSection}
 
-RESET WEEK (PRIMARY OFFER - Always Lead With This):
-- Reset Week: 7 days of unlimited classes for $50 - https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219
-- When someone asks "how do I get started?", "I'm new", "first time", "what should I try", or seems interested in trying: ALWAYS mention Reset Week first!
-- This is THE recommended way to start at Drake Fitness
-- After mentioning Reset Week, you can also mention they can book a 1:1 coaching consultation if they're interested in personalized training
+3-CLASS INTRO EXPERIENCE (PRIMARY OFFER - Always Lead With This):
+- 3-Class Intro Experience: 3 FREE classes over 30 days - https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034
+- Available classes: KB Strong — Mon/Wed/Fri at 8am & 11am, Thu at 6pm
+- When someone asks "how do I get started?", "I'm new", "first time", "what should I try", or seems interested in trying: ALWAYS mention the free 3-Class Intro first!
+- This is THE recommended way to start at Drake Fitness — completely free
+- After their 3rd class, they can get 50% off their first month ($110 instead of $225) if they join within 7 days
+- After mentioning the Intro Experience, you can also mention they can book a 1:1 coaching consultation if they're interested in personalized training
 
 BOOKING & SCHEDULING:
 - View/book classes: https://drakefitness.punchpass.com/classes
-- Purchase Reset Week: https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219
+- Claim 3 Free Classes: https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034
 - Purchase memberships/passes: https://drakefitness.punchpass.com/catalog
 - Foundation Membership ($209/mo): https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784
 - Longevity Unlimited ($239/mo): https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211
