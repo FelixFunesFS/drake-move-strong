@@ -47,8 +47,8 @@ const Welcome = () => {
                 {[
                   {
                     step: "1",
-                    title: "Pick a KB Strong Class",
-                    description: "Choose from the schedule below — all intro classes are KB Strong.",
+                    title: "Pick a Strength & Mobility Class (KB Strong)",
+                    description: "Choose from the schedule below — all intro classes are Strength & Mobility (KB Strong).",
                     icon: Calendar,
                   },
                   {
