@@ -42,7 +42,7 @@ const whyIntroExperience = [
 const faqs = [
 { question: "Where exactly is Drake Fitness located?", answer: "We're located at 2 Avondale Ave in the Avondale neighborhood of West Ashley, Charleston. We're right in the heart of the community — easy to access from anywhere in West Ashley, James Island, or downtown Charleston." },
 { question: "What is the 3-Class Intro Experience?", answer: "It's our free intro program — 3 classes over 30 days designed to help you move better, build confidence, and see what makes Drake Fitness different. Strength & Mobility classes (KB Strong) run Mon/Wed/Fri at 8am & 11am and Thu at 6pm." },
-{ question: "Do I need experience?", answer: "Absolutely not. We specialize in helping beginners and people returning to fitness. Every movement is coached and scaled to your level." },
+{ question: "Do I need experience?", answer: "Absolutely not. We specialize in helping people at every level — whether you're starting fresh or returning to fitness. Every movement is coached and scaled to your level." },
 { question: "What if I have pain or injuries?", answer: "That's our specialty. We work with people managing pain, recovering from injuries, or dealing with chronic tightness. Our mobility-first approach is designed for exactly that." }];
 
 
