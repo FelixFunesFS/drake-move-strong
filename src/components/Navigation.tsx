@@ -72,6 +72,11 @@ const Navigation = ({ transparent = false, isScrolled = false }: NavigationProps
             {navLinks.map(link => <Link key={link.path} to={link.path} onClick={() => setMobileMenuOpen(false)} className={`block px-4 py-3 rounded-md text-sm font-medium ${isActive(link.path) ? "bg-primary/10 text-primary" : "text-foreground hover:bg-muted"}`}>
                 {link.name}
               </Link>)}
+            <Button asChild variant="gold" className="w-full mt-2">
+              <a href={INTRO_URL} target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)}>
+                Try 3 Classes Free <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
           </div>
         </div>}
     </nav>;
