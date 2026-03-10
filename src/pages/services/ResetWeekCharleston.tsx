@@ -344,20 +344,20 @@ export default function ResetWeekCharleston() {
           <AnimatedSection animation="fadeInUp" delay={0.1}>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center text-center">
               <div>
-                <div className="text-4xl font-heading font-bold text-primary mb-2">500+</div>
-                <p className="text-muted-foreground text-sm">Members Coached</p>
+                <div className="text-4xl font-heading font-bold text-primary mb-2">{TRUST_STATS.charlestoniansHelped}</div>
+                <p className="text-muted-foreground text-sm">Charlestonians Helped</p>
               </div>
               <div>
                 <div className="text-4xl font-heading font-bold text-primary mb-2">5★</div>
-                <p className="text-muted-foreground text-sm">Google Rating</p>
+                <p className="text-muted-foreground text-sm">Google Rating ({TRUST_STATS.googleReviewCount} Reviews)</p>
               </div>
               <div>
-                <div className="text-4xl font-heading font-bold text-primary mb-2">8+</div>
-                <p className="text-muted-foreground text-sm">Years in Charleston</p>
+                <div className="text-4xl font-heading font-bold text-primary mb-2">{TRUST_STATS.yearsExperience}</div>
+                <p className="text-muted-foreground text-sm">Years Experience</p>
               </div>
               <div>
                 <div className="text-4xl font-heading font-bold text-primary mb-2">100%</div>
-                <p className="text-muted-foreground text-sm">Coached Sessions</p>
+                <p className="text-muted-foreground text-sm">Coach-Led Sessions</p>
               </div>
             </div>
           </AnimatedSection>
