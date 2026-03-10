@@ -1,46 +1,49 @@
 
 
-# Plan: Separate OG Source Image Selection for Blog Posts
+# "How It Works" + "Who It's For" — Conversion Copy Review
 
-## The Problem
+## 1. Schedule Link in Step 2
 
-Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
+Step 2 says "KB Strong: Mon/Wed/Fri 8am & 11am, Thu 6pm" but doesn't link anywhere. Adding a "View Schedule" text link underneath the description keeps the step scannable while giving visitors who want confirmation a path — without replacing the CTA as the primary action. A simple inline `Link` to `/schedule` styled as `text-accent underline text-sm`.
 
-## The Right Approach
+## 2. Coach Mention — Trust vs. Browsing
 
-Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
+Adding a coach name or photo to the "How It Works" stepper **would** invite browsing (who is this person? let me check their bio). That pulls attention away from the CTA. However, Step 3's description already says "coaching, form, and encouragement" which is the right level — it signals *coached environment* without naming anyone. No change needed here.
 
-1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
+## 3. "Want coaching, not a gym membership" — Copy Problem
 
-2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
+This line works *against* the funnel. The end goal is to convert intro users into **members**. Saying "not a gym membership" plants a negative association with the very thing you're selling next. It also overlaps with "Complete beginners" and "Not sure where to start" — all three say "I'm new and lost."
 
-## Changes
+**Recommendation:** Replace with something that positions the visitor's *desire* without poisoning the membership concept:
 
-### 1. Add an image picker to the Generate dialog
-**File**: `src/pages/admin/OGImages.tsx`
+**"Looking for guidance, not a generic workout app"**
 
-- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
-- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
-- Show thumbnails in a scrollable grid; clicking one fills the source URL field
-- Keep the manual URL input as a fallback
-- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
-- Add a filter/search to narrow down images by filename
+This reframes the contrast away from "membership" and toward impersonal digital alternatives — which is the actual competitor for this audience.
 
-### 2. No database changes needed
+## 4. Redundancy Audit — "Who It's For" List
 
-The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
+Current 6 items:
+1. "Complete beginners" — **keep**, core audience
+2. "Restarting after time off" — **keep**, distinct segment
+3. "Over 30 and need smarter training" — **keep**, strong local differentiator
+4. "Tired of being sore for days" — **keep**, pain-point driven
+5. "Not sure where to start" — **redundant** with #1 and #2. Being a beginner or restarting already implies not knowing where to start.
+6. "Want coaching, not a gym membership" — **replace** per above
 
-### 3. Workflow improvement
+**Revised list (5 items, tighter):**
+1. "Complete beginners"
+2. "Restarting after time off"
+3. "Over 30 and need smarter training"
+4. "Tired of being sore for days"
+5. "Looking for guidance, not a generic workout app"
 
-The dialog flow becomes:
-1. Admin clicks "Generate" on a blog post row
-2. Dialog opens showing a grid of available images from the bucket
-3. Admin picks a wide landscape photo (or pastes a URL)
-4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
-5. Result is stored in `og-images` bucket and mapped via `page_og_images`
-6. The blog post's hero image and thumbnail remain unchanged
+5 items also fits a `sm:grid-cols-2` layout better (2+2+1 vs 3+3).
 
-## Files Affected
+## Changes — 1 File
 
-- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
+### `src/pages/services/ResetWeekCharleston.tsx`
+
+**A. `whoItsFor` array (lines 49-56):** Replace 6 items with the 5 revised items above. Remove "Not sure where to start" and replace "Want coaching, not a gym membership" with "Looking for guidance, not a generic workout app".
+
+**B. Step 2 description (lines 125 and 148):** After the schedule text, add a small `Link` to `/schedule`: `<Link to="/schedule" className="text-accent underline text-sm block mt-1">View full schedule</Link>`. This requires converting the `desc` field from a string to a JSX element, or rendering the link separately after the description text.
 
