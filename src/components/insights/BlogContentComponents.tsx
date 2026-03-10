@@ -1063,7 +1063,7 @@ export const TrainingWithInjuryContent = () => {
             to="/reset-week-charleston" 
             className="inline-flex items-center gap-2 px-8 py-4 bg-drake-gold text-foreground font-bold rounded-lg hover:bg-yellow-400 transition-all uppercase tracking-wide"
           >
-            <Calendar className="w-5 h-5" /> Try Reset Week
+            <Calendar className="w-5 h-5" /> Try 3 Free Classes
           </Link>
           <Link 
             to="/contact" 
