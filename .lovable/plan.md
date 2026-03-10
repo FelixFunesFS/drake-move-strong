@@ -1,46 +1,33 @@
 
 
-# Plan: Separate OG Source Image Selection for Blog Posts
+## Issues Found
 
-## The Problem
+### 1. Edge Function Not Redeployed
+The "earliest scraped date" cleanup code exists in the file but **was never deployed**. The logs confirm this — the sync ran 52 classes successfully but there's no "Stale date cleanup" log message. The March 10 rows (with `last_synced_at` from Feb 27) persist because the running version is the old code.
 
-Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
+**Fix**: Deploy the updated edge function. This will immediately fix the TodayClassesBanner showing stale Tuesday classes on the next sync.
 
-## The Right Approach
+### 2. Misty Not in Instructor Resolution
+The `DEFAULT_INSTRUCTORS` map (line 9-12) only has entries for `kettlebell flow → Nick` and `ruckathon → David`. Misty is not listed. If PunchPass shows Misty as instructor on certain classes, the scraper picks it up automatically. But if PunchPass omits her name on some classes, the fallback map won't resolve her.
 
-Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
+**Fix**: Add Misty to the `DEFAULT_INSTRUCTORS` map for the classes she teaches (need to know which classes those are), OR confirm PunchPass always shows her name so no default mapping is needed.
 
-1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
+### 3. How Sync Handles Changes/Modifications
 
-2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
+Current sync behavior:
+- **Upsert on composite key** (`class_date, start_time, class_name, is_online`): If a class changes time or name in PunchPass, it creates a new row AND leaves the old row orphaned
+- **Orphan cleanup** (lines 455-482): Catches orphaned rows by comparing DB rows for scraped dates against scraped keys — this handles renames/time changes for dates in the scrape
+- **Stale date cleanup** (lines 484-497, NOT YET DEPLOYED): Catches rows for dates no longer in the scrape at all (like today's passed classes)
+- **Instructor changes**: Preserved via upsert — if PunchPass updates an instructor, the upsert overwrites the old value. If PunchPass omits an instructor, the sync preserves the existing DB value (lines 392-413)
 
-## Changes
+So modifications ARE handled correctly — the orphan cleanup removes old versions and the upsert inserts new ones. The only gap was the "today" edge case, which the undeployed code fixes.
 
-### 1. Add an image picker to the Generate dialog
-**File**: `src/pages/admin/OGImages.tsx`
+## Plan
 
-- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
-- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
-- Show thumbnails in a scrollable grid; clicking one fills the source URL field
-- Keep the manual URL input as a fallback
-- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
-- Add a filter/search to narrow down images by filename
+1. **Deploy the edge function** — this is the primary fix; the code already exists but needs deployment
+2. **Add Misty to DEFAULT_INSTRUCTORS** — need to confirm which classes she teaches to add the mapping
+3. **Trigger a sync** after deployment to clean up stale March 10 rows
 
-### 2. No database changes needed
-
-The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
-
-### 3. Workflow improvement
-
-The dialog flow becomes:
-1. Admin clicks "Generate" on a blog post row
-2. Dialog opens showing a grid of available images from the bucket
-3. Admin picks a wide landscape photo (or pastes a URL)
-4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
-5. Result is stored in `og-images` bucket and mapped via `page_og_images`
-6. The blog post's hero image and thumbnail remain unchanged
-
-## Files Affected
-
-- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
+### Question needed
+Which classes does Misty teach? (e.g., "Foundation Flow", specific days/times?) This determines whether we need a default mapping or if PunchPass already lists her name.
 
