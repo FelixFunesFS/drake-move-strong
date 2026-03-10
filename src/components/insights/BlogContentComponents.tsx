@@ -901,7 +901,7 @@ export const NoPainNoGainContent = () => {
         <div className="bg-gradient-to-r from-primary to-teal-700 text-white rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-xl font-bold text-center md:text-left">Curious how this works in practice? Try 3 free classes.</p>
           <Link 
-            to="/reset-week-charleston"
+            to="/try-free-charleston"
             className="inline-flex items-center gap-2 px-8 py-4 bg-drake-gold text-foreground font-bold rounded-lg hover:bg-yellow-400 transition-all transform hover:-translate-y-1 shadow-lg uppercase tracking-wide whitespace-nowrap"
           >
             See How We Train Differently
