@@ -1184,7 +1184,7 @@ export const BreathingControlsMovementContent = () => {
       <div className="bg-drake-gold/10 border-l-4 border-drake-gold p-8 rounded-r-2xl">
         <h3 className="font-hero text-xl font-bold text-foreground mb-4 uppercase">How We Teach It</h3>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          In Reset Week, we spend time on breathing before any loaded exercise. This might feel basic, but it's foundational. Members consistently report that breathing work alone reduces back pain and improves their ability to move.
+          In the Intro Experience, we spend time on breathing before any loaded exercise. This might feel basic, but it's foundational. Members consistently report that breathing work alone reduces back pain and improves their ability to move.
         </p>
       </div>
     </>
