@@ -130,6 +130,9 @@ export default function ResetWeekCharleston() {
                   </div>
                   <h3 className="font-bold text-xl mt-4 mb-1">{item.title}</h3>
                   <p className="text-muted-foreground text-base">{item.desc}</p>
+                  {item.hasScheduleLink && (
+                    <Link to="/schedule" className="text-accent underline text-sm mt-1 inline-block hover:text-accent/80 transition-colors">View full schedule</Link>
+                  )}
                 </div>
               ))}
             </div>
