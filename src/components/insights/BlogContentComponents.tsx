@@ -1425,7 +1425,7 @@ export const WhatRealStrengthContent = () => {
 
       <div className="mb-16 space-y-6">
         <p className="text-xl text-muted-foreground leading-relaxed">
-          Strength that only exists in the gym isn't very useful. This is exactly what we teach in <Link to="/reset-week-charleston" className="text-primary font-semibold hover:underline">the 3-Class Intro Experience</Link>.
+          Strength that only exists in the gym isn't very useful. This is exactly what we teach in <Link to="/try-free-charleston" className="text-primary font-semibold hover:underline">the 3-Class Intro Experience</Link>.
         </p>
         <p className="text-xl text-muted-foreground leading-relaxed">
           If you can deadlift 300 pounds but can't pick up a bag of groceries without tweaking your back—that's not real strength. If you can bench press your body weight but your shoulder hurts when you reach overhead—that's not functional capacity.
