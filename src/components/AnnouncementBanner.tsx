@@ -95,7 +95,8 @@ const AnnouncementBanner = ({ onVisibilityChange }: AnnouncementBannerProps) => 
   };
 
   if (isLoading) {
-    return null;
+    // Reserve space during loading to prevent CLS when banner appears
+    return <div className="relative z-50" style={{ minHeight: '48px' }} />;
   }
 
   if (!promotion || isDismissed || !shouldShowOnPage()) {
