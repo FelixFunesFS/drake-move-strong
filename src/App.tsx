@@ -177,6 +177,7 @@ const AppLayout = () => {
             <Route path="/reset" element={<ResetWeekAlt />} />
             <Route path="/reset-week" element={<Navigate to="/reset" replace />} />
             <Route path="/ruckathon" element={<Ruckathon />} />
+            <Route path="/welcome" element={<Welcome />} />
             
             
             {/* Local SEO Service Pages */}

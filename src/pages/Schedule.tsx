@@ -200,9 +200,9 @@ const Schedule = () => {
         <CTASection
           eyebrow="GET STARTED"
           title="Ready to Feel Stronger, Move Better, and Train Smarter?"
-          subtitle="Start with Reset Week — 7 days of unlimited classes for just $50."
-          ctaText="Start Reset Week — $50"
-          ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219"
+          subtitle="Try 3 classes free — experience mobility-first training with no commitment."
+          ctaText="Claim 3 Free Classes"
+          ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034"
           variant="primary"
           slanted={true}
         />
