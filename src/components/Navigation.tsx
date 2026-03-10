@@ -1,9 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import drakeLogo from "@/assets/drake-fitness-logo2.png";
+import { INTRO_URL } from "@/data/pricing";
 
 interface NavigationProps {
   transparent?: boolean;
