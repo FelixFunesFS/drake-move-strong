@@ -270,7 +270,7 @@ export default function StrengthTrainingCharleston() {
                   What Is the <span className="text-primary">3-Class Intro?</span>
                 </h2>
                 <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                  The 3-Class Intro is a low-pressure, beginner-friendly introduction to Drake Fitness. Try 3 classes free over 30 days.
+                  The 3-Class Intro is a low-pressure introduction to Drake Fitness — scaled to your level. Try 3 classes free over 30 days.
                 </p>
 
                 <div className="space-y-5 mb-10">
