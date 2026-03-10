@@ -118,7 +118,7 @@ const Pricing = () => {
                 </CardContent>
                 <CardFooter className="bg-primary/5 border-t border-primary/10 py-4">
                   <p className="text-sm text-muted-foreground text-center w-full">
-                    Love it? Get your first month for $110 (50% off) when you join within 7 days of your 3rd class.
+                    Love it? Get your first month for just $110 when you join within 7 days of your 3rd class.
                   </p>
                 </CardFooter>
               </Card>

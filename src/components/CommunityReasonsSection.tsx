@@ -69,7 +69,7 @@ const CommunityReasonsSection = ({ images }: CommunityReasonsSectionProps) => {
             <ReasonImageCard key={index} reason={reason} index={index} />
           ))}
 
-          {/* Reset Week CTA Card - full width */}
+          {/* 3-Class Intro CTA Card - full width */}
           <AnimatedSection animation="fadeInUp" delay={0.3} className="md:col-span-2 lg:col-span-3">
             <div className="bg-primary rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-5 min-h-[220px]">
               {/* Image */}

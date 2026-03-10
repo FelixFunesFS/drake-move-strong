@@ -417,7 +417,7 @@ const About = () => {
             alt: "Wide view of Drake Fitness training studio interior"
           }, {
             src: studioNickDavidTogether,
-            alt: "David Drake and Nick Poppa coaching team"
+            alt: "David Drake and coaching team at Drake Fitness"
           }, {
             src: studioLargeGroup,
             alt: "Large training group with studio dog inside Drake Fitness"

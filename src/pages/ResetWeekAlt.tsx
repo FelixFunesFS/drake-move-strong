@@ -126,8 +126,8 @@ const ifItFeelsRight = [
     description: "2x, 3x, or Unlimited weekly sessions — pick what fits your schedule."
   },
   {
-    title: "Get 50% Off Your First Month",
-    description: "Join within 7 days of your 3rd class and get your first month for $110 (normally $225)."
+    title: "Get Your First Month for Just $110",
+    description: "Join within 7 days of your 3rd class and get your first month for just $110."
   },
   {
     title: "Move Pain-Free Long Term",

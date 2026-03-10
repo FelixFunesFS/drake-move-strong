@@ -96,7 +96,7 @@ const faqs = [
   },
   {
     question: "How is this different from a regular gym?",
-    answer: "Unlike big-box gyms, every class is coached by an expert (David or Nick). We focus on movement quality over intensity, and you'll never feel lost or ignored. It's personal training in a small group setting.",
+    answer: "Unlike big-box gyms, every class is coached by an expert. We focus on movement quality over intensity, and you'll never feel lost or ignored. It's personal training in a small group setting.",
   },
   {
     question: "Can I cancel if it's not for me?",

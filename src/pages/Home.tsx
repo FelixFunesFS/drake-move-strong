@@ -131,7 +131,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                     <a href={INTRO_URL} target="_blank" rel="noopener noreferrer" className="text-center">Claim Your 3 Free Classes</a>
                   </Button>
                   <p className="text-xs text-muted-foreground mt-3 text-center">
-                    Love it? Get your first month for $110 (50% off) when you join within 7 days of your 3rd class.
+                    Love it? Get your first month for just $110 when you join within 7 days of your 3rd class.
                   </p>
                 </div>
               </AnimatedSection>
