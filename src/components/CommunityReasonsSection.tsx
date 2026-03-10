@@ -85,10 +85,10 @@ const CommunityReasonsSection = ({ images }: CommunityReasonsSectionProps) => {
               <div className="md:col-span-3 p-6 md:p-8 flex flex-col justify-center order-2 md:order-1">
                 <p className="section-eyebrow text-drake-gold mb-1">YOUR FIRST STEP</p>
                 <h3 className="font-hero text-2xl md:text-3xl font-bold text-white uppercase mb-3">
-                  Reset Week — <span className="text-drake-gold">$50</span>
+                  3-Class Intro — <span className="text-drake-gold">Free</span>
                 </h3>
                 <p className="text-gray-200 mb-6 text-base md:text-lg max-w-lg">
-                  7 days of unlimited classes. No commitment. No experience needed. See what mobility-first training feels like.
+                  3 free classes over 30 days. No commitment. No experience needed. See what mobility-first training feels like.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button
