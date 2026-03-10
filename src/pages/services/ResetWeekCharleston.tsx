@@ -7,7 +7,7 @@ import OptimizedImage from "@/components/OptimizedImage";
 import { Check, ArrowRight, User, Dumbbell, Heart } from "lucide-react";
 import { INTRO_URL } from "@/data/pricing";
 
-import heroKettlebellTraining from "@/assets/hero-kettlebell-training.jpg";
+import heroGroupClass from "@/assets/studio-group-goblet-squats.jpg";
 import groupKettlebellTraining from "@/assets/group-kettlebell-training.jpg";
 import davidCoachingForm from "@/assets/david-coaching-form.jpg";
 
@@ -74,8 +74,8 @@ export default function ResetWeekCharleston() {
       <section className="relative min-h-[80vh] flex items-center">
         <div className="absolute inset-0">
           <OptimizedImage
-            src={heroKettlebellTraining}
-            alt="Person training at Drake Fitness in Charleston"
+            src={heroGroupClass}
+            alt="Group strength training class at Drake Fitness in Charleston"
             className="w-full h-full"
             priority
             transparent
