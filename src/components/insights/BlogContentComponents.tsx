@@ -190,7 +190,7 @@ export const WhyTraditionalWorkoutsContent = () => {
           </div>
           
           <p className="text-muted-foreground leading-relaxed mb-6">
-            Sarah discovered our <Link to="/reset-week-charleston" className="text-primary font-semibold hover:underline">Reset Week program</Link> through a neighbor's recommendation—and it changed how she approached training entirely.
+            Sarah discovered our <Link to="/reset-week-charleston" className="text-primary font-semibold hover:underline">3-Class Intro Experience</Link> through a neighbor's recommendation—and it changed how she approached training entirely.
           </p>
           
           <div className="space-y-6">
