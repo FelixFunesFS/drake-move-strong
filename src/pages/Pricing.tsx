@@ -487,15 +487,15 @@ const Pricing = () => {
         {/* REASSURANCE BLOCK */}
         <section className="py-12 md:py-16 bg-muted">
           <div className="container mx-auto px-4 text-center">
-            <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Not sure which option fits you? Try 7 days of unlimited classes for $50 — we'll help you decide which membership is right for your goals after your first week.
-            </p>
-            <Button asChild variant="outline" size="lg">
-              <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent">
-                Start Reset Week
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            </Button>
+             <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+               Not sure which option fits you? Try 3 classes free — we'll help you decide which membership is right for your goals.
+             </p>
+             <Button asChild variant="outline" size="lg">
+               <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent">
+                 Claim 3 Free Classes
+                 <ExternalLink className="h-4 w-4" />
+               </a>
+             </Button>
           </div>
         </section>
 
