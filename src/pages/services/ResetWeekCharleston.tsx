@@ -51,8 +51,7 @@ const whoItsFor = [
   "Restarting after time off",
   "Over 30 and need smarter training",
   "Tired of being sore for days",
-  "Not sure where to start",
-  "Want coaching, not a gym membership"
+  "Looking for guidance, not a generic workout app"
 ];
 
 const whatsIncluded = [
