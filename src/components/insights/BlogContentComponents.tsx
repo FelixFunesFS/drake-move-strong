@@ -1273,7 +1273,7 @@ export const WhatMakesDrakeDifferentContent = () => {
           We're not the cheapest option. We're not trying to be. Our pricing reflects the coaching quality, class sizes, and programming that produce real, lasting results.
         </p>
         <p className="text-drake-gold font-bold text-lg">
-          See the difference for yourself. Reset Week is your risk-free introduction.
+          See the difference for yourself. The 3-Class Intro is your risk-free introduction — completely free.
         </p>
       </div>
     </>
