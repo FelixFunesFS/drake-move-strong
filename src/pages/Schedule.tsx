@@ -92,7 +92,7 @@ const Schedule = () => {
                   </p>
                 </div>
                 <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark shrink-0 whitespace-nowrap">
-                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">Start Reset Week — $50</a>
+                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer">Try 3 Classes Free</a>
                 </Button>
               </div>
             </AnimatedSection>
