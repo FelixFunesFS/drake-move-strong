@@ -163,7 +163,7 @@ ${faqSection}
 - Available classes: KB Strong — Mon/Wed/Fri at 8am & 11am, Thu at 6pm
 - When someone asks "how do I get started?", "I'm new", "first time", "what should I try", or seems interested in trying: ALWAYS mention the free 3-Class Intro first!
 - This is THE recommended way to start at Drake Fitness — completely free
-- After their 3rd class, they can get 50% off their first month ($110 instead of $225) if they join within 7 days
+- After their 3rd class, they can get 50% off their first month ($110 instead of $225) if they join within 7 days of their 3rd class
 - After mentioning the Intro Experience, you can also mention they can book a 1:1 coaching consultation if they're interested in personalized training
 
 BOOKING & SCHEDULING:
