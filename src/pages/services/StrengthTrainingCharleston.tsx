@@ -167,7 +167,7 @@ export default function StrengthTrainingCharleston() {
 
                 <div className="bg-primary text-primary-foreground p-5 md:p-8 rounded-2xl">
                   <h3 className="font-hero text-xl md:text-2xl font-bold mb-3 uppercase">This Program Was Built for You</h3>
-                  <p className="text-primary-foreground/80 leading-relaxed text-sm md:text-base">Most of our members come to us after years of pushing through workouts that stopped helping. Reset Week exists to change that — safely and intentionally.</p>
+                  <p className="text-primary-foreground/80 leading-relaxed text-sm md:text-base">Most of our members come to us after years of pushing through workouts that stopped helping. Our 3-Class Intro exists to change that — safely and intentionally.</p>
                 </div>
               </div>
             </AnimatedSection>
