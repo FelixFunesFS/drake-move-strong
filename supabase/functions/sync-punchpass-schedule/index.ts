@@ -481,6 +481,22 @@ Deno.serve(async (req) => {
       }
     }
 
+    // Cleanup 2: Remove rows for dates before the earliest scraped date
+    // (catches "today" rows when PunchPass no longer shows today's classes)
+    if (uniqueDates.length > 0) {
+      const earliestScrapedDate = uniqueDates.sort()[0];
+      const { error: staleError } = await supabaseAdmin
+        .from('punchpass_schedule')
+        .delete()
+        .lt('class_date', earliestScrapedDate);
+
+      if (staleError) {
+        console.warn('Stale date cleanup error:', staleError);
+      } else {
+        console.log(`Stale date cleanup: removed rows before ${earliestScrapedDate}`);
+      }
+    }
+
     return new Response(
       JSON.stringify({
         success: true,
