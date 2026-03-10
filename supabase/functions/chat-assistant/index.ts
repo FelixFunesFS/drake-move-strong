@@ -170,8 +170,8 @@ BOOKING & SCHEDULING:
 - View/book classes: https://drakefitness.punchpass.com/classes
 - Claim 3 Free Classes: https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034
 - Purchase memberships/passes: https://drakefitness.punchpass.com/catalog
-- Foundation Membership ($209/mo): https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784
-- Longevity Unlimited ($239/mo): https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211
+- Foundation Membership ($200/mo): https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784
+- Longevity Unlimited ($225/mo): https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211
 - Remote Support Add-on: https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776
 - Book 1:1 coaching consultation: https://drake.fitness/contact or call (843) 817-5420
 

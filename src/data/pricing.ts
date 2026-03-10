@@ -29,7 +29,7 @@ export const PRICING = {
     description: "8 classes per month, perfect for getting started or flexible schedules"
   },
   unlimited: {
-    price: 239,
+    price: 225,
     frequency: "month",
     classes: "Unlimited",
     label: "Longevity Unlimited",
