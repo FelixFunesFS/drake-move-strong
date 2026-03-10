@@ -508,7 +508,7 @@ export default function StrengthTrainingCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center mb-12 max-w-4xl mx-auto">
               <span className="text-accent font-bold uppercase tracking-wider text-sm mb-2 block">READY TO GET STARTED?</span>
-              <h2 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">Start Your Reset Week Today</h2>
+              <h2 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">Try 3 Classes Free Today</h2>
               <p className="text-xl text-primary-foreground/80 mb-10">Spots are limited to keep coaching quality high. Join Charleston's premier mobility and strength studio.</p>
             </div>
           </AnimatedSection>
