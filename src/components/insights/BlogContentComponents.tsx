@@ -1176,7 +1176,7 @@ export const BreathingControlsMovementContent = () => {
       {/* Earlier Reset Week Link */}
       <div className="bg-drake-gold/10 border-l-4 border-drake-gold p-6 rounded-r-xl mb-16">
         <p className="text-lg text-foreground leading-relaxed">
-          <strong>This is why the Intro Experience starts with breathing.</strong> Before we add any load or intensity, we ensure your breathing mechanics create the foundation for safe movement. <Link to="/reset-week-charleston" className="text-primary font-bold hover:underline">Learn more about the 3-Class Intro →</Link>
+          <strong>This is why the Intro Experience starts with breathing.</strong> Before we add any load or intensity, we ensure your breathing mechanics create the foundation for safe movement. <Link to="/try-free-charleston" className="text-primary font-bold hover:underline">Learn more about the 3-Class Intro →</Link>
         </p>
       </div>
 
