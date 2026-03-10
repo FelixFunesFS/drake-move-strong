@@ -19,7 +19,7 @@ export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HealthClub",
   "name": "Drake Fitness",
-  "image": "https://drake.fitness/og-image.jpg",
+  "image": "https://drake.fitness/og-image.png",
   "url": "https://drake.fitness",
   "telephone": "(843) 817-5420",
   "email": "david@drake.fitness",
