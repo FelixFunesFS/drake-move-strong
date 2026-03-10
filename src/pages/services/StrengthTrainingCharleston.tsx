@@ -173,7 +173,7 @@ export default function StrengthTrainingCharleston() {
             </AnimatedSection>
 
             <AnimatedSection animation="fadeInUp" delay={0.1}>
-              <div className="relative">
+              <div className="relative overflow-visible">
                 <div className="h-[350px] sm:h-[450px] md:h-[550px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl">
                   <OptimizedImage
                     src={groupKettlebellTraining}
