@@ -1591,12 +1591,12 @@ export const WhatRealStrengthContent = () => {
         </div>
       </div>
 
-      {/* Section 5: The Reset Week Philosophy */}
+      {/* Section 5: The Intro Experience Philosophy */}
       <div className="mb-16">
-        <h2 className="font-hero text-4xl font-bold text-foreground mb-8 uppercase">The Reset Week Philosophy</h2>
+        <h2 className="font-hero text-4xl font-bold text-foreground mb-8 uppercase">The Intro Experience Philosophy</h2>
         
         <p className="text-xl text-muted-foreground leading-relaxed mb-6">
-          This is why Reset Week exists.
+          This is why the 3-Class Intro exists.
         </p>
 
         <p className="text-xl text-muted-foreground leading-relaxed mb-12">
