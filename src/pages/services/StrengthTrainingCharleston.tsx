@@ -266,10 +266,10 @@ export default function StrengthTrainingCharleston() {
               <div>
                 <span className="section-eyebrow text-primary">THE OFFER</span>
                 <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase leading-tight">
-                  What Is <span className="text-primary">Reset Week?</span>
+                  What Is the <span className="text-primary">3-Class Intro?</span>
                 </h2>
                 <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                  Reset Week is a low-pressure, beginner-friendly introduction to Drake Fitness.
+                  The 3-Class Intro is a low-pressure, beginner-friendly introduction to Drake Fitness. Try 3 classes free over 30 days.
                 </p>
 
                 <div className="space-y-5 mb-10">
