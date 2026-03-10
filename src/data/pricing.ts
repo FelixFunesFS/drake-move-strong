@@ -22,7 +22,7 @@ export const PRICING = {
   
   // Monthly Memberships
   foundation: {
-    price: 209,
+    price: 200,
     frequency: "month",
     classes: "8 classes/month",
     label: "Foundation Membership",
