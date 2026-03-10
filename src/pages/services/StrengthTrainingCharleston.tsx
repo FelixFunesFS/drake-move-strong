@@ -173,7 +173,7 @@ export default function StrengthTrainingCharleston() {
             </AnimatedSection>
 
             <AnimatedSection animation="fadeInUp" delay={0.1}>
-              <div className="relative">
+              <div className="relative overflow-visible">
                 <div className="h-[350px] sm:h-[450px] md:h-[550px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl">
                   <OptimizedImage
                     src={groupKettlebellTraining}
@@ -239,7 +239,7 @@ export default function StrengthTrainingCharleston() {
             <div className="bg-primary text-primary-foreground p-12 rounded-3xl max-w-4xl mx-auto text-center">
               <h3 className="font-hero text-3xl font-bold mb-4 uppercase">When These Foundations Are Missing...</h3>
               <p className="text-xl text-primary-foreground/80 mb-6">Progress slows and pain shows up — especially after 30 or 40.</p>
-              <p className="text-2xl font-bold text-accent">Reset Week rebuilds those basics so strength training actually works again.</p>
+              <p className="text-2xl font-bold text-accent">The 3-Class Intro rebuilds those basics so strength training actually works again.</p>
             </div>
           </AnimatedSection>
         </div>
@@ -266,10 +266,10 @@ export default function StrengthTrainingCharleston() {
               <div>
                 <span className="section-eyebrow text-primary">THE OFFER</span>
                 <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase leading-tight">
-                  What Is <span className="text-primary">Reset Week?</span>
+                  What Is the <span className="text-primary">3-Class Intro?</span>
                 </h2>
                 <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                  Reset Week is a low-pressure, beginner-friendly introduction to Drake Fitness.
+                  The 3-Class Intro is a low-pressure, beginner-friendly introduction to Drake Fitness. Try 3 classes free over 30 days.
                 </p>
 
                 <div className="space-y-5 mb-10">
@@ -410,7 +410,7 @@ export default function StrengthTrainingCharleston() {
                 <div className="flex text-accent text-xl mb-6">
                   {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
                 </div>
-                <p className="text-muted-foreground text-lg italic mb-6 leading-relaxed">"Reset Week changed how my body feels."</p>
+                <p className="text-muted-foreground text-lg italic mb-6 leading-relaxed">"The 3-Class Intro changed how my body feels."</p>
                 <p className="font-semibold">— Jennifer L., Mount Pleasant</p>
               </div>
             </div>

@@ -43,9 +43,13 @@ const STATIC_PAGES: Record<string, { title: string; description: string; image?:
     title: 'FAQ | Drake Fitness Charleston',
     description: 'Frequently asked questions about Drake Fitness memberships, classes, and training programs.',
   },
-  '/reset-week-charleston': {
-    title: 'Free Reset Week Trial | Drake Fitness Charleston',
-    description: 'Try Drake Fitness free for a week. No pressure, no contracts. Experience our strength and mobility classes in West Ashley.',
+  '/try-free-charleston': {
+    title: '3-Class Intro Experience — Try Strength Training Free | Charleston, SC',
+    description: 'Try 3 free classes at Drake Fitness in Charleston over 30 days. No pressure, no contracts. A smarter way to start strength training.',
+  },
+  '/intro': {
+    title: '3-Class Intro Experience | Drake Fitness Charleston',
+    description: 'Try Drake Fitness free with 3 classes over 30 days. No pressure, no contracts. Experience our strength and mobility classes in West Ashley.',
   },
   '/success-stories': {
     title: 'Success Stories | Drake Fitness Charleston',

@@ -79,7 +79,7 @@ export default function ResetWeekCharleston() {
       <SEO
         title="3-Class Intro Experience — Try Strength Training Free | Charleston, SC"
         description="Most people don't need more workouts — they need a better starting point. Try 3 free classes at Drake Fitness in Charleston. KB Strong: Mon/Wed/Fri 8am & 11am, Thu 6pm."
-        canonical="https://drake.fitness/reset-week-charleston"
+        canonical="https://drake.fitness/try-free-charleston"
       />
       <StructuredData data={serviceSchema} />
 
@@ -244,7 +244,7 @@ export default function ResetWeekCharleston() {
             </AnimatedSection>
 
             <AnimatedSection animation="fadeInUp" delay={0.1}>
-              <div className="relative">
+              <div className="relative overflow-visible">
                 <div className="h-[350px] sm:h-[450px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
                   <OptimizedImage
                     src={groupKettlebellTraining}
