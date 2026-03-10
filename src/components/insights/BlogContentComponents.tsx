@@ -307,7 +307,7 @@ export const WhyTraditionalWorkoutsContent = () => {
             You don't need more intensity. You need better movement, proper breathing, and progressive loading that respects where your body is right now.
           </p>
           <p className="text-xl leading-relaxed font-bold text-drake-gold">
-            Ready to see how this works? <Link to="/reset-week-charleston" className="underline hover:text-white">The 3-Class Intro Experience</Link> is where most Charleston members start — and it's free.
+            Ready to see how this works? <Link to="/try-free-charleston" className="underline hover:text-white">The 3-Class Intro Experience</Link> is where most Charleston members start — and it's free.
           </p>
         </div>
 
