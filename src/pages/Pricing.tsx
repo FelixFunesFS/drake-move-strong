@@ -21,7 +21,7 @@ const Pricing = () => {
     answer: "Yes. We are a mobility-first studio that focuses on safe, joint-friendly training that builds strength without aggravating existing issues."
   }, {
     question: "How big are the classes?",
-    answer: "We keep classes small to ensure everyone gets attention, coaching cues, and form correction from David or Nick. Typical class size is 6-12 people."
+    answer: "We keep classes small to ensure everyone gets attention, coaching cues, and form correction from David and our coaching team. Typical class size is 6-12 people."
   }, {
     question: "What if I have an injury?",
     answer: "We modify movements for every individual. Our priority is keeping you safe while progressively building strength around your limitations. Every session can be adapted to your needs."
