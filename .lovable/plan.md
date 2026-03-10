@@ -1,46 +1,41 @@
 
 
-# Plan: Separate OG Source Image Selection for Blog Posts
+# "How It Works" Steps — UX & Responsiveness Review
 
-## The Problem
+## Current Issues
 
-Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
+1. **Inconsistent alignment**: On mobile, steps use `flex items-start` with `text-center` — the number circle sits top-left but text is centered, creating visual tension.
+2. **On desktop (md+)**, steps switch to `flex-col items-center` which centers everything — but the transition between layouts feels abrupt.
+3. **No visual connector**: Three disconnected blocks. No line, arrow, or visual cue links step 1 → 2 → 3. The "process" feeling is lost.
+4. **Step numbers are small**: 12x12 (48px) circles with text-xl numbers. On a landing page, these should command more attention — they're the visual anchor.
+5. **Description font too small**: `text-sm` on descriptions makes them hard to scan, especially on tablet where the 3-column grid gives each card ~280px width.
+6. **No section heading**: The steps appear without context. A brief "How It Works" label above grounds the visitor.
 
-## The Right Approach
+## Recommendation
 
-Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
+Redesign as a **horizontal stepper** on desktop and a **vertical timeline** on mobile. Center-aligned throughout, with a connecting line between step circles.
 
-1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
+**Desktop (md+):** 3 columns, each centered. A thin horizontal line connects the circles behind them.
 
-2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
+**Mobile:** Vertical stack, each step left-aligned with circle + content, a vertical line connecting them.
 
-## Changes
+**Typography fixes:**
+- Step circles: `w-14 h-14` with `text-2xl` numbers
+- Titles: `text-lg md:text-xl font-bold`
+- Descriptions: `text-sm md:text-base` (bump from `text-sm`)
+- Add eyebrow: "HOW IT WORKS" above in `text-xs uppercase tracking-wider`
 
-### 1. Add an image picker to the Generate dialog
-**File**: `src/pages/admin/OGImages.tsx`
+## Changes — `src/pages/services/ResetWeekCharleston.tsx`
 
-- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
-- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
-- Show thumbnails in a scrollable grid; clicking one fills the source URL field
-- Keep the manual URL input as a fallback
-- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
-- Add a filter/search to narrow down images by filename
+### Lines 112-133 — Replace the "How It Works" section
 
-### 2. No database changes needed
+1. **Add eyebrow heading** "HOW IT WORKS" centered above the steps
+2. **Desktop layout (md+):** Keep `grid-cols-3` but center all content within each cell. Add a pseudo-element horizontal connector line behind the circles using a relative container with a centered `border-t` spanning between circles.
+3. **Mobile layout:** Stack vertically with `flex-col` per step, all center-aligned for consistency. Use `gap-8` for breathing room.
+4. **Increase circle size:** `w-14 h-14` with `text-2xl font-bold`
+5. **Bump description text:** `text-sm md:text-base`
+6. **Center everything consistently:** Remove the mixed `text-center md:text-left md:flex-col md:items-center` — use `text-center items-center flex-col` at all breakpoints for clean vertical stacking within each step.
+7. **Add connecting line on desktop:** A `hidden md:block absolute` border element spanning between circles, positioned behind them with `z-0` (circles get `z-10 relative`).
 
-The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
-
-### 3. Workflow improvement
-
-The dialog flow becomes:
-1. Admin clicks "Generate" on a blog post row
-2. Dialog opens showing a grid of available images from the bucket
-3. Admin picks a wide landscape photo (or pastes a URL)
-4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
-5. Result is stored in `og-images` bucket and mapped via `page_og_images`
-6. The blog post's hero image and thumbnail remain unchanged
-
-## Files Affected
-
-- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
+One file, one section replaced. No structural or routing changes.
 
