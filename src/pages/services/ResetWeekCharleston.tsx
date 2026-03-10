@@ -110,24 +110,54 @@ export default function ResetWeekCharleston() {
       </section>
 
       {/* How It Works Steps */}
-      <section className="py-12 bg-muted border-b border-border">
+      <section className="py-12 md:py-16 bg-muted border-b border-border">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {[
-              { step: "1", title: "Claim Your Free Pass", desc: "Sign up in 30 seconds — no card required" },
-              { step: "2", title: "Pick Your Class", desc: "KB Strong: Mon/Wed/Fri 8am & 11am, Thu 6pm" },
-              { step: "3", title: "Show Up", desc: "We handle the rest — coaching, form, and encouragement" }
-            ].map((item) => (
-              <div key={item.step} className="flex items-start gap-4 text-center md:text-left md:flex-col md:items-center">
-                <div className="flex-shrink-0 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-xl">
-                  {item.step}
+          <p className="text-center text-xs uppercase tracking-widest text-muted-foreground font-bold mb-8">How It Works</p>
+
+          {/* Desktop: horizontal stepper with connector line */}
+          <div className="hidden md:block max-w-4xl mx-auto">
+            <div className="relative grid grid-cols-3 gap-6">
+              {/* Connector line behind circles */}
+              <div className="absolute top-7 left-[16.67%] right-[16.67%] h-px bg-border z-0" />
+
+              {[
+                { step: "1", title: "Claim Your Free Pass", desc: "Sign up in 30 seconds — no card required" },
+                { step: "2", title: "Pick Your Class", desc: "KB Strong: Mon/Wed/Fri 8am & 11am, Thu 6pm" },
+                { step: "3", title: "Show Up", desc: "We handle the rest — coaching, form, and encouragement" }
+              ].map((item) => (
+                <div key={item.step} className="flex flex-col items-center text-center">
+                  <div className="relative z-10 w-14 h-14 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-2xl shadow-lg">
+                    {item.step}
+                  </div>
+                  <h3 className="font-bold text-xl mt-4 mb-1">{item.title}</h3>
+                  <p className="text-muted-foreground text-base">{item.desc}</p>
                 </div>
-                <div>
-                  <h3 className="font-bold text-lg mb-1">{item.title}</h3>
-                  <p className="text-muted-foreground text-sm">{item.desc}</p>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile: vertical timeline */}
+          <div className="md:hidden max-w-sm mx-auto">
+            <div className="relative flex flex-col gap-8">
+              {/* Vertical connector line */}
+              <div className="absolute left-7 top-14 bottom-14 w-px bg-border z-0" />
+
+              {[
+                { step: "1", title: "Claim Your Free Pass", desc: "Sign up in 30 seconds — no card required" },
+                { step: "2", title: "Pick Your Class", desc: "KB Strong: Mon/Wed/Fri 8am & 11am, Thu 6pm" },
+                { step: "3", title: "Show Up", desc: "We handle the rest — coaching, form, and encouragement" }
+              ].map((item) => (
+                <div key={item.step} className="flex items-start gap-4">
+                  <div className="relative z-10 flex-shrink-0 w-14 h-14 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-2xl shadow-lg">
+                    {item.step}
+                  </div>
+                  <div className="pt-2">
+                    <h3 className="font-bold text-lg mb-1">{item.title}</h3>
+                    <p className="text-muted-foreground text-base">{item.desc}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
