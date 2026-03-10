@@ -80,7 +80,7 @@ const FAQ = () => {
         },
         {
           q: "How much does 1:1 coaching cost?",
-          a: "Contact us for current 1:1 coaching rates. We offer single sessions and discounted packages. VIP Unlimited members get one monthly 1:1 session included.",
+          a: "Contact us for current 1:1 coaching rates. We offer single sessions and discounted packages.",
         },
         {
           q: "Can I do both group classes and 1:1 coaching?",
