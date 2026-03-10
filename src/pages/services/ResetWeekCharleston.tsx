@@ -176,38 +176,28 @@ export default function ResetWeekCharleston() {
         </div>
       </section>
 
-      {/* Perfect For Section */}
+      {/* Who It's For Section */}
       <section className="py-12 md:py-16 lg:py-20 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
-            <div className="text-center mb-10 md:mb-16">
-              <span className="text-accent font-bold uppercase tracking-wider text-sm mb-2 block">WHO IT'S PERFECT FOR</span>
-              <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 uppercase">
-                The Intro Experience Is Designed For You If...
+            <div className="max-w-3xl mx-auto text-center mb-8 md:mb-10">
+              <span className="text-accent font-bold uppercase tracking-wider text-sm mb-2 block">WHO IT'S FOR</span>
+              <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8 uppercase">
+                This Is For You If...
               </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 text-left max-w-2xl mx-auto">
+                {whoItsFor.map((item, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <Check className="text-accent h-5 w-5 flex-shrink-0" />
+                    <p className="text-primary-foreground/90 text-base md:text-lg">{item}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </AnimatedSection>
 
           <AnimatedSection animation="fadeInUp" delay={0.1}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-6xl mx-auto">
-              {perfectFor.map((item, index) => (
-                <div key={index} className="bg-primary-foreground/5 backdrop-blur-sm p-5 md:p-8 rounded-xl border border-primary-foreground/10 hover:border-accent/50 transition-all">
-                  <div className="flex items-start gap-3 md:gap-4">
-                    <div className="flex-shrink-0 w-9 h-9 md:w-10 md:h-10 bg-accent rounded-lg flex items-center justify-center">
-                      <item.icon className="text-accent-foreground h-4 w-4 md:h-5 md:w-5" />
-                    </div>
-                    <div>
-                      <h3 className="font-hero text-lg md:text-xl font-bold mb-1 md:mb-2 uppercase">{item.title}</h3>
-                      <p className="text-primary-foreground/80 text-sm md:text-base">{item.description}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection animation="fadeInUp" delay={0.2}>
-            <div className="mt-10 md:mt-16 text-center">
+            <div className="text-center">
               <div className="bg-accent/20 border-2 border-accent p-5 md:p-8 rounded-2xl max-w-2xl mx-auto">
                 <p className="text-base md:text-xl font-semibold mb-2 break-words leading-relaxed">
                   "I have had 3 lower back surgeries - was in constant pain... David and his team helped me get back to working out consistently and build strength. I am forever grateful for this place - it truly changed my life!"
