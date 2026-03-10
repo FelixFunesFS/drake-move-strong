@@ -25,7 +25,7 @@ const STATIC_PAGES: Record<string, { title: string; description: string; image?:
   },
   '/pricing': {
     title: 'Membership & Pricing | Drake Fitness Charleston',
-    description: 'Flexible membership options for group classes and personal training. No long-term contracts. Start with a free Reset Week trial.',
+    description: 'Flexible membership options for group classes and personal training. No long-term contracts. Try 3 classes free.',
   },
   '/about': {
     title: 'About Drake Fitness | Our Story & Coaches',
