@@ -6,6 +6,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
 import { GoogleMapEmbed } from "@/components/GoogleMapEmbed";
 import { Check, MapPin, ArrowRight, Activity, Users, Volume2, Star, Navigation, Clock, Car } from "lucide-react";
+import { INTRO_URL } from "@/data/pricing";
 
 import studioFloorExercise from "@/assets/studio-floor-exercise.jpg";
 import coachMistyLister from "@/assets/coach-misty-lister.png";
