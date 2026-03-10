@@ -232,7 +232,7 @@ const ResetWeekAlt = () => {
               </Button>
               <div className="flex flex-col text-sm text-gray-300 mt-2 sm:mt-0 sm:ml-4">
                 <span className="font-semibold text-white">3 Classes, Completely Free</span>
-                <span>KB Strong — Mon/Wed/Fri 8am & 11am, Thu 6pm</span>
+                <span>Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Thu 6pm</span>
               </div>
             </motion.div>
           </div>

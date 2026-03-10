@@ -104,8 +104,8 @@ const Schedule = () => {
                 name: "Functional Strength™",
                 description: "Our core program for sustainable strength and better movement."
               }, {
-                name: "KB Strong™",
-                description: "Advanced strength & kettlebell training."
+                name: "KB Strong™ — Strength & Mobility",
+                description: "Our core kettlebell strength program."
               }, {
                 name: "Mobility Reset™",
                 description: "Recovery-based mobility and flexibility work."

@@ -11,7 +11,7 @@ export const PRICING = {
     classes: 3,
     label: "3-Class Intro Experience",
     description: "3 free classes over 30 days",
-    schedule: "KB Strong — Mon/Wed/Fri 8am & 11am, Thu 6pm",
+    schedule: "KB Strong — Strength & Mobility: Mon/Wed/Fri 8am & 11am, Thu 6pm",
     upsell: {
       price: 110,
       originalPrice: 225,

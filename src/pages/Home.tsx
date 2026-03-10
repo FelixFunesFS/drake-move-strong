@@ -97,7 +97,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                   <div className="space-y-2">
                     {[
                       { step: "1", text: "Claim your free pass below" },
-                      { step: "2", text: "Pick a KB Strong class — Mon/Wed/Fri 8am or 11am, Thu 6pm" },
+                      { step: "2", text: "Pick a Strength & Mobility class (KB Strong) — Mon/Wed/Fri 8am or 11am, Thu 6pm" },
                       { step: "3", text: "Show up — we handle the rest" },
                     ].map((item, i) => (
                       <div key={i} className="flex items-center gap-3">

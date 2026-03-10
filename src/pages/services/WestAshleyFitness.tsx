@@ -51,7 +51,7 @@ export default function WestAshleyFitness() {
     <>
       <SEO
         title="Strength & Mobility Training in West Ashley | Avondale | Drake Fitness"
-        description="Located in Avondale, West Ashley — try 3 free classes at Drake Fitness. Safe, coach-led strength & mobility training for adults. KB Strong: Mon/Wed/Fri 8am & 11am, Thu 6pm."
+        description="Located in Avondale, West Ashley — try 3 free classes at Drake Fitness. Safe, coach-led strength & mobility training for adults. Strength & Mobility classes (KB Strong): Mon/Wed/Fri 8am & 11am, Thu 6pm."
         canonical="https://drake.fitness/west-ashley-fitness" />
       
       <StructuredData data={serviceSchema} />
