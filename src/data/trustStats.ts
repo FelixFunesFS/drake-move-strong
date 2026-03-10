@@ -11,7 +11,7 @@ export const TRUST_STATS = {
   
   // Google Reviews
   googleRating: 5.0,
-  googleReviewCount: 31,
+  googleReviewCount: 40,
   googleReviewUrl: 'https://maps.app.goo.gl/opeP6dqsbidbY9GZ6',
   
   // Operational
