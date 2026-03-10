@@ -183,7 +183,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <AnimatedSection animation="fadeInUp" delay={0.1}>
               <div className="bg-gray-50 p-6 rounded-xl shadow-card hover:shadow-xl transition-shadow">
-                <div className="h-96 mb-4 overflow-hidden rounded-lg">
+                <div className="h-80 md:h-[422px] mb-4 overflow-hidden rounded-lg">
                   <OptimizedImage src={davidCoach} alt="David Drake coaching kettlebell technique" className="w-full h-full" aspectRatio="auto" />
                 </div>
                 <h3 className="font-hero text-2xl font-bold mb-2 uppercase">David Drake</h3>
