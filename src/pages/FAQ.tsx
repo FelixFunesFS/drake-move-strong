@@ -13,7 +13,7 @@ const FAQ = () => {
       questions: [
         {
           q: "Do I need experience to join?",
-          a: "No. Our Foundation Flow classes are specifically designed for beginners. We meet you where you are, regardless of your starting point. Everyone begins somewhere, and our coaches are experts at working with people of all fitness levels.",
+          a: "No experience needed. KB Strong classes are coached and scaled to every level — beginners get guided instruction, experienced athletes get challenged. We meet you where you are, regardless of your starting point.",
         },
         {
           q: "How do I get started?",
