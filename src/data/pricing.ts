@@ -22,14 +22,14 @@ export const PRICING = {
   
   // Monthly Memberships
   foundation: {
-    price: 209,
+    price: 200,
     frequency: "month",
     classes: "8 classes/month",
     label: "Foundation Membership",
     description: "8 classes per month, perfect for getting started or flexible schedules"
   },
   unlimited: {
-    price: 239,
+    price: 225,
     frequency: "month",
     classes: "Unlimited",
     label: "Longevity Unlimited",

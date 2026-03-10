@@ -1,31 +1,46 @@
 
 
-## Pricing Update Plan
+# Plan: Separate OG Source Image Selection for Blog Posts
 
-### Summary of all locations with pricing references
+## The Problem
 
-| File | What needs changing |
-|------|-------------------|
-| `src/data/pricing.ts` | Foundation 209→200, Unlimited 239→225 |
-| `src/pages/Pricing.tsx` | Hardcoded $209→$200, $239→$225, SEO meta description, **hide Foundation Plus card** |
-| `src/pages/FAQ.tsx` | Hardcoded "$209" and "$239" in FAQ answer |
-| `supabase/functions/chat-assistant/index.ts` | Hardcoded "$209/mo" and "$239/mo" in AI prompt |
-| `src/pages/Home.tsx` | Uses `INTRO_URL` from pricing.ts — no hardcoded prices, but upsell text says "$110 (50% off)" |
-| `src/pages/Welcome.tsx` | Upsell text: "$110 (50% off $225)" |
-| `src/pages/ResetWeekAlt.tsx` | "$110 (normally $225)" |
-| `src/pages/services/ResetWeekCharleston.tsx` | "$110 instead of $225" |
+Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
 
-### Upsell question
-The upsell currently says **$110 = 50% off $225**. With Unlimited now at $225, that math checks out. With Foundation now at $200, 50% off would be $100. The upsell references "first month" without specifying which plan — is **$110** still the correct upsell price, or should it change?
+## The Right Approach
 
-### Changes
+Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
 
-1. **`src/data/pricing.ts`** — Update Foundation to 200, Unlimited to 225
-2. **`src/pages/Pricing.tsx`** — Update hardcoded prices, update SEO description, wrap Foundation Plus card in a conditional that hides it (commented out or `false &&` so it's easy to restore)
-3. **`src/pages/FAQ.tsx`** — Update price references
-4. **`supabase/functions/chat-assistant/index.ts`** — Update AI assistant pricing knowledge
-5. **All upsell references** — Confirm or adjust the $110 figure across Home, Welcome, ResetWeekAlt, ResetWeekCharleston, and Pricing pages
+1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
 
-### Best approach going forward
-The `src/data/pricing.ts` file is already the single source of truth, but several pages hardcode prices instead of importing from it. After this update, I recommend refactoring the remaining hardcoded values to reference `PRICING.foundation.price` and `PRICING.unlimited.price` so future changes only require editing one file.
+2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
+
+## Changes
+
+### 1. Add an image picker to the Generate dialog
+**File**: `src/pages/admin/OGImages.tsx`
+
+- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
+- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
+- Show thumbnails in a scrollable grid; clicking one fills the source URL field
+- Keep the manual URL input as a fallback
+- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
+- Add a filter/search to narrow down images by filename
+
+### 2. No database changes needed
+
+The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
+
+### 3. Workflow improvement
+
+The dialog flow becomes:
+1. Admin clicks "Generate" on a blog post row
+2. Dialog opens showing a grid of available images from the bucket
+3. Admin picks a wide landscape photo (or pastes a URL)
+4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
+5. Result is stored in `og-images` bucket and mapped via `page_og_images`
+6. The blog post's hero image and thumbnail remain unchanged
+
+## Files Affected
+
+- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
 

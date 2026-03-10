@@ -163,15 +163,15 @@ ${faqSection}
 - Available classes: KB Strong — Mon/Wed/Fri at 8am & 11am, Thu at 6pm
 - When someone asks "how do I get started?", "I'm new", "first time", "what should I try", or seems interested in trying: ALWAYS mention the free 3-Class Intro first!
 - This is THE recommended way to start at Drake Fitness — completely free
-- After their 3rd class, they can get 50% off their first month ($110 instead of $225) if they join within 7 days
+- After their 3rd class, they can get 50% off their first month ($110 instead of $225) if they join within 7 days of their 3rd class
 - After mentioning the Intro Experience, you can also mention they can book a 1:1 coaching consultation if they're interested in personalized training
 
 BOOKING & SCHEDULING:
 - View/book classes: https://drakefitness.punchpass.com/classes
 - Claim 3 Free Classes: https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034
 - Purchase memberships/passes: https://drakefitness.punchpass.com/catalog
-- Foundation Membership ($209/mo): https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784
-- Longevity Unlimited ($239/mo): https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211
+- Foundation Membership ($200/mo): https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784
+- Longevity Unlimited ($225/mo): https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211
 - Remote Support Add-on: https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776
 - Book 1:1 coaching consultation: https://drake.fitness/contact or call (843) 817-5420
 

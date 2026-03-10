@@ -33,7 +33,7 @@ const Pricing = () => {
     <>
       <SEO
         title="Gym Membership Charleston | Try Free | Simple Plans 2026"
-        description="Simple, transparent membership options. Try 3 classes free. Foundation $209/mo, Longevity Unlimited $239/mo. No contracts, real results at Drake Fitness Charleston."
+        description="Simple, transparent membership options. Try 3 classes free. Foundation $200/mo, Longevity Unlimited $225/mo. No contracts, real results at Drake Fitness Charleston."
         canonical="https://drake.fitness/pricing"
         
       />
@@ -147,7 +147,7 @@ const Pricing = () => {
                     Build strength and consistency—without overdoing it.
                   </p>
                   <div className="mt-4">
-                    <span className="text-5xl font-bold text-foreground">$209</span>
+                    <span className="text-5xl font-bold text-foreground">$200</span>
                     <span className="text-muted-foreground ml-1">/ month</span>
                   </div>
                 </CardHeader>
@@ -201,7 +201,7 @@ const Pricing = () => {
                     Train without limits. Protect your body for the long run.
                   </p>
                   <div className="mt-4">
-                    <span className="text-5xl font-bold text-white">$239</span>
+                    <span className="text-5xl font-bold text-white">$225</span>
                     <span className="text-gray-400 ml-1">/ month</span>
                   </div>
                 </CardHeader>
@@ -257,53 +257,11 @@ const Pricing = () => {
               </h3>
             </AnimatedSection>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {/* Foundation Plus Card */}
-              <AnimatedSection animation="fadeInUp" delay={getStaggerDelay(0)}>
-                <Card className="bg-card border border-border shadow-sm h-full">
-                <CardHeader className="pb-3">
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-semibold text-lg text-foreground">
-                      Foundation Plus
-                    </h4>
-                    <span className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground">
-                      Add-on
-                    </span>
-                  </div>
-                  <div className="mt-2">
-                    <span className="text-2xl font-bold text-foreground">$200</span>
-                    <span className="text-sm text-muted-foreground">/month</span>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <p className="text-sm text-muted-foreground mb-4">
-                    For members who want more structure without going unlimited.
-                  </p>
-                  <ul className="text-sm text-muted-foreground space-y-2 mb-4">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-primary/70 flex-shrink-0" />
-                      3 classes per week
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-primary/70 flex-shrink-0" />
-                      Same coaching quality
-                    </li>
-                  </ul>
-                </CardContent>
-                <CardFooter className="pt-0">
-                  <Link
-                      to="/contact"
-                      className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1">
-
-                    Learn More
-                    <ArrowRight className="w-3 h-3" />
-                  </Link>
-                </CardFooter>
-                </Card>
-              </AnimatedSection>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+               {/* Foundation Plus Card - Hidden for now */}
 
               {/* Remote Movement Support Card */}
-              <AnimatedSection animation="fadeInUp" delay={getStaggerDelay(1)}>
+              <AnimatedSection animation="fadeInUp" delay={getStaggerDelay(0)}>
                 <Card className="bg-card border border-border shadow-sm h-full">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
@@ -349,7 +307,7 @@ const Pricing = () => {
               </AnimatedSection>
 
               {/* 10-Class Pack Card */}
-              <AnimatedSection animation="fadeInUp" delay={getStaggerDelay(2)}>
+              <AnimatedSection animation="fadeInUp" delay={getStaggerDelay(1)}>
                 <Card className="bg-card border border-border shadow-sm h-full">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
