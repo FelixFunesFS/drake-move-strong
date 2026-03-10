@@ -143,7 +143,7 @@ export default function StrengthTrainingCharleston() {
       </section>
 
       {/* Who This Is For Section */}
-      <section className="py-12 md:py-16 lg:py-24 bg-background overflow-x-hidden">
+      <section className="py-12 md:py-16 lg:py-24 lg:pb-32 bg-background overflow-x-clip">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
             <AnimatedSection animation="fadeInUp">
