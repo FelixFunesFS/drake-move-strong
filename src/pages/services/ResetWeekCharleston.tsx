@@ -4,7 +4,8 @@ import { StructuredData, localBusinessSchema } from "@/components/StructuredData
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
-import { Check, ArrowRight, X, Shield, RotateCcw, Compass, Brain, User, Dumbbell, Heart, Sprout, RefreshCw, Calendar, Frown, HelpCircle, HeartHandshake } from "lucide-react";
+import { Check, ArrowRight, X, Shield, RotateCcw, Compass, Brain, User, Dumbbell, Heart, Sprout, RefreshCw, Calendar, Frown, HelpCircle, HeartHandshake, Gift } from "lucide-react";
+import { INTRO_URL } from "@/data/pricing";
 
 import heroKettlebellTraining from "@/assets/hero-kettlebell-training.jpg";
 import groupKettlebellTraining from "@/assets/group-kettlebell-training.jpg";
@@ -13,8 +14,8 @@ import davidCoachingForm from "@/assets/david-coaching-form.jpg";
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Reset Week - Charleston Strength Training Intro",
-  "description": "Reset Week is a smarter way to start strength training in Charleston. 7 days of unlimited classes for $50.",
+  "name": "3-Class Intro Experience - Charleston Strength Training",
+  "description": "Try Drake Fitness free with 3 classes over 30 days. A smarter way to start strength training in Charleston, SC.",
   "provider": localBusinessSchema,
   "areaServed": {
     "@type": "City",
@@ -27,9 +28,9 @@ const serviceSchema = {
   "serviceType": "Fitness Training",
   "offers": {
     "@type": "Offer",
-    "price": "50",
+    "price": "0",
     "priceCurrency": "USD",
-    "description": "7 days of unlimited classes"
+    "description": "3 free classes over 30 days"
   }
 };
 
@@ -40,18 +41,18 @@ const problems = [
   { text: "The cycle repeats", description: "You try again somewhere else, with the same result." }
 ];
 
-const whatResetWeekSolves = [
+const whatIntroSolves = [
   { icon: Shield, title: "Fear of Injury", description: "We start with mobility and movement quality — teaching your body how to move safely before adding load.", cta: "You'll learn proper form from day one." },
-  { icon: RotateCcw, title: "Past Gym Failures", description: "Reset Week isn't about jumping into hard workouts. It's about building confidence, understanding your body, and creating sustainable habits.", cta: "This time will be different." },
+  { icon: RotateCcw, title: "Past Gym Failures", description: "The Intro Experience isn't about jumping into hard workouts. It's about building confidence, understanding your body, and creating sustainable habits.", cta: "This time will be different." },
   { icon: Compass, title: "Confusion", description: "You'll get clear guidance on what to do, how to do it, and why it matters. No guessing. No YouTube rabbit holes.", cta: "Just a clear path forward." },
-  { icon: Brain, title: "Overwhelm", description: "Reset Week simplifies everything. Small group coaching. One week. One goal: help you feel ready.", cta: "No pressure. No chaos." }
+  { icon: Brain, title: "Overwhelm", description: "The Intro Experience simplifies everything. Small group coaching. Three classes. One goal: help you feel ready.", cta: "No pressure. No chaos." }
 ];
 
 const whatYoullExperience = [
   { icon: User, title: "Coach-Led Sessions", description: "Every class is guided by David or Misty — you're never left to figure it out on your own." },
   { icon: Dumbbell, title: "Movement Guidance", description: "Learn how your body should move before adding weight or intensity." },
   { icon: Dumbbell, title: "Strength Basics", description: "Introduction to functional movements like squats, hinges, carries, and presses." },
-  { icon: Heart, title: "Confidence Building", description: "By the end of the week, you'll know you can do this — and you'll want to keep going." }
+  { icon: Heart, title: "Confidence Building", description: "By the end of your 3 classes, you'll know you can do this — and you'll want to keep going." }
 ];
 
 const perfectFor = [
@@ -64,7 +65,8 @@ const perfectFor = [
 ];
 
 const whatsIncluded = [
-  "7 days of unlimited classes",
+  "3 free classes over 30 days",
+  "KB Strong — Mon/Wed/Fri 8am & 11am, Thu 6pm",
   "Coach-guided introduction",
   "Mobility-focused, joint-friendly workouts",
   "Small group environment",
@@ -75,8 +77,8 @@ export default function ResetWeekCharleston() {
   return (
     <>
       <SEO
-        title="Reset Week — A Smarter Way to Start Strength Training | Charleston, SC"
-        description="Most people don't need more workouts — they need a better starting point. Reset Week gives you 7 days of unlimited classes for $50."
+        title="3-Class Intro Experience — Try Strength Training Free | Charleston, SC"
+        description="Most people don't need more workouts — they need a better starting point. Try 3 free classes at Drake Fitness in Charleston. KB Strong: Mon/Wed/Fri 8am & 11am, Thu 6pm."
         canonical="https://drake.fitness/reset-week-charleston"
       />
       <StructuredData data={serviceSchema} />
@@ -98,20 +100,43 @@ export default function ResetWeekCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-4xl mx-auto">
               <h1 className="font-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
-                Reset Week — A Smarter Way to Start<br className="hidden sm:block" />
+                A Smarter Way to Start<br className="hidden sm:block" />
                 <span className="text-accent">Strength Training in Charleston</span>
               </h1>
               <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-8 md:mb-10 leading-relaxed max-w-3xl mx-auto">
                 Most people don't need more workouts — they need a better starting point.
               </p>
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
-                <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">
-                  Start Reset Week — $50
+                <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
+                  Claim 3 Free Classes
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                 </a>
               </Button>
             </div>
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* How It Works Steps */}
+      <section className="py-12 bg-muted border-b border-border">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {[
+              { step: "1", title: "Claim Your Free Pass", desc: "Sign up in 30 seconds — no card required" },
+              { step: "2", title: "Pick Your Class", desc: "KB Strong: Mon/Wed/Fri 8am & 11am, Thu 6pm" },
+              { step: "3", title: "Show Up", desc: "We handle the rest — coaching, form, and encouragement" }
+            ].map((item) => (
+              <div key={item.step} className="flex items-start gap-4 text-center md:text-left md:flex-col md:items-center">
+                <div className="flex-shrink-0 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-xl">
+                  {item.step}
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -165,17 +190,17 @@ export default function ResetWeekCharleston() {
             <div className="text-center mb-16 max-w-3xl mx-auto">
               <span className="section-eyebrow text-primary">THE SOLUTION</span>
               <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">
-                What Reset Week Solves
+                What the Intro Experience Solves
               </h2>
               <p className="text-xl text-muted-foreground">
-                Reset Week is designed to eliminate the four biggest obstacles that stop people from succeeding in fitness.
+                The 3-Class Intro is designed to eliminate the four biggest obstacles that stop people from succeeding in fitness.
               </p>
             </div>
           </AnimatedSection>
 
           <AnimatedSection animation="fadeInUp" delay={0.1}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {whatResetWeekSolves.map((item, index) => (
+              {whatIntroSolves.map((item, index) => (
                 <div key={index} className="bg-background p-10 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
                   <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-6">
                     <item.icon className="text-primary-foreground h-8 w-8" />
@@ -198,7 +223,7 @@ export default function ResetWeekCharleston() {
               <div>
                 <span className="section-eyebrow text-primary">WHAT YOU'LL EXPERIENCE</span>
                 <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8 uppercase leading-tight">
-                  A Week That Prepares You<br className="hidden sm:block" />
+                  3 Classes That Prepare You<br className="hidden sm:block" />
                   <span className="text-primary">For Real Results</span>
                 </h2>
 
@@ -228,7 +253,7 @@ export default function ResetWeekCharleston() {
                   />
                 </div>
                 <div className="lg:absolute lg:-bottom-6 lg:-left-6 mt-6 lg:mt-0 bg-primary text-primary-foreground p-5 md:p-8 rounded-xl shadow-xl max-w-sm mx-auto lg:mx-0">
-                  <p className="font-hero text-xl md:text-2xl font-bold mb-2 uppercase">Week One Foundation</p>
+                  <p className="font-hero text-xl md:text-2xl font-bold mb-2 uppercase">Your Foundation</p>
                   <p className="text-primary-foreground/80 text-sm md:text-base">Build the movement patterns that will carry you for years.</p>
                 </div>
               </div>
@@ -244,7 +269,7 @@ export default function ResetWeekCharleston() {
             <div className="text-center mb-10 md:mb-16">
               <span className="text-accent font-bold uppercase tracking-wider text-sm mb-2 block">WHO IT'S PERFECT FOR</span>
               <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 uppercase">
-                Reset Week Is Designed For You If...
+                The Intro Experience Is Designed For You If...
               </h2>
             </div>
           </AnimatedSection>
@@ -289,7 +314,7 @@ export default function ResetWeekCharleston() {
                 Ready to Start the Right Way?
               </h2>
               <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-3 md:mb-4 leading-relaxed">
-                Reset Week gives you the foundation, confidence, and clarity you need to succeed.
+                The 3-Class Intro gives you the foundation, confidence, and clarity you need to succeed.
               </p>
               <p className="text-base md:text-lg text-primary-foreground/70 mb-8 md:mb-10">
                 No pressure. No intimidation. Just smart, guided training.
@@ -300,7 +325,7 @@ export default function ResetWeekCharleston() {
           <AnimatedSection animation="fadeInUp" delay={0.1}>
             <div className="bg-background rounded-2xl p-5 sm:p-8 md:p-10 lg:p-12 shadow-2xl max-w-4xl mx-auto">
               <div className="text-center mb-6 md:mb-8">
-                <h3 className="font-hero text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-3 md:mb-4 uppercase">What's Included in Reset Week</h3>
+                <h3 className="font-hero text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-3 md:mb-4 uppercase">What's Included — Free</h3>
                 <div className="h-1 w-16 md:w-24 bg-accent mx-auto mb-4 md:mb-6"></div>
               </div>
 
@@ -315,19 +340,20 @@ export default function ResetWeekCharleston() {
 
               <div className="text-center">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal">
-                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">
+                  <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
                     <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
-                    Start Reset Week — $50
+                    Claim 3 Free Classes
                   </a>
                 </Button>
                 <p className="text-muted-foreground text-xs md:text-sm mt-4">Available spots are limited to maintain small group sizes</p>
+                <p className="text-primary font-semibold text-sm mt-2">Love it? Get 50% off your first month — $110 instead of $225</p>
               </div>
             </div>
           </AnimatedSection>
 
           <AnimatedSection animation="fadeInUp" delay={0.2}>
             <div className="mt-12 text-center">
-              <p className="text-primary-foreground/80 text-lg mb-2">Questions about Reset Week?</p>
+              <p className="text-primary-foreground/80 text-lg mb-2">Questions about the Intro Experience?</p>
               <Link to="/contact" className="text-accent font-semibold underline hover:text-accent/80 transition-colors">
                 Contact us — we're here to help
               </Link>
