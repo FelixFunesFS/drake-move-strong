@@ -183,7 +183,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <AnimatedSection animation="fadeInUp" delay={0.1}>
               <div className="bg-gray-50 p-6 rounded-xl shadow-card hover:shadow-xl transition-shadow">
-                <div className="h-96 mb-4 overflow-hidden rounded-lg">
+                <div className="h-80 md:h-[422px] mb-4 overflow-hidden rounded-lg">
                   <OptimizedImage src={davidCoach} alt="David Drake coaching kettlebell technique" className="w-full h-full" aspectRatio="auto" />
                 </div>
                 <h3 className="font-hero text-2xl font-bold mb-2 uppercase">David Drake</h3>
@@ -198,13 +198,13 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
             </AnimatedSection>
             <AnimatedSection animation="fadeInUp" delay={0.2}>
               <div className="bg-gray-50 p-6 rounded-xl shadow-card hover:shadow-xl transition-shadow">
-                <div className="h-96 mb-4 overflow-hidden rounded-lg">
-                  <OptimizedImage src={coachMisty} alt="Coach Misty Lister yoga and mobility specialist" className="w-full h-full" aspectRatio="auto" />
+                <div className="h-80 md:h-[422px] mb-4 overflow-hidden rounded-lg">
+                  <OptimizedImage src={coachMisty} alt="Coach Misty Lister yoga and mobility specialist" className="w-full h-full" aspectRatio="auto" objectPosition="center 20%" />
                 </div>
                 <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Misty Lister</h3>
                 <p className="text-primary font-semibold mb-3 uppercase text-sm tracking-wide">Yoga Partner · Members Save</p>
                 <p className="text-muted-foreground mb-4">
-                  Misty runs independent yoga classes at Drake Fitness. Drake members receive a discount on her classes.
+                  A certified yoga instructor, Misty leads her own yoga classes at Drake Fitness — Drake members receive a discount.
                 </p>
                 <Button asChild variant="outline" className="w-full">
                   <Link to="/about">Explore Yoga Classes</Link>
