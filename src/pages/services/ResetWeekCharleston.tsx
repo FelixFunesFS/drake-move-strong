@@ -42,13 +42,13 @@ const whatYoullExperience = [
   { icon: Heart, title: "Confidence Building", description: "By the end of your 3 classes, you'll know you can do this — and you'll want to keep going." }
 ];
 
-const perfectFor = [
-  { icon: Sprout, title: "You're a Beginner", description: "You've never strength trained before and want to start the right way." },
-  { icon: RefreshCw, title: "You're Restarting", description: "You used to train but took time off and need to rebuild your foundation." },
-  { icon: Calendar, title: "You're Over 30", description: "Your body doesn't recover like it used to and you need smarter training." },
-  { icon: Frown, title: "You're Tired of Being Sore", description: "You're done with workouts that leave you limping for days." },
-  { icon: HelpCircle, title: "You Feel Lost", description: "You don't know where to start or what program is right for you." },
-  { icon: HeartHandshake, title: "You Want Support", description: "You want coaching, not just a gym membership." }
+const whoItsFor = [
+  "Complete beginners",
+  "Restarting after time off",
+  "Over 30 and need smarter training",
+  "Tired of being sore for days",
+  "Not sure where to start",
+  "Want coaching, not a gym membership"
 ];
 
 const whatsIncluded = [
