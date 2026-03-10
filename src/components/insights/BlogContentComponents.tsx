@@ -942,7 +942,7 @@ export const NoPainNoGainContent = () => {
             className="inline-flex items-center gap-2 px-10 py-5 bg-drake-gold text-foreground font-bold text-lg rounded-lg hover:bg-yellow-400 transition-all transform hover:-translate-y-1 shadow-xl uppercase tracking-wide"
           >
             <CalendarCheck className="w-5 h-5" />
-            Start Reset Week Now
+            Start Your Free Intro
           </Link>
           <Link 
             to="/contact"
