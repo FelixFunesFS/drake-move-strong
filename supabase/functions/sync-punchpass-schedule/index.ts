@@ -9,6 +9,7 @@ const corsHeaders = {
 const DEFAULT_INSTRUCTORS: Record<string, string> = {
   'kettlebell flow': 'Nick',
   'ruckathon': 'David',
+  'yoga': 'Misty',
 };
 
 function resolveInstructors(classes: ClassData[]): void {
