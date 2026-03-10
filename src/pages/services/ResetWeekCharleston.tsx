@@ -213,6 +213,31 @@ export default function ResetWeekCharleston() {
         </div>
       </section>
 
+      {/* Proof Strip */}
+      <section className="py-8 md:py-12 bg-background">
+        <div className="container mx-auto px-4">
+          <AnimatedSection animation="fadeInUp">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 max-w-7xl mx-auto">
+              {[
+                { src: proofStrip1, alt: "Group plank rows with kettlebells at Drake Fitness" },
+                { src: proofStrip2, alt: "Members doing overhead press in group class" },
+                { src: proofStrip3, alt: "Large group training session at Drake Fitness studio" },
+                { src: proofStrip4, alt: "Members holding kettlebells in rack position" },
+              ].map((img, i) => (
+                <div key={i} className="rounded-lg overflow-hidden">
+                  <OptimizedImage
+                    src={img.src}
+                    alt={img.alt}
+                    aspectRatio="square"
+                    className="w-full"
+                  />
+                </div>
+              ))}
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-12 md:py-16 lg:py-24 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
