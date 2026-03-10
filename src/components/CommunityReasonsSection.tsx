@@ -97,7 +97,7 @@ const CommunityReasonsSection = ({ images }: CommunityReasonsSectionProps) => {
                     className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-bold text-base px-6 py-5 h-auto"
                   >
                     <a
-                      href={PUNCHPASS_URLS.resetWeek}
+                      href={PUNCHPASS_URLS.introExperience}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2"
