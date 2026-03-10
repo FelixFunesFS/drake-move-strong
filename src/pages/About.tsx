@@ -144,7 +144,7 @@ const About = () => {
           <AnimatedSection animation="fadeInUp">
             <p className="section-eyebrow text-drake-gold text-center">THE TEAM</p>
             <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 uppercase">
-              Meet <span className="text-primary">David Drake and Coach Misty</span>
+              Meet <span className="text-primary">David Drake & The Team</span>
             </h2>
           </AnimatedSection>
 
