@@ -190,7 +190,7 @@ export const WhyTraditionalWorkoutsContent = () => {
           </div>
           
           <p className="text-muted-foreground leading-relaxed mb-6">
-            Sarah discovered our <Link to="/reset-week-charleston" className="text-primary font-semibold hover:underline">3-Class Intro Experience</Link> through a neighbor's recommendation—and it changed how she approached training entirely.
+            Sarah discovered our <Link to="/try-free-charleston" className="text-primary font-semibold hover:underline">3-Class Intro Experience</Link> through a neighbor's recommendation—and it changed how she approached training entirely.
           </p>
           
           <div className="space-y-6">
@@ -307,7 +307,7 @@ export const WhyTraditionalWorkoutsContent = () => {
             You don't need more intensity. You need better movement, proper breathing, and progressive loading that respects where your body is right now.
           </p>
           <p className="text-xl leading-relaxed font-bold text-drake-gold">
-            Ready to see how this works? <Link to="/reset-week-charleston" className="underline hover:text-white">The 3-Class Intro Experience</Link> is where most Charleston members start — and it's free.
+            Ready to see how this works? <Link to="/try-free-charleston" className="underline hover:text-white">The 3-Class Intro Experience</Link> is where most Charleston members start — and it's free.
           </p>
         </div>
 
@@ -901,7 +901,7 @@ export const NoPainNoGainContent = () => {
         <div className="bg-gradient-to-r from-primary to-teal-700 text-white rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-xl font-bold text-center md:text-left">Curious how this works in practice? Try 3 free classes.</p>
           <Link 
-            to="/reset-week-charleston"
+            to="/try-free-charleston"
             className="inline-flex items-center gap-2 px-8 py-4 bg-drake-gold text-foreground font-bold rounded-lg hover:bg-yellow-400 transition-all transform hover:-translate-y-1 shadow-lg uppercase tracking-wide whitespace-nowrap"
           >
             See How We Train Differently
@@ -938,7 +938,7 @@ export const NoPainNoGainContent = () => {
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
           <Link 
-            to="/reset-week-charleston"
+            to="/try-free-charleston"
             className="inline-flex items-center gap-2 px-10 py-5 bg-drake-gold text-foreground font-bold text-lg rounded-lg hover:bg-yellow-400 transition-all transform hover:-translate-y-1 shadow-xl uppercase tracking-wide"
           >
             <CalendarCheck className="w-5 h-5" />
@@ -1060,7 +1060,7 @@ export const TrainingWithInjuryContent = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link 
-            to="/reset-week-charleston" 
+            to="/try-free-charleston" 
             className="inline-flex items-center gap-2 px-8 py-4 bg-drake-gold text-foreground font-bold rounded-lg hover:bg-yellow-400 transition-all uppercase tracking-wide"
           >
             <Calendar className="w-5 h-5" /> Try 3 Free Classes
@@ -1176,7 +1176,7 @@ export const BreathingControlsMovementContent = () => {
       {/* Earlier Reset Week Link */}
       <div className="bg-drake-gold/10 border-l-4 border-drake-gold p-6 rounded-r-xl mb-16">
         <p className="text-lg text-foreground leading-relaxed">
-          <strong>This is why the Intro Experience starts with breathing.</strong> Before we add any load or intensity, we ensure your breathing mechanics create the foundation for safe movement. <Link to="/reset-week-charleston" className="text-primary font-bold hover:underline">Learn more about the 3-Class Intro →</Link>
+          <strong>This is why the Intro Experience starts with breathing.</strong> Before we add any load or intensity, we ensure your breathing mechanics create the foundation for safe movement. <Link to="/try-free-charleston" className="text-primary font-bold hover:underline">Learn more about the 3-Class Intro →</Link>
         </p>
       </div>
 
@@ -1425,7 +1425,7 @@ export const WhatRealStrengthContent = () => {
 
       <div className="mb-16 space-y-6">
         <p className="text-xl text-muted-foreground leading-relaxed">
-          Strength that only exists in the gym isn't very useful. This is exactly what we teach in <Link to="/reset-week-charleston" className="text-primary font-semibold hover:underline">the 3-Class Intro Experience</Link>.
+          Strength that only exists in the gym isn't very useful. This is exactly what we teach in <Link to="/try-free-charleston" className="text-primary font-semibold hover:underline">the 3-Class Intro Experience</Link>.
         </p>
         <p className="text-xl text-muted-foreground leading-relaxed">
           If you can deadlift 300 pounds but can't pick up a bag of groceries without tweaking your back—that's not real strength. If you can bench press your body weight but your shoulder hurts when you reach overhead—that's not functional capacity.
@@ -1640,7 +1640,7 @@ export const WhatRealStrengthContent = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
           <Link 
-            to="/reset-week-charleston"
+            to="/try-free-charleston"
             className="px-10 py-5 bg-drake-gold text-foreground font-bold text-lg rounded-lg hover:bg-drake-gold/90 transition-all transform hover:-translate-y-1 shadow-2xl uppercase tracking-wide inline-flex items-center"
           >
             <ArrowRight className="mr-2 w-5 h-5" /> Start Reset Week

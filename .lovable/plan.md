@@ -1,78 +1,46 @@
 
 
-## Sitemap, Robots & Full Publishing Audit
+# Plan: Separate OG Source Image Selection for Blog Posts
 
-### Current State Issues
+## The Problem
 
-**Sitemap (`public/sitemap.xml`)**:
-1. `/reset` listed at priority 0.9 — this is a 301 redirect to `/intro`, should not be in sitemap
-2. `/reset-week-charleston` listed at priority 0.9 — this is a 301 redirect to `/try-free-charleston`, should not be in sitemap
-3. `/try-free-charleston` is **missing** — this is the primary conversion landing page
-4. `/intro` is **missing** — general intro landing page
-5. `/classes` is **missing** — public page with nav link
-6. `/welcome` is **missing** — post-purchase page (debatable, but useful for indexing)
-7. Blog slug uses legacy "reset-week" language: `too-out-of-shape-to-start-reset-week-for-beginners`
+Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
 
-**Robots.txt**: Currently correct. No changes needed — private routes blocked, social bots allowed, sitemap declared.
+## The Right Approach
 
-**OG Redirect (`og-redirect/index.ts`)**: Missing `/try-free-charleston` entry (already added in prior fix — confirmed present at line 46). Good.
+Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
 
-**Blog internal links (`BlogContentComponents.tsx`)**: 10+ links still point to `/reset-week-charleston` instead of `/try-free-charleston`. These work (301 redirect catches them) but are bad practice — every click goes through a redirect, and Google sees low-quality internal linking.
+1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
 
-**Structured Data (`StructuredData.tsx`)**: `og-image.jpg` referenced but actual file is `og-image.png`. Minor but could cause broken image in Google Knowledge Panel.
+2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
 
-**ChatMessage.tsx**: Still maps `drake.fitness/reset-week-charleston` as a friendly link label — cosmetic but should point to `/try-free-charleston`.
+## Changes
 
----
+### 1. Add an image picker to the Generate dialog
+**File**: `src/pages/admin/OGImages.tsx`
 
-### Changes
+- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
+- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
+- Show thumbnails in a scrollable grid; clicking one fills the source URL field
+- Keep the manual URL input as a fallback
+- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
+- Add a filter/search to narrow down images by filename
 
-#### 1. Update `public/sitemap.xml`
-- Remove `/reset` (redirect)
-- Remove `/reset-week-charleston` (redirect)
-- Add `/try-free-charleston` at priority 1.0 (primary conversion page)
-- Add `/intro` at priority 0.8
-- Add `/classes` at priority 0.7
+### 2. No database changes needed
 
-#### 2. Update `src/components/insights/BlogContentComponents.tsx`
-- Replace all `/reset-week-charleston` links with `/try-free-charleston` (10 occurrences)
+The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
 
-#### 3. Update `src/components/StructuredData.tsx`
-- Fix `og-image.jpg` → `og-image.png` in localBusinessSchema
+### 3. Workflow improvement
 
-#### 4. Update `src/components/chat/ChatMessage.tsx`
-- Remove the `/reset-week-charleston` friendly link entry (the redirect handles it, but clean up the map)
+The dialog flow becomes:
+1. Admin clicks "Generate" on a blog post row
+2. Dialog opens showing a grid of available images from the bucket
+3. Admin picks a wide landscape photo (or pastes a URL)
+4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
+5. Result is stored in `og-images` bucket and mapped via `page_og_images`
+6. The blog post's hero image and thumbnail remain unchanged
 
-#### 5. No robots.txt changes needed
-The current file is correct and comprehensive.
+## Files Affected
 
----
-
-### Marketing Framework for Thinking About This
-
-```text
-LAYER 1: INDEXING (Can Google find it?)
-  ├── sitemap.xml — only real, non-redirect pages
-  ├── robots.txt — block private routes
-  └── structured data — accurate business info
-
-LAYER 2: SOCIAL SHARING (Does it look good when shared?)
-  ├── og-redirect edge function — metadata for crawlers
-  ├── page_og_images table — AI-cropped 1200x630 previews
-  └── SEO component — per-page meta tags
-
-LAYER 3: INTERNAL LINKING (Does the site link to itself well?)
-  ├── Footer — primary nav paths
-  ├── Blog CTAs — link to /try-free-charleston (not redirects)
-  ├── ChatBot — friendly link labels
-  └── Cross-page CTAs — consistent INTRO_URL usage
-
-LAYER 4: CONVERSION (Does every page push toward action?)
-  ├── /try-free-charleston — cold traffic landing
-  ├── /intro — warm traffic landing
-  ├── /welcome — post-purchase onboarding
-  └── Every page CTA → PunchPass via INTRO_URL
-```
-
-**Rule of thumb**: Never put a redirect URL in sitemap, internal links, or social shares. Always link to the final destination.
+- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
 
