@@ -95,7 +95,7 @@ export default function ResetWeekCharleston() {
                 <span className="text-accent">Charleston Strength Training</span>
               </h1>
               <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-8 md:mb-10 leading-relaxed max-w-3xl mx-auto">
-                Strength & mobility training for beginners. No card required. Just show up.
+                Strength & mobility training — scaled to your level. No card required. Just show up.
               </p>
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
                 <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
