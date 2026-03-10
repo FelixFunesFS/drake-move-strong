@@ -10,6 +10,7 @@ import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
 import TrustStatsBar from "@/components/TrustStatsBar";
 import AnimatedSection from "@/components/AnimatedSection";
 import { getStaggerDelay } from "@/lib/motionConfig";
+import { INTRO_URL } from "@/data/pricing";
 
 
 const Pricing = () => {
@@ -21,7 +22,7 @@ const Pricing = () => {
     answer: "Yes. We are a mobility-first studio that focuses on safe, joint-friendly training that builds strength without aggravating existing issues."
   }, {
     question: "How big are the classes?",
-    answer: "We keep classes small to ensure everyone gets attention, coaching cues, and form correction from David or Nick. Typical class size is 6-12 people."
+    answer: "We keep classes small to ensure everyone gets attention, coaching cues, and form correction from David and our coaching team. Typical class size is 6-12 people."
   }, {
     question: "What if I have an injury?",
     answer: "We modify movements for every individual. Our priority is keeping you safe while progressively building strength around your limitations. Every session can be adapted to your needs."
@@ -57,10 +58,10 @@ const Pricing = () => {
           </div>
         </section>
 
-        {/* STEP 1: MOVEMENT RESET WEEK (VISUAL PRIORITY #1) */}
+        {/* STEP 1: 3-CLASS INTRO EXPERIENCE (VISUAL PRIORITY #1) */}
         <section className="py-12 md:py-16 bg-muted">
           <div className="container mx-auto px-4">
-            {/* Trust Signal - Above Reset Week Card */}
+            {/* Trust Signal - Above Intro Card */}
             <AnimatedSection animation="fadeIn" className="text-center mb-8">
               <GoogleReviewsBadge variant="micro" />
             </AnimatedSection>
@@ -108,7 +109,7 @@ const Pricing = () => {
                     </div>
                     <div className="flex-1 w-full sm:w-auto">
                       <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold w-full sm:w-auto">
-                        <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                        <a href={INTRO_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
                           Claim 3 Free Classes
                           <ExternalLink className="h-4 w-4" />
                         </a>
@@ -118,7 +119,7 @@ const Pricing = () => {
                 </CardContent>
                 <CardFooter className="bg-primary/5 border-t border-primary/10 py-4">
                   <p className="text-sm text-muted-foreground text-center w-full">
-                    Love it? Get your first month for $110 (50% off) when you join within 7 days of your 3rd class.
+                    Love it? Get your first month for just $110 when you join within 7 days of your 3rd class.
                   </p>
                 </CardFooter>
               </Card>

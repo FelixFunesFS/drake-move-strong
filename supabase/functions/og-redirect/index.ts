@@ -25,11 +25,11 @@ const STATIC_PAGES: Record<string, { title: string; description: string; image?:
   },
   '/pricing': {
     title: 'Membership & Pricing | Drake Fitness Charleston',
-    description: 'Flexible membership options for group classes and personal training. No long-term contracts. Start with a free Reset Week trial.',
+    description: 'Flexible membership options for group classes and personal training. No long-term contracts. Try 3 classes free.',
   },
   '/about': {
     title: 'About Drake Fitness | Our Story & Coaches',
-    description: 'Meet Coach Drake & The Team. Learn about our evidence-based approach to strength and mobility training in Charleston, SC.',
+    description: 'Meet David Drake & Misty Lister. Learn about our evidence-based approach to strength and mobility training in Charleston, SC.',
   },
   '/schedule': {
     title: 'Class Schedule | Drake Fitness Charleston',

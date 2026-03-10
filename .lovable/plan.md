@@ -1,112 +1,46 @@
 
 
-## Full Site Audit: Inconsistencies, Brand Messaging & Marketing Plan
+# Plan: Separate OG Source Image Selection for Blog Posts
 
-### Issues Found
+## The Problem
 
-#### 1. Coach References — "Nick" Still Appears (Brand Identity Violation)
-Per brand standards, the team is **David Drake and Misty Lister**. Nick still appears in:
-- **Coaching.tsx** (line 88): Hero title says "DAVID OR NICK"
-- **Pricing.tsx** (line 24): FAQ says "from David or Nick"
-- **FAQ.tsx** (line 37): "from David and our coaching team" (this one is fine)
-- **NewYearChallenge.tsx** (lines 45, 99): "David or Nick" in two places
-- **About.tsx** (line 22, 420): Photo of Nick/David together still in gallery
+Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
 
-**Fix**: Replace "David or Nick" with "David and our coaching team" or "David and Misty" depending on context. Coaching page hero should reference David specifically for 1:1.
+## The Right Approach
 
-#### 2. "Reset Week" Terminology Still Present
-The offer was rebranded to "3-Class Intro Experience" but legacy "Reset Week" language persists in:
-- **ChatBot.tsx** (line 182): Quick action sends "Tell me about Reset Week"
-- **ChatBot.tsx** (line 318): Button label "🎁 What's Reset Week?"
-- **og-redirect** (line 28): Pricing OG description says "free Reset Week trial"
-- **Pricing.tsx** (line 60): HTML comment says "MOVEMENT RESET WEEK"
-- **CommunityReasonsSection.tsx** (line 72): HTML comment says "Reset Week CTA Card"
-- **StrengthTrainingCharleston.tsx** (line 249): Section header "Reset Week Offer"
+Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
 
-**Fix**: Update user-facing strings (ChatBot, og-redirect). HTML comments are low priority but should be cleaned.
+1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
 
-#### 3. "VIP Unlimited" — Ghost Tier
-"VIP Unlimited" is referenced in FAQ.tsx (line 83: "VIP Unlimited members get one monthly 1:1 session included") but this tier doesn't exist in pricing. Also in useVideoAccess.ts and member/Workouts.tsx for gating logic.
+2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
 
-**Fix**: Remove "VIP Unlimited" mention from FAQ. Keep internal code references if the tier may return, but the public-facing FAQ must not reference a plan you can't buy.
+## Changes
 
-#### 4. Upsell Copy Inconsistency
-The upsell price ($110) and "50% off" are consistent, but the "of what" varies:
-- **Home.tsx**: "$110 (50% off)" — vague
-- **Welcome.tsx**: "$110 (50% off $225)" — references Unlimited
-- **ResetWeekAlt.tsx**: "$110 (normally $225)" — references Unlimited
-- **ResetWeekCharleston.tsx**: "$110 instead of $225" — references Unlimited
+### 1. Add an image picker to the Generate dialog
+**File**: `src/pages/admin/OGImages.tsx`
 
-50% of $225 = $112.50, not $110. And 50% of $200 (Foundation) = $100. The math doesn't cleanly match either tier. Consider standardizing to "first month for just $110" without claiming a specific percentage.
+- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
+- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
+- Show thumbnails in a scrollable grid; clicking one fills the source URL field
+- Keep the manual URL input as a fallback
+- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
+- Add a filter/search to narrow down images by filename
 
-#### 5. Schedule Page — "Foundation Flow" FAQ Mismatch
-- Schedule FAQ (line 46): "Foundation Flow is our beginner-friendly class" — but the OUR PROGRAMS section lists "Foundation Flow™" alongside 5 other class types. These branded names don't match PunchPass class names (previous sync issue).
-- SEO description (line 60) lists "Foundation Flow, Functional Strength, KB Strong" — do all of these currently run?
+### 2. No database changes needed
 
-#### 6. Hardcoded PunchPass URLs
-Several pages hardcode the intro URL instead of importing `INTRO_URL` from pricing.ts:
-- **Schedule.tsx** (line 95, 205)
-- **Pricing.tsx** (line 111)
+The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
 
-Minor but defeats the single-source-of-truth pattern.
+### 3. Workflow improvement
 
-#### 7. OG Redirect Descriptions Outdated
-- `/pricing` description says "free Reset Week trial" — should say "3-Class Intro"
-- `/about` description says "Coach Drake & The Team" — should say "David Drake & Misty Lister"
+The dialog flow becomes:
+1. Admin clicks "Generate" on a blog post row
+2. Dialog opens showing a grid of available images from the bucket
+3. Admin picks a wide landscape photo (or pastes a URL)
+4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
+5. Result is stored in `og-images` bucket and mapped via `page_og_images`
+6. The blog post's hero image and thumbnail remain unchanged
 
----
+## Files Affected
 
-### Marketing Plan & Page Distribution Strategy
-
-Here is how to think about the site pages for publishing and sharing:
-
-```text
-FUNNEL STAGE          PAGE                          SHARE TO
-─────────────────────────────────────────────────────────────
-COLD TRAFFIC
-  Paid Ads (FB/IG)    /try-free-charleston          Facebook Ads, Instagram Ads
-  Organic SEO         /strength-training-charleston  Google Search (primary money page)
-  Organic SEO         /west-ashley-fitness           Google Search (neighborhood)
-  Organic SEO         /low-impact-fitness-charleston Google Search (pain/injury intent)
-
-WARM TRAFFIC
-  Google Business     /try-free-charleston          Google Maps profile link
-  Social Posts        /intro                        Instagram bio link, FB posts
-  Blog/Content        /insights                     Social shares, email newsletter
-
-MID-FUNNEL
-  Schedule            /schedule                      Shared post-interest
-  Pricing             /pricing                       Shared when asked "how much?"
-  About               /about                         Credibility / "who are you?"
-  Coaching            /coaching                      1:1 upsell, DMs
-
-POST-CONVERSION
-  Welcome             /welcome                       Sent automatically after purchase
-  Member Portal       /member/*                      Internal only
-
-AUTHORITY / TRUST
-  FAQ                 /faq                           Internal linking, Google FAQ schema
-  Success Stories     /success-stories               Social proof, ads
-  Contact             /contact                       Universal footer/nav
-```
-
-**Primary sharing URLs:**
-- **Instagram Bio / Linktree**: `/try-free-charleston` or `/intro`
-- **Facebook Ads**: `/try-free-charleston` (local SEO page with structured data)
-- **Google Business Profile**: `/try-free-charleston`
-- **Email signature**: `drake.fitness`
-- **Social posts about classes**: `/schedule`
-- **Word-of-mouth / referral**: `/intro` (simplest URL)
-
-### Recommended Fix Priority
-
-1. **Nick → David/Team references** (brand-breaking, public-facing)
-2. **"Reset Week" → "3-Class Intro" in ChatBot + og-redirect** (user-facing)
-3. **VIP Unlimited FAQ removal** (sells a non-existent product)
-4. **Upsell copy standardization** (remove "50% off" claim, just say "$110")
-5. **Hardcoded PunchPass URLs → imports** (maintenance hygiene)
-6. **Schedule page class names audit** (do Foundation Flow & Functional Strength still run, or is everything KB Strong now?)
-
-### Question Before Implementation
-I need to confirm: **Which class types currently run on the schedule?** The OUR PROGRAMS section lists 6 types (Foundation Flow, Functional Strength, KB Strong, Mobility Reset, Weekend Warrior, Functional Flow Online). If some of these no longer exist in PunchPass, they should be removed or marked as "coming soon" to avoid confusion.
+- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
 

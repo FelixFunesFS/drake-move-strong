@@ -12,6 +12,7 @@ import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { NativeWeeklySchedule } from "@/components/schedule/NativeWeeklySchedule";
 import { getStaggerDelay } from "@/lib/motionConfig";
+import { INTRO_URL } from "@/data/pricing";
 
 // Gallery images
 import classesGallery1 from "@/assets/classes-gallery-1.jpg?format=webp&w=768";
@@ -92,7 +93,7 @@ const Schedule = () => {
                   </p>
                 </div>
                 <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark shrink-0 whitespace-nowrap">
-                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer">Try 3 Classes Free</a>
+                  <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">Try 3 Classes Free</a>
                 </Button>
               </div>
             </AnimatedSection>
@@ -202,7 +203,7 @@ const Schedule = () => {
           title="Ready to Feel Stronger, Move Better, and Train Smarter?"
           subtitle="Try 3 classes free — experience mobility-first training with no commitment."
           ctaText="Claim 3 Free Classes"
-          ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034"
+          ctaLink={INTRO_URL}
           variant="primary"
           slanted={true}
         />
