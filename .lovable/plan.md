@@ -1,46 +1,46 @@
 
 
-# Condense "Perfect For" — 6 Cards → 3 Tight Lines
+# Plan: Separate OG Source Image Selection for Blog Posts
 
 ## The Problem
 
-Six cards with icons, titles, and descriptions is a lot of real estate for a single idea: "this is for you." On mobile, that's 6 full card heights before the user reaches the CTA. Each card says essentially the same thing in different words: "you're not sure, and that's okay."
+Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
 
-## The Insight
+## The Right Approach
 
-These 6 items reduce to 3 audience archetypes:
-1. **New to training** (Beginner + Feel Lost)
-2. **Coming back** (Restarting + Over 30)
-3. **Fed up with bad fitness** (Tired of Being Sore + Want Support)
+Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
 
-## Recommendation: Replace 6 Cards with a Single Compact Block
+1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
 
-Instead of 6 icon cards in a 2-column grid, use a tight inline list — no icons, no descriptions. The titles alone do all the work. The descriptions are just restating what the title already implies.
+2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
 
-**Proposed format** — a single centered block with a heading and 6 short phrases as check-marked items in a 2-column list (similar to the "What's Included" section below it):
+## Changes
 
-```
-WHO IT'S FOR
+### 1. Add an image picker to the Generate dialog
+**File**: `src/pages/admin/OGImages.tsx`
 
-✓ Complete beginners          ✓ Restarting after time off
-✓ Over 30 and need smarter    ✓ Tired of being sore for days
-  training
-✓ Not sure where to start     ✓ Want coaching, not a gym
-                                 membership
-```
+- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
+- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
+- Show thumbnails in a scrollable grid; clicking one fills the source URL field
+- Keep the manual URL input as a fallback
+- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
+- Add a filter/search to narrow down images by filename
 
-This cuts the section from ~6 scroll heights on mobile to ~2, while keeping every audience signal intact.
+### 2. No database changes needed
 
-## Changes — `src/pages/services/ResetWeekCharleston.tsx`
+The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
 
-1. **Remove** the `perfectFor` array (lines 45-52) and its 6-card grid JSX
-2. **Replace** the entire "Perfect For" section with a compact checklist layout:
-   - Keep the section wrapper and dark `bg-primary` background
-   - Eyebrow: "WHO IT'S FOR"
-   - Heading: "This Is For You If..."
-   - 2-column grid of 6 check-marked single-line items (no icons, no descriptions — just the audience label)
-   - Keep the testimonial quote block unchanged below
-3. **Remove** unused icon imports: `Sprout`, `RefreshCw`, `Calendar`, `Frown`, `HelpCircle`, `HeartHandshake`
+### 3. Workflow improvement
 
-One file changed. No structural or routing changes.
+The dialog flow becomes:
+1. Admin clicks "Generate" on a blog post row
+2. Dialog opens showing a grid of available images from the bucket
+3. Admin picks a wide landscape photo (or pastes a URL)
+4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
+5. Result is stored in `og-images` bucket and mapped via `page_og_images`
+6. The blog post's hero image and thumbnail remain unchanged
+
+## Files Affected
+
+- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
 
