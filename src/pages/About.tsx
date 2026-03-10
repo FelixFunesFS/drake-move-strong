@@ -249,7 +249,7 @@ const About = () => {
                 }}>
                     <h3 className="font-hero text-2xl md:text-3xl font-bold mb-2 uppercase">MISTY LISTER</h3>
                     <p className="text-lg md:text-xl text-primary font-semibold mb-4">
-                      Yoga & Mobility Coach
+                      Yoga Partner · Drake Members Save on Classes
                     </p>
                     <p className="text-xs md:text-sm text-muted-foreground mb-4">
                       Strength • Mobility • Breath • Recovery
