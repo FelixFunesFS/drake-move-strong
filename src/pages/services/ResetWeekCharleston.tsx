@@ -91,11 +91,11 @@ export default function ResetWeekCharleston() {
         <div className="container mx-auto px-4 relative z-10 py-20 md:py-28 text-center">
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-4xl mx-auto">
-              <h1 className="font-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight">
+              <h1 className="font-hero text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
                 Try 3 Classes Free<br className="hidden sm:block" />
-                <span className="text-accent">Charleston Strength Training</span>
+                <span className="text-accent drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">Charleston Strength Training</span>
               </h1>
-              <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-8 md:mb-10 leading-relaxed max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-8 md:mb-10 leading-relaxed max-w-3xl mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">
                 Strength & mobility training — scaled to your level. No card required. Just show up.
               </p>
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
@@ -104,7 +104,7 @@ export default function ResetWeekCharleston() {
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                 </a>
               </Button>
-              <p className="text-primary-foreground/60 text-sm mt-4">All levels welcome · West Ashley</p>
+              <p className="text-white/80 text-sm mt-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">All levels welcome · West Ashley</p>
             </div>
           </AnimatedSection>
         </div>
