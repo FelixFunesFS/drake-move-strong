@@ -239,7 +239,7 @@ export default function StrengthTrainingCharleston() {
             <div className="bg-primary text-primary-foreground p-12 rounded-3xl max-w-4xl mx-auto text-center">
               <h3 className="font-hero text-3xl font-bold mb-4 uppercase">When These Foundations Are Missing...</h3>
               <p className="text-xl text-primary-foreground/80 mb-6">Progress slows and pain shows up — especially after 30 or 40.</p>
-              <p className="text-2xl font-bold text-accent">Reset Week rebuilds those basics so strength training actually works again.</p>
+              <p className="text-2xl font-bold text-accent">The 3-Class Intro rebuilds those basics so strength training actually works again.</p>
             </div>
           </AnimatedSection>
         </div>
