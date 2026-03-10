@@ -452,6 +452,35 @@ Deno.serve(async (req) => {
 
     console.log(`Successfully synced ${upsertData?.length || classes.length} classes`);
 
+    // --- Cleanup: delete DB rows for synced dates that are no longer on PunchPass ---
+    const scrapedKeys = new Set(
+      classes.map(c => `${c.class_date}|${c.start_time}|${c.class_name}|${c.is_online}`)
+    );
+
+    const { data: existingForDates } = await supabaseAdmin
+      .from('punchpass_schedule')
+      .select('id, class_date, start_time, class_name, is_online')
+      .in('class_date', uniqueDates);
+
+    if (existingForDates && existingForDates.length > 0) {
+      const idsToDelete = existingForDates
+        .filter(row => !scrapedKeys.has(`${row.class_date}|${row.start_time}|${row.class_name}|${row.is_online}`))
+        .map(row => row.id);
+
+      if (idsToDelete.length > 0) {
+        const { error: cleanupError } = await supabaseAdmin
+          .from('punchpass_schedule')
+          .delete()
+          .in('id', idsToDelete);
+
+        if (cleanupError) {
+          console.warn('Cleanup delete error:', cleanupError);
+        } else {
+          console.log(`Cleanup: removed ${idsToDelete.length} cancelled/removed classes`);
+        }
+      }
+    }
+
     return new Response(
       JSON.stringify({
         success: true,
