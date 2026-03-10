@@ -201,7 +201,7 @@ const Pricing = () => {
                     Train without limits. Protect your body for the long run.
                   </p>
                   <div className="mt-4">
-                    <span className="text-5xl font-bold text-white">$239</span>
+                    <span className="text-5xl font-bold text-white">$225</span>
                     <span className="text-gray-400 ml-1">/ month</span>
                   </div>
                 </CardHeader>
