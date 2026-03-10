@@ -59,6 +59,22 @@ const STATIC_PAGES: Record<string, { title: string; description: string; image?:
     title: 'Training Insights & Blog | Drake Fitness',
     description: 'Expert articles on strength training, mobility, longevity, and fitness for adults 35+. Evidence-based guidance from Charleston coaches.',
   },
+  '/intro': {
+    title: '3-Class Intro Experience | Drake Fitness Charleston',
+    description: 'Try Drake Fitness free with 3 classes over 30 days. No pressure, no contracts. Experience our strength and mobility classes in West Ashley.',
+  },
+  '/strength-training-charleston': {
+    title: 'Mobility & Strength Training in Charleston, SC | Drake Fitness',
+    description: "Train smarter, move better, and get strong without pain. Charleston's premier mobility and strength training studio. Try 3 classes free.",
+  },
+  '/west-ashley-fitness': {
+    title: 'West Ashley Fitness Studio | Drake Fitness Charleston',
+    description: 'Small group strength and mobility training in West Ashley, Charleston. Located at 2 Avondale Ave. Try 3 classes free.',
+  },
+  '/low-impact-fitness-charleston': {
+    title: 'Low Impact Fitness Charleston SC | Drake Fitness',
+    description: 'Joint-friendly strength and mobility training in Charleston. Build strength without pain. Perfect for adults 35+ and injury recovery.',
+  },
 };
 
 Deno.serve(async (req) => {

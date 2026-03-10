@@ -84,7 +84,7 @@ export default function StrengthTrainingCharleston() {
     <>
       <SEO
         title="Mobility & Strength Training in Charleston, SC | Drake Fitness"
-        description="Train smarter, move better, and get strong without pain. Charleston's premier mobility and strength training studio. Start with Reset Week — $50."
+        description="Train smarter, move better, and get strong without pain. Charleston's premier mobility and strength training studio. Try 3 classes free."
         canonical="https://drake.fitness/strength-training-charleston"
       />
       <StructuredData data={serviceSchema} />
