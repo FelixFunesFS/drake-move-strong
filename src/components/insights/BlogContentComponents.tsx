@@ -130,7 +130,7 @@ export const WhyTraditionalWorkoutsContent = () => {
 
         <div className="space-y-8">
           {[
-            { num: 1, title: "Phase 1: Reset & Restore", desc: "This is where Reset Week lives. We restore joint mobility, teach proper breathing patterns, and rebuild movement foundations. No heavy weights. No exhausting circuits. Just intentional, controlled movement.", duration: "1-2 weeks" },
+            { num: 1, title: "Phase 1: Reset & Restore", desc: "This is where the 3-Class Intro Experience lives. We restore joint mobility, teach proper breathing patterns, and rebuild movement foundations. No heavy weights. No exhausting circuits. Just intentional, controlled movement.", duration: "1-2 weeks" },
             { num: 2, title: "Phase 2: Build Control", desc: "Once movement quality is established, we introduce load — but with strict control. This phase teaches your body to handle resistance without compensation. Tempo matters more than weight.", duration: "4-6 weeks" },
             { num: 3, title: "Phase 3: Express Strength", desc: "Now you're ready for intensity. With a solid foundation, your body can handle heavier loads, faster movements, and more complex training — without breaking down.", duration: "Ongoing" },
           ].map((phase) => (
