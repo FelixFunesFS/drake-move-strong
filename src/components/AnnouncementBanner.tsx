@@ -72,31 +72,14 @@ const AnnouncementBanner = ({ onVisibilityChange }: AnnouncementBannerProps) => 
     fetchPromotion();
   }, []);
 
-  // Report visibility state to parent - assume visible during loading to prevent CLS
+  // Report visibility state to parent - only report visible when we have a real banner
   useEffect(() => {
-    const isVisible = isLoading || (!isLoading && !!promotion && !isDismissed && shouldShowOnPage());
+    const isVisible = !isLoading && !!promotion && !isDismissed && shouldShowOnPage();
     onVisibilityChange?.(isVisible);
   }, [isLoading, promotion, isDismissed, location.pathname, onVisibilityChange]);
-
-  const handleDismiss = () => {
-    if (promotion) {
-      const dismissedPromotions = JSON.parse(localStorage.getItem('dismissedPromotions') || '[]');
-      dismissedPromotions.push(promotion.id);
-      localStorage.setItem('dismissedPromotions', JSON.stringify(dismissedPromotions));
-    }
-    setIsDismissed(true);
-  };
-
-  // Check if banner should show on current page
-  const shouldShowOnPage = () => {
-    if (!promotion?.target_pages) return true;
-    if (promotion.target_pages.includes('all')) return true;
-    return promotion.target_pages.includes(location.pathname);
-  };
-
-  if (isLoading) {
-    // Reserve space during loading to prevent CLS when banner appears
-    return <div className="relative z-50" style={{ minHeight: '48px' }} />;
+  
+  if (isLoading || !promotion || isDismissed || !shouldShowOnPage()) {
+    return null;
   }
 
   if (!promotion || isDismissed || !shouldShowOnPage()) {
