@@ -934,7 +934,7 @@ export const NoPainNoGainContent = () => {
           Ready to Experience Pain-Free Progress?
         </h2>
         <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed text-white/90">
-          Reset Week teaches you how to build real strength — without beating up your body in the process.
+          The 3-Class Intro Experience teaches you how to build real strength — without beating up your body in the process. And it's completely free.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
           <Link 
