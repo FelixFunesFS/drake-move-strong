@@ -1,43 +1,46 @@
 
 
-# Gallery Section Between "Who It's For" and CTA — Conversion Analysis
+# Plan: Separate OG Source Image Selection for Blog Posts
 
-## The Case For It
+## The Problem
 
-A gallery at this point in the page serves as **visual social proof** — the visitor has just read "This Is For You If..." and now needs to *believe* it before hitting the CTA. Showing real members training builds that belief faster than any copy can.
+Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
 
-## The Case Against a Full Gallery
+## The Right Approach
 
-A traditional expand/collapse gallery (like the About page) invites browsing. Browsing kills conversion. On a landing page, every element must push toward the CTA, not away from it.
+Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
 
-## Recommendation: A Compact "Proof Strip" — Not a Gallery
+1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
 
-3-4 images in a single horizontal row. No lightbox. No expand button. No captions. Just a tight visual strip that says "real people train here" and keeps the scroll moving toward "Ready to Start?"
+2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
 
-**Format:**
-- Full-bleed row, 3 images on mobile (cropped square), 4 on desktop
-- Slight rounded corners, no gaps or minimal 2px gaps
-- No interaction — purely atmospheric
-- Uses existing studio/community photos showing diverse members in class
+## Changes
 
-**Best images from existing assets (coached group settings, diverse members):**
-1. `community-plank-rows-kettlebells-new.jpg` — group floor work
-2. `members-overhead-press-group.jpg` — group pressing
-3. `studio-large-group.jpg` — wide community shot
-4. `members-kettlebell-rack-hold.jpg` — members with kettlebells
+### 1. Add an image picker to the Generate dialog
+**File**: `src/pages/admin/OGImages.tsx`
 
-## Technical Plan — 1 File
+- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
+- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
+- Show thumbnails in a scrollable grid; clicking one fills the source URL field
+- Keep the manual URL input as a fallback
+- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
+- Add a filter/search to narrow down images by filename
 
-### `src/pages/services/ResetWeekCharleston.tsx`
+### 2. No database changes needed
 
-1. **Add imports** for 4 community photos
-2. **Insert a new section** between "Who It's For" and the final CTA section:
-   - `bg-background` with minimal vertical padding (`py-8 md:py-12`)
-   - No heading — the images speak for themselves
-   - 4-column grid (`grid-cols-2 md:grid-cols-4`) with `gap-2`
-   - Each image uses `OptimizedImage` with `aspectRatio="square"` and `rounded-lg`
-   - Wrapped in a single `AnimatedSection` with `fadeInUp`
-3. **No lightbox, no expand, no interaction** — this is a conversion page, not a gallery page
+The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
 
-This adds roughly 1 scroll height on mobile (2 rows of 2 squares) and half a scroll on desktop (1 row of 4). Minimal cost, strong visual payoff right before the final CTA.
+### 3. Workflow improvement
+
+The dialog flow becomes:
+1. Admin clicks "Generate" on a blog post row
+2. Dialog opens showing a grid of available images from the bucket
+3. Admin picks a wide landscape photo (or pastes a URL)
+4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
+5. Result is stored in `og-images` bucket and mapped via `page_og_images`
+6. The blog post's hero image and thumbnail remain unchanged
+
+## Files Affected
+
+- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
 

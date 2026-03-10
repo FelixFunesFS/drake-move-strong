@@ -10,6 +10,10 @@ import { INTRO_URL } from "@/data/pricing";
 import heroGroupClass from "@/assets/studio-group-goblet-squats.jpg";
 import groupKettlebellTraining from "@/assets/group-kettlebell-training.jpg";
 import davidCoachingForm from "@/assets/david-coaching-form.jpg";
+import proofStrip1 from "@/assets/community-plank-rows-kettlebells-new.jpg";
+import proofStrip2 from "@/assets/members-overhead-press-group.jpg";
+import proofStrip3 from "@/assets/studio-large-group.jpg";
+import proofStrip4 from "@/assets/members-kettlebell-rack-hold.jpg";
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -204,6 +208,31 @@ export default function ResetWeekCharleston() {
                 </p>
                 <p className="text-primary-foreground/80 text-sm md:text-base">— Caitlin P., Verified Google Review</p>
               </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Proof Strip */}
+      <section className="py-8 md:py-12 bg-background">
+        <div className="container mx-auto px-4">
+          <AnimatedSection animation="fadeInUp">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 max-w-7xl mx-auto">
+              {[
+                { src: proofStrip1, alt: "Group plank rows with kettlebells at Drake Fitness" },
+                { src: proofStrip2, alt: "Members doing overhead press in group class" },
+                { src: proofStrip3, alt: "Large group training session at Drake Fitness studio" },
+                { src: proofStrip4, alt: "Members holding kettlebells in rack position" },
+              ].map((img, i) => (
+                <div key={i} className="rounded-lg overflow-hidden">
+                  <OptimizedImage
+                    src={img.src}
+                    alt={img.alt}
+                    aspectRatio="square"
+                    className="w-full"
+                  />
+                </div>
+              ))}
             </div>
           </AnimatedSection>
         </div>
