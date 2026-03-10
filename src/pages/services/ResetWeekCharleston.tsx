@@ -74,8 +74,8 @@ export default function ResetWeekCharleston() {
       <section className="relative min-h-[80vh] flex items-center">
         <div className="absolute inset-0">
           <OptimizedImage
-            src={heroKettlebellTraining}
-            alt="Person training at Drake Fitness in Charleston"
+            src={heroGroupClass}
+            alt="Group strength training class at Drake Fitness in Charleston"
             className="w-full h-full"
             priority
             transparent
