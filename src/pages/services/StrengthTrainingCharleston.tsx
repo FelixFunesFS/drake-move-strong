@@ -112,15 +112,15 @@ export default function StrengthTrainingCharleston() {
                 Mobility & Strength Training in Charleston, SC
               </h1>
               <p className="text-xl sm:text-2xl md:text-3xl text-primary-foreground/90 mb-4 font-semibold">
-                Start With Reset Week
+                Try 3 Classes Free
               </p>
               <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 md:mb-10 leading-relaxed">
                 Train Smarter. Move Better. Get Strong Without Pain.
               </p>
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
-                <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">
+                <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer">
                   <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
-                  Start Reset Week — $50
+                  Claim 3 Free Classes
                 </a>
               </Button>
               <div className="mt-10 flex flex-wrap gap-6 text-sm text-primary-foreground">
