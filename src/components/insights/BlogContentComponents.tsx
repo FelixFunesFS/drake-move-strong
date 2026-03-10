@@ -1636,7 +1636,7 @@ export const WhatRealStrengthContent = () => {
         <Dumbbell className="w-16 h-16 mx-auto mb-8 text-drake-gold" />
         <h2 className="font-hero text-4xl md:text-5xl font-bold mb-6 uppercase">Curious? See What Real Strength Feels Like</h2>
         <p className="text-xl text-gray-300 leading-relaxed mb-10 max-w-3xl mx-auto">
-          Reset Week is your no-pressure introduction. Discover what your body can actually do—and build from there.
+          The 3-Class Intro Experience is your no-pressure introduction — completely free. Discover what your body can actually do—and build from there.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
           <Link 
