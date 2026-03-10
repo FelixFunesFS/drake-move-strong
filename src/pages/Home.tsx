@@ -204,7 +204,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                 <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Misty Lister</h3>
                 <p className="text-primary font-semibold mb-3 uppercase text-sm tracking-wide">Yoga Partner · Members Save</p>
                 <p className="text-muted-foreground mb-4">
-                  Misty runs independent yoga classes at Drake Fitness. Drake members receive a discount on her classes.
+                  A certified yoga instructor, Misty leads her own yoga classes at Drake Fitness — Drake members receive a discount.
                 </p>
                 <Button asChild variant="outline" className="w-full">
                   <Link to="/about">Explore Yoga Classes</Link>
