@@ -322,7 +322,7 @@ export default function ResetWeekCharleston() {
                   </a>
                 </Button>
                 <p className="text-muted-foreground text-xs md:text-sm mt-4">Available spots are limited to maintain small group sizes</p>
-                <p className="text-primary font-semibold text-sm mt-2">Love it? Get your first month for just $110 when you join within 7 days</p>
+                <p className="text-primary font-semibold text-sm mt-2">Love it? Get your first month of unlimited classes for just $110 when you join within 7 days</p>
               </div>
             </div>
           </AnimatedSection>
