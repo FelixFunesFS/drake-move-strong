@@ -48,7 +48,7 @@ const whatYoullExperience = [
 ];
 
 const whoItsFor = [
-  "Complete beginners",
+  "New to strength training",
   "Restarting after time off",
   "Over 30 and need smarter training",
   "Tired of being sore for days",
@@ -69,7 +69,7 @@ export default function ResetWeekCharleston() {
     <>
       <SEO
         title="3-Class Intro Experience — Try Strength Training Free | Charleston, SC"
-        description="Strength & mobility training for beginners. Try 3 free classes at Drake Fitness in Charleston. No card required — just show up."
+        description="Strength & mobility training — scaled to your level. Try 3 free classes at Drake Fitness in Charleston. No card required."
         canonical="https://drake.fitness/try-free-charleston"
       />
       <StructuredData data={serviceSchema} />
@@ -95,7 +95,7 @@ export default function ResetWeekCharleston() {
                 <span className="text-accent">Charleston Strength Training</span>
               </h1>
               <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-8 md:mb-10 leading-relaxed max-w-3xl mx-auto">
-                Strength & mobility training for beginners. No card required. Just show up.
+                Strength & mobility training — scaled to your level. No card required. Just show up.
               </p>
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
                 <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
@@ -103,7 +103,7 @@ export default function ResetWeekCharleston() {
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                 </a>
               </Button>
-              <p className="text-primary-foreground/60 text-sm mt-4">Beginners & restarters welcome · West Ashley</p>
+              <p className="text-primary-foreground/60 text-sm mt-4">All levels welcome · West Ashley</p>
             </div>
           </AnimatedSection>
         </div>

@@ -47,8 +47,8 @@ const Welcome = () => {
                 {[
                   {
                     step: "1",
-                    title: "Pick a KB Strong Class",
-                    description: "Choose from the schedule below — all intro classes are KB Strong.",
+                    title: "Pick a Strength & Mobility Class (KB Strong)",
+                    description: "Choose from the schedule below — all intro classes are Strength & Mobility (KB Strong).",
                     icon: Calendar,
                   },
                   {
@@ -82,7 +82,7 @@ const Welcome = () => {
               <AnimatedSection animation="fadeInUp" delay={0.3}>
                 <div className="mt-10 bg-white p-6 md:p-8 rounded-xl border border-border shadow-card">
                   <h3 className="font-hero text-xl font-bold uppercase mb-4 text-primary">
-                    Available KB Strong Classes
+                    Available Strength & Mobility Classes
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {[

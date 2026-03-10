@@ -130,7 +130,7 @@ export default function StrengthTrainingCharleston() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="text-accent h-5 w-5" />
-                  <span>Beginner-Friendly</span>
+                  <span>All Levels Welcome</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="text-accent h-5 w-5" />

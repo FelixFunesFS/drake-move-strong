@@ -44,7 +44,7 @@ const galleryImages = [
 
 const classFAQs = [
   { q: "Which fitness class is best for beginners in Charleston?", a: "Foundation Flow is our beginner-friendly class focusing on mobility and movement quality. No experience needed." },
-  { q: "How big are fitness classes at Drake Fitness?", a: "We keep classes small with 6-12 people to ensure personalized coaching and form correction from David or Misty." },
+  { q: "How big are fitness classes at Drake Fitness?", a: "We keep classes small with 6-12 people to ensure personalized coaching and form correction from David and our coaching team." },
   { q: "Do I need to bring my own equipment to class?", a: "No equipment needed. We provide all kettlebells, maces, mats, and tools. Just wear comfortable workout clothes." },
   { q: "How do I get started at Drake Fitness?", a: "Try our 3-Class Intro Experience — 3 free classes over 30 days. It's the best way to experience our training style." },
   { q: "What should I expect in my first fitness class?", a: "Arrive 10 minutes early. We'll do a quick movement screen, then guide you through class with modifications as needed." },
@@ -105,7 +105,7 @@ const Schedule = () => {
                 description: "Our core program for sustainable strength and better movement."
               }, {
                 name: "KB Strong™ — Strength & Mobility",
-                description: "Our core kettlebell strength program."
+                description: "Kettlebell strength & mobility — scaled for all levels."
               }, {
                 name: "Mobility Reset™",
                 description: "Recovery-based mobility and flexibility work."

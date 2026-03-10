@@ -13,7 +13,7 @@ const FAQ = () => {
       questions: [
         {
           q: "Do I need experience to join?",
-          a: "No. Our Foundation Flow classes are specifically designed for beginners. We meet you where you are, regardless of your starting point. Everyone begins somewhere, and our coaches are experts at working with people of all fitness levels.",
+          a: "No experience needed. KB Strong classes are coached and scaled to every level — beginners get guided instruction, experienced athletes get challenged. We meet you where you are, regardless of your starting point.",
         },
         {
           q: "How do I get started?",
@@ -34,7 +34,7 @@ const FAQ = () => {
         },
         {
           q: "How big are the classes?",
-          a: "We keep classes small (typically 6-12 people) to ensure everyone gets attention, coaching cues, and form corrections from David or Misty. You're never just a number in a crowded class.",
+          a: "We keep classes small (typically 6-12 people) to ensure everyone gets attention, coaching cues, and form corrections from David and our coaching team. You're never just a number in a crowded class.",
         },
         {
           q: "What if I have an injury?",
