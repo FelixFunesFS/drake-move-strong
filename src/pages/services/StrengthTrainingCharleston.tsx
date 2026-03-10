@@ -530,9 +530,9 @@ export default function StrengthTrainingCharleston() {
               </div>
               <div className="text-center">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-12 py-6 text-xl font-bold uppercase tracking-wide">
-                  <Link to="/reset-week">
+                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer">
                     <ArrowRight className="mr-2 h-5 w-5" />
-                    Claim Your Reset Week Spot Now
+                    Claim 3 Free Classes Now
                   </Link>
                 </Button>
                 <p className="text-primary-foreground/60 mt-6 text-sm">Limited to 12 spots per week • No credit card required</p>
