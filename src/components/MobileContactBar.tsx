@@ -1,11 +1,14 @@
 import { Calendar, MessageSquare } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
+const HIDDEN_PATHS = ['/try-free-charleston', '/intro'];
+
 const MobileContactBar = () => {
   const isMobile = useIsMobile();
+  const location = useLocation();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -16,7 +19,7 @@ const MobileContactBar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  if (!isMobile) return null;
+  if (!isMobile || HIDDEN_PATHS.includes(location.pathname)) return null;
   
   return (
     <div className={cn(

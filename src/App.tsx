@@ -150,7 +150,7 @@ const AppLayout = () => {
         {!hideNavFooter && headerIsFixed && (
           <div className={spacerHeight} />
         )}
-        {!hideNavFooter && location.pathname !== '/' && location.pathname !== '/about' && location.pathname !== '/schedule' && <TodayClassesBanner />}
+        {!hideNavFooter && !['/','/about','/schedule','/try-free-charleston','/intro'].includes(location.pathname) && <TodayClassesBanner />}
         <div className="flex-grow">
           <Suspense fallback={<div className="min-h-screen" />}>
             <Routes>
