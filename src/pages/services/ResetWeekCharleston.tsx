@@ -150,7 +150,7 @@ export default function ResetWeekCharleston() {
               <div className="absolute left-7 top-14 bottom-14 w-px bg-border z-0" />
 
               {[
-                { step: "1", title: "Claim Your Free Pass", desc: "Sign up in 30 seconds — no card required" },
+                { step: "1", title: "Claim Your Free Pass", desc: "Sign up in 30 seconds — no card required", hasClaimLink: true },
                 { step: "2", title: "Pick Your Class", desc: "Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Thu 6pm", hasScheduleLink: true },
                 { step: "3", title: "Show Up", desc: "We handle the rest — coaching, form, and encouragement" }
               ].map((item) => (
@@ -161,6 +161,9 @@ export default function ResetWeekCharleston() {
                   <div className="pt-2">
                     <h3 className="font-bold text-lg mb-1">{item.title}</h3>
                     <p className="text-muted-foreground text-base">{item.desc}</p>
+                    {item.hasClaimLink && (
+                      <a href={INTRO_URL} target="_blank" rel="noopener noreferrer" className="text-accent underline text-sm mt-1 inline-block hover:text-accent/80 transition-colors">Claim your pass</a>
+                    )}
                     {item.hasScheduleLink && (
                       <Link to="/schedule" className="text-accent underline text-sm mt-1 inline-block hover:text-accent/80 transition-colors">View full schedule</Link>
                     )}
