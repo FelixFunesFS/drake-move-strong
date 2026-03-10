@@ -104,7 +104,7 @@ export default function ResetWeekCharleston() {
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                 </a>
               </Button>
-              <p className="text-primary-foreground/60 text-sm mt-4">All levels welcome · West Ashley</p>
+              <p className="text-white/80 text-sm mt-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">All levels welcome · West Ashley</p>
             </div>
           </AnimatedSection>
         </div>
