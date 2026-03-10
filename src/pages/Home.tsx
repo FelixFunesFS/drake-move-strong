@@ -198,8 +198,8 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
             </AnimatedSection>
             <AnimatedSection animation="fadeInUp" delay={0.2}>
               <div className="bg-gray-50 p-6 rounded-xl shadow-card hover:shadow-xl transition-shadow">
-                <div className="h-96 mb-4 overflow-hidden rounded-lg">
-                  <OptimizedImage src={coachMisty} alt="Coach Misty Lister yoga and mobility specialist" className="w-full h-full" aspectRatio="auto" />
+                <div className="h-80 md:h-[422px] mb-4 overflow-hidden rounded-lg">
+                  <OptimizedImage src={coachMisty} alt="Coach Misty Lister yoga and mobility specialist" className="w-full h-full" aspectRatio="auto" objectPosition="center 20%" />
                 </div>
                 <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Misty Lister</h3>
                 <p className="text-primary font-semibold mb-3 uppercase text-sm tracking-wide">Yoga Partner · Members Save</p>
