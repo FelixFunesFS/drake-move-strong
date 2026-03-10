@@ -1,54 +1,46 @@
 
 
-# Misty Lister — Clarity & Positioning Audit
+# Plan: Separate OG Source Image Selection for Blog Posts
 
-## The Key Insight
+## The Problem
 
-Misty runs her own **independent yoga practice** — she's not a Drake Fitness employee coaching KB classes. Drake members get a **discount** to her yoga classes. This changes how she should be framed across the site: she's a **community partner**, not a co-coach of the core strength program.
+Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
 
-## Strategic Framework
+## The Right Approach
 
-**Current problem:** Misty appears as a co-equal coach alongside David on several pages, which implies she teaches KB Strong classes and blurs the Drake Fitness membership value prop. A visitor could think "I'm paying for David AND Misty" — then feel confused when Misty's yoga is separate/extra.
+Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
 
-**Better framing:** Position Misty as a **valued yoga partner** whose classes complement Drake training. This:
-- Keeps Misty visible (she's a real asset and community draw)
-- Clarifies what Drake memberships include (David's coaching)
-- Positions yoga as a **bonus perk** rather than a core deliverable
-- Avoids overshadowing the KB Strong / strength training identity
+1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
 
-## Proposed Changes — 6 files, ~10 edits
+2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
 
-### A. `ResetWeekCharleston.tsx` (cold traffic landing)
-1. Line 44: "Every class is guided by David or Misty" → **"Every class is guided by David and our coaching team — you're never left to figure it out on your own."**
+## Changes
 
-### B. `About.tsx` (brand page — most important)
-2. Line 147: Section heading "Meet David Drake and Coach Misty" → **"Meet David Drake & The Team"**
-3. Lines 228-303: Reframe Misty's section. Keep her bio and photo, but add a clear label:
-   - Change section eyebrow or add subtitle: **"Yoga Partner · Drake Members Save on Classes"**
-   - Update her CTA button from "Try a Class This Week" (which implies Drake schedule) → **"Learn About Yoga Classes"** or link to her booking
-   - Add a brief line: "Misty runs her own yoga practice — Drake Fitness members receive a discount on her classes."
+### 1. Add an image picker to the Generate dialog
+**File**: `src/pages/admin/OGImages.tsx`
 
-### C. `Coaching.tsx` (1:1 coaching page)
-4. Lines 303-315: Misty's coach card on the 1:1 coaching page is misleading — it implies she does 1:1 coaching at Drake. Either:
-   - **Option A (recommended):** Remove her card from the 1:1 section entirely (this page is about David's personal training)
-   - **Option B:** Re-label as "Yoga & Mobility Partner" with description clarifying separate booking
+- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
+- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
+- Show thumbnails in a scrollable grid; clicking one fills the source URL field
+- Keep the manual URL input as a fallback
+- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
+- Add a filter/search to narrow down images by filename
 
-### D. `Home.tsx` (homepage coach cards)
-5. Lines 200-211: Misty's coach card — update description to clarify: **"Misty runs independent yoga classes at Drake Fitness. Members receive a discount."** Change CTA from "Learn More About Misty" → **"Explore Yoga Classes"**
+### 2. No database changes needed
 
-### E. `data/trustStats.ts`
-6. Line 58: `collaboration` quote "David and Misty work together to design personalized programs..." → **"David and the coaching team design programs that combine mobility, corrective movement, and functional strength — meeting you exactly where you are."** (Remove Misty from the core program narrative)
+The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
 
-### F. `supabase/functions/og-redirect/index.ts`
-7. Line 32: "Meet Coach Drake and Coach Misty" → **"Meet Coach Drake & The Team"**
+### 3. Workflow improvement
 
-### Files NOT changed (correct as-is)
-- **`NewYearChallenge.tsx`**: Event-specific, Misty was part of that event — historically accurate
-- **`LowImpactFitnessCharleston.tsx`**: Uses Misty's photo contextually for mobility — acceptable
-- **`admin/Blog.tsx`**: Internal tool, author attribution is fine
-- **`schedule/NativeWeeklySchedule.tsx`** & **`WeekDayColumn.tsx`**: Color coding for schedule — functional, keeps yoga classes visually distinct
+The dialog flow becomes:
+1. Admin clicks "Generate" on a blog post row
+2. Dialog opens showing a grid of available images from the bucket
+3. Admin picks a wide landscape photo (or pastes a URL)
+4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
+5. Result is stored in `og-images` bucket and mapped via `page_og_images`
+6. The blog post's hero image and thumbnail remain unchanged
 
-## Summary
+## Files Affected
 
-The shift: Misty goes from **"co-coach"** to **"yoga partner"** across public-facing pages. She stays visible and valued, but visitors clearly understand that Drake memberships = David's coaching, and Misty's yoga = a complementary perk with a member discount.
+- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
 

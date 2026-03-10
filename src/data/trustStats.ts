@@ -55,7 +55,7 @@ export const BRAND_QUOTES = {
     attribution: null
   },
   collaboration: {
-    text: "David and Misty work together to design personalized programs that combine mobility, corrective movement, and functional strength — meeting you exactly where you are and guiding you toward sustainable results.",
+    text: "David and the coaching team design programs that combine mobility, corrective movement, and functional strength — meeting you exactly where you are and guiding you toward sustainable results.",
     attribution: null
   },
   purpose: {

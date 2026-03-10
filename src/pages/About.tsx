@@ -144,7 +144,7 @@ const About = () => {
           <AnimatedSection animation="fadeInUp">
             <p className="section-eyebrow text-drake-gold text-center">THE TEAM</p>
             <h2 className="font-hero text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 uppercase">
-              Meet <span className="text-primary">David Drake and Coach Misty</span>
+              Meet <span className="text-primary">David Drake & The Team</span>
             </h2>
           </AnimatedSection>
 
@@ -249,7 +249,7 @@ const About = () => {
                 }}>
                     <h3 className="font-hero text-2xl md:text-3xl font-bold mb-2 uppercase">MISTY LISTER</h3>
                     <p className="text-lg md:text-xl text-primary font-semibold mb-4">
-                      Yoga & Mobility Coach
+                      Yoga Partner · Drake Members Save on Classes
                     </p>
                     <p className="text-xs md:text-sm text-muted-foreground mb-4">
                       Strength • Mobility • Breath • Recovery
@@ -262,12 +262,15 @@ const About = () => {
                         Misty completed her 250- and 500-hour Natural Teacher training at Satsang Yoga Charleston, where she has been teaching for five years. Her classes focus on <strong className="text-foreground">strength, mobility, and breath</strong>, with an emphasis on helping students move well both in and out of the gym.
                       </p>
                       <p>
-                        As a member of the Drake Fitness community herself, Misty is passionate about helping athletes discover how yoga supports <strong className="text-foreground">performance, recovery, and longevity</strong>. Expect a strong but accessible flow, a great playlist, and a welcoming, down-to-earth class environment.
-                      </p>
+                      As a member of the Drake Fitness community herself, Misty is passionate about helping athletes discover how yoga supports <strong className="text-foreground">performance, recovery, and longevity</strong>. Expect a strong but accessible flow, a great playlist, and a welcoming, down-to-earth class environment.
+                    </p>
+                    <p>
+                      Misty runs her own yoga practice — <strong className="text-foreground">Drake Fitness members receive a discount</strong> on her classes.
+                    </p>
                     </div>
 
                     <Button asChild className="mt-6">
-                      <Link to="/schedule">Try a Class This Week</Link>
+                      <Link to="/schedule">Explore Yoga Classes</Link>
                     </Button>
                   </motion.div>
                 </div>
@@ -291,7 +294,7 @@ const About = () => {
                       {/* Bottom Overlay with Name */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-drake-dark via-drake-dark/80 to-transparent p-6">
                 <h3 className="font-hero text-2xl md:text-3xl font-bold text-white uppercase">COACH MISTY</h3>
-                <p className="text-drake-gold font-semibold">Yoga & Mobility Coach</p>
+                <p className="text-drake-gold font-semibold">Yoga Partner</p>
               </div>
                     </div>
                   </motion.div>
