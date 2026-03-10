@@ -642,9 +642,9 @@ export const TooOutOfShapeContent = () => {
       {/* Who Reset Week Is For */}
       <div className="mb-16">
         <h2 className="font-hero text-3xl md:text-4xl font-bold text-foreground mb-6 uppercase">
-          Who Reset Week Is Designed For
+          Who the Intro Experience Is Designed For
         </h2>
-        <p className="text-lg text-muted-foreground mb-8">Reset Week was specifically designed for people who:</p>
+        <p className="text-lg text-muted-foreground mb-8">The 3-Class Intro Experience was specifically designed for people who:</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             { icon: Clock, text: "Haven't exercised regularly in years" },
