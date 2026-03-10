@@ -17,9 +17,9 @@ const friendlyLabels: Record<string, string> = {
   'https://drakefitness.punchpass.com': '📅 Book on PunchPass',
   
   // Intro offer links
-  'https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219': '🎁 Start Reset Week — $50',
-  'https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/46002': '🎁 Get Intro Week Special',
-  'https://drakefitness.punchpass.com/org/5950/catalogs/purchase': '🎁 Get Started - Intro Offers',
+  'https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034': '🎁 Claim 3 Free Classes',
+  'https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219': '🎁 Claim 3 Free Classes',
+  'https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/46002': '🎁 Claim 3 Free Classes',
   
   // Membership purchase links
   'https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784': '💪 Join Foundation Membership',
