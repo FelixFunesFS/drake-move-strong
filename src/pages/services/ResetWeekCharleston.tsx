@@ -42,7 +42,7 @@ const serviceSchema = {
 
 const whatYoullExperience = [
   { icon: User, title: "Coach-Led Sessions", description: "Every class is guided by David or Misty — you're never left to figure it out on your own." },
-  { icon: Dumbbell, title: "Movement Guidance", description: "Learn how your body should move before adding weight or intensity." },
+  { icon: Dumbbell, title: "Mobility & Movement", description: "We fix how you move before adding weight — joints, posture, and range of motion come first." },
   { icon: Dumbbell, title: "Strength Basics", description: "Introduction to functional movements like squats, hinges, carries, and presses." },
   { icon: Heart, title: "Confidence Building", description: "By the end of your 3 classes, you'll know you can do this — and you'll want to keep going." }
 ];
@@ -57,7 +57,7 @@ const whoItsFor = [
 
 const whatsIncluded = [
   "3 free classes over 30 days",
-  "KB Strong — Mon/Wed/Fri 8am & 11am, Thu 6pm",
+  "Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Thu 6pm",
   "Coach-guided introduction",
   "Mobility-focused, joint-friendly workouts",
   "Small group environment",
@@ -69,7 +69,7 @@ export default function ResetWeekCharleston() {
     <>
       <SEO
         title="3-Class Intro Experience — Try Strength Training Free | Charleston, SC"
-        description="Most people don't need more workouts — they need a better starting point. Try 3 free classes at Drake Fitness in Charleston. KB Strong: Mon/Wed/Fri 8am & 11am, Thu 6pm."
+        description="Strength & mobility training for beginners. Try 3 free classes at Drake Fitness in Charleston. No card required — just show up."
         canonical="https://drake.fitness/try-free-charleston"
       />
       <StructuredData data={serviceSchema} />
@@ -95,7 +95,7 @@ export default function ResetWeekCharleston() {
                 <span className="text-accent">Charleston Strength Training</span>
               </h1>
               <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-8 md:mb-10 leading-relaxed max-w-3xl mx-auto">
-                No experience needed. No card required. Just show up.
+                Strength & mobility training for beginners. No card required. Just show up.
               </p>
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
                 <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
@@ -122,7 +122,7 @@ export default function ResetWeekCharleston() {
 
               {[
                 { step: "1", title: "Claim Your Free Pass", desc: "Sign up in 30 seconds — no card required" },
-                { step: "2", title: "Pick Your Class", desc: "KB Strong: Mon/Wed/Fri 8am & 11am, Thu 6pm", hasScheduleLink: true },
+                { step: "2", title: "Pick Your Class", desc: "Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Thu 6pm", hasScheduleLink: true },
                 { step: "3", title: "Show Up", desc: "We handle the rest — coaching, form, and encouragement" }
               ].map((item) => (
                 <div key={item.step} className="flex flex-col items-center text-center">
@@ -147,7 +147,7 @@ export default function ResetWeekCharleston() {
 
               {[
                 { step: "1", title: "Claim Your Free Pass", desc: "Sign up in 30 seconds — no card required" },
-                { step: "2", title: "Pick Your Class", desc: "KB Strong: Mon/Wed/Fri 8am & 11am, Thu 6pm", hasScheduleLink: true },
+                { step: "2", title: "Pick Your Class", desc: "Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Thu 6pm", hasScheduleLink: true },
                 { step: "3", title: "Show Up", desc: "We handle the rest — coaching, form, and encouragement" }
               ].map((item) => (
                 <div key={item.step} className="flex items-start gap-4">
