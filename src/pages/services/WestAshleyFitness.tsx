@@ -90,7 +90,7 @@ export default function WestAshleyFitness() {
                   </a>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/20 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
-                  <Link to="/contact" className="text-primary">
+                  <Link to="/contact" className="bg-primary-foreground text-secondary-foreground">
                     View Location & Hours
                   </Link>
                 </Button>
