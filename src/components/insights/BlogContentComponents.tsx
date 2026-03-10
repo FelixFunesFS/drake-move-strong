@@ -195,7 +195,7 @@ export const WhyTraditionalWorkoutsContent = () => {
           
           <div className="space-y-6">
             {[
-              { week: "Week 1-2 (Reset Week)", desc: "Sarah learned how to breathe properly, restored shoulder and hip mobility, and practiced foundational movements without any pain." },
+              { week: "Week 1-2 (Intro Experience)", desc: "Sarah learned how to breathe properly, restored shoulder and hip mobility, and practiced foundational movements without any pain." },
               { week: "Week 3-8 (Build Control)", desc: "We introduced kettlebells, bodyweight strength work, and loaded carries — all with strict form and tempo control. Her back pain disappeared." },
               { week: "Week 9+ (Express Strength)", desc: "Now Sarah deadlifts, presses, and swings kettlebells with confidence. She's stronger than she was at 35 — and pain-free." },
             ].map((item, i) => (
