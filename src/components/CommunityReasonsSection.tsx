@@ -102,7 +102,7 @@ const CommunityReasonsSection = ({ images }: CommunityReasonsSectionProps) => {
                       rel="noopener noreferrer"
                       className="flex items-center gap-2"
                     >
-                      Start Reset Week
+                      Start Free Intro
                       <ArrowRight className="w-4 h-4" />
                     </a>
                   </Button>
