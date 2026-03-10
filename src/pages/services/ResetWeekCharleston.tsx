@@ -10,6 +10,10 @@ import { INTRO_URL } from "@/data/pricing";
 import heroGroupClass from "@/assets/studio-group-goblet-squats.jpg";
 import groupKettlebellTraining from "@/assets/group-kettlebell-training.jpg";
 import davidCoachingForm from "@/assets/david-coaching-form.jpg";
+import proofStrip1 from "@/assets/community-plank-rows-kettlebells-new.jpg";
+import proofStrip2 from "@/assets/members-overhead-press-group.jpg";
+import proofStrip3 from "@/assets/studio-large-group.jpg";
+import proofStrip4 from "@/assets/members-kettlebell-rack-hold.jpg";
 
 const serviceSchema = {
   "@context": "https://schema.org",
