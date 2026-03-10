@@ -6,6 +6,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
 import { GoogleMapEmbed } from "@/components/GoogleMapEmbed";
 import { Check, MapPin, ArrowRight, Star, Shield, Heart, Dumbbell, Clock, Car, Navigation } from "lucide-react";
+import { INTRO_URL } from "@/data/pricing";
 
 import heroKettlebellTraining from "@/assets/hero-kettlebell-training.jpg";
 import groupKettlebellTraining from "@/assets/group-kettlebell-training.jpg";
@@ -15,21 +16,12 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Strength & Mobility Training in West Ashley",
-  "description": "Reset Week at Drake Fitness in the Avondale neighborhood of West Ashley — Your Path to Pain-Free Movement.",
+  "description": "Try 3 free classes at Drake Fitness in the Avondale neighborhood of West Ashley — Your Path to Pain-Free Movement.",
   "provider": localBusinessSchema,
   "areaServed": [
-    {
-      "@type": "Place",
-      "name": "West Ashley"
-    },
-    {
-      "@type": "Place",
-      "name": "Avondale"
-    },
-    {
-      "@type": "City",
-      "name": "Charleston"
-    }
+    { "@type": "Place", "name": "West Ashley" },
+    { "@type": "Place", "name": "Avondale" },
+    { "@type": "City", "name": "Charleston" }
   ],
   "serviceType": "Fitness Training"
 };
@@ -40,7 +32,7 @@ const whatWeOffer = [
   { title: "Coaching That Meets You Where You Are", description: "Personalized attention in every small group class" }
 ];
 
-const whyResetWeek = [
+const whyIntroExperience = [
   { icon: Shield, title: "Removes Guesswork", description: "You'll know exactly what to do, how to move, and why it matters — from day one." },
   { icon: Heart, title: "Removes Pressure", description: "No judgment. No comparison. Just you, your coach, and your progress." },
   { icon: Dumbbell, title: "Rebuilds Strength Right", description: "Mobility first, then strength — the foundation for lasting results." }
@@ -48,7 +40,7 @@ const whyResetWeek = [
 
 const faqs = [
   { question: "Where exactly is Drake Fitness located?", answer: "We're located at 2 Avondale Ave in the Avondale neighborhood of West Ashley, Charleston. We're right in the heart of the community — easy to access from anywhere in West Ashley, James Island, or downtown Charleston." },
-  { question: "What is Reset Week?", answer: "Reset Week is our signature intro program — 7 days of unlimited classes designed to help you move better, build confidence, and see what makes Drake Fitness different." },
+  { question: "What is the 3-Class Intro Experience?", answer: "It's our free intro program — 3 classes over 30 days designed to help you move better, build confidence, and see what makes Drake Fitness different. KB Strong classes run Mon/Wed/Fri at 8am & 11am and Thu at 6pm." },
   { question: "Do I need experience?", answer: "Absolutely not. We specialize in helping beginners and people returning to fitness. Every movement is coached and scaled to your level." },
   { question: "What if I have pain or injuries?", answer: "That's our specialty. We work with people managing pain, recovering from injuries, or dealing with chronic tightness. Our mobility-first approach is designed for exactly that." }
 ];
@@ -58,7 +50,7 @@ export default function WestAshleyFitness() {
     <>
       <SEO
         title="Strength & Mobility Training in West Ashley | Avondale | Drake Fitness"
-        description="Located in Avondale, West Ashley — Reset Week at Drake Fitness is your path to pain-free movement. Safe, coach-led training for adults."
+        description="Located in Avondale, West Ashley — try 3 free classes at Drake Fitness. Safe, coach-led strength & mobility training for adults. KB Strong: Mon/Wed/Fri 8am & 11am, Thu 6pm."
         canonical="https://drake.fitness/west-ashley-fitness"
       />
       <StructuredData data={serviceSchema} />
@@ -88,12 +80,12 @@ export default function WestAshleyFitness() {
                 <span className="text-accent">In West Ashley</span>
               </h1>
               <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-6 md:mb-8 leading-relaxed">
-                Reset Week at Drake Fitness — Your Path to Pain-Free Movement
+                Try 3 free classes at Drake Fitness — Your Path to Pain-Free Movement
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
-                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">
-                    Start Reset Week — $50
+                  <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
+                    Claim 3 Free Classes
                     <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                   </a>
                 </Button>
@@ -132,7 +124,7 @@ export default function WestAshleyFitness() {
                   ))}
                 </ul>
                 <div className="bg-secondary border-l-4 border-accent p-4 md:p-6 rounded-r-lg">
-                  <p className="font-semibold text-base md:text-lg">Drake Fitness is in Avondale — and Reset Week is the best place to start.</p>
+                  <p className="font-semibold text-base md:text-lg">Drake Fitness is in Avondale — and the 3-Class Intro Experience is the best place to start.</p>
                 </div>
               </div>
             </AnimatedSection>
@@ -149,20 +141,20 @@ export default function WestAshleyFitness() {
         </div>
       </section>
 
-      {/* Why Reset Week Section */}
+      {/* Why Intro Experience Section */}
       <section className="py-20 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <span className="text-accent font-bold uppercase tracking-wider text-sm mb-2 block">WHY RESET WEEK?</span>
-              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">Our West Ashley Members Choose Reset Week Because It:</h2>
+              <span className="text-accent font-bold uppercase tracking-wider text-sm mb-2 block">WHY TRY US FREE?</span>
+              <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase">Our West Ashley Members Choose the Intro Experience Because It:</h2>
               <p className="text-xl text-primary-foreground/80">Removes guesswork, pressure, and fear while rebuilding strength the right way.</p>
             </div>
           </AnimatedSection>
 
           <AnimatedSection animation="fadeInUp" delay={0.1}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {whyResetWeek.map((item, index) => (
+              {whyIntroExperience.map((item, index) => (
                 <div key={index} className="bg-primary-foreground/10 backdrop-blur-sm p-8 rounded-xl border border-primary-foreground/10 hover:border-accent/50 transition-all group">
                   <div className="w-16 h-16 bg-accent rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     <item.icon className="h-8 w-8 text-accent-foreground" />
@@ -286,18 +278,18 @@ export default function WestAshleyFitness() {
         </div>
       </section>
 
-      {/* Reset Week CTA Section */}
+      {/* CTA Section */}
       <section className="py-12 md:py-16 lg:py-24 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fadeInUp">
             <div className="text-center max-w-4xl mx-auto">
               <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 uppercase leading-tight">Ready to Move Better?</h2>
-              <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-3 md:mb-4">Reset Week starts you off right — with coaching, community, and confidence.</p>
+              <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-3 md:mb-4">Try 3 free classes — with coaching, community, and confidence.</p>
               <p className="text-base md:text-lg lg:text-xl text-primary-foreground/70 mb-8 md:mb-10">Avondale's choice for pain-free strength training.</p>
               
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
-                <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219" target="_blank" rel="noopener noreferrer">
-                  Start Reset Week — $50
+                <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
+                  Claim 3 Free Classes
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                 </a>
               </Button>
