@@ -108,7 +108,7 @@ const Pricing = () => {
                     </div>
                     <div className="flex-1 w-full sm:w-auto">
                       <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold w-full sm:w-auto">
-                        <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                        <a href={INTRO_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
                           Claim 3 Free Classes
                           <ExternalLink className="h-4 w-4" />
                         </a>
