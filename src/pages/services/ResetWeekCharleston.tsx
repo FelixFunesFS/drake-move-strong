@@ -122,7 +122,7 @@ export default function ResetWeekCharleston() {
 
               {[
                 { step: "1", title: "Claim Your Free Pass", desc: "Sign up in 30 seconds — no card required" },
-                { step: "2", title: "Pick Your Class", desc: "KB Strong: Mon/Wed/Fri 8am & 11am, Thu 6pm", hasScheduleLink: true },
+                { step: "2", title: "Pick Your Class", desc: "Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Thu 6pm", hasScheduleLink: true },
                 { step: "3", title: "Show Up", desc: "We handle the rest — coaching, form, and encouragement" }
               ].map((item) => (
                 <div key={item.step} className="flex flex-col items-center text-center">
