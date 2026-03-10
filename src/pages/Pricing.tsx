@@ -57,7 +57,7 @@ const Pricing = () => {
           </div>
         </section>
 
-        {/* STEP 1: MOVEMENT RESET WEEK (VISUAL PRIORITY #1) */}
+        {/* STEP 1: 3-CLASS INTRO EXPERIENCE (VISUAL PRIORITY #1) */}
         <section className="py-12 md:py-16 bg-muted">
           <div className="container mx-auto px-4">
             {/* Trust Signal - Above Reset Week Card */}
