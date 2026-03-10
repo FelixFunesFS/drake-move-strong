@@ -69,7 +69,7 @@ export default function ResetWeekCharleston() {
     <>
       <SEO
         title="3-Class Intro Experience — Try Strength Training Free | Charleston, SC"
-        description="Most people don't need more workouts — they need a better starting point. Try 3 free classes at Drake Fitness in Charleston. KB Strong: Mon/Wed/Fri 8am & 11am, Thu 6pm."
+        description="Strength & mobility training for beginners. Try 3 free classes at Drake Fitness in Charleston. No card required — just show up."
         canonical="https://drake.fitness/try-free-charleston"
       />
       <StructuredData data={serviceSchema} />
