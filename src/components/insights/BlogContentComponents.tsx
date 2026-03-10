@@ -1640,7 +1640,7 @@ export const WhatRealStrengthContent = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
           <Link 
-            to="/reset-week-charleston"
+            to="/try-free-charleston"
             className="px-10 py-5 bg-drake-gold text-foreground font-bold text-lg rounded-lg hover:bg-drake-gold/90 transition-all transform hover:-translate-y-1 shadow-2xl uppercase tracking-wide inline-flex items-center"
           >
             <ArrowRight className="mr-2 w-5 h-5" /> Start Reset Week
