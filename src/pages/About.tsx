@@ -294,7 +294,7 @@ const About = () => {
                       {/* Bottom Overlay with Name */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-drake-dark via-drake-dark/80 to-transparent p-6">
                 <h3 className="font-hero text-2xl md:text-3xl font-bold text-white uppercase">COACH MISTY</h3>
-                <p className="text-drake-gold font-semibold">Yoga & Mobility Coach</p>
+                <p className="text-drake-gold font-semibold">Yoga Partner</p>
               </div>
                     </div>
                   </motion.div>

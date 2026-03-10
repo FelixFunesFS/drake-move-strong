@@ -303,14 +303,14 @@ const Coaching = () => {
               <motion.div whileHover={{
                 y: -8
               }} className="bg-white p-6 rounded-xl shadow-card border border-border">
-              <OptimizedImage src={mistyCoach} alt="Coach Misty Lister at Drake Fitness" className="mb-4 rounded-lg aspect-[10/9] md:aspect-[6/5]" objectPosition="center 15%" sizes="(max-width: 768px) 100vw, 576px" />
-                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Coach Misty Lister</h3>
-                <p className="text-primary font-semibold mb-3">Yoga & Mobility Coach</p>
+              <OptimizedImage src={mistyCoach} alt="Coach Misty Lister — Yoga Partner at Drake Fitness" className="mb-4 rounded-lg aspect-[10/9] md:aspect-[6/5]" objectPosition="center 15%" sizes="(max-width: 768px) 100vw, 576px" />
+                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Misty Lister</h3>
+                <p className="text-primary font-semibold mb-3">Yoga Partner · Members Save</p>
                 <p className="text-muted-foreground mb-4">
-                  Strength, mobility, and breath — helping athletes discover how yoga supports performance and longevity.
+                  Misty runs independent yoga classes at Drake Fitness. Members receive a discount on her classes.
                 </p>
                 <Button asChild variant="outline" className="w-full">
-                  <Link to="/about">Read Bio</Link>
+                  <Link to="/about">Learn About Yoga</Link>
                 </Button>
               </motion.div>
             </div>

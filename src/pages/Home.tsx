@@ -201,13 +201,13 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                 <div className="h-96 mb-4 overflow-hidden rounded-lg">
                   <OptimizedImage src={coachMisty} alt="Coach Misty Lister yoga and mobility specialist" className="w-full h-full" aspectRatio="auto" />
                 </div>
-                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Coach Misty Lister</h3>
-                <p className="text-primary font-semibold mb-3 uppercase text-sm tracking-wide">Yoga & Mobility Coach</p>
+                <h3 className="font-hero text-2xl font-bold mb-2 uppercase">Misty Lister</h3>
+                <p className="text-primary font-semibold mb-3 uppercase text-sm tracking-wide">Yoga Partner · Members Save</p>
                 <p className="text-muted-foreground mb-4">
-                  A 250/500-hour certified yoga teacher, Misty specializes in strength, mobility, and breath. Her classes help athletes and everyday movers recover better and move with confidence.
+                  Misty runs independent yoga classes at Drake Fitness. Drake members receive a discount on her classes.
                 </p>
                 <Button asChild variant="outline" className="w-full">
-                  <Link to="/about">Learn More About Misty</Link>
+                  <Link to="/about">Explore Yoga Classes</Link>
                 </Button>
               </div>
             </AnimatedSection>

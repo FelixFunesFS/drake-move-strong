@@ -41,7 +41,7 @@ const serviceSchema = {
 
 
 const whatYoullExperience = [
-  { icon: User, title: "Coach-Led Sessions", description: "Every class is guided by David or Misty — you're never left to figure it out on your own." },
+  { icon: User, title: "Coach-Led Sessions", description: "Every class is guided by David and our coaching team — you're never left to figure it out on your own." },
   { icon: Dumbbell, title: "Mobility & Movement", description: "We fix how you move before adding weight — joints, posture, and range of motion come first." },
   { icon: Dumbbell, title: "Strength Basics", description: "Introduction to functional movements like squats, hinges, carries, and presses." },
   { icon: Heart, title: "Confidence Building", description: "By the end of your 3 classes, you'll know you can do this — and you'll want to keep going." }

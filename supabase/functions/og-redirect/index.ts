@@ -29,7 +29,7 @@ const STATIC_PAGES: Record<string, { title: string; description: string; image?:
   },
   '/about': {
     title: 'About Drake Fitness | Our Story & Coaches',
-    description: 'Meet Coach Drake and Coach Misty. Learn about our evidence-based approach to strength and mobility training in Charleston, SC.',
+    description: 'Meet Coach Drake & The Team. Learn about our evidence-based approach to strength and mobility training in Charleston, SC.',
   },
   '/schedule': {
     title: 'Class Schedule | Drake Fitness Charleston',
