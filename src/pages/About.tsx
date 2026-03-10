@@ -262,12 +262,15 @@ const About = () => {
                         Misty completed her 250- and 500-hour Natural Teacher training at Satsang Yoga Charleston, where she has been teaching for five years. Her classes focus on <strong className="text-foreground">strength, mobility, and breath</strong>, with an emphasis on helping students move well both in and out of the gym.
                       </p>
                       <p>
-                        As a member of the Drake Fitness community herself, Misty is passionate about helping athletes discover how yoga supports <strong className="text-foreground">performance, recovery, and longevity</strong>. Expect a strong but accessible flow, a great playlist, and a welcoming, down-to-earth class environment.
-                      </p>
+                      As a member of the Drake Fitness community herself, Misty is passionate about helping athletes discover how yoga supports <strong className="text-foreground">performance, recovery, and longevity</strong>. Expect a strong but accessible flow, a great playlist, and a welcoming, down-to-earth class environment.
+                    </p>
+                    <p>
+                      Misty runs her own yoga practice — <strong className="text-foreground">Drake Fitness members receive a discount</strong> on her classes.
+                    </p>
                     </div>
 
                     <Button asChild className="mt-6">
-                      <Link to="/schedule">Try a Class This Week</Link>
+                      <Link to="/schedule">Explore Yoga Classes</Link>
                     </Button>
                   </motion.div>
                 </div>
