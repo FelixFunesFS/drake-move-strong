@@ -14,6 +14,7 @@ import {
   CalendarDays, Shield, Clock, Car, Navigation
 } from "lucide-react";
 
+import { INTRO_URL } from "@/data/pricing";
 import heroKettlebellTraining from "@/assets/hero-kettlebell-training.jpg";
 import davidGobletSquat from "@/assets/david-goblet-squat-kb-rack.jpg";
 import studioDavidStorefront from "@/assets/studio-david-storefront.jpg";
@@ -118,7 +119,7 @@ export default function StrengthTrainingCharleston() {
                 Train Smarter. Move Better. Get Strong Without Pain.
               </p>
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
-                <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer">
+                <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
                   <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
                   Claim 3 Free Classes
                 </a>
@@ -183,7 +184,7 @@ export default function StrengthTrainingCharleston() {
                 </div>
                 <div className="lg:absolute lg:-bottom-8 lg:-left-8 mt-6 lg:mt-0 bg-accent text-accent-foreground p-5 md:p-8 rounded-xl shadow-xl max-w-sm mx-auto lg:mx-0">
                   <p className="font-heading text-2xl md:text-3xl font-bold mb-2">85%</p>
-                  <p className="font-semibold text-sm md:text-base">of our members are over 30 and starting from scratch</p>
+                  <p className="font-semibold text-sm md:text-base">of our members are over 30 — and training smarter than ever</p>
                 </div>
               </div>
             </AnimatedSection>
@@ -269,7 +270,7 @@ export default function StrengthTrainingCharleston() {
                   What Is the <span className="text-primary">3-Class Intro?</span>
                 </h2>
                 <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                  The 3-Class Intro is a low-pressure, beginner-friendly introduction to Drake Fitness. Try 3 classes free over 30 days.
+                  The 3-Class Intro is a low-pressure introduction to Drake Fitness — scaled to your level. Try 3 classes free over 30 days.
                 </p>
 
                 <div className="space-y-5 mb-10">
@@ -292,7 +293,7 @@ export default function StrengthTrainingCharleston() {
                 </div>
 
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-6 text-lg font-bold uppercase tracking-wide">
-                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer">
+                  <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
                     Claim 3 Free Classes
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
