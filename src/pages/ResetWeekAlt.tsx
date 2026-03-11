@@ -499,7 +499,7 @@ const ResetWeekAlt = () => {
               size="lg"
               className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-bold text-lg px-10 py-6 h-auto shadow-[var(--shadow-gold)] hover:scale-105 transition-transform group"
             >
-              <a href={INTRO_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
+              <a href={buildPunchPassUrl(INTRO_URL, 'intro-bottom-cta')} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
                 Claim Your 3 Free Classes
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
