@@ -203,7 +203,8 @@ function PhotoInsetRect({ src, width, height, rotation, style }: { src: string; 
 }
 
 // Frosted overlapping info card for split layouts
-function FrostedCard({ headline, detailLine, ctaText, showBadge, style }: {
+function FrostedCard({ eyebrow, headline, detailLine, ctaText, showBadge, style }: {
+  eyebrow?: string;
   headline: string;
   detailLine: string;
   ctaText: string;
@@ -223,6 +224,9 @@ function FrostedCard({ headline, detailLine, ctaText, showBadge, style }: {
       maxWidth: 360,
       ...style,
     }}>
+      {eyebrow && (
+        <div style={{ fontSize: 11, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3, marginBottom: 8 }}>{eyebrow}</div>
+      )}
       <div style={{ fontSize: 32, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1, letterSpacing: 1, marginBottom: 8 }}>
         {headline}
       </div>
