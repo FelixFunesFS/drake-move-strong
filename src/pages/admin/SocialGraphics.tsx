@@ -2,7 +2,7 @@ import { useState, useRef, useCallback } from 'react';
 import AdminLayout from '@/components/admin/AdminLayout';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Download, Search, Type, Sparkles } from 'lucide-react';
+import { Download, Search, Type, Sparkles, X, Image as ImageIcon } from 'lucide-react';
 import { toPng } from 'html-to-image';
 import { toast } from 'sonner';
 
@@ -52,7 +52,7 @@ const PHOTOS = [
   { src: davidDoubleKb, label: 'David Storefront' },
 ];
 
-type TemplateId = 'full-bleed' | 'split-left' | 'centered' | 'editorial' | 'split-right';
+type TemplateId = 'full-bleed' | 'split-left' | 'centered' | 'editorial' | 'split-right' | 'collage';
 
 const TEMPLATES: { id: TemplateId; label: string }[] = [
   { id: 'full-bleed', label: 'Full Bleed' },
@@ -60,6 +60,7 @@ const TEMPLATES: { id: TemplateId; label: string }[] = [
   { id: 'centered', label: 'Centered Card' },
   { id: 'editorial', label: 'Editorial Strip' },
   { id: 'split-right', label: 'Split Right' },
+  { id: 'collage', label: 'Collage' },
 ];
 
 interface ContentPreset {
@@ -165,9 +166,82 @@ function CTAButton({ text, style }: { text: string; style?: React.CSSProperties 
   );
 }
 
+// Circular photo inset used on split templates
+function PhotoInset({ src, size, style }: { src: string; size: number; style?: React.CSSProperties }) {
+  return (
+    <div style={{
+      width: size,
+      height: size,
+      borderRadius: '50%',
+      overflow: 'hidden',
+      border: `3px solid ${GOLD}`,
+      boxShadow: '0 8px 32px rgba(0,0,0,0.45)',
+      flexShrink: 0,
+      ...style,
+    }}>
+      <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+    </div>
+  );
+}
+
+// Rounded-rect photo inset used on full-bleed
+function PhotoInsetRect({ src, width, height, rotation, style }: { src: string; width: number; height: number; rotation?: number; style?: React.CSSProperties }) {
+  return (
+    <div style={{
+      width,
+      height,
+      borderRadius: 10,
+      overflow: 'hidden',
+      border: `3px solid ${GOLD}`,
+      boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+      transform: rotation ? `rotate(${rotation}deg)` : undefined,
+      ...style,
+    }}>
+      <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+    </div>
+  );
+}
+
+// Frosted overlapping info card for split layouts
+function FrostedCard({ headline, detailLine, ctaText, showBadge, style }: {
+  headline: string;
+  detailLine: string;
+  ctaText: string;
+  showBadge: boolean;
+  style?: React.CSSProperties;
+}) {
+  return (
+    <div style={{
+      background: 'rgba(11, 74, 82, 0.88)',
+      backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)',
+      border: `1px solid rgba(242, 181, 68, 0.25)`,
+      borderRadius: 12,
+      padding: '28px 32px',
+      boxShadow: '0 16px 48px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.3)',
+      fontFamily: "'Oswald', sans-serif",
+      maxWidth: 360,
+      ...style,
+    }}>
+      <div style={{ fontSize: 32, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1, letterSpacing: 1, marginBottom: 8 }}>
+        {headline}
+      </div>
+      {detailLine && (
+        <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', letterSpacing: 1, marginBottom: 14 }}>{detailLine}</div>
+      )}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' as const }}>
+        <CTAButton text={ctaText} style={{ fontSize: 14, padding: '10px 24px' }} />
+        {showBadge && <FreeBadge style={{ transform: 'scale(0.7)', transformOrigin: 'left center' }} />}
+      </div>
+    </div>
+  );
+}
+
 interface TemplatePreviewProps {
   template: TemplateId;
   photo: string;
+  secondPhoto?: string;
+  thirdPhoto?: string;
   eyebrow: string;
   headline: string;
   programLine: string;
@@ -177,7 +251,7 @@ interface TemplatePreviewProps {
   previewRef: React.RefObject<HTMLDivElement>;
 }
 
-function TemplatePreview({ template, photo, eyebrow, headline, programLine, detailLine, ctaText, showBadge, previewRef }: TemplatePreviewProps) {
+function TemplatePreview({ template, photo, secondPhoto, thirdPhoto, eyebrow, headline, programLine, detailLine, ctaText, showBadge, previewRef }: TemplatePreviewProps) {
   const font = "'Oswald', sans-serif";
 
   if (template === 'full-bleed') {
@@ -187,6 +261,12 @@ function TemplatePreview({ template, photo, eyebrow, headline, programLine, deta
         <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 120px 40px rgba(0,0,0,0.5)' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.35) 40%, transparent 70%)' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(11,74,82,0.3) 0%, transparent 50%)' }} />
+        {/* Secondary photo inset — top-left corner */}
+        {secondPhoto && (
+          <div style={{ position: 'absolute', top: 28, left: 40 }}>
+            <PhotoInsetRect src={secondPhoto} width={180} height={120} rotation={-3} />
+          </div>
+        )}
         {showBadge && (
           <div style={{ position: 'absolute', top: 32, right: 40 }}>
             <FreeBadge />
@@ -225,10 +305,22 @@ function TemplatePreview({ template, photo, eyebrow, headline, programLine, deta
             {detailLine && (
               <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.6)', marginTop: 6, fontWeight: 400, letterSpacing: 0.5 }}>{detailLine}</div>
             )}
+            {/* Circular secondary photo inset on teal panel */}
+            {secondPhoto && (
+              <PhotoInset src={secondPhoto} size={80} style={{ marginTop: 14 }} />
+            )}
             <CTAButton text={ctaText} style={{ marginTop: 20 }} />
             {showBadge && <FreeBadge style={{ marginTop: 16 }} />}
           </div>
         </div>
+        {/* Frosted overlapping card on the seam */}
+        <FrostedCard
+          headline={headline}
+          detailLine={programLine}
+          ctaText={ctaText}
+          showBadge={false}
+          style={{ position: 'absolute', bottom: 36, left: '42%', transform: 'translateX(-50%)', zIndex: 10 }}
+        />
       </div>
     );
   }
@@ -236,7 +328,15 @@ function TemplatePreview({ template, photo, eyebrow, headline, programLine, deta
   if (template === 'centered') {
     return (
       <div ref={previewRef} style={{ width: 1200, height: 630, position: 'relative', overflow: 'hidden', fontFamily: font }}>
-        <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+        {/* Stacked rotated photo frames behind */}
+        <div style={{ position: 'absolute', inset: -20, transform: 'rotate(-3deg)', transformOrigin: 'center' }}>
+          <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.35)' }} crossOrigin="anonymous" />
+        </div>
+        <div style={{ position: 'absolute', inset: -20, transform: 'rotate(3deg)', transformOrigin: 'center' }}>
+          <img src={secondPhoto || photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.25)' }} crossOrigin="anonymous" />
+        </div>
+        {/* Main image */}
+        <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} crossOrigin="anonymous" />
         <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse at center, rgba(11,74,82,0.78) 0%, rgba(11,74,82,0.92) 70%, rgba(0,0,0,0.95) 100%)` }} />
         <div style={{ position: 'absolute', top: 50, left: 90, right: 90, bottom: 50, border: '1px solid rgba(242,181,68,0.2)', borderRadius: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' as const, padding: '0 60px', background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(2px)' }}>
           {/* Gold corner accents */}
@@ -244,6 +344,18 @@ function TemplatePreview({ template, photo, eyebrow, headline, programLine, deta
           <div style={{ position: 'absolute', top: -1, right: -1, width: 32, height: 32, borderTop: `3px solid ${GOLD}`, borderRight: `3px solid ${GOLD}`, borderRadius: '0 8px 0 0' }} />
           <div style={{ position: 'absolute', bottom: -1, left: -1, width: 32, height: 32, borderBottom: `3px solid ${GOLD}`, borderLeft: `3px solid ${GOLD}`, borderRadius: '0 0 0 8px' }} />
           <div style={{ position: 'absolute', bottom: -1, right: -1, width: 32, height: 32, borderBottom: `3px solid ${GOLD}`, borderRight: `3px solid ${GOLD}`, borderRadius: '0 0 8px 0' }} />
+
+          {/* Flanking photos when secondPhoto exists */}
+          {secondPhoto && (
+            <>
+              <div style={{ position: 'absolute', left: -50, top: '50%', transform: 'translateY(-50%) rotate(-4deg)' }}>
+                <PhotoInsetRect src={secondPhoto} width={100} height={130} rotation={-4} />
+              </div>
+              <div style={{ position: 'absolute', right: -50, top: '50%', transform: 'translateY(-50%) rotate(4deg)' }}>
+                <PhotoInsetRect src={secondPhoto} width={100} height={130} rotation={4} />
+              </div>
+            </>
+          )}
 
           <img src={logo} alt="" style={{ height: 56, marginBottom: 18 }} crossOrigin="anonymous" />
           <div style={{ fontSize: 13, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 4, marginBottom: 12 }}>{eyebrow}</div>
@@ -271,6 +383,12 @@ function TemplatePreview({ template, photo, eyebrow, headline, programLine, deta
           <img src={logo} alt="" style={{ height: 40 }} crossOrigin="anonymous" />
           <span style={{ fontSize: 22, fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: 3 }}>DRAKE FITNESS</span>
           <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 16 }}>
+            {/* Small secondary photo strip in header */}
+            {secondPhoto && (
+              <div style={{ width: 44, height: 44, borderRadius: '50%', overflow: 'hidden', border: `2px solid ${GOLD}`, flexShrink: 0 }}>
+                <img src={secondPhoto} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+              </div>
+            )}
             <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', textTransform: 'uppercase', letterSpacing: 1.5, fontWeight: 500 }}>{programLine}</span>
             <span style={{ fontSize: 12, color: GOLD, textTransform: 'uppercase', letterSpacing: 3, fontWeight: 500 }}>{eyebrow}</span>
           </div>
@@ -302,6 +420,62 @@ function TemplatePreview({ template, photo, eyebrow, headline, programLine, deta
     );
   }
 
+  if (template === 'collage') {
+    const img2 = secondPhoto || photo;
+    const img3 = thirdPhoto || secondPhoto || photo;
+    return (
+      <div ref={previewRef} style={{ width: 1200, height: 630, fontFamily: font, overflow: 'hidden', position: 'relative', background: DARK }}>
+        {/* Photo mosaic grid */}
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '60%', height: '100%' }}>
+          <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+          <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 60px 10px rgba(0,0,0,0.3)' }} />
+        </div>
+        {/* Gold divider */}
+        <div style={{ position: 'absolute', top: 0, left: '60%', width: 4, height: '100%', background: GOLD, zIndex: 2 }} />
+        {/* Right column — two stacked photos */}
+        <div style={{ position: 'absolute', top: 0, right: 0, width: '40%', height: '50%' }}>
+          <img src={img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+          <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 40px 5px rgba(0,0,0,0.2)' }} />
+        </div>
+        {/* Horizontal gold divider */}
+        <div style={{ position: 'absolute', top: '50%', right: 0, width: '40%', height: 4, background: GOLD, zIndex: 2, transform: 'translateY(-2px)' }} />
+        <div style={{ position: 'absolute', bottom: 0, right: 0, width: '40%', height: '50%' }}>
+          <img src={img3} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+          <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 40px 5px rgba(0,0,0,0.2)' }} />
+        </div>
+        {/* Dark overlay strip at bottom */}
+        <div style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: 120,
+          background: 'linear-gradient(to top, rgba(26,26,26,0.95) 0%, rgba(26,26,26,0.8) 60%, transparent 100%)',
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'space-between',
+          padding: '0 40px 28px',
+          zIndex: 5,
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+            <img src={logo} alt="" style={{ height: 44 }} crossOrigin="anonymous" />
+            <div>
+              <div style={{ fontSize: 12, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3, marginBottom: 4 }}>{eyebrow}</div>
+              <div style={{ fontSize: 32, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1, letterSpacing: 1 }}>{headline}</div>
+              {detailLine && (
+                <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', letterSpacing: 1, marginTop: 2 }}>{detailLine}</div>
+              )}
+            </div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            {showBadge && <FreeBadge style={{ transform: 'scale(0.8)' }} />}
+            <CTAButton text={ctaText} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // split-right
   return (
     <div ref={previewRef} style={{ width: 1200, height: 630, position: 'relative', overflow: 'hidden', fontFamily: font }}>
@@ -322,12 +496,24 @@ function TemplatePreview({ template, photo, eyebrow, headline, programLine, deta
           {detailLine && (
             <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.6)', marginTop: 6, fontWeight: 400, letterSpacing: 0.5 }}>{detailLine}</div>
           )}
+          {/* Circular secondary photo inset */}
+          {secondPhoto && (
+            <PhotoInset src={secondPhoto} size={80} style={{ marginTop: 14 }} />
+          )}
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 20 }}>
             <CTAButton text={ctaText} />
             {showBadge && <FreeBadge style={{ transform: 'scale(0.85)' }} />}
           </div>
         </div>
       </div>
+      {/* Frosted overlapping card on the seam */}
+      <FrostedCard
+        headline={headline}
+        detailLine={programLine}
+        ctaText={ctaText}
+        showBadge={false}
+        style={{ position: 'absolute', bottom: 36, left: '50%', transform: 'translateX(-50%)', zIndex: 10 }}
+      />
     </div>
   );
 }
@@ -382,6 +568,22 @@ function TemplateThumbnail({ id, active }: { id: TemplateId; active: boolean }) 
       </div>
     );
   }
+  if (id === 'collage') {
+    return (
+      <div style={{ ...base, border: ring, display: 'flex', position: 'relative' }}>
+        <div style={{ width: '60%', background: '#888' }} />
+        <div style={{ position: 'absolute', top: 0, left: '60%', width: 2, height: '100%', ...gold }} />
+        <div style={{ width: '40%', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ flex: 1, background: '#999' }} />
+          <div style={{ height: 2, ...gold }} />
+          <div style={{ flex: 1, background: '#777' }} />
+        </div>
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 10, background: 'rgba(26,26,26,0.8)' }}>
+          <div style={{ position: 'absolute', bottom: 2, left: 4, width: 20, height: 2, background: '#fff', borderRadius: 1 }} />
+        </div>
+      </div>
+    );
+  }
   // split-right
   return (
     <div style={{ ...base, border: ring, display: 'flex' }}>
@@ -398,6 +600,8 @@ function TemplateThumbnail({ id, active }: { id: TemplateId; active: boolean }) 
 export default function SocialGraphics() {
   const [template, setTemplate] = useState<TemplateId>('full-bleed');
   const [selectedPhoto, setSelectedPhoto] = useState(0);
+  const [secondPhotoIdx, setSecondPhotoIdx] = useState<number | null>(null);
+  const [thirdPhotoIdx, setThirdPhotoIdx] = useState<number | null>(null);
   const [eyebrow, setEyebrow] = useState('WEST ASHLEY · CHARLESTON');
   const [headline, setHeadline] = useState('Try 3 Classes Free');
   const [programLine, setProgramLine] = useState('Strength & Mobility Classes');
@@ -406,6 +610,7 @@ export default function SocialGraphics() {
   const [showBadge, setShowBadge] = useState(true);
   const [photoSearch, setPhotoSearch] = useState('');
   const [isExporting, setIsExporting] = useState(false);
+  const [pickingFor, setPickingFor] = useState<'primary' | 'secondary' | 'tertiary'>('primary');
   const previewRef = useRef<HTMLDivElement>(null);
 
   const filteredPhotos = PHOTOS.filter(p =>
@@ -444,9 +649,22 @@ export default function SocialGraphics() {
     }
   }, [template]);
 
+  const handlePhotoSelect = (realIdx: number) => {
+    if (pickingFor === 'secondary') {
+      setSecondPhotoIdx(realIdx);
+    } else if (pickingFor === 'tertiary') {
+      setThirdPhotoIdx(realIdx);
+    } else {
+      setSelectedPhoto(realIdx);
+    }
+  };
+
   const PREVIEW_SCALE = 0.5;
   const CANVAS_W = 1200;
   const CANVAS_H = 630;
+
+  const secondPhoto = secondPhotoIdx !== null ? PHOTOS[secondPhotoIdx]?.src : undefined;
+  const thirdPhoto = thirdPhotoIdx !== null ? PHOTOS[thirdPhotoIdx]?.src : undefined;
 
   return (
     <AdminLayout>
@@ -512,6 +730,8 @@ export default function SocialGraphics() {
               <TemplatePreview
                 template={template}
                 photo={PHOTOS[selectedPhoto]?.src || PHOTOS[0].src}
+                secondPhoto={secondPhoto}
+                thirdPhoto={thirdPhoto}
                 eyebrow={eyebrow}
                 headline={headline}
                 programLine={programLine}
@@ -557,28 +777,106 @@ export default function SocialGraphics() {
           </div>
         </div>
 
-        {/* Photo Picker */}
+        {/* Photo Pickers */}
         <div>
           <div className="flex items-center gap-3 mb-3">
-            <h2 className="text-lg font-semibold">Choose Photo</h2>
+            <h2 className="text-lg font-semibold">Choose Photos</h2>
             <div className="relative flex-1 max-w-xs">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input value={photoSearch} onChange={e => setPhotoSearch(e.target.value)} placeholder="Search photos…" className="pl-9 h-9" />
             </div>
           </div>
+
+          {/* Photo slot selectors */}
+          <div className="flex gap-3 mb-3 flex-wrap">
+            <button
+              onClick={() => setPickingFor('primary')}
+              className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-all ${
+                pickingFor === 'primary' ? 'border-drake-gold bg-drake-gold/10 text-drake-gold' : 'border-border text-muted-foreground hover:border-muted-foreground'
+              }`}
+            >
+              <ImageIcon className="h-4 w-4" />
+              Primary Photo
+              <span className="text-xs opacity-60">({PHOTOS[selectedPhoto]?.label})</span>
+            </button>
+            <button
+              onClick={() => setPickingFor('secondary')}
+              className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-all ${
+                pickingFor === 'secondary' ? 'border-drake-gold bg-drake-gold/10 text-drake-gold' : 'border-border text-muted-foreground hover:border-muted-foreground'
+              }`}
+            >
+              <ImageIcon className="h-4 w-4" />
+              Secondary
+              {secondPhotoIdx !== null ? (
+                <>
+                  <span className="text-xs opacity-60">({PHOTOS[secondPhotoIdx]?.label})</span>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setSecondPhotoIdx(null); }}
+                    className="ml-1 p-0.5 rounded hover:bg-destructive/20"
+                  >
+                    <X className="h-3 w-3" />
+                  </button>
+                </>
+              ) : (
+                <span className="text-xs opacity-40">(optional)</span>
+              )}
+            </button>
+            {template === 'collage' && (
+              <button
+                onClick={() => setPickingFor('tertiary')}
+                className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-all ${
+                  pickingFor === 'tertiary' ? 'border-drake-gold bg-drake-gold/10 text-drake-gold' : 'border-border text-muted-foreground hover:border-muted-foreground'
+                }`}
+              >
+                <ImageIcon className="h-4 w-4" />
+                Third
+                {thirdPhotoIdx !== null ? (
+                  <>
+                    <span className="text-xs opacity-60">({PHOTOS[thirdPhotoIdx]?.label})</span>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setThirdPhotoIdx(null); }}
+                      className="ml-1 p-0.5 rounded hover:bg-destructive/20"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  </>
+                ) : (
+                  <span className="text-xs opacity-40">(optional)</span>
+                )}
+              </button>
+            )}
+          </div>
+          <p className="text-xs text-muted-foreground mb-2">
+            Selecting for: <span className="font-semibold text-drake-gold">{pickingFor === 'primary' ? 'Primary' : pickingFor === 'secondary' ? 'Secondary' : 'Third'}</span>
+          </p>
+
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2">
             {filteredPhotos.map((p) => {
               const realIdx = PHOTOS.indexOf(p);
+              const isPrimary = selectedPhoto === realIdx;
+              const isSecondary = secondPhotoIdx === realIdx;
+              const isTertiary = thirdPhotoIdx === realIdx;
+              const isActive = pickingFor === 'primary' ? isPrimary : pickingFor === 'secondary' ? isSecondary : isTertiary;
               return (
                 <button
                   key={p.label}
-                  onClick={() => setSelectedPhoto(realIdx)}
+                  onClick={() => handlePhotoSelect(realIdx)}
                   className={`relative aspect-video rounded-md overflow-hidden border-2 transition-all ${
-                    selectedPhoto === realIdx ? 'border-drake-gold ring-2 ring-drake-gold/40' : 'border-transparent hover:border-muted-foreground/30'
+                    isActive ? 'border-drake-gold ring-2 ring-drake-gold/40' : 'border-transparent hover:border-muted-foreground/30'
                   }`}
                 >
                   <img src={p.src} alt={p.label} className="w-full h-full object-cover" />
                   <span className="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[10px] px-1 py-0.5 truncate">{p.label}</span>
+                  {/* Slot indicators */}
+                  {isPrimary && (
+                    <span className="absolute top-1 left-1 text-[9px] bg-drake-gold text-drake-dark px-1 rounded font-bold">1</span>
+                  )}
+                  {isSecondary && (
+                    <span className="absolute top-1 left-1 text-[9px] bg-drake-teal text-white px-1 rounded font-bold">2</span>
+                  )}
+                  {isTertiary && (
+                    <span className="absolute top-1 right-1 text-[9px] bg-drake-teal text-white px-1 rounded font-bold">3</span>
+                  )}
                 </button>
               );
             })}
