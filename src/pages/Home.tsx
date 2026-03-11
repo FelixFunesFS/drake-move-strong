@@ -80,12 +80,12 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
               <AnimatedSection animation="slideInLeft" className="p-8 md:p-8 lg:p-12">
                 <p className="section-eyebrow text-primary mb-4">TRY US FREE</p>
                 <h2 className="font-hero text-3xl md:text-3xl lg:text-4xl font-bold mb-6 uppercase leading-tight">
-                  If You Feel Stiff, Achy, or Out of Shape...<br />
-                  <span className="text-primary">You're in the Right Place.</span>
+                  Whether You're Starting Over or Leveling Up —<br />
+                  <span className="text-primary">You Belong Here.</span>
                 </h2>
-                <p className="text-lg mb-6 text-muted-foreground">We specialize in helping:</p>
+                <p className="text-lg mb-6 text-muted-foreground">We coach every level:</p>
                 <ul className="space-y-2 md:space-y-2 mb-6 md:mb-6 lg:mb-8">
-                  {["Adults 30–65 with limited time", "Desk workers with back/hip stiffness", "People returning from injury", "Anyone wanting long-term, pain-free strength"].map((item, index) => <li key={index} className="flex items-start">
+                  {["Rebuilding after time off, injury, or inactivity", "Desk workers fighting stiffness and poor posture", "Active people who want expert movement coaching", "Anyone chasing long-term, pain-free strength"].map((item, index) => <li key={index} className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 text-primary mr-3 mt-1 flex-shrink-0" />
                       <span className="text-base">{item}</span>
                     </li>)}
