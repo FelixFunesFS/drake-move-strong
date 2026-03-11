@@ -34,7 +34,7 @@ const About = () => {
     <>
       <SEO
         title="Meet Our Expert Coaches | 25+ Years | Drake Fitness"
-        description="Meet the expert coaches behind Drake Fitness in Charleston, SC. 25+ years of experience in mobility-first functional training, corrective exercise, and sustainable strength building."
+        description="David Drake: 25+ years coaching real people through pain, injury, and plateaus. Meet the team behind Charleston's most trusted small gym."
         
         canonical="https://drake.fitness/about"
       />

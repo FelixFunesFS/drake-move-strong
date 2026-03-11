@@ -118,7 +118,7 @@ const FAQ = () => {
     <>
       <SEO
         title="10 Charleston Fitness FAQs Answered | 2026 Guide"
-        description="Find answers to common questions about our training, memberships, and approach at Drake Fitness in Charleston, SC."
+        description="New to Drake Fitness? Answers about what to wear, how classes work, pricing, and why we're different from big-box gyms in Charleston."
         canonical="https://drake.fitness/faq"
       />
       <StructuredData data={faqSchema} />
