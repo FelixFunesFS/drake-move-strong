@@ -1,49 +1,33 @@
 
-# Plan: UTM Attribution Tracking — COMPLETED
 
-## What Was Done
+## Add Drake Fitness Logo to Email Headers
 
-Added `buildPunchPassUrl()` helper to `src/data/pricing.ts` and tagged every PunchPass checkout link across 13 files with unique `utm_content` values.
+### Problem
+The email header currently uses text-only "DRAKE FITNESS" in Oswald font. The user wants the actual brand logo (`drake-fitness-logo2.png`) displayed in the header, compatible with all email clients.
 
-## UTM Content Tags Reference
+### Approach
 
-| `utm_content` | Location |
+**1. Host logo at a public URL**
+Copy `src/assets/drake-fitness-logo2.png` to `public/images/drake-fitness-logo2.png` so it's served at `https://drake-move-strong.lovable.app/images/drake-fitness-logo2.png` — a stable, publicly accessible URL that email clients can fetch.
+
+**2. Update header in both template files**
+Replace the text-only `<h1>DRAKE FITNESS</h1>` header with an `<img>` tag using email-safe best practices:
+- Absolute URL (not relative)
+- Explicit `width` and `height` attributes (prevents layout shift)
+- `alt="Drake Fitness"` fallback text for clients that block images
+- `style="display:block;"` to prevent gaps in Outlook
+- Keep the text "MOVE. GET STRONG." tagline below the logo
+
+### Email Client Compatibility
+- **Gmail/Apple Mail/Yahoo**: Renders `<img>` natively
+- **Outlook**: Explicit width/height + `display:block` prevents broken layout
+- **Image-blocking clients**: `alt` text displays "Drake Fitness" in white on teal background as fallback
+
+### Files Changed
+
+| File | Change |
 |---|---|
-| `nav-try-free` | Desktop nav "Try Free" button |
-| `nav-mobile-try-free` | Mobile nav "Try 3 Classes Free" |
-| `home-start-here-inline` | Home "Sign up" text link |
-| `home-start-here-cta` | Home "Claim Your 3 Free Classes" button |
-| `home-bottom-cta` | Home bottom CTA section |
-| `community-reasons-cta` | Community reasons section |
-| `pricing-intro-card` | Pricing intro card |
-| `pricing-foundation` | Pricing Foundation membership |
-| `pricing-unlimited` | Pricing Longevity Unlimited |
-| `pricing-remote-support` | Pricing Remote Support |
-| `pricing-flex-pack` | Pricing 10-Class Pack |
-| `pricing-not-sure-cta` | Pricing "Not sure" section |
-| `pricing-bottom-cta` | Pricing bottom CTA |
-| `schedule-top-cta` | Schedule top banner |
-| `schedule-bottom-cta` | Schedule bottom CTA |
-| `intro-nav-cta` | Try Free landing nav |
-| `intro-hero-cta` | Try Free landing hero |
-| `intro-bottom-cta` | Try Free landing bottom |
-| `intro-sticky-mobile` | Try Free sticky mobile bar |
-| `west-ashley-hero` | West Ashley hero CTA |
-| `west-ashley-bottom` | West Ashley bottom CTA |
-| `strength-hero` | Strength Training hero |
-| `strength-middle-cta` | Strength Training mid-page |
-| `strength-bottom-cta` | Strength Training bottom |
-| `low-impact-hero` | Low Impact hero |
-| `low-impact-middle-cta` | Low Impact mid-page |
-| `low-impact-bottom-cta` | Low Impact bottom |
-| `reset-week-hero` | Reset Week hero |
-| `reset-week-step-claim` | Reset Week step "Claim your pass" |
-| `reset-week-bottom-cta` | Reset Week bottom |
-| `insights-bottom-cta` | Insights bottom CTA |
-| `success-stories-bottom-cta` | Success Stories bottom |
+| `public/images/drake-fitness-logo2.png` | Copy of brand logo for public hosting |
+| `src/lib/emailTemplates.ts` | Replace text header with logo `<img>` tag |
+| `supabase/functions/send-nurture-previews/index.ts` | Mirror same header change |
 
-## External UTM Convention (for ads, not in code)
-
-- **Facebook Ads**: `?utm_source=facebook&utm_medium=cpc&utm_campaign=intro-offer&utm_content=ad-spring-2026`
-- **Google Business Profile**: `?utm_source=google&utm_medium=organic&utm_content=gbp-website-link`
-- **Instagram bio**: `?utm_source=instagram&utm_medium=social&utm_content=bio-link`
