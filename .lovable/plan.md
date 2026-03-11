@@ -1,46 +1,84 @@
 
 
-# Plan: Separate OG Source Image Selection for Blog Posts
+## Social Graphic Generator — Internal Admin Tool
 
-## The Problem
+### The Idea
 
-Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
+Build a private admin page (`/admin/social-graphics`) that renders a gallery of branded social-ready images using your real class photos, the Drake Fitness logo, and your brand system. This is a **visual preview tool** — you browse layouts, pick a photo, and download the exact 1200x630 image ready for Facebook events, ads, or Stories.
 
-## The Right Approach
+Since it lives under `/admin/`, it's already excluded from robots.txt and the sitemap. No changes needed there.
 
-Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
+### Why This Beats Canva
 
-1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
+- Uses your actual brand fonts (Oswald), colors (teal/gold), and logo
+- Photos are pre-loaded from your existing asset library
+- One-click download at the exact social dimensions
+- No context-switching to another tool
 
-2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
+### Layout Templates (5 styles)
 
-## Changes
+```text
+┌─────────────────────────────────┐
+│  FULL BLEED                     │
+│  Photo fills entire 1200x630   │
+│  "DRAKE FITNESS" bottom-left   │
+│  Dark gradient overlay          │
+└─────────────────────────────────┘
 
-### 1. Add an image picker to the Generate dialog
-**File**: `src/pages/admin/OGImages.tsx`
+┌────────────┬────────────────────┐
+│            │                    │
+│  PHOTO     │  TEAL PANEL        │
+│  (60%)     │  Logo + headline   │
+│            │  Gold accent bar   │
+└────────────┴────────────────────┘
 
-- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
-- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
-- Show thumbnails in a scrollable grid; clicking one fills the source URL field
-- Keep the manual URL input as a fallback
-- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
-- Add a filter/search to narrow down images by filename
+┌─────────────────────────────────┐
+│  CENTERED CARD                  │
+│  Photo bg with heavy overlay    │
+│  Logo centered top              │
+│  "Try 3 Classes Free" large     │
+│  Gold divider line              │
+└─────────────────────────────────┘
 
-### 2. No database changes needed
+┌─────────────────────────────────┐
+│  EDITORIAL STRIP                │
+│  Teal top bar with logo         │
+│  Full-width photo middle        │
+│  Gold bottom bar with text      │
+└─────────────────────────────────┘
 
-The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
+┌────────────────────┬────────────┐
+│                    │  PHOTO     │
+│  TEAL PANEL        │  (40%)     │
+│  Logo + text       │            │
+│  Gold CTA button   │            │
+└────────────────────┴────────────┘
+```
 
-### 3. Workflow improvement
+### How It Works
 
-The dialog flow becomes:
-1. Admin clicks "Generate" on a blog post row
-2. Dialog opens showing a grid of available images from the bucket
-3. Admin picks a wide landscape photo (or pastes a URL)
-4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
-5. Result is stored in `og-images` bucket and mapped via `page_og_images`
-6. The blog post's hero image and thumbnail remain unchanged
+1. Admin visits `/admin/social-graphics`
+2. Picks a template style from tabs (Full Bleed, Split Left, Centered, etc.)
+3. Picks a source photo from the asset grid (your existing class/community photos)
+4. Optionally edits the headline text (defaults to "Try 3 Classes Free")
+5. Sees a live 1200x630 preview rendered with HTML/CSS
+6. Clicks **Download** — uses `html2canvas` or Canvas API to export as PNG
+7. Uses that image in Facebook Events, ads, Instagram, etc.
 
-## Files Affected
+### Technical Approach
 
-- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
+- **New page**: `src/pages/admin/SocialGraphics.tsx` — registered under `/admin/social-graphics`
+- **Rendering**: Pure HTML/CSS within a fixed 1200x630 container, styled with your brand tokens. No AI needed for this — it's deterministic layout.
+- **Export**: Canvas API (`html-to-image` or `html2canvas` library) converts the preview div to a downloadable PNG
+- **Photos**: Import from `src/assets/` (the 20+ group/community photos already in the project)
+- **Logo**: Uses `drake-fitness-logo-kettlebell.png` or `drake-logo-new.png`
+- **Route**: Added to admin routes in `App.tsx`, linked from `AdminLayout` sidebar
+- **No database changes** — this is a purely client-side tool
+
+### Files
+
+- **Create**: `src/pages/admin/SocialGraphics.tsx` — template gallery, photo picker, live preview, download
+- **Edit**: `src/App.tsx` — add route `/admin/social-graphics`
+- **Edit**: `src/components/admin/AdminLayout.tsx` — add sidebar link
+- **Install**: `html-to-image` package for PNG export
 
