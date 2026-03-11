@@ -1,6 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
 import AdminLayout from '@/components/admin/AdminLayout';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Download, Search, Type } from 'lucide-react';
@@ -63,10 +62,22 @@ const TEMPLATES: { id: TemplateId; label: string }[] = [
   { id: 'split-right', label: 'Split Right' },
 ];
 
-// Brand colors as inline styles (for html-to-image export reliability)
+const HEADLINE_PRESETS = [
+  'Try 3 Classes Free',
+  'Limited Spots This Week',
+  'New Member Special',
+  'Strength & Mobility',
+  'Join the Community',
+  'First Class Free',
+];
+
 const TEAL = '#0B4A52';
 const GOLD = '#F2B544';
 const DARK = '#1A1A1A';
+const SOFT_TEAL = '#10757E';
+
+// SVG pattern for teal panels (inline data URI for export compatibility)
+const TEAL_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 L30 0 L60 30 L30 60Z' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3C/svg%3E")`;
 
 function TemplatePreview({ template, photo, headline, subtext, previewRef }: {
   template: TemplateId;
@@ -75,17 +86,25 @@ function TemplatePreview({ template, photo, headline, subtext, previewRef }: {
   subtext: string;
   previewRef: React.RefObject<HTMLDivElement>;
 }) {
-  const commonFont = "'Oswald', sans-serif";
+  const font = "'Oswald', sans-serif";
+  const eyebrow = 'WEST ASHLEY · CHARLESTON';
 
   if (template === 'full-bleed') {
     return (
-      <div ref={previewRef} style={{ width: 1200, height: 630, position: 'relative', overflow: 'hidden', fontFamily: commonFont }}>
+      <div ref={previewRef} style={{ width: 1200, height: 630, position: 'relative', overflow: 'hidden', fontFamily: font }}>
         <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 50%, transparent 100%)' }} />
+        {/* Vignette */}
+        <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 120px 40px rgba(0,0,0,0.5)' }} />
+        {/* Dual gradient: bottom dark + left teal tint */}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.35) 40%, transparent 70%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(11,74,82,0.3) 0%, transparent 50%)' }} />
         <div style={{ position: 'absolute', bottom: 40, left: 48, right: 48 }}>
-          <img src={logo} alt="" style={{ height: 52, marginBottom: 12 }} crossOrigin="anonymous" />
-          <div style={{ fontSize: 52, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1, letterSpacing: 1 }}>{headline}</div>
-          <div style={{ fontSize: 22, color: GOLD, marginTop: 8, fontWeight: 500, letterSpacing: 1 }}>{subtext}</div>
+          <img src={logo} alt="" style={{ height: 56, marginBottom: 16 }} crossOrigin="anonymous" />
+          {/* Gold accent line */}
+          <div style={{ width: 80, height: 3, background: GOLD, marginBottom: 14, borderRadius: 2 }} />
+          <div style={{ fontSize: 13, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3, marginBottom: 8 }}>{eyebrow}</div>
+          <div style={{ fontSize: 54, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 1.5, textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}>{headline}</div>
+          <div style={{ fontSize: 22, color: 'rgba(255,255,255,0.85)', marginTop: 10, fontWeight: 400, letterSpacing: 1.5 }}>{subtext}</div>
         </div>
       </div>
     );
@@ -93,15 +112,23 @@ function TemplatePreview({ template, photo, headline, subtext, previewRef }: {
 
   if (template === 'split-left') {
     return (
-      <div ref={previewRef} style={{ width: 1200, height: 630, display: 'flex', fontFamily: commonFont, overflow: 'hidden' }}>
-        <div style={{ width: '60%', height: '100%', position: 'relative' }}>
+      <div ref={previewRef} style={{ width: 1200, height: 630, position: 'relative', overflow: 'hidden', fontFamily: font }}>
+        {/* Photo fills full width, clipped to left side with angle */}
+        <div style={{ position: 'absolute', inset: 0, clipPath: 'polygon(0 0, 65% 0, 55% 100%, 0 100%)' }}>
           <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+          <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 80px 20px rgba(0,0,0,0.3)' }} />
         </div>
-        <div style={{ width: '40%', height: '100%', background: TEAL, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '48px 40px' }}>
-          <img src={logo} alt="" style={{ height: 48, marginBottom: 24, alignSelf: 'flex-start' }} crossOrigin="anonymous" />
-          <div style={{ fontSize: 40, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.15, letterSpacing: 1 }}>{headline}</div>
-          <div style={{ width: 64, height: 4, background: GOLD, marginTop: 20, marginBottom: 16, borderRadius: 2 }} />
-          <div style={{ fontSize: 20, color: 'rgba(255,255,255,0.85)', fontWeight: 400, lineHeight: 1.4 }}>{subtext}</div>
+        {/* Teal panel with pattern */}
+        <div style={{ position: 'absolute', right: 0, top: 0, width: '50%', height: '100%', background: TEAL, backgroundImage: TEAL_PATTERN, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '48px 44px 48px 64px' }}>
+          {/* Subtle gradient overlay on panel */}
+          <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(135deg, ${SOFT_TEAL} 0%, ${TEAL} 100%)`, opacity: 0.5 }} />
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <img src={logo} alt="" style={{ height: 50, marginBottom: 20, alignSelf: 'flex-start' }} crossOrigin="anonymous" />
+            <div style={{ fontSize: 12, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3, marginBottom: 12 }}>{eyebrow}</div>
+            <div style={{ fontSize: 40, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.12, letterSpacing: 1 }}>{headline}</div>
+            <div style={{ width: 64, height: 3, background: GOLD, marginTop: 20, marginBottom: 16, borderRadius: 2 }} />
+            <div style={{ fontSize: 19, color: 'rgba(255,255,255,0.8)', fontWeight: 400, lineHeight: 1.4 }}>{subtext}</div>
+          </div>
         </div>
       </div>
     );
@@ -109,14 +136,26 @@ function TemplatePreview({ template, photo, headline, subtext, previewRef }: {
 
   if (template === 'centered') {
     return (
-      <div ref={previewRef} style={{ width: 1200, height: 630, position: 'relative', overflow: 'hidden', fontFamily: commonFont }}>
+      <div ref={previewRef} style={{ width: 1200, height: 630, position: 'relative', overflow: 'hidden', fontFamily: font }}>
         <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(11,74,82,0.82)' }} />
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '0 80px' }}>
-          <img src={logo} alt="" style={{ height: 56, marginBottom: 28 }} crossOrigin="anonymous" />
-          <div style={{ fontSize: 56, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1, letterSpacing: 2 }}>{headline}</div>
-          <div style={{ width: 100, height: 4, background: GOLD, marginTop: 24, marginBottom: 20, borderRadius: 2 }} />
-          <div style={{ fontSize: 24, color: GOLD, fontWeight: 500, letterSpacing: 1 }}>{subtext}</div>
+        {/* Radial gradient overlay */}
+        <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse at center, rgba(11,74,82,0.78) 0%, rgba(11,74,82,0.92) 70%, rgba(0,0,0,0.95) 100%)` }} />
+        {/* Inner frosted card */}
+        <div style={{ position: 'absolute', top: 60, left: 100, right: 100, bottom: 60, border: '1px solid rgba(242,181,68,0.2)', borderRadius: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '0 60px', background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(2px)' }}>
+          {/* Gold corner accents — top-left */}
+          <div style={{ position: 'absolute', top: -1, left: -1, width: 32, height: 32, borderTop: `3px solid ${GOLD}`, borderLeft: `3px solid ${GOLD}`, borderRadius: '8px 0 0 0' }} />
+          {/* Gold corner accents — top-right */}
+          <div style={{ position: 'absolute', top: -1, right: -1, width: 32, height: 32, borderTop: `3px solid ${GOLD}`, borderRight: `3px solid ${GOLD}`, borderRadius: '0 8px 0 0' }} />
+          {/* Gold corner accents — bottom-left */}
+          <div style={{ position: 'absolute', bottom: -1, left: -1, width: 32, height: 32, borderBottom: `3px solid ${GOLD}`, borderLeft: `3px solid ${GOLD}`, borderRadius: '0 0 0 8px' }} />
+          {/* Gold corner accents — bottom-right */}
+          <div style={{ position: 'absolute', bottom: -1, right: -1, width: 32, height: 32, borderBottom: `3px solid ${GOLD}`, borderRight: `3px solid ${GOLD}`, borderRadius: '0 0 8px 0' }} />
+
+          <img src={logo} alt="" style={{ height: 60, marginBottom: 24 }} crossOrigin="anonymous" />
+          <div style={{ fontSize: 13, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 4, marginBottom: 16 }}>{eyebrow}</div>
+          <div style={{ fontSize: 56, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 2, textShadow: '0 2px 30px rgba(0,0,0,0.4)' }}>{headline}</div>
+          <div style={{ width: 100, height: 3, background: GOLD, marginTop: 24, marginBottom: 20, borderRadius: 2 }} />
+          <div style={{ fontSize: 24, color: GOLD, fontWeight: 500, letterSpacing: 2 }}>{subtext}</div>
         </div>
       </div>
     );
@@ -124,17 +163,26 @@ function TemplatePreview({ template, photo, headline, subtext, previewRef }: {
 
   if (template === 'editorial') {
     return (
-      <div ref={previewRef} style={{ width: 1200, height: 630, display: 'flex', flexDirection: 'column', fontFamily: commonFont, overflow: 'hidden' }}>
-        <div style={{ height: 80, background: TEAL, display: 'flex', alignItems: 'center', padding: '0 40px', gap: 16 }}>
-          <img src={logo} alt="" style={{ height: 40 }} crossOrigin="anonymous" />
-          <span style={{ fontSize: 26, fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: 2 }}>DRAKE FITNESS</span>
+      <div ref={previewRef} style={{ width: 1200, height: 630, display: 'flex', flexDirection: 'column', fontFamily: font, overflow: 'hidden' }}>
+        {/* Header bar */}
+        <div style={{ height: 80, background: `linear-gradient(135deg, ${TEAL} 0%, ${SOFT_TEAL} 100%)`, display: 'flex', alignItems: 'center', padding: '0 40px', gap: 16, position: 'relative' }}>
+          <img src={logo} alt="" style={{ height: 42 }} crossOrigin="anonymous" />
+          <span style={{ fontSize: 26, fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: 3 }}>DRAKE FITNESS</span>
+          <div style={{ marginLeft: 'auto', fontSize: 12, color: GOLD, textTransform: 'uppercase', letterSpacing: 3, fontWeight: 500 }}>{eyebrow}</div>
         </div>
+        {/* Gold accent stripe */}
+        <div style={{ height: 4, background: `linear-gradient(90deg, ${GOLD} 0%, ${GOLD} 60%, transparent 100%)` }} />
+        {/* Photo */}
         <div style={{ flex: 1, position: 'relative' }}>
           <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+          <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 60px 10px rgba(0,0,0,0.25)' }} />
         </div>
-        <div style={{ height: 80, background: DARK, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 40px' }}>
-          <div style={{ fontSize: 28, fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: 1 }}>{headline}</div>
-          <div style={{ background: GOLD, color: DARK, padding: '10px 28px', fontSize: 18, fontWeight: 700, textTransform: 'uppercase', borderRadius: 6, letterSpacing: 1 }}>{subtext}</div>
+        {/* Footer bar */}
+        <div style={{ height: 84, background: DARK, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 40px', position: 'relative' }}>
+          {/* Diagonal gold slash */}
+          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 6, background: GOLD, transform: 'skewX(-12deg)', transformOrigin: 'top left' }} />
+          <div style={{ fontSize: 30, fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: 1.5, paddingLeft: 20 }}>{headline}</div>
+          <div style={{ background: GOLD, color: DARK, padding: '12px 32px', fontSize: 18, fontWeight: 700, textTransform: 'uppercase', borderRadius: 6, letterSpacing: 1.5 }}>{subtext}</div>
         </div>
       </div>
     );
@@ -142,17 +190,90 @@ function TemplatePreview({ template, photo, headline, subtext, previewRef }: {
 
   // split-right
   return (
-    <div ref={previewRef} style={{ width: 1200, height: 630, display: 'flex', fontFamily: commonFont, overflow: 'hidden' }}>
-      <div style={{ width: '45%', height: '100%', background: TEAL, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '48px 44px' }}>
-        <img src={logo} alt="" style={{ height: 48, marginBottom: 24, alignSelf: 'flex-start' }} crossOrigin="anonymous" />
-        <div style={{ fontSize: 42, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.15, letterSpacing: 1 }}>{headline}</div>
-        <div style={{ width: 64, height: 4, background: GOLD, marginTop: 20, marginBottom: 16, borderRadius: 2 }} />
-        <div style={{ fontSize: 19, color: 'rgba(255,255,255,0.85)', fontWeight: 400, lineHeight: 1.4, marginBottom: 24 }}>{subtext}</div>
-        <div style={{ background: GOLD, color: DARK, padding: '12px 32px', fontSize: 18, fontWeight: 700, textTransform: 'uppercase', borderRadius: 6, letterSpacing: 1, alignSelf: 'flex-start' }}>Get Started →</div>
-      </div>
-      <div style={{ width: '55%', height: '100%', position: 'relative' }}>
+    <div ref={previewRef} style={{ width: 1200, height: 630, position: 'relative', overflow: 'hidden', fontFamily: font }}>
+      {/* Photo fills full width, clipped to right side with angle */}
+      <div style={{ position: 'absolute', inset: 0, clipPath: 'polygon(40% 0, 100% 0, 100% 100%, 50% 100%)' }}>
         <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+        <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 80px 20px rgba(0,0,0,0.3)' }} />
       </div>
+      {/* Teal panel with pattern */}
+      <div style={{ position: 'absolute', left: 0, top: 0, width: '50%', height: '100%', background: TEAL, backgroundImage: TEAL_PATTERN, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '48px 44px' }}>
+        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(135deg, ${SOFT_TEAL} 0%, ${TEAL} 100%)`, opacity: 0.5 }} />
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <img src={logo} alt="" style={{ height: 50, marginBottom: 20, alignSelf: 'flex-start' }} crossOrigin="anonymous" />
+          <div style={{ fontSize: 12, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3, marginBottom: 12 }}>{eyebrow}</div>
+          {/* Decorative gold bracket around headline */}
+          <div style={{ borderLeft: `3px solid ${GOLD}`, paddingLeft: 16 }}>
+            <div style={{ fontSize: 42, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.12, letterSpacing: 1 }}>{headline}</div>
+          </div>
+          <div style={{ width: 64, height: 3, background: GOLD, marginTop: 20, marginBottom: 16, borderRadius: 2 }} />
+          <div style={{ fontSize: 18, color: 'rgba(255,255,255,0.8)', fontWeight: 400, lineHeight: 1.4, marginBottom: 24 }}>{subtext}</div>
+          <div style={{ background: GOLD, color: DARK, padding: '12px 32px', fontSize: 17, fontWeight: 700, textTransform: 'uppercase', borderRadius: 6, letterSpacing: 1.5, alignSelf: 'flex-start', display: 'inline-block' }}>Get Started →</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Tiny layout thumbnails for template picker
+function TemplateThumbnail({ id, active }: { id: TemplateId; active: boolean }) {
+  const base: React.CSSProperties = { width: 72, height: 38, borderRadius: 6, overflow: 'hidden', position: 'relative', background: '#e5e5e5' };
+  const teal: React.CSSProperties = { background: TEAL };
+  const gold: React.CSSProperties = { background: GOLD };
+  const ring = active ? `2px solid ${GOLD}` : '2px solid transparent';
+
+  if (id === 'full-bleed') {
+    return (
+      <div style={{ ...base, border: ring, background: '#888' }}>
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 14, background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)' }} />
+        <div style={{ position: 'absolute', bottom: 3, left: 4, width: 20, height: 2, ...gold, borderRadius: 1 }} />
+        <div style={{ position: 'absolute', bottom: 7, left: 4, width: 30, height: 3, background: '#fff', borderRadius: 1 }} />
+      </div>
+    );
+  }
+  if (id === 'split-left') {
+    return (
+      <div style={{ ...base, border: ring, display: 'flex' }}>
+        <div style={{ width: '60%', background: '#888', clipPath: 'polygon(0 0, 100% 0, 85% 100%, 0 100%)' }} />
+        <div style={{ width: '40%', ...teal, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 4 }}>
+          <div style={{ width: 14, height: 2, ...gold, borderRadius: 1, marginBottom: 2 }} />
+          <div style={{ width: 22, height: 2, background: '#fff', borderRadius: 1 }} />
+        </div>
+      </div>
+    );
+  }
+  if (id === 'centered') {
+    return (
+      <div style={{ ...base, border: ring, background: 'rgba(11,74,82,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ width: 44, height: 24, border: `1px solid rgba(242,181,68,0.4)`, borderRadius: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2 }}>
+          <div style={{ width: 16, height: 2, background: '#fff', borderRadius: 1 }} />
+          <div style={{ width: 10, height: 1.5, ...gold, borderRadius: 1 }} />
+        </div>
+      </div>
+    );
+  }
+  if (id === 'editorial') {
+    return (
+      <div style={{ ...base, border: ring, display: 'flex', flexDirection: 'column' }}>
+        <div style={{ height: 8, ...teal }} />
+        <div style={{ height: 2, ...gold }} />
+        <div style={{ flex: 1, background: '#888' }} />
+        <div style={{ height: 8, background: DARK, display: 'flex', alignItems: 'center', padding: '0 4px', justifyContent: 'space-between' }}>
+          <div style={{ width: 20, height: 2, background: '#fff', borderRadius: 1 }} />
+          <div style={{ width: 12, height: 5, ...gold, borderRadius: 2 }} />
+        </div>
+      </div>
+    );
+  }
+  // split-right
+  return (
+    <div style={{ ...base, border: ring, display: 'flex' }}>
+      <div style={{ width: '45%', ...teal, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 4 }}>
+        <div style={{ width: 14, height: 2, ...gold, borderRadius: 1, marginBottom: 2 }} />
+        <div style={{ width: 22, height: 2, background: '#fff', borderRadius: 1, marginBottom: 3 }} />
+        <div style={{ width: 16, height: 5, ...gold, borderRadius: 2 }} />
+      </div>
+      <div style={{ width: '55%', background: '#888', clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0 100%)' }} />
     </div>
   );
 }
@@ -207,18 +328,28 @@ export default function SocialGraphics() {
           </Button>
         </div>
 
-        {/* Template Tabs */}
-        <Tabs value={template} onValueChange={(v) => setTemplate(v as TemplateId)}>
-          <TabsList className="w-full flex-wrap h-auto gap-1">
+        {/* Template Picker with Visual Thumbnails */}
+        <div>
+          <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2 block">Template</label>
+          <div className="flex gap-3 flex-wrap">
             {TEMPLATES.map(t => (
-              <TabsTrigger key={t.id} value={t.id} className="text-xs">{t.label}</TabsTrigger>
+              <button
+                key={t.id}
+                onClick={() => setTemplate(t.id)}
+                className={`flex flex-col items-center gap-1.5 p-2 rounded-lg transition-all ${
+                  template === t.id ? 'bg-accent ring-2 ring-drake-gold' : 'hover:bg-muted'
+                }`}
+              >
+                <TemplateThumbnail id={t.id} active={template === t.id} />
+                <span className={`text-[11px] font-medium ${template === t.id ? 'text-drake-gold' : 'text-muted-foreground'}`}>{t.label}</span>
+              </button>
             ))}
-          </TabsList>
-        </Tabs>
+          </div>
+        </div>
 
-        {/* Live Preview — scaled to fit */}
+        {/* Live Preview — dynamically scaled */}
         <div className="bg-muted rounded-lg p-4 overflow-hidden">
-          <p className="text-xs text-muted-foreground mb-2">Live Preview (actual size: 1200×630)</p>
+          <p className="text-xs text-muted-foreground mb-2">Live Preview (1200×630)</p>
           <div className="w-full overflow-x-auto">
             <div style={{ transform: 'scale(0.5)', transformOrigin: 'top left', width: 1200, height: 630 }}>
               <TemplatePreview
@@ -237,6 +368,22 @@ export default function SocialGraphics() {
           <div>
             <label className="text-sm font-medium mb-1 flex items-center gap-1"><Type className="h-4 w-4" /> Headline</label>
             <Input value={headline} onChange={e => setHeadline(e.target.value)} placeholder="Try 3 Classes Free" />
+            {/* Preset chips */}
+            <div className="flex flex-wrap gap-1.5 mt-2">
+              {HEADLINE_PRESETS.map(preset => (
+                <button
+                  key={preset}
+                  onClick={() => setHeadline(preset)}
+                  className={`text-[11px] px-2.5 py-1 rounded-full border transition-all ${
+                    headline === preset
+                      ? 'bg-drake-gold text-drake-dark border-drake-gold font-semibold'
+                      : 'border-border text-muted-foreground hover:border-drake-gold/50 hover:text-foreground'
+                  }`}
+                >
+                  {preset}
+                </button>
+              ))}
+            </div>
           </div>
           <div>
             <label className="text-sm font-medium mb-1 flex items-center gap-1"><Type className="h-4 w-4" /> Subtext / CTA</label>
@@ -254,7 +401,7 @@ export default function SocialGraphics() {
             </div>
           </div>
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2">
-            {filteredPhotos.map((p, idx) => {
+            {filteredPhotos.map((p) => {
               const realIdx = PHOTOS.indexOf(p);
               return (
                 <button
