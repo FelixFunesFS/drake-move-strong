@@ -8,10 +8,18 @@ const MUTED = "#6A6A6A";
 const WHITE = "#ffffff";
 const FOOTER_BG = "#0B4A52";
 
+const emailBaseUrl = typeof window !== "undefined"
+  ? window.location.origin
+  : "https://drake-move-strong.lovable.app";
+
+function emailImage(imageName: string, alt: string): string {
+  return `<div style="margin:0 0 24px;">
+<img src="${emailBaseUrl}/images/email/${imageName}" alt="${alt}" width="540" style="display:block;border-radius:8px;max-width:100%;height:auto;" />
+</div>`;
+}
+
 function wrap(body: string, previewText: string): string {
-  const logoUrl = typeof window !== "undefined"
-    ? `${window.location.origin}/images/drake-fitness-logo2.png`
-    : "https://drake-move-strong.lovable.app/images/drake-fitness-logo2.png";
+  const logoUrl = `${emailBaseUrl}/images/drake-fitness-logo2.png`;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,6 +79,7 @@ const templateMap: Record<string, string> = {
   // ═══ NEW LEAD ═══
   "new-lead-Instant": wrap(`
 ${sectionHeading("Welcome to Drake Fitness")}
+${emailImage("studio-david-dog.jpg", "David Drake with his dog at Drake Fitness")}
 <p style="color:${DARK};font-size:18px;margin:0 0 16px;">You just made a great decision.</p>
 <p>I'm David Drake, and I've been coaching people at every level — from first-timers to seasoned athletes — who want to move well and get stronger for over 25 years.</p>
 <p>Here's what you need to know:</p>
@@ -86,6 +95,7 @@ ${ctaButton("View Class Schedule")}
 
   "new-lead-Day 1": wrap(`
 ${sectionHeading("There's Nothing to Prepare")}
+${emailImage("studio-kettlebells.jpg", "Kettlebells lined up at Drake Fitness studio")}
 <p style="color:${DARK};font-size:18px;margin:0 0 16px;">Seriously — just show up.</p>
 <p>No special shoes. No protein shake. No pre-workout routine you found on Instagram.</p>
 <p>Wear whatever you'd wear for a walk. We have all the equipment. Every exercise in every class is modified to your level — whether you've been training for years or this is day one.</p>
@@ -97,6 +107,7 @@ ${ctaButton("Book Your First Class")}
 
   "new-lead-Day 5": wrap(`
 ${sectionHeading("Why I Coach")}
+${emailImage("david-coaching-form.jpg", "David Drake coaching a member on proper form")}
 <p>Twenty-five years ago, I watched someone give up on their body because a gym made them feel like they didn't belong.</p>
 <p>That stuck with me.</p>
 <p>I've spent every year since building a different kind of space — one where <strong style="color:${DARK};">a 65-year-old grandmother trains next to a 30-year-old firefighter</strong>, and neither feels out of place.</p>
@@ -108,6 +119,7 @@ ${ctaButton("See Our Classes", "https://drake.fitness/classes")}
 
   "new-lead-Day 10": wrap(`
 ${sectionHeading("Two Members. Two Starting Points. Same Community.")}
+${emailImage("community-group-photo-new.jpg", "Drake Fitness community group photo")}
 <p style="color:${DARK};font-size:18px;margin:0 0 16px;">She almost didn't come back. He almost didn't need to.</p>
 <p>When Sarah walked into Drake Fitness, she hadn't exercised in three years. Her lower back hurt every morning. She was convinced she was "too far gone."</p>
 <p>Her first class was hard. Not because the exercises were impossible — but because she had to let go of the idea that she should already be good at this.</p>
@@ -129,12 +141,14 @@ ${ctaButton("Ready to Write Your Story?")}
 <p>Just wanted to check in.</p>
 <p>Have you made it to a class yet? If so, how'd it feel? If not, no pressure — but I'd love to know what's holding you back.</p>
 <p>Hit reply and let me know. I read every email.</p>
+${emailImage("david-outside.jpg", "David Drake outside the studio")}
 <p style="margin-top:24px;">— David</p>
 <p style="font-size:13px;color:${MUTED};margin-top:16px;"><em>P.S. This isn't automated. I genuinely want to hear from you.</em></p>
   `, "Just checking in — I'd love to hear how things are going."),
 
   "new-lead-Day 24": wrap(`
 ${sectionHeading("Keep the Momentum Going")}
+${emailImage("group-kettlebell-training.jpg", "Group kettlebell training class at Drake Fitness")}
 <p>If you've been to a class (or a few), you already know: this place is different.</p>
 <p>No mirrors. No judgment. Just good coaching, smart programming, and a community that actually shows up for each other.</p>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:24px 0;border:2px solid ${GOLD};border-radius:12px;overflow:hidden;">
@@ -154,6 +168,7 @@ ${ctaButton("Become a Member", "https://drake.fitness/pricing")}
 
   "new-lead-Day 30": wrap(`
 ${sectionHeading("Your Pass Expires This Week")}
+${emailImage("studio-full-view.jpg", "Full view of Drake Fitness studio")}
 <p>I wanted to give you a heads up — your complimentary classes wrap up in the next few days.</p>
 <p>If Drake Fitness felt right, I'd love to keep training with you. Here's what membership includes:</p>
 <ul style="padding-left:20px;margin:16px 0;">
@@ -173,11 +188,13 @@ ${ctaButton("View Membership Options", "https://drake.fitness/pricing")}
 <p>It's David. I noticed it's been a while since we've seen you at the studio.</p>
 <p>No pitch, no offer. I just wanted to say: the studio isn't the same without you. The crew asks about you.</p>
 <p>Whenever you're ready, we're here. Same address, same vibe, same community.</p>
+${emailImage("studio-david-storefront.jpg", "David Drake at the Drake Fitness storefront")}
 <p style="margin-top:24px;">— David Drake<br/>Drake Fitness<br/>(843) 817-5420</p>
   `, "It's been a while — just wanted to say hey."),
 
   "win-back-Day 5": wrap(`
 ${sectionHeading("A Lot Has Happened")}
+${emailImage("studio-group-overhead.jpg", "Group overhead press class at Drake Fitness")}
 <p>Since you were last at the studio, we've been busy:</p>
 <ul style="padding-left:20px;margin:16px 0;">
 <li style="margin-bottom:10px;"><strong style="color:${DARK};">New class times</strong> — we added early morning and Saturday slots based on member feedback</li>
@@ -192,6 +209,7 @@ ${ctaButton("Check the New Schedule")}
 
   "win-back-Day 12": wrap(`
 ${sectionHeading("He Almost Didn't Come Back")}
+${emailImage("community-kettlebell-rack-pair.jpg", "Members training together with kettlebells at Drake Fitness")}
 <p>Mike had been a regular — three classes a week, never missed a Saturday.</p>
 <p>Then life happened. A new job, a move across town, a few weeks that turned into six months.</p>
 <p>When he finally walked back in, he was nervous. "I thought everyone would be way ahead of me," he said.</p>
@@ -208,6 +226,7 @@ ${ctaButton("Book a Class")}
 
   "win-back-Day 21": wrap(`
 ${sectionHeading("One Week. On the House.")}
+${emailImage("members-overhead-press-group.jpg", "Members doing overhead press in group class")}
 <p>I get it — coming back after a break feels like starting over. It's not. Your body remembers more than you think.</p>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:24px 0;border:2px solid ${GOLD};border-radius:12px;overflow:hidden;">
 <tr><td style="background:${GOLD};padding:12px 20px;">
@@ -230,6 +249,7 @@ ${ctaButton("Claim Your Free Week")}
 <p>There's no guilt trip. No countdown timer. No "last chance" gimmick.</p>
 <p>Whenever you're ready to move again — whether that's tomorrow or six months from now — we'll be here. Same studio, same crew, same energy.</p>
 <p>The door's always open.</p>
+${emailImage("studio-nick-david-together.jpg", "Nick and David together at Drake Fitness")}
 <p style="margin-top:24px;">— David Drake<br/>Drake Fitness<br/>2 Avondale Ave, Charleston, SC 29407<br/>(843) 817-5420</p>
   `, "No pressure. Whenever you're ready, we'll be here."),
 };
