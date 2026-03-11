@@ -24,7 +24,7 @@ import { MicroTrustBadges } from "@/components/MicroTrustBadges";
 import { PhilosophyQuote } from "@/components/PhilosophyQuote";
 import { LongevityBlock } from "@/components/LongevityBlock";
 import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
-import { INTRO_URL } from "@/data/pricing";
+import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
 
 import heroImage from "@/assets/hero-kettlebell-training.jpg";
 import groupTrainingImage from "@/assets/group-kettlebell-training.jpg";
