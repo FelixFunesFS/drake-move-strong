@@ -5,6 +5,7 @@ import { useBlogPosts } from "@/hooks/useBlogPosts";
 import BlogArticleCard from "@/components/insights/BlogArticleCard";
 import AnimatedSection from "@/components/AnimatedSection";
 import CTASection from "@/components/CTASection";
+import { INTRO_URL } from "@/data/pricing";
 import heroImage from "@/assets/insights-hero-turkish-getup-class.jpg";
 import { SEO } from "@/components/SEO";
 import { Input } from "@/components/ui/input";

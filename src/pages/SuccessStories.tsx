@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import CTASection from "@/components/CTASection";
+import { INTRO_URL } from "@/data/pricing";
 import communityImage from "@/assets/community-plank-rows-kettlebells.jpg";
 import memberYoga from "@/assets/member-yoga-pose.jpg";
 import OptimizedImage from "@/components/OptimizedImage";
