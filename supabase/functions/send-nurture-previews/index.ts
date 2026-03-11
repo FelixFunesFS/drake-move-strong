@@ -45,8 +45,8 @@ img{border:0;display:block;}
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
 <!-- HEADER -->
 <tr><td style="background:${TEAL};padding:24px 30px;text-align:center;">
-<h1 style="font-family:'Oswald',Arial,sans-serif;font-size:28px;color:${WHITE};letter-spacing:3px;margin:0;">DRAKE FITNESS</h1>
-<p style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(255,255,255,0.7);margin:4px 0 0;letter-spacing:1px;">MOVE. GET STRONG.</p>
+<img src="https://drake-move-strong.lovable.app/images/drake-fitness-logo2.png" alt="Drake Fitness" width="200" height="auto" style="display:block;margin:0 auto;max-width:200px;width:200px;" />
+<p style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(255,255,255,0.7);margin:8px 0 0;letter-spacing:1px;">MOVE. GET STRONG.</p>
 </td></tr>
 <!-- BODY -->
 <tr><td style="padding:32px 30px;">
