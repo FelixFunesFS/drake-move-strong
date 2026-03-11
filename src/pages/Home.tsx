@@ -130,7 +130,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                   </div>
                   <div className="flex flex-col items-stretch md:items-end gap-2 md:min-w-[260px]">
                     <Button asChild size="lg" className="w-full px-8 py-5 text-base min-h-[48px]">
-                      <a href={INTRO_URL} target="_blank" rel="noopener noreferrer" className="text-center">Claim Your 3 Free Classes</a>
+                      <a href={buildPunchPassUrl(INTRO_URL, 'home-start-here-cta')} target="_blank" rel="noopener noreferrer" className="text-center">Claim Your 3 Free Classes</a>
                     </Button>
                     <p className="text-xs text-muted-foreground text-center md:text-right">
                       Love it? First month unlimited for just $110.
