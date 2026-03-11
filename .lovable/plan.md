@@ -1,46 +1,66 @@
 
 
-# Plan: Separate OG Source Image Selection for Blog Posts
+## Add UTM Attribution Tracking to All PunchPass Links
 
-## The Problem
+### Approach
 
-Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
+Create a centralized UTM link builder in `src/data/pricing.ts` and replace all raw `INTRO_URL` / `PUNCHPASS_URLS` references with tagged versions. This gives you full visibility into which page and CTA drove each PunchPass signup.
 
-## The Right Approach
+### Changes
 
-Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
+**1. Add UTM helper to `src/data/pricing.ts`**
 
-1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
+Add a `buildPunchPassUrl` function:
 
-2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
+```typescript
+export function buildPunchPassUrl(
+  baseUrl: string,
+  content: string,  // which CTA: 'hero-cta', 'nav-button', 'pricing-card', etc.
+  campaign = 'intro-offer',
+  source = 'website',
+  medium = 'organic'
+): string {
+  const url = new URL(baseUrl);
+  url.searchParams.set('utm_source', source);
+  url.searchParams.set('utm_medium', medium);
+  url.searchParams.set('utm_campaign', campaign);
+  url.searchParams.set('utm_content', content);
+  return url.toString();
+}
+```
 
-## Changes
+**2. Update every file that uses `INTRO_URL` or `PUNCHPASS_URLS`** (~13 files)
 
-### 1. Add an image picker to the Generate dialog
-**File**: `src/pages/admin/OGImages.tsx`
+Each link gets a unique `utm_content` tag identifying the exact CTA. Examples:
 
-- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
-- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
-- Show thumbnails in a scrollable grid; clicking one fills the source URL field
-- Keep the manual URL input as a fallback
-- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
-- Add a filter/search to narrow down images by filename
+| File | CTA | `utm_content` value |
+|------|-----|---------------------|
+| `Navigation.tsx` | "Try Free" nav button | `nav-try-free` |
+| `Hero.tsx` | Hero CTA | `hero-cta` |
+| `Pricing.tsx` | "Claim 3 Free Classes" | `pricing-intro-card` |
+| `Pricing.tsx` | Foundation membership | `pricing-foundation` |
+| `Pricing.tsx` | Unlimited membership | `pricing-unlimited` |
+| `ResetWeekAlt.tsx` (intro page) | Main CTA | `intro-landing-cta` |
+| `WestAshleyFitness.tsx` | Hero + bottom CTA | `west-ashley-hero` / `west-ashley-bottom` |
+| `StrengthTrainingCharleston.tsx` | Hero + bottom CTA | `strength-hero` / `strength-bottom` |
+| `CTASection.tsx` | Shared CTA component | Pass `utm_content` via prop |
+| `ChatBot.tsx` / lead capture | Chatbot signup | `chatbot-cta` |
+| `Home.tsx` CTA sections | Bottom CTAs | `home-cta-bottom` |
 
-### 2. No database changes needed
+**3. For Facebook/Google ads** (external, not in code)
 
-The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
+Document a UTM convention for ad platforms. These are set in the ad platform itself, not in the codebase:
+- Facebook Ads: `?utm_source=facebook&utm_medium=cpc&utm_campaign=intro-offer&utm_content=ad-spring-2026`
+- Google Business Profile: `?utm_source=google&utm_medium=organic&utm_content=gbp-website-link`
 
-### 3. Workflow improvement
+### What This Gives You
 
-The dialog flow becomes:
-1. Admin clicks "Generate" on a blog post row
-2. Dialog opens showing a grid of available images from the bucket
-3. Admin picks a wide landscape photo (or pastes a URL)
-4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
-5. Result is stored in `og-images` bucket and mapped via `page_og_images`
-6. The blog post's hero image and thumbnail remain unchanged
+PunchPass shows the full URL when someone signs up, so you can see exactly which `utm_content` tag they came through. No database changes needed — PunchPass captures this automatically in their referral/source data.
 
-## Files Affected
+### Scope
 
-- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
+- ~13 files updated (one-line changes per link)
+- 1 new utility function in `src/data/pricing.ts`
+- Possibly add an optional `utmContent` prop to `CTASection.tsx`
+- No backend or database changes
 
