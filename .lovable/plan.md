@@ -1,46 +1,70 @@
 
 
-# Plan: Separate OG Source Image Selection for Blog Posts
+## Marketing Review: Local SEO Meta Descriptions
 
-## The Problem
+### The Core Problem You Raised
 
-Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
+Google is showing the same description snippet across multiple sitelinks. The approved plan to remove hardcoded `index.html` tags is the correct technical fix. But the deeper marketing question is: **are the per-page descriptions themselves optimized for click-through and local intent?**
 
-## The Right Approach
+### Current Descriptions Audit
 
-Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
+| Page | Current Description | Verdict |
+|------|-------------------|---------|
+| **Home** | "Charleston's coach-led gym for functional strength, mobility, and group fitness classes. Small groups, 25+ years experience. Try 3 classes free." | Good — has CTA, location, differentiator |
+| **Schedule** | "Book group fitness and workout classes in Charleston. Morning & evening sessions: Foundation Flow, Functional Strength, KB Strong..." | Too operational — class names mean nothing to a cold searcher |
+| **Coaching** | "Top-rated personal trainer in Charleston, SC. Custom programs for mobility, strength, and injury recovery with 25+ years experience. Book your consultation." | Strong — intent match, CTA |
+| **Contact** | "Get in touch with Drake Fitness in Charleston, SC. Located at 2 Avondale Ave..." | Weak — wastes characters on address Google already shows |
+| **Pricing** | "Simple, transparent membership options. Try 3 classes free. Foundation $200/mo, Longevity Unlimited $225/mo..." | Good — price transparency builds trust |
+| **About** | "Meet the expert coaches behind Drake Fitness in Charleston, SC. 25+ years of experience in mobility-first functional training..." | Decent but passive — no reason to click |
+| **FAQ** | "Find answers to common questions about our training, memberships, and approach..." | Generic — could be any gym |
+| **Low-Impact** | "A joint-friendly fitness program for adults who want results without aggravating pain..." | Strong — pain-point driven |
+| **Strength Training** | "Train smarter, move better, and get strong without pain. Charleston's premier mobility and strength training studio." | Good — benefit-first |
+| **West Ashley** | "Located in Avondale, West Ashley — try 3 free classes at Drake Fitness. Safe, coach-led strength & mobility training..." | Decent but long, schedule details waste characters |
+| **Try Free (ResetWeekAlt)** | "Move better, feel stronger, stay pain-free. 3 free classes over 30 days..." | Good — clear offer |
+| **Success Stories** | "Read real transformation stories from Drake Fitness members in Charleston..." | Weak — "read stories" is passive |
 
-1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
+### Marketing Framework: What Great Local SEO Descriptions Do
 
-2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
+Every description should answer three questions in 155 characters:
 
-## Changes
+1. **What's in it for me?** (benefit, not feature)
+2. **Why this place?** (differentiator + location signal)
+3. **What do I do next?** (CTA or urgency)
 
-### 1. Add an image picker to the Generate dialog
-**File**: `src/pages/admin/OGImages.tsx`
+### Recommended Rewrites
 
-- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
-- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
-- Show thumbnails in a scrollable grid; clicking one fills the source URL field
-- Keep the manual URL input as a fallback
-- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
-- Add a filter/search to narrow down images by filename
+The pages that need the most work:
 
-### 2. No database changes needed
+**Schedule** — Searchers want to know *when* they can come, not class brand names:
+> "Morning & evening classes, Mon–Sat. Small groups, expert coaching. Book your spot at Drake Fitness in Charleston — try 3 classes free."
 
-The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
+**Contact** — Don't waste on address; use the space to sell:
+> "Questions about getting started? Reach Drake Fitness in West Ashley — call, text, or drop in. 3 free classes, no commitment."
 
-### 3. Workflow improvement
+**About** — Give a reason to care about the coaches:
+> "David Drake: 25+ years coaching real people through pain, injury, and plateaus. Meet the team behind Charleston's most trusted small gym."
 
-The dialog flow becomes:
-1. Admin clicks "Generate" on a blog post row
-2. Dialog opens showing a grid of available images from the bucket
-3. Admin picks a wide landscape photo (or pastes a URL)
-4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
-5. Result is stored in `og-images` bucket and mapped via `page_og_images`
-6. The blog post's hero image and thumbnail remain unchanged
+**FAQ** — Target the actual search intent:
+> "New to Drake Fitness? Answers about what to wear, how classes work, pricing, and why we're different from big-box gyms in Charleston."
 
-## Files Affected
+**Success Stories** — Social proof is a conversion tool:
+> "5-star Google reviews and real results from Charleston members. See why adults 30–65 trust Drake Fitness to move better and stay pain-free."
 
-- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
+**West Ashley** — Cut the schedule clutter:
+> "West Ashley's coach-led gym in Avondale. Strength & mobility training for adults — small groups, real coaching. Try 3 classes free."
+
+### Plan: Update Meta Descriptions
+
+**Files to edit** (one line each — the `description` prop on `<SEO>`):
+
+1. `src/pages/Schedule.tsx` — rewrite description
+2. `src/pages/Contact.tsx` — rewrite description
+3. `src/pages/About.tsx` — rewrite description
+4. `src/pages/FAQ.tsx` — rewrite description
+5. `src/pages/SuccessStories.tsx` — rewrite description
+6. `src/pages/services/WestAshleyFitness.tsx` — trim schedule details from description
+
+**Also** (from the previously approved plan): Remove hardcoded tags from `index.html` (lines 7 and 72-80) so Google picks up these unique per-page descriptions instead of the homepage fallback.
+
+No database or structural changes. Pure copy edits on the `description` string props.
 
