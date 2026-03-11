@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
 import { Check, ArrowRight, User, Dumbbell, Heart } from "lucide-react";
-import { INTRO_URL } from "@/data/pricing";
+import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
 import { TRUST_STATS } from "@/data/trustStats";
 
 import heroGroupClass from "@/assets/group-turkish-getup-class.jpg";
