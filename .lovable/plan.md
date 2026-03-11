@@ -1,33 +1,49 @@
 
+# Plan: UTM Attribution Tracking — COMPLETED
 
-## Add Email Preview to Admin Email Sequences Page
+## What Was Done
 
-### Approach
+Added `buildPunchPassUrl()` helper to `src/data/pricing.ts` and tagged every PunchPass checkout link across 13 files with unique `utm_content` values.
 
-Add an "eye" icon button on each email card that opens a full-screen dialog/modal showing the rendered HTML email exactly as recipients will see it. The HTML is already built in the edge function — we'll extract the template-building logic into a shared approach by duplicating the HTML generation client-side (since the templates are static content, not dependent on server state).
+## UTM Content Tags Reference
 
-### What Will Be Built
-
-1. **Preview button on each EmailCard** — an eye icon next to the copy button
-2. **Full-width Dialog** with an iframe rendering the email HTML
-3. **Device toggle** (desktop 600px / mobile 375px) to preview responsiveness
-4. **Client-side HTML generator** — port the `wrap()`, `ctaButton()`, and all 12 email body templates from the edge function into a local utility so previews render instantly without a network call
-
-### File Changes
-
-| File | Change |
+| `utm_content` | Location |
 |---|---|
-| `src/lib/emailTemplates.ts` | New — contains all 12 email HTML generators (ported from edge function) |
-| `src/pages/admin/EmailSequences.tsx` | Add preview button per card, add Dialog with iframe + device-size toggle |
+| `nav-try-free` | Desktop nav "Try Free" button |
+| `nav-mobile-try-free` | Mobile nav "Try 3 Classes Free" |
+| `home-start-here-inline` | Home "Sign up" text link |
+| `home-start-here-cta` | Home "Claim Your 3 Free Classes" button |
+| `home-bottom-cta` | Home bottom CTA section |
+| `community-reasons-cta` | Community reasons section |
+| `pricing-intro-card` | Pricing intro card |
+| `pricing-foundation` | Pricing Foundation membership |
+| `pricing-unlimited` | Pricing Longevity Unlimited |
+| `pricing-remote-support` | Pricing Remote Support |
+| `pricing-flex-pack` | Pricing 10-Class Pack |
+| `pricing-not-sure-cta` | Pricing "Not sure" section |
+| `pricing-bottom-cta` | Pricing bottom CTA |
+| `schedule-top-cta` | Schedule top banner |
+| `schedule-bottom-cta` | Schedule bottom CTA |
+| `intro-nav-cta` | Try Free landing nav |
+| `intro-hero-cta` | Try Free landing hero |
+| `intro-bottom-cta` | Try Free landing bottom |
+| `intro-sticky-mobile` | Try Free sticky mobile bar |
+| `west-ashley-hero` | West Ashley hero CTA |
+| `west-ashley-bottom` | West Ashley bottom CTA |
+| `strength-hero` | Strength Training hero |
+| `strength-middle-cta` | Strength Training mid-page |
+| `strength-bottom-cta` | Strength Training bottom |
+| `low-impact-hero` | Low Impact hero |
+| `low-impact-middle-cta` | Low Impact mid-page |
+| `low-impact-bottom-cta` | Low Impact bottom |
+| `reset-week-hero` | Reset Week hero |
+| `reset-week-step-claim` | Reset Week step "Claim your pass" |
+| `reset-week-bottom-cta` | Reset Week bottom |
+| `insights-bottom-cta` | Insights bottom CTA |
+| `success-stories-bottom-cta` | Success Stories bottom |
 
-### UX Flow
+## External UTM Convention (for ads, not in code)
 
-```text
-Email Card → Click 👁 icon
-  → Dialog opens with rendered HTML in sandboxed iframe
-  → Toggle between "Desktop" (600px) and "Mobile" (375px) widths
-  → Close dialog to return to list
-```
-
-No backend changes needed — all preview rendering happens client-side.
-
+- **Facebook Ads**: `?utm_source=facebook&utm_medium=cpc&utm_campaign=intro-offer&utm_content=ad-spring-2026`
+- **Google Business Profile**: `?utm_source=google&utm_medium=organic&utm_content=gbp-website-link`
+- **Instagram bio**: `?utm_source=instagram&utm_medium=social&utm_content=bio-link`
