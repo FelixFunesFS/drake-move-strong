@@ -1,31 +1,46 @@
 
 
-## Font Consistency Fix: Inline Stats Grid on Local SEO Pages
+# Plan: Separate OG Source Image Selection for Blog Posts
 
-### The Issue
+## The Problem
 
-The inline stats grid (500+ / 5★ / 25+ / 100%) on `WestAshleyFitness.tsx` and `ResetWeekCharleston.tsx` uses `font-heading` (Montserrat) for the stat numbers:
+Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
 
-```
-<div className="text-4xl font-heading font-bold text-primary mb-2">
-```
+## The Right Approach
 
-Per your established typography standard, **all large statistical numbers should use `font-hero` (Oswald)** — this is what the `TrustStatsBar` component uses across Home, Pricing, and Reset Week. Montserrat is for mixed-case headings; Oswald is for bold numerical data and uppercase headings.
+Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
 
-The `LowImpactFitnessCharleston.tsx` page also has the same issue on the "85%" stat card (line 206): `font-heading` instead of `font-hero`.
+1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
 
-### Fix
+2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
 
-One-line change on each page — swap `font-heading` to `font-hero` on the stat numbers:
+## Changes
 
-**`src/pages/services/WestAshleyFitness.tsx`** (lines 353, 357, 361, 365)
-- Change `text-4xl font-heading font-bold` → `text-4xl font-hero font-bold`
+### 1. Add an image picker to the Generate dialog
+**File**: `src/pages/admin/OGImages.tsx`
 
-**`src/pages/services/ResetWeekCharleston.tsx`** (lines 354, 358, 362, 366)
-- Same change on 4 stat number lines
+- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
+- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
+- Show thumbnails in a scrollable grid; clicking one fills the source URL field
+- Keep the manual URL input as a fallback
+- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
+- Add a filter/search to narrow down images by filename
 
-**`src/pages/services/LowImpactFitnessCharleston.tsx`** (line 206)
-- Change `font-heading` → `font-hero` on the "85%" stat card
+### 2. No database changes needed
 
-Three files, 9 total line changes. No structural or layout changes needed — purely a typeface swap for consistency with the established design system.
+The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
+
+### 3. Workflow improvement
+
+The dialog flow becomes:
+1. Admin clicks "Generate" on a blog post row
+2. Dialog opens showing a grid of available images from the bucket
+3. Admin picks a wide landscape photo (or pastes a URL)
+4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
+5. Result is stored in `og-images` bucket and mapped via `page_og_images`
+6. The blog post's hero image and thumbnail remain unchanged
+
+## Files Affected
+
+- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
 
