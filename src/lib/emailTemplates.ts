@@ -139,10 +139,11 @@ ${sectionHeading("Keep the Momentum Going")}
 <p>No mirrors. No judgment. Just good coaching, smart programming, and a community that actually shows up for each other.</p>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:24px 0;border:2px solid ${GOLD};border-radius:12px;overflow:hidden;">
 <tr><td style="background:${GOLD};padding:12px 20px;">
-<h3 style="font-family:'Oswald',Arial,sans-serif;color:${DARK};margin:0;font-size:18px;">FOUNDING MEMBER OFFER</h3>
+<h3 style="font-family:'Oswald',Arial,sans-serif;color:${DARK};margin:0;font-size:18px;">INTRO MEMBER OFFER</h3>
 </td></tr>
 <tr><td style="padding:20px;">
-<p style="margin:0 0 8px;"><strong style="color:${DARK};">Unlimited Classes — $149/month</strong></p>
+<p style="margin:0 0 8px;"><strong style="color:${DARK};">Get your first month of unlimited classes for just $110</strong></p>
+<p style="margin:0 0 8px;font-size:14px;">That's over 50% off the normal $225/mo membership — available if you join within 7 days of your 3rd class.</p>
 <p style="margin:0 0 8px;font-size:14px;">✓ All group classes &bull; ✓ Open gym access &bull; ✓ Community events</p>
 <p style="margin:0;font-size:14px;">✓ Yoga discount &bull; ✓ Cancel anytime</p>
 </td></tr>
