@@ -381,17 +381,47 @@ function ProviderTips() {
 }
 
 export default function EmailSequences() {
+  const [sending, setSending] = useState(false);
+
+  const handleSendPreviews = async () => {
+    setSending(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('send-nurture-previews');
+      if (error) throw error;
+      toast.success(`${data.sent} of ${data.total} preview emails sent!`);
+      if (data.failed > 0) {
+        toast.warning(`${data.failed} emails failed to send.`);
+      }
+    } catch (err) {
+      toast.error('Failed to send preview emails. DNS may still be verifying.');
+      console.error(err);
+    } finally {
+      setSending(false);
+    }
+  };
+
   return (
     <AdminLayout>
       <div className="space-y-6">
         {/* Header */}
-        <div>
-          <h1 className="text-2xl md:text-3xl font-hero font-bold text-foreground uppercase tracking-tight">
-            Email Nurture Playbook
-          </h1>
-          <p className="text-muted-foreground mt-1 text-sm md:text-base">
-            Proven sequences for converting leads and re-engaging lapsed members.
-          </p>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div>
+            <h1 className="text-2xl md:text-3xl font-hero font-bold text-foreground uppercase tracking-tight">
+              Email Nurture Playbook
+            </h1>
+            <p className="text-muted-foreground mt-1 text-sm md:text-base">
+              Proven sequences for converting leads and re-engaging lapsed members.
+            </p>
+          </div>
+          <Button
+            variant="gold"
+            onClick={handleSendPreviews}
+            disabled={sending}
+            className="shrink-0"
+          >
+            {sending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Send className="h-4 w-4 mr-2" />}
+            {sending ? 'Sending…' : 'Send Preview Emails'}
+          </Button>
         </div>
 
         {/* Quick stats */}
