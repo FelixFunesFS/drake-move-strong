@@ -7,10 +7,11 @@ import { Card } from '@/components/ui/card';
 import { 
   Copy, Check, Mail, Clock, Heart, UserCheck, 
   TrendingUp, AlertCircle, Sparkles, ArrowRight,
-  Monitor, Smartphone, Moon
+  Monitor, Smartphone, Moon, Send, Loader2
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
 interface EmailStep {
   day: number;
