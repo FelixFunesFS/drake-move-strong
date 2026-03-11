@@ -55,7 +55,7 @@ const Navigation = ({ transparent = false, isScrolled = false }: NavigationProps
                 {link.name}
               </Link>)}
             <Button asChild variant="gold" size="sm" className="ml-3">
-              <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
+              <a href={buildPunchPassUrl(INTRO_URL, 'nav-try-free')} target="_blank" rel="noopener noreferrer">
                 Try Free <ArrowRight className="ml-1 h-4 w-4" />
               </a>
             </Button>
