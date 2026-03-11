@@ -229,7 +229,7 @@ const Pricing = () => {
                     "I'm stronger in my 40s than ever before." — Aaron Q.
                   </div>
                   <Button asChild className="w-full bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold">
-                    <a href="https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
+                    <a href={buildPunchPassUrl(PUNCHPASS_URLS.unlimited, 'pricing-unlimited', 'membership')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
                       Go Unlimited
                       <ExternalLink className="h-4 w-4" />
                     </a>
