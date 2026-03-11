@@ -43,6 +43,7 @@ const navItems = [
   { href: '/admin/og-images', label: 'OG Images', icon: Image },
   { href: '/admin/social-graphics', label: 'Social Graphics', icon: Image },
   { href: '/admin/social-generator', label: 'Content Studio', icon: Image },
+  { href: '/admin/email-sequences', label: 'Email Sequences', icon: Mail },
 ];
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
