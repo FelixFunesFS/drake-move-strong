@@ -10,7 +10,7 @@ import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
 import TrustStatsBar from "@/components/TrustStatsBar";
 import AnimatedSection from "@/components/AnimatedSection";
 import { getStaggerDelay } from "@/lib/motionConfig";
-import { INTRO_URL } from "@/data/pricing";
+import { INTRO_URL, PUNCHPASS_URLS, buildPunchPassUrl } from "@/data/pricing";
 
 
 const Pricing = () => {
