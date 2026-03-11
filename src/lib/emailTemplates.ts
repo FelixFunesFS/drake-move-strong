@@ -43,7 +43,7 @@ ${body}
 <tr><td style="background:${FOOTER_BG};padding:24px 30px;text-align:center;">
 <p style="font-family:'Oswald',Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.8);margin:0 0 4px;letter-spacing:1px;">DRAKE FITNESS</p>
 <p style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(255,255,255,0.6);margin:0;">2 Avondale Ave, Charleston, SC 29407 &bull; (843) 817-5420</p>
-<p style="font-family:'Inter',sans-serif;font-size:11px;color:rgba(255,255,255,0.4);margin:8px 0 0;">Strength for life, not competition.</p>
+<p style="font-family:'Inter',sans-serif;font-size:11px;color:rgba(255,255,255,0.4);margin:8px 0 0;">Strength for every stage of life.</p>
 </td></tr>
 </table>
 </td></tr>
@@ -69,12 +69,13 @@ const templateMap: Record<string, string> = {
   "new-lead-Instant": wrap(`
 ${sectionHeading("Welcome to Drake Fitness")}
 <p style="color:${DARK};font-size:18px;margin:0 0 16px;">You just made a great decision.</p>
-<p>I'm David Drake, and I've been coaching real people — not athletes, not competitors, just people who want to feel strong and move well — for over 25 years.</p>
+<p>I'm David Drake, and I've been coaching people at every level — from first-timers to seasoned athletes — who want to move well and get stronger for over 25 years.</p>
 <p>Here's what you need to know:</p>
 <ul style="padding-left:20px;margin:16px 0;">
 <li style="margin-bottom:8px;"><strong style="color:${DARK};">Where:</strong> 2 Avondale Ave, Charleston, SC 29407 (free parking on-site)</li>
 <li style="margin-bottom:8px;"><strong style="color:${DARK};">What to bring:</strong> Nothing. Just you.</li>
 <li style="margin-bottom:8px;"><strong style="color:${DARK};">Experience needed:</strong> Zero. We meet you where you are.</li>
+<li style="margin-bottom:8px;"><strong style="color:${DARK};">Already experienced?</strong> We'll challenge you. Our coaching sharpens movement quality at every level.</li>
 </ul>
 ${ctaButton("View Class Schedule")}
 <p style="font-size:14px;">See you on the floor,<br/><strong style="color:${DARK};">David Drake</strong><br/>Head Coach, Drake Fitness</p>
@@ -85,6 +86,7 @@ ${sectionHeading("There's Nothing to Prepare")}
 <p style="color:${DARK};font-size:18px;margin:0 0 16px;">Seriously — just show up.</p>
 <p>No special shoes. No protein shake. No pre-workout routine you found on Instagram.</p>
 <p>Wear whatever you'd wear for a walk. We have all the equipment. Every exercise in every class is modified to your level — whether you've been training for years or this is day one.</p>
+<p><strong style="color:${DARK};">Experienced lifters:</strong> expect smart programming and coaching cues that refine your technique, not just count your reps.</p>
 <p>Our brand promise is simple: <strong style="color:${DARK};">"Sign up and show up."</strong> We handle the rest.</p>
 ${ctaButton("Book Your First Class")}
 <p style="font-size:14px;">You've got this,<br/><strong style="color:${DARK};">David @ Drake Fitness</strong></p>
@@ -95,15 +97,15 @@ ${sectionHeading("Why I Coach")}
 <p>Twenty-five years ago, I watched someone give up on their body because a gym made them feel like they didn't belong.</p>
 <p>That stuck with me.</p>
 <p>I've spent every year since building a different kind of space — one where <strong style="color:${DARK};">a 65-year-old grandmother trains next to a 30-year-old firefighter</strong>, and neither feels out of place.</p>
-<p>My philosophy is simple: <strong style="color:${DARK};">strength for life, not competition.</strong> Kettlebells, bodyweight, mobility work — tools that build bodies that last decades, not just look good for a season.</p>
+<p>My philosophy is simple: <strong style="color:${DARK};">strength that serves your life — whether that's playing with your grandkids or competing in your next event.</strong> Kettlebells, bodyweight, mobility work — tools that build bodies that last decades and perform when it matters.</p>
 <p>I don't count reps to rush through them. I watch how you move, and I coach you to move better. That's it.</p>
 ${ctaButton("See Our Classes", "https://drake.fitness/classes")}
 <p style="font-size:14px;">— David Drake<br/>Head Coach</p>
-  `, "I've spent 25 years helping real people build real strength. Here's why."),
+  `, "I've spent 25 years coaching at every level. Here's why."),
 
   "new-lead-Day 10": wrap(`
-${sectionHeading("Sarah's Story")}
-<p style="color:${DARK};font-size:18px;margin:0 0 16px;">She almost didn't come back.</p>
+${sectionHeading("Two Members. Two Starting Points. Same Community.")}
+<p style="color:${DARK};font-size:18px;margin:0 0 16px;">She almost didn't come back. He almost didn't need to.</p>
 <p>When Sarah walked into Drake Fitness, she hadn't exercised in three years. Her lower back hurt every morning. She was convinced she was "too far gone."</p>
 <p>Her first class was hard. Not because the exercises were impossible — but because she had to let go of the idea that she should already be good at this.</p>
 <p>Six months later, Sarah deadlifted her bodyweight for the first time in her life. At 52.</p>
@@ -111,8 +113,13 @@ ${sectionHeading("Sarah's Story")}
 <p style="color:${DARK};font-style:italic;margin:0;">"I came for the back pain. I stayed because this is the first place that made me feel like an athlete — not a patient."</p>
 <p style="font-size:13px;margin:8px 0 0;">— Sarah M., Drake Fitness member since 2024</p>
 </blockquote>
+<p>Then there's Jason. He'd been training at box gyms and CrossFit affiliates for over a decade. He wasn't starting over — he was looking for something better.</p>
+<blockquote style="border-left:4px solid ${GOLD};padding:12px 16px;margin:20px 0;background:#f9f7f2;border-radius:0 8px 8px 0;">
+<p style="color:${DARK};font-style:italic;margin:0;">"I've trained at box gyms and CrossFit affiliates for 10 years. Drake Fitness is the first place where coaching actually made me better, not just more tired."</p>
+<p style="font-size:13px;margin:8px 0 0;">— Jason T., Drake Fitness member</p>
+</blockquote>
 ${ctaButton("Ready to Write Your Story?")}
-  `, "She almost didn't come back after day one. Here's what changed."),
+  `, "Two different starting points. Same result: stronger."),
 
   "new-lead-Day 18": wrap(`
 <p>Hey —</p>
@@ -171,6 +178,7 @@ ${sectionHeading("A Lot Has Happened")}
 <ul style="padding-left:20px;margin:16px 0;">
 <li style="margin-bottom:10px;"><strong style="color:${DARK};">New class times</strong> — we added early morning and Saturday slots based on member feedback</li>
 <li style="margin-bottom:10px;"><strong style="color:${DARK};">Mobility programming</strong> — dedicated sessions to help you move better, not just harder</li>
+<li style="margin-bottom:10px;"><strong style="color:${DARK};">Advanced programming tracks</strong> — heavier loads, complex movements, periodized progression</li>
 <li style="margin-bottom:10px;"><strong style="color:${DARK};">Community events</strong> — monthly ruck walks, partner workouts, and more</li>
 <li style="margin-bottom:10px;"><strong style="color:${DARK};">Studio upgrades</strong> — new equipment and a refreshed training floor</li>
 </ul>
@@ -185,6 +193,7 @@ ${sectionHeading("He Almost Didn't Come Back")}
 <p>When he finally walked back in, he was nervous. "I thought everyone would be way ahead of me," he said.</p>
 <p>His first class back? He was winded. His grip gave out on the kettlebell swings. He scaled everything.</p>
 <p>And he loved it.</p>
+<p>Within two weeks, he was back to his working weights. Within a month, he hit a PR he'd been chasing before the break.</p>
 <blockquote style="border-left:4px solid ${GOLD};padding:12px 16px;margin:20px 0;background:#f9f7f2;border-radius:0 8px 8px 0;">
 <p style="color:${DARK};font-style:italic;margin:0;">"Walking back in was the hardest part. Once I was on the floor, it felt like I never left. David just said 'welcome back' and handed me a kettlebell."</p>
 <p style="font-size:13px;margin:8px 0 0;">— Mike R.</p>
