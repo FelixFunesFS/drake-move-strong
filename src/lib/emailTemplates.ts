@@ -9,6 +9,9 @@ const WHITE = "#ffffff";
 const FOOTER_BG = "#0B4A52";
 
 function wrap(body: string, previewText: string): string {
+  const logoUrl = typeof window !== "undefined"
+    ? `${window.location.origin}/images/drake-fitness-logo2.png`
+    : "https://drake-move-strong.lovable.app/images/drake-fitness-logo2.png";
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
