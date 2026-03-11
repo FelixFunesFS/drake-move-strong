@@ -313,6 +313,11 @@ const AppLayout = () => {
                 <AdminSocialGraphics />
               </ProtectedRoute>
             } />
+            <Route path="/admin/email-sequences" element={
+              <ProtectedRoute requiredRoles={['admin']}>
+                <AdminEmailSequences />
+              </ProtectedRoute>
+            } />
             
             {/* Coach Routes (Protected - Coach and Admin) */}
             <Route path="/coach/dashboard" element={
