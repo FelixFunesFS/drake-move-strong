@@ -232,7 +232,7 @@ function CopyButton({ text }: { text: string }) {
   };
   return (
     <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0" onClick={handleCopy}>
-      {copied ? <Check className="h-3.5 w-3.5 text-emerald-600" /> : <Copy className="h-3.5 w-3.5 text-muted-foreground" />}
+      {copied ? <Check className="h-3.5 w-3.5 text-primary" /> : <Copy className="h-3.5 w-3.5 text-muted-foreground" />}
     </Button>
   );
 }
