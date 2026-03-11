@@ -28,7 +28,7 @@ const AnnouncementBanner = ({ onVisibilityChange }: AnnouncementBannerProps) => 
   // Check if banner should show on current page
   const shouldShowOnPage = useCallback(() => {
     if (!promotion?.target_pages) return true;
-    if (promotion.target_pages.includes('all')) return location.pathname !== '/';
+    if (promotion.target_pages.includes('all')) return !['/', '/schedule'].includes(location.pathname);
     return promotion.target_pages.includes(location.pathname);
   }, [promotion, location.pathname]);
 
