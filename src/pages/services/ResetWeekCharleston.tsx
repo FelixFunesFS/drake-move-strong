@@ -133,7 +133,7 @@ export default function ResetWeekCharleston() {
                   <h3 className="font-bold text-xl mt-4 mb-1">{item.title}</h3>
                   <p className="text-muted-foreground text-base">{item.desc}</p>
                   {item.hasClaimLink && (
-                    <a href={INTRO_URL} target="_blank" rel="noopener noreferrer" className="text-accent underline text-sm mt-1 inline-block hover:text-accent/80 transition-colors">Claim your pass</a>
+                     <a href={buildPunchPassUrl(INTRO_URL, 'reset-week-step-claim')} target="_blank" rel="noopener noreferrer" className="text-accent underline text-sm mt-1 inline-block hover:text-accent/80 transition-colors">Claim your pass</a>
                   )}
                   {item.hasScheduleLink && (
                     <Link to="/schedule" className="text-accent underline text-sm mt-1 inline-block hover:text-accent/80 transition-colors">View full schedule</Link>
