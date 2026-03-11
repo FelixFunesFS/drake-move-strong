@@ -132,6 +132,9 @@ export default function LowImpactFitnessCharleston() {
               <p className="text-xl sm:text-2xl md:text-3xl text-primary-foreground/90 mb-4 font-semibold">
                 Try 3 Classes Free
               </p>
+              <p className="text-base md:text-lg text-accent font-semibold mb-3">
+                KB Strong — Coach-led strength & mobility classes in small groups.
+              </p>
               <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 md:mb-10 leading-relaxed">
                 Train again without fear of making things worse.
               </p>
