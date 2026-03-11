@@ -267,37 +267,6 @@ export default function LowImpactFitnessCharleston() {
         </div>
       </section>
 
-      {/* Common Issues Section */}
-      <section className="py-12 md:py-16 lg:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <AnimatedSection animation="fadeInUp">
-            <div className="max-w-3xl mx-auto text-center mb-8 md:mb-12">
-              <span className="section-eyebrow text-primary">COMMON ISSUES WE HELP WITH</span>
-              <h2 className="font-hero text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-foreground uppercase">
-                Members Often Come In With:
-              </h2>
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection animation="fadeInUp" delay={0.1}>
-            <div className="max-w-2xl mx-auto">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-                {commonIssues.map((issue, index) => (
-                  <div key={index} className="bg-secondary p-3 md:p-4 rounded-xl text-center">
-                    <span className="text-foreground font-medium text-sm md:text-base">{issue}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 md:mt-8 p-4 md:p-6 bg-primary/10 rounded-xl text-center">
-                <p className="text-base md:text-lg text-foreground">
-                  We modify intelligently so you can <strong className="text-primary">train with confidence.</strong>
-                </p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
       {/* 3-Class Intro Offer Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
