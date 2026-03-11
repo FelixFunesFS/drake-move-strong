@@ -50,13 +50,6 @@ const ourApproach = [
   { icon: Heart, text: "Respect for joint limitations", description: "Exercises are modified to work with your body, not against it." }
 ];
 
-const commonIssues = [
-  "Back pain",
-  "Knee discomfort",
-  "Hip tightness",
-  "Shoulder limitations",
-  "General joint stiffness"
-];
 
 const environmentFeatures = [
   { icon: Users, text: "Small group or coached sessions" },
