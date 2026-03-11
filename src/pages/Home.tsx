@@ -8,7 +8,7 @@ import { SEO } from "@/components/SEO";
 import { StructuredData, localBusinessSchema } from "@/components/StructuredData";
 import TrustStatsBar from "@/components/TrustStatsBar";
 import LongevityBlock from "@/components/LongevityBlock";
-import { INTRO_URL } from "@/data/pricing";
+import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
 // WebP hero images with responsive sizes
 import heroImage1Desktop from "@/assets/hero-group-turkish-getup.jpg?format=webp&w=1920";
 import heroMobileImage from "@/assets/hero-mobile-kb-press.jpg?format=webp&w=768";
