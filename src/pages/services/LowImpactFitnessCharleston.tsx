@@ -19,7 +19,7 @@ import {
 import { INTRO_URL } from "@/data/pricing";
 
 import studioMobilityTraining from "@/assets/studio-mobility-training.jpg";
-import davidCoachingForm from "@/assets/david-coaching-form.jpg";
+import communityTurkishGetup from "@/assets/community-turkish-getup-class.jpg";
 import davidGobletSquat from "@/assets/david-goblet-squat-kb-rack.jpg";
 
 const serviceSchema = {
@@ -50,13 +50,6 @@ const ourApproach = [
   { icon: Heart, text: "Respect for joint limitations", description: "Exercises are modified to work with your body, not against it." }
 ];
 
-const commonIssues = [
-  "Back pain",
-  "Knee discomfort",
-  "Hip tightness",
-  "Shoulder limitations",
-  "General joint stiffness"
-];
 
 const environmentFeatures = [
   { icon: Users, text: "Small group or coached sessions" },
@@ -132,6 +125,9 @@ export default function LowImpactFitnessCharleston() {
               <p className="text-xl sm:text-2xl md:text-3xl text-primary-foreground/90 mb-4 font-semibold">
                 Try 3 Classes Free
               </p>
+              <p className="text-base md:text-lg text-accent font-semibold mb-3">
+                KB Strong — Coach-led strength & mobility classes in small groups.
+              </p>
               <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 md:mb-10 leading-relaxed">
                 Train again without fear of making things worse.
               </p>
@@ -201,8 +197,8 @@ export default function LowImpactFitnessCharleston() {
               <div className="relative overflow-visible">
                 <div className="h-[350px] sm:h-[450px] md:h-[550px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl">
                   <OptimizedImage
-                    src={davidCoachingForm}
-                    alt="David coaching a member on proper form at Drake Fitness"
+                    src={communityTurkishGetup}
+                    alt="Members training together in a coached class at Drake Fitness"
                     className="w-full h-full"
                   />
                 </div>
@@ -259,37 +255,6 @@ export default function LowImpactFitnessCharleston() {
                   <p className="text-muted-foreground leading-relaxed">{item.description}</p>
                 </div>
               ))}
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Common Issues Section */}
-      <section className="py-12 md:py-16 lg:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <AnimatedSection animation="fadeInUp">
-            <div className="max-w-3xl mx-auto text-center mb-8 md:mb-12">
-              <span className="section-eyebrow text-primary">COMMON ISSUES WE HELP WITH</span>
-              <h2 className="font-hero text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-foreground uppercase">
-                Members Often Come In With:
-              </h2>
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection animation="fadeInUp" delay={0.1}>
-            <div className="max-w-2xl mx-auto">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-                {commonIssues.map((issue, index) => (
-                  <div key={index} className="bg-secondary p-3 md:p-4 rounded-xl text-center">
-                    <span className="text-foreground font-medium text-sm md:text-base">{issue}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 md:mt-8 p-4 md:p-6 bg-primary/10 rounded-xl text-center">
-                <p className="text-base md:text-lg text-foreground">
-                  We modify intelligently so you can <strong className="text-primary">train with confidence.</strong>
-                </p>
-              </div>
             </div>
           </AnimatedSection>
         </div>
@@ -360,7 +325,7 @@ export default function LowImpactFitnessCharleston() {
             <div className="text-center mb-8 md:mb-12">
               <span className="section-eyebrow text-primary">REAL RESULTS</span>
               <h2 className="font-hero text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-foreground uppercase">
-                Members Who Trained Through Pain
+                Members Who Found a Way Back
               </h2>
             </div>
           </AnimatedSection>
