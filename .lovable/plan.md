@@ -1,49 +1,57 @@
 
-# Plan: UTM Attribution Tracking — COMPLETED
 
-## What Was Done
+## Rewrite Nurture Email Copy for Dual-Lane Inclusivity
 
-Added `buildPunchPassUrl()` helper to `src/data/pricing.ts` and tagged every PunchPass checkout link across 13 files with unique `utm_content` values.
+### Problem
+All 12 emails currently target only deconditioned beginners. Experienced athletes, active movers, and fitness enthusiasts are implicitly excluded or dismissed. This conflicts with the brand's "Dual-Lane Qualifier" strategy: welcoming both people starting over AND people leveling up.
 
-## UTM Content Tags Reference
+### Copy Changes (Both Files)
 
-| `utm_content` | Location |
+Changes apply to **both** `src/lib/emailTemplates.ts` (client preview) and `supabase/functions/send-nurture-previews/index.ts` (sending), keeping them in sync.
+
+#### 1. Welcome (Instant)
+- **Before**: "not athletes, not competitors, just people who want to feel strong"
+- **After**: "people at every level — from first-timers to seasoned athletes — who want to move well and get stronger"
+- Add bullet: "Already experienced? We'll challenge you. Our coaching sharpens movement quality at every level."
+
+#### 2. Day 1 (Friction Removal)
+- Keep "whether you've been training for years or this is day one" (already good)
+- Add: "Experienced lifters: expect smart programming and coaching cues that refine your technique, not just count your reps."
+
+#### 3. Day 5 (Coach Authority)
+- **Before**: "strength for life, not competition"
+- **After**: "strength that serves your life — whether that's playing with your grandkids or competing in your next event"
+- **Before**: "tools that build bodies that last decades, not just look good for a season"
+- **After**: "tools that build bodies that last decades and perform when it matters"
+- Subject line: "Meet David — 25 years of coaching at every level"
+
+#### 4. Day 10 (Social Proof) — Add Second Story
+- Keep Sarah's beginner story
+- Add a second testimonial from an experienced athlete, e.g.: "I've trained at box gyms and CrossFit affiliates for 10 years. Drake Fitness is the first place where coaching actually made me better, not just more tired." — Jason T.
+
+#### 5. Day 18 (Check-in) — No changes needed
+- Already neutral and inclusive
+
+#### 6. Day 24 (Conversion) — No changes needed
+- Already focuses on community and coaching quality
+
+#### 7. Day 30 (Pass Expiry) — No changes needed
+- Already neutral
+
+#### 8-12. Win-Back Sequence
+- **Day 12 (Mike's story)**: Reframe — instead of only showing regression, add: "Within two weeks, he was back to his working weights. Within a month, he hit a PR he'd been chasing before the break."
+- **Day 5 (What's New)**: Add bullet about programming depth: "Advanced programming tracks — heavier loads, complex movements, periodized progression"
+
+#### Footer Tagline (All Emails)
+- **Before**: "Strength for life, not competition."
+- **After**: "Strength for every stage of life."
+
+### Files Changed
+
+| File | Change |
 |---|---|
-| `nav-try-free` | Desktop nav "Try Free" button |
-| `nav-mobile-try-free` | Mobile nav "Try 3 Classes Free" |
-| `home-start-here-inline` | Home "Sign up" text link |
-| `home-start-here-cta` | Home "Claim Your 3 Free Classes" button |
-| `home-bottom-cta` | Home bottom CTA section |
-| `community-reasons-cta` | Community reasons section |
-| `pricing-intro-card` | Pricing intro card |
-| `pricing-foundation` | Pricing Foundation membership |
-| `pricing-unlimited` | Pricing Longevity Unlimited |
-| `pricing-remote-support` | Pricing Remote Support |
-| `pricing-flex-pack` | Pricing 10-Class Pack |
-| `pricing-not-sure-cta` | Pricing "Not sure" section |
-| `pricing-bottom-cta` | Pricing bottom CTA |
-| `schedule-top-cta` | Schedule top banner |
-| `schedule-bottom-cta` | Schedule bottom CTA |
-| `intro-nav-cta` | Try Free landing nav |
-| `intro-hero-cta` | Try Free landing hero |
-| `intro-bottom-cta` | Try Free landing bottom |
-| `intro-sticky-mobile` | Try Free sticky mobile bar |
-| `west-ashley-hero` | West Ashley hero CTA |
-| `west-ashley-bottom` | West Ashley bottom CTA |
-| `strength-hero` | Strength Training hero |
-| `strength-middle-cta` | Strength Training mid-page |
-| `strength-bottom-cta` | Strength Training bottom |
-| `low-impact-hero` | Low Impact hero |
-| `low-impact-middle-cta` | Low Impact mid-page |
-| `low-impact-bottom-cta` | Low Impact bottom |
-| `reset-week-hero` | Reset Week hero |
-| `reset-week-step-claim` | Reset Week step "Claim your pass" |
-| `reset-week-bottom-cta` | Reset Week bottom |
-| `insights-bottom-cta` | Insights bottom CTA |
-| `success-stories-bottom-cta` | Success Stories bottom |
+| `src/lib/emailTemplates.ts` | Update copy in 7 of 12 templates + footer tagline |
+| `supabase/functions/send-nurture-previews/index.ts` | Mirror identical copy changes |
 
-## External UTM Convention (for ads, not in code)
+### No structural or layout changes — only copy revisions to be inclusive of all experience levels while maintaining the warm, approachable tone.
 
-- **Facebook Ads**: `?utm_source=facebook&utm_medium=cpc&utm_campaign=intro-offer&utm_content=ad-spring-2026`
-- **Google Business Profile**: `?utm_source=google&utm_medium=organic&utm_content=gbp-website-link`
-- **Instagram bio**: `?utm_source=instagram&utm_medium=social&utm_content=bio-link`
