@@ -440,6 +440,12 @@ function TemplatePreview({ template, photo, secondPhoto, thirdPhoto, eyebrow, he
           <img src={img3} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
           <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 40px 5px rgba(0,0,0,0.2)' }} />
         </div>
+        {/* Badge — top-right corner */}
+        {showBadge && (
+          <div style={{ position: 'absolute', top: 20, right: 20, zIndex: 6 }}>
+            <FreeBadge />
+          </div>
+        )}
         {/* Dark overlay strip at bottom */}
         <div style={{
           position: 'absolute',
@@ -464,10 +470,7 @@ function TemplatePreview({ template, photo, secondPhoto, thirdPhoto, eyebrow, he
               )}
             </div>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            {showBadge && <FreeBadge style={{ transform: 'scale(0.8)' }} />}
-            <CTAButton text={ctaText} />
-          </div>
+          <CTAButton text={ctaText} />
         </div>
       </div>
     );
