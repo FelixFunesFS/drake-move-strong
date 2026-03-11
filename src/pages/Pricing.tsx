@@ -171,7 +171,7 @@ const Pricing = () => {
                     Feel stronger, move better, and stay consistent week to week.
                   </p>
                   <Button asChild variant="outline" className="w-full">
-                    <a href="https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
+                    <a href={buildPunchPassUrl(PUNCHPASS_URLS.foundation, 'pricing-foundation', 'membership')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
                       Choose Foundation
                       <ExternalLink className="h-4 w-4" />
                     </a>
