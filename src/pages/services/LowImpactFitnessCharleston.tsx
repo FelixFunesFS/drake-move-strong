@@ -16,7 +16,7 @@ import {
   Navigation, Clock, Car, ShieldCheck, HeartPulse, Dumbbell,
   Ban, GraduationCap, Gauge, Heart, CalendarDays, Shield
 } from "lucide-react";
-import { INTRO_URL } from "@/data/pricing";
+import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
 
 import studioMobilityTraining from "@/assets/studio-mobility-training.jpg";
 import communityTurkishGetup from "@/assets/community-turkish-getup-class.jpg";
