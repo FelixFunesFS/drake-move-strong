@@ -14,7 +14,7 @@ import {
   CalendarDays, Shield, Clock, Car, Navigation
 } from "lucide-react";
 
-import { INTRO_URL } from "@/data/pricing";
+import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
 import heroKettlebellTraining from "@/assets/hero-kettlebell-training.jpg";
 import davidGobletSquat from "@/assets/david-goblet-squat-kb-rack.jpg";
 import studioDavidStorefront from "@/assets/studio-david-storefront.jpg";
@@ -119,7 +119,7 @@ export default function StrengthTrainingCharleston() {
                 Train Smarter. Move Better. Get Strong Without Pain.
               </p>
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
-                <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
+                <a href={buildPunchPassUrl(INTRO_URL, 'strength-hero')} target="_blank" rel="noopener noreferrer">
                   <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
                   Claim 3 Free Classes
                 </a>
@@ -293,7 +293,7 @@ export default function StrengthTrainingCharleston() {
                 </div>
 
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-6 text-lg font-bold uppercase tracking-wide">
-                  <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
+                  <a href={buildPunchPassUrl(INTRO_URL, 'strength-middle-cta')} target="_blank" rel="noopener noreferrer">
                     Claim 3 Free Classes
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
@@ -531,7 +531,7 @@ export default function StrengthTrainingCharleston() {
               </div>
               <div className="text-center">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-12 py-6 text-xl font-bold uppercase tracking-wide">
-                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer">
+                  <a href={buildPunchPassUrl(INTRO_URL, 'strength-bottom-cta')} target="_blank" rel="noopener noreferrer">
                     <ArrowRight className="mr-2 h-5 w-5" />
                     Claim 3 Free Classes Now
                   </a>

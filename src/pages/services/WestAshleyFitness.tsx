@@ -6,7 +6,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
 import { GoogleMapEmbed } from "@/components/GoogleMapEmbed";
 import { Check, MapPin, ArrowRight, Star, Shield, Heart, Dumbbell, Clock, Car, Navigation } from "lucide-react";
-import { INTRO_URL } from "@/data/pricing";
+import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
 import { TRUST_STATS } from "@/data/trustStats";
 
 import heroKettlebellTraining from "@/assets/hero-kettlebell-training.jpg";
@@ -85,7 +85,7 @@ export default function WestAshleyFitness() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
-                  <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
+                  <a href={buildPunchPassUrl(INTRO_URL, 'west-ashley-hero')} target="_blank" rel="noopener noreferrer">
                     Claim 3 Free Classes
                     <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                   </a>
@@ -289,7 +289,7 @@ export default function WestAshleyFitness() {
               <p className="text-base md:text-lg lg:text-xl text-primary-foreground/70 mb-8 md:mb-10">Avondale's choice for pain-free strength training.</p>
               
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
-                <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
+                <a href={buildPunchPassUrl(INTRO_URL, 'west-ashley-bottom')} target="_blank" rel="noopener noreferrer">
                   Claim 3 Free Classes
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                 </a>

@@ -71,6 +71,22 @@ export const PUNCHPASS_URLS = {
   catalog: "https://drakefitness.punchpass.com/catalog"
 } as const;
 
+// UTM Attribution Tracking
+export function buildPunchPassUrl(
+  baseUrl: string,
+  content: string,
+  campaign = 'intro-offer',
+  source = 'website',
+  medium = 'organic'
+): string {
+  const url = new URL(baseUrl);
+  url.searchParams.set('utm_source', source);
+  url.searchParams.set('utm_medium', medium);
+  url.searchParams.set('utm_campaign', campaign);
+  url.searchParams.set('utm_content', content);
+  return url.toString();
+}
+
 // Helper functions
 export const formatPrice = (price: number): string => `$${price}`;
 

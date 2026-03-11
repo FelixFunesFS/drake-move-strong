@@ -10,7 +10,7 @@ import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
 import TrustStatsBar from "@/components/TrustStatsBar";
 import AnimatedSection from "@/components/AnimatedSection";
 import { getStaggerDelay } from "@/lib/motionConfig";
-import { INTRO_URL } from "@/data/pricing";
+import { INTRO_URL, PUNCHPASS_URLS, buildPunchPassUrl } from "@/data/pricing";
 
 
 const Pricing = () => {
@@ -109,7 +109,7 @@ const Pricing = () => {
                     </div>
                     <div className="flex-1 w-full sm:w-auto">
                       <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold w-full sm:w-auto">
-                        <a href={INTRO_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                        <a href={buildPunchPassUrl(INTRO_URL, 'pricing-intro-card')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
                           Claim 3 Free Classes
                           <ExternalLink className="h-4 w-4" />
                         </a>
@@ -171,7 +171,7 @@ const Pricing = () => {
                     Feel stronger, move better, and stay consistent week to week.
                   </p>
                   <Button asChild variant="outline" className="w-full">
-                    <a href="https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
+                    <a href={buildPunchPassUrl(PUNCHPASS_URLS.foundation, 'pricing-foundation', 'membership')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
                       Choose Foundation
                       <ExternalLink className="h-4 w-4" />
                     </a>
@@ -229,7 +229,7 @@ const Pricing = () => {
                     "I'm stronger in my 40s than ever before." — Aaron Q.
                   </div>
                   <Button asChild className="w-full bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold">
-                    <a href="https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
+                    <a href={buildPunchPassUrl(PUNCHPASS_URLS.unlimited, 'pricing-unlimited', 'membership')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
                       Go Unlimited
                       <ExternalLink className="h-4 w-4" />
                     </a>
@@ -295,7 +295,7 @@ const Pricing = () => {
                 </CardContent>
                 <CardFooter className="pt-0">
                   <a
-                      href="https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776"
+                      href={buildPunchPassUrl(PUNCHPASS_URLS.remoteSupport, 'pricing-remote-support', 'membership')}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1">
@@ -341,7 +341,7 @@ const Pricing = () => {
                 </CardContent>
                 <CardFooter className="pt-0">
                   <a
-                      href="https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/219932"
+                      href={buildPunchPassUrl(PUNCHPASS_URLS.flexPack, 'pricing-flex-pack', 'class-pack')}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1">
@@ -450,7 +450,7 @@ const Pricing = () => {
                Not sure which option fits you? Try 3 classes free — we'll help you decide which membership is right for your goals.
              </p>
              <Button asChild variant="outline" size="lg">
-               <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent">
+               <a href={buildPunchPassUrl(INTRO_URL, 'pricing-not-sure-cta')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent">
                  Claim 3 Free Classes
                  <ExternalLink className="h-4 w-4" />
                </a>
@@ -503,9 +503,10 @@ const Pricing = () => {
           title="Ready to Move Better?"
           subtitle="Try 3 classes free — see if Drake Fitness is the right fit for you."
           ctaText="Try 3 Classes Free"
-          ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034"
-          variant="primary"
-          slanted={true} />
+           ctaLink={INTRO_URL}
+           variant="primary"
+           slanted={true}
+           utmContent="pricing-bottom-cta" />
 
       </main>
     </>);

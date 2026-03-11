@@ -16,7 +16,7 @@ import {
   Navigation, Clock, Car, ShieldCheck, HeartPulse, Dumbbell,
   Ban, GraduationCap, Gauge, Heart, CalendarDays, Shield
 } from "lucide-react";
-import { INTRO_URL } from "@/data/pricing";
+import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
 
 import studioMobilityTraining from "@/assets/studio-mobility-training.jpg";
 import communityTurkishGetup from "@/assets/community-turkish-getup-class.jpg";
@@ -133,7 +133,7 @@ export default function LowImpactFitnessCharleston() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
-                  <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
+                   <a href={buildPunchPassUrl(INTRO_URL, 'low-impact-hero')} target="_blank" rel="noopener noreferrer">
                     <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
                     Claim 3 Free Classes
                   </a>
@@ -307,7 +307,7 @@ export default function LowImpactFitnessCharleston() {
                 </div>
 
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
-                  <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
+                   <a href={buildPunchPassUrl(INTRO_URL, 'low-impact-middle-cta')} target="_blank" rel="noopener noreferrer">
                     Claim 3 Free Classes
                     <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                   </a>
@@ -516,7 +516,7 @@ export default function LowImpactFitnessCharleston() {
               </div>
               <div className="text-center">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 md:px-12 py-4 md:py-6 text-lg md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
-                  <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
+                  <a href={buildPunchPassUrl(INTRO_URL, 'low-impact-bottom-cta')} target="_blank" rel="noopener noreferrer">
                     <ArrowRight className="mr-2 h-5 w-5" />
                     Claim 3 Free Classes Now
                   </a>

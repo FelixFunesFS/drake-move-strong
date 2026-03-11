@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import OptimizedImage from "./OptimizedImage";
 import AnimatedSection from "./AnimatedSection";
-import { PUNCHPASS_URLS } from "@/data/pricing";
+import { PUNCHPASS_URLS, buildPunchPassUrl } from "@/data/pricing";
 
 interface ReasonCard {
   image: string;
@@ -97,7 +97,7 @@ const CommunityReasonsSection = ({ images }: CommunityReasonsSectionProps) => {
                     className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-bold text-base px-6 py-5 h-auto"
                   >
                     <a
-                      href={PUNCHPASS_URLS.introExperience}
+                      href={buildPunchPassUrl(PUNCHPASS_URLS.introExperience, 'community-reasons-cta')}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2"

@@ -8,7 +8,7 @@ import { SEO } from "@/components/SEO";
 import { StructuredData, localBusinessSchema } from "@/components/StructuredData";
 import TrustStatsBar from "@/components/TrustStatsBar";
 import LongevityBlock from "@/components/LongevityBlock";
-import { INTRO_URL } from "@/data/pricing";
+import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
 // WebP hero images with responsive sizes
 import heroImage1Desktop from "@/assets/hero-group-turkish-getup.jpg?format=webp&w=1920";
 import heroMobileImage from "@/assets/hero-mobile-kb-press.jpg?format=webp&w=768";
@@ -98,7 +98,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                     {[
                       { step: "1", text: "Claim your free pass below" },
                       { step: "2", text: "Pick a Strength & Mobility class (KB Strong) — Mon/Wed/Fri 8am or 11am, Thu 6pm" },
-                      { step: "3", text: <><a href={INTRO_URL} target="_blank" rel="noopener noreferrer" className="text-primary underline font-semibold hover:text-primary/80 transition-colors">Sign up</a> and show up — we handle the rest</> },
+                      { step: "3", text: <><a href={buildPunchPassUrl(INTRO_URL, 'home-start-here-inline')} target="_blank" rel="noopener noreferrer" className="text-primary underline font-semibold hover:text-primary/80 transition-colors">Sign up</a> and show up — we handle the rest</> },
                     ].map((item, i) => (
                       <div key={i} className="flex items-center gap-3">
                         <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center flex-shrink-0">{item.step}</span>
@@ -130,7 +130,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                   </div>
                   <div className="flex flex-col items-stretch md:items-end gap-2 md:min-w-[260px]">
                     <Button asChild size="lg" className="w-full px-8 py-5 text-base min-h-[48px]">
-                      <a href={INTRO_URL} target="_blank" rel="noopener noreferrer" className="text-center">Claim Your 3 Free Classes</a>
+                      <a href={buildPunchPassUrl(INTRO_URL, 'home-start-here-cta')} target="_blank" rel="noopener noreferrer" className="text-center">Claim Your 3 Free Classes</a>
                     </Button>
                     <p className="text-xs text-muted-foreground text-center md:text-right">
                       Love it? First month unlimited for just $110.
@@ -248,7 +248,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       </AnimatedSection>
 
       <AnimatedSection animation="fadeInUp">
-        <CTASection eyebrow="GET STARTED" title="Ready to Move Better, Feel Stronger?" ctaText="Try 3 Classes Free" ctaLink={INTRO_URL} variant="primary" slanted={true} />
+        <CTASection eyebrow="GET STARTED" title="Ready to Move Better, Feel Stronger?" ctaText="Try 3 Classes Free" ctaLink={INTRO_URL} variant="primary" slanted={true} utmContent="home-bottom-cta" />
       </AnimatedSection>
     </main>
     </>;

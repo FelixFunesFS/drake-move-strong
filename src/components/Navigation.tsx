@@ -4,7 +4,7 @@ import { Menu, X, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import drakeLogo from "@/assets/drake-fitness-logo2.png?format=webp&w=268";
-import { INTRO_URL } from "@/data/pricing";
+import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
 
 interface NavigationProps {
   transparent?: boolean;
@@ -55,7 +55,7 @@ const Navigation = ({ transparent = false, isScrolled = false }: NavigationProps
                 {link.name}
               </Link>)}
             <Button asChild variant="gold" size="sm" className="ml-3">
-              <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
+              <a href={buildPunchPassUrl(INTRO_URL, 'nav-try-free')} target="_blank" rel="noopener noreferrer">
                 Try Free <ArrowRight className="ml-1 h-4 w-4" />
               </a>
             </Button>
@@ -73,7 +73,7 @@ const Navigation = ({ transparent = false, isScrolled = false }: NavigationProps
                 {link.name}
               </Link>)}
             <Button asChild variant="gold" className="w-full mt-2">
-              <a href={INTRO_URL} target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)}>
+              <a href={buildPunchPassUrl(INTRO_URL, 'nav-mobile-try-free')} target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)}>
                 Try 3 Classes Free <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>

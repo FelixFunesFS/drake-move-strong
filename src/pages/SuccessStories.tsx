@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import CTASection from "@/components/CTASection";
+import { INTRO_URL } from "@/data/pricing";
 import communityImage from "@/assets/community-plank-rows-kettlebells.jpg";
 import memberYoga from "@/assets/member-yoga-pose.jpg";
 import OptimizedImage from "@/components/OptimizedImage";
@@ -208,9 +209,10 @@ const SuccessStories = () => {
         title="Ready to Write Your Own Success Story?"
         subtitle="Try 3 classes free — experience mobility-first training with no commitment."
         ctaText="Try 3 Classes Free"
-        ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034"
-        variant="primary"
-        slanted={true}
+         ctaLink={INTRO_URL}
+         variant="primary"
+         slanted={true}
+         utmContent="success-stories-bottom-cta"
       />
     </main>
     </>

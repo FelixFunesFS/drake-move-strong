@@ -1,66 +1,49 @@
 
+# Plan: UTM Attribution Tracking — COMPLETED
 
-## Add UTM Attribution Tracking to All PunchPass Links
+## What Was Done
 
-### Approach
+Added `buildPunchPassUrl()` helper to `src/data/pricing.ts` and tagged every PunchPass checkout link across 13 files with unique `utm_content` values.
 
-Create a centralized UTM link builder in `src/data/pricing.ts` and replace all raw `INTRO_URL` / `PUNCHPASS_URLS` references with tagged versions. This gives you full visibility into which page and CTA drove each PunchPass signup.
+## UTM Content Tags Reference
 
-### Changes
+| `utm_content` | Location |
+|---|---|
+| `nav-try-free` | Desktop nav "Try Free" button |
+| `nav-mobile-try-free` | Mobile nav "Try 3 Classes Free" |
+| `home-start-here-inline` | Home "Sign up" text link |
+| `home-start-here-cta` | Home "Claim Your 3 Free Classes" button |
+| `home-bottom-cta` | Home bottom CTA section |
+| `community-reasons-cta` | Community reasons section |
+| `pricing-intro-card` | Pricing intro card |
+| `pricing-foundation` | Pricing Foundation membership |
+| `pricing-unlimited` | Pricing Longevity Unlimited |
+| `pricing-remote-support` | Pricing Remote Support |
+| `pricing-flex-pack` | Pricing 10-Class Pack |
+| `pricing-not-sure-cta` | Pricing "Not sure" section |
+| `pricing-bottom-cta` | Pricing bottom CTA |
+| `schedule-top-cta` | Schedule top banner |
+| `schedule-bottom-cta` | Schedule bottom CTA |
+| `intro-nav-cta` | Try Free landing nav |
+| `intro-hero-cta` | Try Free landing hero |
+| `intro-bottom-cta` | Try Free landing bottom |
+| `intro-sticky-mobile` | Try Free sticky mobile bar |
+| `west-ashley-hero` | West Ashley hero CTA |
+| `west-ashley-bottom` | West Ashley bottom CTA |
+| `strength-hero` | Strength Training hero |
+| `strength-middle-cta` | Strength Training mid-page |
+| `strength-bottom-cta` | Strength Training bottom |
+| `low-impact-hero` | Low Impact hero |
+| `low-impact-middle-cta` | Low Impact mid-page |
+| `low-impact-bottom-cta` | Low Impact bottom |
+| `reset-week-hero` | Reset Week hero |
+| `reset-week-step-claim` | Reset Week step "Claim your pass" |
+| `reset-week-bottom-cta` | Reset Week bottom |
+| `insights-bottom-cta` | Insights bottom CTA |
+| `success-stories-bottom-cta` | Success Stories bottom |
 
-**1. Add UTM helper to `src/data/pricing.ts`**
+## External UTM Convention (for ads, not in code)
 
-Add a `buildPunchPassUrl` function:
-
-```typescript
-export function buildPunchPassUrl(
-  baseUrl: string,
-  content: string,  // which CTA: 'hero-cta', 'nav-button', 'pricing-card', etc.
-  campaign = 'intro-offer',
-  source = 'website',
-  medium = 'organic'
-): string {
-  const url = new URL(baseUrl);
-  url.searchParams.set('utm_source', source);
-  url.searchParams.set('utm_medium', medium);
-  url.searchParams.set('utm_campaign', campaign);
-  url.searchParams.set('utm_content', content);
-  return url.toString();
-}
-```
-
-**2. Update every file that uses `INTRO_URL` or `PUNCHPASS_URLS`** (~13 files)
-
-Each link gets a unique `utm_content` tag identifying the exact CTA. Examples:
-
-| File | CTA | `utm_content` value |
-|------|-----|---------------------|
-| `Navigation.tsx` | "Try Free" nav button | `nav-try-free` |
-| `Hero.tsx` | Hero CTA | `hero-cta` |
-| `Pricing.tsx` | "Claim 3 Free Classes" | `pricing-intro-card` |
-| `Pricing.tsx` | Foundation membership | `pricing-foundation` |
-| `Pricing.tsx` | Unlimited membership | `pricing-unlimited` |
-| `ResetWeekAlt.tsx` (intro page) | Main CTA | `intro-landing-cta` |
-| `WestAshleyFitness.tsx` | Hero + bottom CTA | `west-ashley-hero` / `west-ashley-bottom` |
-| `StrengthTrainingCharleston.tsx` | Hero + bottom CTA | `strength-hero` / `strength-bottom` |
-| `CTASection.tsx` | Shared CTA component | Pass `utm_content` via prop |
-| `ChatBot.tsx` / lead capture | Chatbot signup | `chatbot-cta` |
-| `Home.tsx` CTA sections | Bottom CTAs | `home-cta-bottom` |
-
-**3. For Facebook/Google ads** (external, not in code)
-
-Document a UTM convention for ad platforms. These are set in the ad platform itself, not in the codebase:
-- Facebook Ads: `?utm_source=facebook&utm_medium=cpc&utm_campaign=intro-offer&utm_content=ad-spring-2026`
-- Google Business Profile: `?utm_source=google&utm_medium=organic&utm_content=gbp-website-link`
-
-### What This Gives You
-
-PunchPass shows the full URL when someone signs up, so you can see exactly which `utm_content` tag they came through. No database changes needed — PunchPass captures this automatically in their referral/source data.
-
-### Scope
-
-- ~13 files updated (one-line changes per link)
-- 1 new utility function in `src/data/pricing.ts`
-- Possibly add an optional `utmContent` prop to `CTASection.tsx`
-- No backend or database changes
-
+- **Facebook Ads**: `?utm_source=facebook&utm_medium=cpc&utm_campaign=intro-offer&utm_content=ad-spring-2026`
+- **Google Business Profile**: `?utm_source=google&utm_medium=organic&utm_content=gbp-website-link`
+- **Instagram bio**: `?utm_source=instagram&utm_medium=social&utm_content=bio-link`
