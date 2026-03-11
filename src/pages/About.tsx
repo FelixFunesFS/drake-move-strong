@@ -233,7 +233,7 @@ const About = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-7xl mx-auto">
             <AnimatedSection animation="fadeInUp">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 {/* Content Column - LEFT on desktop */}
                 <div className="lg:col-span-7 space-y-6">
                   <motion.div initial={{
