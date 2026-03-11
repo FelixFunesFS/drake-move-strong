@@ -450,7 +450,7 @@ const Pricing = () => {
                Not sure which option fits you? Try 3 classes free — we'll help you decide which membership is right for your goals.
              </p>
              <Button asChild variant="outline" size="lg">
-               <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent">
+               <a href={buildPunchPassUrl(INTRO_URL, 'pricing-not-sure-cta')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent">
                  Claim 3 Free Classes
                  <ExternalLink className="h-4 w-4" />
                </a>
