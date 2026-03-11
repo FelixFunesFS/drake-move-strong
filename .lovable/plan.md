@@ -1,46 +1,68 @@
 
 
-# Plan: Separate OG Source Image Selection for Blog Posts
+## Upgrade Social Graphics — Overlapping Cards, Multi-Image Compositions
 
-## The Problem
+### What Changes
 
-Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
+**1. Overlapping "Info Card" on Split Templates**
 
-## The Right Approach
+For split-left and split-right, add a floating frosted card that overlaps the diagonal seam between photo and teal panel. This card holds the headline + CTA and sits on top of both sides, creating a layered depth effect. The card has a subtle border, drop shadow, and semi-transparent dark background with backdrop blur.
 
-Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
+```text
+┌─────────────────────────────┐
+│  PHOTO        ╔═══════╗TEAL│
+│    (diagonal) ║ CARD  ║    │
+│               ║ w/CTA ║    │
+│               ╚═══════╝    │
+└─────────────────────────────┘
+```
 
-1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
+**2. Secondary Photo Inset**
 
-2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
+Add a `secondPhoto` state (optional second photo selection). When set, render a smaller bordered photo (rounded rect or circle) overlaid in a corner or alongside the main content. This works across all templates:
 
-## Changes
+- **Full Bleed**: Small rounded-rect inset photo in the top-left corner with a gold border and slight rotation
+- **Split layouts**: Circular photo inset on the teal panel, near the CTA
+- **Centered**: Two small photos flanking the headline, rotated slightly in opposite directions
+- **Editorial**: Small photo strip in the header bar
 
-### 1. Add an image picker to the Generate dialog
-**File**: `src/pages/admin/OGImages.tsx`
+**3. New "Collage" Template**
 
-- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
-- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
-- Show thumbnails in a scrollable grid; clicking one fills the source URL field
-- Keep the manual URL input as a fallback
-- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
-- Add a filter/search to narrow down images by filename
+A sixth template with a 2-3 photo mosaic layout:
+- Large primary photo (left 60%), two stacked secondary photos (right 40%)
+- Thin gold divider lines between photos
+- Dark overlay strip at bottom with headline + CTA
+- All three photo slots pull from the photo picker (primary + secondary + tertiary)
 
-### 2. No database changes needed
+```text
+┌────────────┬──────────┐
+│            │  PHOTO 2 │
+│  PHOTO 1   ├──────────┤
+│  (large)   │  PHOTO 3 │
+├────────────┴──────────┤
+│ ▓▓ HEADLINE    [CTA]  │
+└───────────────────────┘
+```
 
-The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
+**4. Overlapping Photo Frame Effect**
 
-### 3. Workflow improvement
+For the "Centered Card" template, layer two slightly rotated photo frames behind the main content card — one tilted -3deg, one +3deg — showing glimpses of the selected photo with heavy dark overlays. Creates a stacked-prints editorial look.
 
-The dialog flow becomes:
-1. Admin clicks "Generate" on a blog post row
-2. Dialog opens showing a grid of available images from the bucket
-3. Admin picks a wide landscape photo (or pastes a URL)
-4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
-5. Result is stored in `og-images` bucket and mapped via `page_og_images`
-6. The blog post's hero image and thumbnail remain unchanged
+**5. Admin Controls**
 
-## Files Affected
+- Add a second photo picker row: "Secondary Photo (optional)" with a clear button
+- Add a third photo picker for the Collage template
+- When secondary photo is not set, templates render without the inset (backward compatible)
 
-- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
+### Files
+
+- **Edit**: `src/pages/admin/SocialGraphics.tsx`
+  - Add `secondPhoto` and `thirdPhoto` state
+  - Add new "Collage" template to `TEMPLATES` array and `TemplateThumbnail`
+  - Update split-left/split-right with overlapping frosted card
+  - Add secondary photo inset rendering to all existing templates
+  - Add Collage template rendering
+  - Add secondary/tertiary photo picker UI below the primary picker
+
+No new dependencies. No database changes. All rendering uses inline CSS styles for html-to-image export compatibility.
 
