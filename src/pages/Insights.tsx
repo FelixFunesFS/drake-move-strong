@@ -264,8 +264,9 @@ const Insights = () => {
         title="Try 3 Classes Free"
         subtitle="No pressure. No contracts. Just smart training that actually works for bodies over 40."
         ctaText="Claim 3 Free Classes"
-        ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034"
-        variant="primary"
+         ctaLink={INTRO_URL}
+         variant="primary"
+         utmContent="insights-bottom-cta"
       />
     </>
   );

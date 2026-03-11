@@ -208,9 +208,10 @@ const SuccessStories = () => {
         title="Ready to Write Your Own Success Story?"
         subtitle="Try 3 classes free — experience mobility-first training with no commitment."
         ctaText="Try 3 Classes Free"
-        ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034"
-        variant="primary"
-        slanted={true}
+         ctaLink={INTRO_URL}
+         variant="primary"
+         slanted={true}
+         utmContent="success-stories-bottom-cta"
       />
     </main>
     </>

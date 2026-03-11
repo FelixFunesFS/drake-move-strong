@@ -531,7 +531,7 @@ export default function StrengthTrainingCharleston() {
               </div>
               <div className="text-center">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-12 py-6 text-xl font-bold uppercase tracking-wide">
-                  <a href="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" target="_blank" rel="noopener noreferrer">
+                  <a href={buildPunchPassUrl(INTRO_URL, 'strength-bottom-cta')} target="_blank" rel="noopener noreferrer">
                     <ArrowRight className="mr-2 h-5 w-5" />
                     Claim 3 Free Classes Now
                   </a>
