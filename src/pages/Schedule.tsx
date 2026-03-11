@@ -58,7 +58,7 @@ const Schedule = () => {
     <>
       <SEO
         title="Group Fitness Classes Charleston | Weekly Schedule | Drake Fitness"
-        description="Book group fitness and workout classes in Charleston. Morning & evening sessions: Foundation Flow, Functional Strength, KB Strong — Strength & Mobility. Small groups, expert coaching."
+        description="Morning & evening classes, Mon–Sat. Small groups, expert coaching. Book your spot at Drake Fitness in Charleston — try 3 classes free."
         
         canonical="https://drake.fitness/schedule"
       />

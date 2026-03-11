@@ -64,7 +64,7 @@ const SuccessStories = () => {
     <>
       <SEO
         title="Real Member Results Charleston | 5-Star Reviews"
-        description="Read real transformation stories from Drake Fitness members in Charleston. Discover how our mobility-first approach helps people move better and live pain-free."
+        description="5-star Google reviews and real results from Charleston members. See why adults 30–65 trust Drake Fitness to move better and stay pain-free."
         canonical="https://drake.fitness/success-stories"
       />
       
