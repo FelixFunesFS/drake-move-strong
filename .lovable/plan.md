@@ -1,46 +1,51 @@
 
 
-# Plan: Separate OG Source Image Selection for Blog Posts
+## Google Search Profile Issue + Low-Impact Page Redesign
 
-## The Problem
+### Google Search Descriptions
 
-Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
+First — the reason all your Google search results show the same description ("Move better, live stronger, and stay pain-free at Drake Fitness in...") is likely because Google is ignoring the React Helmet meta tags and falling back to the `index.html` default. This is a known issue with client-side rendered SPAs. Each page *does* have unique SEO metadata via React Helmet, but Google's crawler may not be executing the JavaScript. This is a separate issue from the page redesign — the fix involves the `og-redirect` edge function you already have. Worth investigating after this redesign.
 
-## The Right Approach
+### Low-Impact Page Problems (vs. other money pages)
 
-Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
+Comparing `/low-impact-fitness-charleston` against `/strength-training-charleston` and `/west-ashley-fitness`:
 
-1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
+| Element | Strength/West Ashley Pages | Low-Impact Page |
+|---|---|---|
+| Hero height | 80vh, larger text (3xl-6xl) | 70vh, smaller text (2xl-5xl) |
+| Hero trust badges | Check marks below CTA | None |
+| Secondary CTA | "View Location & Hours" | None |
+| Who It's For section | Icon grid with pain points | Missing entirely |
+| Intro offer explanation | Dedicated section with image | Missing |
+| FAQ section | Present on other pages | Missing |
+| Imagery | Authentic kettlebell/group photos | Yoga/Misty photo (off-brand) |
+| Testimonial volume | 2-3 full testimonials | Same (good) |
+| Overall depth | 500-550 lines, 8-10 sections | 365 lines, 7 sections |
 
-2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
+### Plan: Elevate to Match Money Page Standards
 
-## Changes
+**1. Hero upgrade** — Match 80vh height, larger typography (3xl-6xl), add trust badges below CTA (Serving Avondale & West Ashley, All Levels Welcome, Coach-Led), add secondary CTA to `/schedule`. Replace `studioFloorExercise` hero with `studio-mobility-training.jpg` (authentic mobility training photo, already used on other pages).
 
-### 1. Add an image picker to the Generate dialog
-**File**: `src/pages/admin/OGImages.tsx`
+**2. Replace yoga image** — Swap `coach-misty-lister.png` in the "Our Approach" section with `david-coaching-form.jpg` (David coaching a member on form — directly relevant to joint-friendly training and on-brand).
 
-- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
-- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
-- Show thumbnails in a scrollable grid; clicking one fills the source URL field
-- Keep the manual URL input as a fallback
-- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
-- Add a filter/search to narrow down images by filename
+**3. Add "Who This Is For" section** — Icon grid (matching Strength Training page pattern) with 4 pain-point cards targeting the low-impact audience:
+- "Your joints ache after traditional workouts"
+- "You've been told to 'just stretch more'"
+- "Physical therapy ended but you're not confident training alone"
+- "You want to get stronger without making things worse"
 
-### 2. No database changes needed
+**4. Add 3-Class Intro offer section** — Two-column layout (image + details) explaining the intro experience, matching the pattern from StrengthTrainingCharleston. Uses `david-goblet-squat-kb-rack.jpg`.
 
-The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
+**5. Add FAQ accordion** — Reuse the accordion pattern from the Schedule page. Joint-pain-specific questions:
+- "Is this safe for people with chronic joint pain?"
+- "What if I can't do certain exercises?"
+- "How is this different from physical therapy?"
+- "Do I need a doctor's clearance?"
 
-### 3. Workflow improvement
+**6. Use centralized INTRO_URL** — The final CTA currently hardcodes a PunchPass URL. Switch to `INTRO_URL` for consistency.
 
-The dialog flow becomes:
-1. Admin clicks "Generate" on a blog post row
-2. Dialog opens showing a grid of available images from the bucket
-3. Admin picks a wide landscape photo (or pastes a URL)
-4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
-5. Result is stored in `og-images` bucket and mapped via `page_og_images`
-6. The blog post's hero image and thumbnail remain unchanged
+### Files Changed
+- `src/pages/services/LowImpactFitnessCharleston.tsx` — Full redesign (single file, ~500 lines)
 
-## Files Affected
-
-- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
+No database or backend changes needed.
 
