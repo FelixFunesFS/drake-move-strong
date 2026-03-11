@@ -28,7 +28,7 @@ import membersOverheadPressGroup from '@/assets/members-overhead-press-group.jpg
 import membersPlankRowsStudio from '@/assets/members-plank-rows-studio.jpg';
 import outdoorTraining from '@/assets/outdoor-training.jpg';
 import davidDoubleKb from '@/assets/david-double-kb-storefront-new.jpg';
-import logo from '@/assets/drake-fitness-logo-kettlebell.png';
+import logo from '@/assets/drake-fitness-logo-social.png';
 
 const PHOTOS = [
   { src: communityGroupPhoto, label: 'Community Group' },
