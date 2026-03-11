@@ -332,7 +332,7 @@ export default function LowImpactFitnessCharleston() {
             <div className="text-center mb-8 md:mb-12">
               <span className="section-eyebrow text-primary">REAL RESULTS</span>
               <h2 className="font-hero text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-foreground uppercase">
-                Members Who Trained Through Pain
+                Members Who Found a Way Back
               </h2>
             </div>
           </AnimatedSection>
