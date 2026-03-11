@@ -14,7 +14,7 @@ import {
   CalendarDays, Shield, Clock, Car, Navigation
 } from "lucide-react";
 
-import { INTRO_URL } from "@/data/pricing";
+import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
 import heroKettlebellTraining from "@/assets/hero-kettlebell-training.jpg";
 import davidGobletSquat from "@/assets/david-goblet-squat-kb-rack.jpg";
 import studioDavidStorefront from "@/assets/studio-david-storefront.jpg";
