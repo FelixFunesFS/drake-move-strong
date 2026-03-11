@@ -41,6 +41,7 @@ const navItems = [
   { href: '/admin/promotions', label: 'Promotions', icon: Megaphone },
   { href: '/admin/blog', label: 'Blog Posts', icon: BookOpen },
   { href: '/admin/og-images', label: 'OG Images', icon: Image },
+  { href: '/admin/social-graphics', label: 'Social Graphics', icon: Image },
   { href: '/admin/social-generator', label: 'Content Studio', icon: Image },
 ];
 
