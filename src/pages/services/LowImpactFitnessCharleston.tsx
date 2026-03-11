@@ -19,7 +19,7 @@ import {
 import { INTRO_URL } from "@/data/pricing";
 
 import studioMobilityTraining from "@/assets/studio-mobility-training.jpg";
-import davidCoachingForm from "@/assets/david-coaching-form.jpg";
+import communityTurkishGetup from "@/assets/community-turkish-getup-class.jpg";
 import davidGobletSquat from "@/assets/david-goblet-squat-kb-rack.jpg";
 
 const serviceSchema = {
