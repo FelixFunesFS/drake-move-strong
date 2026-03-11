@@ -1,38 +1,46 @@
 
 
-## Optimal Approach: Full-Width Offer Card Below the Split
+# Plan: Separate OG Source Image Selection for Blog Posts
 
-Moving the offer card outside the 2-column split is the better choice. Here's why:
+## The Problem
 
-### Why Full-Width Wins
+Currently, blog posts use the same image (`og_image` field in `blog_posts`) for both the social preview and as a fallback display image. When the admin clicks "Generate" in the OG Manager, it feeds that same image to the AI cropper. The issue is that many blog hero images are tall/portrait-oriented -- great for the page but terrible for the 1.91:1 OG crop, leading to cut-off heads.
 
-- **The split layout currently forces all conversion content into one narrow column** — headline, 4 qualifiers, How It Works (3 steps), Intro Card (4 MORE bullets + CTA + upsell). That's why it scrolls forever.
-- **The photo column is `hidden md:block`** — on mobile, the photo disappears entirely and the left column becomes a single massive stack with no visual break.
-- A full-width offer card below the split gives the CTA breathing room, creates a natural visual rhythm (context → action), and dramatically reduces the left column height.
+## The Right Approach
 
-### Plan
+Add a way for the admin to pick a **different, wider source image** specifically for OG generation -- without touching the blog post's hero/thumbnail. Two pieces:
 
-**File:** `src/pages/Home.tsx` — lines 78-146
+1. **A curated set of wide "OG source" images** uploaded to the existing `blog-images` bucket (or a new prefix like `og-sources/`). These are landscape-oriented photos that crop well at 1200x630. The admin can also paste any URL.
 
-**Left column of split (lines 80-141) — keeps only Context + Qualifier:**
-- Eyebrow ("TRY US FREE")
-- Headline ("Whether You're Starting Over or Leveling Up")
-- "We coach every level:" + 4 qualifier bullets
-- "How It Works" 3-step box (compact, stays here — it's instructional context)
-- Phone number line
-- **Remove**: the entire 3-Class Intro Card (lines 115-140)
+2. **An image picker in the OG Generate dialog** that shows available wide images from the bucket, letting the admin visually choose the best source before the AI crops it.
 
-**New full-width card below the split grid (after line 145):**
-- Still inside the `max-w-6xl` white container
-- Full-width bottom strip with `bg-muted` border-top
-- Horizontal layout on desktop: `FREE · 3 classes / 30 days` on the left, CTA button on the right, upsell line underneath
-- On mobile: stacks vertically, still compact
-- Remove the 4 redundant bullets entirely — they repeat the qualifier list
-- Keep: FREE header, CTA button, upsell line, "No commitment" as subtext
+## Changes
 
-### Net Result
-- Left column loses ~25 lines of height (the entire intro card)
-- Offer card becomes a focused, high-contrast conversion strip
-- Mobile scroll depth reduced ~30%
-- Desktop gets a cleaner split with the CTA anchored at full width below
+### 1. Add an image picker to the Generate dialog
+**File**: `src/pages/admin/OGImages.tsx`
+
+- In the generate dialog (currently just a URL text input), add a visual grid of available images from the `blog-images` bucket
+- Fetch the bucket file list via `supabase.storage.from('blog-images').list()`
+- Show thumbnails in a scrollable grid; clicking one fills the source URL field
+- Keep the manual URL input as a fallback
+- For blog posts, pre-select the post's current `og_image` but make it easy to pick a different one
+- Add a filter/search to narrow down images by filename
+
+### 2. No database changes needed
+
+The existing `page_og_images` table already stores the AI-cropped result mapped to the path. The source image is just an input to the AI function -- the blog post's `og_image` and `thumbnail_url` fields remain untouched.
+
+### 3. Workflow improvement
+
+The dialog flow becomes:
+1. Admin clicks "Generate" on a blog post row
+2. Dialog opens showing a grid of available images from the bucket
+3. Admin picks a wide landscape photo (or pastes a URL)
+4. Clicks "Generate" -- AI crops it to 1200x630 with face preservation
+5. Result is stored in `og-images` bucket and mapped via `page_og_images`
+6. The blog post's hero image and thumbnail remain unchanged
+
+## Files Affected
+
+- **Edit**: `src/pages/admin/OGImages.tsx` -- add image picker grid in generate dialog, fetch bucket listing
 

@@ -77,14 +77,14 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto bg-white rounded-none shadow-lg overflow-hidden">
             <div className="grid md:grid-cols-2">
-              <AnimatedSection animation="slideInLeft" className="p-8 md:p-8 lg:p-12">
-                <p className="section-eyebrow text-primary mb-4">TRY US FREE</p>
-                <h2 className="font-hero text-3xl md:text-3xl lg:text-4xl font-bold mb-6 uppercase leading-tight">
+              <AnimatedSection animation="slideInLeft" className="p-6 md:p-8 lg:p-10">
+                <p className="section-eyebrow text-primary mb-3">TRY US FREE</p>
+                <h2 className="font-hero text-3xl md:text-3xl lg:text-4xl font-bold mb-4 uppercase leading-tight">
                   Whether You're Starting Over or Leveling Up —<br />
                   <span className="text-primary">You Belong Here.</span>
                 </h2>
-                <p className="text-lg mb-6 text-muted-foreground">We coach every level:</p>
-                <ul className="space-y-2 md:space-y-2 mb-6 md:mb-6 lg:mb-8">
+                <p className="text-lg mb-4 text-muted-foreground">We coach every level:</p>
+                <ul className="space-y-2 mb-5">
                   {["Rebuilding after time off, injury, or inactivity", "Desk workers fighting stiffness and poor posture", "Active people who want expert movement coaching", "Anyone chasing long-term, pain-free strength"].map((item, index) => <li key={index} className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 text-primary mr-3 mt-1 flex-shrink-0" />
                       <span className="text-base">{item}</span>
@@ -92,7 +92,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                 </ul>
 
                 {/* How It Works Steps */}
-                <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 mb-6">
+                <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
                   <p className="font-hero text-sm font-bold uppercase text-primary mb-3">How It Works</p>
                   <div className="space-y-2">
                     {[
@@ -111,38 +111,34 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                     <a href="tel:8438175420" className="underline font-medium hover:text-foreground transition-colors">(843) 817-5420</a>
                   </p>
                 </div>
-
-                {/* 3-Class Intro Card */}
-                <div className="bg-muted border border-border rounded-xl p-4 md:p-4 lg:p-6">
-                  <div className="flex items-baseline gap-2 mb-4">
-                    <span className="text-4xl font-hero font-bold text-primary">FREE</span>
-                    <span className="text-muted-foreground text-lg">3 classes / 30 days</span>
-                  </div>
-                  <ul className="space-y-2 mb-6 text-sm">
-                    {[
-                      "3 small-group classes free",
-                      "30 days from your first visit to use all 3",
-                      "Expert, joint-friendly coaching on kettlebells & movement",
-                      "No commitment required"
-                    ].map((item, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button asChild size="lg" className="w-full px-4 sm:px-8 py-3 sm:py-6 text-sm sm:text-base min-h-[48px]">
-                    <a href={INTRO_URL} target="_blank" rel="noopener noreferrer" className="text-center">Claim Your 3 Free Classes</a>
-                  </Button>
-                  <p className="text-xs text-muted-foreground mt-3 text-center">
-                    Love it? Get your first month of unlimited classes for just $110 when you join within 7 days of your 3rd class.
-                  </p>
-                </div>
               </AnimatedSection>
               <AnimatedSection animation="slideInRight" delay={0.1} className="relative h-full min-h-[400px] md:min-h-[500px] hidden md:block">
                 <OptimizedImage src={startHereImage} alt="Personal coaching session at Drake Fitness" className="h-full w-full" aspectRatio="auto" />
               </AnimatedSection>
             </div>
+
+            {/* Full-Width Offer Card */}
+            <AnimatedSection animation="fadeInUp" delay={0.2}>
+              <div className="border-t border-border bg-muted px-6 md:px-10 py-6">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                  <div>
+                    <div className="flex items-baseline gap-2 mb-1">
+                      <span className="text-3xl md:text-4xl font-hero font-bold text-primary">FREE</span>
+                      <span className="text-muted-foreground text-base md:text-lg">· 3 classes · 30 days</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">No commitment required · Expert, joint-friendly coaching</p>
+                  </div>
+                  <div className="flex flex-col items-stretch md:items-end gap-2 md:min-w-[260px]">
+                    <Button asChild size="lg" className="w-full px-8 py-5 text-base min-h-[48px]">
+                      <a href={INTRO_URL} target="_blank" rel="noopener noreferrer" className="text-center">Claim Your 3 Free Classes</a>
+                    </Button>
+                    <p className="text-xs text-muted-foreground text-center md:text-right">
+                      Love it? First month unlimited for just $110.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
