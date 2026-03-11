@@ -164,7 +164,7 @@ const ResetWeekAlt = () => {
               />
             </Link>
             <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              <a href={INTRO_URL} target="_blank" rel="noopener noreferrer">
+               <a href={buildPunchPassUrl(INTRO_URL, 'intro-nav-cta')} target="_blank" rel="noopener noreferrer">
                 Claim 3 Free Classes
               </a>
             </Button>
