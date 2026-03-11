@@ -203,9 +203,10 @@ const Schedule = () => {
           title="Ready to Feel Stronger, Move Better, and Train Smarter?"
           subtitle="Try 3 classes free — experience mobility-first training with no commitment."
           ctaText="Claim 3 Free Classes"
-          ctaLink={INTRO_URL}
-          variant="primary"
-          slanted={true}
+           ctaLink={INTRO_URL}
+           variant="primary"
+           slanted={true}
+           utmContent="schedule-bottom-cta"
         />
       </main>
     </>

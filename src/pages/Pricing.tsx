@@ -503,9 +503,10 @@ const Pricing = () => {
           title="Ready to Move Better?"
           subtitle="Try 3 classes free — see if Drake Fitness is the right fit for you."
           ctaText="Try 3 Classes Free"
-          ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034"
-          variant="primary"
-          slanted={true} />
+           ctaLink={INTRO_URL}
+           variant="primary"
+           slanted={true}
+           utmContent="pricing-bottom-cta" />
 
       </main>
     </>);
