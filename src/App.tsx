@@ -307,6 +307,11 @@ const AppLayout = () => {
                 <AdminOGImages />
               </ProtectedRoute>
             } />
+            <Route path="/admin/social-graphics" element={
+              <ProtectedRoute requiredRoles={['admin']}>
+                <AdminSocialGraphics />
+              </ProtectedRoute>
+            } />
             
             {/* Coach Routes (Protected - Coach and Admin) */}
             <Route path="/coach/dashboard" element={
