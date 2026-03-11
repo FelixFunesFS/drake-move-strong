@@ -295,7 +295,7 @@ const Pricing = () => {
                 </CardContent>
                 <CardFooter className="pt-0">
                   <a
-                      href="https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776"
+                      href={buildPunchPassUrl(PUNCHPASS_URLS.remoteSupport, 'pricing-remote-support', 'membership')}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1">
