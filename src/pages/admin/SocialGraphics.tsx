@@ -479,39 +479,28 @@ function TemplatePreview({ template, photo, secondPhoto, thirdPhoto, eyebrow, he
   // split-right
   return (
     <div ref={previewRef} style={{ width: 1200, height: 630, position: 'relative', overflow: 'hidden', fontFamily: font }}>
-      <div style={{ position: 'absolute', inset: 0, clipPath: 'polygon(40% 0, 100% 0, 100% 100%, 50% 100%)' }}>
+      {/* Photo zone — steeper diagonal */}
+      <div style={{ position: 'absolute', inset: 0, clipPath: 'polygon(32% 0, 100% 0, 100% 100%, 50% 100%)' }}>
         <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
         <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 80px 20px rgba(0,0,0,0.3)' }} />
       </div>
+      {/* Brand identity zone — logo, location, program only */}
       <div style={{ position: 'absolute', left: 0, top: 0, width: '50%', height: '100%', background: TEAL, backgroundImage: TEAL_PATTERN, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '48px 44px' }}>
         <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(135deg, ${SOFT_TEAL} 0%, ${TEAL} 100%)`, opacity: 0.5 }} />
         <div style={{ position: 'relative', zIndex: 1 }}>
           <img src={logo} alt="" style={{ height: 50, marginBottom: 20 }} crossOrigin="anonymous" />
           <div style={{ fontSize: 12, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3, marginBottom: 12 }}>{eyebrow}</div>
-          <div style={{ borderLeft: `3px solid ${GOLD}`, paddingLeft: 16 }}>
-            <div style={{ fontSize: 42, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.12, letterSpacing: 1 }}>{headline}</div>
-          </div>
-          <div style={{ width: 64, height: 3, background: GOLD, marginTop: 16, marginBottom: 12, borderRadius: 2 }} />
+          <div style={{ width: 64, height: 3, background: GOLD, marginTop: 8, marginBottom: 12, borderRadius: 2 }} />
           <div style={{ fontSize: 19, color: 'rgba(255,255,255,0.9)', fontWeight: 500, lineHeight: 1.3, textTransform: 'uppercase', letterSpacing: 1 }}>{programLine}</div>
-          {detailLine && (
-            <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.6)', marginTop: 6, fontWeight: 400, letterSpacing: 0.5 }}>{detailLine}</div>
-          )}
-          {/* Circular secondary photo inset */}
-          {secondPhoto && (
-            <PhotoInset src={secondPhoto} size={80} style={{ marginTop: 14 }} />
-          )}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 20 }}>
-            <CTAButton text={ctaText} />
-            {showBadge && <FreeBadge style={{ transform: 'scale(0.85)' }} />}
-          </div>
         </div>
       </div>
-      {/* Frosted overlapping card on the seam */}
+      {/* Frosted conversion card on the seam — sole CTA focal point */}
       <FrostedCard
+        eyebrow={eyebrow}
         headline={headline}
-        detailLine={programLine}
+        detailLine={detailLine}
         ctaText={ctaText}
-        showBadge={false}
+        showBadge={showBadge}
         style={{ position: 'absolute', bottom: 36, left: '50%', transform: 'translateX(-50%)', zIndex: 10 }}
       />
     </div>
