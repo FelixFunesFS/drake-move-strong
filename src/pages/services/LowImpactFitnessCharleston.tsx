@@ -204,8 +204,8 @@ export default function LowImpactFitnessCharleston() {
               <div className="relative overflow-visible">
                 <div className="h-[350px] sm:h-[450px] md:h-[550px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl">
                   <OptimizedImage
-                    src={davidCoachingForm}
-                    alt="David coaching a member on proper form at Drake Fitness"
+                    src={communityTurkishGetup}
+                    alt="Members training together in a coached class at Drake Fitness"
                     className="w-full h-full"
                   />
                 </div>
