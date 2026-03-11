@@ -248,7 +248,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       </AnimatedSection>
 
       <AnimatedSection animation="fadeInUp">
-        <CTASection eyebrow="GET STARTED" title="Ready to Move Better, Feel Stronger?" ctaText="Try 3 Classes Free" ctaLink={INTRO_URL} variant="primary" slanted={true} />
+        <CTASection eyebrow="GET STARTED" title="Ready to Move Better, Feel Stronger?" ctaText="Try 3 Classes Free" ctaLink={INTRO_URL} variant="primary" slanted={true} utmContent="home-bottom-cta" />
       </AnimatedSection>
     </main>
     </>;

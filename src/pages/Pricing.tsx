@@ -341,7 +341,7 @@ const Pricing = () => {
                 </CardContent>
                 <CardFooter className="pt-0">
                   <a
-                      href="https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/219932"
+                      href={buildPunchPassUrl(PUNCHPASS_URLS.flexPack, 'pricing-flex-pack', 'class-pack')}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1">

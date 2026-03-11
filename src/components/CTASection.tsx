@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { buildPunchPassUrl } from "@/data/pricing";
+
 interface CTASectionProps {
   title: string;
   subtitle?: string;
@@ -8,6 +10,7 @@ interface CTASectionProps {
   variant?: "primary" | "gold" | "dark";
   eyebrow?: string;
   slanted?: boolean;
+  utmContent?: string;
 }
 const CTASection = ({
   title,
@@ -16,7 +19,8 @@ const CTASection = ({
   ctaLink,
   variant = "primary",
   eyebrow,
-  slanted = false
+  slanted = false,
+  utmContent
 }: CTASectionProps) => {
   const bgClasses = {
     primary: "bg-primary",
@@ -35,6 +39,7 @@ const CTASection = ({
   };
 
   const isExternal = ctaLink.startsWith('http');
+  const finalLink = isExternal && utmContent ? buildPunchPassUrl(ctaLink, utmContent) : ctaLink;
 
   return <section className={`${bgClasses[variant]} py-12 md:py-16 lg:py-20 ${slanted ? 'section-slant-top' : ''}`}>
       <div className="container mx-auto px-4 text-center text-primary-foreground">
@@ -49,9 +54,9 @@ const CTASection = ({
           </p>}
         <Button asChild size="lg" className={`${buttonClasses[variant]} font-semibold text-base md:text-lg px-6 md:px-8 py-5 md:py-6 w-full sm:w-auto text-balance`}>
           {isExternal ? (
-            <a href={ctaLink} target="_blank" rel="noopener noreferrer">{ctaText}</a>
+            <a href={finalLink} target="_blank" rel="noopener noreferrer">{ctaText}</a>
           ) : (
-            <Link to={ctaLink}>{ctaText}</Link>
+            <Link to={finalLink}>{ctaText}</Link>
           )}
         </Button>
       </div>
