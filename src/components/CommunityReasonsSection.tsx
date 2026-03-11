@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import OptimizedImage from "./OptimizedImage";
 import AnimatedSection from "./AnimatedSection";
-import { PUNCHPASS_URLS } from "@/data/pricing";
+import { PUNCHPASS_URLS, buildPunchPassUrl } from "@/data/pricing";
 
 interface ReasonCard {
   image: string;
