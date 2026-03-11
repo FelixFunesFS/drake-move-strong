@@ -2,7 +2,7 @@ import { useState, useRef, useCallback } from 'react';
 import AdminLayout from '@/components/admin/AdminLayout';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Download, Search, Type } from 'lucide-react';
+import { Download, Search, Type, Sparkles } from 'lucide-react';
 import { toPng } from 'html-to-image';
 import { toast } from 'sonner';
 
@@ -62,13 +62,53 @@ const TEMPLATES: { id: TemplateId; label: string }[] = [
   { id: 'split-right', label: 'Split Right' },
 ];
 
-const HEADLINE_PRESETS = [
-  'Try 3 Classes Free',
-  'Limited Spots This Week',
-  'New Member Special',
-  'Strength & Mobility',
-  'Join the Community',
-  'First Class Free',
+interface ContentPreset {
+  label: string;
+  eyebrow: string;
+  headline: string;
+  programLine: string;
+  detailLine: string;
+  ctaText: string;
+  showBadge: boolean;
+}
+
+const CONTENT_PRESETS: ContentPreset[] = [
+  {
+    label: 'Intro Offer',
+    eyebrow: 'WEST ASHLEY · CHARLESTON',
+    headline: 'Try 3 Classes Free',
+    programLine: 'Strength & Mobility Classes',
+    detailLine: 'All Levels Welcome',
+    ctaText: 'Book Your Free Class →',
+    showBadge: true,
+  },
+  {
+    label: 'Schedule Promo',
+    eyebrow: 'WEST ASHLEY · CHARLESTON',
+    headline: 'Strength & Mobility',
+    programLine: 'KB Strong Classes',
+    detailLine: 'Mon · Wed · Fri | 8am & 11am',
+    ctaText: 'View Schedule',
+    showBadge: false,
+  },
+  {
+    label: 'New Member',
+    eyebrow: 'WEST ASHLEY · CHARLESTON',
+    headline: 'New Member Special',
+    programLine: 'Unlimited Classes — $110/mo',
+    detailLine: 'First Month · No Contract',
+    ctaText: 'Get Started →',
+    showBadge: true,
+  },
+  {
+    label: 'Community',
+    eyebrow: 'WEST ASHLEY · CHARLESTON',
+    headline: 'Join the Community',
+    programLine: 'Small Group Training',
+    detailLine: 'West Ashley, Charleston',
+    ctaText: 'Try A Class Free',
+    showBadge: false,
+  },
 ];
 
 const TEAL = '#0B4A52';
@@ -76,35 +116,92 @@ const GOLD = '#F2B544';
 const DARK = '#1A1A1A';
 const SOFT_TEAL = '#10757E';
 
-// SVG pattern for teal panels (inline data URI for export compatibility)
 const TEAL_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 L30 0 L60 30 L30 60Z' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3C/svg%3E")`;
 
-function TemplatePreview({ template, photo, headline, subtext, previewRef }: {
+// Gold badge component for "3 FREE CLASSES"
+function FreeBadge({ style }: { style?: React.CSSProperties }) {
+  return (
+    <div style={{
+      background: `linear-gradient(135deg, ${GOLD} 0%, #E5A635 100%)`,
+      color: DARK,
+      padding: '10px 22px',
+      fontFamily: "'Oswald', sans-serif",
+      fontWeight: 800,
+      fontSize: 18,
+      textTransform: 'uppercase',
+      letterSpacing: 2,
+      borderRadius: 6,
+      boxShadow: '0 4px 20px rgba(242,181,68,0.4)',
+      display: 'inline-block',
+      lineHeight: 1.2,
+      textAlign: 'center' as const,
+      ...style,
+    }}>
+      <span style={{ fontSize: 28, display: 'block', lineHeight: 1 }}>3 FREE</span>
+      <span style={{ fontSize: 14, letterSpacing: 3 }}>CLASSES</span>
+    </div>
+  );
+}
+
+// CTA button element
+function CTAButton({ text, style }: { text: string; style?: React.CSSProperties }) {
+  return (
+    <div style={{
+      background: GOLD,
+      color: DARK,
+      padding: '14px 36px',
+      fontFamily: "'Oswald', sans-serif",
+      fontSize: 18,
+      fontWeight: 700,
+      textTransform: 'uppercase',
+      borderRadius: 6,
+      letterSpacing: 1.5,
+      display: 'inline-block',
+      boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
+      ...style,
+    }}>
+      {text}
+    </div>
+  );
+}
+
+interface TemplatePreviewProps {
   template: TemplateId;
   photo: string;
+  eyebrow: string;
   headline: string;
-  subtext: string;
+  programLine: string;
+  detailLine: string;
+  ctaText: string;
+  showBadge: boolean;
   previewRef: React.RefObject<HTMLDivElement>;
-}) {
+}
+
+function TemplatePreview({ template, photo, eyebrow, headline, programLine, detailLine, ctaText, showBadge, previewRef }: TemplatePreviewProps) {
   const font = "'Oswald', sans-serif";
-  const eyebrow = 'WEST ASHLEY · CHARLESTON';
 
   if (template === 'full-bleed') {
     return (
       <div ref={previewRef} style={{ width: 1200, height: 630, position: 'relative', overflow: 'hidden', fontFamily: font }}>
         <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-        {/* Vignette */}
         <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 120px 40px rgba(0,0,0,0.5)' }} />
-        {/* Dual gradient: bottom dark + left teal tint */}
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.35) 40%, transparent 70%)' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(11,74,82,0.3) 0%, transparent 50%)' }} />
+        {showBadge && (
+          <div style={{ position: 'absolute', top: 32, right: 40 }}>
+            <FreeBadge />
+          </div>
+        )}
         <div style={{ position: 'absolute', bottom: 40, left: 48, right: 48 }}>
           <img src={logo} alt="" style={{ height: 56, marginBottom: 16 }} crossOrigin="anonymous" />
-          {/* Gold accent line */}
           <div style={{ width: 80, height: 3, background: GOLD, marginBottom: 14, borderRadius: 2 }} />
           <div style={{ fontSize: 13, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3, marginBottom: 8 }}>{eyebrow}</div>
           <div style={{ fontSize: 54, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 1.5, textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}>{headline}</div>
-          <div style={{ fontSize: 22, color: 'rgba(255,255,255,0.85)', marginTop: 10, fontWeight: 400, letterSpacing: 1.5 }}>{subtext}</div>
+          <div style={{ fontSize: 22, color: 'rgba(255,255,255,0.7)', marginTop: 8, fontWeight: 400, letterSpacing: 1.5, textTransform: 'uppercase' }}>{programLine}</div>
+          {detailLine && (
+            <div style={{ fontSize: 17, color: 'rgba(255,255,255,0.55)', marginTop: 6, fontWeight: 400, letterSpacing: 1 }}>{detailLine}</div>
+          )}
+          <CTAButton text={ctaText} style={{ marginTop: 18 }} />
         </div>
       </div>
     );
@@ -113,21 +210,23 @@ function TemplatePreview({ template, photo, headline, subtext, previewRef }: {
   if (template === 'split-left') {
     return (
       <div ref={previewRef} style={{ width: 1200, height: 630, position: 'relative', overflow: 'hidden', fontFamily: font }}>
-        {/* Photo fills full width, clipped to left side with angle */}
         <div style={{ position: 'absolute', inset: 0, clipPath: 'polygon(0 0, 65% 0, 55% 100%, 0 100%)' }}>
           <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
           <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 80px 20px rgba(0,0,0,0.3)' }} />
         </div>
-        {/* Teal panel with pattern */}
         <div style={{ position: 'absolute', right: 0, top: 0, width: '50%', height: '100%', background: TEAL, backgroundImage: TEAL_PATTERN, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '48px 44px 48px 64px' }}>
-          {/* Subtle gradient overlay on panel */}
           <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(135deg, ${SOFT_TEAL} 0%, ${TEAL} 100%)`, opacity: 0.5 }} />
           <div style={{ position: 'relative', zIndex: 1 }}>
-            <img src={logo} alt="" style={{ height: 50, marginBottom: 20, alignSelf: 'flex-start' }} crossOrigin="anonymous" />
+            <img src={logo} alt="" style={{ height: 50, marginBottom: 20 }} crossOrigin="anonymous" />
             <div style={{ fontSize: 12, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3, marginBottom: 12 }}>{eyebrow}</div>
             <div style={{ fontSize: 40, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.12, letterSpacing: 1 }}>{headline}</div>
-            <div style={{ width: 64, height: 3, background: GOLD, marginTop: 20, marginBottom: 16, borderRadius: 2 }} />
-            <div style={{ fontSize: 19, color: 'rgba(255,255,255,0.8)', fontWeight: 400, lineHeight: 1.4 }}>{subtext}</div>
+            <div style={{ width: 64, height: 3, background: GOLD, marginTop: 16, marginBottom: 12, borderRadius: 2 }} />
+            <div style={{ fontSize: 19, color: 'rgba(255,255,255,0.9)', fontWeight: 500, lineHeight: 1.3, textTransform: 'uppercase', letterSpacing: 1 }}>{programLine}</div>
+            {detailLine && (
+              <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.6)', marginTop: 6, fontWeight: 400, letterSpacing: 0.5 }}>{detailLine}</div>
+            )}
+            <CTAButton text={ctaText} style={{ marginTop: 20 }} />
+            {showBadge && <FreeBadge style={{ marginTop: 16 }} />}
           </div>
         </div>
       </div>
@@ -138,24 +237,27 @@ function TemplatePreview({ template, photo, headline, subtext, previewRef }: {
     return (
       <div ref={previewRef} style={{ width: 1200, height: 630, position: 'relative', overflow: 'hidden', fontFamily: font }}>
         <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-        {/* Radial gradient overlay */}
         <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse at center, rgba(11,74,82,0.78) 0%, rgba(11,74,82,0.92) 70%, rgba(0,0,0,0.95) 100%)` }} />
-        {/* Inner frosted card */}
-        <div style={{ position: 'absolute', top: 60, left: 100, right: 100, bottom: 60, border: '1px solid rgba(242,181,68,0.2)', borderRadius: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '0 60px', background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(2px)' }}>
-          {/* Gold corner accents — top-left */}
+        <div style={{ position: 'absolute', top: 50, left: 90, right: 90, bottom: 50, border: '1px solid rgba(242,181,68,0.2)', borderRadius: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' as const, padding: '0 60px', background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(2px)' }}>
+          {/* Gold corner accents */}
           <div style={{ position: 'absolute', top: -1, left: -1, width: 32, height: 32, borderTop: `3px solid ${GOLD}`, borderLeft: `3px solid ${GOLD}`, borderRadius: '8px 0 0 0' }} />
-          {/* Gold corner accents — top-right */}
           <div style={{ position: 'absolute', top: -1, right: -1, width: 32, height: 32, borderTop: `3px solid ${GOLD}`, borderRight: `3px solid ${GOLD}`, borderRadius: '0 8px 0 0' }} />
-          {/* Gold corner accents — bottom-left */}
           <div style={{ position: 'absolute', bottom: -1, left: -1, width: 32, height: 32, borderBottom: `3px solid ${GOLD}`, borderLeft: `3px solid ${GOLD}`, borderRadius: '0 0 0 8px' }} />
-          {/* Gold corner accents — bottom-right */}
           <div style={{ position: 'absolute', bottom: -1, right: -1, width: 32, height: 32, borderBottom: `3px solid ${GOLD}`, borderRight: `3px solid ${GOLD}`, borderRadius: '0 0 8px 0' }} />
 
-          <img src={logo} alt="" style={{ height: 60, marginBottom: 24 }} crossOrigin="anonymous" />
-          <div style={{ fontSize: 13, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 4, marginBottom: 16 }}>{eyebrow}</div>
-          <div style={{ fontSize: 56, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 2, textShadow: '0 2px 30px rgba(0,0,0,0.4)' }}>{headline}</div>
-          <div style={{ width: 100, height: 3, background: GOLD, marginTop: 24, marginBottom: 20, borderRadius: 2 }} />
-          <div style={{ fontSize: 24, color: GOLD, fontWeight: 500, letterSpacing: 2 }}>{subtext}</div>
+          <img src={logo} alt="" style={{ height: 56, marginBottom: 18 }} crossOrigin="anonymous" />
+          <div style={{ fontSize: 13, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 4, marginBottom: 12 }}>{eyebrow}</div>
+          <div style={{ fontSize: 52, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 2, textShadow: '0 2px 30px rgba(0,0,0,0.4)' }}>{headline}</div>
+          <div style={{ fontSize: 20, color: 'rgba(255,255,255,0.8)', marginTop: 8, fontWeight: 500, textTransform: 'uppercase', letterSpacing: 1.5 }}>{programLine}</div>
+          <div style={{ width: 100, height: 3, background: GOLD, marginTop: 16, marginBottom: 12, borderRadius: 2 }} />
+          {detailLine && (
+            <div style={{ fontSize: 17, color: GOLD, fontWeight: 400, letterSpacing: 1.5, marginBottom: 8 }}>{detailLine}</div>
+          )}
+          {showBadge ? (
+            <FreeBadge style={{ marginTop: 8 }} />
+          ) : (
+            <CTAButton text={ctaText} style={{ marginTop: 8 }} />
+          )}
         </div>
       </div>
     );
@@ -165,24 +267,36 @@ function TemplatePreview({ template, photo, headline, subtext, previewRef }: {
     return (
       <div ref={previewRef} style={{ width: 1200, height: 630, display: 'flex', flexDirection: 'column', fontFamily: font, overflow: 'hidden' }}>
         {/* Header bar */}
-        <div style={{ height: 80, background: `linear-gradient(135deg, ${TEAL} 0%, ${SOFT_TEAL} 100%)`, display: 'flex', alignItems: 'center', padding: '0 40px', gap: 16, position: 'relative' }}>
-          <img src={logo} alt="" style={{ height: 42 }} crossOrigin="anonymous" />
-          <span style={{ fontSize: 26, fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: 3 }}>DRAKE FITNESS</span>
-          <div style={{ marginLeft: 'auto', fontSize: 12, color: GOLD, textTransform: 'uppercase', letterSpacing: 3, fontWeight: 500 }}>{eyebrow}</div>
+        <div style={{ height: 72, background: `linear-gradient(135deg, ${TEAL} 0%, ${SOFT_TEAL} 100%)`, display: 'flex', alignItems: 'center', padding: '0 40px', gap: 16, flexShrink: 0 }}>
+          <img src={logo} alt="" style={{ height: 40 }} crossOrigin="anonymous" />
+          <span style={{ fontSize: 22, fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: 3 }}>DRAKE FITNESS</span>
+          <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 16 }}>
+            <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', textTransform: 'uppercase', letterSpacing: 1.5, fontWeight: 500 }}>{programLine}</span>
+            <span style={{ fontSize: 12, color: GOLD, textTransform: 'uppercase', letterSpacing: 3, fontWeight: 500 }}>{eyebrow}</span>
+          </div>
         </div>
         {/* Gold accent stripe */}
-        <div style={{ height: 4, background: `linear-gradient(90deg, ${GOLD} 0%, ${GOLD} 60%, transparent 100%)` }} />
+        <div style={{ height: 4, background: `linear-gradient(90deg, ${GOLD} 0%, ${GOLD} 60%, transparent 100%)`, flexShrink: 0 }} />
         {/* Photo */}
-        <div style={{ flex: 1, position: 'relative' }}>
-          <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+        <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
+          <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} crossOrigin="anonymous" />
           <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 60px 10px rgba(0,0,0,0.25)' }} />
+          {showBadge && (
+            <div style={{ position: 'absolute', top: 20, right: 32 }}>
+              <FreeBadge />
+            </div>
+          )}
         </div>
         {/* Footer bar */}
-        <div style={{ height: 84, background: DARK, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 40px', position: 'relative' }}>
-          {/* Diagonal gold slash */}
+        <div style={{ height: 84, background: DARK, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 40px', flexShrink: 0, position: 'relative' }}>
           <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 6, background: GOLD, transform: 'skewX(-12deg)', transformOrigin: 'top left' }} />
-          <div style={{ fontSize: 30, fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: 1.5, paddingLeft: 20 }}>{headline}</div>
-          <div style={{ background: GOLD, color: DARK, padding: '12px 32px', fontSize: 18, fontWeight: 700, textTransform: 'uppercase', borderRadius: 6, letterSpacing: 1.5 }}>{subtext}</div>
+          <div style={{ paddingLeft: 20 }}>
+            <div style={{ fontSize: 28, fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: 1.5 }}>{headline}</div>
+            {detailLine && (
+              <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', letterSpacing: 1, marginTop: 2 }}>{detailLine}</div>
+            )}
+          </div>
+          <CTAButton text={ctaText} />
         </div>
       </div>
     );
@@ -191,24 +305,27 @@ function TemplatePreview({ template, photo, headline, subtext, previewRef }: {
   // split-right
   return (
     <div ref={previewRef} style={{ width: 1200, height: 630, position: 'relative', overflow: 'hidden', fontFamily: font }}>
-      {/* Photo fills full width, clipped to right side with angle */}
       <div style={{ position: 'absolute', inset: 0, clipPath: 'polygon(40% 0, 100% 0, 100% 100%, 50% 100%)' }}>
         <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
         <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 80px 20px rgba(0,0,0,0.3)' }} />
       </div>
-      {/* Teal panel with pattern */}
       <div style={{ position: 'absolute', left: 0, top: 0, width: '50%', height: '100%', background: TEAL, backgroundImage: TEAL_PATTERN, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '48px 44px' }}>
         <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(135deg, ${SOFT_TEAL} 0%, ${TEAL} 100%)`, opacity: 0.5 }} />
         <div style={{ position: 'relative', zIndex: 1 }}>
-          <img src={logo} alt="" style={{ height: 50, marginBottom: 20, alignSelf: 'flex-start' }} crossOrigin="anonymous" />
+          <img src={logo} alt="" style={{ height: 50, marginBottom: 20 }} crossOrigin="anonymous" />
           <div style={{ fontSize: 12, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3, marginBottom: 12 }}>{eyebrow}</div>
-          {/* Decorative gold bracket around headline */}
           <div style={{ borderLeft: `3px solid ${GOLD}`, paddingLeft: 16 }}>
             <div style={{ fontSize: 42, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.12, letterSpacing: 1 }}>{headline}</div>
           </div>
-          <div style={{ width: 64, height: 3, background: GOLD, marginTop: 20, marginBottom: 16, borderRadius: 2 }} />
-          <div style={{ fontSize: 18, color: 'rgba(255,255,255,0.8)', fontWeight: 400, lineHeight: 1.4, marginBottom: 24 }}>{subtext}</div>
-          <div style={{ background: GOLD, color: DARK, padding: '12px 32px', fontSize: 17, fontWeight: 700, textTransform: 'uppercase', borderRadius: 6, letterSpacing: 1.5, alignSelf: 'flex-start', display: 'inline-block' }}>Get Started →</div>
+          <div style={{ width: 64, height: 3, background: GOLD, marginTop: 16, marginBottom: 12, borderRadius: 2 }} />
+          <div style={{ fontSize: 19, color: 'rgba(255,255,255,0.9)', fontWeight: 500, lineHeight: 1.3, textTransform: 'uppercase', letterSpacing: 1 }}>{programLine}</div>
+          {detailLine && (
+            <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.6)', marginTop: 6, fontWeight: 400, letterSpacing: 0.5 }}>{detailLine}</div>
+          )}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 20 }}>
+            <CTAButton text={ctaText} />
+            {showBadge && <FreeBadge style={{ transform: 'scale(0.85)' }} />}
+          </div>
         </div>
       </div>
     </div>
@@ -281,8 +398,12 @@ function TemplateThumbnail({ id, active }: { id: TemplateId; active: boolean }) 
 export default function SocialGraphics() {
   const [template, setTemplate] = useState<TemplateId>('full-bleed');
   const [selectedPhoto, setSelectedPhoto] = useState(0);
+  const [eyebrow, setEyebrow] = useState('WEST ASHLEY · CHARLESTON');
   const [headline, setHeadline] = useState('Try 3 Classes Free');
-  const [subtext, setSubtext] = useState('West Ashley · Charleston, SC');
+  const [programLine, setProgramLine] = useState('Strength & Mobility Classes');
+  const [detailLine, setDetailLine] = useState('All Levels Welcome');
+  const [ctaText, setCtaText] = useState('Book Your Free Class →');
+  const [showBadge, setShowBadge] = useState(true);
   const [photoSearch, setPhotoSearch] = useState('');
   const [isExporting, setIsExporting] = useState(false);
   const previewRef = useRef<HTMLDivElement>(null);
@@ -290,6 +411,15 @@ export default function SocialGraphics() {
   const filteredPhotos = PHOTOS.filter(p =>
     p.label.toLowerCase().includes(photoSearch.toLowerCase())
   );
+
+  const applyPreset = (preset: ContentPreset) => {
+    setEyebrow(preset.eyebrow);
+    setHeadline(preset.headline);
+    setProgramLine(preset.programLine);
+    setDetailLine(preset.detailLine);
+    setCtaText(preset.ctaText);
+    setShowBadge(preset.showBadge);
+  };
 
   const handleDownload = useCallback(async () => {
     if (!previewRef.current) return;
@@ -314,6 +444,10 @@ export default function SocialGraphics() {
     }
   }, [template]);
 
+  const PREVIEW_SCALE = 0.5;
+  const CANVAS_W = 1200;
+  const CANVAS_H = 630;
+
   return (
     <AdminLayout>
       <div className="space-y-6">
@@ -328,7 +462,7 @@ export default function SocialGraphics() {
           </Button>
         </div>
 
-        {/* Template Picker with Visual Thumbnails */}
+        {/* Template Picker */}
         <div>
           <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2 block">Template</label>
           <div className="flex gap-3 flex-wrap">
@@ -347,47 +481,79 @@ export default function SocialGraphics() {
           </div>
         </div>
 
-        {/* Live Preview — dynamically scaled */}
-        <div className="bg-muted rounded-lg p-4 overflow-hidden">
+        {/* Content Presets */}
+        <div>
+          <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2 block">
+            <Sparkles className="h-3 w-3 inline mr-1" />
+            Quick Presets
+          </label>
+          <div className="flex gap-2 flex-wrap">
+            {CONTENT_PRESETS.map(preset => (
+              <button
+                key={preset.label}
+                onClick={() => applyPreset(preset)}
+                className={`text-xs px-3 py-1.5 rounded-full border transition-all font-medium ${
+                  headline === preset.headline && programLine === preset.programLine
+                    ? 'bg-drake-gold text-drake-dark border-drake-gold'
+                    : 'border-border text-muted-foreground hover:border-drake-gold/50 hover:text-foreground'
+                }`}
+              >
+                {preset.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Live Preview — fixed scaling container */}
+        <div className="bg-muted rounded-lg p-4">
           <p className="text-xs text-muted-foreground mb-2">Live Preview (1200×630)</p>
-          <div className="w-full overflow-x-auto">
-            <div style={{ transform: 'scale(0.5)', transformOrigin: 'top left', width: 1200, height: 630 }}>
+          <div style={{ width: CANVAS_W * PREVIEW_SCALE, height: CANVAS_H * PREVIEW_SCALE, position: 'relative' }}>
+            <div style={{ transform: `scale(${PREVIEW_SCALE})`, transformOrigin: 'top left', width: CANVAS_W, height: CANVAS_H, position: 'absolute', top: 0, left: 0 }}>
               <TemplatePreview
                 template={template}
                 photo={PHOTOS[selectedPhoto]?.src || PHOTOS[0].src}
+                eyebrow={eyebrow}
                 headline={headline}
-                subtext={subtext}
+                programLine={programLine}
+                detailLine={detailLine}
+                ctaText={ctaText}
+                showBadge={showBadge}
                 previewRef={previewRef}
               />
             </div>
           </div>
         </div>
 
-        {/* Text Controls */}
+        {/* Content Controls */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="text-sm font-medium mb-1 flex items-center gap-1"><Type className="h-4 w-4" /> Eyebrow</label>
+            <Input value={eyebrow} onChange={e => setEyebrow(e.target.value)} placeholder="WEST ASHLEY · CHARLESTON" />
+          </div>
           <div>
             <label className="text-sm font-medium mb-1 flex items-center gap-1"><Type className="h-4 w-4" /> Headline</label>
             <Input value={headline} onChange={e => setHeadline(e.target.value)} placeholder="Try 3 Classes Free" />
-            {/* Preset chips */}
-            <div className="flex flex-wrap gap-1.5 mt-2">
-              {HEADLINE_PRESETS.map(preset => (
-                <button
-                  key={preset}
-                  onClick={() => setHeadline(preset)}
-                  className={`text-[11px] px-2.5 py-1 rounded-full border transition-all ${
-                    headline === preset
-                      ? 'bg-drake-gold text-drake-dark border-drake-gold font-semibold'
-                      : 'border-border text-muted-foreground hover:border-drake-gold/50 hover:text-foreground'
-                  }`}
-                >
-                  {preset}
-                </button>
-              ))}
-            </div>
           </div>
           <div>
-            <label className="text-sm font-medium mb-1 flex items-center gap-1"><Type className="h-4 w-4" /> Subtext / CTA</label>
-            <Input value={subtext} onChange={e => setSubtext(e.target.value)} placeholder="West Ashley · Charleston, SC" />
+            <label className="text-sm font-medium mb-1 flex items-center gap-1"><Type className="h-4 w-4" /> Program Line</label>
+            <Input value={programLine} onChange={e => setProgramLine(e.target.value)} placeholder="Strength & Mobility Classes" />
+          </div>
+          <div>
+            <label className="text-sm font-medium mb-1 flex items-center gap-1"><Type className="h-4 w-4" /> Detail Line</label>
+            <Input value={detailLine} onChange={e => setDetailLine(e.target.value)} placeholder="All Levels Welcome" />
+          </div>
+          <div>
+            <label className="text-sm font-medium mb-1 flex items-center gap-1"><Type className="h-4 w-4" /> CTA Text</label>
+            <Input value={ctaText} onChange={e => setCtaText(e.target.value)} placeholder="Book Your Free Class →" />
+          </div>
+          <div className="flex items-center gap-3 pt-6">
+            <label className="text-sm font-medium">Show "3 Free Classes" Badge</label>
+            <button
+              onClick={() => setShowBadge(!showBadge)}
+              className={`w-10 h-6 rounded-full transition-colors ${showBadge ? 'bg-drake-gold' : 'bg-muted-foreground/30'}`}
+            >
+              <div className={`w-4 h-4 rounded-full bg-white shadow transition-transform mx-1 ${showBadge ? 'translate-x-4' : 'translate-x-0'}`} />
+            </button>
           </div>
         </div>
 
