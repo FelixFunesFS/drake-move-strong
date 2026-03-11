@@ -59,8 +59,8 @@ const Welcome = () => {
                   },
                   {
                     step: "3",
-                    title: "Show Up & We'll Guide You",
-                    description: "We'll do a quick introduction, then coach you through the entire session with modifications as needed.",
+                    title: "Sign Up, Show Up & We'll Guide You",
+                    description: "We'll do a quick introduction, then coach you through the entire session with modifications as needed. Questions? Call or text (843) 817-5420.",
                     icon: MapPin,
                   },
                 ].map((item, index) => (

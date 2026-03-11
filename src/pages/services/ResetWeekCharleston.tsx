@@ -124,7 +124,7 @@ export default function ResetWeekCharleston() {
               {[
                 { step: "1", title: "Claim Your Free Pass", desc: "Sign up in 30 seconds — no card required", hasClaimLink: true },
                 { step: "2", title: "Pick Your Class", desc: "Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Thu 6pm", hasScheduleLink: true },
-                { step: "3", title: "Show Up", desc: "We handle the rest — coaching, form, and encouragement" }
+                { step: "3", title: "Sign Up & Show Up", desc: "We handle the rest — coaching, form, and encouragement. Questions? Call or text (843) 817-5420", hasClaimLink: true }
               ].map((item) => (
                 <div key={item.step} className="flex flex-col items-center text-center">
                   <div className="relative z-10 w-14 h-14 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-2xl shadow-lg">
@@ -152,7 +152,7 @@ export default function ResetWeekCharleston() {
               {[
                 { step: "1", title: "Claim Your Free Pass", desc: "Sign up in 30 seconds — no card required", hasClaimLink: true },
                 { step: "2", title: "Pick Your Class", desc: "Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Thu 6pm", hasScheduleLink: true },
-                { step: "3", title: "Show Up", desc: "We handle the rest — coaching, form, and encouragement" }
+                { step: "3", title: "Sign Up & Show Up", desc: "We handle the rest — coaching, form, and encouragement. Questions? Call or text (843) 817-5420", hasClaimLink: true }
               ].map((item) => (
                 <div key={item.step} className="flex items-start gap-4">
                   <div className="relative z-10 flex-shrink-0 w-14 h-14 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-2xl shadow-lg">

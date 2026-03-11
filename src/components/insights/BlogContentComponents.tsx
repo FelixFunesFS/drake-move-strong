@@ -689,8 +689,11 @@ export const TooOutOfShapeContent = () => {
       {/* The Only Requirement */}
       <div className="bg-primary text-white p-10 rounded-2xl text-center">
         <h2 className="font-hero text-3xl font-bold mb-4 uppercase">The Only Requirement</h2>
-        <p className="text-2xl font-bold text-drake-gold mb-4">Show up.</p>
+        <p className="text-2xl font-bold text-drake-gold mb-4">
+          <a href="https://app.punchpass.com/org/5765/cart?product=42534" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors">Sign up</a> and show up.
+        </p>
         <p className="text-gray-200 text-lg">That's it. We'll handle the rest.</p>
+        <p className="text-gray-300 text-sm mt-3">Questions? Call or text <a href="tel:8438175420" className="underline hover:text-white transition-colors">(843) 817-5420</a></p>
       </div>
     </>
   );

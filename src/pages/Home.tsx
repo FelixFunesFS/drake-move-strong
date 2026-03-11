@@ -98,7 +98,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                     {[
                       { step: "1", text: "Claim your free pass below" },
                       { step: "2", text: "Pick a Strength & Mobility class (KB Strong) — Mon/Wed/Fri 8am or 11am, Thu 6pm" },
-                      { step: "3", text: "Show up — we handle the rest" },
+                      { step: "3", text: <><a href={INTRO_URL} target="_blank" rel="noopener noreferrer" className="text-primary underline font-semibold hover:text-primary/80 transition-colors">Sign up</a> and show up — we handle the rest</> },
                     ].map((item, i) => (
                       <div key={i} className="flex items-center gap-3">
                         <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center flex-shrink-0">{item.step}</span>
@@ -106,6 +106,10 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                       </div>
                     ))}
                   </div>
+                  <p className="text-xs text-muted-foreground mt-3">
+                    Questions? Call or text{" "}
+                    <a href="tel:8438175420" className="underline font-medium hover:text-foreground transition-colors">(843) 817-5420</a>
+                  </p>
                 </div>
 
                 {/* 3-Class Intro Card */}
