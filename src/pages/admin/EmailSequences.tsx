@@ -241,7 +241,7 @@ function EmailCard({ step, index, total }: { step: EmailStep; index: number; tot
   const typeConfig = {
     relationship: { label: 'Relationship', badgeClass: 'bg-primary/10 text-primary border-primary/20', icon: Heart, dotClass: 'bg-primary' },
     conversion: { label: 'Conversion', badgeClass: 'bg-accent/20 text-accent-foreground border-accent/30', icon: TrendingUp, dotClass: 'bg-accent' },
-    personal: { label: 'Personal Touch', badgeClass: 'bg-violet-100 text-violet-700 border-violet-200', icon: UserCheck, dotClass: 'bg-violet-500' },
+    personal: { label: 'Personal Touch', badgeClass: 'bg-muted text-foreground border-border', icon: UserCheck, dotClass: 'bg-muted-foreground' },
   };
   const config = typeConfig[step.type];
   const Icon = config.icon;
