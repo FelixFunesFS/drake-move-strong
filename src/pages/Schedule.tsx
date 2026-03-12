@@ -13,6 +13,7 @@ import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { NativeWeeklySchedule } from "@/components/schedule/NativeWeeklySchedule";
 import { getStaggerDelay } from "@/lib/motionConfig";
 import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
+import { trackPunchPassClick } from "@/hooks/useMetaPixel";
 
 // Gallery images
 import classesGallery1 from "@/assets/classes-gallery-1.jpg?format=webp&w=768";
