@@ -110,7 +110,7 @@ const Pricing = () => {
                     </div>
                     <div className="flex-1 w-full sm:w-auto">
                       <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold w-full sm:w-auto">
-                        <a href={buildPunchPassUrl(INTRO_URL, 'pricing-intro-card')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                        <a href={buildPunchPassUrl(INTRO_URL, 'pricing-intro-card')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2" onClick={() => trackPunchPassClick('pricing-intro-card')}>
                           Claim 3 Free Classes
                           <ExternalLink className="h-4 w-4" />
                         </a>
