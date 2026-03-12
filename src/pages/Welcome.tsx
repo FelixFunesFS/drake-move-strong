@@ -4,6 +4,7 @@ import { CheckCircle2, Calendar, Clock, MapPin, ArrowRight } from "lucide-react"
 import { Link } from "react-router-dom";
 import AnimatedSection from "@/components/AnimatedSection";
 import { PUNCHPASS_URLS } from "@/data/pricing";
+import { trackPunchPassClick } from "@/hooks/useMetaPixel";
 
 const Welcome = () => {
   return (
