@@ -5,6 +5,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import drakeLogo from "@/assets/drake-fitness-logo2.png?format=webp&w=268";
 import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
+import { trackPunchPassClick } from "@/hooks/useMetaPixel";
 
 interface NavigationProps {
   transparent?: boolean;
