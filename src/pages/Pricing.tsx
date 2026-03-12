@@ -345,7 +345,8 @@ const Pricing = () => {
                       href={buildPunchPassUrl(PUNCHPASS_URLS.flexPack, 'pricing-flex-pack', 'class-pack')}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1">
+                      className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1"
+                      onClick={() => trackPunchPassClick('pricing-flex-pack')}>
 
                     Buy Pack
                     <ExternalLink className="w-3 h-3" />
