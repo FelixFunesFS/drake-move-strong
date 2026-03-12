@@ -64,7 +64,7 @@ const Footer = () => {
                 </a>
               </li>
               <li className="pt-2">
-              <a href="mailto:david@drake.fitness" className="hover:text-drake-gold transition-colors">
+              <a href="mailto:david@drake.fitness" className="hover:text-drake-gold transition-colors" onClick={() => trackMetaEvent('Contact', { content_name: 'Email Click' })}>
                   david@drake.fitness
                 </a>
               </li>
