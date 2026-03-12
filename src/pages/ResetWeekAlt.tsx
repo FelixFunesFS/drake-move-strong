@@ -515,7 +515,7 @@ const ResetWeekAlt = () => {
           asChild
           className="w-full bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-bold text-base py-4 h-auto"
         >
-          <a href={buildPunchPassUrl(INTRO_URL, 'intro-sticky-mobile')} target="_blank" rel="noopener noreferrer">
+          <a href={buildPunchPassUrl(INTRO_URL, 'intro-sticky-mobile')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('intro-sticky-mobile')}>
             Claim 3 Free Classes
           </a>
         </Button>

@@ -517,7 +517,7 @@ export default function LowImpactFitnessCharleston() {
               </div>
               <div className="text-center">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 md:px-12 py-4 md:py-6 text-lg md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
-                  <a href={buildPunchPassUrl(INTRO_URL, 'low-impact-bottom-cta')} target="_blank" rel="noopener noreferrer">
+                  <a href={buildPunchPassUrl(INTRO_URL, 'low-impact-bottom-cta')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('low-impact-bottom-cta')}>
                     <ArrowRight className="mr-2 h-5 w-5" />
                     Claim 3 Free Classes Now
                   </a>
