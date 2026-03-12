@@ -294,7 +294,7 @@ export default function StrengthTrainingCharleston() {
                 </div>
 
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-6 text-lg font-bold uppercase tracking-wide">
-                  <a href={buildPunchPassUrl(INTRO_URL, 'strength-middle-cta')} target="_blank" rel="noopener noreferrer">
+                  <a href={buildPunchPassUrl(INTRO_URL, 'strength-middle-cta')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('strength-middle-cta')}>
                     Claim 3 Free Classes
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
