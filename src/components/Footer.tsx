@@ -3,6 +3,7 @@ import { Instagram, Facebook, Youtube } from "lucide-react";
 import drakeLogo from "@/assets/drake-fitness-logo2.png?format=webp&w=268";
 import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
 import MicroTrustBadges from "@/components/MicroTrustBadges";
+import { trackMetaEvent } from "@/hooks/useMetaPixel";
 
 const Footer = () => {
   return <footer className="bg-drake-dark text-white">
@@ -63,12 +64,12 @@ const Footer = () => {
                 </a>
               </li>
               <li className="pt-2">
-              <a href="mailto:david@drake.fitness" className="hover:text-drake-gold transition-colors">
+              <a href="mailto:david@drake.fitness" className="hover:text-drake-gold transition-colors" onClick={() => trackMetaEvent('Contact', { content_name: 'Email Click' })}>
                   david@drake.fitness
                 </a>
               </li>
               <li>
-                <a href="tel:8438175420" className="hover:text-drake-gold transition-colors">
+                <a href="tel:8438175420" className="hover:text-drake-gold transition-colors" onClick={() => trackMetaEvent('Contact', { content_name: 'Phone Click' })}>
                   (843) 817-5420
                 </a>
               </li>
