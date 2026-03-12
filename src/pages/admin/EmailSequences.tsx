@@ -47,6 +47,15 @@ const newLeadSequence: EmailStep[] = [
     previewText: "No gear required. No experience needed. Just you.",
   },
   {
+    day: 3, dayLabel: 'Day 3',
+    subject: "Feeling sore? Good — here's what to do next",
+    goal: 'Normalize soreness & bridge to class 2',
+    psychology: 'Recovery reassurance. The 48-72hr window after a first class is the highest dropout moment. Normalizing soreness and providing actionable tips positions David as their coach, not a salesperson.',
+    keyElements: ['Normalize soreness: "Your body is responding — that\'s the point"', '4 recovery tips: Hydrate, Eat whole foods, Walk 15 min, Sleep', 'Coach\'s Tip callout: diaphragmatic breathing teaser (Original Strength)', '"Class 2 is always easier than class 1" — bridge to next visit'],
+    type: 'relationship', fromLine: 'David Drake',
+    previewText: "Here's exactly what to do before your next class.",
+  },
+  {
     day: 5, dayLabel: 'Day 5',
     subject: "Meet David — 25 years of keeping people moving",
     goal: 'Build coach authority + warmth',
