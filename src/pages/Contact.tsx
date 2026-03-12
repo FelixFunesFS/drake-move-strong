@@ -12,6 +12,7 @@ import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { GoogleMapEmbed } from "@/components/GoogleMapEmbed";
 import AnimatedSection from "@/components/AnimatedSection";
 import { supabase } from "@/integrations/supabase/client";
+import { trackMetaEvent } from "@/hooks/useMetaPixel";
 import davidStorefrontPortrait from "@/assets/david-kettlebell-storefront-portrait.jpg";
 
 const Contact = () => {
