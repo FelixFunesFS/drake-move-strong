@@ -14,6 +14,7 @@ import Footer from "./components/Footer";
 import AnnouncementBanner from "./components/AnnouncementBanner";
 import { TodayClassesBanner } from "./components/schedule/TodayClassesBanner";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
+import { useMetaPixel } from "@/hooks/useMetaPixel";
 import { cn } from "@/lib/utils";
 
 // Create QueryClient outside component to avoid recreation
@@ -109,6 +110,7 @@ const CUSTOM_LAYOUT_PREFIXES = ['/member/', '/admin/', '/coach/'];
 
 const AppLayout = () => {
   const location = useLocation();
+  useMetaPixel();
   const { isScrolled, isPastHeader } = useScrollDirection(100);
   const [isBannerVisible, setIsBannerVisible] = useState(false);
   const isHomePage = location.pathname === '/';

@@ -12,6 +12,7 @@ import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { GoogleMapEmbed } from "@/components/GoogleMapEmbed";
 import AnimatedSection from "@/components/AnimatedSection";
 import { supabase } from "@/integrations/supabase/client";
+import { trackMetaEvent } from "@/hooks/useMetaPixel";
 import davidStorefrontPortrait from "@/assets/david-kettlebell-storefront-portrait.jpg";
 
 const Contact = () => {
@@ -63,6 +64,7 @@ const Contact = () => {
       
       if (error) throw error;
       
+      trackMetaEvent("Lead", { content_name: "Contact Form", content_category: formData.interest || "general" });
       toast.success("Message sent! We'll get back to you within 24 hours.");
       setFormData({
         firstName: "",

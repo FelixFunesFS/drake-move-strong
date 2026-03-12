@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Clock, ExternalLink, User } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { trackMetaEvent } from "@/hooks/useMetaPixel";
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -105,7 +106,10 @@ export function BookingModal({ isOpen, onClose, classData }: BookingModalProps) 
           src={embedUrl}
           title={`Book ${classData?.class_name || 'Class'}`}
           className="w-full h-full border-0"
-          onLoad={() => setLoading(false)}
+          onLoad={() => {
+            setLoading(false);
+            trackMetaEvent("Schedule", { content_name: classData?.class_name || "Class Booking" });
+          }}
         />
       ) : (
         <div className="flex items-center justify-center h-full">

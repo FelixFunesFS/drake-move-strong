@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Send, X } from "lucide-react";
+import { trackMetaEvent } from "@/hooks/useMetaPixel";
 
 interface LeadCaptureFormProps {
   onSubmit: (data: { name: string; email: string; phone?: string }) => void;
@@ -18,6 +19,7 @@ const LeadCaptureForm = ({ onSubmit, onCancel, isSubmitting }: LeadCaptureFormPr
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email.trim()) {
+      trackMetaEvent("Lead", { content_name: "Chat Lead Capture" });
       onSubmit({ 
         name: name.trim(), 
         email: email.trim(), 
