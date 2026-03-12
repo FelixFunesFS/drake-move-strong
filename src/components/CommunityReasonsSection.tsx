@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import OptimizedImage from "./OptimizedImage";
 import AnimatedSection from "./AnimatedSection";
 import { PUNCHPASS_URLS, buildPunchPassUrl } from "@/data/pricing";
+import { trackPunchPassClick } from "@/hooks/useMetaPixel";
 
 interface ReasonCard {
   image: string;
