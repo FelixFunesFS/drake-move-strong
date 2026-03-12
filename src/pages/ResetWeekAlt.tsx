@@ -25,6 +25,7 @@ import { PhilosophyQuote } from "@/components/PhilosophyQuote";
 import { LongevityBlock } from "@/components/LongevityBlock";
 import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
 import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
+import { trackPunchPassClick } from "@/hooks/useMetaPixel";
 
 import heroImage from "@/assets/hero-kettlebell-training.jpg";
 import groupTrainingImage from "@/assets/group-kettlebell-training.jpg";
@@ -164,7 +165,7 @@ const ResetWeekAlt = () => {
               />
             </Link>
             <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-               <a href={buildPunchPassUrl(INTRO_URL, 'intro-nav-cta')} target="_blank" rel="noopener noreferrer">
+               <a href={buildPunchPassUrl(INTRO_URL, 'intro-nav-cta')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('intro-nav-cta')}>
                 Claim 3 Free Classes
               </a>
             </Button>
@@ -225,7 +226,7 @@ const ResetWeekAlt = () => {
                 size="lg"
                 className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-bold text-lg px-10 py-6 h-auto shadow-[var(--shadow-gold)] hover:scale-105 transition-transform group"
               >
-                 <a href={buildPunchPassUrl(INTRO_URL, 'intro-hero-cta')} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
+                 <a href={buildPunchPassUrl(INTRO_URL, 'intro-hero-cta')} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3" onClick={() => trackPunchPassClick('intro-hero-cta')}>
                   Claim Your 3 Free Classes
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </a>
@@ -499,7 +500,7 @@ const ResetWeekAlt = () => {
               size="lg"
               className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-bold text-lg px-10 py-6 h-auto shadow-[var(--shadow-gold)] hover:scale-105 transition-transform group"
             >
-              <a href={buildPunchPassUrl(INTRO_URL, 'intro-bottom-cta')} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
+              <a href={buildPunchPassUrl(INTRO_URL, 'intro-bottom-cta')} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3" onClick={() => trackPunchPassClick('intro-bottom-cta')}>
                 Claim Your 3 Free Classes
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
@@ -514,7 +515,7 @@ const ResetWeekAlt = () => {
           asChild
           className="w-full bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-bold text-base py-4 h-auto"
         >
-          <a href={buildPunchPassUrl(INTRO_URL, 'intro-sticky-mobile')} target="_blank" rel="noopener noreferrer">
+          <a href={buildPunchPassUrl(INTRO_URL, 'intro-sticky-mobile')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('intro-sticky-mobile')}>
             Claim 3 Free Classes
           </a>
         </Button>

@@ -6,6 +6,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import OptimizedImage from "@/components/OptimizedImage";
 import { Check, ArrowRight, User, Dumbbell, Heart } from "lucide-react";
 import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
+import { trackPunchPassClick } from "@/hooks/useMetaPixel";
 import { TRUST_STATS } from "@/data/trustStats";
 
 import heroGroupClass from "@/assets/group-turkish-getup-class.jpg";
@@ -99,7 +100,7 @@ export default function ResetWeekCharleston() {
                 Strength & mobility training — scaled to your level. No card required. Just show up.
               </p>
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
-                 <a href={buildPunchPassUrl(INTRO_URL, 'reset-week-hero')} target="_blank" rel="noopener noreferrer">
+                 <a href={buildPunchPassUrl(INTRO_URL, 'reset-week-hero')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('reset-week-hero')}>
                   Claim Your Free Classes
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                 </a>
@@ -133,7 +134,7 @@ export default function ResetWeekCharleston() {
                   <h3 className="font-bold text-xl mt-4 mb-1">{item.title}</h3>
                   <p className="text-muted-foreground text-base">{item.desc}</p>
                   {item.hasClaimLink && (
-                     <a href={buildPunchPassUrl(INTRO_URL, 'reset-week-step-claim')} target="_blank" rel="noopener noreferrer" className="text-accent underline text-sm mt-1 inline-block hover:text-accent/80 transition-colors">Claim your pass</a>
+                     <a href={buildPunchPassUrl(INTRO_URL, 'reset-week-step-claim')} target="_blank" rel="noopener noreferrer" className="text-accent underline text-sm mt-1 inline-block hover:text-accent/80 transition-colors" onClick={() => trackPunchPassClick('reset-week-step-claim')}>Claim your pass</a>
                   )}
                   {item.hasScheduleLink && (
                     <Link to="/schedule" className="text-accent underline text-sm mt-1 inline-block hover:text-accent/80 transition-colors">View full schedule</Link>
@@ -162,7 +163,7 @@ export default function ResetWeekCharleston() {
                     <h3 className="font-bold text-lg mb-1">{item.title}</h3>
                     <p className="text-muted-foreground text-base">{item.desc}</p>
                     {item.hasClaimLink && (
-                      <a href={buildPunchPassUrl(INTRO_URL, 'reset-week-step-claim')} target="_blank" rel="noopener noreferrer" className="text-accent underline text-sm mt-1 inline-block hover:text-accent/80 transition-colors">Claim your pass</a>
+                      <a href={buildPunchPassUrl(INTRO_URL, 'reset-week-step-claim')} target="_blank" rel="noopener noreferrer" className="text-accent underline text-sm mt-1 inline-block hover:text-accent/80 transition-colors" onClick={() => trackPunchPassClick('reset-week-step-claim')}>Claim your pass</a>
                     )}
                     {item.hasScheduleLink && (
                       <Link to="/schedule" className="text-accent underline text-sm mt-1 inline-block hover:text-accent/80 transition-colors">View full schedule</Link>
@@ -316,7 +317,7 @@ export default function ResetWeekCharleston() {
 
               <div className="text-center">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal">
-                  <a href={buildPunchPassUrl(INTRO_URL, 'reset-week-bottom-cta')} target="_blank" rel="noopener noreferrer">
+                  <a href={buildPunchPassUrl(INTRO_URL, 'reset-week-bottom-cta')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('reset-week-bottom-cta')}>
                     <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
                     Claim 3 Free Classes
                   </a>

@@ -4,6 +4,7 @@ import { CheckCircle2, Calendar, Clock, MapPin, ArrowRight } from "lucide-react"
 import { Link } from "react-router-dom";
 import AnimatedSection from "@/components/AnimatedSection";
 import { PUNCHPASS_URLS } from "@/data/pricing";
+import { trackPunchPassClick } from "@/hooks/useMetaPixel";
 
 const Welcome = () => {
   return (
@@ -101,7 +102,7 @@ const Welcome = () => {
                     ))}
                   </div>
                   <Button asChild size="lg" className="w-full mt-6">
-                    <a href={PUNCHPASS_URLS.schedule} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                    <a href={PUNCHPASS_URLS.schedule} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2" onClick={() => trackPunchPassClick('welcome-book-first-class')}>
                       Book Your First Class
                       <ArrowRight className="w-4 h-4" />
                     </a>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import OptimizedImage from "./OptimizedImage";
 import AnimatedSection from "./AnimatedSection";
 import { PUNCHPASS_URLS, buildPunchPassUrl } from "@/data/pricing";
+import { trackPunchPassClick } from "@/hooks/useMetaPixel";
 
 interface ReasonCard {
   image: string;
@@ -101,6 +102,7 @@ const CommunityReasonsSection = ({ images }: CommunityReasonsSectionProps) => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2"
+                      onClick={() => trackPunchPassClick('community-reasons-cta')}
                     >
                       Start Free Intro
                       <ArrowRight className="w-4 h-4" />

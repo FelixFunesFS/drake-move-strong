@@ -11,6 +11,7 @@ import TrustStatsBar from "@/components/TrustStatsBar";
 import AnimatedSection from "@/components/AnimatedSection";
 import { getStaggerDelay } from "@/lib/motionConfig";
 import { INTRO_URL, PUNCHPASS_URLS, buildPunchPassUrl } from "@/data/pricing";
+import { trackPunchPassClick } from "@/hooks/useMetaPixel";
 
 
 const Pricing = () => {
@@ -109,7 +110,7 @@ const Pricing = () => {
                     </div>
                     <div className="flex-1 w-full sm:w-auto">
                       <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold w-full sm:w-auto">
-                        <a href={buildPunchPassUrl(INTRO_URL, 'pricing-intro-card')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                        <a href={buildPunchPassUrl(INTRO_URL, 'pricing-intro-card')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2" onClick={() => trackPunchPassClick('pricing-intro-card')}>
                           Claim 3 Free Classes
                           <ExternalLink className="h-4 w-4" />
                         </a>
@@ -171,7 +172,7 @@ const Pricing = () => {
                     Feel stronger, move better, and stay consistent week to week.
                   </p>
                   <Button asChild variant="outline" className="w-full">
-                    <a href={buildPunchPassUrl(PUNCHPASS_URLS.foundation, 'pricing-foundation', 'membership')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
+                    <a href={buildPunchPassUrl(PUNCHPASS_URLS.foundation, 'pricing-foundation', 'membership')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2" onClick={() => trackPunchPassClick('pricing-foundation')}>
                       Choose Foundation
                       <ExternalLink className="h-4 w-4" />
                     </a>
@@ -229,7 +230,7 @@ const Pricing = () => {
                     "I'm stronger in my 40s than ever before." — Aaron Q.
                   </div>
                   <Button asChild className="w-full bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold">
-                    <a href={buildPunchPassUrl(PUNCHPASS_URLS.unlimited, 'pricing-unlimited', 'membership')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
+                    <a href={buildPunchPassUrl(PUNCHPASS_URLS.unlimited, 'pricing-unlimited', 'membership')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2" onClick={() => trackPunchPassClick('pricing-unlimited')}>
                       Go Unlimited
                       <ExternalLink className="h-4 w-4" />
                     </a>
@@ -298,8 +299,8 @@ const Pricing = () => {
                       href={buildPunchPassUrl(PUNCHPASS_URLS.remoteSupport, 'pricing-remote-support', 'membership')}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1">
-
+                      className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1"
+                      onClick={() => trackPunchPassClick('pricing-remote-support')}>
                     Buy Now
                     <ExternalLink className="w-3 h-3" />
                   </a>
@@ -344,7 +345,8 @@ const Pricing = () => {
                       href={buildPunchPassUrl(PUNCHPASS_URLS.flexPack, 'pricing-flex-pack', 'class-pack')}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1">
+                      className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1"
+                      onClick={() => trackPunchPassClick('pricing-flex-pack')}>
 
                     Buy Pack
                     <ExternalLink className="w-3 h-3" />
@@ -450,7 +452,7 @@ const Pricing = () => {
                Not sure which option fits you? Try 3 classes free — we'll help you decide which membership is right for your goals.
              </p>
              <Button asChild variant="outline" size="lg">
-               <a href={buildPunchPassUrl(INTRO_URL, 'pricing-not-sure-cta')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent">
+               <a href={buildPunchPassUrl(INTRO_URL, 'pricing-not-sure-cta')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent" onClick={() => trackPunchPassClick('pricing-not-sure-cta')}>
                  Claim 3 Free Classes
                  <ExternalLink className="h-4 w-4" />
                </a>

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { buildPunchPassUrl } from "@/data/pricing";
+import { trackPunchPassClick } from "@/hooks/useMetaPixel";
 
 interface CTASectionProps {
   title: string;
@@ -54,7 +55,7 @@ const CTASection = ({
           </p>}
         <Button asChild size="lg" className={`${buttonClasses[variant]} font-semibold text-base md:text-lg px-6 md:px-8 py-5 md:py-6 w-full sm:w-auto text-balance`}>
           {isExternal ? (
-            <a href={finalLink} target="_blank" rel="noopener noreferrer">{ctaText}</a>
+            <a href={finalLink} target="_blank" rel="noopener noreferrer" onClick={() => utmContent && trackPunchPassClick(utmContent)}>{ctaText}</a>
           ) : (
             <Link to={finalLink}>{ctaText}</Link>
           )}
