@@ -69,7 +69,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="tel:8438175420" className="hover:text-drake-gold transition-colors">
+                <a href="tel:8438175420" className="hover:text-drake-gold transition-colors" onClick={() => trackMetaEvent('Contact', { content_name: 'Phone Click' })}>
                   (843) 817-5420
                 </a>
               </li>

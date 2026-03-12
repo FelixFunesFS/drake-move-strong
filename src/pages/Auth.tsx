@@ -119,6 +119,7 @@ export default function Auth() {
       return;
     }
     
+    trackMetaEvent('CompleteRegistration', { content_name: 'Member Signup' });
     toast.success('Account created successfully! Welcome to Drake Fitness.');
     // Navigation handled by useEffect
   };
