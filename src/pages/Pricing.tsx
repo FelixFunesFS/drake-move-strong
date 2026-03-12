@@ -11,6 +11,7 @@ import TrustStatsBar from "@/components/TrustStatsBar";
 import AnimatedSection from "@/components/AnimatedSection";
 import { getStaggerDelay } from "@/lib/motionConfig";
 import { INTRO_URL, PUNCHPASS_URLS, buildPunchPassUrl } from "@/data/pricing";
+import { trackPunchPassClick } from "@/hooks/useMetaPixel";
 
 
 const Pricing = () => {
