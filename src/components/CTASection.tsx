@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { buildPunchPassUrl } from "@/data/pricing";
+import { trackPunchPassClick } from "@/hooks/useMetaPixel";
 
 interface CTASectionProps {
   title: string;
