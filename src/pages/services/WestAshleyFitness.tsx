@@ -86,7 +86,7 @@ export default function WestAshleyFitness() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
-                  <a href={buildPunchPassUrl(INTRO_URL, 'west-ashley-hero')} target="_blank" rel="noopener noreferrer">
+                  <a href={buildPunchPassUrl(INTRO_URL, 'west-ashley-hero')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('west-ashley-hero')}>
                     Claim 3 Free Classes
                     <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                   </a>
