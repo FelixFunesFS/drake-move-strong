@@ -110,6 +110,7 @@ const CUSTOM_LAYOUT_PREFIXES = ['/member/', '/admin/', '/coach/'];
 
 const AppLayout = () => {
   const location = useLocation();
+  useMetaPixel();
   const { isScrolled, isPastHeader } = useScrollDirection(100);
   const [isBannerVisible, setIsBannerVisible] = useState(false);
   const isHomePage = location.pathname === '/';

@@ -106,7 +106,10 @@ export function BookingModal({ isOpen, onClose, classData }: BookingModalProps) 
           src={embedUrl}
           title={`Book ${classData?.class_name || 'Class'}`}
           className="w-full h-full border-0"
-          onLoad={() => setLoading(false)}
+          onLoad={() => {
+            setLoading(false);
+            trackMetaEvent("Schedule", { content_name: classData?.class_name || "Class Booking" });
+          }}
         />
       ) : (
         <div className="flex items-center justify-center h-full">

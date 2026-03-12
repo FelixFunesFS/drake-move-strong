@@ -19,6 +19,7 @@ const LeadCaptureForm = ({ onSubmit, onCancel, isSubmitting }: LeadCaptureFormPr
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email.trim()) {
+      trackMetaEvent("Lead", { content_name: "Chat Lead Capture" });
       onSubmit({ 
         name: name.trim(), 
         email: email.trim(), 

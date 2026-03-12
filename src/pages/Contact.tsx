@@ -64,6 +64,7 @@ const Contact = () => {
       
       if (error) throw error;
       
+      trackMetaEvent("Lead", { content_name: "Contact Form", content_category: formData.interest || "general" });
       toast.success("Message sent! We'll get back to you within 24 hours.");
       setFormData({
         firstName: "",
