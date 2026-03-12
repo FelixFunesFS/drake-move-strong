@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Send, X } from "lucide-react";
+import { trackMetaEvent } from "@/hooks/useMetaPixel";
 
 interface LeadCaptureFormProps {
   onSubmit: (data: { name: string; email: string; phone?: string }) => void;
