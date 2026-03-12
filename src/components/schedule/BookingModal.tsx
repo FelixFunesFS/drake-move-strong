@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Clock, ExternalLink, User } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { trackMetaEvent } from "@/hooks/useMetaPixel";
 
 interface BookingModalProps {
   isOpen: boolean;
