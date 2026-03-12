@@ -10,6 +10,7 @@ import { toast } from 'sonner';
 import { SEO } from '@/components/SEO';
 import { Loader2, ArrowLeft } from 'lucide-react';
 import { z } from 'zod';
+import { trackMetaEvent } from '@/hooks/useMetaPixel';
 
 const emailSchema = z.string().trim().email('Please enter a valid email address');
 const passwordSchema = z.string().min(6, 'Password must be at least 6 characters');
