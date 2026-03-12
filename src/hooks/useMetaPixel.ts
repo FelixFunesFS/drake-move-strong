@@ -49,3 +49,11 @@ export function trackMetaEvent(
     window.fbq("track", eventName, params);
   }
 }
+
+/** Fire InitiateCheckout when a user clicks any PunchPass checkout link */
+export function trackPunchPassClick(utmContent: string) {
+  trackMetaEvent("InitiateCheckout", {
+    content_name: utmContent,
+    content_category: "PunchPass Checkout",
+  });
+}
