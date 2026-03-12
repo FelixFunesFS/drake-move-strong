@@ -1,49 +1,24 @@
 
-# Plan: UTM Attribution Tracking — COMPLETED
 
-## What Was Done
+## Fix Meta Pixel Build Error + Add Missing Events
 
-Added `buildPunchPassUrl()` helper to `src/data/pricing.ts` and tagged every PunchPass checkout link across 13 files with unique `utm_content` values.
+### Build Error Fix
+Move the `<noscript><img>` fallback from `<head>` to `<body>` in `index.html`. Vite's parser rejects `<img>` inside `<noscript>` when it's in the document head.
 
-## UTM Content Tags Reference
+### Missing Events to Add
 
-| `utm_content` | Location |
+| Event | File | Trigger |
+|---|---|---|
+| `CompleteRegistration` | `src/pages/Auth.tsx` | After successful signup (before success toast) |
+| `Contact` | `src/components/Footer.tsx` | onClick for `mailto:` and `tel:` links |
+| `FindLocation` | `src/components/GoogleMapEmbed.tsx` | onClick when user interacts with map iframe wrapper |
+
+### Files Changed
+
+| File | Change |
 |---|---|
-| `nav-try-free` | Desktop nav "Try Free" button |
-| `nav-mobile-try-free` | Mobile nav "Try 3 Classes Free" |
-| `home-start-here-inline` | Home "Sign up" text link |
-| `home-start-here-cta` | Home "Claim Your 3 Free Classes" button |
-| `home-bottom-cta` | Home bottom CTA section |
-| `community-reasons-cta` | Community reasons section |
-| `pricing-intro-card` | Pricing intro card |
-| `pricing-foundation` | Pricing Foundation membership |
-| `pricing-unlimited` | Pricing Longevity Unlimited |
-| `pricing-remote-support` | Pricing Remote Support |
-| `pricing-flex-pack` | Pricing 10-Class Pack |
-| `pricing-not-sure-cta` | Pricing "Not sure" section |
-| `pricing-bottom-cta` | Pricing bottom CTA |
-| `schedule-top-cta` | Schedule top banner |
-| `schedule-bottom-cta` | Schedule bottom CTA |
-| `intro-nav-cta` | Try Free landing nav |
-| `intro-hero-cta` | Try Free landing hero |
-| `intro-bottom-cta` | Try Free landing bottom |
-| `intro-sticky-mobile` | Try Free sticky mobile bar |
-| `west-ashley-hero` | West Ashley hero CTA |
-| `west-ashley-bottom` | West Ashley bottom CTA |
-| `strength-hero` | Strength Training hero |
-| `strength-middle-cta` | Strength Training mid-page |
-| `strength-bottom-cta` | Strength Training bottom |
-| `low-impact-hero` | Low Impact hero |
-| `low-impact-middle-cta` | Low Impact mid-page |
-| `low-impact-bottom-cta` | Low Impact bottom |
-| `reset-week-hero` | Reset Week hero |
-| `reset-week-step-claim` | Reset Week step "Claim your pass" |
-| `reset-week-bottom-cta` | Reset Week bottom |
-| `insights-bottom-cta` | Insights bottom CTA |
-| `success-stories-bottom-cta` | Success Stories bottom |
+| `index.html` | Remove `<noscript>` line from head (line 15), add it to `<body>` after opening tag |
+| `src/pages/Auth.tsx` | Import `trackMetaEvent`, fire `CompleteRegistration` on successful signup |
+| `src/components/Footer.tsx` | Import `trackMetaEvent`, add onClick handlers to email/phone links |
+| `src/components/GoogleMapEmbed.tsx` | Import `trackMetaEvent`, fire `FindLocation` on map click |
 
-## External UTM Convention (for ads, not in code)
-
-- **Facebook Ads**: `?utm_source=facebook&utm_medium=cpc&utm_campaign=intro-offer&utm_content=ad-spring-2026`
-- **Google Business Profile**: `?utm_source=google&utm_medium=organic&utm_content=gbp-website-link`
-- **Instagram bio**: `?utm_source=instagram&utm_medium=social&utm_content=bio-link`
