@@ -3,6 +3,7 @@ import { Instagram, Facebook, Youtube } from "lucide-react";
 import drakeLogo from "@/assets/drake-fitness-logo2.png?format=webp&w=268";
 import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
 import MicroTrustBadges from "@/components/MicroTrustBadges";
+import { trackMetaEvent } from "@/hooks/useMetaPixel";
 
 const Footer = () => {
   return <footer className="bg-drake-dark text-white">
