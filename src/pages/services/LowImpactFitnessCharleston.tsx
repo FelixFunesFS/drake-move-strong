@@ -17,6 +17,7 @@ import {
   Ban, GraduationCap, Gauge, Heart, CalendarDays, Shield
 } from "lucide-react";
 import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
+import { trackPunchPassClick } from "@/hooks/useMetaPixel";
 
 import studioMobilityTraining from "@/assets/studio-mobility-training.jpg";
 import communityTurkishGetup from "@/assets/community-turkish-getup-class.jpg";
