@@ -172,7 +172,7 @@ const Pricing = () => {
                     Feel stronger, move better, and stay consistent week to week.
                   </p>
                   <Button asChild variant="outline" className="w-full">
-                    <a href={buildPunchPassUrl(PUNCHPASS_URLS.foundation, 'pricing-foundation', 'membership')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
+                    <a href={buildPunchPassUrl(PUNCHPASS_URLS.foundation, 'pricing-foundation', 'membership')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2" onClick={() => trackPunchPassClick('pricing-foundation')}>
                       Choose Foundation
                       <ExternalLink className="h-4 w-4" />
                     </a>
