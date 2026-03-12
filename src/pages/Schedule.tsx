@@ -94,7 +94,7 @@ const Schedule = () => {
                   </p>
                 </div>
                 <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark shrink-0 whitespace-nowrap">
-                  <a href={buildPunchPassUrl(INTRO_URL, 'schedule-top-cta')} target="_blank" rel="noopener noreferrer">Try 3 Classes Free</a>
+                  <a href={buildPunchPassUrl(INTRO_URL, 'schedule-top-cta')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('schedule-top-cta')}>Try 3 Classes Free</a>
                 </Button>
               </div>
             </AnimatedSection>

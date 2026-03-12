@@ -102,7 +102,7 @@ const Welcome = () => {
                     ))}
                   </div>
                   <Button asChild size="lg" className="w-full mt-6">
-                    <a href={PUNCHPASS_URLS.schedule} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                    <a href={PUNCHPASS_URLS.schedule} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2" onClick={() => trackPunchPassClick('welcome-book-first-class')}>
                       Book Your First Class
                       <ArrowRight className="w-4 h-4" />
                     </a>
