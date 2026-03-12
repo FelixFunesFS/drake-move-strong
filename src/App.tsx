@@ -14,6 +14,7 @@ import Footer from "./components/Footer";
 import AnnouncementBanner from "./components/AnnouncementBanner";
 import { TodayClassesBanner } from "./components/schedule/TodayClassesBanner";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
+import { useMetaPixel } from "@/hooks/useMetaPixel";
 import { cn } from "@/lib/utils";
 
 // Create QueryClient outside component to avoid recreation
