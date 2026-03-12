@@ -133,7 +133,35 @@ ${ctaButton("Book Your First Class")}
 <p style="font-size:14px;">You've got this,<br/><strong style="color:${DARK};">David @ Drake Fitness</strong></p>
     `, "No gear required. No experience needed. Just you."),
   },
-  // 3. Day 5 — Coach authority
+  // 3. Day 3 — Recovery & reassurance
+  {
+    subject: "Feeling sore? Good — here's what to do next",
+    previewText: "Here's exactly what to do before your next class.",
+    sequence: "New Lead",
+    html: wrap(`
+${sectionHeading("How's the Body Feeling?")}
+${emailImage("david-coaching-form.jpg", "David Drake coaching a member on proper form")}
+<p style="color:${DARK};font-size:18px;margin:0 0 16px;">If you're a little sore today — good. That means your body is responding.</p>
+<p>Soreness after your first class is completely normal, whether you've trained before or not. It doesn't mean you overdid it. It means you challenged muscles in a new way — and that's exactly how you get stronger.</p>
+<p>Here's your game plan for the next 48 hours:</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0;">
+<tr><td style="padding:8px 0;"><strong style="color:${DARK};">💧 Hydrate</strong> — more water than usual. Your muscles need it to recover.</td></tr>
+<tr><td style="padding:8px 0;"><strong style="color:${DARK};">🥗 Eat whole foods</strong> — protein, vegetables, good carbs. Skip the junk today.</td></tr>
+<tr><td style="padding:8px 0;"><strong style="color:${DARK};">🚶 Walk 15 minutes</strong> — light movement flushes out the stiffness faster than rest.</td></tr>
+<tr><td style="padding:8px 0;"><strong style="color:${DARK};">😴 Sleep</strong> — this is where your body actually rebuilds. Prioritize it tonight.</td></tr>
+</table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:24px 0;border:1px solid ${GOLD};border-radius:8px;overflow:hidden;">
+<tr><td style="padding:16px 20px;">
+<p style="margin:0 0 8px;"><strong style="color:${DARK};">🔑 Coach's Tip</strong></p>
+<p style="margin:0;font-size:14px;">Try this before bed tonight: <strong style="color:${DARK};">2 minutes of slow diaphragmatic breathing.</strong> Breathe in through your nose for 4 counts, expand your belly, exhale for 6. It's how we start every class at Drake Fitness — and it's one of the most powerful recovery tools there is.</p>
+</td></tr>
+</table>
+<p><strong style="color:${DARK};">One more thing: class 2 is always easier than class 1.</strong> Your body adapts fast. By your next session, you'll know the flow, recognize the movements, and feel more confident. The hardest part is already behind you.</p>
+${ctaButton("View Class Schedule")}
+<p style="font-size:14px;">Recover well,<br/><strong style="color:${DARK};">David Drake</strong><br/>Head Coach, Drake Fitness</p>
+    `, "Here's exactly what to do before your next class."),
+  },
+  // 4. Day 5 — Coach authority
   {
     subject: "Meet David — 25 years of coaching at every level",
     previewText: "I've spent 25 years coaching at every level. Here's why.",

@@ -358,7 +358,7 @@ export default function EmailSequences() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
-            { label: 'New Lead Emails', value: '7', sub: '30-day sequence' },
+            { label: 'New Lead Emails', value: '8', sub: '30-day sequence' },
             { label: 'Win-Back Emails', value: '5', sub: '35-day sequence' },
             { label: 'Conversion Emails', value: '3', sub: 'Across both tracks' },
             { label: 'Personal Touches', value: '3', sub: 'Plain-text style' },
