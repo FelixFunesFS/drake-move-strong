@@ -58,7 +58,7 @@ const InsightPost = () => {
         title={post.title}
         seoTitle={post.seoTitle}
         description={post.excerpt}
-        canonical={`https://drake.fitness/insights/${post.slug}`}
+        canonical={`https://www.drake.fitness/insights/${post.slug}`}
         ogType="article"
         ogImage={post.ogImage}
         article={{ publishedAt: post.publishedAt, author: author.name }}
