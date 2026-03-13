@@ -238,7 +238,7 @@ ${emailImage("group-kettlebell-training.jpg", "Group kettlebell training class a
 <p style="margin:0;font-size:14px;">✓ Yoga discount &bull; ✓ Cancel anytime</p>
 </td></tr>
 </table>
-${ctaButton("Become a Member", "https://drake.fitness/pricing")}
+${ctaButton("Become a Member", "https://www.drake.fitness/pricing")}
 <p style="font-size:14px;">Questions? Just reply to this email.<br/><strong style="color:${DARK};">— David Drake</strong></p>
     `, "You've put in the work. Let's keep the momentum going."),
   },
