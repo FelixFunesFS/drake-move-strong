@@ -1,49 +1,29 @@
 
-# Plan: UTM Attribution Tracking — COMPLETED
+# Plan: Domain Standardization + Welcome Page SEO — COMPLETED
 
 ## What Was Done
 
-Added `buildPunchPassUrl()` helper to `src/data/pricing.ts` and tagged every PunchPass checkout link across 13 files with unique `utm_content` values.
+Standardized all URLs from `https://drake.fitness` → `https://www.drake.fitness` across 31 files, added noindex to Welcome page, and updated robots.txt.
 
-## UTM Content Tags Reference
+### Files Updated
 
-| `utm_content` | Location |
-|---|---|
-| `nav-try-free` | Desktop nav "Try Free" button |
-| `nav-mobile-try-free` | Mobile nav "Try 3 Classes Free" |
-| `home-start-here-inline` | Home "Sign up" text link |
-| `home-start-here-cta` | Home "Claim Your 3 Free Classes" button |
-| `home-bottom-cta` | Home bottom CTA section |
-| `community-reasons-cta` | Community reasons section |
-| `pricing-intro-card` | Pricing intro card |
-| `pricing-foundation` | Pricing Foundation membership |
-| `pricing-unlimited` | Pricing Longevity Unlimited |
-| `pricing-remote-support` | Pricing Remote Support |
-| `pricing-flex-pack` | Pricing 10-Class Pack |
-| `pricing-not-sure-cta` | Pricing "Not sure" section |
-| `pricing-bottom-cta` | Pricing bottom CTA |
-| `schedule-top-cta` | Schedule top banner |
-| `schedule-bottom-cta` | Schedule bottom CTA |
-| `intro-nav-cta` | Try Free landing nav |
-| `intro-hero-cta` | Try Free landing hero |
-| `intro-bottom-cta` | Try Free landing bottom |
-| `intro-sticky-mobile` | Try Free sticky mobile bar |
-| `west-ashley-hero` | West Ashley hero CTA |
-| `west-ashley-bottom` | West Ashley bottom CTA |
-| `strength-hero` | Strength Training hero |
-| `strength-middle-cta` | Strength Training mid-page |
-| `strength-bottom-cta` | Strength Training bottom |
-| `low-impact-hero` | Low Impact hero |
-| `low-impact-middle-cta` | Low Impact mid-page |
-| `low-impact-bottom-cta` | Low Impact bottom |
-| `reset-week-hero` | Reset Week hero |
-| `reset-week-step-claim` | Reset Week step "Claim your pass" |
-| `reset-week-bottom-cta` | Reset Week bottom |
-| `insights-bottom-cta` | Insights bottom CTA |
-| `success-stories-bottom-cta` | Success Stories bottom |
+| Category | Files | Change |
+|----------|-------|--------|
+| **SEO Core** | `SEO.tsx`, `StructuredData.tsx` | Default canonical, ogImage, toAbsoluteUrl(), business schema |
+| **Sitemap & Robots** | `sitemap.xml`, `robots.txt` | All URLs → www; added `Disallow: /welcome` |
+| **Welcome Page** | `Welcome.tsx` | Added `noindex, nofollow` meta tag + www canonical |
+| **Public Pages** | Home, Pricing, Schedule, Contact, About, Coaching, FAQ, Insights, SuccessStories, Ruckathon, NewYearChallenge, ResetWeekAlt | canonical → www |
+| **Service Pages** | ResetWeekCharleston, StrengthTraining, LowImpact, WestAshley | canonical → www |
+| **Blog** | InsightPost.tsx | canonical, articleSchema URL, social share URLs |
+| **Auth/Member** | Auth, Dashboard, Profile, MyBookings | canonical → www |
+| **Chatbot** | ChatMessage.tsx, chat-assistant edge function | Friendly link labels + system prompt URLs |
+| **Email** | emailTemplates.ts, send-nurture-previews | CTA button URLs |
+| **OG Redirect** | og-redirect edge function | SITE_URL constant |
 
-## External UTM Convention (for ads, not in code)
+### Google Search Console Checklist (Post-Deploy)
 
-- **Facebook Ads**: `?utm_source=facebook&utm_medium=cpc&utm_campaign=intro-offer&utm_content=ad-spring-2026`
-- **Google Business Profile**: `?utm_source=google&utm_medium=organic&utm_content=gbp-website-link`
-- **Instagram bio**: `?utm_source=instagram&utm_medium=social&utm_content=bio-link`
+1. Verify `www.drake.fitness` property in Search Console
+2. Submit updated sitemap: `https://www.drake.fitness/sitemap.xml`
+3. Use URL Inspection on top 5 pages to request re-indexing
+4. Update Google Business Profile website URL to `https://www.drake.fitness`
+5. Confirm non-www redirects to www via 301 in Lovable domain settings
