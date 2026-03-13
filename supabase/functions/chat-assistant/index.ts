@@ -146,7 +146,7 @@ CORE INFORMATION:
 - Location: 2 Avondale Ave, Charleston, SC 29407
 - Phone: (843) 817-5420
 - Email: david@drake.fitness
-- Website: https://drake.fitness (ALWAYS use this as the primary website URL)
+- Website: https://www.drake.fitness (ALWAYS use this as the primary website URL)
 - Instagram: @drakefitnesschs
 - Facebook: @drakefitnessschs
 
