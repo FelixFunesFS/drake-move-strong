@@ -176,7 +176,7 @@ BOOKING & SCHEDULING:
 - Book 1:1 coaching consultation: https://www.drake.fitness/contact or call (843) 817-5420
 
 URL PREFERENCES:
-- For general website info, use https://drake.fitness URLs (e.g., https://drake.fitness/pricing, https://drake.fitness/classes)
+- For general website info, use https://www.drake.fitness URLs (e.g., https://www.drake.fitness/pricing, https://www.drake.fitness/classes)
 - For booking/purchasing actions, use the specific PunchPass URLs
 - Always include full URLs so they display as clickable links
 

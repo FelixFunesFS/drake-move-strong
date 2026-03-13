@@ -12,8 +12,11 @@ const Welcome = () => {
       <SEO
         title="Welcome to Drake Fitness | Book Your First Class"
         description="Your 3-Class Intro pass is active! Here's how to book your first class and what to expect at Drake Fitness."
-        canonical="https://drake.fitness/welcome"
+        canonical="https://www.drake.fitness/welcome"
       />
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
 
       <main>
         <section className="pt-32 pb-16 bg-background">

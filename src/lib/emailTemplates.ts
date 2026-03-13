@@ -200,7 +200,7 @@ ${emailImage("studio-full-view.jpg", "Full view of Drake Fitness studio")}
 <li style="margin-bottom:8px;">A community that actually knows your name</li>
 <li style="margin-bottom:8px;">Discounted yoga with Misty Lister</li>
 </ul>
-${ctaButton("View Membership Options", "https://drake.fitness/pricing")}
+${ctaButton("View Membership Options", "https://www.drake.fitness/pricing")}
 <p>No pressure. The door's always open.</p>
 <p style="font-size:14px;">— David &amp; the Drake Fitness crew</p>
   `, "Your 3-class pass expires soon. Here's what members get next."),
