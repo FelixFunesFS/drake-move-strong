@@ -122,7 +122,7 @@ const InsightPost = () => {
             <div className="flex items-center gap-3">
               <span className="text-sm text-muted-foreground font-medium hidden sm:inline">Share:</span>
               <SocialShareButtons 
-                url={`https://drake.fitness/insights/${post.slug}`}
+                url={`https://www.drake.fitness/insights/${post.slug}`}
                 title={post.title}
                 excerpt={post.excerpt}
                 slug={post.slug}
