@@ -73,7 +73,7 @@ ${body}
 </html>`;
 }
 
-function ctaButton(text: string, url = "https://drake.fitness/schedule"): string {
+function ctaButton(text: string, url = "https://www.drake.fitness/schedule"): string {
   return `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:24px 0;">
 <tr><td style="background:${GOLD};border-radius:12px;padding:14px 32px;text-align:center;">
 <a href="${url}" style="font-family:'Oswald',Arial,sans-serif;font-size:16px;font-weight:700;color:${DARK};text-decoration:none;letter-spacing:1px;text-transform:uppercase;">${text}</a>
