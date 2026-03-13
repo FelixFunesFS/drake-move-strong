@@ -137,7 +137,7 @@ export default function Auth() {
       <SEO 
         title="Member Login" 
         description="Sign in to your Drake Fitness member account to book classes, view your schedule, and track your progress."
-        canonical="https://drake.fitness/auth"
+        canonical="https://www.drake.fitness/auth"
       />
       
       <main className="min-h-screen flex flex-col items-center justify-center bg-muted py-12 px-4">

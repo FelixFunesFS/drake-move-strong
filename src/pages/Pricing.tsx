@@ -36,7 +36,7 @@ const Pricing = () => {
       <SEO
         title="Gym Membership Charleston | Try Free | Simple Plans 2026"
         description="Simple, transparent membership options. Try 3 classes free. Foundation $200/mo, Longevity Unlimited $225/mo. No contracts, real results at Drake Fitness Charleston."
-        canonical="https://drake.fitness/pricing"
+        canonical="https://www.drake.fitness/pricing"
         
       />
 

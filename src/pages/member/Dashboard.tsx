@@ -14,7 +14,7 @@ export default function MemberDashboard() {
       <SEO 
         title="Member Dashboard" 
         description="View your upcoming classes, membership status, and class credits."
-        canonical="https://drake.fitness/member/dashboard"
+        canonical="https://www.drake.fitness/member/dashboard"
       />
       
       <MemberLayout>

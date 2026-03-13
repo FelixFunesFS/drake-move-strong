@@ -306,7 +306,7 @@ const InsightPost = () => {
             <div className="absolute bottom-16 right-0 bg-card border border-border rounded-xl p-4 shadow-2xl min-w-[200px]">
               <p className="text-sm text-muted-foreground mb-3 font-medium">Share this article</p>
               <SocialShareButtons 
-                url={`https://drake.fitness/insights/${post.slug}`}
+                url={`https://www.drake.fitness/insights/${post.slug}`}
                 title={post.title}
                 excerpt={post.excerpt}
                 slug={post.slug}

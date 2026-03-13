@@ -119,7 +119,7 @@ export default function MemberProfile() {
       <SEO 
         title="Edit Profile" 
         description="Update your Drake Fitness member profile, emergency contact, and health information."
-        canonical="https://drake.fitness/member/profile"
+        canonical="https://www.drake.fitness/member/profile"
       />
       
       <MemberLayout>

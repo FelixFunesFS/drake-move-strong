@@ -88,7 +88,7 @@ const Contact = () => {
         title="Contact Drake Fitness Charleston | Start Today"
         description="Questions about getting started? Reach Drake Fitness in West Ashley — call, text, or drop in. 3 free classes, no commitment."
         
-        canonical="https://drake.fitness/contact"
+        canonical="https://www.drake.fitness/contact"
       />
       
       <main>

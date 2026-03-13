@@ -22,8 +22,8 @@ export function SEO({
   title,
   seoTitle,
   description,
-  canonical = 'https://drake.fitness',
-  ogImage = 'https://drake.fitness/og-image.png',
+  canonical = 'https://www.drake.fitness',
+  ogImage = 'https://www.drake.fitness/og-image.png',
   ogType = 'website',
   article,
 }: SEOProps) {

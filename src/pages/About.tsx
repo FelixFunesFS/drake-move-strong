@@ -36,7 +36,7 @@ const About = () => {
         title="Meet Our Expert Coaches | 25+ Years | Drake Fitness"
         description="David Drake: 25+ years coaching real people through pain, injury, and plateaus. Meet the team behind Charleston's most trusted small gym."
         
-        canonical="https://drake.fitness/about"
+        canonical="https://www.drake.fitness/about"
       />
       
       <main>

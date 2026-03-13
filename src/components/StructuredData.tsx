@@ -101,7 +101,7 @@ export const buildArticleSchema = (article: {
     "name": "Drake Fitness",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://drake.fitness/logo.png"
+      "url": "https://www.drake.fitness/logo.png"
     }
   },
   "datePublished": article.publishedAt,

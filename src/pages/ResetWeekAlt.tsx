@@ -148,7 +148,7 @@ const ResetWeekAlt = () => {
       <SEO
         title="3-Class Intro Experience | Try Us Free | Drake Fitness Charleston"
         description="Move better, feel stronger, stay pain-free. 3 free classes over 30 days — a safe, guided intro for people restarting fitness. Strength & Mobility classes (KB Strong): Mon/Wed/Fri 8am & 11am, Thu 6pm."
-        canonical="https://drake.fitness/reset"
+        canonical="https://www.drake.fitness/reset"
       />
 
       {/* Minimal Header */}

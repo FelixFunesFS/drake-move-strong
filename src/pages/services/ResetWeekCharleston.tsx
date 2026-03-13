@@ -72,7 +72,7 @@ export default function ResetWeekCharleston() {
       <SEO
         title="3-Class Intro Experience — Try Strength Training Free | Charleston, SC"
         description="Strength & mobility training — scaled to your level. Try 3 free classes at Drake Fitness in Charleston. No card required."
-        canonical="https://drake.fitness/try-free-charleston"
+        canonical="https://www.drake.fitness/try-free-charleston"
       />
       <StructuredData data={serviceSchema} />
 
