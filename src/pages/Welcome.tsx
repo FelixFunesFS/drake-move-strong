@@ -1,5 +1,6 @@
 import { SEO } from "@/components/SEO";
 import { Helmet } from "react-helmet";
+import { Button } from "@/components/ui/button";
 import { CheckCircle2, Calendar, Clock, MapPin, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import AnimatedSection from "@/components/AnimatedSection";
