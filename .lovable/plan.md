@@ -1,49 +1,47 @@
 
-# Plan: UTM Attribution Tracking — COMPLETED
 
-## What Was Done
+## Domain Standardization + Welcome Page SEO Fix
 
-Added `buildPunchPassUrl()` helper to `src/data/pricing.ts` and tagged every PunchPass checkout link across 13 files with unique `utm_content` values.
+### Two Issues to Address
 
-## UTM Content Tags Reference
+**1. Welcome page should not be publicly indexed**
 
-| `utm_content` | Location |
-|---|---|
-| `nav-try-free` | Desktop nav "Try Free" button |
-| `nav-mobile-try-free` | Mobile nav "Try 3 Classes Free" |
-| `home-start-here-inline` | Home "Sign up" text link |
-| `home-start-here-cta` | Home "Claim Your 3 Free Classes" button |
-| `home-bottom-cta` | Home bottom CTA section |
-| `community-reasons-cta` | Community reasons section |
-| `pricing-intro-card` | Pricing intro card |
-| `pricing-foundation` | Pricing Foundation membership |
-| `pricing-unlimited` | Pricing Longevity Unlimited |
-| `pricing-remote-support` | Pricing Remote Support |
-| `pricing-flex-pack` | Pricing 10-Class Pack |
-| `pricing-not-sure-cta` | Pricing "Not sure" section |
-| `pricing-bottom-cta` | Pricing bottom CTA |
-| `schedule-top-cta` | Schedule top banner |
-| `schedule-bottom-cta` | Schedule bottom CTA |
-| `intro-nav-cta` | Try Free landing nav |
-| `intro-hero-cta` | Try Free landing hero |
-| `intro-bottom-cta` | Try Free landing bottom |
-| `intro-sticky-mobile` | Try Free sticky mobile bar |
-| `west-ashley-hero` | West Ashley hero CTA |
-| `west-ashley-bottom` | West Ashley bottom CTA |
-| `strength-hero` | Strength Training hero |
-| `strength-middle-cta` | Strength Training mid-page |
-| `strength-bottom-cta` | Strength Training bottom |
-| `low-impact-hero` | Low Impact hero |
-| `low-impact-middle-cta` | Low Impact mid-page |
-| `low-impact-bottom-cta` | Low Impact bottom |
-| `reset-week-hero` | Reset Week hero |
-| `reset-week-step-claim` | Reset Week step "Claim your pass" |
-| `reset-week-bottom-cta` | Reset Week bottom |
-| `insights-bottom-cta` | Insights bottom CTA |
-| `success-stories-bottom-cta` | Success Stories bottom |
+`/welcome` is a post-purchase redirect from PunchPass — not a page people should find via Google. It needs:
+- `noindex, nofollow` meta tag added to the page via `react-helmet`
+- **Not** added to the sitemap (it currently isn't — good)
+- Added to `robots.txt` Disallow list alongside `/auth`
+- No changes needed to the route itself — it should remain publicly accessible (no auth gate) since PunchPass redirects users there who may not have site accounts
 
-## External UTM Convention (for ads, not in code)
+**2. All URLs must use `www.drake.fitness`**
 
-- **Facebook Ads**: `?utm_source=facebook&utm_medium=cpc&utm_campaign=intro-offer&utm_content=ad-spring-2026`
-- **Google Business Profile**: `?utm_source=google&utm_medium=organic&utm_content=gbp-website-link`
-- **Instagram bio**: `?utm_source=instagram&utm_medium=social&utm_content=bio-link`
+Every reference currently uses `https://drake.fitness`. Since `www.drake.fitness` is the primary domain, update across:
+
+| File | Change |
+|------|--------|
+| `public/sitemap.xml` | All ~30 `<loc>` URLs → `https://www.drake.fitness/...` |
+| `public/robots.txt` | Sitemap line → `https://www.drake.fitness/sitemap.xml` |
+| `src/components/SEO.tsx` | Default canonical, `toAbsoluteUrl()`, default ogImage → `www.drake.fitness` |
+| `src/components/StructuredData.tsx` | Business schema URLs |
+| `src/pages/Welcome.tsx` | Add `noindex` meta + update canonical to `www` |
+| ~20 page files | Update `canonical` prop values to `www.drake.fitness` |
+
+### Welcome Page Specific Changes
+
+In `src/pages/Welcome.tsx`, add a `noindex` directive:
+```tsx
+<Helmet>
+  <meta name="robots" content="noindex, nofollow" />
+</Helmet>
+```
+
+And update the canonical to `https://www.drake.fitness/welcome`.
+
+In `public/robots.txt`, add:
+```
+Disallow: /welcome
+```
+
+### Implementation
+
+This is a bulk find-and-replace of `https://drake.fitness` → `https://www.drake.fitness` across all affected files, plus the `noindex` addition for the Welcome page and robots.txt update.
+
