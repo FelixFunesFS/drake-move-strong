@@ -46,7 +46,7 @@ const InsightPost = () => {
     author: author.name,
     publishedAt: post.publishedAt,
     thumbnail: post.thumbnail,
-    url: `https://drake.fitness/insights/${post.slug}`
+    url: `https://www.drake.fitness/insights/${post.slug}`
   });
 
   // Get the custom content component for this article
