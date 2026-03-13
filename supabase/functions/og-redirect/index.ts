@@ -6,7 +6,7 @@ const corsHeaders = {
 };
 
 const BLOG_IMAGE_BASE = 'https://ktktwcbvambkcrpfflxi.supabase.co/storage/v1/object/public/blog-images';
-const SITE_URL = 'https://drake.fitness';
+const SITE_URL = 'https://www.drake.fitness';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 
 // Static OG metadata for non-blog pages

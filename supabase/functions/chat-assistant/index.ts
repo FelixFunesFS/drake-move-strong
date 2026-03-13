@@ -146,7 +146,7 @@ CORE INFORMATION:
 - Location: 2 Avondale Ave, Charleston, SC 29407
 - Phone: (843) 817-5420
 - Email: david@drake.fitness
-- Website: https://drake.fitness (ALWAYS use this as the primary website URL)
+- Website: https://www.drake.fitness (ALWAYS use this as the primary website URL)
 - Instagram: @drakefitnesschs
 - Facebook: @drakefitnessschs
 
@@ -173,10 +173,10 @@ BOOKING & SCHEDULING:
 - Foundation Membership ($200/mo): https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784
 - Longevity Unlimited ($225/mo): https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211
 - Remote Support Add-on: https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776
-- Book 1:1 coaching consultation: https://drake.fitness/contact or call (843) 817-5420
+- Book 1:1 coaching consultation: https://www.drake.fitness/contact or call (843) 817-5420
 
 URL PREFERENCES:
-- For general website info, use https://drake.fitness URLs (e.g., https://drake.fitness/pricing, https://drake.fitness/classes)
+- For general website info, use https://www.drake.fitness URLs (e.g., https://www.drake.fitness/pricing, https://www.drake.fitness/classes)
 - For booking/purchasing actions, use the specific PunchPass URLs
 - Always include full URLs so they display as clickable links
 

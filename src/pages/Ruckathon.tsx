@@ -114,7 +114,7 @@ const Ruckathon = () => {
       <SEO
         title="Ruckathon Prep Class | Free for Warrior Surf 2026 Participants"
         description="Get ruck-ready with Drake Fitness. Free Ruckathon Prep Class for registered Warrior Surf 2026 participants. Mobility, coached ruck, and gear tips."
-        canonical="https://drake.fitness/ruckathon"
+        canonical="https://www.drake.fitness/ruckathon"
       />
 
       {/* Minimal Header */}

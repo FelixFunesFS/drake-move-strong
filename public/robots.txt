@@ -4,6 +4,7 @@ Disallow: /member/
 Disallow: /admin/
 Disallow: /coach/
 Disallow: /auth
+Disallow: /welcome
 
 User-agent: Bingbot
 Allow: /
@@ -11,6 +12,7 @@ Disallow: /member/
 Disallow: /admin/
 Disallow: /coach/
 Disallow: /auth
+Disallow: /welcome
 
 User-agent: Twitterbot
 Allow: /
@@ -24,5 +26,6 @@ Disallow: /member/
 Disallow: /admin/
 Disallow: /coach/
 Disallow: /auth
+Disallow: /welcome
 
-Sitemap: https://drake.fitness/sitemap.xml
+Sitemap: https://www.drake.fitness/sitemap.xml

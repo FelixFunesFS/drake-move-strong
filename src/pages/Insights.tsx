@@ -47,7 +47,7 @@ const Insights = () => {
       <SEO
         title="Drake Fitness Blog | Training Insights & Education"
         description="Evidence-based insights on movement, strength training, and sustainable fitness for real people. Learn from expert coaches at Drake Fitness in Charleston."
-        canonical="https://drake.fitness/insights"
+        canonical="https://www.drake.fitness/insights"
       />
 
       {/* Hero Section */}

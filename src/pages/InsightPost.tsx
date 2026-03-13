@@ -46,7 +46,7 @@ const InsightPost = () => {
     author: author.name,
     publishedAt: post.publishedAt,
     thumbnail: post.thumbnail,
-    url: `https://drake.fitness/insights/${post.slug}`
+    url: `https://www.drake.fitness/insights/${post.slug}`
   });
 
   // Get the custom content component for this article
@@ -58,7 +58,7 @@ const InsightPost = () => {
         title={post.title}
         seoTitle={post.seoTitle}
         description={post.excerpt}
-        canonical={`https://drake.fitness/insights/${post.slug}`}
+        canonical={`https://www.drake.fitness/insights/${post.slug}`}
         ogType="article"
         ogImage={post.ogImage}
         article={{ publishedAt: post.publishedAt, author: author.name }}
@@ -122,7 +122,7 @@ const InsightPost = () => {
             <div className="flex items-center gap-3">
               <span className="text-sm text-muted-foreground font-medium hidden sm:inline">Share:</span>
               <SocialShareButtons 
-                url={`https://drake.fitness/insights/${post.slug}`}
+                url={`https://www.drake.fitness/insights/${post.slug}`}
                 title={post.title}
                 excerpt={post.excerpt}
                 slug={post.slug}
@@ -197,7 +197,7 @@ const InsightPost = () => {
           <div className="mt-8 pt-8 border-t border-border">
             <p className="text-sm text-muted-foreground mb-4">Share this article:</p>
             <SocialShareButtons 
-              url={`https://drake.fitness/insights/${post.slug}`}
+              url={`https://www.drake.fitness/insights/${post.slug}`}
               title={post.title}
               excerpt={post.excerpt}
               slug={post.slug}
@@ -306,7 +306,7 @@ const InsightPost = () => {
             <div className="absolute bottom-16 right-0 bg-card border border-border rounded-xl p-4 shadow-2xl min-w-[200px]">
               <p className="text-sm text-muted-foreground mb-3 font-medium">Share this article</p>
               <SocialShareButtons 
-                url={`https://drake.fitness/insights/${post.slug}`}
+                url={`https://www.drake.fitness/insights/${post.slug}`}
                 title={post.title}
                 excerpt={post.excerpt}
                 slug={post.slug}

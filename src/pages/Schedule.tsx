@@ -61,7 +61,7 @@ const Schedule = () => {
         title="Group Fitness Classes Charleston | Weekly Schedule | Drake Fitness"
         description="Morning & evening classes, Mon–Sat. Small groups, expert coaching. Book your spot at Drake Fitness in Charleston — try 3 classes free."
         
-        canonical="https://drake.fitness/schedule"
+        canonical="https://www.drake.fitness/schedule"
       />
       <StructuredData data={faqSchema} />
       

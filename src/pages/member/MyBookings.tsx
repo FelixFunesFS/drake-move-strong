@@ -11,7 +11,7 @@ export default function MyBookings() {
       <SEO 
         title="My Bookings" 
         description="View and manage your upcoming class reservations at Drake Fitness."
-        canonical="https://drake.fitness/member/bookings"
+        canonical="https://www.drake.fitness/member/bookings"
       />
       
       <MemberLayout>

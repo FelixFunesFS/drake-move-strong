@@ -63,7 +63,7 @@ ${body}
 </html>`;
 }
 
-function ctaButton(text: string, url = "https://drake.fitness/schedule"): string {
+function ctaButton(text: string, url = "https://www.drake.fitness/schedule"): string {
   return `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:24px 0;">
 <tr><td style="background:${GOLD};border-radius:12px;padding:14px 32px;text-align:center;">
 <a href="${url}" style="font-family:'Oswald',Arial,sans-serif;font-size:16px;font-weight:700;color:${DARK};text-decoration:none;letter-spacing:1px;text-transform:uppercase;">${text}</a>
@@ -136,7 +136,7 @@ ${emailImage("david-coaching-form.jpg", "David Drake coaching a member on proper
 <p>I've spent every year since building a different kind of space — one where <strong style="color:${DARK};">a 65-year-old grandmother trains next to a 30-year-old firefighter</strong>, and neither feels out of place.</p>
 <p>My philosophy is simple: <strong style="color:${DARK};">strength that serves your life — whether that's playing with your grandkids or competing in your next event.</strong> Kettlebells, bodyweight, mobility work — tools that build bodies that last decades and perform when it matters.</p>
 <p>I don't count reps to rush through them. I watch how you move, and I coach you to move better. That's it.</p>
-${ctaButton("See Our Classes", "https://drake.fitness/classes")}
+${ctaButton("See Our Classes", "https://www.drake.fitness/classes")}
 <p style="font-size:14px;">— David Drake<br/>Head Coach</p>
   `, "I've spent 25 years coaching at every level. Here's why."),
 
@@ -185,7 +185,7 @@ ${emailImage("group-kettlebell-training.jpg", "Group kettlebell training class a
 <p style="margin:0;font-size:14px;">✓ Yoga discount &bull; ✓ Cancel anytime</p>
 </td></tr>
 </table>
-${ctaButton("Become a Member", "https://drake.fitness/pricing")}
+${ctaButton("Become a Member", "https://www.drake.fitness/pricing")}
 <p style="font-size:14px;">Questions? Just reply to this email.<br/><strong style="color:${DARK};">— David Drake</strong></p>
   `, "You've put in the work. Let's keep the momentum going."),
 
@@ -200,7 +200,7 @@ ${emailImage("studio-full-view.jpg", "Full view of Drake Fitness studio")}
 <li style="margin-bottom:8px;">A community that actually knows your name</li>
 <li style="margin-bottom:8px;">Discounted yoga with Misty Lister</li>
 </ul>
-${ctaButton("View Membership Options", "https://drake.fitness/pricing")}
+${ctaButton("View Membership Options", "https://www.drake.fitness/pricing")}
 <p>No pressure. The door's always open.</p>
 <p style="font-size:14px;">— David &amp; the Drake Fitness crew</p>
   `, "Your 3-class pass expires soon. Here's what members get next."),

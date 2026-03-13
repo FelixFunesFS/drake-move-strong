@@ -53,7 +53,7 @@ export default function WestAshleyFitness() {
       <SEO
         title="Strength & Mobility Training in West Ashley | Avondale | Drake Fitness"
         description="West Ashley's coach-led gym in Avondale. Strength & mobility training for adults — small groups, real coaching. Try 3 classes free."
-        canonical="https://drake.fitness/west-ashley-fitness" />
+        canonical="https://www.drake.fitness/west-ashley-fitness" />
       
       <StructuredData data={serviceSchema} />
 

@@ -27,14 +27,14 @@ const friendlyLabels: Record<string, string> = {
   'https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776': '🌐 Get Remote Support',
   
   // Drake Fitness website links
-  'https://drake.fitness': '🏠 Drake Fitness',
-  'https://drake.fitness/pricing': '💰 View Pricing',
-  'https://drake.fitness/schedule': '📅 See Schedule',
-  'https://drake.fitness/contact': '📞 Contact Us',
-  'https://drake.fitness/try-free-charleston': '🎁 3-Class Intro Experience',
-  'https://drake.fitness/about': '👋 About Us',
-  'https://drake.fitness/coaching': '🎯 Personal Coaching',
-  'https://drake.fitness/consultation': '📋 Book Consultation',
+  'https://www.drake.fitness': '🏠 Drake Fitness',
+  'https://www.drake.fitness/pricing': '💰 View Pricing',
+  'https://www.drake.fitness/schedule': '📅 See Schedule',
+  'https://www.drake.fitness/contact': '📞 Contact Us',
+  'https://www.drake.fitness/try-free-charleston': '🎁 3-Class Intro Experience',
+  'https://www.drake.fitness/about': '👋 About Us',
+  'https://www.drake.fitness/coaching': '🎯 Personal Coaching',
+  'https://www.drake.fitness/consultation': '📋 Book Consultation',
 };
 
 const getFriendlyLabel = (url: string): string => {

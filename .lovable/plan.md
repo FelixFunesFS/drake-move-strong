@@ -1,47 +1,29 @@
 
+# Plan: Domain Standardization + Welcome Page SEO — COMPLETED
 
-## Domain Standardization + Welcome Page SEO Fix
+## What Was Done
 
-### Two Issues to Address
+Standardized all URLs from `https://drake.fitness` → `https://www.drake.fitness` across 31 files, added noindex to Welcome page, and updated robots.txt.
 
-**1. Welcome page should not be publicly indexed**
+### Files Updated
 
-`/welcome` is a post-purchase redirect from PunchPass — not a page people should find via Google. It needs:
-- `noindex, nofollow` meta tag added to the page via `react-helmet`
-- **Not** added to the sitemap (it currently isn't — good)
-- Added to `robots.txt` Disallow list alongside `/auth`
-- No changes needed to the route itself — it should remain publicly accessible (no auth gate) since PunchPass redirects users there who may not have site accounts
+| Category | Files | Change |
+|----------|-------|--------|
+| **SEO Core** | `SEO.tsx`, `StructuredData.tsx` | Default canonical, ogImage, toAbsoluteUrl(), business schema |
+| **Sitemap & Robots** | `sitemap.xml`, `robots.txt` | All URLs → www; added `Disallow: /welcome` |
+| **Welcome Page** | `Welcome.tsx` | Added `noindex, nofollow` meta tag + www canonical |
+| **Public Pages** | Home, Pricing, Schedule, Contact, About, Coaching, FAQ, Insights, SuccessStories, Ruckathon, NewYearChallenge, ResetWeekAlt | canonical → www |
+| **Service Pages** | ResetWeekCharleston, StrengthTraining, LowImpact, WestAshley | canonical → www |
+| **Blog** | InsightPost.tsx | canonical, articleSchema URL, social share URLs |
+| **Auth/Member** | Auth, Dashboard, Profile, MyBookings | canonical → www |
+| **Chatbot** | ChatMessage.tsx, chat-assistant edge function | Friendly link labels + system prompt URLs |
+| **Email** | emailTemplates.ts, send-nurture-previews | CTA button URLs |
+| **OG Redirect** | og-redirect edge function | SITE_URL constant |
 
-**2. All URLs must use `www.drake.fitness`**
+### Google Search Console Checklist (Post-Deploy)
 
-Every reference currently uses `https://drake.fitness`. Since `www.drake.fitness` is the primary domain, update across:
-
-| File | Change |
-|------|--------|
-| `public/sitemap.xml` | All ~30 `<loc>` URLs → `https://www.drake.fitness/...` |
-| `public/robots.txt` | Sitemap line → `https://www.drake.fitness/sitemap.xml` |
-| `src/components/SEO.tsx` | Default canonical, `toAbsoluteUrl()`, default ogImage → `www.drake.fitness` |
-| `src/components/StructuredData.tsx` | Business schema URLs |
-| `src/pages/Welcome.tsx` | Add `noindex` meta + update canonical to `www` |
-| ~20 page files | Update `canonical` prop values to `www.drake.fitness` |
-
-### Welcome Page Specific Changes
-
-In `src/pages/Welcome.tsx`, add a `noindex` directive:
-```tsx
-<Helmet>
-  <meta name="robots" content="noindex, nofollow" />
-</Helmet>
-```
-
-And update the canonical to `https://www.drake.fitness/welcome`.
-
-In `public/robots.txt`, add:
-```
-Disallow: /welcome
-```
-
-### Implementation
-
-This is a bulk find-and-replace of `https://drake.fitness` → `https://www.drake.fitness` across all affected files, plus the `noindex` addition for the Welcome page and robots.txt update.
-
+1. Verify `www.drake.fitness` property in Search Console
+2. Submit updated sitemap: `https://www.drake.fitness/sitemap.xml`
+3. Use URL Inspection on top 5 pages to request re-indexing
+4. Update Google Business Profile website URL to `https://www.drake.fitness`
+5. Confirm non-www redirects to www via 301 in Lovable domain settings

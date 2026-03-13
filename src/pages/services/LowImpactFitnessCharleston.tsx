@@ -97,7 +97,7 @@ export default function LowImpactFitnessCharleston() {
       <SEO
         title="Low-Impact Fitness for Joint Pain | Avondale & West Ashley | Drake Fitness"
         description="A joint-friendly fitness program for adults who want results without aggravating pain. Located in Avondale, serving West Ashley and Charleston."
-        canonical="https://drake.fitness/low-impact-fitness-charleston"
+        canonical="https://www.drake.fitness/low-impact-fitness-charleston"
       />
       <StructuredData data={serviceSchema} />
 
