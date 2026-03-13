@@ -15,7 +15,7 @@ interface SEOProps {
 
 function toAbsoluteUrl(path: string): string {
   if (path.startsWith('http')) return path;
-  return `https://drake.fitness${path.startsWith('/') ? '' : '/'}${path}`;
+  return `https://www.drake.fitness${path.startsWith('/') ? '' : '/'}${path}`;
 }
 
 export function SEO({
