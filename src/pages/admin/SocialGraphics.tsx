@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
+import { useIsMobile } from '@/hooks/use-mobile';
 import AdminLayout from '@/components/admin/AdminLayout';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
