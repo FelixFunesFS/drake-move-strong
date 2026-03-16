@@ -277,7 +277,7 @@ ${emailImage("members-overhead-press-group.jpg", "Members doing overhead press i
 </table>
 <p>Just one class. See how it feels.</p>
 ${ctaButton("Claim Your Free Week")}
-<p style="font-size:14px;">— David Drake</p>
+${signatureBlock(`— David Drake`)}
   `, "No commitment. No catch. Just come move with us for a week."),
 
   "win-back-Day 35": wrap(`
