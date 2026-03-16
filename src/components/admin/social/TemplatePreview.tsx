@@ -298,10 +298,10 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
         <div style={{ position: 'absolute', bottom: 40 * s, left: 48 * s, right: 48 * s }}>
           <img src={logo} alt="" style={{ height: 48 * s, marginBottom: 12 * s }} crossOrigin="anonymous" />
           <div style={{ width: 60 * s, height: 3 * s, background: GOLD, marginBottom: 12 * s, borderRadius: 2 }} />
-          <div style={{ fontSize: 12 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 6 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: 14 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 6 * s }}>{eyebrow}</div>
           <div style={{ fontSize: 48 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 1.5 * s, textShadow: `0 ${2 * s}px ${16 * s}px rgba(0,0,0,0.5)` }}>{headline}</div>
           <div style={{ fontSize: 20 * s, color: 'rgba(255,255,255,0.7)', marginTop: 6 * s, fontWeight: 400, letterSpacing: 1.5 * s, textTransform: 'uppercase' }}>{programLine}</div>
-          {detailLine && <div style={{ fontSize: 16 * s, color: 'rgba(255,255,255,0.5)', marginTop: 4 * s }}>{detailLine}</div>}
+          {detailLine && <div style={{ fontSize: 17 * s, color: 'rgba(255,255,255,0.5)', marginTop: 4 * s }}>{detailLine}</div>}
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginTop: 16 * s }}>
             <CTAButton text={ctaText} s={s} />
             {showBadge && <FreeBadge s={s * 0.8} />}
