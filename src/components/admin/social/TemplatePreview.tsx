@@ -110,12 +110,12 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
             </>
           )}
           <img src={logo} alt="" style={{ height: 56 * s, marginBottom: 18 * s }} crossOrigin="anonymous" />
-          <div style={{ fontSize: 14 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, marginBottom: 12 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: Math.max(34, 14 * s), fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, marginBottom: 12 * s }}>{eyebrow}</div>
           <div style={{ fontSize: 52 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 2 * s, textShadow: `0 ${2 * s}px ${30 * s}px rgba(0,0,0,0.4)` }}>{headline}</div>
-          <div style={{ fontSize: 20 * s, color: 'rgba(255,255,255,0.8)', marginTop: 8 * s, fontWeight: 500, textTransform: 'uppercase', letterSpacing: 1.5 * s }}>{programLine}</div>
+          <div style={{ fontSize: Math.max(38, 20 * s), color: 'rgba(255,255,255,0.8)', marginTop: 8 * s, fontWeight: 500, textTransform: 'uppercase', letterSpacing: 1.5 * s }}>{programLine}</div>
           <div style={{ width: 100 * s, height: 3 * s, background: GOLD, marginTop: 16 * s, marginBottom: 12 * s, borderRadius: 2 }} />
           {detailLine && (
-            <div style={{ fontSize: 17 * s, color: GOLD, fontWeight: 400, letterSpacing: 1.5 * s, marginBottom: 8 * s }}>{detailLine}</div>
+            <div style={{ fontSize: Math.max(36, 17 * s), color: GOLD, fontWeight: 400, letterSpacing: 1.5 * s, marginBottom: 8 * s }}>{detailLine}</div>
           )}
           {showBadge ? <FreeBadge s={s} style={{ marginTop: 8 * s }} /> : <CTAButton text={ctaText} s={s} style={{ marginTop: 8 * s }} />}
         </div>
