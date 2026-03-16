@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
-import testimonialBg from "@/assets/testimonial-group-training.jpg";
+import testimonialBg from "@/assets/testimonial-group-training.jpg?format=webp&w=768";
 import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
 
 interface Testimonial {

@@ -10,22 +10,23 @@ import { Target, Heart, Dumbbell, TrendingUp, User, Sparkles } from "lucide-reac
 import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import oneOnOneCoaching from "@/assets/one-on-one-coaching.jpg";
-import davidCoach from "@/assets/david-double-kb-storefront.jpg";
-import mistyCoach from "@/assets/coach-misty-lister.png";
-import coachingSession from "@/assets/coaching-session.jpg";
+import oneOnOneCoaching from "@/assets/one-on-one-coaching.jpg?format=webp&w=1920";
+import davidCoach from "@/assets/david-double-kb-storefront.jpg?format=webp&w=768";
+import mistyCoach from "@/assets/coach-misty-lister.png?format=webp&w=768";
+import coachingSession from "@/assets/coaching-session.jpg?format=webp&w=768";
 import TestimonialHero from "@/components/TestimonialHero";
 import { FEATURED_REVIEWS } from "@/data/reviews";
 // New authentic training photos
-import davidCoachingTurkishGetup from "@/assets/david-coaching-turkish-getup.jpg";
-import memberWeightedVestBandTraining from "@/assets/member-weighted-vest-band-training.jpg";
-import memberLungeWithStudioDog from "@/assets/member-lunge-with-studio-dog.jpg";
-import membersTurkishGetupPair from "@/assets/members-turkish-getup-pair.jpg";
-import memberSledRopeTraining from "@/assets/member-sled-rope-training.jpg";
-import membersKettlebellRackHold from "@/assets/members-kettlebell-rack-hold.jpg";
-import membersKettlebellSwingPair from "@/assets/members-kettlebell-swing-pair.jpg";
-import membersOverheadPressGroup from "@/assets/members-overhead-press-group.jpg";
-import membersPlankRowsStudio from "@/assets/members-plank-rows-studio.jpg";
+import davidCoachingTurkishGetup from "@/assets/david-coaching-turkish-getup.jpg?format=webp&w=768";
+import memberWeightedVestBandTraining from "@/assets/member-weighted-vest-band-training.jpg?format=webp&w=768";
+import memberLungeWithStudioDog from "@/assets/member-lunge-with-studio-dog.jpg?format=webp&w=768";
+import membersTurkishGetupPair from "@/assets/members-turkish-getup-pair.jpg?format=webp&w=768";
+import memberSledRopeTraining from "@/assets/member-sled-rope-training.jpg?format=webp&w=768";
+import membersKettlebellRackHold from "@/assets/members-kettlebell-rack-hold.jpg?format=webp&w=768";
+import membersKettlebellSwingPair from "@/assets/members-kettlebell-swing-pair.jpg?format=webp&w=768";
+import membersOverheadPressGroup from "@/assets/members-overhead-press-group.jpg?format=webp&w=768";
+import membersPlankRowsStudio from "@/assets/members-plank-rows-studio.jpg?format=webp&w=768";
+import { buildBreadcrumbSchema } from "@/components/StructuredData";
 const Coaching = () => {
   const reasons = [{
     icon: Heart,
@@ -81,6 +82,10 @@ const Coaching = () => {
   return <>
       <SEO title="Personal Trainer Charleston SC | 1:1 Coaching | Drake Fitness" description="Top-rated personal trainer in Charleston, SC. Custom programs for mobility, strength, and injury recovery with 25+ years experience. Book your consultation." canonical="https://www.drake.fitness/coaching" />
       <StructuredData data={faqSchema} />
+      <StructuredData data={buildBreadcrumbSchema([
+        { name: "Home", url: "https://www.drake.fitness" },
+        { name: "Personal Training", url: "https://www.drake.fitness/coaching" }
+      ])} />
       
       <main>
       <Hero eyebrow="INDIVIDUAL ATTENTION" title={<>

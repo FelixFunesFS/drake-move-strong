@@ -1,4 +1,6 @@
 import { Helmet } from 'react-helmet';
+import { PRICING } from '@/data/pricing';
+import { FEATURED_REVIEWS, LONGEVITY_REVIEWS } from '@/data/reviews';
 
 interface StructuredDataProps {
   data: object;
@@ -18,11 +20,12 @@ export function StructuredData({ data }: StructuredDataProps) {
 export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HealthClub",
+  "@id": "https://www.drake.fitness#localbusiness",
   "name": "Drake Fitness",
   "image": "https://www.drake.fitness/og-image.png",
   "url": "https://www.drake.fitness",
   "telephone": "(843) 817-5420",
-  "email": "david@drake.fitness",
+  "email": "ddrake311@gmail.com",
   "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",
@@ -50,6 +53,49 @@ export const localBusinessSchema = {
     "bestRating": "5",
     "worstRating": "1"
   },
+  "review": [
+    ...FEATURED_REVIEWS.slice(0, 2),
+    ...LONGEVITY_REVIEWS.slice(0, 3)
+  ].map(r => ({
+    "@type": "Review",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5"
+    },
+    "author": {
+      "@type": "Person",
+      "name": r.name
+    },
+    "reviewBody": r.quote
+  })),
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Membership Plans",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": PRICING.introExperience.label,
+        "description": PRICING.introExperience.description,
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "name": PRICING.foundation.label,
+        "description": PRICING.foundation.description,
+        "price": String(PRICING.foundation.price),
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "name": PRICING.unlimited.label,
+        "description": PRICING.unlimited.description,
+        "price": String(PRICING.unlimited.price),
+        "priceCurrency": "USD"
+      }
+    ]
+  },
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -66,6 +112,28 @@ export const localBusinessSchema = {
   ]
 };
 
+export const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.drake.fitness#organization",
+  "name": "Drake Fitness",
+  "url": "https://www.drake.fitness",
+  "logo": "https://www.drake.fitness/images/drake-fitness-logo2.png",
+  "image": "https://www.drake.fitness/og-image.png",
+  "telephone": "(843) 817-5420",
+  "email": "ddrake311@gmail.com",
+  "founder": {
+    "@type": "Person",
+    "name": "David Drake",
+    "jobTitle": "Owner & Head Coach"
+  },
+  "sameAs": [
+    "https://www.instagram.com/drakefitnesschs/",
+    "https://www.facebook.com/profile.php?id=100063722011333",
+    "https://www.youtube.com/@Drakefitness"
+  ]
+};
+
 export const buildFAQSchema = (faqs: Array<{ q: string; a: string }>) => ({
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -76,6 +144,17 @@ export const buildFAQSchema = (faqs: Array<{ q: string; a: string }>) => ({
       "@type": "Answer",
       "text": faq.a
     }
+  }))
+});
+
+export const buildBreadcrumbSchema = (items: Array<{ name: string; url: string }>) => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": item.url
   }))
 });
 
@@ -101,7 +180,7 @@ export const buildArticleSchema = (article: {
     "name": "Drake Fitness",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://www.drake.fitness/logo.png"
+      "url": "https://www.drake.fitness/images/drake-fitness-logo2.png"
     }
   },
   "datePublished": article.publishedAt,

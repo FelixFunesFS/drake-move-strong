@@ -19,9 +19,9 @@ import {
 import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
 import { trackPunchPassClick } from "@/hooks/useMetaPixel";
 
-import studioMobilityTraining from "@/assets/studio-mobility-training.jpg";
-import communityTurkishGetup from "@/assets/community-turkish-getup-class.jpg";
-import davidGobletSquat from "@/assets/david-goblet-squat-kb-rack.jpg";
+import studioMobilityTraining from "@/assets/studio-mobility-training.jpg?format=webp&w=1920";
+import communityTurkishGetup from "@/assets/community-turkish-getup-class.jpg?format=webp&w=768";
+import davidGobletSquat from "@/assets/david-goblet-squat-kb-rack.jpg?format=webp&w=768";
 
 const serviceSchema = {
   "@context": "https://schema.org",

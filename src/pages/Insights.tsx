@@ -6,8 +6,9 @@ import BlogArticleCard from "@/components/insights/BlogArticleCard";
 import AnimatedSection from "@/components/AnimatedSection";
 import CTASection from "@/components/CTASection";
 import { INTRO_URL } from "@/data/pricing";
-import heroImage from "@/assets/insights-hero-turkish-getup-class.jpg";
+import heroImage from "@/assets/insights-hero-turkish-getup-class.jpg?format=webp&w=1920";
 import { SEO } from "@/components/SEO";
+import { StructuredData, buildBreadcrumbSchema } from "@/components/StructuredData";
 import { Input } from "@/components/ui/input";
 
 type CategoryFilter = 'all' | 'education' | 'trust' | 'conversion';
@@ -49,6 +50,10 @@ const Insights = () => {
         description="Evidence-based insights on movement, strength training, and sustainable fitness for real people. Learn from expert coaches at Drake Fitness in Charleston."
         canonical="https://www.drake.fitness/insights"
       />
+      <StructuredData data={buildBreadcrumbSchema([
+        { name: "Home", url: "https://www.drake.fitness" },
+        { name: "Insights", url: "https://www.drake.fitness/insights" }
+      ])} />
 
       {/* Hero Section */}
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">

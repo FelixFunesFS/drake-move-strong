@@ -10,10 +10,10 @@ import { SEO } from '@/components/SEO';
 import AnimatedSection from '@/components/AnimatedSection';
 
 import drakeLogo from '@/assets/drake-logo.png?format=webp&w=176';
-import heroImage from '@/assets/group-training.jpg';
-import davidImage from '@/assets/david-outside.jpg';
-import mistyImage from '@/assets/coach-misty-lister.png';
-import studioImage from '@/assets/studio-full-view.jpg';
+import heroImage from '@/assets/group-training.jpg?format=webp&w=1920';
+import davidImage from '@/assets/david-outside.jpg?format=webp&w=768';
+import mistyImage from '@/assets/coach-misty-lister.png?format=webp&w=768';
+import studioImage from '@/assets/studio-full-view.jpg?format=webp&w=768';
 
 // January 31, 2026 at midnight EST
 const OFFER_END_DATE = new Date('2026-01-31T23:59:59-05:00');

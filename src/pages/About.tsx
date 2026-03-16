@@ -9,35 +9,40 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
 
-import davidImage from "@/assets/david-double-kb-storefront-new.jpg";
-import mistyImage from "@/assets/coach-misty-lister.png";
-import kbCollection from "@/assets/group-kettlebell-training.jpg";
-import studioKettlebells from "@/assets/studio-kettlebells.jpg";
-import studioDavidStorefront from "@/assets/studio-david-storefront.jpg";
-import studioTeamPhoto from "@/assets/studio-team-photo.jpg";
-import studioMobilityTraining from "@/assets/studio-mobility-training.jpg";
-import studioFullView from "@/assets/studio-full-view.jpg";
-import studioDualTraining from "@/assets/studio-dual-training.jpg";
-import studioOutdoorBanner from "@/assets/studio-outdoor-banner.jpg";
-import studioNickDavidTogether from "@/assets/studio-nick-david-together.jpg";
-import studioLargeGroup from "@/assets/studio-large-group.jpg";
-import studioTeamThree from "@/assets/studio-team-three.jpg";
-import studioGroupSquats from "@/assets/studio-group-squats.jpg";
+import davidImage from "@/assets/david-double-kb-storefront-new.jpg?format=webp&w=768";
+import mistyImage from "@/assets/coach-misty-lister.png?format=webp&w=768";
+import kbCollection from "@/assets/group-kettlebell-training.jpg?format=webp&w=768";
+import studioKettlebells from "@/assets/studio-kettlebells.jpg?format=webp&w=768";
+import studioDavidStorefront from "@/assets/studio-david-storefront.jpg?format=webp&w=768";
+import studioTeamPhoto from "@/assets/studio-team-photo.jpg?format=webp&w=768";
+import studioMobilityTraining from "@/assets/studio-mobility-training.jpg?format=webp&w=768";
+import studioFullView from "@/assets/studio-full-view.jpg?format=webp&w=768";
+import studioDualTraining from "@/assets/studio-dual-training.jpg?format=webp&w=768";
+import studioOutdoorBanner from "@/assets/studio-outdoor-banner.jpg?format=webp&w=768";
+import studioNickDavidTogether from "@/assets/studio-nick-david-together.jpg?format=webp&w=768";
+import studioLargeGroup from "@/assets/studio-large-group.jpg?format=webp&w=768";
+import studioTeamThree from "@/assets/studio-team-three.jpg?format=webp&w=768";
+import studioGroupSquats from "@/assets/studio-group-squats.jpg?format=webp&w=768";
 import ImageGallery from "@/components/ImageGallery";
 import TestimonialHero from "@/components/TestimonialHero";
 import { LONGEVITY_REVIEWS } from "@/data/reviews";
-import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg";
-import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg";
-import davidCoachingTurkishGetup from "@/assets/david-coaching-turkish-getup.jpg";
+import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg?format=webp&w=768";
+import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg?format=webp&w=768";
+import davidCoachingTurkishGetup from "@/assets/david-coaching-turkish-getup.jpg?format=webp&w=768";
+import { StructuredData, organizationSchema, buildBreadcrumbSchema } from "@/components/StructuredData";
 const About = () => {
   return (
     <>
       <SEO
         title="Meet Our Expert Coaches | 25+ Years | Drake Fitness"
         description="David Drake: 25+ years coaching real people through pain, injury, and plateaus. Meet the team behind Charleston's most trusted small gym."
-        
         canonical="https://www.drake.fitness/about"
       />
+      <StructuredData data={organizationSchema} />
+      <StructuredData data={buildBreadcrumbSchema([
+        { name: "Home", url: "https://www.drake.fitness" },
+        { name: "About", url: "https://www.drake.fitness/about" }
+      ])} />
       
       <main>
       {/* Negative margin pulls hero up to header edge */}

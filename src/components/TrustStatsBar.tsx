@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { STATS_CONFIG, StatKey } from "@/data/trustStats";
 import { MOTION_CONFIG, getStaggerDelay } from "@/lib/motionConfig";
 import { useCountUp, parseStatValue, formatNumber } from "@/hooks/useCountUp";
-import googleLogoG from "@/assets/google-logo-g.png";
+import googleLogoG from "@/assets/google-logo-g.png?format=webp&w=32";
 
 const STAT_ICONS: Record<StatKey, React.ElementType> = {
   sessions: Trophy,

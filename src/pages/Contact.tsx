@@ -13,7 +13,8 @@ import { GoogleMapEmbed } from "@/components/GoogleMapEmbed";
 import AnimatedSection from "@/components/AnimatedSection";
 import { supabase } from "@/integrations/supabase/client";
 import { trackMetaEvent } from "@/hooks/useMetaPixel";
-import davidStorefrontPortrait from "@/assets/david-kettlebell-storefront-portrait.jpg";
+import davidStorefrontPortrait from "@/assets/david-kettlebell-storefront-portrait.jpg?format=webp&w=768";
+import { buildBreadcrumbSchema } from "@/components/StructuredData";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -87,9 +88,12 @@ const Contact = () => {
       <SEO
         title="Contact Drake Fitness Charleston | Start Today"
         description="Questions about getting started? Reach Drake Fitness in West Ashley — call, text, or drop in. 3 free classes, no commitment."
-        
         canonical="https://www.drake.fitness/contact"
       />
+      <StructuredData data={buildBreadcrumbSchema([
+        { name: "Home", url: "https://www.drake.fitness" },
+        { name: "Contact", url: "https://www.drake.fitness/contact" }
+      ])} />
       
       <main>
         {/* Condensed Header */}

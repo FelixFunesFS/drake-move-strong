@@ -1,18 +1,18 @@
 import Hero from "@/components/Hero";
 import CTASection from "@/components/CTASection";
 import { INTRO_URL } from "@/data/pricing";
-import communityImage from "@/assets/community-plank-rows-kettlebells.jpg";
-import memberYoga from "@/assets/member-yoga-pose.jpg";
+import communityImage from "@/assets/community-plank-rows-kettlebells.jpg?format=webp&w=768";
+import memberYoga from "@/assets/member-yoga-pose.jpg?format=webp&w=768";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
 import { SEO } from "@/components/SEO";
 import { GoogleReviewsBadge, GOOGLE_REVIEWS } from "@/components/GoogleReviewsBadge";
 import { ExternalLink } from "lucide-react";
 // New authentic training photos
-import communityGroupPhotoLarge from "@/assets/community-group-photo-large.jpg";
-import groupPlankRowsKettlebells from "@/assets/group-plank-rows-kettlebells.jpg";
-import memberLungeWithStudioDog from "@/assets/member-lunge-with-studio-dog.jpg";
-import membersTurkishGetupLunge from "@/assets/members-turkish-getup-lunge.jpg";
+import communityGroupPhotoLarge from "@/assets/community-group-photo-large.jpg?format=webp&w=768";
+import groupPlankRowsKettlebells from "@/assets/group-plank-rows-kettlebells.jpg?format=webp&w=768";
+import memberLungeWithStudioDog from "@/assets/member-lunge-with-studio-dog.jpg?format=webp&w=768";
+import membersTurkishGetupLunge from "@/assets/members-turkish-getup-lunge.jpg?format=webp&w=768";
 
 const SuccessStories = () => {
   // Verified Google Reviews - strategically mapped for conversion

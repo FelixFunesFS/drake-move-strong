@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { CheckCircle2, Star, ExternalLink, ArrowRight } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { SEO } from "@/components/SEO";
-import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
+import { StructuredData, buildFAQSchema, buildBreadcrumbSchema } from "@/components/StructuredData";
 import { GoogleReviewsBadge } from "@/components/GoogleReviewsBadge";
 import TrustStatsBar from "@/components/TrustStatsBar";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -41,6 +41,10 @@ const Pricing = () => {
       />
 
       <StructuredData data={faqSchema} />
+      <StructuredData data={buildBreadcrumbSchema([
+        { name: "Home", url: "https://www.drake.fitness" },
+        { name: "Pricing", url: "https://www.drake.fitness/pricing" }
+      ])} />
       
       <main>
         {/* SECTION HEADER */}
