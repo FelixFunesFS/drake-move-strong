@@ -1,46 +1,29 @@
 
+# Plan: Domain Standardization + Welcome Page SEO — COMPLETED
 
-## Mobile Responsiveness & Phone Image Upload for Social Graphics
+## What Was Done
 
-### Problems
+Standardized all URLs from `https://drake.fitness` → `https://www.drake.fitness` across 31 files, added noindex to Welcome page, and updated robots.txt.
 
-1. **Layout breaks on mobile**: The editor uses a fixed `flex` side-by-side layout with `w-[580px]` preview + `flex-1` controls (line 327-329). On mobile screens this overflows horizontally.
-2. **Preview scaling is hardcoded**: `maxPreviewWidth = 560` (line 283) doesn't adapt to smaller screens.
-3. **Upload works but UX is poor on mobile**: The `<input type="file" accept="image/*">` already exists (line 520) but the drop zone is tiny and there's no camera capture option.
-4. **Template grid too dense**: 4-column grid (line 423) is cramped on small screens.
-5. **Photo grid**: 4-column grid (line 610) needs fewer columns on mobile.
+### Files Updated
 
-### Changes — `src/pages/admin/SocialGraphics.tsx`
+| Category | Files | Change |
+|----------|-------|--------|
+| **SEO Core** | `SEO.tsx`, `StructuredData.tsx` | Default canonical, ogImage, toAbsoluteUrl(), business schema |
+| **Sitemap & Robots** | `sitemap.xml`, `robots.txt` | All URLs → www; added `Disallow: /welcome` |
+| **Welcome Page** | `Welcome.tsx` | Added `noindex, nofollow` meta tag + www canonical |
+| **Public Pages** | Home, Pricing, Schedule, Contact, About, Coaching, FAQ, Insights, SuccessStories, Ruckathon, NewYearChallenge, ResetWeekAlt | canonical → www |
+| **Service Pages** | ResetWeekCharleston, StrengthTraining, LowImpact, WestAshley | canonical → www |
+| **Blog** | InsightPost.tsx | canonical, articleSchema URL, social share URLs |
+| **Auth/Member** | Auth, Dashboard, Profile, MyBookings | canonical → www |
+| **Chatbot** | ChatMessage.tsx, chat-assistant edge function | Friendly link labels + system prompt URLs |
+| **Email** | emailTemplates.ts, send-nurture-previews | CTA button URLs |
+| **OG Redirect** | og-redirect edge function | SITE_URL constant |
 
-**1. Stack layout on mobile (line 327)**
-- Change `<div className="flex gap-6 items-start">` to `flex flex-col lg:flex-row`
-- Remove `w-[580px]` from preview column → `w-full lg:w-[580px]`
-- Remove `sticky top-4` on mobile → `lg:sticky lg:top-4`
+### Google Search Console Checklist (Post-Deploy)
 
-**2. Dynamic preview scaling (line 283-284)**
-- Use `useIsMobile()` hook to detect mobile
-- On mobile: scale preview to fit `window.innerWidth - 32px` (16px padding each side)
-- On desktop: keep current `maxPreviewWidth = 560`
-
-**3. Enhance upload for mobile (line 508-520)**
-- Add `capture="environment"` option: a separate camera button that opens the phone camera directly
-- Make the drop zone taller on mobile with clearer tap target
-- Add explicit "Take Photo" and "Choose from Library" buttons on mobile
-
-**4. Responsive grids**
-- Template grid: `grid-cols-3 sm:grid-cols-4` (line 423)
-- Photo grid: `grid-cols-3 sm:grid-cols-4` (line 610)
-- Content inputs: `grid-cols-1 sm:grid-cols-2` (line 463)
-
-**5. Header actions (line 297-314)**
-- Stack download buttons below title on mobile
-- Size tabs: horizontal scroll on mobile
-
-**6. Canvas size tabs (line 331-344)**
-- Add `overflow-x-auto` for horizontal scroll on narrow screens
-
-### File
-| File | Change |
-|------|--------|
-| `src/pages/admin/SocialGraphics.tsx` | Responsive layout (stack on mobile), dynamic preview scaling, camera capture button, responsive grids throughout |
-
+1. Verify `www.drake.fitness` property in Search Console
+2. Submit updated sitemap: `https://www.drake.fitness/sitemap.xml`
+3. Use URL Inspection on top 5 pages to request re-indexing
+4. Update Google Business Profile website URL to `https://www.drake.fitness`
+5. Confirm non-www redirects to www via 301 in Lovable domain settings

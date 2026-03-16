@@ -1,10 +1,11 @@
 import { useState, useRef, useCallback } from 'react';
+import { useIsMobile } from '@/hooks/use-mobile';
 import AdminLayout from '@/components/admin/AdminLayout';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { Download, Search, Type, Sparkles, X, Image as ImageIcon, Upload, Plus, Minus, ChevronLeft, ChevronRight, Monitor, Smartphone, Square, RectangleHorizontal, ChevronDown, GripVertical } from 'lucide-react';
+import { Download, Search, Type, Sparkles, X, Image as ImageIcon, Upload, Plus, Minus, ChevronLeft, ChevronRight, Monitor, Smartphone, Square, RectangleHorizontal, ChevronDown, GripVertical, Camera } from 'lucide-react';
 import { toPng } from 'html-to-image';
 import { toast } from 'sonner';
 
@@ -48,6 +49,8 @@ export default function SocialGraphics() {
   const [slides, setSlides] = useState<SlideContent[]>([{ ...DEFAULT_SLIDE }]);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isDragOver, setIsDragOver] = useState(false);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
+  const isMobile = useIsMobile();
 
   const slide = slides[activeSlide] || DEFAULT_SLIDE;
   const updateSlide = (updates: Partial<SlideContent>) => {
@@ -279,9 +282,10 @@ export default function SocialGraphics() {
     toast.success('Loaded post into editor');
   };
 
-  // Preview scaling — fits within left column
-  const maxPreviewWidth = 560;
-  const PREVIEW_SCALE = Math.min(maxPreviewWidth / canvasSize.width, 500 / canvasSize.height, 0.55);
+  // Preview scaling — fits within left column (responsive)
+  const maxPreviewWidth = isMobile ? Math.min(window.innerWidth - 32, 560) : 560;
+  const maxPreviewHeight = isMobile ? 400 : 500;
+  const PREVIEW_SCALE = Math.min(maxPreviewWidth / canvasSize.width, maxPreviewHeight / canvasSize.height, isMobile ? 0.45 : 0.55);
 
   const secondPhoto = slide.secondPhoto !== null ? photos[slide.secondPhoto]?.src : undefined;
   const thirdPhoto = slide.thirdPhoto !== null ? photos[slide.thirdPhoto]?.src : undefined;
@@ -324,11 +328,11 @@ export default function SocialGraphics() {
 
           <TabsContent value="editor" className="mt-4">
             {/* SPLIT-PANE LAYOUT */}
-            <div className="flex gap-6 items-start">
+            <div className="flex flex-col lg:flex-row gap-6 items-start">
               {/* LEFT: Sticky Preview */}
-              <div className="w-[580px] flex-shrink-0 sticky top-4 space-y-3">
+              <div className="w-full lg:w-[580px] flex-shrink-0 lg:sticky lg:top-4 space-y-3">
                 {/* Size Tabs */}
-                <div className="flex gap-1.5 flex-wrap">
+                <div className="flex gap-1.5 flex-wrap overflow-x-auto pb-1">
                   {CANVAS_SIZES.map(size => (
                     <button
                       key={size.name}
@@ -420,7 +424,7 @@ export default function SocialGraphics() {
                 {/* Template Grid */}
                 <div>
                   <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2 block">Template</label>
-                  <div className="grid grid-cols-4 gap-2">
+                  <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
                     {TEMPLATES.map(t => (
                       <button
                         key={t.id}
@@ -460,7 +464,7 @@ export default function SocialGraphics() {
                       ))}
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       <div>
                         <label className="text-[10px] font-medium text-muted-foreground mb-0.5 block">Eyebrow</label>
                         <Input value={slide.eyebrow} onChange={e => updateSlide({ eyebrow: e.target.value })} className="h-8 text-xs" />
@@ -504,20 +508,35 @@ export default function SocialGraphics() {
                     <ChevronDown className={`h-3.5 w-3.5 transition-transform ${photosOpen ? 'rotate-180' : ''}`} />
                   </CollapsibleTrigger>
                   <CollapsibleContent className="mt-2 space-y-2">
-                    {/* Drop zone */}
+                    {/* Drop zone & upload */}
                     <div
                       onDragOver={e => { e.preventDefault(); setIsDragOver(true); }}
                       onDragLeave={() => setIsDragOver(false)}
                       onDrop={handleDrop}
                       onClick={() => fileInputRef.current?.click()}
-                      className={`border-2 border-dashed rounded-lg p-3 text-center cursor-pointer transition-all ${
+                      className={`border-2 border-dashed rounded-lg p-4 sm:p-3 text-center cursor-pointer transition-all min-h-[60px] ${
                         isDragOver ? 'border-drake-gold bg-drake-gold/10' : 'border-border hover:border-drake-gold/50'
                       }`}
                     >
-                      <Upload className="h-4 w-4 mx-auto mb-1 text-muted-foreground" />
-                      <p className="text-[10px] text-muted-foreground">Drop images or click to upload</p>
+                      <Upload className="h-5 w-5 sm:h-4 sm:w-4 mx-auto mb-1 text-muted-foreground" />
+                      <p className="text-xs sm:text-[10px] text-muted-foreground">
+                        {isMobile ? 'Tap to choose from library' : 'Drop images or click to upload'}
+                      </p>
                     </div>
                     <input ref={fileInputRef} type="file" accept="image/*" multiple onChange={handleFileUpload} className="hidden" />
+                    {/* Camera capture for mobile */}
+                    <input ref={cameraInputRef} type="file" accept="image/*" capture="environment" onChange={handleFileUpload} className="hidden" />
+                    {isMobile && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full"
+                        onClick={() => cameraInputRef.current?.click()}
+                      >
+                        <Camera className="h-4 w-4 mr-2" />
+                        Take Photo
+                      </Button>
+                    )}
 
                     {/* Photo slot selectors */}
                     <div className="flex gap-1.5 flex-wrap">
@@ -607,7 +626,7 @@ export default function SocialGraphics() {
                     </div>
 
                     {/* Photo grid */}
-                    <div className="grid grid-cols-4 gap-1.5 max-h-64 overflow-y-auto">
+                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-1.5 max-h-64 overflow-y-auto">
                       {filteredPhotos.map((p, idx) => {
                         const realIdx = photos.indexOf(p);
                         const isPrimary = slide.photo === realIdx;
