@@ -49,6 +49,8 @@ export default function SocialGraphics() {
   const [slides, setSlides] = useState<SlideContent[]>([{ ...DEFAULT_SLIDE }]);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isDragOver, setIsDragOver] = useState(false);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
+  const isMobile = useIsMobile();
 
   const slide = slides[activeSlide] || DEFAULT_SLIDE;
   const updateSlide = (updates: Partial<SlideContent>) => {
