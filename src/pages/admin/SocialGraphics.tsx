@@ -236,16 +236,19 @@ export default function SocialGraphics() {
         if (!byDay[c.class_date]) byDay[c.class_date] = [];
         byDay[c.class_date].push(c);
       });
-      const days = Object.keys(byDay).sort().slice(0, 5);
+      const days = Object.keys(byDay).sort().slice(0, 8);
+      if (Object.keys(byDay).length > 8) {
+        toast.info('Schedule trimmed to 8 days to fit carousel limit');
+      }
       const newSlides: SlideContent[] = [
         { ...DEFAULT_SLIDE, template: 'full-bleed', headline: "This Week at\nDrake Fitness", programLine: 'Swipe for the Full Schedule →', detailLine: '', ctaText: 'Swipe →', showBadge: false },
         ...days.map(day => {
           const dayClasses = byDay[day];
-          const dayName = new Date(day + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long' });
+          const dayLabel = new Date(day + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
           return {
             ...DEFAULT_SLIDE,
             template: 'schedule-grid' as TemplateId,
-            headline: dayName,
+            headline: dayLabel,
             programLine: dayClasses.map(c => c.class_name).join(' · '),
             detailLine: dayClasses.map(c => `${c.start_time.slice(0, 5)} ${c.class_name}`).join(' | '),
             ctaText: 'Book →',
