@@ -675,7 +675,7 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
                       const ic = getInstructorColor(cls.instructor);
                       return (
                         <div key={i} style={{
-                          minHeight: rowH, display: 'flex', alignItems: 'center', gap: 12 * s,
+                          height: rowH, flexShrink: 1, display: 'flex', alignItems: 'center', gap: 12 * s,
                           background: 'rgba(255,255,255,0.10)',
                           borderRadius: 6 * s,
                           padding: `${rowPadY}px ${rowPadX}px`,
