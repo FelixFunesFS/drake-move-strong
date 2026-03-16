@@ -146,7 +146,7 @@ export const TEAL_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='6
 export const INSTRUCTOR_COLORS: Record<string, { bg: string; text: string; border: string }> = {
   'David': { bg: '#FEF3C7', text: '#92400E', border: '#F59E0B' },
   'Misty': { bg: '#FCE7F3', text: '#9D174D', border: '#EC4899' },
-  'Nick': { bg: '#DBEAFE', text: '#1E40AF', border: '#3B82F6' },
+  
   'default': { bg: '#F3F4F6', text: '#374151', border: '#9CA3AF' },
 };
 

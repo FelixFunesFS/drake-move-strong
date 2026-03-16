@@ -97,14 +97,14 @@ const IMAGES: ImageItem[] = [
   { src: davidRenegadeRow, name: "David Renegade Row", category: "coaches" },
   // Coaches - Misty
   { src: coachMistyLister, name: "Coach Misty Lister", category: "coaches" },
-  // Coaches - Nick (legacy studio photos)
-  { src: coachNickNew, name: "Coach Nick New", category: "coaches" },
-  { src: coachNickPortrait, name: "Coach Nick Portrait", category: "coaches" },
-  { src: coachNick, name: "Coach Nick", category: "coaches" },
-  { src: nickHolisticCoaching, name: "Nick Holistic Coaching", category: "coaches" },
-  { src: nickSandbagLunge, name: "Nick Sandbag Lunge", category: "coaches" },
+  // Studio Coaching
+  { src: coachNickNew, name: "Studio Coaching", category: "coaches" },
+  { src: coachNickPortrait, name: "Studio Portrait", category: "coaches" },
+  { src: coachNick, name: "Studio Coach", category: "coaches" },
+  { src: nickHolisticCoaching, name: "Holistic Coaching", category: "coaches" },
+  { src: nickSandbagLunge, name: "Sandbag Lunge", category: "coaches" },
   // Team
-  { src: studioNickDavidTogether, name: "Nick & David Together", category: "coaches" },
+  { src: studioNickDavidTogether, name: "Studio Team", category: "coaches" },
   { src: studioTeamPhoto, name: "Team Photo", category: "coaches" },
   { src: studioTeamThree, name: "Team Three", category: "coaches" },
   

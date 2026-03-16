@@ -7,7 +7,7 @@ const corsHeaders = {
 
 // Default instructor mapping for classes where PunchPass doesn't show the instructor
 const DEFAULT_INSTRUCTORS: Record<string, string> = {
-  'kettlebell flow': 'Nick',
+  'kettlebell flow': 'David',
   'ruckathon': 'David',
   'yoga': 'Misty',
 };
