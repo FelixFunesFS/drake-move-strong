@@ -1,29 +1,31 @@
 
-# Plan: Domain Standardization + Welcome Page SEO — COMPLETED
 
-## What Was Done
+## Update Weekly Schedule Carousel
 
-Standardized all URLs from `https://drake.fitness` → `https://www.drake.fitness` across 31 files, added noindex to Welcome page, and updated robots.txt.
+### Changes — `src/pages/admin/SocialGraphics.tsx`
 
-### Files Updated
+**Lines 239-256** — Remove the `.slice(0, 5)` cap and improve date formatting:
 
-| Category | Files | Change |
-|----------|-------|--------|
-| **SEO Core** | `SEO.tsx`, `StructuredData.tsx` | Default canonical, ogImage, toAbsoluteUrl(), business schema |
-| **Sitemap & Robots** | `sitemap.xml`, `robots.txt` | All URLs → www; added `Disallow: /welcome` |
-| **Welcome Page** | `Welcome.tsx` | Added `noindex, nofollow` meta tag + www canonical |
-| **Public Pages** | Home, Pricing, Schedule, Contact, About, Coaching, FAQ, Insights, SuccessStories, Ruckathon, NewYearChallenge, ResetWeekAlt | canonical → www |
-| **Service Pages** | ResetWeekCharleston, StrengthTraining, LowImpact, WestAshley | canonical → www |
-| **Blog** | InsightPost.tsx | canonical, articleSchema URL, social share URLs |
-| **Auth/Member** | Auth, Dashboard, Profile, MyBookings | canonical → www |
-| **Chatbot** | ChatMessage.tsx, chat-assistant edge function | Friendly link labels + system prompt URLs |
-| **Email** | emailTemplates.ts, send-nurture-previews | CTA button URLs |
-| **OG Redirect** | og-redirect edge function | SITE_URL constant |
+1. **Remove 5-day limit**: Change `Object.keys(byDay).sort().slice(0, 5)` to `Object.keys(byDay).sort()` so all days with classes are included (carousel already supports up to 10 slides).
 
-### Google Search Console Checklist (Post-Deploy)
+2. **Improved date labels**: Change headline from just `"Monday"` to `"Monday, Mar 16"` format using:
+   ```typescript
+   const dayLabel = new Date(day + 'T12:00:00').toLocaleDateString('en-US', { 
+     weekday: 'long', month: 'short', day: 'numeric' 
+   });
+   ```
 
-1. Verify `www.drake.fitness` property in Search Console
-2. Submit updated sitemap: `https://www.drake.fitness/sitemap.xml`
-3. Use URL Inspection on top 5 pages to request re-indexing
-4. Update Google Business Profile website URL to `https://www.drake.fitness`
-5. Confirm non-www redirects to www via 301 in Lovable domain settings
+3. **Guard 10-slide max**: Since carousel max is 10, and we need a cover + CTA slide, cap days at 8 with a note if truncated.
+
+### Resulting slide structure
+```text
+Slide 1: Cover — "This Week at Drake Fitness"
+Slide 2-N: One per day with classes — "Monday, Mar 16", "Tuesday, Mar 17", etc.
+Slide N+1: CTA — "Book Your Spot"
+```
+
+### File
+| File | Change |
+|------|--------|
+| `src/pages/admin/SocialGraphics.tsx` | Lines 239-256: remove `.slice(0,5)`, format date as weekday + month + day, cap at 8 days |
+
