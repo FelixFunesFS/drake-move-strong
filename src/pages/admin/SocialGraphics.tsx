@@ -244,14 +244,32 @@ export default function SocialGraphics() {
     }
   };
 
-  const handleLoadPost = (post: PackagePost) => {
-    updateSlide({
-      headline: post.headline,
-      detailLine: post.detail,
-      ctaText: post.cta,
-      template: post.suggested_template as TemplateId,
-      showBadge: false,
-    });
+  const handleLoadPost = (post: PackagePost, imageUrl?: string) => {
+    // If an image URL is provided, inject it into the photos array as a custom upload
+    if (imageUrl) {
+      const newPhoto: PhotoItem = { src: imageUrl, label: `AI: ${post.headline}`, isCustom: true };
+      setPhotos(prev => {
+        const newPhotos = [newPhoto, ...prev];
+        // Set the new photo as primary for this slide
+        updateSlide({
+          headline: post.headline,
+          detailLine: post.detail,
+          ctaText: post.cta,
+          template: post.suggested_template as TemplateId,
+          showBadge: false,
+          photo: 0, // First photo = newly added
+        });
+        return newPhotos;
+      });
+    } else {
+      updateSlide({
+        headline: post.headline,
+        detailLine: post.detail,
+        ctaText: post.cta,
+        template: post.suggested_template as TemplateId,
+        showBadge: false,
+      });
+    }
     toast.success('Loaded post into editor');
   };
 

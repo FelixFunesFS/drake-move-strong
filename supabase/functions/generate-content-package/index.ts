@@ -21,17 +21,23 @@ serve(async (req) => {
       retention: "Progress reminders, habit-building tips, milestone celebrations, 'keep showing up' motivation. Speak directly to current members.",
     };
 
-    const systemPrompt = `You are a social media marketing expert for Drake Fitness, a boutique kettlebell and strength training studio in West Ashley, Charleston, SC.
+    const systemPrompt = `You are a social media marketing expert AND creative director for Drake Fitness, a boutique kettlebell and strength training studio in West Ashley, Charleston, SC.
 
 Brand voice: Welcoming but strong. Never intimidating. Community-first. Emphasis on longevity, functional strength, and real results. Coaches: David Drake (owner, kettlebells, strength), Misty (yoga, flexibility).
 
 Class types: KB Strong, Kettlebell Flow, Mobility, Yoga, Ruckathon, Open Gym.
 Website: drake.fitness | Instagram: @drakefitnesschs | Facebook: @drakefitnesschs
 
+Brand colors: Teal (#0B4A52), Gold (#F2B544), Dark (#1A1A1A)
+
 Campaign goal: ${goal}
 Strategy: ${goalStrategies[goal] || goalStrategies.conversion}
 
-Generate exactly ${packageSize} social media posts. Return ONLY a JSON array using this exact tool call.`;
+For each post, think like a creative director:
+- Write an image_prompt describing the ideal photo/graphic for the post. Be specific about composition, lighting, subjects, and mood. Reference kettlebells, studio settings, outdoor Charleston scenery, mobility work, group training, etc.
+- Provide suggested_photo_tags — keywords to match existing studio photos (e.g. "kettlebell", "group", "outdoor", "overhead", "plank", "turkish getup", "swing", "storefront", "goblet", "lunge").
+
+Generate exactly ${packageSize} social media posts. Return ONLY a JSON array using the tool call.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -43,14 +49,14 @@ Generate exactly ${packageSize} social media posts. Return ONLY a JSON array usi
         model: "google/gemini-2.5-flash",
         messages: [
           { role: "system", content: systemPrompt },
-          { role: "user", content: `Generate ${packageSize} posts for a ${goal} campaign.` },
+          { role: "user", content: `Generate ${packageSize} posts for a ${goal} campaign. Include visual direction for each post.` },
         ],
         tools: [
           {
             type: "function",
             function: {
               name: "return_posts",
-              description: "Return the generated social media posts",
+              description: "Return the generated social media posts with visual direction",
               parameters: {
                 type: "object",
                 properties: {
@@ -68,8 +74,10 @@ Generate exactly ${packageSize} social media posts. Return ONLY a JSON array usi
                         detail: { type: "string", description: "Detail line for the graphic" },
                         cta: { type: "string", description: "CTA button text" },
                         hashtags: { type: "array", items: { type: "string" } },
+                        image_prompt: { type: "string", description: "Detailed visual description for AI image generation. Describe the ideal photo: subjects, composition, lighting, mood, setting. E.g. 'Close-up of hands gripping a kettlebell handle, warm studio lighting, teal wall in background, shallow depth of field'" },
+                        suggested_photo_tags: { type: "array", items: { type: "string" }, description: "Keywords to match existing studio photos. Use terms like: kettlebell, group, outdoor, overhead, plank, turkish getup, swing, storefront, goblet, lunge, studio, community, training, press, squat, row" },
                       },
-                      required: ["number", "caption_ig", "caption_fb", "caption_linkedin", "suggested_template", "headline", "detail", "cta", "hashtags"],
+                      required: ["number", "caption_ig", "caption_fb", "caption_linkedin", "suggested_template", "headline", "detail", "cta", "hashtags", "image_prompt", "suggested_photo_tags"],
                       additionalProperties: false,
                     },
                   },

@@ -185,4 +185,8 @@ export interface PackagePost {
   detail: string;
   cta: string;
   hashtags: string[];
+  image_prompt: string;
+  suggested_photo_tags: string[];
+  generatedImageUrl?: string;
+  matchedPhotoIndex?: number;
 }

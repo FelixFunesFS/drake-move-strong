@@ -1,103 +1,29 @@
 
+# Plan: Domain Standardization + Welcome Page SEO — COMPLETED
 
-## AI-Powered Graphics in Content Packages
+## What Was Done
 
-### Current State
-- **Content Package Tab** generates captions, headlines, templates, and hashtags via AI — but no images
-- **"Open in Editor"** loads text fields into the graphic editor, but the user must manually pick a photo
-- **`generate-ad-image`** edge function already exists for AI image generation using `google/gemini-2.5-flash-image`
+Standardized all URLs from `https://drake.fitness` → `https://www.drake.fitness` across 31 files, added noindex to Welcome page, and updated robots.txt.
 
-### What We're Building
-Each AI-generated post in a package will also come with a **graphic recommendation** — either matched from the existing photo library or AI-generated. The user can then edit everything in the editor.
+### Files Updated
 
-### Architecture
+| Category | Files | Change |
+|----------|-------|--------|
+| **SEO Core** | `SEO.tsx`, `StructuredData.tsx` | Default canonical, ogImage, toAbsoluteUrl(), business schema |
+| **Sitemap & Robots** | `sitemap.xml`, `robots.txt` | All URLs → www; added `Disallow: /welcome` |
+| **Welcome Page** | `Welcome.tsx` | Added `noindex, nofollow` meta tag + www canonical |
+| **Public Pages** | Home, Pricing, Schedule, Contact, About, Coaching, FAQ, Insights, SuccessStories, Ruckathon, NewYearChallenge, ResetWeekAlt | canonical → www |
+| **Service Pages** | ResetWeekCharleston, StrengthTraining, LowImpact, WestAshley | canonical → www |
+| **Blog** | InsightPost.tsx | canonical, articleSchema URL, social share URLs |
+| **Auth/Member** | Auth, Dashboard, Profile, MyBookings | canonical → www |
+| **Chatbot** | ChatMessage.tsx, chat-assistant edge function | Friendly link labels + system prompt URLs |
+| **Email** | emailTemplates.ts, send-nurture-previews | CTA button URLs |
+| **OG Redirect** | og-redirect edge function | SITE_URL constant |
 
-```text
-┌──────────────────────────────────────────────────────┐
-│  AI Package Generation Flow                          │
-│                                                      │
-│  1. User picks goal + size → generate-content-package│
-│     ↓                                                │
-│  2. AI returns posts WITH image_prompt + photo_tag   │
-│     ↓                                                │
-│  3. Frontend renders posts with:                     │
-│     [Generate AI Graphic] or [Use Suggested Photo]   │
-│     ↓                                                │
-│  4. AI graphic → generate-ad-image → base64 → editor │
-│     OR matched photo → editor                        │
-│     ↓                                                │
-│  5. Full post loads into editor (text + graphic)     │
-│     fully editable                                   │
-└──────────────────────────────────────────────────────┘
-```
+### Google Search Console Checklist (Post-Deploy)
 
-### Changes
-
-**1. Edge Function: `generate-content-package/index.ts`**
-- Add two new fields to each post in the tool schema:
-  - `image_prompt`: AI-generated prompt describing the ideal graphic (e.g. "Close-up of hands gripping a kettlebell handle, teal-lit studio background, dramatic side lighting")
-  - `suggested_photo_tags`: Array of keywords to match existing photos (e.g. `["kettlebell", "group", "outdoor"]`)
-- Update the system prompt to instruct the AI to think like a creative director — each post should have a visual concept
-
-**2. Types: `src/components/admin/social/types.ts`**
-- Add `image_prompt` and `suggested_photo_tags` to `PackagePost` interface
-- Add optional `generatedImageUrl` for storing AI-generated base64
-
-**3. Component: `ContentPackageTab.tsx`** — Major upgrade
-- For each generated post, show:
-  - **Suggested Photo**: Auto-match from `DEFAULT_PHOTOS` using tag matching (label keywords). Show the matched photo thumbnail with "Use This" button
-  - **"Generate AI Graphic"** button: Calls `generate-ad-image` with the post's `image_prompt`. Shows loading spinner, then the generated image inline
-  - **Generated image preview**: Thumbnail of the AI graphic with "Edit in Editor" button
-- **"Open in Editor"** now loads both the text content AND the selected/generated image into the editor
-- **Batch generate** option: "Generate All Graphics" button that processes posts sequentially with rate-limit-aware delays
-
-**4. `SocialGraphics.tsx` — `handleLoadPost` update**
-- Accept an optional `imageUrl` parameter
-- When an AI-generated or matched photo is provided, add it to the `photos` array as a custom upload and set it as the active slide's primary photo
-
-### Post Card UI (in ContentPackageTab)
-
-```text
-┌─────────────────────────────────────────┐
-│ Post #1                    fade-blend   │
-│ ┌──────────┐                            │
-│ │ Headline │  "Strength Starts Here"    │
-│ │ Detail   │  "All levels welcome"      │
-│ └──────────┘                            │
-│                                         │
-│ 📸 Graphic                              │
-│ ┌──────────────────────────────────────┐│
-│ │ [Matched Photo]  [Generate AI ✨]   ││
-│ │  KB Swing Pair    "Create a custom   ││
-│ │  ✓ Use This       AI graphic"       ││
-│ └──────────────────────────────────────┘│
-│                                         │
-│ IG | FB | LinkedIn captions...          │
-│ #hashtags                               │
-│ [Open in Editor →]                      │
-└─────────────────────────────────────────┘
-```
-
-### Photo Matching Logic (client-side)
-Simple keyword matching against `DEFAULT_PHOTOS` labels:
-```typescript
-const matchPhoto = (tags: string[]) => {
-  const scored = DEFAULT_PHOTOS.map((p, idx) => ({
-    idx,
-    score: tags.filter(t => 
-      p.label.toLowerCase().includes(t.toLowerCase())
-    ).length
-  }));
-  return scored.sort((a, b) => b.score - a.score)[0]?.idx ?? 0;
-};
-```
-
-### File Changes
-
-| File | Change |
-|------|--------|
-| `supabase/functions/generate-content-package/index.ts` | Add `image_prompt` and `suggested_photo_tags` to tool schema; update system prompt for visual direction |
-| `src/components/admin/social/types.ts` | Add fields to `PackagePost` interface |
-| `src/components/admin/social/ContentPackageTab.tsx` | Add photo matching, AI image generation per post, image previews, updated "Open in Editor" with image |
-| `src/pages/admin/SocialGraphics.tsx` | Update `handleLoadPost` to accept and inject images into the photo array |
-
+1. Verify `www.drake.fitness` property in Search Console
+2. Submit updated sitemap: `https://www.drake.fitness/sitemap.xml`
+3. Use URL Inspection on top 5 pages to request re-indexing
+4. Update Google Business Profile website URL to `https://www.drake.fitness`
+5. Confirm non-www redirects to www via 301 in Lovable domain settings
