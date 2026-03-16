@@ -74,6 +74,20 @@ function sectionHeading(text: string): string {
   return `<h2 style="font-family:'Oswald',Arial,sans-serif;font-size:24px;color:${DARK};margin:0 0 16px;">${text}</h2>`;
 }
 
+function signatureBlock(lines: string): string {
+  const avatarUrl = `${emailBaseUrl}/images/email/david-outside.jpg`;
+  return `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:24px 0 0;">
+<tr>
+<td style="vertical-align:top;padding-right:12px;">
+<img src="${avatarUrl}" alt="David Drake" width="48" height="48" style="display:block;width:48px;height:48px;border-radius:50%;object-fit:cover;" />
+</td>
+<td style="vertical-align:top;">
+<p style="font-size:14px;margin:0;line-height:1.5;">${lines}</p>
+</td>
+</tr>
+</table>`;
+}
+
 // Map: "sequence-dayLabel" → html
 const templateMap: Record<string, string> = {
   // ═══ NEW LEAD ═══
@@ -90,7 +104,7 @@ ${emailImage("studio-david-dog.jpg", "David Drake with his dog at Drake Fitness"
 <li style="margin-bottom:8px;"><strong style="color:${DARK};">Already experienced?</strong> We'll challenge you. Our coaching sharpens movement quality at every level.</li>
 </ul>
 ${ctaButton("View Class Schedule")}
-<p style="font-size:14px;">See you on the floor,<br/><strong style="color:${DARK};">David Drake</strong><br/>Head Coach, Drake Fitness</p>
+${signatureBlock(`See you on the floor,<br/><strong style="color:${DARK};">David Drake</strong><br/>Head Coach, Drake Fitness`)}
   `, "Welcome to Drake Fitness. Here's everything you need to know for your first class."),
 
   "new-lead-Day 1": wrap(`
@@ -102,7 +116,7 @@ ${emailImage("studio-kettlebells.jpg", "Kettlebells lined up at Drake Fitness st
 <p><strong style="color:${DARK};">Experienced lifters:</strong> expect smart programming and coaching cues that refine your technique, not just count your reps.</p>
 <p>Our brand promise is simple: <strong style="color:${DARK};">"Sign up and show up."</strong> We handle the rest.</p>
 ${ctaButton("Book Your First Class")}
-<p style="font-size:14px;">You've got this,<br/><strong style="color:${DARK};">David @ Drake Fitness</strong></p>
+${signatureBlock(`You've got this,<br/><strong style="color:${DARK};">David @ Drake Fitness</strong>`)}
   `, "No gear required. No experience needed. Just you."),
 
   "new-lead-Day 3": wrap(`
@@ -125,7 +139,7 @@ ${emailImage("david-coaching-form.jpg", "David Drake coaching a member on proper
 </table>
 <p><strong style="color:${DARK};">One more thing: class 2 is always easier than class 1.</strong> Your body adapts fast. By your next session, you'll know the flow, recognize the movements, and feel more confident. The hardest part is already behind you.</p>
 ${ctaButton("View Class Schedule")}
-<p style="font-size:14px;">Recover well,<br/><strong style="color:${DARK};">David Drake</strong><br/>Head Coach, Drake Fitness</p>
+${signatureBlock(`Recover well,<br/><strong style="color:${DARK};">David Drake</strong><br/>Head Coach, Drake Fitness`)}
   `, "Here's exactly what to do before your next class."),
 
   "new-lead-Day 5": wrap(`
@@ -137,7 +151,7 @@ ${emailImage("david-coaching-form.jpg", "David Drake coaching a member on proper
 <p>My philosophy is simple: <strong style="color:${DARK};">strength that serves your life — whether that's playing with your grandkids or competing in your next event.</strong> Kettlebells, bodyweight, mobility work — tools that build bodies that last decades and perform when it matters.</p>
 <p>I don't count reps to rush through them. I watch how you move, and I coach you to move better. That's it.</p>
 ${ctaButton("See Our Classes", "https://www.drake.fitness/classes")}
-<p style="font-size:14px;">— David Drake<br/>Head Coach</p>
+${signatureBlock(`— David Drake<br/>Head Coach`)}
   `, "I've spent 25 years coaching at every level. Here's why."),
 
   "new-lead-Day 10": wrap(`
@@ -165,7 +179,7 @@ ${ctaButton("Ready to Write Your Story?")}
 <p>Have you made it to a class yet? If so, how'd it feel? If not, no pressure — but I'd love to know what's holding you back.</p>
 <p>Hit reply and let me know. I read every email.</p>
 ${emailImage("david-outside.jpg", "David Drake outside the studio")}
-<p style="margin-top:24px;">— David</p>
+${signatureBlock(`— David`)}
 <p style="font-size:13px;color:${MUTED};margin-top:16px;"><em>P.S. This isn't automated. I genuinely want to hear from you.</em></p>
   `, "Just checking in — I'd love to hear how things are going."),
 
@@ -186,7 +200,7 @@ ${emailImage("group-kettlebell-training.jpg", "Group kettlebell training class a
 </td></tr>
 </table>
 ${ctaButton("Become a Member", "https://www.drake.fitness/pricing")}
-<p style="font-size:14px;">Questions? Just reply to this email.<br/><strong style="color:${DARK};">— David Drake</strong></p>
+${signatureBlock(`Questions? Just reply to this email.<br/><strong style="color:${DARK};">— David Drake</strong>`)}
   `, "You've put in the work. Let's keep the momentum going."),
 
   "new-lead-Day 30": wrap(`
@@ -202,7 +216,7 @@ ${emailImage("studio-full-view.jpg", "Full view of Drake Fitness studio")}
 </ul>
 ${ctaButton("View Membership Options", "https://www.drake.fitness/pricing")}
 <p>No pressure. The door's always open.</p>
-<p style="font-size:14px;">— David &amp; the Drake Fitness crew</p>
+${signatureBlock(`— David &amp; the Drake Fitness crew`)}
   `, "Your 3-class pass expires soon. Here's what members get next."),
 
   // ═══ WIN-BACK ═══
@@ -212,7 +226,7 @@ ${ctaButton("View Membership Options", "https://www.drake.fitness/pricing")}
 <p>No pitch, no offer. I just wanted to say: the studio isn't the same without you. The crew asks about you.</p>
 <p>Whenever you're ready, we're here. Same address, same vibe, same community.</p>
 ${emailImage("studio-david-storefront.jpg", "David Drake at the Drake Fitness storefront")}
-<p style="margin-top:24px;">— David Drake<br/>Drake Fitness<br/>(843) 817-5420</p>
+${signatureBlock(`— David Drake<br/>Drake Fitness<br/>(843) 817-5420`)}
   `, "It's been a while — just wanted to say hey."),
 
   "win-back-Day 5": wrap(`
@@ -263,7 +277,7 @@ ${emailImage("members-overhead-press-group.jpg", "Members doing overhead press i
 </table>
 <p>Just one class. See how it feels.</p>
 ${ctaButton("Claim Your Free Week")}
-<p style="font-size:14px;">— David Drake</p>
+${signatureBlock(`— David Drake`)}
   `, "No commitment. No catch. Just come move with us for a week."),
 
   "win-back-Day 35": wrap(`
@@ -273,7 +287,7 @@ ${ctaButton("Claim Your Free Week")}
 <p>Whenever you're ready to move again — whether that's tomorrow or six months from now — we'll be here. Same studio, same crew, same energy.</p>
 <p>The door's always open.</p>
 ${emailImage("studio-nick-david-together.jpg", "Nick and David together at Drake Fitness")}
-<p style="margin-top:24px;">— David Drake<br/>Drake Fitness<br/>2 Avondale Ave, Charleston, SC 29407<br/>(843) 817-5420</p>
+${signatureBlock(`— David Drake<br/>Drake Fitness<br/>2 Avondale Ave, Charleston, SC 29407<br/>(843) 817-5420`)}
   `, "No pressure. Whenever you're ready, we'll be here."),
 };
 

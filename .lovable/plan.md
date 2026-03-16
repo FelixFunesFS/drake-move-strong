@@ -1,43 +1,29 @@
 
+# Plan: Domain Standardization + Welcome Page SEO — COMPLETED
 
-## Add Small David Portrait to Email Signatures
+## What Was Done
 
-### What's Changing
-Every email written from David's personal voice will get a small circular headshot (48px) inline next to the signature text — like a personal email avatar. This replaces the plain text sign-offs with a warmer, more personal feel.
+Standardized all URLs from `https://drake.fitness` → `https://www.drake.fitness` across 31 files, added noindex to Welcome page, and updated robots.txt.
 
-### Implementation
+### Files Updated
 
-**File**: `src/lib/emailTemplates.ts`
+| Category | Files | Change |
+|----------|-------|--------|
+| **SEO Core** | `SEO.tsx`, `StructuredData.tsx` | Default canonical, ogImage, toAbsoluteUrl(), business schema |
+| **Sitemap & Robots** | `sitemap.xml`, `robots.txt` | All URLs → www; added `Disallow: /welcome` |
+| **Welcome Page** | `Welcome.tsx` | Added `noindex, nofollow` meta tag + www canonical |
+| **Public Pages** | Home, Pricing, Schedule, Contact, About, Coaching, FAQ, Insights, SuccessStories, Ruckathon, NewYearChallenge, ResetWeekAlt | canonical → www |
+| **Service Pages** | ResetWeekCharleston, StrengthTraining, LowImpact, WestAshley | canonical → www |
+| **Blog** | InsightPost.tsx | canonical, articleSchema URL, social share URLs |
+| **Auth/Member** | Auth, Dashboard, Profile, MyBookings | canonical → www |
+| **Chatbot** | ChatMessage.tsx, chat-assistant edge function | Friendly link labels + system prompt URLs |
+| **Email** | emailTemplates.ts, send-nurture-previews | CTA button URLs |
+| **OG Redirect** | og-redirect edge function | SITE_URL constant |
 
-1. **Add a `signatureBlock` helper function** that renders a small circular David image (48px) floated left next to the signature text. Uses `david-outside.jpg` as the headshot — it's already in the public email assets and shows David in a natural, approachable pose.
+### Google Search Console Checklist (Post-Deploy)
 
-```
-┌──────────────────────────────┐
-│ [48px circle]  See you...    │
-│  David photo   David Drake   │
-│               Head Coach     │
-└──────────────────────────────┘
-```
-
-2. **Replace 10 plain-text signatures** across both sequences with the new `signatureBlock()` call:
-
-| Email | Current Signature | Change |
-|-------|------------------|--------|
-| new-lead-Instant | "See you on the floor, David Drake, Head Coach" | → `signatureBlock(...)` |
-| new-lead-Day 1 | "You've got this, David @ Drake Fitness" | → `signatureBlock(...)` |
-| new-lead-Day 3 | "Recover well, David Drake, Head Coach" | → `signatureBlock(...)` |
-| new-lead-Day 5 | "— David Drake, Head Coach" | → `signatureBlock(...)` |
-| new-lead-Day 18 | "— David" + P.S. line | → `signatureBlock(...)` + P.S. |
-| new-lead-Day 24 | "— David Drake" | → `signatureBlock(...)` |
-| new-lead-Day 30 | "— David & the Drake Fitness crew" | → `signatureBlock(...)` |
-| win-back-Day 0 | "— David Drake, Drake Fitness, phone" | → `signatureBlock(...)` |
-| win-back-Day 21 | "— David Drake" | → `signatureBlock(...)` |
-| win-back-Day 35 | "— David Drake, address, phone" | → `signatureBlock(...)` |
-
-The helper will use an HTML table layout (not CSS float) for email client compatibility — a 48px circular image cell on the left, signature text on the right. Each call passes the specific sign-off text for that email.
-
-### What This Does NOT Change
-- The large hero/body images in each email stay as-is
-- Email layout, content, CTA buttons — unchanged
-- Only the signature area at the bottom of each email gets the small portrait added
-
+1. Verify `www.drake.fitness` property in Search Console
+2. Submit updated sitemap: `https://www.drake.fitness/sitemap.xml`
+3. Use URL Inspection on top 5 pages to request re-indexing
+4. Update Google Business Profile website URL to `https://www.drake.fitness`
+5. Confirm non-www redirects to www via 301 in Lovable domain settings
