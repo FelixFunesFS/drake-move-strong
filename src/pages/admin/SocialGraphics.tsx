@@ -3,7 +3,8 @@ import AdminLayout from '@/components/admin/AdminLayout';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Download, Search, Type, Sparkles, X, Image as ImageIcon, Upload, Plus, Minus, ChevronLeft, ChevronRight, Monitor, Smartphone, Square, RectangleHorizontal } from 'lucide-react';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Download, Search, Type, Sparkles, X, Image as ImageIcon, Upload, Plus, Minus, ChevronLeft, ChevronRight, Monitor, Smartphone, Square, RectangleHorizontal, ChevronDown, GripVertical } from 'lucide-react';
 import { toPng } from 'html-to-image';
 import { toast } from 'sonner';
 
@@ -36,33 +37,31 @@ const SIZE_ICONS: Record<string, React.ReactNode> = {
   portrait: <Monitor className="h-4 w-4" />,
 };
 
+const MULTI_IMAGE_TEMPLATES = new Set(['fade-blend', 'circle-cutout', 'photo-strip', 'overlap-cards', 'collage']);
+
 export default function SocialGraphics() {
-  // Photos state (defaults + custom uploads)
   const [photos, setPhotos] = useState<PhotoItem[]>(DEFAULT_PHOTOS);
-
-  // Canvas size
   const [canvasSize, setCanvasSize] = useState<CanvasSize>(CANVAS_SIZES[0]);
-
-  // Mode: single or carousel
   const [isCarousel, setIsCarousel] = useState(false);
   const [slides, setSlides] = useState<SlideContent[]>([{ ...DEFAULT_SLIDE }]);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isDragOver, setIsDragOver] = useState(false);
 
-  // Current slide data accessors
   const slide = slides[activeSlide] || DEFAULT_SLIDE;
   const updateSlide = (updates: Partial<SlideContent>) => {
     setSlides(prev => prev.map((s, i) => i === activeSlide ? { ...s, ...updates } : s));
   };
 
-  // Photo picking
   const [photoSearch, setPhotoSearch] = useState('');
   const [pickingFor, setPickingFor] = useState<'primary' | 'secondary' | 'tertiary'>('primary');
   const [isExporting, setIsExporting] = useState(false);
   const previewRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  // Schedule classes for schedule templates
   const [scheduleClasses, setScheduleClasses] = useState<ScheduleClass[]>([]);
+
+  // Collapsible sections
+  const [photosOpen, setPhotosOpen] = useState(true);
+  const [contentOpen, setContentOpen] = useState(true);
 
   const filteredPhotos = photos.filter(p =>
     p.label.toLowerCase().includes(photoSearch.toLowerCase())
@@ -126,7 +125,7 @@ export default function SocialGraphics() {
     try {
       for (let i = 0; i < slides.length; i++) {
         setActiveSlide(i);
-        await new Promise(r => setTimeout(r, 300)); // wait for render
+        await new Promise(r => setTimeout(r, 300));
         const dataUrl = await toPng(previewRef.current!, {
           width: canvasSize.width,
           height: canvasSize.height,
@@ -158,10 +157,7 @@ export default function SocialGraphics() {
     }
   };
 
-  // Custom image upload
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (!files) return;
+  const addPhotosFromFiles = (files: FileList | File[]) => {
     Array.from(files).forEach(file => {
       const reader = new FileReader();
       reader.onload = (ev) => {
@@ -170,10 +166,19 @@ export default function SocialGraphics() {
       };
       reader.readAsDataURL(file);
     });
+  };
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) addPhotosFromFiles(e.target.files);
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
-  // Carousel controls
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    if (e.dataTransfer.files.length > 0) addPhotosFromFiles(e.dataTransfer.files);
+  };
+
   const addSlide = () => {
     if (slides.length >= 10) return;
     setSlides(prev => [...prev, { ...DEFAULT_SLIDE }]);
@@ -188,14 +193,12 @@ export default function SocialGraphics() {
 
   const applyCarouselSequence = (type: 'weekly-schedule' | 'class-spotlight' | 'custom') => {
     if (type === 'weekly-schedule' && scheduleClasses.length > 0) {
-      // Group by day
       const byDay: Record<string, ScheduleClass[]> = {};
       scheduleClasses.forEach(c => {
         if (!byDay[c.class_date]) byDay[c.class_date] = [];
         byDay[c.class_date].push(c);
       });
       const days = Object.keys(byDay).sort().slice(0, 5);
-
       const newSlides: SlideContent[] = [
         { ...DEFAULT_SLIDE, template: 'full-bleed', headline: "This Week at\nDrake Fitness", programLine: 'Swipe for the Full Schedule →', detailLine: '', ctaText: 'Swipe →', showBadge: false },
         ...days.map(day => {
@@ -252,16 +255,18 @@ export default function SocialGraphics() {
     toast.success('Loaded post into editor');
   };
 
-  // Preview scaling
-  const maxPreviewWidth = 620;
-  const PREVIEW_SCALE = Math.min(maxPreviewWidth / canvasSize.width, 400 / canvasSize.height, 0.5);
+  // Preview scaling — fits within left column
+  const maxPreviewWidth = 560;
+  const PREVIEW_SCALE = Math.min(maxPreviewWidth / canvasSize.width, 500 / canvasSize.height, 0.55);
 
   const secondPhoto = slide.secondPhoto !== null ? photos[slide.secondPhoto]?.src : undefined;
   const thirdPhoto = slide.thirdPhoto !== null ? photos[slide.thirdPhoto]?.src : undefined;
+  const needsMultiImage = MULTI_IMAGE_TEMPLATES.has(slide.template);
+  const needsThirdImage = slide.template === 'photo-strip' || slide.template === 'collage';
 
   return (
     <AdminLayout>
-      <div className="space-y-6">
+      <div className="space-y-4">
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div>
             <h1 className="text-2xl font-hero uppercase tracking-wide">Social Graphics</h1>
@@ -290,278 +295,285 @@ export default function SocialGraphics() {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="editor" className="space-y-6 mt-4">
-            {/* Size Selector */}
-            <div>
-              <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2 block">Output Size</label>
-              <div className="flex gap-2 flex-wrap">
-                {CANVAS_SIZES.map(size => (
-                  <button
-                    key={size.name}
-                    onClick={() => setCanvasSize(size)}
-                    className={`flex items-center gap-2 text-xs px-3 py-2 rounded-lg border transition-all font-medium ${
-                      canvasSize.name === size.name ? 'bg-drake-gold text-drake-dark border-drake-gold' : 'border-border text-muted-foreground hover:border-drake-gold/50'
-                    }`}
-                  >
-                    {SIZE_ICONS[size.name]}
-                    {size.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Carousel Toggle + Controls */}
-            <div className="flex items-center gap-4 flex-wrap">
-              <div className="flex items-center gap-2">
-                <label className="text-sm font-medium">Carousel Mode</label>
-                <button
-                  onClick={() => { setIsCarousel(!isCarousel); if (!isCarousel) { setSlides([{ ...DEFAULT_SLIDE }]); setActiveSlide(0); } }}
-                  className={`w-10 h-6 rounded-full transition-colors ${isCarousel ? 'bg-drake-gold' : 'bg-muted-foreground/30'}`}
-                >
-                  <div className={`w-4 h-4 rounded-full bg-white shadow transition-transform mx-1 ${isCarousel ? 'translate-x-4' : 'translate-x-0'}`} />
-                </button>
-              </div>
-              {isCarousel && (
-                <>
-                  <div className="flex items-center gap-1">
-                    <Button size="sm" variant="ghost" onClick={() => setActiveSlide(Math.max(0, activeSlide - 1))} disabled={activeSlide === 0}>
-                      <ChevronLeft className="h-4 w-4" />
-                    </Button>
-                    {slides.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setActiveSlide(i)}
-                        className={`w-7 h-7 rounded-full text-xs font-bold transition-all ${i === activeSlide ? 'bg-drake-gold text-drake-dark' : 'bg-muted text-muted-foreground hover:bg-muted-foreground/20'}`}
-                      >
-                        {i + 1}
-                      </button>
-                    ))}
-                    <Button size="sm" variant="ghost" onClick={() => setActiveSlide(Math.min(slides.length - 1, activeSlide + 1))} disabled={activeSlide === slides.length - 1}>
-                      <ChevronRight className="h-4 w-4" />
-                    </Button>
-                  </div>
-                  <div className="flex gap-1">
-                    <Button size="sm" variant="outline" onClick={addSlide} disabled={slides.length >= 10}><Plus className="h-3 w-3" /></Button>
-                    <Button size="sm" variant="outline" onClick={removeSlide} disabled={slides.length <= 1}><Minus className="h-3 w-3" /></Button>
-                  </div>
-                  {/* Carousel Sequences */}
-                  <div className="flex gap-1.5">
-                    <button onClick={() => applyCarouselSequence('weekly-schedule')} className="text-[10px] px-2 py-1 rounded border border-border hover:border-drake-gold/50 text-muted-foreground">Weekly Schedule</button>
-                    <button onClick={() => applyCarouselSequence('class-spotlight')} className="text-[10px] px-2 py-1 rounded border border-border hover:border-drake-gold/50 text-muted-foreground">Class Spotlight</button>
-                  </div>
-                </>
-              )}
-            </div>
-
-            {/* Template Picker */}
-            <div>
-              <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2 block">Template</label>
-              <div className="flex gap-3 flex-wrap">
-                {TEMPLATES.map(t => (
-                  <button
-                    key={t.id}
-                    onClick={() => updateSlide({ template: t.id })}
-                    className={`flex flex-col items-center gap-1.5 p-2 rounded-lg transition-all ${
-                      slide.template === t.id ? 'bg-accent ring-2 ring-drake-gold' : 'hover:bg-muted'
-                    }`}
-                  >
-                    <TemplateThumbnail id={t.id} active={slide.template === t.id} />
-                    <span className={`text-[11px] font-medium ${slide.template === t.id ? 'text-drake-gold' : 'text-muted-foreground'}`}>{t.label}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Content Presets + Schedule Presets */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <div>
-                <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2 block">
-                  <Sparkles className="h-3 w-3 inline mr-1" />
-                  Quick Presets
-                </label>
-                <div className="flex gap-2 flex-wrap">
-                  {CONTENT_PRESETS.map(preset => (
+          <TabsContent value="editor" className="mt-4">
+            {/* SPLIT-PANE LAYOUT */}
+            <div className="flex gap-6 items-start">
+              {/* LEFT: Sticky Preview */}
+              <div className="w-[580px] flex-shrink-0 sticky top-4 space-y-3">
+                {/* Size Tabs */}
+                <div className="flex gap-1.5 flex-wrap">
+                  {CANVAS_SIZES.map(size => (
                     <button
-                      key={preset.label}
-                      onClick={() => applyPreset(preset)}
-                      className={`text-xs px-3 py-1.5 rounded-full border transition-all font-medium ${
-                        slide.headline === preset.headline && slide.programLine === preset.programLine
-                          ? 'bg-drake-gold text-drake-dark border-drake-gold'
-                          : 'border-border text-muted-foreground hover:border-drake-gold/50 hover:text-foreground'
+                      key={size.name}
+                      onClick={() => setCanvasSize(size)}
+                      className={`flex items-center gap-1.5 text-[11px] px-2.5 py-1.5 rounded-md border transition-all font-medium ${
+                        canvasSize.name === size.name ? 'bg-drake-gold text-drake-dark border-drake-gold' : 'border-border text-muted-foreground hover:border-drake-gold/50'
                       }`}
                     >
-                      {preset.label}
+                      {SIZE_ICONS[size.name]}
+                      {size.name.charAt(0).toUpperCase() + size.name.slice(1)}
                     </button>
                   ))}
                 </div>
-              </div>
-              <SchedulePresets onApplyPreset={handleSchedulePreset} />
-            </div>
 
-            {/* Live Preview */}
-            <div className="bg-muted rounded-lg p-4">
-              <p className="text-xs text-muted-foreground mb-2">
-                Live Preview ({canvasSize.width}×{canvasSize.height})
-                {isCarousel && ` · Slide ${activeSlide + 1}/${slides.length}`}
-              </p>
-              <div style={{ width: canvasSize.width * PREVIEW_SCALE, height: canvasSize.height * PREVIEW_SCALE, position: 'relative', margin: '0 auto' }}>
-                <div style={{ transform: `scale(${PREVIEW_SCALE})`, transformOrigin: 'top left', width: canvasSize.width, height: canvasSize.height, position: 'absolute', top: 0, left: 0 }}>
-                  <TemplatePreview
-                    template={slide.template}
-                    photo={photos[slide.photo]?.src || photos[0]?.src}
-                    secondPhoto={secondPhoto}
-                    thirdPhoto={thirdPhoto}
-                    eyebrow={slide.eyebrow}
-                    headline={slide.headline}
-                    programLine={slide.programLine}
-                    detailLine={slide.detailLine}
-                    ctaText={slide.ctaText}
-                    showBadge={slide.showBadge}
-                    previewRef={previewRef}
-                    canvasSize={canvasSize}
-                    scheduleClasses={slide.scheduleClasses || scheduleClasses}
-                  />
+                {/* Preview */}
+                <div className="bg-muted rounded-lg p-3">
+                  <p className="text-[10px] text-muted-foreground mb-1.5">
+                    {canvasSize.width}×{canvasSize.height}
+                    {isCarousel && ` · Slide ${activeSlide + 1}/${slides.length}`}
+                  </p>
+                  <div style={{ width: canvasSize.width * PREVIEW_SCALE, height: canvasSize.height * PREVIEW_SCALE, position: 'relative', margin: '0 auto' }}>
+                    <div style={{ transform: `scale(${PREVIEW_SCALE})`, transformOrigin: 'top left', width: canvasSize.width, height: canvasSize.height, position: 'absolute', top: 0, left: 0 }}>
+                      <TemplatePreview
+                        template={slide.template}
+                        photo={photos[slide.photo]?.src || photos[0]?.src}
+                        secondPhoto={secondPhoto}
+                        thirdPhoto={thirdPhoto}
+                        eyebrow={slide.eyebrow}
+                        headline={slide.headline}
+                        programLine={slide.programLine}
+                        detailLine={slide.detailLine}
+                        ctaText={slide.ctaText}
+                        showBadge={slide.showBadge}
+                        previewRef={previewRef}
+                        canvasSize={canvasSize}
+                        scheduleClasses={slide.scheduleClasses || scheduleClasses}
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
 
-            {/* Content Controls */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="text-sm font-medium mb-1 flex items-center gap-1"><Type className="h-4 w-4" /> Eyebrow</label>
-                <Input value={slide.eyebrow} onChange={e => updateSlide({ eyebrow: e.target.value })} placeholder="WEST ASHLEY · CHARLESTON" />
-              </div>
-              <div>
-                <label className="text-sm font-medium mb-1 flex items-center gap-1"><Type className="h-4 w-4" /> Headline</label>
-                <Input value={slide.headline} onChange={e => updateSlide({ headline: e.target.value })} placeholder="Try 3 Classes Free" />
-              </div>
-              <div>
-                <label className="text-sm font-medium mb-1 flex items-center gap-1"><Type className="h-4 w-4" /> Program Line</label>
-                <Input value={slide.programLine} onChange={e => updateSlide({ programLine: e.target.value })} placeholder="Strength & Mobility Classes" />
-              </div>
-              <div>
-                <label className="text-sm font-medium mb-1 flex items-center gap-1"><Type className="h-4 w-4" /> Detail Line</label>
-                <Input value={slide.detailLine} onChange={e => updateSlide({ detailLine: e.target.value })} placeholder="All Levels Welcome" />
-              </div>
-              <div>
-                <label className="text-sm font-medium mb-1 flex items-center gap-1"><Type className="h-4 w-4" /> CTA Text</label>
-                <Input value={slide.ctaText} onChange={e => updateSlide({ ctaText: e.target.value })} placeholder="Book Your Free Class →" />
-              </div>
-              <div className="flex items-center gap-3 pt-6">
-                <label className="text-sm font-medium">Show "3 Free Classes" Badge</label>
-                <button
-                  onClick={() => updateSlide({ showBadge: !slide.showBadge })}
-                  className={`w-10 h-6 rounded-full transition-colors ${slide.showBadge ? 'bg-drake-gold' : 'bg-muted-foreground/30'}`}
-                >
-                  <div className={`w-4 h-4 rounded-full bg-white shadow transition-transform mx-1 ${slide.showBadge ? 'translate-x-4' : 'translate-x-0'}`} />
-                </button>
-              </div>
-            </div>
-
-            {/* Photo Pickers */}
-            <div>
-              <div className="flex items-center gap-3 mb-3 flex-wrap">
-                <h2 className="text-lg font-semibold">Choose Photos</h2>
-                <div className="relative flex-1 max-w-xs">
-                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                  <Input value={photoSearch} onChange={e => setPhotoSearch(e.target.value)} placeholder="Search photos…" className="pl-9 h-9" />
-                </div>
-                {/* Upload Button */}
-                <Button size="sm" variant="outline" onClick={() => fileInputRef.current?.click()}>
-                  <Upload className="h-4 w-4 mr-1" /> Upload
-                </Button>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  onChange={handleFileUpload}
-                  className="hidden"
-                />
-              </div>
-
-              {/* Photo slot selectors */}
-              <div className="flex gap-3 mb-3 flex-wrap">
-                <button
-                  onClick={() => setPickingFor('primary')}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-all ${
-                    pickingFor === 'primary' ? 'border-drake-gold bg-drake-gold/10 text-drake-gold' : 'border-border text-muted-foreground hover:border-muted-foreground'
-                  }`}
-                >
-                  <ImageIcon className="h-4 w-4" />
-                  Primary Photo
-                  <span className="text-xs opacity-60">({photos[slide.photo]?.label})</span>
-                </button>
-                <button
-                  onClick={() => setPickingFor('secondary')}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-all ${
-                    pickingFor === 'secondary' ? 'border-drake-gold bg-drake-gold/10 text-drake-gold' : 'border-border text-muted-foreground hover:border-muted-foreground'
-                  }`}
-                >
-                  <ImageIcon className="h-4 w-4" />
-                  Secondary
-                  {slide.secondPhoto !== null ? (
-                    <>
-                      <span className="text-xs opacity-60">({photos[slide.secondPhoto]?.label})</span>
-                      <button onClick={(e) => { e.stopPropagation(); updateSlide({ secondPhoto: null }); }} className="ml-1 p-0.5 rounded hover:bg-destructive/20">
-                        <X className="h-3 w-3" />
-                      </button>
-                    </>
-                  ) : (
-                    <span className="text-xs opacity-40">(optional)</span>
-                  )}
-                </button>
-                {slide.template === 'collage' && (
-                  <button
-                    onClick={() => setPickingFor('tertiary')}
-                    className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-all ${
-                      pickingFor === 'tertiary' ? 'border-drake-gold bg-drake-gold/10 text-drake-gold' : 'border-border text-muted-foreground hover:border-muted-foreground'
-                    }`}
-                  >
-                    <ImageIcon className="h-4 w-4" />
-                    Third
-                    {slide.thirdPhoto !== null ? (
-                      <>
-                        <span className="text-xs opacity-60">({photos[slide.thirdPhoto]?.label})</span>
-                        <button onClick={(e) => { e.stopPropagation(); updateSlide({ thirdPhoto: null }); }} className="ml-1 p-0.5 rounded hover:bg-destructive/20">
-                          <X className="h-3 w-3" />
-                        </button>
-                      </>
-                    ) : (
-                      <span className="text-xs opacity-40">(optional)</span>
-                    )}
-                  </button>
-                )}
-              </div>
-              <p className="text-xs text-muted-foreground mb-2">
-                Selecting for: <span className="font-semibold text-drake-gold">{pickingFor === 'primary' ? 'Primary' : pickingFor === 'secondary' ? 'Secondary' : 'Third'}</span>
-              </p>
-
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2">
-                {filteredPhotos.map((p, idx) => {
-                  const realIdx = photos.indexOf(p);
-                  const isPrimary = slide.photo === realIdx;
-                  const isSecondary = slide.secondPhoto === realIdx;
-                  const isTertiary = slide.thirdPhoto === realIdx;
-                  const isActive = pickingFor === 'primary' ? isPrimary : pickingFor === 'secondary' ? isSecondary : isTertiary;
-                  return (
+                {/* Carousel Controls */}
+                <div className="flex items-center gap-3 flex-wrap">
+                  <div className="flex items-center gap-2">
+                    <label className="text-xs font-medium">Carousel</label>
                     <button
-                      key={`${p.label}-${idx}`}
-                      onClick={() => handlePhotoSelect(realIdx)}
-                      className={`relative aspect-video rounded-md overflow-hidden border-2 transition-all ${
-                        isActive ? 'border-drake-gold ring-2 ring-drake-gold/40' : 'border-transparent hover:border-muted-foreground/30'
+                      onClick={() => { setIsCarousel(!isCarousel); if (!isCarousel) { setSlides([{ ...DEFAULT_SLIDE }]); setActiveSlide(0); } }}
+                      className={`w-9 h-5 rounded-full transition-colors ${isCarousel ? 'bg-drake-gold' : 'bg-muted-foreground/30'}`}
+                    >
+                      <div className={`w-3.5 h-3.5 rounded-full bg-white shadow transition-transform mx-0.5 ${isCarousel ? 'translate-x-4' : 'translate-x-0'}`} />
+                    </button>
+                  </div>
+                  {isCarousel && (
+                    <>
+                      <div className="flex items-center gap-0.5">
+                        <Button size="sm" variant="ghost" className="h-6 w-6 p-0" onClick={() => setActiveSlide(Math.max(0, activeSlide - 1))} disabled={activeSlide === 0}>
+                          <ChevronLeft className="h-3.5 w-3.5" />
+                        </Button>
+                        {slides.map((_, i) => (
+                          <button
+                            key={i}
+                            onClick={() => setActiveSlide(i)}
+                            className={`w-6 h-6 rounded-full text-[10px] font-bold transition-all ${i === activeSlide ? 'bg-drake-gold text-drake-dark' : 'bg-muted text-muted-foreground hover:bg-muted-foreground/20'}`}
+                          >
+                            {i + 1}
+                          </button>
+                        ))}
+                        <Button size="sm" variant="ghost" className="h-6 w-6 p-0" onClick={() => setActiveSlide(Math.min(slides.length - 1, activeSlide + 1))} disabled={activeSlide === slides.length - 1}>
+                          <ChevronRight className="h-3.5 w-3.5" />
+                        </Button>
+                      </div>
+                      <div className="flex gap-1">
+                        <Button size="sm" variant="outline" className="h-6 w-6 p-0" onClick={addSlide} disabled={slides.length >= 10}><Plus className="h-3 w-3" /></Button>
+                        <Button size="sm" variant="outline" className="h-6 w-6 p-0" onClick={removeSlide} disabled={slides.length <= 1}><Minus className="h-3 w-3" /></Button>
+                      </div>
+                      <div className="flex gap-1">
+                        <button onClick={() => applyCarouselSequence('weekly-schedule')} className="text-[9px] px-2 py-1 rounded border border-border hover:border-drake-gold/50 text-muted-foreground">Weekly</button>
+                        <button onClick={() => applyCarouselSequence('class-spotlight')} className="text-[9px] px-2 py-1 rounded border border-border hover:border-drake-gold/50 text-muted-foreground">Spotlight</button>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {/* RIGHT: Scrollable Controls */}
+              <div className="flex-1 min-w-0 space-y-4 max-h-[calc(100vh-140px)] overflow-y-auto pr-1">
+                {/* Template Grid */}
+                <div>
+                  <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2 block">Template</label>
+                  <div className="grid grid-cols-4 gap-2">
+                    {TEMPLATES.map(t => (
+                      <button
+                        key={t.id}
+                        onClick={() => updateSlide({ template: t.id })}
+                        className={`flex flex-col items-center gap-1 p-1.5 rounded-lg transition-all ${
+                          slide.template === t.id ? 'bg-accent ring-2 ring-drake-gold' : 'hover:bg-muted'
+                        }`}
+                      >
+                        <TemplateThumbnail id={t.id} active={slide.template === t.id} />
+                        <span className={`text-[9px] font-medium leading-tight text-center ${slide.template === t.id ? 'text-drake-gold' : 'text-muted-foreground'}`}>{t.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Content Section */}
+                <Collapsible open={contentOpen} onOpenChange={setContentOpen}>
+                  <CollapsibleTrigger className="flex items-center justify-between w-full text-xs font-medium text-muted-foreground uppercase tracking-wider cursor-pointer hover:text-foreground transition-colors">
+                    <span className="flex items-center gap-1"><Type className="h-3.5 w-3.5" /> Content</span>
+                    <ChevronDown className={`h-3.5 w-3.5 transition-transform ${contentOpen ? 'rotate-180' : ''}`} />
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="mt-2 space-y-2">
+                    {/* Quick Presets */}
+                    <div className="flex gap-1.5 flex-wrap mb-2">
+                      {CONTENT_PRESETS.map(preset => (
+                        <button
+                          key={preset.label}
+                          onClick={() => applyPreset(preset)}
+                          className={`text-[10px] px-2 py-1 rounded-full border transition-all font-medium ${
+                            slide.headline === preset.headline && slide.programLine === preset.programLine
+                              ? 'bg-drake-gold text-drake-dark border-drake-gold'
+                              : 'border-border text-muted-foreground hover:border-drake-gold/50'
+                          }`}
+                        >
+                          {preset.label}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <label className="text-[10px] font-medium text-muted-foreground mb-0.5 block">Eyebrow</label>
+                        <Input value={slide.eyebrow} onChange={e => updateSlide({ eyebrow: e.target.value })} className="h-8 text-xs" />
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-medium text-muted-foreground mb-0.5 block">Headline</label>
+                        <Input value={slide.headline} onChange={e => updateSlide({ headline: e.target.value })} className="h-8 text-xs" />
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-medium text-muted-foreground mb-0.5 block">Program</label>
+                        <Input value={slide.programLine} onChange={e => updateSlide({ programLine: e.target.value })} className="h-8 text-xs" />
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-medium text-muted-foreground mb-0.5 block">Detail</label>
+                        <Input value={slide.detailLine} onChange={e => updateSlide({ detailLine: e.target.value })} className="h-8 text-xs" />
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-medium text-muted-foreground mb-0.5 block">CTA</label>
+                        <Input value={slide.ctaText} onChange={e => updateSlide({ ctaText: e.target.value })} className="h-8 text-xs" />
+                      </div>
+                      <div className="flex items-center gap-2 pt-4">
+                        <label className="text-[10px] font-medium text-muted-foreground">Badge</label>
+                        <button
+                          onClick={() => updateSlide({ showBadge: !slide.showBadge })}
+                          className={`w-8 h-5 rounded-full transition-colors ${slide.showBadge ? 'bg-drake-gold' : 'bg-muted-foreground/30'}`}
+                        >
+                          <div className={`w-3.5 h-3.5 rounded-full bg-white shadow transition-transform mx-0.5 ${slide.showBadge ? 'translate-x-3' : 'translate-x-0'}`} />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Schedule Presets */}
+                    <SchedulePresets onApplyPreset={handleSchedulePreset} />
+                  </CollapsibleContent>
+                </Collapsible>
+
+                {/* Photos Section */}
+                <Collapsible open={photosOpen} onOpenChange={setPhotosOpen}>
+                  <CollapsibleTrigger className="flex items-center justify-between w-full text-xs font-medium text-muted-foreground uppercase tracking-wider cursor-pointer hover:text-foreground transition-colors">
+                    <span className="flex items-center gap-1"><ImageIcon className="h-3.5 w-3.5" /> Photos</span>
+                    <ChevronDown className={`h-3.5 w-3.5 transition-transform ${photosOpen ? 'rotate-180' : ''}`} />
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="mt-2 space-y-2">
+                    {/* Drop zone */}
+                    <div
+                      onDragOver={e => { e.preventDefault(); setIsDragOver(true); }}
+                      onDragLeave={() => setIsDragOver(false)}
+                      onDrop={handleDrop}
+                      onClick={() => fileInputRef.current?.click()}
+                      className={`border-2 border-dashed rounded-lg p-3 text-center cursor-pointer transition-all ${
+                        isDragOver ? 'border-drake-gold bg-drake-gold/10' : 'border-border hover:border-drake-gold/50'
                       }`}
                     >
-                      <img src={p.src} alt={p.label} className="w-full h-full object-cover" />
-                      <span className="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[10px] px-1 py-0.5 truncate">
-                        {p.isCustom && '📎 '}{p.label}
-                      </span>
-                      {isPrimary && <span className="absolute top-1 left-1 text-[9px] bg-drake-gold text-drake-dark px-1 rounded font-bold">1</span>}
-                      {isSecondary && <span className="absolute top-1 left-1 text-[9px] bg-drake-teal text-white px-1 rounded font-bold">2</span>}
-                      {isTertiary && <span className="absolute top-1 right-1 text-[9px] bg-drake-teal text-white px-1 rounded font-bold">3</span>}
-                    </button>
-                  );
-                })}
+                      <Upload className="h-4 w-4 mx-auto mb-1 text-muted-foreground" />
+                      <p className="text-[10px] text-muted-foreground">Drop images or click to upload</p>
+                    </div>
+                    <input ref={fileInputRef} type="file" accept="image/*" multiple onChange={handleFileUpload} className="hidden" />
+
+                    {/* Photo slot selectors */}
+                    <div className="flex gap-1.5 flex-wrap">
+                      <button
+                        onClick={() => setPickingFor('primary')}
+                        className={`flex items-center gap-1 px-2 py-1 rounded-md border text-[10px] font-medium transition-all ${
+                          pickingFor === 'primary' ? 'border-drake-gold bg-drake-gold/10 text-drake-gold' : 'border-border text-muted-foreground'
+                        }`}
+                      >
+                        <span className="w-3 h-3 rounded-full bg-drake-gold text-drake-dark text-[8px] flex items-center justify-center font-bold">1</span>
+                        Primary
+                      </button>
+                      <button
+                        onClick={() => setPickingFor('secondary')}
+                        className={`flex items-center gap-1 px-2 py-1 rounded-md border text-[10px] font-medium transition-all ${
+                          pickingFor === 'secondary' ? 'border-drake-gold bg-drake-gold/10 text-drake-gold' : 'border-border text-muted-foreground'
+                        }`}
+                      >
+                        <span className="w-3 h-3 rounded-full bg-drake-teal text-white text-[8px] flex items-center justify-center font-bold">2</span>
+                        Secondary
+                        {slide.secondPhoto !== null && (
+                          <button onClick={(e) => { e.stopPropagation(); updateSlide({ secondPhoto: null }); }} className="ml-0.5 p-0.5 rounded hover:bg-destructive/20">
+                            <X className="h-2.5 w-2.5" />
+                          </button>
+                        )}
+                      </button>
+                      {needsThirdImage && (
+                        <button
+                          onClick={() => setPickingFor('tertiary')}
+                          className={`flex items-center gap-1 px-2 py-1 rounded-md border text-[10px] font-medium transition-all ${
+                            pickingFor === 'tertiary' ? 'border-drake-gold bg-drake-gold/10 text-drake-gold' : 'border-border text-muted-foreground'
+                          }`}
+                        >
+                          <span className="w-3 h-3 rounded-full bg-drake-teal text-white text-[8px] flex items-center justify-center font-bold">3</span>
+                          Third
+                          {slide.thirdPhoto !== null && (
+                            <button onClick={(e) => { e.stopPropagation(); updateSlide({ thirdPhoto: null }); }} className="ml-0.5 p-0.5 rounded hover:bg-destructive/20">
+                              <X className="h-2.5 w-2.5" />
+                            </button>
+                          )}
+                        </button>
+                      )}
+                    </div>
+
+                    {needsMultiImage && slide.secondPhoto === null && (
+                      <p className="text-[10px] text-drake-gold/80 bg-drake-gold/10 rounded px-2 py-1">
+                        💡 This template uses multiple photos. Select a secondary image for best results.
+                      </p>
+                    )}
+
+                    {/* Search */}
+                    <div className="relative">
+                      <Search className="absolute left-2 top-2 h-3.5 w-3.5 text-muted-foreground" />
+                      <Input value={photoSearch} onChange={e => setPhotoSearch(e.target.value)} placeholder="Search…" className="pl-7 h-7 text-[11px]" />
+                    </div>
+
+                    {/* Photo grid */}
+                    <div className="grid grid-cols-4 gap-1.5 max-h-64 overflow-y-auto">
+                      {filteredPhotos.map((p, idx) => {
+                        const realIdx = photos.indexOf(p);
+                        const isPrimary = slide.photo === realIdx;
+                        const isSecondary = slide.secondPhoto === realIdx;
+                        const isTertiary = slide.thirdPhoto === realIdx;
+                        const isActive = pickingFor === 'primary' ? isPrimary : pickingFor === 'secondary' ? isSecondary : isTertiary;
+                        return (
+                          <button
+                            key={`${p.label}-${idx}`}
+                            onClick={() => handlePhotoSelect(realIdx)}
+                            className={`relative aspect-video rounded overflow-hidden border-2 transition-all ${
+                              isActive ? 'border-drake-gold ring-1 ring-drake-gold/40' : 'border-transparent hover:border-muted-foreground/30'
+                            }`}
+                          >
+                            <img src={p.src} alt={p.label} className="w-full h-full object-cover" />
+                            <span className="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[8px] px-0.5 py-0 truncate">
+                              {p.isCustom && '📎 '}{p.label}
+                            </span>
+                            {isPrimary && <span className="absolute top-0.5 left-0.5 text-[7px] bg-drake-gold text-drake-dark px-0.5 rounded font-bold">1</span>}
+                            {isSecondary && <span className="absolute top-0.5 left-0.5 text-[7px] bg-drake-teal text-white px-0.5 rounded font-bold">2</span>}
+                            {isTertiary && <span className="absolute top-0.5 right-0.5 text-[7px] bg-drake-teal text-white px-0.5 rounded font-bold">3</span>}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </CollapsibleContent>
+                </Collapsible>
               </div>
             </div>
           </TabsContent>

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
-import { Calendar, Users, Clock, Filter, CheckSquare, Square } from 'lucide-react';
+import { Calendar, Users, Clock, Filter, CheckSquare, Square, ChevronDown } from 'lucide-react';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { ScheduleClass } from './types';
 import { toast } from 'sonner';
 
@@ -23,6 +24,7 @@ export default function SchedulePresets({ onApplyPreset }: SchedulePresetsProps)
   const [loading, setLoading] = useState(false);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [dateRange, setDateRange] = useState<'today' | 'week'>('week');
+  const [filterOpen, setFilterOpen] = useState(false);
 
   const fetchSchedule = async () => {
     setLoading(true);
@@ -143,92 +145,87 @@ export default function SchedulePresets({ onApplyPreset }: SchedulePresetsProps)
     });
   };
 
-  const uniqueInstructors = [...new Set(classes.map(c => c.instructor).filter(Boolean))];
-
   return (
-    <div className="space-y-4 border border-border rounded-lg p-4 bg-card">
+    <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold flex items-center gap-2">
-          <Calendar className="h-4 w-4 text-drake-gold" />
-          Schedule Presets (Live)
+        <h3 className="text-xs font-semibold flex items-center gap-1.5 text-muted-foreground uppercase tracking-wider">
+          <Calendar className="h-3.5 w-3.5 text-drake-gold" />
+          Schedule
         </h3>
-        <div className="flex gap-2">
+        <div className="flex gap-1.5">
           <button
             onClick={() => setDateRange('today')}
-            className={`text-xs px-2.5 py-1 rounded-full border transition-all ${dateRange === 'today' ? 'bg-drake-gold text-drake-dark border-drake-gold' : 'border-border text-muted-foreground'}`}
+            className={`text-[10px] px-2 py-0.5 rounded-full border transition-all ${dateRange === 'today' ? 'bg-drake-gold text-drake-dark border-drake-gold' : 'border-border text-muted-foreground'}`}
           >Today</button>
           <button
             onClick={() => setDateRange('week')}
-            className={`text-xs px-2.5 py-1 rounded-full border transition-all ${dateRange === 'week' ? 'bg-drake-gold text-drake-dark border-drake-gold' : 'border-border text-muted-foreground'}`}
-          >This Week</button>
+            className={`text-[10px] px-2 py-0.5 rounded-full border transition-all ${dateRange === 'week' ? 'bg-drake-gold text-drake-dark border-drake-gold' : 'border-border text-muted-foreground'}`}
+          >Week</button>
         </div>
       </div>
 
-      {/* Quick Apply Buttons */}
-      <div className="flex gap-2 flex-wrap">
-        <Button size="sm" variant="outline" onClick={applyTodaysClasses} className="text-xs">
-          <Clock className="h-3 w-3 mr-1" /> Today's Classes
-        </Button>
-        <Button size="sm" variant="outline" onClick={applyTodaysCrew} className="text-xs">
-          <Users className="h-3 w-3 mr-1" /> Today's Crew
-        </Button>
-        <Button size="sm" variant="outline" onClick={applyWeekSchedule} className="text-xs">
-          <Calendar className="h-3 w-3 mr-1" /> Week Schedule
-        </Button>
+      {/* Quick Apply Pills */}
+      <div className="flex gap-1.5 flex-wrap">
+        <button onClick={applyTodaysClasses} className="flex items-center gap-1 text-[11px] px-2.5 py-1.5 rounded-md border border-border hover:border-drake-gold/50 text-muted-foreground hover:text-foreground transition-all bg-card">
+          <Clock className="h-3 w-3" /> Today's Classes
+        </button>
+        <button onClick={applyTodaysCrew} className="flex items-center gap-1 text-[11px] px-2.5 py-1.5 rounded-md border border-border hover:border-drake-gold/50 text-muted-foreground hover:text-foreground transition-all bg-card">
+          <Users className="h-3 w-3" /> Today's Crew
+        </button>
+        <button onClick={applyWeekSchedule} className="flex items-center gap-1 text-[11px] px-2.5 py-1.5 rounded-md border border-border hover:border-drake-gold/50 text-muted-foreground hover:text-foreground transition-all bg-card">
+          <Calendar className="h-3 w-3" /> Week Schedule
+        </button>
       </div>
 
-      {/* Class Filter */}
+      {/* Collapsible filter */}
       {classes.length > 0 && (
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <span className="text-xs text-muted-foreground flex items-center gap-1">
-              <Filter className="h-3 w-3" /> Filter Classes ({selectedIds.size}/{classes.length})
-            </span>
-            <button onClick={toggleAll} className="text-xs text-drake-gold hover:underline">
-              {selectedIds.size === classes.length ? 'Deselect All' : 'Select All'}
-            </button>
-          </div>
-          <div className="max-h-48 overflow-y-auto space-y-1 pr-1">
-            {classes.map(cls => (
-              <button
-                key={cls.id}
-                onClick={() => toggleClass(cls.id)}
-                className={`w-full flex items-center gap-2 text-xs px-2 py-1.5 rounded text-left transition-colors ${selectedIds.has(cls.id) ? 'bg-drake-gold/10' : 'hover:bg-muted'}`}
-              >
-                {selectedIds.has(cls.id) ? <CheckSquare className="h-3 w-3 text-drake-gold flex-shrink-0" /> : <Square className="h-3 w-3 text-muted-foreground flex-shrink-0" />}
-                <span className="font-medium truncate">{cls.class_name}</span>
-                <span className="text-muted-foreground ml-auto flex-shrink-0">
-                  {new Date(cls.class_date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short' })} {formatTime(cls.start_time)}
-                </span>
-                {cls.instructor && (
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-muted flex-shrink-0">{cls.instructor}</span>
-                )}
+        <Collapsible open={filterOpen} onOpenChange={setFilterOpen}>
+          <CollapsibleTrigger className="flex items-center gap-1 text-[10px] text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
+            <Filter className="h-3 w-3" />
+            Filter classes ({selectedIds.size}/{classes.length})
+            <ChevronDown className={`h-3 w-3 transition-transform ${filterOpen ? 'rotate-180' : ''}`} />
+          </CollapsibleTrigger>
+          <CollapsibleContent className="mt-2 space-y-1">
+            <div className="flex items-center justify-between mb-1">
+              <button onClick={toggleAll} className="text-[10px] text-drake-gold hover:underline">
+                {selectedIds.size === classes.length ? 'Deselect All' : 'Select All'}
               </button>
-            ))}
-          </div>
-        </div>
+            </div>
+            <div className="max-h-36 overflow-y-auto space-y-0.5 pr-1">
+              {classes.map(cls => (
+                <button
+                  key={cls.id}
+                  onClick={() => toggleClass(cls.id)}
+                  className={`w-full flex items-center gap-1.5 text-[10px] px-2 py-1 rounded text-left transition-colors ${selectedIds.has(cls.id) ? 'bg-drake-gold/10' : 'hover:bg-muted'}`}
+                >
+                  {selectedIds.has(cls.id) ? <CheckSquare className="h-3 w-3 text-drake-gold flex-shrink-0" /> : <Square className="h-3 w-3 text-muted-foreground flex-shrink-0" />}
+                  <span className="font-medium truncate">{cls.class_name}</span>
+                  <span className="text-muted-foreground ml-auto flex-shrink-0">
+                    {new Date(cls.class_date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short' })} {formatTime(cls.start_time)}
+                  </span>
+                </button>
+              ))}
+            </div>
+            {/* Single Class Spotlight */}
+            <div className="pt-1">
+              <span className="text-[10px] text-muted-foreground block mb-1">Spotlight</span>
+              <div className="flex gap-1 flex-wrap">
+                {classes.slice(0, 6).map(cls => (
+                  <button
+                    key={cls.id}
+                    onClick={() => applySingleClass(cls)}
+                    className="text-[9px] px-1.5 py-0.5 rounded border border-border hover:border-drake-gold/50 transition-colors text-muted-foreground"
+                  >
+                    {cls.class_name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
       )}
 
-      {/* Single Class Spotlight */}
-      {classes.length > 0 && (
-        <div>
-          <span className="text-xs text-muted-foreground block mb-1">Single Class Spotlight</span>
-          <div className="flex gap-1.5 flex-wrap">
-            {classes.slice(0, 8).map(cls => (
-              <button
-                key={cls.id}
-                onClick={() => applySingleClass(cls)}
-                className="text-[10px] px-2 py-1 rounded border border-border hover:border-drake-gold/50 transition-colors text-muted-foreground hover:text-foreground"
-              >
-                {cls.class_name} · {new Date(cls.class_date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short' })}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {loading && <p className="text-xs text-muted-foreground">Loading schedule…</p>}
-      {!loading && classes.length === 0 && <p className="text-xs text-muted-foreground">No upcoming classes found</p>}
+      {loading && <p className="text-[10px] text-muted-foreground">Loading…</p>}
     </div>
   );
 }
