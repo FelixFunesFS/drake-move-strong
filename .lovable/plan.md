@@ -1,29 +1,77 @@
 
-# Plan: Domain Standardization + Welcome Page SEO — COMPLETED
 
-## What Was Done
+## Fix: Mobile-Uploaded Images Not Displaying
 
-Standardized all URLs from `https://drake.fitness` → `https://www.drake.fitness` across 31 files, added noindex to Welcome page, and updated robots.txt.
+### Root Cause
 
-### Files Updated
+The `addPhotosFromFiles` function (line 169-178) has two issues affecting mobile uploads:
 
-| Category | Files | Change |
-|----------|-------|--------|
-| **SEO Core** | `SEO.tsx`, `StructuredData.tsx` | Default canonical, ogImage, toAbsoluteUrl(), business schema |
-| **Sitemap & Robots** | `sitemap.xml`, `robots.txt` | All URLs → www; added `Disallow: /welcome` |
-| **Welcome Page** | `Welcome.tsx` | Added `noindex, nofollow` meta tag + www canonical |
-| **Public Pages** | Home, Pricing, Schedule, Contact, About, Coaching, FAQ, Insights, SuccessStories, Ruckathon, NewYearChallenge, ResetWeekAlt | canonical → www |
-| **Service Pages** | ResetWeekCharleston, StrengthTraining, LowImpact, WestAshley | canonical → www |
-| **Blog** | InsightPost.tsx | canonical, articleSchema URL, social share URLs |
-| **Auth/Member** | Auth, Dashboard, Profile, MyBookings | canonical → www |
-| **Chatbot** | ChatMessage.tsx, chat-assistant edge function | Friendly link labels + system prompt URLs |
-| **Email** | emailTemplates.ts, send-nurture-previews | CTA button URLs |
-| **OG Redirect** | og-redirect edge function | SITE_URL constant |
+1. **No error handling**: If `FileReader.readAsDataURL()` fails (common with large mobile photos 5-15MB), the error is silently swallowed and no photo is added.
+2. **No HEIC/HEIF support**: iPhones capture in HEIC format by default. While `accept="image/*"` allows selection, many browsers cannot render HEIC in `<img>` tags, resulting in a broken/blank image.
+3. **No file size/type validation**: Large mobile photos create enormous data URLs that can cause rendering issues or memory problems.
 
-### Google Search Console Checklist (Post-Deploy)
+### Changes — `src/pages/admin/SocialGraphics.tsx`
 
-1. Verify `www.drake.fitness` property in Search Console
-2. Submit updated sitemap: `https://www.drake.fitness/sitemap.xml`
-3. Use URL Inspection on top 5 pages to request re-indexing
-4. Update Google Business Profile website URL to `https://www.drake.fitness`
-5. Confirm non-www redirects to www via 301 in Lovable domain settings
+**Replace `addPhotosFromFiles` (lines 169-178)** with a robust version that:
+
+- Validates file type (rejects unsupported formats like HEIC with a toast message)
+- Compresses large images using a canvas resize step (max 2048px dimension) before storing as data URL — this prevents memory bloat from 12MP phone photos
+- Adds `onerror` handling on `FileReader` with a toast notification
+- Caps batch uploads at 10 files with a toast warning
+- Uses `createImageBitmap` or canvas to verify the image actually loads before adding to state
+
+```text
+Flow:
+File selected → validate type → FileReader.readAsDataURL → 
+  create temp Image → verify loads → resize via canvas if > 2048px → 
+  store compressed dataURL → add to photos state
+  
+On any failure → toast.error("Could not load image")
+```
+
+### Technical Detail
+
+```typescript
+const addPhotosFromFiles = (files: FileList | File[]) => {
+  const fileArray = Array.from(files);
+  if (fileArray.length > 10) {
+    toast.error(`Max 10 images at once. Only first 10 will be added.`);
+  }
+  fileArray.slice(0, 10).forEach(file => {
+    if (file.type && !file.type.startsWith('image/')) {
+      toast.error(`${file.name} is not an image`);
+      return;
+    }
+    const reader = new FileReader();
+    reader.onerror = () => toast.error(`Failed to read ${file.name}`);
+    reader.onload = (ev) => {
+      const dataUrl = ev.target?.result as string;
+      if (!dataUrl) { toast.error(`Failed to load ${file.name}`); return; }
+      // Verify & compress via canvas
+      const img = new Image();
+      img.onload = () => {
+        const MAX = 2048;
+        let { width, height } = img;
+        if (width > MAX || height > MAX) {
+          const ratio = Math.min(MAX / width, MAX / height);
+          width *= ratio; height *= ratio;
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width; canvas.height = height;
+        canvas.getContext('2d')!.drawImage(img, 0, 0, width, height);
+        const compressed = canvas.toDataURL('image/jpeg', 0.85);
+        setPhotos(prev => [{ src: compressed, label: file.name.replace(/\.[^.]+$/, ''), isCustom: true }, ...prev]);
+      };
+      img.onerror = () => toast.error(`${file.name} format not supported. Try JPG or PNG.`);
+      img.src = dataUrl;
+    };
+    reader.readAsDataURL(file);
+  });
+};
+```
+
+### File
+| File | Change |
+|------|--------|
+| `src/pages/admin/SocialGraphics.tsx` | Replace `addPhotosFromFiles` with validated, compressed, error-handled version (lines 169-178) |
+
