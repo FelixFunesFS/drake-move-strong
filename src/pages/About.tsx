@@ -26,9 +26,10 @@ import studioGroupSquats from "@/assets/studio-group-squats.jpg?format=webp&w=76
 import ImageGallery from "@/components/ImageGallery";
 import TestimonialHero from "@/components/TestimonialHero";
 import { LONGEVITY_REVIEWS } from "@/data/reviews";
-import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg";
-import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg";
-import davidCoachingTurkishGetup from "@/assets/david-coaching-turkish-getup.jpg";
+import membersOverheadLungeNaturalLight from "@/assets/members-overhead-lunge-natural-light.jpg?format=webp&w=768";
+import groupOverheadPressClass from "@/assets/group-overhead-press-class.jpg?format=webp&w=768";
+import davidCoachingTurkishGetup from "@/assets/david-coaching-turkish-getup.jpg?format=webp&w=768";
+import { StructuredData, organizationSchema, buildBreadcrumbSchema } from "@/components/StructuredData";
 const About = () => {
   return (
     <>
