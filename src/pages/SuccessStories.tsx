@@ -1,8 +1,8 @@
 import Hero from "@/components/Hero";
 import CTASection from "@/components/CTASection";
 import { INTRO_URL } from "@/data/pricing";
-import communityImage from "@/assets/community-plank-rows-kettlebells.jpg";
-import memberYoga from "@/assets/member-yoga-pose.jpg";
+import communityImage from "@/assets/community-plank-rows-kettlebells.jpg?format=webp&w=768";
+import memberYoga from "@/assets/member-yoga-pose.jpg?format=webp&w=768";
 import OptimizedImage from "@/components/OptimizedImage";
 import AnimatedSection from "@/components/AnimatedSection";
 import { SEO } from "@/components/SEO";
