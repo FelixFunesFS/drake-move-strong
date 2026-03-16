@@ -17,15 +17,16 @@ import coachingSession from "@/assets/coaching-session.jpg?format=webp&w=768";
 import TestimonialHero from "@/components/TestimonialHero";
 import { FEATURED_REVIEWS } from "@/data/reviews";
 // New authentic training photos
-import davidCoachingTurkishGetup from "@/assets/david-coaching-turkish-getup.jpg";
-import memberWeightedVestBandTraining from "@/assets/member-weighted-vest-band-training.jpg";
-import memberLungeWithStudioDog from "@/assets/member-lunge-with-studio-dog.jpg";
-import membersTurkishGetupPair from "@/assets/members-turkish-getup-pair.jpg";
-import memberSledRopeTraining from "@/assets/member-sled-rope-training.jpg";
-import membersKettlebellRackHold from "@/assets/members-kettlebell-rack-hold.jpg";
-import membersKettlebellSwingPair from "@/assets/members-kettlebell-swing-pair.jpg";
-import membersOverheadPressGroup from "@/assets/members-overhead-press-group.jpg";
-import membersPlankRowsStudio from "@/assets/members-plank-rows-studio.jpg";
+import davidCoachingTurkishGetup from "@/assets/david-coaching-turkish-getup.jpg?format=webp&w=768";
+import memberWeightedVestBandTraining from "@/assets/member-weighted-vest-band-training.jpg?format=webp&w=768";
+import memberLungeWithStudioDog from "@/assets/member-lunge-with-studio-dog.jpg?format=webp&w=768";
+import membersTurkishGetupPair from "@/assets/members-turkish-getup-pair.jpg?format=webp&w=768";
+import memberSledRopeTraining from "@/assets/member-sled-rope-training.jpg?format=webp&w=768";
+import membersKettlebellRackHold from "@/assets/members-kettlebell-rack-hold.jpg?format=webp&w=768";
+import membersKettlebellSwingPair from "@/assets/members-kettlebell-swing-pair.jpg?format=webp&w=768";
+import membersOverheadPressGroup from "@/assets/members-overhead-press-group.jpg?format=webp&w=768";
+import membersPlankRowsStudio from "@/assets/members-plank-rows-studio.jpg?format=webp&w=768";
+import { buildBreadcrumbSchema } from "@/components/StructuredData";
 const Coaching = () => {
   const reasons = [{
     icon: Heart,
