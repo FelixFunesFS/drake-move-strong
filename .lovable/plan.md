@@ -1,24 +1,29 @@
 
+# Plan: Domain Standardization + Welcome Page SEO — COMPLETED
 
-## Fix: Cap Font Sizes on Low-Class Days
+## What Was Done
 
-### Problem
-When a day has only 1-2 classes, `rowH` becomes very large (because total rows is small), causing `rowH * 0.24` to produce oversized fonts. The `Math.max()` only sets a floor — there's no ceiling.
+Standardized all URLs from `https://drake.fitness` → `https://www.drake.fitness` across 31 files, added noindex to Welcome page, and updated robots.txt.
 
-### Fix — `src/components/admin/social/TemplatePreview.tsx`
+### Files Updated
 
-**Lines 650-653**: Add `Math.min()` caps to all font size calculations so they never exceed a reasonable maximum regardless of how few classes exist:
+| Category | Files | Change |
+|----------|-------|--------|
+| **SEO Core** | `SEO.tsx`, `StructuredData.tsx` | Default canonical, ogImage, toAbsoluteUrl(), business schema |
+| **Sitemap & Robots** | `sitemap.xml`, `robots.txt` | All URLs → www; added `Disallow: /welcome` |
+| **Welcome Page** | `Welcome.tsx` | Added `noindex, nofollow` meta tag + www canonical |
+| **Public Pages** | Home, Pricing, Schedule, Contact, About, Coaching, FAQ, Insights, SuccessStories, Ruckathon, NewYearChallenge, ResetWeekAlt | canonical → www |
+| **Service Pages** | ResetWeekCharleston, StrengthTraining, LowImpact, WestAshley | canonical → www |
+| **Blog** | InsightPost.tsx | canonical, articleSchema URL, social share URLs |
+| **Auth/Member** | Auth, Dashboard, Profile, MyBookings | canonical → www |
+| **Chatbot** | ChatMessage.tsx, chat-assistant edge function | Friendly link labels + system prompt URLs |
+| **Email** | emailTemplates.ts, send-nurture-previews | CTA button URLs |
+| **OG Redirect** | og-redirect edge function | SITE_URL constant |
 
-```typescript
-const dayFontSize = Math.min(20 * s, Math.max(11 * s, rowH * 0.24));
-const classFontSize = Math.min(22 * s, Math.max(12 * s, rowH * 0.24));
-const timeFontSize = Math.min(16 * s, Math.max(10 * s, rowH * 0.18));
-const instructorFontSize = Math.min(14 * s, Math.max(9 * s, rowH * 0.16));
-```
+### Google Search Console Checklist (Post-Deploy)
 
-This keeps fonts readable but prevents them from ballooning on sparse days. The max caps (20, 22, 16, 14 scaled) match what looks correct on busy days.
-
-| File | Lines | Change |
-|------|-------|--------|
-| `src/components/admin/social/TemplatePreview.tsx` | 650-653 | Wrap each font calc in `Math.min()` to cap maximums |
-
+1. Verify `www.drake.fitness` property in Search Console
+2. Submit updated sitemap: `https://www.drake.fitness/sitemap.xml`
+3. Use URL Inspection on top 5 pages to request re-indexing
+4. Update Google Business Profile website URL to `https://www.drake.fitness`
+5. Confirm non-www redirects to www via 301 in Lovable domain settings
