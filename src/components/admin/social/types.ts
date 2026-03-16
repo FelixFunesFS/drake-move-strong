@@ -76,6 +76,14 @@ export const TEMPLATES: { id: TemplateId; label: string }[] = [
   { id: 'collage', label: 'Collage' },
   { id: 'schedule-grid', label: 'Schedule Grid' },
   { id: 'class-highlight', label: 'Class Highlight' },
+  { id: 'diagonal-strip', label: 'Diagonal Strip' },
+  { id: 'fade-blend', label: 'Fade Blend' },
+  { id: 'circle-cutout', label: 'Circle Cutout' },
+  { id: 'photo-strip', label: 'Photo Strip' },
+  { id: 'overlap-cards', label: 'Overlap Cards' },
+  { id: 'marquee-banner', label: 'Marquee Banner' },
+  { id: 'stacked-bars', label: 'Stacked Bars' },
+  { id: 'frame-inset', label: 'Frame Inset' },
 ];
 
 export interface ContentPreset {

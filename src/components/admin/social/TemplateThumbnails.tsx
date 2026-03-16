@@ -88,7 +88,89 @@ export function TemplateThumbnail({ id, active }: { id: TemplateId; active: bool
       </div>
     );
   }
-  // split-right
+  // New templates
+  if (id === 'diagonal-strip') {
+    return (
+      <div style={{ ...base, border: ring, background: '#888', position: 'relative' }}>
+        <div style={{ position: 'absolute', top: '30%', left: '-10%', right: '-10%', height: 10, ...gold, transform: 'rotate(-15deg)' }} />
+        <div style={{ position: 'absolute', top: '35%', left: '20%', width: 20, height: 2, background: '#fff', borderRadius: 1 }} />
+      </div>
+    );
+  }
+  if (id === 'fade-blend') {
+    return (
+      <div style={{ ...base, border: ring, display: 'flex' }}>
+        <div style={{ width: '50%', background: '#888' }} />
+        <div style={{ width: '50%', background: 'linear-gradient(to right, #888, #666)' }} />
+        <div style={{ position: 'absolute', bottom: 4, left: '50%', transform: 'translateX(-50%)', width: 24, height: 2, background: '#fff', borderRadius: 1 }} />
+      </div>
+    );
+  }
+  if (id === 'circle-cutout') {
+    return (
+      <div style={{ ...base, border: ring, ...teal, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ width: 22, height: 22, borderRadius: '50%', background: '#888', border: `2px solid ${GOLD}` }} />
+        <div style={{ position: 'absolute', bottom: 3, left: '50%', transform: 'translateX(-50%)', width: 20, height: 2, background: '#fff', borderRadius: 1 }} />
+      </div>
+    );
+  }
+  if (id === 'photo-strip') {
+    return (
+      <div style={{ ...base, border: ring, display: 'flex', flexDirection: 'column' }}>
+        <div style={{ flex: 1, display: 'flex' }}>
+          <div style={{ flex: 1, background: '#888' }} />
+          <div style={{ width: 2, ...gold }} />
+          <div style={{ flex: 1, background: '#999' }} />
+          <div style={{ width: 2, ...gold }} />
+          <div style={{ flex: 1, background: '#777' }} />
+        </div>
+        <div style={{ height: 8, background: DARK, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ width: 24, height: 2, background: '#fff', borderRadius: 1 }} />
+        </div>
+      </div>
+    );
+  }
+  if (id === 'overlap-cards') {
+    return (
+      <div style={{ ...base, border: ring, ...teal, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ width: 22, height: 16, background: '#888', borderRadius: 2, border: `1px solid ${GOLD}`, transform: 'rotate(-8deg)', position: 'absolute', left: 14, top: 6 }} />
+        <div style={{ width: 22, height: 16, background: '#999', borderRadius: 2, border: `1px solid ${GOLD}`, transform: 'rotate(5deg)', position: 'absolute', left: 30, top: 8 }} />
+        <div style={{ position: 'absolute', bottom: 3, left: '50%', transform: 'translateX(-50%)', width: 20, height: 2, background: '#fff', borderRadius: 1 }} />
+      </div>
+    );
+  }
+  if (id === 'marquee-banner') {
+    return (
+      <div style={{ ...base, border: ring, background: '#888', position: 'relative' }}>
+        <div style={{ position: 'absolute', top: '40%', left: 0, right: 0, height: 10, ...gold, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ width: 24, height: 2, background: DARK, borderRadius: 1 }} />
+        </div>
+      </div>
+    );
+  }
+  if (id === 'stacked-bars') {
+    return (
+      <div style={{ ...base, border: ring, display: 'flex', flexDirection: 'column' }}>
+        <div style={{ height: 8, ...teal, display: 'flex', alignItems: 'center', padding: '0 3px' }}>
+          <div style={{ width: 8, height: 4, ...gold, borderRadius: 1 }} />
+        </div>
+        <div style={{ flex: 1, background: '#888' }} />
+        <div style={{ height: 10, background: DARK, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 4px' }}>
+          <div style={{ width: 22, height: 2, background: '#fff', borderRadius: 1 }} />
+          <div style={{ width: 10, height: 4, ...gold, borderRadius: 1 }} />
+        </div>
+      </div>
+    );
+  }
+  if (id === 'frame-inset') {
+    return (
+      <div style={{ ...base, border: ring, ...teal, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 4 }}>
+        <div style={{ width: '80%', height: '70%', background: '#888', borderRadius: 2, border: `2px solid ${GOLD}` }} />
+        <div style={{ position: 'absolute', bottom: 2, left: '50%', transform: 'translateX(-50%)', width: 22, height: 2, background: '#fff', borderRadius: 1 }} />
+      </div>
+    );
+  }
+  // split-right (default)
   return (
     <div style={{ ...base, border: ring, display: 'flex' }}>
       <div style={{ width: '45%', ...teal, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 4 }}>

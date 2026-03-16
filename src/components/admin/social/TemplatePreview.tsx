@@ -94,7 +94,6 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
         <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} crossOrigin="anonymous" />
         <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse at center, rgba(11,74,82,0.78) 0%, rgba(11,74,82,0.92) 70%, rgba(0,0,0,0.95) 100%)` }} />
         <div style={{ position: 'absolute', top: 50 * s, left: 90 * s, right: 90 * s, bottom: 50 * s, border: '1px solid rgba(242,181,68,0.2)', borderRadius: 8 * s, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' as const, padding: `0 ${60 * s}px`, background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(2px)' }}>
-          {/* Gold corner accents */}
           {[{ t: -1, l: -1, bT: true, bL: true, br: '8px 0 0 0' }, { t: -1, r: -1, bT: true, bR: true, br: '0 8px 0 0' }, { b: -1, l: -1, bB: true, bL: true, br: '0 0 0 8px' }, { b: -1, r: -1, bB: true, bR: true, br: '0 0 8px 0' }].map((c, i) => (
             <div key={i} style={{ position: 'absolute', top: c.t, left: c.l, right: c.r, bottom: c.b, width: 32 * s, height: 32 * s, borderTop: c.bT ? `3px solid ${GOLD}` : undefined, borderLeft: c.bL ? `3px solid ${GOLD}` : undefined, borderRight: c.bR ? `3px solid ${GOLD}` : undefined, borderBottom: c.bB ? `3px solid ${GOLD}` : undefined, borderRadius: c.br } as React.CSSProperties} />
           ))}
@@ -207,7 +206,334 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
     );
   }
 
-  // split-right
+  // ── NEW TEMPLATES ──
+
+  if (template === 'diagonal-strip') {
+    return (
+      <div ref={previewRef} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font }}>
+        <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.4) 100%)' }} />
+        {/* Diagonal gold strip */}
+        <div style={{
+          position: 'absolute', top: '25%', left: '-10%', right: '-10%', height: 140 * s,
+          background: `linear-gradient(135deg, ${GOLD} 0%, #E5A635 100%)`,
+          transform: 'rotate(-12deg)', transformOrigin: 'center',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+          boxShadow: `0 ${8 * s}px ${40 * s}px rgba(0,0,0,0.5)`,
+        }}>
+          <div style={{ fontSize: 14 * s, fontWeight: 500, color: DARK, textTransform: 'uppercase', letterSpacing: 4 * s, marginBottom: 4 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: 48 * s, fontWeight: 800, color: DARK, textTransform: 'uppercase', lineHeight: 1, letterSpacing: 2 * s }}>{headline}</div>
+          <div style={{ fontSize: 16 * s, fontWeight: 500, color: 'rgba(26,26,26,0.7)', marginTop: 4 * s, letterSpacing: 1 * s }}>{detailLine}</div>
+        </div>
+        {/* Bottom bar */}
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 80 * s, background: `linear-gradient(to top, ${DARK} 0%, transparent 100%)`, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: `0 ${40 * s}px ${24 * s}px` }}>
+          <img src={logo} alt="" style={{ height: 40 * s }} crossOrigin="anonymous" />
+          <CTAButton text={ctaText} s={s * 0.9} />
+        </div>
+        {showBadge && <div style={{ position: 'absolute', bottom: 90 * s, right: 40 * s }}><FreeBadge s={s} /></div>}
+      </div>
+    );
+  }
+
+  if (template === 'fade-blend') {
+    const img2 = secondPhoto || photo;
+    return (
+      <div ref={previewRef} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font }}>
+        {/* Background: second photo */}
+        <img src={img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} crossOrigin="anonymous" />
+        {/* Foreground: first photo with gradient mask fade */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          WebkitMaskImage: isVertical
+            ? 'linear-gradient(to bottom, black 20%, transparent 70%)'
+            : 'linear-gradient(to right, black 25%, transparent 65%)',
+          maskImage: isVertical
+            ? 'linear-gradient(to bottom, black 20%, transparent 70%)'
+            : 'linear-gradient(to right, black 25%, transparent 65%)',
+        }}>
+          <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+        </div>
+        {/* Dark overlay for text readability */}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 50%, transparent 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to right, rgba(11,74,82,0.25) 0%, transparent 40%)` }} />
+        {/* Content */}
+        <div style={{ position: 'absolute', bottom: 40 * s, left: 48 * s, right: 48 * s }}>
+          <img src={logo} alt="" style={{ height: 48 * s, marginBottom: 12 * s }} crossOrigin="anonymous" />
+          <div style={{ width: 60 * s, height: 3 * s, background: GOLD, marginBottom: 12 * s, borderRadius: 2 }} />
+          <div style={{ fontSize: 12 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 6 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: 48 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 1.5 * s, textShadow: `0 ${2 * s}px ${16 * s}px rgba(0,0,0,0.5)` }}>{headline}</div>
+          <div style={{ fontSize: 20 * s, color: 'rgba(255,255,255,0.7)', marginTop: 6 * s, fontWeight: 400, letterSpacing: 1.5 * s, textTransform: 'uppercase' }}>{programLine}</div>
+          {detailLine && <div style={{ fontSize: 16 * s, color: 'rgba(255,255,255,0.5)', marginTop: 4 * s }}>{detailLine}</div>}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginTop: 16 * s }}>
+            <CTAButton text={ctaText} s={s} />
+            {showBadge && <FreeBadge s={s * 0.8} />}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (template === 'circle-cutout') {
+    const img2 = secondPhoto || photo;
+    const circleSize = Math.min(W, H) * 0.55;
+    return (
+      <div ref={previewRef} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font, background: TEAL, backgroundImage: TEAL_PATTERN }}>
+        {/* Secondary photo as subtle background */}
+        <img src={img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0, opacity: 0.15, filter: 'brightness(0.5)' }} crossOrigin="anonymous" />
+        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(135deg, ${TEAL} 0%, ${SOFT_TEAL} 50%, ${TEAL} 100%)`, opacity: 0.85 }} />
+        {/* Circle cutout with primary photo */}
+        <div style={{
+          position: 'absolute',
+          top: isVertical ? '12%' : '50%',
+          left: '50%',
+          transform: isVertical ? 'translateX(-50%)' : 'translate(-50%, -55%)',
+          width: circleSize, height: circleSize,
+          borderRadius: '50%', overflow: 'hidden',
+          border: `${6 * s}px solid ${GOLD}`,
+          boxShadow: `0 ${12 * s}px ${60 * s}px rgba(0,0,0,0.5), 0 0 0 ${12 * s}px rgba(242,181,68,0.1)`,
+        }}>
+          <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+        </div>
+        {/* Text below circle */}
+        <div style={{
+          position: 'absolute',
+          bottom: isVertical ? '8%' : 36 * s,
+          left: '50%', transform: 'translateX(-50%)',
+          textAlign: 'center' as const, width: '80%',
+        }}>
+          <div style={{ fontSize: 12 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, marginBottom: 8 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: 44 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 2 * s }}>{headline}</div>
+          <div style={{ fontSize: 18 * s, color: 'rgba(255,255,255,0.7)', marginTop: 8 * s, letterSpacing: 1 * s }}>{programLine}</div>
+          {detailLine && <div style={{ fontSize: 15 * s, color: 'rgba(255,255,255,0.5)', marginTop: 4 * s }}>{detailLine}</div>}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12 * s, marginTop: 16 * s }}>
+            <CTAButton text={ctaText} s={s} />
+            {showBadge && <FreeBadge s={s * 0.8} />}
+          </div>
+        </div>
+        {/* Logo top-left */}
+        <img src={logo} alt="" style={{ position: 'absolute', top: 24 * s, left: 32 * s, height: 40 * s }} crossOrigin="anonymous" />
+      </div>
+    );
+  }
+
+  if (template === 'photo-strip') {
+    const img2 = secondPhoto || photo;
+    const img3 = thirdPhoto || secondPhoto || photo;
+    const stripGap = 4 * s;
+    return (
+      <div ref={previewRef} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font, background: DARK }}>
+        {/* Three vertical strips */}
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: isVertical ? '35%' : 110 * s, display: 'flex', gap: stripGap }}>
+          <div style={{ flex: 1, overflow: 'hidden' }}>
+            <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+          </div>
+          <div style={{ width: stripGap, background: GOLD, flexShrink: 0 }} />
+          <div style={{ flex: 1, overflow: 'hidden' }}>
+            <img src={img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+          </div>
+          <div style={{ width: stripGap, background: GOLD, flexShrink: 0 }} />
+          <div style={{ flex: 1, overflow: 'hidden' }}>
+            <img src={img3} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+          </div>
+        </div>
+        {/* Bottom content bar */}
+        <div style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0, height: isVertical ? '35%' : 110 * s,
+          background: DARK, display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          padding: `0 ${40 * s}px`, flexDirection: isVertical ? 'column' : 'row',
+          ...(isVertical ? { justifyContent: 'center', gap: 12 * s, textAlign: 'center' as const } : {}),
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 20 * s, flexDirection: isVertical ? 'column' : 'row' }}>
+            <img src={logo} alt="" style={{ height: 40 * s }} crossOrigin="anonymous" />
+            <div>
+              <div style={{ fontSize: 11 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 4 * s }}>{eyebrow}</div>
+              <div style={{ fontSize: 32 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1, letterSpacing: 1 * s }}>{headline}</div>
+              {detailLine && <div style={{ fontSize: 14 * s, color: 'rgba(255,255,255,0.5)', marginTop: 2 * s }}>{detailLine}</div>}
+            </div>
+          </div>
+          <CTAButton text={ctaText} s={s} />
+        </div>
+        {/* Gold top accent line */}
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4 * s, background: GOLD }} />
+      </div>
+    );
+  }
+
+  if (template === 'overlap-cards') {
+    const img2 = secondPhoto || photo;
+    return (
+      <div ref={previewRef} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font, background: TEAL, backgroundImage: TEAL_PATTERN }}>
+        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(180deg, ${SOFT_TEAL} 0%, ${TEAL} 100%)`, opacity: 0.6 }} />
+        {/* Two overlapping photo cards */}
+        <div style={{ position: 'absolute', top: isVertical ? '8%' : '10%', left: '50%', transform: 'translateX(-50%)', width: W * 0.7, height: isVertical ? H * 0.45 : H * 0.55 }}>
+          {/* Card 1 - tilted left */}
+          <div style={{
+            position: 'absolute', left: 0, top: 0,
+            width: isVertical ? '65%' : '55%', height: '85%',
+            borderRadius: 12 * s, overflow: 'hidden',
+            border: `${4 * s}px solid rgba(255,255,255,0.9)`,
+            boxShadow: `0 ${16 * s}px ${48 * s}px rgba(0,0,0,0.5)`,
+            transform: 'rotate(-6deg)',
+            background: '#fff',
+          }}>
+            <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+          </div>
+          {/* Card 2 - tilted right */}
+          <div style={{
+            position: 'absolute', right: 0, top: '10%',
+            width: isVertical ? '65%' : '55%', height: '85%',
+            borderRadius: 12 * s, overflow: 'hidden',
+            border: `${4 * s}px solid rgba(255,255,255,0.9)`,
+            boxShadow: `0 ${16 * s}px ${48 * s}px rgba(0,0,0,0.5)`,
+            transform: 'rotate(4deg)',
+            background: '#fff', zIndex: 2,
+          }}>
+            <img src={img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+          </div>
+        </div>
+        {/* Text below */}
+        <div style={{
+          position: 'absolute', bottom: isVertical ? '6%' : 32 * s,
+          left: '50%', transform: 'translateX(-50%)',
+          textAlign: 'center' as const, width: '80%', zIndex: 5,
+        }}>
+          <div style={{ fontSize: 12 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, marginBottom: 8 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: 42 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 1.5 * s, textShadow: `0 ${2 * s}px ${20 * s}px rgba(0,0,0,0.3)` }}>{headline}</div>
+          <div style={{ fontSize: 18 * s, color: 'rgba(255,255,255,0.7)', marginTop: 6 * s }}>{programLine}</div>
+          {detailLine && <div style={{ fontSize: 14 * s, color: 'rgba(255,255,255,0.5)', marginTop: 4 * s }}>{detailLine}</div>}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12 * s, marginTop: 14 * s }}>
+            <CTAButton text={ctaText} s={s} />
+            {showBadge && <FreeBadge s={s * 0.8} />}
+          </div>
+        </div>
+        <img src={logo} alt="" style={{ position: 'absolute', top: 20 * s, left: 28 * s, height: 36 * s, zIndex: 5 }} crossOrigin="anonymous" />
+      </div>
+    );
+  }
+
+  if (template === 'marquee-banner') {
+    return (
+      <div ref={previewRef} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font }}>
+        <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+        <div style={{ position: 'absolute', inset: 0, boxShadow: `inset 0 0 ${100 * s}px ${30 * s}px rgba(0,0,0,0.4)` }} />
+        {/* Gold marquee banner across center */}
+        <div style={{
+          position: 'absolute',
+          top: '50%', left: 0, right: 0,
+          transform: 'translateY(-50%)',
+          height: isVertical ? 180 * s : 130 * s,
+          background: `linear-gradient(135deg, ${GOLD} 0%, #E5A635 50%, ${GOLD} 100%)`,
+          boxShadow: `0 ${8 * s}px ${40 * s}px rgba(0,0,0,0.4), 0 -${4 * s}px ${20 * s}px rgba(0,0,0,0.2)`,
+          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+          borderTop: `${3 * s}px solid rgba(255,255,255,0.3)`,
+          borderBottom: `${3 * s}px solid rgba(255,255,255,0.3)`,
+        }}>
+          <div style={{ fontSize: 12 * s, fontWeight: 600, color: DARK, textTransform: 'uppercase', letterSpacing: 5 * s, opacity: 0.6, marginBottom: 4 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: 52 * s, fontWeight: 800, color: DARK, textTransform: 'uppercase', lineHeight: 1, letterSpacing: 3 * s }}>{headline}</div>
+          <div style={{ fontSize: 16 * s, fontWeight: 500, color: 'rgba(26,26,26,0.65)', marginTop: 4 * s, letterSpacing: 1 * s }}>{detailLine}</div>
+        </div>
+        {/* Top logo */}
+        <div style={{ position: 'absolute', top: 24 * s, left: 32 * s }}>
+          <img src={logo} alt="" style={{ height: 44 * s }} crossOrigin="anonymous" />
+        </div>
+        {/* Bottom CTA */}
+        <div style={{ position: 'absolute', bottom: 28 * s, left: '50%', transform: 'translateX(-50%)', display: 'flex', alignItems: 'center', gap: 12 * s }}>
+          <CTAButton text={ctaText} s={s} />
+          {showBadge && <FreeBadge s={s * 0.8} />}
+        </div>
+      </div>
+    );
+  }
+
+  if (template === 'stacked-bars') {
+    return (
+      <div ref={previewRef} style={{ width: W, height: H, display: 'flex', flexDirection: 'column', fontFamily: font, overflow: 'hidden' }}>
+        {/* Top teal bar */}
+        <div style={{
+          height: isVertical ? 100 * s : 80 * s,
+          background: `linear-gradient(135deg, ${TEAL} 0%, ${SOFT_TEAL} 100%)`,
+          display: 'flex', alignItems: 'center', padding: `0 ${36 * s}px`, gap: 16 * s, flexShrink: 0,
+        }}>
+          <img src={logo} alt="" style={{ height: 36 * s }} crossOrigin="anonymous" />
+          <div style={{ marginLeft: 'auto' }}>
+            <div style={{ fontSize: 11 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s }}>{eyebrow}</div>
+            <div style={{ fontSize: 16 * s, fontWeight: 500, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: 1 * s }}>{programLine}</div>
+          </div>
+        </div>
+        {/* Gold accent line */}
+        <div style={{ height: 4 * s, background: GOLD, flexShrink: 0 }} />
+        {/* Middle photo */}
+        <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
+          <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} crossOrigin="anonymous" />
+          <div style={{ position: 'absolute', inset: 0, boxShadow: `inset 0 0 ${50 * s}px ${10 * s}px rgba(0,0,0,0.2)` }} />
+          {showBadge && <div style={{ position: 'absolute', top: 16 * s, right: 24 * s }}><FreeBadge s={s} /></div>}
+        </div>
+        {/* Gold accent line */}
+        <div style={{ height: 4 * s, background: GOLD, flexShrink: 0 }} />
+        {/* Bottom dark bar */}
+        <div style={{
+          height: isVertical ? 120 * s : 96 * s,
+          background: DARK, display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          padding: `0 ${36 * s}px`, flexShrink: 0,
+        }}>
+          <div>
+            <div style={{ fontSize: 34 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: 1.5 * s }}>{headline}</div>
+            {detailLine && <div style={{ fontSize: 14 * s, color: 'rgba(255,255,255,0.5)', letterSpacing: 1 * s, marginTop: 2 * s }}>{detailLine}</div>}
+          </div>
+          <CTAButton text={ctaText} s={s} />
+        </div>
+      </div>
+    );
+  }
+
+  if (template === 'frame-inset') {
+    const borderW = 40 * s;
+    return (
+      <div ref={previewRef} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font, background: TEAL, backgroundImage: TEAL_PATTERN }}>
+        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(135deg, ${TEAL} 0%, ${SOFT_TEAL} 100%)`, opacity: 0.9 }} />
+        {/* Photo inset with gold inner border */}
+        <div style={{
+          position: 'absolute',
+          top: borderW, left: borderW, right: borderW,
+          bottom: isVertical ? '35%' : borderW + 90 * s,
+          borderRadius: 8 * s,
+          border: `${3 * s}px solid ${GOLD}`,
+          overflow: 'hidden',
+          boxShadow: `0 ${8 * s}px ${40 * s}px rgba(0,0,0,0.4), inset 0 0 ${40 * s}px ${10 * s}px rgba(0,0,0,0.2)`,
+        }}>
+          <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+        </div>
+        {/* Logo top-left corner of frame */}
+        <img src={logo} alt="" style={{ position: 'absolute', top: borderW - 14 * s, left: borderW + 12 * s, height: 28 * s, zIndex: 5 }} crossOrigin="anonymous" />
+        {/* Text in bottom frame area */}
+        <div style={{
+          position: 'absolute',
+          bottom: isVertical ? '4%' : 16 * s,
+          left: borderW + 12 * s, right: borderW + 12 * s,
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          flexDirection: isVertical ? 'column' : 'row',
+          gap: isVertical ? 10 * s : 0,
+          textAlign: isVertical ? 'center' as const : undefined,
+        }}>
+          <div>
+            <div style={{ fontSize: 11 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 6 * s }}>{eyebrow}</div>
+            <div style={{ fontSize: 36 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 1.5 * s }}>{headline}</div>
+            {detailLine && <div style={{ fontSize: 14 * s, color: 'rgba(255,255,255,0.6)', marginTop: 4 * s }}>{detailLine}</div>}
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 * s, flexShrink: 0 }}>
+            <CTAButton text={ctaText} s={s * 0.9} />
+            {showBadge && <FreeBadge s={s * 0.7} />}
+          </div>
+        </div>
+        {/* Corner accents on the outer frame */}
+        {[{ top: 8 * s, left: 8 * s }, { top: 8 * s, right: 8 * s }, { bottom: 8 * s, left: 8 * s }, { bottom: 8 * s, right: 8 * s }].map((pos, i) => (
+          <div key={i} style={{ position: 'absolute', ...pos, width: 24 * s, height: 24 * s, borderTop: i < 2 ? `3px solid ${GOLD}` : undefined, borderBottom: i >= 2 ? `3px solid ${GOLD}` : undefined, borderLeft: i % 2 === 0 ? `3px solid ${GOLD}` : undefined, borderRight: i % 2 === 1 ? `3px solid ${GOLD}` : undefined } as React.CSSProperties} />
+        ))}
+      </div>
+    );
+  }
+
+  // split-right (default)
   return (
     <div ref={previewRef} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font }}>
       <div style={{ position: 'absolute', inset: 0, clipPath: isVertical ? 'polygon(0 35%, 100% 45%, 100% 100%, 0 100%)' : 'polygon(32% 0, 100% 0, 100% 100%, 50% 100%)' }}>
@@ -229,7 +555,6 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
   eyebrow: string; headline: string; ctaText: string; photo: string;
   scheduleClasses: ScheduleClass[];
 }>(({ W, H, s, font, eyebrow, headline, ctaText, photo, scheduleClasses }, ref) => {
-  // Group classes by day
   const byDay: Record<string, ScheduleClass[]> = {};
   scheduleClasses.forEach(c => {
     const dayKey = c.class_date;
@@ -264,7 +589,6 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
       <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.2)' }} crossOrigin="anonymous" />
       <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(180deg, rgba(11,74,82,0.9) 0%, rgba(26,26,26,0.95) 100%)` }} />
       <div style={{ position: 'absolute', inset: 0, padding: `${30 * s}px ${40 * s}px`, display: 'flex', flexDirection: 'column' }}>
-        {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginBottom: 20 * s }}>
           <img src={logo} alt="" style={{ height: 40 * s }} crossOrigin="anonymous" />
           <div>
@@ -273,8 +597,6 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
           </div>
         </div>
         <div style={{ width: '100%', height: 3 * s, background: `linear-gradient(90deg, ${GOLD}, transparent)`, marginBottom: 16 * s, borderRadius: 2 }} />
-
-        {/* Schedule Grid */}
         <div style={{ flex: 1, display: isVertical ? 'flex' : 'grid', flexDirection: isVertical ? 'column' : undefined, gridTemplateColumns: isVertical ? undefined : `repeat(${Math.min(days.length, 7)}, 1fr)`, gap: isVertical ? 8 * s : 6 * s, overflow: 'hidden' }}>
           {days.map(day => (
             <div key={day} style={{ background: 'rgba(255,255,255,0.05)', borderRadius: 8 * s, padding: `${10 * s}px ${8 * s}px`, border: '1px solid rgba(255,255,255,0.08)' }}>
@@ -294,8 +616,6 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
             </div>
           ))}
         </div>
-
-        {/* Footer CTA */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 14 * s }}>
           <div style={{ fontSize: 12 * s, color: 'rgba(255,255,255,0.4)', letterSpacing: 1 * s }}>drake.fitness</div>
           <CTAButton text={ctaText || 'Book Now →'} s={s * 0.8} />
