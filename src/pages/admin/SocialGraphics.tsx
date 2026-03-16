@@ -356,6 +356,8 @@ export default function SocialGraphics() {
                         photo={photos[slide.photo]?.src || photos[0]?.src}
                         secondPhoto={secondPhoto}
                         thirdPhoto={thirdPhoto}
+                        fourthPhoto={fourthPhoto}
+                        fifthPhoto={fifthPhoto}
                         eyebrow={slide.eyebrow}
                         headline={slide.headline}
                         programLine={slide.programLine}
