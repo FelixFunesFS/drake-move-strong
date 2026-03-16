@@ -332,7 +332,7 @@ export default function SocialGraphics() {
               {/* LEFT: Sticky Preview */}
               <div className="w-full lg:w-[580px] flex-shrink-0 lg:sticky lg:top-4 space-y-3">
                 {/* Size Tabs */}
-                <div className="flex gap-1.5 flex-wrap">
+                <div className="flex gap-1.5 flex-wrap overflow-x-auto pb-1">
                   {CANVAS_SIZES.map(size => (
                     <button
                       key={size.name}
