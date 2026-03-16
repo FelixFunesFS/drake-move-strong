@@ -127,7 +127,7 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
     return (
       <div ref={previewRef} style={{ width: W, height: H, display: 'flex', flexDirection: 'column', fontFamily: font, overflow: 'hidden' }}>
         <div style={{ height: 72 * s, background: `linear-gradient(135deg, ${TEAL} 0%, ${SOFT_TEAL} 100%)`, display: 'flex', alignItems: 'center', padding: `0 ${40 * s}px`, gap: 16 * s, flexShrink: 0 }}>
-          <img src={logo} alt="" style={{ height: 40 * s }} crossOrigin="anonymous" />
+          <img src={logo} alt="" style={{ height: Math.max(44, 40 * s) }} crossOrigin="anonymous" />
           <span style={{ fontSize: 22 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: 3 * s }}>DRAKE FITNESS</span>
           <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 16 * s }}>
             {secondPhoto && (
@@ -135,8 +135,8 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
                 <img src={secondPhoto} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
               </div>
             )}
-            <span style={{ fontSize: 14 * s, color: 'rgba(255,255,255,0.8)', textTransform: 'uppercase', letterSpacing: 1.5 * s, fontWeight: 500 }}>{programLine}</span>
-            <span style={{ fontSize: 14 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, fontWeight: 500 }}>{eyebrow}</span>
+            <span style={{ fontSize: Math.max(34, 16 * s), color: 'rgba(255,255,255,0.8)', textTransform: 'uppercase', letterSpacing: 1.5 * s, fontWeight: 500 }}>{programLine}</span>
+            <span style={{ fontSize: Math.max(34, 16 * s), color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, fontWeight: 500 }}>{eyebrow}</span>
           </div>
         </div>
         <div style={{ height: 4 * s, background: `linear-gradient(90deg, ${GOLD} 0%, ${GOLD} 60%, transparent 100%)`, flexShrink: 0 }} />
