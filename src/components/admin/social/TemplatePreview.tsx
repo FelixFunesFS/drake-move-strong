@@ -54,7 +54,7 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
         <div style={{ position: 'absolute', bottom: 40 * s, left: 48 * s, right: 48 * s }}>
           <img src={logo} alt="" style={{ height: 56 * s, marginBottom: 16 * s }} crossOrigin="anonymous" />
           <div style={{ width: 80 * s, height: 3 * s, background: GOLD, marginBottom: 14 * s, borderRadius: 2 }} />
-          <div style={{ fontSize: 13 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 8 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: 14 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 8 * s }}>{eyebrow}</div>
           <div style={{ fontSize: 54 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 1.5 * s, textShadow: `0 ${2 * s}px ${20 * s}px rgba(0,0,0,0.6)` }}>{headline}</div>
           <div style={{ fontSize: 22 * s, color: 'rgba(255,255,255,0.7)', marginTop: 8 * s, fontWeight: 400, letterSpacing: 1.5 * s, textTransform: 'uppercase' }}>{programLine}</div>
           {detailLine && (
