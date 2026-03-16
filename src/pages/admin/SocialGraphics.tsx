@@ -282,9 +282,10 @@ export default function SocialGraphics() {
     toast.success('Loaded post into editor');
   };
 
-  // Preview scaling — fits within left column
-  const maxPreviewWidth = 560;
-  const PREVIEW_SCALE = Math.min(maxPreviewWidth / canvasSize.width, 500 / canvasSize.height, 0.55);
+  // Preview scaling — fits within left column (responsive)
+  const maxPreviewWidth = isMobile ? Math.min(window.innerWidth - 32, 560) : 560;
+  const maxPreviewHeight = isMobile ? 400 : 500;
+  const PREVIEW_SCALE = Math.min(maxPreviewWidth / canvasSize.width, maxPreviewHeight / canvasSize.height, isMobile ? 0.45 : 0.55);
 
   const secondPhoto = slide.secondPhoto !== null ? photos[slide.secondPhoto]?.src : undefined;
   const thirdPhoto = slide.thirdPhoto !== null ? photos[slide.thirdPhoto]?.src : undefined;
