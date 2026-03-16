@@ -693,21 +693,33 @@ const ClassHighlightTemplate = React.forwardRef<HTMLDivElement, {
 
   return (
     <div ref={ref} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font }}>
-      <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 40%, rgba(11,74,82,0.2) 100%)' }} />
+      <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.15)' }} crossOrigin="anonymous" />
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 40%, rgba(11,74,82,0.3) 100%)' }} />
       <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' as const, padding: `${40 * s}px` }}>
-        <img src={logo} alt="" style={{ height: 48 * s, marginBottom: 20 * s }} crossOrigin="anonymous" />
-        <div style={{ fontSize: 13 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, fontWeight: 500, marginBottom: 12 * s }}>{eyebrow}</div>
-        <div style={{ fontSize: 64 * s, fontWeight: 800, color: '#fff', textTransform: 'uppercase', lineHeight: 1, letterSpacing: 2 * s, textShadow: `0 ${4 * s}px ${30 * s}px rgba(0,0,0,0.6)` }}>{displayName}</div>
-        <div style={{ width: 120 * s, height: 4 * s, background: GOLD, margin: `${20 * s}px 0`, borderRadius: 2 }} />
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginBottom: 12 * s }}>
-          <div style={{ background: ic.bg, color: ic.text, padding: `${6 * s}px ${16 * s}px`, borderRadius: 20 * s, fontSize: 16 * s, fontWeight: 600, border: `2px solid ${ic.border}` }}>
+        <img src={logo} alt="" style={{ height: 44 * s, marginBottom: 16 * s }} crossOrigin="anonymous" />
+        <div style={{ fontSize: 13 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, fontWeight: 500, marginBottom: 16 * s }}>{eyebrow}</div>
+        {/* Class name — dominant element */}
+        <div style={{ fontSize: 72 * s, fontWeight: 900, color: '#fff', textTransform: 'uppercase', lineHeight: 0.95, letterSpacing: 3 * s, textShadow: `0 ${4 * s}px ${40 * s}px rgba(0,0,0,0.8), 0 ${2 * s}px ${8 * s}px rgba(0,0,0,0.5)`, maxWidth: '95%' }}>{displayName}</div>
+        <div style={{ width: 140 * s, height: 4 * s, background: GOLD, margin: `${24 * s}px 0`, borderRadius: 2 }} />
+        {/* Time/Day card */}
+        <div style={{
+          background: 'rgba(26,26,26,0.85)',
+          border: `3px solid ${GOLD}`,
+          borderRadius: 12 * s,
+          padding: `${16 * s}px ${40 * s}px`,
+          marginBottom: 20 * s,
+          backdropFilter: 'blur(8px)',
+        }}>
+          {displayDay && <div style={{ fontSize: 20 * s, color: 'rgba(255,255,255,0.7)', fontWeight: 500, marginBottom: 4 * s, textTransform: 'uppercase', letterSpacing: 2 * s }}>{displayDay}</div>}
+          <div style={{ fontSize: 36 * s, color: GOLD, fontWeight: 800, letterSpacing: 1 * s }}>{displayTime}</div>
+        </div>
+        {/* Instructor badge */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginBottom: 20 * s }}>
+          <div style={{ background: ic.bg, color: ic.text, padding: `${8 * s}px ${24 * s}px`, borderRadius: 24 * s, fontSize: 18 * s, fontWeight: 700, border: `3px solid ${ic.border}`, letterSpacing: 0.5 * s }}>
             {displayInstructor}
           </div>
         </div>
-        <div style={{ fontSize: 24 * s, color: 'rgba(255,255,255,0.8)', fontWeight: 500, marginBottom: 6 * s }}>{displayDay}</div>
-        <div style={{ fontSize: 32 * s, color: GOLD, fontWeight: 700, marginBottom: 24 * s }}>{displayTime}</div>
-        <CTAButton text={ctaText || 'Book Now →'} s={s} />
+        <CTAButton text={ctaText || 'Book Now →'} s={s * 1.1} />
       </div>
     </div>
   );
