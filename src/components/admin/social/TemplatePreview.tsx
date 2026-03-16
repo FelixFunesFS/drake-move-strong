@@ -349,7 +349,7 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           </div>
         </div>
         {/* Logo top-left */}
-        <img src={logo} alt="" style={{ position: 'absolute', top: 24 * s, left: 32 * s, height: 40 * s }} crossOrigin="anonymous" />
+        <img src={logo} alt="" style={{ position: 'absolute', top: 24 * s, left: 32 * s, height: Math.max(44, 40 * s) }} crossOrigin="anonymous" />
       </div>
     );
   }
