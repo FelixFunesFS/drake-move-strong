@@ -621,18 +621,18 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
     <div ref={ref} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font }}>
       <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.12)' }} crossOrigin="anonymous" />
       <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(180deg, rgba(11,74,82,0.92) 0%, rgba(26,26,26,0.97) 100%)` }} />
-      <div style={{ position: 'absolute', inset: 0, padding: `${24 * s}px ${32 * s}px`, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ position: 'absolute', inset: 0, padding: `${16 * s}px ${32 * s}px`, display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginBottom: 12 * s, flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginBottom: 8 * s, flexShrink: 0 }}>
           <img src={logo} alt="" style={{ height: 36 * s }} crossOrigin="anonymous" />
           <div>
             <div style={{ fontSize: 11 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, fontWeight: 500 }}>{eyebrow}</div>
             <div style={{ fontSize: isVertical ? 32 * s : 26 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1 }}>{headline || "This Week's Schedule"}</div>
           </div>
         </div>
-        <div style={{ width: '100%', height: 3 * s, background: `linear-gradient(90deg, ${GOLD}, transparent)`, marginBottom: 12 * s, borderRadius: 2, flexShrink: 0 }} />
-        {/* Schedule List — takes 60% of canvas height */}
-        <div style={{ height: H * 0.6, overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: 2 * s }}>
+        <div style={{ width: '100%', height: 3 * s, background: `linear-gradient(90deg, ${GOLD}, transparent)`, marginBottom: 6 * s, borderRadius: 2, flexShrink: 0 }} />
+        {/* Schedule List — fills remaining space */}
+        <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: 2 * s }}>
           {days.map((day, dayIdx) => {
             const dateObj = new Date(day + 'T12:00:00');
             const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase();
@@ -679,7 +679,7 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
           })}
         </div>
         {/* Footer */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 12 * s, flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: 8 * s, flexShrink: 0 }}>
           <div style={{ fontSize: 12 * s, color: 'rgba(255,255,255,0.4)', letterSpacing: 1 * s }}>drake.fitness</div>
           <CTAButton text={ctaText || 'Book Now →'} s={s * 0.8} />
         </div>

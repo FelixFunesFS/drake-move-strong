@@ -1,26 +1,29 @@
 
+# Plan: Domain Standardization + Welcome Page SEO — COMPLETED
 
-## Fix: Schedule List Should Dominate the Graphic
+## What Was Done
 
-### Problem
-The schedule list has `height: H * 0.6` but the outer flex container's padding (`24*s` top + bottom = `48*s` total) eats into the available space. Combined with the header and footer, the list ends up compressed into the top ~25%.
+Standardized all URLs from `https://drake.fitness` → `https://www.drake.fitness` across 31 files, added noindex to Welcome page, and updated robots.txt.
 
-### Fix — `src/components/admin/social/TemplatePreview.tsx`
+### Files Updated
 
-**Line 624**: Reduce outer padding from `24*s` to `16*s` vertically.
+| Category | Files | Change |
+|----------|-------|--------|
+| **SEO Core** | `SEO.tsx`, `StructuredData.tsx` | Default canonical, ogImage, toAbsoluteUrl(), business schema |
+| **Sitemap & Robots** | `sitemap.xml`, `robots.txt` | All URLs → www; added `Disallow: /welcome` |
+| **Welcome Page** | `Welcome.tsx` | Added `noindex, nofollow` meta tag + www canonical |
+| **Public Pages** | Home, Pricing, Schedule, Contact, About, Coaching, FAQ, Insights, SuccessStories, Ruckathon, NewYearChallenge, ResetWeekAlt | canonical → www |
+| **Service Pages** | ResetWeekCharleston, StrengthTraining, LowImpact, WestAshley | canonical → www |
+| **Blog** | InsightPost.tsx | canonical, articleSchema URL, social share URLs |
+| **Auth/Member** | Auth, Dashboard, Profile, MyBookings | canonical → www |
+| **Chatbot** | ChatMessage.tsx, chat-assistant edge function | Friendly link labels + system prompt URLs |
+| **Email** | emailTemplates.ts, send-nurture-previews | CTA button URLs |
+| **OG Redirect** | og-redirect edge function | SITE_URL constant |
 
-**Line 635**: Replace the fixed `height: H * 0.6` with `flex: 1` so the list fills all remaining space between the compact header and footer. Also add `minHeight: 0` (required for flex overflow children).
+### Google Search Console Checklist (Post-Deploy)
 
-**Line 626 (header)**: Reduce `marginBottom` from `12*s` to `8*s`.
-
-**Line 633 (gold line)**: Reduce `marginBottom` from `12*s` to `6*s`.
-
-**Line 682 (footer)**: Change `marginTop: 12*s` to `marginTop: 'auto'` with small top padding, so footer pins to bottom.
-
-Net effect: header ~10%, schedule list ~80%, footer ~10%.
-
-### File
-| File | Change |
-|------|--------|
-| `src/components/admin/social/TemplatePreview.tsx` | Lines 624-686: Adjust padding, use `flex:1` for list, compress header/footer |
-
+1. Verify `www.drake.fitness` property in Search Console
+2. Submit updated sitemap: `https://www.drake.fitness/sitemap.xml`
+3. Use URL Inspection on top 5 pages to request re-indexing
+4. Update Google Business Profile website URL to `https://www.drake.fitness`
+5. Confirm non-www redirects to www via 301 in Lovable domain settings
