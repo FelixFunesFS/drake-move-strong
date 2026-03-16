@@ -36,7 +36,7 @@ export function CTAButton({ text, style, s = 1 }: { text: string; style?: React.
       color: DARK,
       padding: `${14 * s}px ${36 * s}px`,
       fontFamily: "'Oswald', sans-serif",
-      fontSize: 18 * s,
+      fontSize: Math.max(20, 18 * s),
       fontWeight: 700,
       textTransform: 'uppercase',
       borderRadius: 6 * s,
