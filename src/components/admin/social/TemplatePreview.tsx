@@ -621,16 +621,8 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
     <div ref={ref} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font }}>
       <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.12)' }} crossOrigin="anonymous" />
       <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(180deg, rgba(11,74,82,0.92) 0%, rgba(26,26,26,0.97) 100%)` }} />
-      {(() => {
-        const isStory = H / W > 1.5;
-        const isPort = H > W && !isStory;
-        const padTop = H * (isStory ? 0.14 : isPort ? 0.06 : 0.05);
-        const padBottom = H * (isStory ? 0.14 : isPort ? 0.06 : 0.05);
-        const padX = W * (isStory ? 0.06 : 0.05);
-        const headlineFontSize = Math.min(isVertical ? 28 * s : 22 * s, H * 0.03);
-        return null;
-      })()}
-      <div style={{ position: 'absolute', inset: 0, padding: `${H * (H / W > 1.5 ? 0.14 : H > W ? 0.06 : 0.05)}px ${W * (H / W > 1.5 ? 0.06 : 0.05)}px ${H * (H / W > 1.5 ? 0.14 : H > W ? 0.06 : 0.05)}px`, display: 'flex', flexDirection: 'column' }}>
+      {/* Safe-zone padding container */}
+      <div style={{ position: 'absolute', inset: 0, padding: `${H * (H / W > 1.5 ? 0.14 : H > W ? 0.06 : 0.05)}px ${W * (H / W > 1.5 ? 0.06 : 0.05)}px`, display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginBottom: 8 * s, flexShrink: 0 }}>
           <img src={logo} alt="" style={{ height: 36 * s }} crossOrigin="anonymous" />
