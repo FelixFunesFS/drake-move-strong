@@ -9,7 +9,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
+import { StructuredData, buildFAQSchema, buildBreadcrumbSchema } from "@/components/StructuredData";
 import { NativeWeeklySchedule } from "@/components/schedule/NativeWeeklySchedule";
 import { getStaggerDelay } from "@/lib/motionConfig";
 import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
