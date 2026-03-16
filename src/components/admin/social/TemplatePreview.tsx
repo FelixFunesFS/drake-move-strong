@@ -439,7 +439,7 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
             {showBadge && <FreeBadge s={s * 0.8} />}
           </div>
         </div>
-        <img src={logo} alt="" style={{ position: 'absolute', top: 20 * s, left: 28 * s, height: 36 * s, zIndex: 5 }} crossOrigin="anonymous" />
+        <img src={logo} alt="" style={{ position: 'absolute', top: 20 * s, left: 28 * s, height: Math.max(44, 36 * s), zIndex: 5 }} crossOrigin="anonymous" />
       </div>
     );
   }
