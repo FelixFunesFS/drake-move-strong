@@ -77,32 +77,53 @@ const Hero = ({
         {/* Background Images with Ken Burns Effect - uses real <img> for LCP optimization */}
         {images.length > 0 ? (
           <div className="absolute inset-0 z-0">
-            {images.map((img, index) => (
-              <m.div 
-                key={img} 
-                initial={{ opacity: 0 }} 
-                animate={{ opacity: index === currentImageIndex ? 1 : 0 }} 
-                transition={{ duration: 1.5, ease: "easeInOut" }} 
-                className="absolute inset-0"
-              >
-                {/* Use actual <img> element for LCP - fetchpriority only on first image */}
-                <picture>
-                  {mobileImages[index] && (
-                    <source media="(max-width: 767px)" srcSet={mobileImages[index]} />
-                  )}
-                  <img 
-                    src={img} 
-                    alt="" 
-                    fetchPriority={index === 0 ? "high" : undefined}
-                    loading={index === 0 ? "eager" : "lazy"}
-                    decoding={index === 0 ? "sync" : "async"}
-                    style={{ objectPosition: imagePositionMobile ?? "center 30%" }}
-                    className="absolute inset-0 w-full h-full object-cover md:!object-[center_40%] animate-ken-burns"
-                    aria-hidden="true"
-                  />
-                </picture>
-              </m.div>
-            ))}
+            {images.map((img, index) => 
+              index === 0 ? (
+                <div 
+                  key={img}
+                  className="absolute inset-0"
+                >
+                  <picture>
+                    {mobileImages[index] && (
+                      <source media="(max-width: 767px)" srcSet={mobileImages[index]} />
+                    )}
+                    <img 
+                      src={img} 
+                      alt="" 
+                      fetchPriority="high"
+                      loading="eager"
+                      decoding="sync"
+                      style={{ objectPosition: imagePositionMobile ?? "center 30%" }}
+                      className="absolute inset-0 w-full h-full object-cover md:!object-[center_40%] animate-ken-burns"
+                      aria-hidden="true"
+                    />
+                  </picture>
+                </div>
+              ) : (
+                <m.div 
+                  key={img} 
+                  initial={{ opacity: 0 }} 
+                  animate={{ opacity: index === currentImageIndex ? 1 : 0 }} 
+                  transition={{ duration: 1.5, ease: "easeInOut" }} 
+                  className="absolute inset-0"
+                >
+                  <picture>
+                    {mobileImages[index] && (
+                      <source media="(max-width: 767px)" srcSet={mobileImages[index]} />
+                    )}
+                    <img 
+                      src={img} 
+                      alt="" 
+                      loading="lazy"
+                      decoding="async"
+                      style={{ objectPosition: imagePositionMobile ?? "center 30%" }}
+                      className="absolute inset-0 w-full h-full object-cover md:!object-[center_40%] animate-ken-burns"
+                      aria-hidden="true"
+                    />
+                  </picture>
+                </m.div>
+              )
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/20 md:bg-gradient-to-r md:from-black/80 md:via-black/50 md:to-transparent" />
           </div>
         ) : (
@@ -122,15 +143,12 @@ const Hero = ({
                 {eyebrow}
               </m.p>
             )}
-            {/* H1 uses regular element for faster LCP - no motion wrapper */}
-            <m.h1
-              initial={{ opacity: 0, scale: isMobileView ? 1.15 : 1, y: isMobileView ? 0 : 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: isMobileView ? 0.8 : 0.5, delay: isMobileView ? 0.8 : 0, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="font-hero text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-3 md:mb-5 leading-[0.95] tracking-tighter uppercase -mt-[20px]"
+            {/* H1 rendered without opacity:0 initial state for instant LCP */}
+            <h1
+              className="font-hero text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-3 md:mb-5 leading-[0.95] tracking-tighter uppercase -mt-[20px] animate-fade-in"
             >
               {title}
-            </m.h1>
+            </h1>
             <m.p 
               initial={{ opacity: 0, y: 30 }} 
               animate={{ opacity: 1, y: 0 }} 
