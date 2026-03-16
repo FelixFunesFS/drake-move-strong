@@ -2,7 +2,7 @@ import Hero from "@/components/Hero";
 import CTASection from "@/components/CTASection";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { SEO } from "@/components/SEO";
-import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
+import { StructuredData, buildFAQSchema, buildBreadcrumbSchema } from "@/components/StructuredData";
 import AnimatedSection from "@/components/AnimatedSection";
 import { getStaggerDelay } from "@/lib/motionConfig";
 
