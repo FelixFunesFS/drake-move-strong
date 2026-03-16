@@ -487,10 +487,10 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           background: `linear-gradient(135deg, ${TEAL} 0%, ${SOFT_TEAL} 100%)`,
           display: 'flex', alignItems: 'center', padding: `0 ${36 * s}px`, gap: 16 * s, flexShrink: 0,
         }}>
-          <img src={logo} alt="" style={{ height: 36 * s }} crossOrigin="anonymous" />
+          <img src={logo} alt="" style={{ height: Math.max(44, 36 * s) }} crossOrigin="anonymous" />
           <div style={{ marginLeft: 'auto' }}>
-            <div style={{ fontSize: 14 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s }}>{eyebrow}</div>
-            <div style={{ fontSize: 18 * s, fontWeight: 500, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: 1 * s }}>{programLine}</div>
+            <div style={{ fontSize: Math.max(34, 14 * s), fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s }}>{eyebrow}</div>
+            <div style={{ fontSize: Math.max(38, 20 * s), fontWeight: 500, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: 1 * s }}>{programLine}</div>
           </div>
         </div>
         {/* Gold accent line */}
