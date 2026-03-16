@@ -35,3 +35,6 @@ verify_jwt = false
 
 [functions.og-redirect]
 verify_jwt = false
+
+[functions.generate-content-package]
+verify_jwt = false
