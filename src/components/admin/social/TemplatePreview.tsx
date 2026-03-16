@@ -54,11 +54,11 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
         <div style={{ position: 'absolute', bottom: 40 * s, left: 48 * s, right: 48 * s }}>
           <img src={logo} alt="" style={{ height: 56 * s, marginBottom: 16 * s }} crossOrigin="anonymous" />
           <div style={{ width: 80 * s, height: 3 * s, background: GOLD, marginBottom: 14 * s, borderRadius: 2 }} />
-          <div style={{ fontSize: 14 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 8 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: Math.max(34, 14 * s), fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 8 * s }}>{eyebrow}</div>
           <div style={{ fontSize: 54 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 1.5 * s, textShadow: `0 ${2 * s}px ${20 * s}px rgba(0,0,0,0.6)` }}>{headline}</div>
-          <div style={{ fontSize: 22 * s, color: 'rgba(255,255,255,0.7)', marginTop: 8 * s, fontWeight: 400, letterSpacing: 1.5 * s, textTransform: 'uppercase' }}>{programLine}</div>
+          <div style={{ fontSize: Math.max(38, 22 * s), color: 'rgba(255,255,255,0.7)', marginTop: 8 * s, fontWeight: 400, letterSpacing: 1.5 * s, textTransform: 'uppercase' }}>{programLine}</div>
           {detailLine && (
-            <div style={{ fontSize: 17 * s, color: 'rgba(255,255,255,0.55)', marginTop: 6 * s, fontWeight: 400, letterSpacing: 1 * s }}>{detailLine}</div>
+            <div style={{ fontSize: Math.max(36, 17 * s), color: 'rgba(255,255,255,0.55)', marginTop: 6 * s, fontWeight: 400, letterSpacing: 1 * s }}>{detailLine}</div>
           )}
           <CTAButton text={ctaText} s={s} style={{ marginTop: 18 * s }} />
         </div>
@@ -110,12 +110,12 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
             </>
           )}
           <img src={logo} alt="" style={{ height: 56 * s, marginBottom: 18 * s }} crossOrigin="anonymous" />
-          <div style={{ fontSize: 14 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, marginBottom: 12 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: Math.max(34, 14 * s), fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, marginBottom: 12 * s }}>{eyebrow}</div>
           <div style={{ fontSize: 52 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 2 * s, textShadow: `0 ${2 * s}px ${30 * s}px rgba(0,0,0,0.4)` }}>{headline}</div>
-          <div style={{ fontSize: 20 * s, color: 'rgba(255,255,255,0.8)', marginTop: 8 * s, fontWeight: 500, textTransform: 'uppercase', letterSpacing: 1.5 * s }}>{programLine}</div>
+          <div style={{ fontSize: Math.max(38, 20 * s), color: 'rgba(255,255,255,0.8)', marginTop: 8 * s, fontWeight: 500, textTransform: 'uppercase', letterSpacing: 1.5 * s }}>{programLine}</div>
           <div style={{ width: 100 * s, height: 3 * s, background: GOLD, marginTop: 16 * s, marginBottom: 12 * s, borderRadius: 2 }} />
           {detailLine && (
-            <div style={{ fontSize: 17 * s, color: GOLD, fontWeight: 400, letterSpacing: 1.5 * s, marginBottom: 8 * s }}>{detailLine}</div>
+            <div style={{ fontSize: Math.max(36, 17 * s), color: GOLD, fontWeight: 400, letterSpacing: 1.5 * s, marginBottom: 8 * s }}>{detailLine}</div>
           )}
           {showBadge ? <FreeBadge s={s} style={{ marginTop: 8 * s }} /> : <CTAButton text={ctaText} s={s} style={{ marginTop: 8 * s }} />}
         </div>
@@ -127,7 +127,7 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
     return (
       <div ref={previewRef} style={{ width: W, height: H, display: 'flex', flexDirection: 'column', fontFamily: font, overflow: 'hidden' }}>
         <div style={{ height: 72 * s, background: `linear-gradient(135deg, ${TEAL} 0%, ${SOFT_TEAL} 100%)`, display: 'flex', alignItems: 'center', padding: `0 ${40 * s}px`, gap: 16 * s, flexShrink: 0 }}>
-          <img src={logo} alt="" style={{ height: 40 * s }} crossOrigin="anonymous" />
+          <img src={logo} alt="" style={{ height: Math.max(44, 40 * s) }} crossOrigin="anonymous" />
           <span style={{ fontSize: 22 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: 3 * s }}>DRAKE FITNESS</span>
           <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 16 * s }}>
             {secondPhoto && (
@@ -135,8 +135,8 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
                 <img src={secondPhoto} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
               </div>
             )}
-            <span style={{ fontSize: 14 * s, color: 'rgba(255,255,255,0.8)', textTransform: 'uppercase', letterSpacing: 1.5 * s, fontWeight: 500 }}>{programLine}</span>
-            <span style={{ fontSize: 14 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, fontWeight: 500 }}>{eyebrow}</span>
+            <span style={{ fontSize: Math.max(34, 16 * s), color: 'rgba(255,255,255,0.8)', textTransform: 'uppercase', letterSpacing: 1.5 * s, fontWeight: 500 }}>{programLine}</span>
+            <span style={{ fontSize: Math.max(34, 16 * s), color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, fontWeight: 500 }}>{eyebrow}</span>
           </div>
         </div>
         <div style={{ height: 4 * s, background: `linear-gradient(90deg, ${GOLD} 0%, ${GOLD} 60%, transparent 100%)`, flexShrink: 0 }} />
@@ -154,7 +154,7 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           <div style={{ paddingLeft: 20 * s }}>
             <div style={{ fontSize: 28 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: 1.5 * s }}>{headline}</div>
             {detailLine && (
-               <div style={{ fontSize: 17 * s, color: 'rgba(255,255,255,0.5)', letterSpacing: 1 * s, marginTop: 2 * s }}>{detailLine}</div>
+               <div style={{ fontSize: Math.max(36, 17 * s), color: 'rgba(255,255,255,0.5)', letterSpacing: 1 * s, marginTop: 2 * s }}>{detailLine}</div>
             )}
           </div>
           <CTAButton text={ctaText} s={s} />
@@ -231,10 +231,10 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           <div style={{ display: 'flex', alignItems: isVertical ? 'center' : 'center', gap: 20 * s, flexDirection: isVertical ? 'column' : 'row', textAlign: isVertical ? 'center' as const : undefined }}>
             <img src={logo} alt="" style={{ height: 44 * s }} crossOrigin="anonymous" />
             <div>
-              <div style={{ fontSize: 14 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 4 * s }}>{eyebrow}</div>
+              <div style={{ fontSize: Math.max(34, 14 * s), fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 4 * s }}>{eyebrow}</div>
               <div style={{ fontSize: 32 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1, letterSpacing: 1 * s }}>{headline}</div>
               {detailLine && (
-                <div style={{ fontSize: 17 * s, color: 'rgba(255,255,255,0.55)', letterSpacing: 1 * s, marginTop: 2 * s }}>{detailLine}</div>
+                <div style={{ fontSize: Math.max(36, 17 * s), color: 'rgba(255,255,255,0.55)', letterSpacing: 1 * s, marginTop: 2 * s }}>{detailLine}</div>
               )}
             </div>
           </div>
@@ -259,13 +259,13 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
           boxShadow: `0 ${8 * s}px ${40 * s}px rgba(0,0,0,0.5)`,
         }}>
-          <div style={{ fontSize: 16 * s, fontWeight: 500, color: DARK, textTransform: 'uppercase', letterSpacing: 4 * s, marginBottom: 4 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: Math.max(34, 18 * s), fontWeight: 500, color: DARK, textTransform: 'uppercase', letterSpacing: 4 * s, marginBottom: 4 * s }}>{eyebrow}</div>
           <div style={{ fontSize: 48 * s, fontWeight: 800, color: DARK, textTransform: 'uppercase', lineHeight: 1, letterSpacing: 2 * s }}>{headline}</div>
-          <div style={{ fontSize: 18 * s, fontWeight: 500, color: 'rgba(26,26,26,0.7)', marginTop: 4 * s, letterSpacing: 1 * s }}>{detailLine}</div>
+          <div style={{ fontSize: Math.max(36, 18 * s), fontWeight: 500, color: 'rgba(26,26,26,0.7)', marginTop: 4 * s, letterSpacing: 1 * s }}>{detailLine}</div>
         </div>
         {/* Bottom bar */}
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 80 * s, background: `linear-gradient(to top, ${DARK} 0%, transparent 100%)`, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: `0 ${40 * s}px ${24 * s}px` }}>
-          <img src={logo} alt="" style={{ height: 40 * s }} crossOrigin="anonymous" />
+          <img src={logo} alt="" style={{ height: Math.max(44, 40 * s) }} crossOrigin="anonymous" />
           <CTAButton text={ctaText} s={s * 0.9} />
         </div>
         {showBadge && <div style={{ position: 'absolute', bottom: 90 * s, right: 40 * s }}><FreeBadge s={s} /></div>}
@@ -296,12 +296,12 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
         <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to right, rgba(11,74,82,0.25) 0%, transparent 40%)` }} />
         {/* Content */}
         <div style={{ position: 'absolute', bottom: 40 * s, left: 48 * s, right: 48 * s }}>
-          <img src={logo} alt="" style={{ height: 48 * s, marginBottom: 12 * s }} crossOrigin="anonymous" />
+          <img src={logo} alt="" style={{ height: Math.max(44, 48 * s), marginBottom: 12 * s }} crossOrigin="anonymous" />
           <div style={{ width: 60 * s, height: 3 * s, background: GOLD, marginBottom: 12 * s, borderRadius: 2 }} />
-          <div style={{ fontSize: 14 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 6 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: Math.max(34, 14 * s), fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 6 * s }}>{eyebrow}</div>
           <div style={{ fontSize: 48 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 1.5 * s, textShadow: `0 ${2 * s}px ${16 * s}px rgba(0,0,0,0.5)` }}>{headline}</div>
-          <div style={{ fontSize: 20 * s, color: 'rgba(255,255,255,0.7)', marginTop: 6 * s, fontWeight: 400, letterSpacing: 1.5 * s, textTransform: 'uppercase' }}>{programLine}</div>
-          {detailLine && <div style={{ fontSize: 17 * s, color: 'rgba(255,255,255,0.5)', marginTop: 4 * s }}>{detailLine}</div>}
+          <div style={{ fontSize: Math.max(38, 20 * s), color: 'rgba(255,255,255,0.7)', marginTop: 6 * s, fontWeight: 400, letterSpacing: 1.5 * s, textTransform: 'uppercase' }}>{programLine}</div>
+          {detailLine && <div style={{ fontSize: Math.max(36, 17 * s), color: 'rgba(255,255,255,0.5)', marginTop: 4 * s }}>{detailLine}</div>}
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginTop: 16 * s }}>
             <CTAButton text={ctaText} s={s} />
             {showBadge && <FreeBadge s={s * 0.8} />}
@@ -339,17 +339,17 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           left: '50%', transform: 'translateX(-50%)',
           textAlign: 'center' as const, width: '80%',
         }}>
-          <div style={{ fontSize: 14 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, marginBottom: 8 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: Math.max(34, 14 * s), fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, marginBottom: 8 * s }}>{eyebrow}</div>
           <div style={{ fontSize: 44 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 2 * s }}>{headline}</div>
-          <div style={{ fontSize: 20 * s, color: 'rgba(255,255,255,0.7)', marginTop: 8 * s, letterSpacing: 1 * s }}>{programLine}</div>
-          {detailLine && <div style={{ fontSize: 17 * s, color: 'rgba(255,255,255,0.5)', marginTop: 4 * s }}>{detailLine}</div>}
+          <div style={{ fontSize: Math.max(38, 20 * s), color: 'rgba(255,255,255,0.7)', marginTop: 8 * s, letterSpacing: 1 * s }}>{programLine}</div>
+          {detailLine && <div style={{ fontSize: Math.max(36, 17 * s), color: 'rgba(255,255,255,0.5)', marginTop: 4 * s }}>{detailLine}</div>}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12 * s, marginTop: 16 * s }}>
             <CTAButton text={ctaText} s={s} />
             {showBadge && <FreeBadge s={s * 0.8} />}
           </div>
         </div>
         {/* Logo top-left */}
-        <img src={logo} alt="" style={{ position: 'absolute', top: 24 * s, left: 32 * s, height: 40 * s }} crossOrigin="anonymous" />
+        <img src={logo} alt="" style={{ position: 'absolute', top: 24 * s, left: 32 * s, height: Math.max(44, 40 * s) }} crossOrigin="anonymous" />
       </div>
     );
   }
@@ -382,11 +382,11 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           ...(isVertical ? { justifyContent: 'center', gap: 12 * s, textAlign: 'center' as const } : {}),
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 20 * s, flexDirection: isVertical ? 'column' : 'row' }}>
-            <img src={logo} alt="" style={{ height: 40 * s }} crossOrigin="anonymous" />
+            <img src={logo} alt="" style={{ height: Math.max(44, 40 * s) }} crossOrigin="anonymous" />
             <div>
-              <div style={{ fontSize: 14 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 4 * s }}>{eyebrow}</div>
+              <div style={{ fontSize: Math.max(34, 14 * s), fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 4 * s }}>{eyebrow}</div>
               <div style={{ fontSize: 32 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1, letterSpacing: 1 * s }}>{headline}</div>
-              {detailLine && <div style={{ fontSize: 17 * s, color: 'rgba(255,255,255,0.5)', marginTop: 2 * s }}>{detailLine}</div>}
+              {detailLine && <div style={{ fontSize: Math.max(36, 17 * s), color: 'rgba(255,255,255,0.5)', marginTop: 2 * s }}>{detailLine}</div>}
             </div>
           </div>
           <CTAButton text={ctaText} s={s} />
@@ -430,16 +430,16 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           left: '50%', transform: 'translateX(-50%)',
           textAlign: 'center' as const, width: '80%', zIndex: 5,
         }}>
-          <div style={{ fontSize: 14 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, marginBottom: 8 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: Math.max(34, 14 * s), fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, marginBottom: 8 * s }}>{eyebrow}</div>
           <div style={{ fontSize: 42 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 1.5 * s, textShadow: `0 ${2 * s}px ${20 * s}px rgba(0,0,0,0.3)` }}>{headline}</div>
-          <div style={{ fontSize: 20 * s, color: 'rgba(255,255,255,0.7)', marginTop: 6 * s }}>{programLine}</div>
-          {detailLine && <div style={{ fontSize: 17 * s, color: 'rgba(255,255,255,0.5)', marginTop: 4 * s }}>{detailLine}</div>}
+          <div style={{ fontSize: Math.max(38, 20 * s), color: 'rgba(255,255,255,0.7)', marginTop: 6 * s }}>{programLine}</div>
+          {detailLine && <div style={{ fontSize: Math.max(36, 17 * s), color: 'rgba(255,255,255,0.5)', marginTop: 4 * s }}>{detailLine}</div>}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12 * s, marginTop: 14 * s }}>
             <CTAButton text={ctaText} s={s} />
             {showBadge && <FreeBadge s={s * 0.8} />}
           </div>
         </div>
-        <img src={logo} alt="" style={{ position: 'absolute', top: 20 * s, left: 28 * s, height: 36 * s, zIndex: 5 }} crossOrigin="anonymous" />
+        <img src={logo} alt="" style={{ position: 'absolute', top: 20 * s, left: 28 * s, height: Math.max(44, 36 * s), zIndex: 5 }} crossOrigin="anonymous" />
       </div>
     );
   }
@@ -461,9 +461,9 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           borderTop: `${3 * s}px solid rgba(255,255,255,0.3)`,
           borderBottom: `${3 * s}px solid rgba(255,255,255,0.3)`,
         }}>
-          <div style={{ fontSize: 14 * s, fontWeight: 600, color: DARK, textTransform: 'uppercase', letterSpacing: 5 * s, opacity: 0.6, marginBottom: 4 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: Math.max(34, 16 * s), fontWeight: 600, color: DARK, textTransform: 'uppercase', letterSpacing: 5 * s, opacity: 0.6, marginBottom: 4 * s }}>{eyebrow}</div>
           <div style={{ fontSize: 52 * s, fontWeight: 800, color: DARK, textTransform: 'uppercase', lineHeight: 1, letterSpacing: 3 * s }}>{headline}</div>
-          <div style={{ fontSize: 18 * s, fontWeight: 500, color: 'rgba(26,26,26,0.65)', marginTop: 4 * s, letterSpacing: 1 * s }}>{detailLine}</div>
+          <div style={{ fontSize: Math.max(36, 18 * s), fontWeight: 500, color: 'rgba(26,26,26,0.65)', marginTop: 4 * s, letterSpacing: 1 * s }}>{detailLine}</div>
         </div>
         {/* Top logo */}
         <div style={{ position: 'absolute', top: 24 * s, left: 32 * s }}>
@@ -487,10 +487,10 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           background: `linear-gradient(135deg, ${TEAL} 0%, ${SOFT_TEAL} 100%)`,
           display: 'flex', alignItems: 'center', padding: `0 ${36 * s}px`, gap: 16 * s, flexShrink: 0,
         }}>
-          <img src={logo} alt="" style={{ height: 36 * s }} crossOrigin="anonymous" />
+          <img src={logo} alt="" style={{ height: Math.max(44, 36 * s) }} crossOrigin="anonymous" />
           <div style={{ marginLeft: 'auto' }}>
-            <div style={{ fontSize: 14 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s }}>{eyebrow}</div>
-            <div style={{ fontSize: 18 * s, fontWeight: 500, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: 1 * s }}>{programLine}</div>
+            <div style={{ fontSize: Math.max(34, 14 * s), fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s }}>{eyebrow}</div>
+            <div style={{ fontSize: Math.max(38, 20 * s), fontWeight: 500, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: 1 * s }}>{programLine}</div>
           </div>
         </div>
         {/* Gold accent line */}
@@ -511,7 +511,7 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
         }}>
           <div>
             <div style={{ fontSize: 34 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: 1.5 * s }}>{headline}</div>
-            {detailLine && <div style={{ fontSize: 17 * s, color: 'rgba(255,255,255,0.5)', letterSpacing: 1 * s, marginTop: 2 * s }}>{detailLine}</div>}
+            {detailLine && <div style={{ fontSize: Math.max(36, 17 * s), color: 'rgba(255,255,255,0.5)', letterSpacing: 1 * s, marginTop: 2 * s }}>{detailLine}</div>}
           </div>
           <CTAButton text={ctaText} s={s} />
         </div>
@@ -537,7 +537,7 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
         </div>
         {/* Logo top-left corner of frame */}
-        <img src={logo} alt="" style={{ position: 'absolute', top: borderW - 14 * s, left: borderW + 12 * s, height: 28 * s, zIndex: 5 }} crossOrigin="anonymous" />
+        <img src={logo} alt="" style={{ position: 'absolute', top: borderW - 14 * s, left: borderW + 12 * s, height: Math.max(44, 36 * s), zIndex: 5 }} crossOrigin="anonymous" />
         {/* Text in bottom frame area */}
         <div style={{
           position: 'absolute',
@@ -549,9 +549,9 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           textAlign: isVertical ? 'center' as const : undefined,
         }}>
           <div>
-            <div style={{ fontSize: 14 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 6 * s }}>{eyebrow}</div>
+            <div style={{ fontSize: Math.max(34, 14 * s), fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 6 * s }}>{eyebrow}</div>
             <div style={{ fontSize: 36 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 1.5 * s }}>{headline}</div>
-            {detailLine && <div style={{ fontSize: 17 * s, color: 'rgba(255,255,255,0.6)', marginTop: 4 * s }}>{detailLine}</div>}
+            {detailLine && <div style={{ fontSize: Math.max(36, 17 * s), color: 'rgba(255,255,255,0.6)', marginTop: 4 * s }}>{detailLine}</div>}
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 * s, flexShrink: 0 }}>
             <CTAButton text={ctaText} s={s * 0.9} />
@@ -625,9 +625,9 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
       <div style={{ position: 'absolute', inset: 0, padding: `${H * (H / W > 1.5 ? 0.14 : H > W ? 0.06 : 0.05)}px ${W * (H / W > 1.5 ? 0.06 : 0.05)}px`, display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginBottom: 8 * s, flexShrink: 0 }}>
-          <img src={logo} alt="" style={{ height: 44 * s }} crossOrigin="anonymous" />
+          <img src={logo} alt="" style={{ height: Math.max(44, 44 * s) }} crossOrigin="anonymous" />
           <div>
-            <div style={{ fontSize: 14 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, fontWeight: 500 }}>{eyebrow}</div>
+            <div style={{ fontSize: Math.max(34, 14 * s), color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, fontWeight: 500 }}>{eyebrow}</div>
             <div style={{ fontSize: Math.min(isVertical ? 28 * s : 22 * s, H * 0.04), fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1 }}>{headline || "This Week's Schedule"}</div>
           </div>
         </div>
@@ -716,7 +716,7 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
         })()}
         {/* Footer */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: 8 * s, flexShrink: 0 }}>
-          <div style={{ fontSize: 13 * s, color: 'rgba(255,255,255,0.4)', letterSpacing: 1 * s }}>drake.fitness</div>
+          <div style={{ fontSize: Math.max(30, 13 * s), color: 'rgba(255,255,255,0.4)', letterSpacing: 1 * s }}>drake.fitness</div>
           <CTAButton text={ctaText || 'Book Now →'} s={s * 0.9} />
         </div>
       </div>
@@ -747,7 +747,7 @@ const ClassHighlightTemplate = React.forwardRef<HTMLDivElement, {
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 40%, rgba(11,74,82,0.3) 100%)' }} />
       <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' as const, padding: `${40 * s}px` }}>
         <img src={logo} alt="" style={{ height: 44 * s, marginBottom: 16 * s }} crossOrigin="anonymous" />
-        <div style={{ fontSize: 15 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, fontWeight: 500, marginBottom: 16 * s }}>{eyebrow}</div>
+        <div style={{ fontSize: Math.max(34, 15 * s), color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, fontWeight: 500, marginBottom: 16 * s }}>{eyebrow}</div>
         {/* Class name — dominant element */}
         <div style={{ fontSize: 72 * s, fontWeight: 900, color: '#fff', textTransform: 'uppercase', lineHeight: 0.95, letterSpacing: 3 * s, textShadow: `0 ${4 * s}px ${40 * s}px rgba(0,0,0,0.8), 0 ${2 * s}px ${8 * s}px rgba(0,0,0,0.5)`, maxWidth: '95%' }}>{displayName}</div>
         <div style={{ width: 140 * s, height: 4 * s, background: GOLD, margin: `${24 * s}px 0`, borderRadius: 2 }} />

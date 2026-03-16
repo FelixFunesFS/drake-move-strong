@@ -24,7 +24,7 @@ export function FreeBadge({ style, s = 1 }: { style?: React.CSSProperties; s?: n
       ...style,
     }}>
       <span style={{ fontSize: Math.max(28, 28 * s), display: 'block', lineHeight: 1 }}>3 FREE</span>
-      <span style={{ fontSize: Math.max(16, 14 * s), letterSpacing: 3 * s }}>CLASSES</span>
+      <span style={{ fontSize: Math.max(18, 16 * s), letterSpacing: 3 * s }}>CLASSES</span>
     </div>
   );
 }
@@ -36,7 +36,7 @@ export function CTAButton({ text, style, s = 1 }: { text: string; style?: React.
       color: DARK,
       padding: `${14 * s}px ${36 * s}px`,
       fontFamily: "'Oswald', sans-serif",
-      fontSize: Math.max(20, 18 * s),
+      fontSize: Math.max(22, 20 * s),
       fontWeight: 700,
       textTransform: 'uppercase',
       borderRadius: 6 * s,
@@ -89,16 +89,16 @@ export function FrostedCard({ eyebrow, headline, detailLine, ctaText, showBadge,
       ...style,
     }}>
       {eyebrow && (
-        <div style={{ fontSize: 11 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 8 * s }}>{eyebrow}</div>
+        <div style={{ fontSize: Math.max(34, 14 * s), fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 8 * s }}>{eyebrow}</div>
       )}
       <div style={{ fontSize: 32 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1, letterSpacing: 1 * s, marginBottom: 8 * s }}>
         {headline}
       </div>
       {detailLine && (
-        <div style={{ fontSize: 14 * s, color: 'rgba(255,255,255,0.6)', letterSpacing: 1 * s, marginBottom: 14 * s }}>{detailLine}</div>
+        <div style={{ fontSize: Math.max(36, 17 * s), color: 'rgba(255,255,255,0.6)', letterSpacing: 1 * s, marginBottom: 14 * s }}>{detailLine}</div>
       )}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 * s, flexWrap: 'wrap' as const }}>
-        <CTAButton text={ctaText} s={s} style={{ fontSize: 14 * s, padding: `${10 * s}px ${24 * s}px` }} />
+        <CTAButton text={ctaText} s={s} style={{ fontSize: Math.max(34, 16 * s), padding: `${10 * s}px ${24 * s}px` }} />
         {showBadge && <FreeBadge s={s * 0.7} />}
       </div>
     </div>
@@ -110,10 +110,10 @@ export function BrandPanel({ eyebrow, programLine, s = 1, style }: { eyebrow: st
     <div style={{ position: 'absolute', ...style, background: TEAL, backgroundImage: TEAL_PATTERN, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(135deg, ${SOFT_TEAL} 0%, ${TEAL} 100%)`, opacity: 0.5 }} />
       <div style={{ position: 'relative', zIndex: 1, padding: `${48 * s}px ${44 * s}px` }}>
-        <img src={logo} alt="" style={{ height: 50 * s, marginBottom: 20 * s }} crossOrigin="anonymous" />
-        <div style={{ fontSize: 12 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 12 * s }}>{eyebrow}</div>
+        <img src={logo} alt="" style={{ height: Math.max(50, 50 * s), marginBottom: 20 * s }} crossOrigin="anonymous" />
+        <div style={{ fontSize: Math.max(34, 14 * s), fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 12 * s }}>{eyebrow}</div>
         <div style={{ width: 64 * s, height: 3 * s, background: GOLD, marginTop: 8 * s, marginBottom: 12 * s, borderRadius: 2 }} />
-        <div style={{ fontSize: 19 * s, color: 'rgba(255,255,255,0.9)', fontWeight: 500, lineHeight: 1.3, textTransform: 'uppercase', letterSpacing: 1 * s }}>{programLine}</div>
+        <div style={{ fontSize: Math.max(38, 22 * s), color: 'rgba(255,255,255,0.9)', fontWeight: 500, lineHeight: 1.3, textTransform: 'uppercase', letterSpacing: 1 * s }}>{programLine}</div>
       </div>
     </div>
   );
