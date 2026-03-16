@@ -1,29 +1,53 @@
 
-# Plan: Domain Standardization + Welcome Page SEO — COMPLETED
 
-## What Was Done
+## Fix: Schedule List Must Fill the Graphic
 
-Standardized all URLs from `https://drake.fitness` → `https://www.drake.fitness` across 31 files, added noindex to Welcome page, and updated robots.txt.
+### Root Cause
 
-### Files Updated
+The `flex: 1` container correctly reserves all available space, but the **content inside** (class rows) doesn't stretch to fill it. Each row is only `~30px` tall at scale, and with 5-10 classes the content clusters at the top of an 80% container, visually appearing as ~20% of the graphic.
 
-| Category | Files | Change |
-|----------|-------|--------|
-| **SEO Core** | `SEO.tsx`, `StructuredData.tsx` | Default canonical, ogImage, toAbsoluteUrl(), business schema |
-| **Sitemap & Robots** | `sitemap.xml`, `robots.txt` | All URLs → www; added `Disallow: /welcome` |
-| **Welcome Page** | `Welcome.tsx` | Added `noindex, nofollow` meta tag + www canonical |
-| **Public Pages** | Home, Pricing, Schedule, Contact, About, Coaching, FAQ, Insights, SuccessStories, Ruckathon, NewYearChallenge, ResetWeekAlt | canonical → www |
-| **Service Pages** | ResetWeekCharleston, StrengthTraining, LowImpact, WestAshley | canonical → www |
-| **Blog** | InsightPost.tsx | canonical, articleSchema URL, social share URLs |
-| **Auth/Member** | Auth, Dashboard, Profile, MyBookings | canonical → www |
-| **Chatbot** | ChatMessage.tsx, chat-assistant edge function | Friendly link labels + system prompt URLs |
-| **Email** | emailTemplates.ts, send-nurture-previews | CTA button URLs |
-| **OG Redirect** | og-redirect edge function | SITE_URL constant |
+### Best Approach: Scale Rows to Fill Available Space
 
-### Google Search Console Checklist (Post-Deploy)
+Rather than relying on content height alone, **dynamically calculate row sizes** based on the available space and number of items. This ensures the schedule always fills the container regardless of how many classes exist.
 
-1. Verify `www.drake.fitness` property in Search Console
-2. Submit updated sitemap: `https://www.drake.fitness/sitemap.xml`
-3. Use URL Inspection on top 5 pages to request re-indexing
-4. Update Google Business Profile website URL to `https://www.drake.fitness`
-5. Confirm non-www redirects to www via 301 in Lovable domain settings
+### Changes — `src/components/admin/social/TemplatePreview.tsx`
+
+**Calculate available height and distribute it across rows:**
+
+1. Compute total available height: `availH = H - headerHeight - footerHeight - padding` (roughly `H * 0.82`)
+2. Count total items: `totalRows = number of day headers + number of class rows`
+3. Derive `rowH = availH / totalRows` — each row (both day headers and class cards) gets equal vertical space
+4. Apply `rowH` as `minHeight` on each day-header and class-row `div`, with content vertically centered
+5. Scale font sizes proportionally: class name `fontSize = Math.max(14 * s, rowH * 0.35)`, time `fontSize = Math.max(12 * s, rowH * 0.28)`
+6. Scale padding/gap to `rowH * 0.08` instead of fixed `6 * s`
+
+**Net effect:** Whether there are 5 classes or 20, the rows expand or compress to always fill the list container. With few classes, rows become larger and more prominent. With many, they stay readable but compact.
+
+### Visual Result
+
+```text
+┌──────────────────────────────────┐
+│ [Logo]  THIS WEEK'S SCHEDULE     │  ~10%
+│ ════════════════════════════════  │
+│                                  │
+│ MONDAY · MAR 17                  │
+│ ┃ 8:00 AM    KB Strong   David  │
+│ ┃ 11:00 AM   Mobility    Misty  │  ~82%
+│                                  │  (rows stretch
+│ TUESDAY · MAR 18                 │   to fill)
+│ ┃ 8:00 AM    KB Flow     David  │
+│ ┃ 5:30 PM    Strength    David  │
+│                                  │
+│ WEDNESDAY · MAR 19               │
+│ ┃ 8:00 AM    KB Strong   David  │
+│                                  │
+├──────────────────────────────────┤
+│ drake.fitness       [Book Now →] │  ~8%
+└──────────────────────────────────┘
+```
+
+### File
+| File | Change |
+|------|--------|
+| `src/components/admin/social/TemplatePreview.tsx` | Lines 620-686: Calculate dynamic row heights based on available space and total row count; apply as `minHeight` on day headers and class cards; scale fonts proportionally to row height |
+
