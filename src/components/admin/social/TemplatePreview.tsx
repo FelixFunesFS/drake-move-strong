@@ -154,7 +154,7 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           <div style={{ paddingLeft: 20 * s }}>
             <div style={{ fontSize: 28 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: 1.5 * s }}>{headline}</div>
             {detailLine && (
-               <div style={{ fontSize: 17 * s, color: 'rgba(255,255,255,0.5)', letterSpacing: 1 * s, marginTop: 2 * s }}>{detailLine}</div>
+               <div style={{ fontSize: Math.max(36, 17 * s), color: 'rgba(255,255,255,0.5)', letterSpacing: 1 * s, marginTop: 2 * s }}>{detailLine}</div>
             )}
           </div>
           <CTAButton text={ctaText} s={s} />
