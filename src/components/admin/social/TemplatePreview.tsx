@@ -265,7 +265,7 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
         </div>
         {/* Bottom bar */}
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 80 * s, background: `linear-gradient(to top, ${DARK} 0%, transparent 100%)`, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: `0 ${40 * s}px ${24 * s}px` }}>
-          <img src={logo} alt="" style={{ height: 40 * s }} crossOrigin="anonymous" />
+          <img src={logo} alt="" style={{ height: Math.max(44, 40 * s) }} crossOrigin="anonymous" />
           <CTAButton text={ctaText} s={s * 0.9} />
         </div>
         {showBadge && <div style={{ position: 'absolute', bottom: 90 * s, right: 40 * s }}><FreeBadge s={s} /></div>}
