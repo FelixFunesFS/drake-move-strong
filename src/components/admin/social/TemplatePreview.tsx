@@ -259,9 +259,9 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
           boxShadow: `0 ${8 * s}px ${40 * s}px rgba(0,0,0,0.5)`,
         }}>
-          <div style={{ fontSize: 14 * s, fontWeight: 500, color: DARK, textTransform: 'uppercase', letterSpacing: 4 * s, marginBottom: 4 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: 16 * s, fontWeight: 500, color: DARK, textTransform: 'uppercase', letterSpacing: 4 * s, marginBottom: 4 * s }}>{eyebrow}</div>
           <div style={{ fontSize: 48 * s, fontWeight: 800, color: DARK, textTransform: 'uppercase', lineHeight: 1, letterSpacing: 2 * s }}>{headline}</div>
-          <div style={{ fontSize: 16 * s, fontWeight: 500, color: 'rgba(26,26,26,0.7)', marginTop: 4 * s, letterSpacing: 1 * s }}>{detailLine}</div>
+          <div style={{ fontSize: 18 * s, fontWeight: 500, color: 'rgba(26,26,26,0.7)', marginTop: 4 * s, letterSpacing: 1 * s }}>{detailLine}</div>
         </div>
         {/* Bottom bar */}
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 80 * s, background: `linear-gradient(to top, ${DARK} 0%, transparent 100%)`, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: `0 ${40 * s}px ${24 * s}px` }}>
