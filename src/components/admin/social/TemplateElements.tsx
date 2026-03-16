@@ -13,7 +13,7 @@ export function FreeBadge({ style, s = 1 }: { style?: React.CSSProperties; s?: n
       padding: `${10 * s}px ${22 * s}px`,
       fontFamily: "'Oswald', sans-serif",
       fontWeight: 800,
-      fontSize: 18 * s,
+      fontSize: Math.max(20, 18 * s),
       textTransform: 'uppercase',
       letterSpacing: 2 * s,
       borderRadius: 6 * s,
@@ -23,8 +23,8 @@ export function FreeBadge({ style, s = 1 }: { style?: React.CSSProperties; s?: n
       textAlign: 'center' as const,
       ...style,
     }}>
-      <span style={{ fontSize: 28 * s, display: 'block', lineHeight: 1 }}>3 FREE</span>
-      <span style={{ fontSize: 14 * s, letterSpacing: 3 * s }}>CLASSES</span>
+      <span style={{ fontSize: Math.max(28, 28 * s), display: 'block', lineHeight: 1 }}>3 FREE</span>
+      <span style={{ fontSize: Math.max(16, 14 * s), letterSpacing: 3 * s }}>CLASSES</span>
     </div>
   );
 }
@@ -36,7 +36,7 @@ export function CTAButton({ text, style, s = 1 }: { text: string; style?: React.
       color: DARK,
       padding: `${14 * s}px ${36 * s}px`,
       fontFamily: "'Oswald', sans-serif",
-      fontSize: 18 * s,
+      fontSize: Math.max(20, 18 * s),
       fontWeight: 700,
       textTransform: 'uppercase',
       borderRadius: 6 * s,
