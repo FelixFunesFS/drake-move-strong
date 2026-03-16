@@ -508,20 +508,35 @@ export default function SocialGraphics() {
                     <ChevronDown className={`h-3.5 w-3.5 transition-transform ${photosOpen ? 'rotate-180' : ''}`} />
                   </CollapsibleTrigger>
                   <CollapsibleContent className="mt-2 space-y-2">
-                    {/* Drop zone */}
+                    {/* Drop zone & upload */}
                     <div
                       onDragOver={e => { e.preventDefault(); setIsDragOver(true); }}
                       onDragLeave={() => setIsDragOver(false)}
                       onDrop={handleDrop}
                       onClick={() => fileInputRef.current?.click()}
-                      className={`border-2 border-dashed rounded-lg p-3 text-center cursor-pointer transition-all ${
+                      className={`border-2 border-dashed rounded-lg p-4 sm:p-3 text-center cursor-pointer transition-all min-h-[60px] ${
                         isDragOver ? 'border-drake-gold bg-drake-gold/10' : 'border-border hover:border-drake-gold/50'
                       }`}
                     >
-                      <Upload className="h-4 w-4 mx-auto mb-1 text-muted-foreground" />
-                      <p className="text-[10px] text-muted-foreground">Drop images or click to upload</p>
+                      <Upload className="h-5 w-5 sm:h-4 sm:w-4 mx-auto mb-1 text-muted-foreground" />
+                      <p className="text-xs sm:text-[10px] text-muted-foreground">
+                        {isMobile ? 'Tap to choose from library' : 'Drop images or click to upload'}
+                      </p>
                     </div>
                     <input ref={fileInputRef} type="file" accept="image/*" multiple onChange={handleFileUpload} className="hidden" />
+                    {/* Camera capture for mobile */}
+                    <input ref={cameraInputRef} type="file" accept="image/*" capture="environment" onChange={handleFileUpload} className="hidden" />
+                    {isMobile && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full"
+                        onClick={() => cameraInputRef.current?.click()}
+                      >
+                        <Camera className="h-4 w-4 mr-2" />
+                        Take Photo
+                      </Button>
+                    )}
 
                     {/* Photo slot selectors */}
                     <div className="flex gap-1.5 flex-wrap">
