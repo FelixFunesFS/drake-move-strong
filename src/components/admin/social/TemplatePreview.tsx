@@ -642,9 +642,11 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
           const footerH = 50 * s;
           const totalClassRows = days.reduce((sum, d) => sum + byDay[d].length, 0);
           const totalRows = days.length + totalClassRows;
-          const availH = H - padTop - padBottom - headerH - footerH;
+          const rowGap = Math.max(2 * s, 4 * s);
+          const gapCount = Math.max(0, totalRows - 1);
+          const totalGapSpace = gapCount * rowGap;
+          const availH = H - padTop - padBottom - headerH - footerH - totalGapSpace;
           const rowH = totalRows > 0 ? availH / totalRows : 40 * s;
-          const rowGap = Math.max(2 * s, rowH * 0.06);
           const dayFontSize = Math.max(11 * s, rowH * 0.24);
           const classFontSize = Math.max(12 * s, rowH * 0.24);
           const timeFontSize = Math.max(10 * s, rowH * 0.18);
@@ -661,7 +663,7 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
                 return (
                   <React.Fragment key={day}>
                     <div style={{ 
-                      minHeight: rowH, display: 'flex', alignItems: 'center',
+                      height: rowH, flexShrink: 1, display: 'flex', alignItems: 'center',
                       fontSize: dayFontSize, fontWeight: 800, color: GOLD, textTransform: 'uppercase', 
                       letterSpacing: 2 * s,
                       borderBottom: `1px solid rgba(242,181,68,0.3)`,
@@ -673,7 +675,7 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
                       const ic = getInstructorColor(cls.instructor);
                       return (
                         <div key={i} style={{
-                          minHeight: rowH, display: 'flex', alignItems: 'center', gap: 12 * s,
+                          height: rowH, flexShrink: 1, display: 'flex', alignItems: 'center', gap: 12 * s,
                           background: 'rgba(255,255,255,0.10)',
                           borderRadius: 6 * s,
                           padding: `${rowPadY}px ${rowPadX}px`,

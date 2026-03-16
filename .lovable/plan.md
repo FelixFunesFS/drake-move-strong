@@ -1,35 +1,29 @@
 
+# Plan: Domain Standardization + Welcome Page SEO — COMPLETED
 
-## Fix: Schedule Rows Overflowing Container
+## What Was Done
 
-### Problem
-The `ScheduleGridTemplate` has a layout math bug: the `availH` calculation doesn't account for the **gaps between rows**. With `totalRows` items and `(totalRows - 1)` gaps, the cumulative gap space pushes rows beyond the container, and `overflow: hidden` clips the last classes.
+Standardized all URLs from `https://drake.fitness` → `https://www.drake.fitness` across 31 files, added noindex to Welcome page, and updated robots.txt.
 
-Additionally, rows use `minHeight: rowH` which prevents flex from shrinking them if the math is slightly off.
+### Files Updated
 
-### Root Cause (line 646 of TemplatePreview.tsx)
-```
-availH / totalRows → gives rowH
-```
-But the actual space consumed is `totalRows * rowH + (totalRows - 1) * rowGap`, which exceeds `availH` by `(totalRows - 1) * rowGap`.
+| Category | Files | Change |
+|----------|-------|--------|
+| **SEO Core** | `SEO.tsx`, `StructuredData.tsx` | Default canonical, ogImage, toAbsoluteUrl(), business schema |
+| **Sitemap & Robots** | `sitemap.xml`, `robots.txt` | All URLs → www; added `Disallow: /welcome` |
+| **Welcome Page** | `Welcome.tsx` | Added `noindex, nofollow` meta tag + www canonical |
+| **Public Pages** | Home, Pricing, Schedule, Contact, About, Coaching, FAQ, Insights, SuccessStories, Ruckathon, NewYearChallenge, ResetWeekAlt | canonical → www |
+| **Service Pages** | ResetWeekCharleston, StrengthTraining, LowImpact, WestAshley | canonical → www |
+| **Blog** | InsightPost.tsx | canonical, articleSchema URL, social share URLs |
+| **Auth/Member** | Auth, Dashboard, Profile, MyBookings | canonical → www |
+| **Chatbot** | ChatMessage.tsx, chat-assistant edge function | Friendly link labels + system prompt URLs |
+| **Email** | emailTemplates.ts, send-nurture-previews | CTA button URLs |
+| **OG Redirect** | og-redirect edge function | SITE_URL constant |
 
-### Fix — `src/components/admin/social/TemplatePreview.tsx`
+### Google Search Console Checklist (Post-Deploy)
 
-**Lines 643-656**: Subtract total gap space from `availH` before computing `rowH`, and change `minHeight` to `height` with `flexShrink: 1` so rows can compress if needed:
-
-```typescript
-const totalRows = days.length + totalClassRows;
-const gapCount = Math.max(0, totalRows - 1);
-const rowGap = Math.max(2 * s, 4 * s);          // fixed gap, not row-dependent
-const totalGapSpace = gapCount * rowGap;
-const availH = H - padTop - padBottom - headerH - footerH - totalGapSpace;
-const rowH = totalRows > 0 ? availH / totalRows : 40 * s;
-```
-
-Then on row elements, change `minHeight: rowH` to `height: rowH, flexShrink: 1` so content can compress gracefully on days with 6+ classes.
-
-### File
-| File | Change |
-|------|--------|
-| `src/components/admin/social/TemplatePreview.tsx` | Lines 643-695: Fix availH gap math, switch minHeight to flexible height |
-
+1. Verify `www.drake.fitness` property in Search Console
+2. Submit updated sitemap: `https://www.drake.fitness/sitemap.xml`
+3. Use URL Inspection on top 5 pages to request re-indexing
+4. Update Google Business Profile website URL to `https://www.drake.fitness`
+5. Confirm non-www redirects to www via 301 in Lovable domain settings
