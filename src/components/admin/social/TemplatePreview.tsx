@@ -399,37 +399,32 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
 
   if (template === 'overlap-cards') {
     const img2 = secondPhoto || photo;
+    const img3 = thirdPhoto || null;
+    const img4 = fourthPhoto || null;
+    const cards = [
+      { img: photo, rotation: -6, left: 0, top: 0, z: 1 },
+      { img: img2, rotation: 4, left: '35%', top: '10%', z: 2 },
+      ...(img3 ? [{ img: img3, rotation: -3, left: '15%', top: '5%', z: 3 }] : []),
+      ...(img4 ? [{ img: img4, rotation: 7, left: '50%', top: '8%', z: 4 }] : []),
+    ];
     return (
       <div ref={previewRef} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font, background: TEAL, backgroundImage: TEAL_PATTERN }}>
         <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(180deg, ${SOFT_TEAL} 0%, ${TEAL} 100%)`, opacity: 0.6 }} />
-        {/* Two overlapping photo cards */}
         <div style={{ position: 'absolute', top: isVertical ? '8%' : '10%', left: '50%', transform: 'translateX(-50%)', width: W * 0.7, height: isVertical ? H * 0.45 : H * 0.55 }}>
-          {/* Card 1 - tilted left */}
-          <div style={{
-            position: 'absolute', left: 0, top: 0,
-            width: isVertical ? '65%' : '55%', height: '85%',
-            borderRadius: 12 * s, overflow: 'hidden',
-            border: `${4 * s}px solid rgba(255,255,255,0.9)`,
-            boxShadow: `0 ${16 * s}px ${48 * s}px rgba(0,0,0,0.5)`,
-            transform: 'rotate(-6deg)',
-            background: '#fff',
-          }}>
-            <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-          </div>
-          {/* Card 2 - tilted right */}
-          <div style={{
-            position: 'absolute', right: 0, top: '10%',
-            width: isVertical ? '65%' : '55%', height: '85%',
-            borderRadius: 12 * s, overflow: 'hidden',
-            border: `${4 * s}px solid rgba(255,255,255,0.9)`,
-            boxShadow: `0 ${16 * s}px ${48 * s}px rgba(0,0,0,0.5)`,
-            transform: 'rotate(4deg)',
-            background: '#fff', zIndex: 2,
-          }}>
-            <img src={img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-          </div>
+          {cards.map((c, i) => (
+            <div key={i} style={{
+              position: 'absolute', left: c.left, top: c.top,
+              width: isVertical ? '60%' : '50%', height: '80%',
+              borderRadius: 12 * s, overflow: 'hidden',
+              border: `${4 * s}px solid rgba(255,255,255,0.9)`,
+              boxShadow: `0 ${16 * s}px ${48 * s}px rgba(0,0,0,0.5)`,
+              transform: `rotate(${c.rotation}deg)`,
+              background: '#fff', zIndex: c.z,
+            }}>
+              <img src={c.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+            </div>
+          ))}
         </div>
-        {/* Text below */}
         <div style={{
           position: 'absolute', bottom: isVertical ? '6%' : 32 * s,
           left: '50%', transform: 'translateX(-50%)',
