@@ -464,7 +464,7 @@ export default function SocialGraphics() {
                       ))}
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       <div>
                         <label className="text-[10px] font-medium text-muted-foreground mb-0.5 block">Eyebrow</label>
                         <Input value={slide.eyebrow} onChange={e => updateSlide({ eyebrow: e.target.value })} className="h-8 text-xs" />
