@@ -621,7 +621,7 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
     <div ref={ref} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font }}>
       <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.12)' }} crossOrigin="anonymous" />
       <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(180deg, rgba(11,74,82,0.92) 0%, rgba(26,26,26,0.97) 100%)` }} />
-      <div style={{ position: 'absolute', inset: 0, padding: `${16 * s}px ${32 * s}px`, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ position: 'absolute', inset: 0, padding: `${(isVertical ? 60 : 24) * s}px ${36 * s}px`, display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginBottom: 8 * s, flexShrink: 0 }}>
           <img src={logo} alt="" style={{ height: 36 * s }} crossOrigin="anonymous" />
