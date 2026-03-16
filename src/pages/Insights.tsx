@@ -6,8 +6,9 @@ import BlogArticleCard from "@/components/insights/BlogArticleCard";
 import AnimatedSection from "@/components/AnimatedSection";
 import CTASection from "@/components/CTASection";
 import { INTRO_URL } from "@/data/pricing";
-import heroImage from "@/assets/insights-hero-turkish-getup-class.jpg";
+import heroImage from "@/assets/insights-hero-turkish-getup-class.jpg?format=webp&w=1920";
 import { SEO } from "@/components/SEO";
+import { StructuredData, buildBreadcrumbSchema } from "@/components/StructuredData";
 import { Input } from "@/components/ui/input";
 
 type CategoryFilter = 'all' | 'education' | 'trust' | 'conversion';
