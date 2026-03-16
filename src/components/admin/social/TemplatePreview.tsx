@@ -136,7 +136,7 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
               </div>
             )}
             <span style={{ fontSize: 14 * s, color: 'rgba(255,255,255,0.8)', textTransform: 'uppercase', letterSpacing: 1.5 * s, fontWeight: 500 }}>{programLine}</span>
-            <span style={{ fontSize: 12 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, fontWeight: 500 }}>{eyebrow}</span>
+            <span style={{ fontSize: 14 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, fontWeight: 500 }}>{eyebrow}</span>
           </div>
         </div>
         <div style={{ height: 4 * s, background: `linear-gradient(90deg, ${GOLD} 0%, ${GOLD} 60%, transparent 100%)`, flexShrink: 0 }} />
