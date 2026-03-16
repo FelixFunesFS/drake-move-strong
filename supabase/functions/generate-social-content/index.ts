@@ -21,8 +21,8 @@ TARGET AUDIENCE:
 - Those who want results without burnout or injury
 
 COACHES:
-- David Drake: 25+ years experience, StrongFirst kettlebell certification
-- Nick Poppa: Corrective exercise and holistic coaching specialist
+- David Drake: 25+ years experience, StrongFirst kettlebell certification, owner
+- Misty: Yoga and flexibility specialist
 
 CONTACT INFO (use in CTAs when relevant):
 - Location: 2 Avondale Ave, Charleston, SC 29407

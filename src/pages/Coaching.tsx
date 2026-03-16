@@ -149,7 +149,7 @@ const Coaching = () => {
                 }} transition={{
                   duration: 0.6
                 }} className="relative">
-                  <OptimizedImage src={coachingSession} alt="David and Nick coaching at Drake Fitness" className="rounded-2xl shadow-lg" aspectRatio="square" />
+                  <OptimizedImage src={coachingSession} alt="David coaching at Drake Fitness" className="rounded-2xl shadow-lg" aspectRatio="square" />
                   
                   {/* Caption Badge Overlay */}
                   <motion.div initial={{
