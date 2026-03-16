@@ -104,7 +104,7 @@ ${emailImage("studio-david-dog.jpg", "David Drake with his dog at Drake Fitness"
 <li style="margin-bottom:8px;"><strong style="color:${DARK};">Already experienced?</strong> We'll challenge you. Our coaching sharpens movement quality at every level.</li>
 </ul>
 ${ctaButton("View Class Schedule")}
-<p style="font-size:14px;">See you on the floor,<br/><strong style="color:${DARK};">David Drake</strong><br/>Head Coach, Drake Fitness</p>
+${signatureBlock(`See you on the floor,<br/><strong style="color:${DARK};">David Drake</strong><br/>Head Coach, Drake Fitness`)}
   `, "Welcome to Drake Fitness. Here's everything you need to know for your first class."),
 
   "new-lead-Day 1": wrap(`
