@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { CheckCircle2, MapPin, Navigation } from "lucide-react";
 import { GoogleReviewsBadge, GOOGLE_REVIEWS } from "@/components/GoogleReviewsBadge";
 import { SEO } from "@/components/SEO";
-import { StructuredData, localBusinessSchema } from "@/components/StructuredData";
+import { StructuredData, localBusinessSchema, organizationSchema } from "@/components/StructuredData";
 import TrustStatsBar from "@/components/TrustStatsBar";
 import LongevityBlock from "@/components/LongevityBlock";
 import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
