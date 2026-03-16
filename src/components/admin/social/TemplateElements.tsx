@@ -13,7 +13,7 @@ export function FreeBadge({ style, s = 1 }: { style?: React.CSSProperties; s?: n
       padding: `${10 * s}px ${22 * s}px`,
       fontFamily: "'Oswald', sans-serif",
       fontWeight: 800,
-      fontSize: 18 * s,
+      fontSize: Math.max(20, 18 * s),
       textTransform: 'uppercase',
       letterSpacing: 2 * s,
       borderRadius: 6 * s,
