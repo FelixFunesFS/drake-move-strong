@@ -621,29 +621,42 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
     <div ref={ref} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font }}>
       <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.12)' }} crossOrigin="anonymous" />
       <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(180deg, rgba(11,74,82,0.92) 0%, rgba(26,26,26,0.97) 100%)` }} />
-      <div style={{ position: 'absolute', inset: 0, padding: `${(isVertical ? 60 : 24) * s}px ${36 * s}px`, display: 'flex', flexDirection: 'column' }}>
+      {(() => {
+        const isStory = H / W > 1.5;
+        const isPort = H > W && !isStory;
+        const padTop = H * (isStory ? 0.14 : isPort ? 0.06 : 0.05);
+        const padBottom = H * (isStory ? 0.14 : isPort ? 0.06 : 0.05);
+        const padX = W * (isStory ? 0.06 : 0.05);
+        const headlineFontSize = Math.min(isVertical ? 28 * s : 22 * s, H * 0.03);
+        return null;
+      })()}
+      <div style={{ position: 'absolute', inset: 0, padding: `${H * (H / W > 1.5 ? 0.14 : H > W ? 0.06 : 0.05)}px ${W * (H / W > 1.5 ? 0.06 : 0.05)}px ${H * (H / W > 1.5 ? 0.14 : H > W ? 0.06 : 0.05)}px`, display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginBottom: 8 * s, flexShrink: 0 }}>
           <img src={logo} alt="" style={{ height: 36 * s }} crossOrigin="anonymous" />
           <div>
-            <div style={{ fontSize: 11 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, fontWeight: 500 }}>{eyebrow}</div>
-            <div style={{ fontSize: isVertical ? 32 * s : 26 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1 }}>{headline || "This Week's Schedule"}</div>
+            <div style={{ fontSize: 10 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, fontWeight: 500 }}>{eyebrow}</div>
+            <div style={{ fontSize: Math.min(isVertical ? 28 * s : 22 * s, H * 0.03), fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1 }}>{headline || "This Week's Schedule"}</div>
           </div>
         </div>
         <div style={{ width: '100%', height: 3 * s, background: `linear-gradient(90deg, ${GOLD}, transparent)`, marginBottom: 6 * s, borderRadius: 2, flexShrink: 0 }} />
         {/* Schedule List — fills remaining space with dynamic row sizing */}
         {(() => {
+          const isStoryCalc = H / W > 1.5;
+          const isPortCalc = H > W && !isStoryCalc;
+          const padTop = H * (isStoryCalc ? 0.14 : isPortCalc ? 0.06 : 0.05);
+          const padBottom = H * (isStoryCalc ? 0.14 : isPortCalc ? 0.06 : 0.05);
+          const headerH = 50 * s;
+          const footerH = 50 * s;
           const totalClassRows = days.reduce((sum, d) => sum + byDay[d].length, 0);
           const totalRows = days.length + totalClassRows;
-          const paddingV = (isVertical ? 60 : 24) * s;
-          const headerFooterH = 80 * s;
-          const availH = H - paddingV * 2 - headerFooterH;
+          const availH = H - padTop - padBottom - headerH - footerH;
           const rowH = totalRows > 0 ? availH / totalRows : 40 * s;
           const rowGap = Math.max(2 * s, rowH * 0.06);
-          const dayFontSize = Math.max(11 * s, rowH * 0.28);
-          const classFontSize = Math.max(12 * s, rowH * 0.28);
-          const timeFontSize = Math.max(10 * s, rowH * 0.22);
-          const instructorFontSize = Math.max(9 * s, rowH * 0.20);
+          const dayFontSize = Math.max(11 * s, rowH * 0.24);
+          const classFontSize = Math.max(12 * s, rowH * 0.24);
+          const timeFontSize = Math.max(10 * s, rowH * 0.18);
+          const instructorFontSize = Math.max(9 * s, rowH * 0.16);
           const rowPadY = Math.max(4 * s, rowH * 0.12);
           const rowPadX = 12 * s;
 
@@ -696,7 +709,7 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
         })()}
         {/* Footer */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: 8 * s, flexShrink: 0 }}>
-          <div style={{ fontSize: 12 * s, color: 'rgba(255,255,255,0.4)', letterSpacing: 1 * s }}>drake.fitness</div>
+          <div style={{ fontSize: 10 * s, color: 'rgba(255,255,255,0.4)', letterSpacing: 1 * s }}>drake.fitness</div>
           <CTAButton text={ctaText || 'Book Now →'} s={s * 0.8} />
         </div>
       </div>
