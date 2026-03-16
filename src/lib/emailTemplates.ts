@@ -139,7 +139,7 @@ ${emailImage("david-coaching-form.jpg", "David Drake coaching a member on proper
 </table>
 <p><strong style="color:${DARK};">One more thing: class 2 is always easier than class 1.</strong> Your body adapts fast. By your next session, you'll know the flow, recognize the movements, and feel more confident. The hardest part is already behind you.</p>
 ${ctaButton("View Class Schedule")}
-<p style="font-size:14px;">Recover well,<br/><strong style="color:${DARK};">David Drake</strong><br/>Head Coach, Drake Fitness</p>
+${signatureBlock(`Recover well,<br/><strong style="color:${DARK};">David Drake</strong><br/>Head Coach, Drake Fitness`)}
   `, "Here's exactly what to do before your next class."),
 
   "new-lead-Day 5": wrap(`
