@@ -613,7 +613,7 @@ export default function SocialGraphics() {
                         const isPrimary = slide.photo === realIdx;
                         const isSecondary = slide.secondPhoto === realIdx;
                         const isTertiary = slide.thirdPhoto === realIdx;
-                        const isActive = pickingFor === 'primary' ? isPrimary : pickingFor === 'secondary' ? isSecondary : isTertiary;
+                        const isActive = pickingFor === 'primary' ? isPrimary : pickingFor === 'secondary' ? isSecondary : pickingFor === 'tertiary' ? isTertiary : pickingFor === 'fourth' ? slide.fourthPhoto === realIdx : pickingFor === 'fifth' ? slide.fifthPhoto === realIdx : false;
                         return (
                           <button
                             key={`${p.label}-${idx}`}
