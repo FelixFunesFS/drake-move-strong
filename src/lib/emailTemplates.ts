@@ -216,7 +216,7 @@ ${emailImage("studio-full-view.jpg", "Full view of Drake Fitness studio")}
 </ul>
 ${ctaButton("View Membership Options", "https://www.drake.fitness/pricing")}
 <p>No pressure. The door's always open.</p>
-<p style="font-size:14px;">— David &amp; the Drake Fitness crew</p>
+${signatureBlock(`— David &amp; the Drake Fitness crew`)}
   `, "Your 3-class pass expires soon. Here's what members get next."),
 
   // ═══ WIN-BACK ═══
