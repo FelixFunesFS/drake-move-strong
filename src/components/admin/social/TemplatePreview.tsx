@@ -537,7 +537,7 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
         </div>
         {/* Logo top-left corner of frame */}
-        <img src={logo} alt="" style={{ position: 'absolute', top: borderW - 14 * s, left: borderW + 12 * s, height: 28 * s, zIndex: 5 }} crossOrigin="anonymous" />
+        <img src={logo} alt="" style={{ position: 'absolute', top: borderW - 14 * s, left: borderW + 12 * s, height: Math.max(44, 36 * s), zIndex: 5 }} crossOrigin="anonymous" />
         {/* Text in bottom frame area */}
         <div style={{
           position: 'absolute',
