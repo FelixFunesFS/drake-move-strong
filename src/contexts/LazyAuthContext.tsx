@@ -84,7 +84,7 @@ export function LazyAuthProvider({ children }: { children: ReactNode }) {
     if (initialized.current) return;
     initialized.current = true;
 
-    // Defer Supabase initialization to reduce initial bundle blocking
+    // Defer Supabase initialization until browser is idle to reduce unused JS on initial load
     const initAuth = async () => {
       const client = await getSupabaseClient();
       
@@ -120,7 +120,25 @@ export function LazyAuthProvider({ children }: { children: ReactNode }) {
       return () => subscription.unsubscribe();
     };
 
-    initAuth();
+    // Delay auth init until after the browser is idle to avoid blocking LCP
+    const scheduleInit = () => {
+      if ('requestIdleCallback' in window) {
+        (window as any).requestIdleCallback(() => initAuth(), { timeout: 2000 });
+      } else {
+        setTimeout(initAuth, 1000);
+      }
+    };
+
+    // If on an auth-required page, init immediately; otherwise defer
+    const needsAuthNow = window.location.pathname.startsWith('/member/') || 
+                          window.location.pathname.startsWith('/admin/') || 
+                          window.location.pathname.startsWith('/coach/') ||
+                          window.location.pathname === '/auth';
+    if (needsAuthNow) {
+      initAuth();
+    } else {
+      scheduleInit();
+    }
   }, [fetchUserData]);
 
   const signUp = useCallback(async (email: string, password: string, firstName?: string, lastName?: string) => {
