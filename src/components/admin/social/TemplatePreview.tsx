@@ -461,9 +461,9 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           borderTop: `${3 * s}px solid rgba(255,255,255,0.3)`,
           borderBottom: `${3 * s}px solid rgba(255,255,255,0.3)`,
         }}>
-          <div style={{ fontSize: 14 * s, fontWeight: 600, color: DARK, textTransform: 'uppercase', letterSpacing: 5 * s, opacity: 0.6, marginBottom: 4 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: Math.max(34, 16 * s), fontWeight: 600, color: DARK, textTransform: 'uppercase', letterSpacing: 5 * s, opacity: 0.6, marginBottom: 4 * s }}>{eyebrow}</div>
           <div style={{ fontSize: 52 * s, fontWeight: 800, color: DARK, textTransform: 'uppercase', lineHeight: 1, letterSpacing: 3 * s }}>{headline}</div>
-          <div style={{ fontSize: 18 * s, fontWeight: 500, color: 'rgba(26,26,26,0.65)', marginTop: 4 * s, letterSpacing: 1 * s }}>{detailLine}</div>
+          <div style={{ fontSize: Math.max(36, 18 * s), fontWeight: 500, color: 'rgba(26,26,26,0.65)', marginTop: 4 * s, letterSpacing: 1 * s }}>{detailLine}</div>
         </div>
         {/* Top logo */}
         <div style={{ position: 'absolute', top: 24 * s, left: 32 * s }}>
