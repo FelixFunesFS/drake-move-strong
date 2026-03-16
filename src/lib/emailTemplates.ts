@@ -74,6 +74,20 @@ function sectionHeading(text: string): string {
   return `<h2 style="font-family:'Oswald',Arial,sans-serif;font-size:24px;color:${DARK};margin:0 0 16px;">${text}</h2>`;
 }
 
+function signatureBlock(lines: string): string {
+  const avatarUrl = `${emailBaseUrl}/images/email/david-outside.jpg`;
+  return `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:24px 0 0;">
+<tr>
+<td style="vertical-align:top;padding-right:12px;">
+<img src="${avatarUrl}" alt="David Drake" width="48" height="48" style="display:block;width:48px;height:48px;border-radius:50%;object-fit:cover;" />
+</td>
+<td style="vertical-align:top;">
+<p style="font-size:14px;margin:0;line-height:1.5;">${lines}</p>
+</td>
+</tr>
+</table>`;
+}
+
 // Map: "sequence-dayLabel" → html
 const templateMap: Record<string, string> = {
   // ═══ NEW LEAD ═══
