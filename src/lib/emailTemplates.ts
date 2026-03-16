@@ -226,7 +226,7 @@ ${signatureBlock(`— David &amp; the Drake Fitness crew`)}
 <p>No pitch, no offer. I just wanted to say: the studio isn't the same without you. The crew asks about you.</p>
 <p>Whenever you're ready, we're here. Same address, same vibe, same community.</p>
 ${emailImage("studio-david-storefront.jpg", "David Drake at the Drake Fitness storefront")}
-<p style="margin-top:24px;">— David Drake<br/>Drake Fitness<br/>(843) 817-5420</p>
+${signatureBlock(`— David Drake<br/>Drake Fitness<br/>(843) 817-5420`)}
   `, "It's been a while — just wanted to say hey."),
 
   "win-back-Day 5": wrap(`
