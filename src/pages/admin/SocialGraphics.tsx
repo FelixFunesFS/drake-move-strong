@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 import { useIsMobile } from '@/hooks/use-mobile';
 import AdminLayout from '@/components/admin/AdminLayout';
 import { Input } from '@/components/ui/input';
