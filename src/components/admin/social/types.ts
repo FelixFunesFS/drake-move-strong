@@ -51,7 +51,7 @@ export const DEFAULT_PHOTOS: PhotoItem[] = [
   { src: davidDoubleKb, label: 'David Storefront' },
 ];
 
-export type TemplateId = 'full-bleed' | 'split-left' | 'centered' | 'editorial' | 'split-right' | 'collage' | 'schedule-grid' | 'class-highlight';
+export type TemplateId = 'full-bleed' | 'split-left' | 'centered' | 'editorial' | 'split-right' | 'collage' | 'schedule-grid' | 'class-highlight' | 'diagonal-strip' | 'fade-blend' | 'circle-cutout' | 'photo-strip' | 'overlap-cards' | 'marquee-banner' | 'stacked-bars' | 'frame-inset';
 
 export interface CanvasSize {
   name: string;
