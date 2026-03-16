@@ -339,10 +339,10 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           left: '50%', transform: 'translateX(-50%)',
           textAlign: 'center' as const, width: '80%',
         }}>
-          <div style={{ fontSize: 14 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, marginBottom: 8 * s }}>{eyebrow}</div>
+          <div style={{ fontSize: Math.max(34, 14 * s), fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, marginBottom: 8 * s }}>{eyebrow}</div>
           <div style={{ fontSize: 44 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 2 * s }}>{headline}</div>
-          <div style={{ fontSize: 20 * s, color: 'rgba(255,255,255,0.7)', marginTop: 8 * s, letterSpacing: 1 * s }}>{programLine}</div>
-          {detailLine && <div style={{ fontSize: 17 * s, color: 'rgba(255,255,255,0.5)', marginTop: 4 * s }}>{detailLine}</div>}
+          <div style={{ fontSize: Math.max(38, 20 * s), color: 'rgba(255,255,255,0.7)', marginTop: 8 * s, letterSpacing: 1 * s }}>{programLine}</div>
+          {detailLine && <div style={{ fontSize: Math.max(36, 17 * s), color: 'rgba(255,255,255,0.5)', marginTop: 4 * s }}>{detailLine}</div>}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12 * s, marginTop: 16 * s }}>
             <CTAButton text={ctaText} s={s} />
             {showBadge && <FreeBadge s={s * 0.8} />}
