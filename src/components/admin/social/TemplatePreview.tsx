@@ -663,7 +663,7 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
                 return (
                   <React.Fragment key={day}>
                     <div style={{ 
-                      minHeight: rowH, display: 'flex', alignItems: 'center',
+                      height: rowH, flexShrink: 1, display: 'flex', alignItems: 'center',
                       fontSize: dayFontSize, fontWeight: 800, color: GOLD, textTransform: 'uppercase', 
                       letterSpacing: 2 * s,
                       borderBottom: `1px solid rgba(242,181,68,0.3)`,
