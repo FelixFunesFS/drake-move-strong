@@ -21,6 +21,8 @@ const DEFAULT_SLIDE: SlideContent = {
   photo: 0,
   secondPhoto: null,
   thirdPhoto: null,
+  fourthPhoto: null,
+  fifthPhoto: null,
   template: 'full-bleed',
   eyebrow: 'WEST ASHLEY · CHARLESTON',
   headline: 'Try 3 Classes Free',
