@@ -143,15 +143,12 @@ const Hero = ({
                 {eyebrow}
               </m.p>
             )}
-            {/* H1 uses regular element for faster LCP - no motion wrapper */}
-            <m.h1
-              initial={{ opacity: 0, scale: isMobileView ? 1.15 : 1, y: isMobileView ? 0 : 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: isMobileView ? 0.8 : 0.5, delay: isMobileView ? 0.8 : 0, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="font-hero text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-3 md:mb-5 leading-[0.95] tracking-tighter uppercase -mt-[20px]"
+            {/* H1 rendered without opacity:0 initial state for instant LCP */}
+            <h1
+              className="font-hero text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-3 md:mb-5 leading-[0.95] tracking-tighter uppercase -mt-[20px] animate-fade-in"
             >
               {title}
-            </m.h1>
+            </h1>
             <m.p 
               initial={{ opacity: 0, y: 30 }} 
               animate={{ opacity: 1, y: 0 }} 
