@@ -151,7 +151,7 @@ ${emailImage("david-coaching-form.jpg", "David Drake coaching a member on proper
 <p>My philosophy is simple: <strong style="color:${DARK};">strength that serves your life — whether that's playing with your grandkids or competing in your next event.</strong> Kettlebells, bodyweight, mobility work — tools that build bodies that last decades and perform when it matters.</p>
 <p>I don't count reps to rush through them. I watch how you move, and I coach you to move better. That's it.</p>
 ${ctaButton("See Our Classes", "https://www.drake.fitness/classes")}
-<p style="font-size:14px;">— David Drake<br/>Head Coach</p>
+${signatureBlock(`— David Drake<br/>Head Coach`)}
   `, "I've spent 25 years coaching at every level. Here's why."),
 
   "new-lead-Day 10": wrap(`
