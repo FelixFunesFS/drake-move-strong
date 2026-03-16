@@ -7,6 +7,8 @@ interface TemplatePreviewProps {
   photo: string;
   secondPhoto?: string;
   thirdPhoto?: string;
+  fourthPhoto?: string;
+  fifthPhoto?: string;
   eyebrow: string;
   headline: string;
   programLine: string;
@@ -18,7 +20,7 @@ interface TemplatePreviewProps {
   scheduleClasses?: ScheduleClass[];
 }
 
-export default function TemplatePreview({ template, photo, secondPhoto, thirdPhoto, eyebrow, headline, programLine, detailLine, ctaText, showBadge, previewRef, canvasSize, scheduleClasses }: TemplatePreviewProps) {
+export default function TemplatePreview({ template, photo, secondPhoto, thirdPhoto, fourthPhoto, fifthPhoto, eyebrow, headline, programLine, detailLine, ctaText, showBadge, previewRef, canvasSize, scheduleClasses }: TemplatePreviewProps) {
   const { width: W, height: H } = canvasSize;
   const s = W / 1200; // proportional scale factor
   const font = "'Oswald', sans-serif";
@@ -164,20 +166,56 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
   if (template === 'collage') {
     const img2 = secondPhoto || photo;
     const img3 = thirdPhoto || secondPhoto || photo;
+    const img4 = fourthPhoto || thirdPhoto || secondPhoto || photo;
+    const img5 = fifthPhoto || fourthPhoto || thirdPhoto || secondPhoto || photo;
+    const hasExtra = fourthPhoto || fifthPhoto;
     return (
       <div ref={previewRef} style={{ width: W, height: H, fontFamily: font, overflow: 'hidden', position: 'relative', background: DARK }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '60%', height: isVertical ? '60%' : '100%' }}>
-          <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-          <div style={{ position: 'absolute', inset: 0, boxShadow: `inset 0 0 ${60 * s}px ${10 * s}px rgba(0,0,0,0.3)` }} />
-        </div>
-        <div style={{ position: 'absolute', top: 0, left: '60%', width: 4, height: isVertical ? '60%' : '100%', background: GOLD, zIndex: 2 }} />
-        <div style={{ position: 'absolute', top: 0, right: 0, width: '40%', height: isVertical ? '30%' : '50%' }}>
-          <img src={img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-        </div>
-        <div style={{ position: 'absolute', top: isVertical ? '30%' : '50%', right: 0, width: '40%', height: 4, background: GOLD, zIndex: 2, transform: 'translateY(-2px)' }} />
-        <div style={{ position: 'absolute', top: isVertical ? '30%' : '50%', right: 0, width: '40%', height: isVertical ? '30%' : '50%' }}>
-          <img src={img3} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-        </div>
+        {hasExtra ? (
+          <>
+            {/* 4-5 image grid */}
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '50%', height: isVertical ? '40%' : '55%' }}>
+              <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+            </div>
+            <div style={{ position: 'absolute', top: 0, left: '50%', width: '50%', height: isVertical ? '20%' : '55%' }}>
+              <div style={{ display: 'flex', height: '100%' }}>
+                <div style={{ flex: 1 }}><img src={img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" /></div>
+              </div>
+            </div>
+            <div style={{ position: 'absolute', top: isVertical ? '20%' : 0, left: '50%', width: '50%', height: isVertical ? '20%' : '55%', display: fifthPhoto ? 'block' : 'none' }}>
+              {fifthPhoto && <img src={img5} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />}
+            </div>
+            <div style={{ position: 'absolute', top: isVertical ? '40%' : '55%', left: 0, width: '33.33%', height: isVertical ? '20%' : '45%' }}>
+              <img src={img3} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+            </div>
+            <div style={{ position: 'absolute', top: isVertical ? '40%' : '55%', left: '33.33%', width: '33.33%', height: isVertical ? '20%' : '45%' }}>
+              <img src={img4} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+            </div>
+            <div style={{ position: 'absolute', top: isVertical ? '40%' : '55%', left: '66.66%', width: '33.34%', height: isVertical ? '20%' : '45%' }}>
+              <img src={fifthPhoto ? img5 : img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+            </div>
+            {/* Gold grid lines */}
+            <div style={{ position: 'absolute', top: 0, left: '50%', width: 3, height: isVertical ? '40%' : '55%', background: GOLD, zIndex: 2 }} />
+            <div style={{ position: 'absolute', top: isVertical ? '40%' : '55%', left: '33.33%', width: 3, height: isVertical ? '20%' : '45%', background: GOLD, zIndex: 2 }} />
+            <div style={{ position: 'absolute', top: isVertical ? '40%' : '55%', left: '66.66%', width: 3, height: isVertical ? '20%' : '45%', background: GOLD, zIndex: 2 }} />
+            <div style={{ position: 'absolute', top: isVertical ? '40%' : '55%', left: 0, right: 0, height: 3, background: GOLD, zIndex: 2 }} />
+          </>
+        ) : (
+          <>
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '60%', height: isVertical ? '60%' : '100%' }}>
+              <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+              <div style={{ position: 'absolute', inset: 0, boxShadow: `inset 0 0 ${60 * s}px ${10 * s}px rgba(0,0,0,0.3)` }} />
+            </div>
+            <div style={{ position: 'absolute', top: 0, left: '60%', width: 4, height: isVertical ? '60%' : '100%', background: GOLD, zIndex: 2 }} />
+            <div style={{ position: 'absolute', top: 0, right: 0, width: '40%', height: isVertical ? '30%' : '50%' }}>
+              <img src={img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+            </div>
+            <div style={{ position: 'absolute', top: isVertical ? '30%' : '50%', right: 0, width: '40%', height: 4, background: GOLD, zIndex: 2, transform: 'translateY(-2px)' }} />
+            <div style={{ position: 'absolute', top: isVertical ? '30%' : '50%', right: 0, width: '40%', height: isVertical ? '30%' : '50%' }}>
+              <img src={img3} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+            </div>
+          </>
+        )}
         {showBadge && (
           <div style={{ position: 'absolute', top: 20 * s, right: 20 * s, zIndex: 6 }}>
             <FreeBadge s={s} />
@@ -319,22 +357,22 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
   if (template === 'photo-strip') {
     const img2 = secondPhoto || photo;
     const img3 = thirdPhoto || secondPhoto || photo;
+    const img4 = fourthPhoto || null;
+    const img5 = fifthPhoto || null;
     const stripGap = 4 * s;
+    const allStrips = [photo, img2, img3, ...(img4 ? [img4] : []), ...(img5 ? [img5] : [])];
     return (
       <div ref={previewRef} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font, background: DARK }}>
-        {/* Three vertical strips */}
+        {/* Dynamic vertical strips */}
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: isVertical ? '35%' : 110 * s, display: 'flex', gap: stripGap }}>
-          <div style={{ flex: 1, overflow: 'hidden' }}>
-            <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-          </div>
-          <div style={{ width: stripGap, background: GOLD, flexShrink: 0 }} />
-          <div style={{ flex: 1, overflow: 'hidden' }}>
-            <img src={img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-          </div>
-          <div style={{ width: stripGap, background: GOLD, flexShrink: 0 }} />
-          <div style={{ flex: 1, overflow: 'hidden' }}>
-            <img src={img3} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-          </div>
+          {allStrips.map((img, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && <div style={{ width: stripGap, background: GOLD, flexShrink: 0 }} />}
+              <div style={{ flex: 1, overflow: 'hidden' }}>
+                <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+              </div>
+            </React.Fragment>
+          ))}
         </div>
         {/* Bottom content bar */}
         <div style={{
@@ -361,37 +399,32 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
 
   if (template === 'overlap-cards') {
     const img2 = secondPhoto || photo;
+    const img3 = thirdPhoto || null;
+    const img4 = fourthPhoto || null;
+    const cards = [
+      { img: photo, rotation: -6, left: 0, top: 0, z: 1 },
+      { img: img2, rotation: 4, left: '35%', top: '10%', z: 2 },
+      ...(img3 ? [{ img: img3, rotation: -3, left: '15%', top: '5%', z: 3 }] : []),
+      ...(img4 ? [{ img: img4, rotation: 7, left: '50%', top: '8%', z: 4 }] : []),
+    ];
     return (
       <div ref={previewRef} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font, background: TEAL, backgroundImage: TEAL_PATTERN }}>
         <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(180deg, ${SOFT_TEAL} 0%, ${TEAL} 100%)`, opacity: 0.6 }} />
-        {/* Two overlapping photo cards */}
         <div style={{ position: 'absolute', top: isVertical ? '8%' : '10%', left: '50%', transform: 'translateX(-50%)', width: W * 0.7, height: isVertical ? H * 0.45 : H * 0.55 }}>
-          {/* Card 1 - tilted left */}
-          <div style={{
-            position: 'absolute', left: 0, top: 0,
-            width: isVertical ? '65%' : '55%', height: '85%',
-            borderRadius: 12 * s, overflow: 'hidden',
-            border: `${4 * s}px solid rgba(255,255,255,0.9)`,
-            boxShadow: `0 ${16 * s}px ${48 * s}px rgba(0,0,0,0.5)`,
-            transform: 'rotate(-6deg)',
-            background: '#fff',
-          }}>
-            <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-          </div>
-          {/* Card 2 - tilted right */}
-          <div style={{
-            position: 'absolute', right: 0, top: '10%',
-            width: isVertical ? '65%' : '55%', height: '85%',
-            borderRadius: 12 * s, overflow: 'hidden',
-            border: `${4 * s}px solid rgba(255,255,255,0.9)`,
-            boxShadow: `0 ${16 * s}px ${48 * s}px rgba(0,0,0,0.5)`,
-            transform: 'rotate(4deg)',
-            background: '#fff', zIndex: 2,
-          }}>
-            <img src={img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-          </div>
+          {cards.map((c, i) => (
+            <div key={i} style={{
+              position: 'absolute', left: c.left, top: c.top,
+              width: isVertical ? '60%' : '50%', height: '80%',
+              borderRadius: 12 * s, overflow: 'hidden',
+              border: `${4 * s}px solid rgba(255,255,255,0.9)`,
+              boxShadow: `0 ${16 * s}px ${48 * s}px rgba(0,0,0,0.5)`,
+              transform: `rotate(${c.rotation}deg)`,
+              background: '#fff', zIndex: c.z,
+            }}>
+              <img src={c.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+            </div>
+          ))}
         </div>
-        {/* Text below */}
         <div style={{
           position: 'absolute', bottom: isVertical ? '6%' : 32 * s,
           left: '50%', transform: 'translateX(-50%)',
@@ -586,37 +619,53 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
 
   return (
     <div ref={ref} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font }}>
-      <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.2)' }} crossOrigin="anonymous" />
-      <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(180deg, rgba(11,74,82,0.9) 0%, rgba(26,26,26,0.95) 100%)` }} />
-      <div style={{ position: 'absolute', inset: 0, padding: `${30 * s}px ${40 * s}px`, display: 'flex', flexDirection: 'column' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginBottom: 20 * s }}>
-          <img src={logo} alt="" style={{ height: 40 * s }} crossOrigin="anonymous" />
+      <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.12)' }} crossOrigin="anonymous" />
+      <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(180deg, rgba(11,74,82,0.92) 0%, rgba(26,26,26,0.97) 100%)` }} />
+      <div style={{ position: 'absolute', inset: 0, padding: `${24 * s}px ${32 * s}px`, display: 'flex', flexDirection: 'column' }}>
+        {/* Header */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginBottom: 12 * s, flexShrink: 0 }}>
+          <img src={logo} alt="" style={{ height: 36 * s }} crossOrigin="anonymous" />
           <div>
-            <div style={{ fontSize: 12 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, fontWeight: 500 }}>{eyebrow}</div>
-            <div style={{ fontSize: isVertical ? 36 * s : 28 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1 }}>{headline || "This Week's Schedule"}</div>
+            <div style={{ fontSize: 11 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, fontWeight: 500 }}>{eyebrow}</div>
+            <div style={{ fontSize: isVertical ? 32 * s : 26 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1 }}>{headline || "This Week's Schedule"}</div>
           </div>
         </div>
-        <div style={{ width: '100%', height: 3 * s, background: `linear-gradient(90deg, ${GOLD}, transparent)`, marginBottom: 16 * s, borderRadius: 2 }} />
-        <div style={{ flex: 1, display: isVertical ? 'flex' : 'grid', flexDirection: isVertical ? 'column' : undefined, gridTemplateColumns: isVertical ? undefined : `repeat(${Math.min(days.length, 7)}, 1fr)`, gap: isVertical ? 8 * s : 6 * s, overflow: 'hidden' }}>
-          {days.map(day => (
-            <div key={day} style={{ background: 'rgba(255,255,255,0.05)', borderRadius: 8 * s, padding: `${10 * s}px ${8 * s}px`, border: '1px solid rgba(255,255,255,0.08)' }}>
-              <div style={{ fontSize: 13 * s, fontWeight: 700, color: GOLD, textTransform: 'uppercase', letterSpacing: 2 * s, marginBottom: 8 * s, textAlign: 'center' as const }}>{getDayLabel(day)}</div>
-              {byDay[day].map((cls, i) => {
-                const ic = getInstructorColor(cls.instructor);
-                return (
-                  <div key={i} style={{ background: 'rgba(255,255,255,0.06)', borderRadius: 4 * s, padding: `${6 * s}px ${8 * s}px`, marginBottom: 4 * s, borderLeft: `3px solid ${ic.border}` }}>
-                    <div style={{ fontSize: 11 * s, fontWeight: 600, color: '#fff', lineHeight: 1.2 }}>{cls.class_name}</div>
-                    <div style={{ fontSize: 9 * s, color: 'rgba(255,255,255,0.5)', marginTop: 2 * s }}>{formatTime(cls.start_time)}</div>
-                    {cls.instructor && (
-                      <div style={{ fontSize: 8 * s, color: ic.border, marginTop: 2 * s, fontWeight: 500 }}>{cls.instructor}</div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          ))}
+        <div style={{ width: '100%', height: 3 * s, background: `linear-gradient(90deg, ${GOLD}, transparent)`, marginBottom: 12 * s, borderRadius: 2, flexShrink: 0 }} />
+        {/* Schedule Grid — takes 85% of remaining space */}
+        <div style={{ flex: 1, display: isVertical ? 'flex' : 'grid', flexDirection: isVertical ? 'column' : undefined, gridTemplateColumns: isVertical ? undefined : `repeat(${Math.min(days.length, 7)}, 1fr)`, gap: isVertical ? 10 * s : 8 * s, overflow: 'hidden' }}>
+          {days.map((day, dayIdx) => {
+            const dateNum = new Date(day + 'T12:00:00').getDate();
+            return (
+              <div key={day} style={{ background: dayIdx % 2 === 0 ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.03)', borderRadius: 8 * s, padding: `${12 * s}px ${10 * s}px`, border: '1px solid rgba(255,255,255,0.1)' }}>
+                {/* Day header with date */}
+                <div style={{ textAlign: 'center' as const, marginBottom: 10 * s, paddingBottom: 8 * s, borderBottom: `2px solid ${GOLD}` }}>
+                  <div style={{ fontSize: 15 * s, fontWeight: 800, color: GOLD, textTransform: 'uppercase', letterSpacing: 2 * s }}>{getDayLabel(day)}</div>
+                  <div style={{ fontSize: 11 * s, fontWeight: 500, color: 'rgba(255,255,255,0.4)', marginTop: 2 * s }}>{dateNum}</div>
+                </div>
+                {byDay[day].map((cls, i) => {
+                  const ic = getInstructorColor(cls.instructor);
+                  return (
+                    <div key={i} style={{
+                      background: 'rgba(255,255,255,0.12)',
+                      borderRadius: 6 * s,
+                      padding: `${8 * s}px ${10 * s}px`,
+                      marginBottom: 6 * s,
+                      borderLeft: `${4 * s}px solid ${ic.border}`,
+                    }}>
+                      <div style={{ fontSize: 14 * s, fontWeight: 700, color: '#fff', lineHeight: 1.2, textShadow: `0 1px ${4 * s}px rgba(0,0,0,0.5)` }}>{cls.class_name}</div>
+                      <div style={{ fontSize: 11 * s, color: 'rgba(255,255,255,0.7)', marginTop: 3 * s, fontWeight: 500 }}>{formatTime(cls.start_time)}</div>
+                      {cls.instructor && (
+                        <div style={{ fontSize: 10 * s, color: ic.border, marginTop: 3 * s, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5 * s }}>{cls.instructor}</div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 14 * s }}>
+        {/* Footer */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 12 * s, flexShrink: 0 }}>
           <div style={{ fontSize: 12 * s, color: 'rgba(255,255,255,0.4)', letterSpacing: 1 * s }}>drake.fitness</div>
           <CTAButton text={ctaText || 'Book Now →'} s={s * 0.8} />
         </div>
@@ -644,21 +693,33 @@ const ClassHighlightTemplate = React.forwardRef<HTMLDivElement, {
 
   return (
     <div ref={ref} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font }}>
-      <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 40%, rgba(11,74,82,0.2) 100%)' }} />
+      <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.15)' }} crossOrigin="anonymous" />
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 40%, rgba(11,74,82,0.3) 100%)' }} />
       <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' as const, padding: `${40 * s}px` }}>
-        <img src={logo} alt="" style={{ height: 48 * s, marginBottom: 20 * s }} crossOrigin="anonymous" />
-        <div style={{ fontSize: 13 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, fontWeight: 500, marginBottom: 12 * s }}>{eyebrow}</div>
-        <div style={{ fontSize: 64 * s, fontWeight: 800, color: '#fff', textTransform: 'uppercase', lineHeight: 1, letterSpacing: 2 * s, textShadow: `0 ${4 * s}px ${30 * s}px rgba(0,0,0,0.6)` }}>{displayName}</div>
-        <div style={{ width: 120 * s, height: 4 * s, background: GOLD, margin: `${20 * s}px 0`, borderRadius: 2 }} />
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginBottom: 12 * s }}>
-          <div style={{ background: ic.bg, color: ic.text, padding: `${6 * s}px ${16 * s}px`, borderRadius: 20 * s, fontSize: 16 * s, fontWeight: 600, border: `2px solid ${ic.border}` }}>
+        <img src={logo} alt="" style={{ height: 44 * s, marginBottom: 16 * s }} crossOrigin="anonymous" />
+        <div style={{ fontSize: 13 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, fontWeight: 500, marginBottom: 16 * s }}>{eyebrow}</div>
+        {/* Class name — dominant element */}
+        <div style={{ fontSize: 72 * s, fontWeight: 900, color: '#fff', textTransform: 'uppercase', lineHeight: 0.95, letterSpacing: 3 * s, textShadow: `0 ${4 * s}px ${40 * s}px rgba(0,0,0,0.8), 0 ${2 * s}px ${8 * s}px rgba(0,0,0,0.5)`, maxWidth: '95%' }}>{displayName}</div>
+        <div style={{ width: 140 * s, height: 4 * s, background: GOLD, margin: `${24 * s}px 0`, borderRadius: 2 }} />
+        {/* Time/Day card */}
+        <div style={{
+          background: 'rgba(26,26,26,0.85)',
+          border: `3px solid ${GOLD}`,
+          borderRadius: 12 * s,
+          padding: `${16 * s}px ${40 * s}px`,
+          marginBottom: 20 * s,
+          backdropFilter: 'blur(8px)',
+        }}>
+          {displayDay && <div style={{ fontSize: 20 * s, color: 'rgba(255,255,255,0.7)', fontWeight: 500, marginBottom: 4 * s, textTransform: 'uppercase', letterSpacing: 2 * s }}>{displayDay}</div>}
+          <div style={{ fontSize: 36 * s, color: GOLD, fontWeight: 800, letterSpacing: 1 * s }}>{displayTime}</div>
+        </div>
+        {/* Instructor badge */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginBottom: 20 * s }}>
+          <div style={{ background: ic.bg, color: ic.text, padding: `${8 * s}px ${24 * s}px`, borderRadius: 24 * s, fontSize: 18 * s, fontWeight: 700, border: `3px solid ${ic.border}`, letterSpacing: 0.5 * s }}>
             {displayInstructor}
           </div>
         </div>
-        <div style={{ fontSize: 24 * s, color: 'rgba(255,255,255,0.8)', fontWeight: 500, marginBottom: 6 * s }}>{displayDay}</div>
-        <div style={{ fontSize: 32 * s, color: GOLD, fontWeight: 700, marginBottom: 24 * s }}>{displayTime}</div>
-        <CTAButton text={ctaText || 'Book Now →'} s={s} />
+        <CTAButton text={ctaText || 'Book Now →'} s={s * 1.1} />
       </div>
     </div>
   );

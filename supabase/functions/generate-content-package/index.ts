@@ -34,7 +34,7 @@ Campaign goal: ${goal}
 Strategy: ${goalStrategies[goal] || goalStrategies.conversion}
 
 For each post, think like a creative director:
-- Write an image_prompt describing the ideal photo/graphic for the post. Be specific about composition, lighting, subjects, and mood. Reference kettlebells, studio settings, outdoor Charleston scenery, mobility work, group training, etc.
+- Write an image_prompt describing the ideal graphic/visual for the post. CRITICAL: Do NOT include people, human faces, or human figures in the image prompt. Focus ONLY on gym equipment (kettlebells, dumbbells, barbells, maces, sandbags, resistance bands), abstract fitness icons, geometric patterns, textured backgrounds, empty studio interiors, Charleston scenery (without people), bold graphic elements, frames, and branded color overlays. Be specific about composition, lighting, and mood.
 - Provide suggested_photo_tags — keywords to match existing studio photos (e.g. "kettlebell", "group", "outdoor", "overhead", "plank", "turkish getup", "swing", "storefront", "goblet", "lunge").
 
 Generate exactly ${packageSize} social media posts. Return ONLY a JSON array using the tool call.`;

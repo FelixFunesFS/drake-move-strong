@@ -165,6 +165,8 @@ export interface SlideContent {
   photo: number;
   secondPhoto: number | null;
   thirdPhoto: number | null;
+  fourthPhoto: number | null;
+  fifthPhoto: number | null;
   template: TemplateId;
   eyebrow: string;
   headline: string;

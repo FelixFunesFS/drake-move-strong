@@ -32,19 +32,20 @@ serve(async (req) => {
 
     // Build enhanced prompt with Drake Fitness brand styling
     const brandStyleGuide = `
-Style: Professional fitness photography aesthetic
+Style: Professional fitness equipment and graphic design aesthetic
 Brand Colors: Teal (#0B4A52), Gold (#F2B544), Dark (#1A1A1A)
-Mood: Motivational, authentic, energetic yet approachable
-Setting: Charleston, SC fitness studio or outdoor training
-Subject focus: Functional fitness, kettlebells, mobility, strength training
+Mood: Motivational, bold, energetic yet approachable
+Setting: Charleston, SC fitness studio equipment, empty gym interiors, outdoor scenery WITHOUT people
+Subject focus: Kettlebells, dumbbells, barbells, maces, sandbags, resistance bands, gym equipment close-ups, abstract fitness icons, geometric patterns, textured backgrounds, bold graphic elements, frames, and branded color overlays
 Quality: High resolution, well-lit, professional composition
+CRITICAL: Do NOT include people, human faces, human figures, hands, or any body parts. Focus ONLY on equipment, icons, graphics, abstract compositions, and empty environments.
 `;
 
     const styleModifiers: Record<string, string> = {
-      photorealistic: "Ultra-realistic photography, natural lighting, professional fitness photo shoot quality",
-      minimalist: "Clean, minimal design with lots of negative space, simple composition, modern aesthetic",
-      energetic: "Dynamic action shot, motion blur effects, high energy, vibrant colors",
-      motivational: "Inspiring composition, dramatic lighting, powerful imagery, hero shot style",
+      photorealistic: "Ultra-realistic photography of gym equipment, natural lighting, professional product-style shoot. No people.",
+      minimalist: "Clean, minimal design with lots of negative space, simple composition, modern aesthetic. Equipment or icons only. No people.",
+      energetic: "Dynamic composition, motion blur effects on equipment, high energy, vibrant colors. No people or human figures.",
+      motivational: "Inspiring composition, dramatic lighting, powerful equipment imagery, hero shot style. No people.",
     };
 
     let messages: any[];

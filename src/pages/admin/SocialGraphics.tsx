@@ -21,6 +21,8 @@ const DEFAULT_SLIDE: SlideContent = {
   photo: 0,
   secondPhoto: null,
   thirdPhoto: null,
+  fourthPhoto: null,
+  fifthPhoto: null,
   template: 'full-bleed',
   eyebrow: 'WEST ASHLEY · CHARLESTON',
   headline: 'Try 3 Classes Free',
@@ -53,7 +55,7 @@ export default function SocialGraphics() {
   };
 
   const [photoSearch, setPhotoSearch] = useState('');
-  const [pickingFor, setPickingFor] = useState<'primary' | 'secondary' | 'tertiary'>('primary');
+  const [pickingFor, setPickingFor] = useState<'primary' | 'secondary' | 'tertiary' | 'fourth' | 'fifth'>('primary');
   const [isExporting, setIsExporting] = useState(false);
   const previewRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -152,6 +154,10 @@ export default function SocialGraphics() {
       updateSlide({ secondPhoto: realIdx });
     } else if (pickingFor === 'tertiary') {
       updateSlide({ thirdPhoto: realIdx });
+    } else if (pickingFor === 'fourth') {
+      updateSlide({ fourthPhoto: realIdx });
+    } else if (pickingFor === 'fifth') {
+      updateSlide({ fifthPhoto: realIdx });
     } else {
       updateSlide({ photo: realIdx });
     }
@@ -279,8 +285,11 @@ export default function SocialGraphics() {
 
   const secondPhoto = slide.secondPhoto !== null ? photos[slide.secondPhoto]?.src : undefined;
   const thirdPhoto = slide.thirdPhoto !== null ? photos[slide.thirdPhoto]?.src : undefined;
+  const fourthPhoto = slide.fourthPhoto !== null ? photos[slide.fourthPhoto]?.src : undefined;
+  const fifthPhoto = slide.fifthPhoto !== null ? photos[slide.fifthPhoto]?.src : undefined;
   const needsMultiImage = MULTI_IMAGE_TEMPLATES.has(slide.template);
   const needsThirdImage = slide.template === 'photo-strip' || slide.template === 'collage';
+  const needsFourthFifth = slide.template === 'photo-strip' || slide.template === 'collage' || slide.template === 'overlap-cards';
 
   return (
     <AdminLayout>
@@ -347,6 +356,8 @@ export default function SocialGraphics() {
                         photo={photos[slide.photo]?.src || photos[0]?.src}
                         secondPhoto={secondPhoto}
                         thirdPhoto={thirdPhoto}
+                        fourthPhoto={fourthPhoto}
+                        fifthPhoto={fifthPhoto}
                         eyebrow={slide.eyebrow}
                         headline={slide.headline}
                         programLine={slide.programLine}
@@ -549,6 +560,38 @@ export default function SocialGraphics() {
                           )}
                         </button>
                       )}
+                      {needsFourthFifth && (
+                        <>
+                          <button
+                            onClick={() => setPickingFor('fourth')}
+                            className={`flex items-center gap-1 px-2 py-1 rounded-md border text-[10px] font-medium transition-all ${
+                              pickingFor === 'fourth' ? 'border-drake-gold bg-drake-gold/10 text-drake-gold' : 'border-border text-muted-foreground'
+                            }`}
+                          >
+                            <span className="w-3 h-3 rounded-full bg-drake-teal text-white text-[8px] flex items-center justify-center font-bold">4</span>
+                            Fourth
+                            {slide.fourthPhoto !== null && (
+                              <button onClick={(e) => { e.stopPropagation(); updateSlide({ fourthPhoto: null }); }} className="ml-0.5 p-0.5 rounded hover:bg-destructive/20">
+                                <X className="h-2.5 w-2.5" />
+                              </button>
+                            )}
+                          </button>
+                          <button
+                            onClick={() => setPickingFor('fifth')}
+                            className={`flex items-center gap-1 px-2 py-1 rounded-md border text-[10px] font-medium transition-all ${
+                              pickingFor === 'fifth' ? 'border-drake-gold bg-drake-gold/10 text-drake-gold' : 'border-border text-muted-foreground'
+                            }`}
+                          >
+                            <span className="w-3 h-3 rounded-full bg-drake-teal text-white text-[8px] flex items-center justify-center font-bold">5</span>
+                            Fifth
+                            {slide.fifthPhoto !== null && (
+                              <button onClick={(e) => { e.stopPropagation(); updateSlide({ fifthPhoto: null }); }} className="ml-0.5 p-0.5 rounded hover:bg-destructive/20">
+                                <X className="h-2.5 w-2.5" />
+                              </button>
+                            )}
+                          </button>
+                        </>
+                      )}
                     </div>
 
                     {needsMultiImage && slide.secondPhoto === null && (
@@ -570,7 +613,7 @@ export default function SocialGraphics() {
                         const isPrimary = slide.photo === realIdx;
                         const isSecondary = slide.secondPhoto === realIdx;
                         const isTertiary = slide.thirdPhoto === realIdx;
-                        const isActive = pickingFor === 'primary' ? isPrimary : pickingFor === 'secondary' ? isSecondary : isTertiary;
+                        const isActive = pickingFor === 'primary' ? isPrimary : pickingFor === 'secondary' ? isSecondary : pickingFor === 'tertiary' ? isTertiary : pickingFor === 'fourth' ? slide.fourthPhoto === realIdx : pickingFor === 'fifth' ? slide.fifthPhoto === realIdx : false;
                         return (
                           <button
                             key={`${p.label}-${idx}`}
