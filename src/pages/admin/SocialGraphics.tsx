@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { Download, Search, Type, Sparkles, X, Image as ImageIcon, Upload, Plus, Minus, ChevronLeft, ChevronRight, Monitor, Smartphone, Square, RectangleHorizontal, ChevronDown, GripVertical } from 'lucide-react';
+import { Download, Search, Type, Sparkles, X, Image as ImageIcon, Upload, Plus, Minus, ChevronLeft, ChevronRight, Monitor, Smartphone, Square, RectangleHorizontal, ChevronDown, GripVertical, Camera } from 'lucide-react';
 import { toPng } from 'html-to-image';
 import { toast } from 'sonner';
 
