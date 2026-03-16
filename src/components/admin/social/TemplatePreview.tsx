@@ -625,9 +625,9 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
       <div style={{ position: 'absolute', inset: 0, padding: `${H * (H / W > 1.5 ? 0.14 : H > W ? 0.06 : 0.05)}px ${W * (H / W > 1.5 ? 0.06 : 0.05)}px`, display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginBottom: 8 * s, flexShrink: 0 }}>
-          <img src={logo} alt="" style={{ height: 44 * s }} crossOrigin="anonymous" />
+          <img src={logo} alt="" style={{ height: Math.max(44, 44 * s) }} crossOrigin="anonymous" />
           <div>
-            <div style={{ fontSize: 14 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, fontWeight: 500 }}>{eyebrow}</div>
+            <div style={{ fontSize: Math.max(34, 14 * s), color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, fontWeight: 500 }}>{eyebrow}</div>
             <div style={{ fontSize: Math.min(isVertical ? 28 * s : 22 * s, H * 0.04), fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1 }}>{headline || "This Week's Schedule"}</div>
           </div>
         </div>
