@@ -77,8 +77,8 @@ const Hero = ({
         {/* Background Images with Ken Burns Effect - uses real <img> for LCP optimization */}
         {images.length > 0 ? (
           <div className="absolute inset-0 z-0">
-            {images.map((img, index) => (
-              {index === 0 ? (
+            {images.map((img, index) => 
+              index === 0 ? (
                 <div 
                   key={img}
                   className="absolute inset-0"
@@ -122,8 +122,8 @@ const Hero = ({
                     />
                   </picture>
                 </m.div>
-              )}
-            ))}
+              )
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/20 md:bg-gradient-to-r md:from-black/80 md:via-black/50 md:to-transparent" />
           </div>
         ) : (
