@@ -328,9 +328,9 @@ export default function SocialGraphics() {
 
           <TabsContent value="editor" className="mt-4">
             {/* SPLIT-PANE LAYOUT */}
-            <div className="flex gap-6 items-start">
+            <div className="flex flex-col lg:flex-row gap-6 items-start">
               {/* LEFT: Sticky Preview */}
-              <div className="w-[580px] flex-shrink-0 sticky top-4 space-y-3">
+              <div className="w-full lg:w-[580px] flex-shrink-0 lg:sticky lg:top-4 space-y-3">
                 {/* Size Tabs */}
                 <div className="flex gap-1.5 flex-wrap">
                   {CANVAS_SIZES.map(size => (
