@@ -10,10 +10,10 @@ import { Target, Heart, Dumbbell, TrendingUp, User, Sparkles } from "lucide-reac
 import { SEO } from "@/components/SEO";
 import { StructuredData, buildFAQSchema } from "@/components/StructuredData";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import oneOnOneCoaching from "@/assets/one-on-one-coaching.jpg";
-import davidCoach from "@/assets/david-double-kb-storefront.jpg";
-import mistyCoach from "@/assets/coach-misty-lister.png";
-import coachingSession from "@/assets/coaching-session.jpg";
+import oneOnOneCoaching from "@/assets/one-on-one-coaching.jpg?format=webp&w=1920";
+import davidCoach from "@/assets/david-double-kb-storefront.jpg?format=webp&w=768";
+import mistyCoach from "@/assets/coach-misty-lister.png?format=webp&w=768";
+import coachingSession from "@/assets/coaching-session.jpg?format=webp&w=768";
 import TestimonialHero from "@/components/TestimonialHero";
 import { FEATURED_REVIEWS } from "@/data/reviews";
 // New authentic training photos
