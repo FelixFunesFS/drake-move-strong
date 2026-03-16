@@ -23,8 +23,8 @@ export function FreeBadge({ style, s = 1 }: { style?: React.CSSProperties; s?: n
       textAlign: 'center' as const,
       ...style,
     }}>
-      <span style={{ fontSize: 28 * s, display: 'block', lineHeight: 1 }}>3 FREE</span>
-      <span style={{ fontSize: 14 * s, letterSpacing: 3 * s }}>CLASSES</span>
+      <span style={{ fontSize: Math.max(28, 28 * s), display: 'block', lineHeight: 1 }}>3 FREE</span>
+      <span style={{ fontSize: Math.max(16, 14 * s), letterSpacing: 3 * s }}>CLASSES</span>
     </div>
   );
 }
