@@ -154,6 +154,10 @@ export default function SocialGraphics() {
       updateSlide({ secondPhoto: realIdx });
     } else if (pickingFor === 'tertiary') {
       updateSlide({ thirdPhoto: realIdx });
+    } else if (pickingFor === 'fourth') {
+      updateSlide({ fourthPhoto: realIdx });
+    } else if (pickingFor === 'fifth') {
+      updateSlide({ fifthPhoto: realIdx });
     } else {
       updateSlide({ photo: realIdx });
     }
