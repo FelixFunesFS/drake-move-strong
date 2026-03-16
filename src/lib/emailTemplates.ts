@@ -179,7 +179,7 @@ ${ctaButton("Ready to Write Your Story?")}
 <p>Have you made it to a class yet? If so, how'd it feel? If not, no pressure — but I'd love to know what's holding you back.</p>
 <p>Hit reply and let me know. I read every email.</p>
 ${emailImage("david-outside.jpg", "David Drake outside the studio")}
-<p style="margin-top:24px;">— David</p>
+${signatureBlock(`— David`)}
 <p style="font-size:13px;color:${MUTED};margin-top:16px;"><em>P.S. This isn't automated. I genuinely want to hear from you.</em></p>
   `, "Just checking in — I'd love to hear how things are going."),
 
