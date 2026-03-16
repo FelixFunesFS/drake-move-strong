@@ -1,29 +1,33 @@
 
-# Plan: Domain Standardization + Welcome Page SEO — COMPLETED
 
-## What Was Done
+## Updated Plan: Safe Padding for All Graphics + Smaller Schedule Fonts
 
-Standardized all URLs from `https://drake.fitness` → `https://www.drake.fitness` across 31 files, added noindex to Welcome page, and updated robots.txt.
+### What's Changing
 
-### Files Updated
+The previous plan only applied safe-zone padding for Stories/Reels. The correct approach is to add proportional safe padding to **all** canvas sizes, with extra padding for vertical (Story/Portrait) formats.
 
-| Category | Files | Change |
-|----------|-------|--------|
-| **SEO Core** | `SEO.tsx`, `StructuredData.tsx` | Default canonical, ogImage, toAbsoluteUrl(), business schema |
-| **Sitemap & Robots** | `sitemap.xml`, `robots.txt` | All URLs → www; added `Disallow: /welcome` |
-| **Welcome Page** | `Welcome.tsx` | Added `noindex, nofollow` meta tag + www canonical |
-| **Public Pages** | Home, Pricing, Schedule, Contact, About, Coaching, FAQ, Insights, SuccessStories, Ruckathon, NewYearChallenge, ResetWeekAlt | canonical → www |
-| **Service Pages** | ResetWeekCharleston, StrengthTraining, LowImpact, WestAshley | canonical → www |
-| **Blog** | InsightPost.tsx | canonical, articleSchema URL, social share URLs |
-| **Auth/Member** | Auth, Dashboard, Profile, MyBookings | canonical → www |
-| **Chatbot** | ChatMessage.tsx, chat-assistant edge function | Friendly link labels + system prompt URLs |
-| **Email** | emailTemplates.ts, send-nurture-previews | CTA button URLs |
-| **OG Redirect** | og-redirect edge function | SITE_URL constant |
+### Changes — `src/components/admin/social/TemplatePreview.tsx`
 
-### Google Search Console Checklist (Post-Deploy)
+**Line 624** — Replace the fixed padding with dynamic values based on canvas aspect ratio:
 
-1. Verify `www.drake.fitness` property in Search Console
-2. Submit updated sitemap: `https://www.drake.fitness/sitemap.xml`
-3. Use URL Inspection on top 5 pages to request re-indexing
-4. Update Google Business Profile website URL to `https://www.drake.fitness`
-5. Confirm non-www redirects to www via 301 in Lovable domain settings
+```
+isVertical (H > W * 1.2):  padding: 60*s top/bottom, 36*s left/right
+landscape/square:           padding: 24*s top/bottom, 36*s left/right
+```
+
+This ensures all formats get breathing room, while vertical formats get extra top/bottom clearance for platform UI (profile overlays, swipe indicators, reaction bars).
+
+**Lines 641-644** — Reduce font scaling multipliers:
+
+| Element | Current | New |
+|---------|---------|-----|
+| Day header | `Math.max(13*s, rowH*0.35)` | `Math.max(11*s, rowH*0.28)` |
+| Class name | `Math.max(14*s, rowH*0.35)` | `Math.max(12*s, rowH*0.28)` |
+| Time | `Math.max(12*s, rowH*0.28)` | `Math.max(10*s, rowH*0.22)` |
+| Instructor | `Math.max(11*s, rowH*0.25)` | `Math.max(9*s, rowH*0.20)` |
+
+**Line 638** — Adjust `availH` to account for the increased padding: reduce from `H * 0.82` to subtract actual padding values so row sizing remains accurate.
+
+### Single file
+`src/components/admin/social/TemplatePreview.tsx` — lines 624-698
+
