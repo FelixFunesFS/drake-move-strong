@@ -239,50 +239,90 @@ export default function SocialGraphics() {
       endDate.setDate(endDate.getDate() + 7);
       const end = endDate.toISOString().split('T')[0];
 
-      const { data: freshClasses, error } = await supabase
-        .from('punchpass_schedule')
-        .select('*')
-        .gte('class_date', today)
-        .lte('class_date', end)
-        .order('class_date', { ascending: true })
-        .order('start_time', { ascending: true });
+      // Fetch schedule and class descriptions in parallel
+      const [scheduleResult, classTypesResult] = await Promise.all([
+        supabase
+          .from('punchpass_schedule')
+          .select('*')
+          .gte('class_date', today)
+          .lte('class_date', end)
+          .order('class_date', { ascending: true })
+          .order('start_time', { ascending: true }),
+        supabase
+          .from('class_types')
+          .select('name, description')
+          .eq('is_active', true),
+      ]);
 
+      const { data: freshClasses, error } = scheduleResult;
       if (error || !freshClasses || freshClasses.length === 0) {
         toast.error('No schedule data found for this week');
         return;
       }
+
+      // Build class name → description lookup
+      const classDescMap: Record<string, string> = {};
+      (classTypesResult.data || []).forEach(ct => {
+        if (ct.name && ct.description) {
+          classDescMap[ct.name.toLowerCase()] = ct.description;
+        }
+      });
 
       const byDay: Record<string, ScheduleClass[]> = {};
       freshClasses.forEach(c => {
         if (!byDay[c.class_date]) byDay[c.class_date] = [];
         byDay[c.class_date].push(c);
       });
-      const days = Object.keys(byDay).sort().slice(0, 8);
-      if (Object.keys(byDay).length > 8) {
-        toast.info('Schedule trimmed to 8 days to fit carousel limit');
+      const allDays = Object.keys(byDay).sort();
+
+      // Interleave: schedule-grid + class-highlight for each day, capped at 10 slides
+      const middleSlides: SlideContent[] = [];
+      for (const day of allDays) {
+        if (middleSlides.length >= 8) break; // leave room for cover + CTA
+        const dayClasses = byDay[day];
+        const dayLabel = new Date(day + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+
+        // Schedule grid slide
+        middleSlides.push({
+          ...DEFAULT_SLIDE,
+          template: 'schedule-grid' as TemplateId,
+          headline: dayLabel,
+          programLine: dayClasses.map(c => c.class_name).join(' · '),
+          detailLine: dayClasses.map(c => `${c.start_time.slice(0, 5)} ${c.class_name}`).join(' | '),
+          ctaText: 'Book →',
+          showBadge: false,
+          scheduleClasses: dayClasses,
+        });
+
+        if (middleSlides.length >= 8) break;
+
+        // Class highlight slide — pick the first class with a description
+        const featuredClass = dayClasses.find(c => classDescMap[c.class_name.toLowerCase()]) || dayClasses[0];
+        const desc = classDescMap[featuredClass.class_name.toLowerCase()] || '';
+        // Collect unique descriptions for the day
+        const uniqueDescs = [...new Set(dayClasses.map(c => classDescMap[c.class_name.toLowerCase()]).filter(Boolean))];
+
+        middleSlides.push({
+          ...DEFAULT_SLIDE,
+          template: 'class-highlight' as TemplateId,
+          headline: featuredClass.class_name,
+          programLine: uniqueDescs.length > 0 ? uniqueDescs.join(' · ') : featuredClass.instructor || 'Drake Fitness',
+          detailLine: desc ? desc.slice(0, 120) : dayLabel,
+          ctaText: 'Try It Free →',
+          showBadge: false,
+          scheduleClasses: [featuredClass],
+        });
       }
+
       const newSlides: SlideContent[] = [
         { ...DEFAULT_SLIDE, template: 'full-bleed', headline: "This Week at\nDrake Fitness", programLine: 'Swipe for the Full Schedule →', detailLine: '', ctaText: 'Swipe →', showBadge: false },
-        ...days.map(day => {
-          const dayClasses = byDay[day];
-          const dayLabel = new Date(day + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
-          return {
-            ...DEFAULT_SLIDE,
-            template: 'schedule-grid' as TemplateId,
-            headline: dayLabel,
-            programLine: dayClasses.map(c => c.class_name).join(' · '),
-            detailLine: dayClasses.map(c => `${c.start_time.slice(0, 5)} ${c.class_name}`).join(' | '),
-            ctaText: 'Book →',
-            showBadge: false,
-            scheduleClasses: dayClasses,
-          };
-        }),
+        ...middleSlides,
         { ...DEFAULT_SLIDE, template: 'centered', headline: 'Book Your Spot', programLine: 'drake.fitness', detailLine: 'Try 3 Classes Free', ctaText: 'Book Now →', showBadge: true },
       ];
-      setSlides(newSlides);
+      setSlides(newSlides.slice(0, 10));
       setActiveSlide(0);
       setIsCarousel(true);
-      toast.success(`Created ${newSlides.length}-slide carousel`);
+      toast.success(`Created ${Math.min(newSlides.length, 10)}-slide carousel`);
     } else if (type === 'class-spotlight') {
       const uniqueClasses = [...new Map(scheduleClasses.map(c => [c.class_name, c])).values()].slice(0, 5);
       const newSlides: SlideContent[] = [
