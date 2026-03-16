@@ -179,7 +179,9 @@ export default function SocialGraphics() {
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) addPhotosFromFiles(e.target.files);
+    // Reset both inputs so the same file/photo can be re-selected
     if (fileInputRef.current) fileInputRef.current.value = '';
+    if (cameraInputRef.current) cameraInputRef.current.value = '';
   };
 
   const handleDrop = (e: React.DragEvent) => {
