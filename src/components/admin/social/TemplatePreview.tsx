@@ -716,7 +716,7 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
         })()}
         {/* Footer */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: 8 * s, flexShrink: 0 }}>
-          <div style={{ fontSize: 13 * s, color: 'rgba(255,255,255,0.4)', letterSpacing: 1 * s }}>drake.fitness</div>
+          <div style={{ fontSize: Math.max(30, 13 * s), color: 'rgba(255,255,255,0.4)', letterSpacing: 1 * s }}>drake.fitness</div>
           <CTAButton text={ctaText || 'Book Now →'} s={s * 0.9} />
         </div>
       </div>
