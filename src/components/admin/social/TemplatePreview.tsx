@@ -166,20 +166,56 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
   if (template === 'collage') {
     const img2 = secondPhoto || photo;
     const img3 = thirdPhoto || secondPhoto || photo;
+    const img4 = fourthPhoto || thirdPhoto || secondPhoto || photo;
+    const img5 = fifthPhoto || fourthPhoto || thirdPhoto || secondPhoto || photo;
+    const hasExtra = fourthPhoto || fifthPhoto;
     return (
       <div ref={previewRef} style={{ width: W, height: H, fontFamily: font, overflow: 'hidden', position: 'relative', background: DARK }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '60%', height: isVertical ? '60%' : '100%' }}>
-          <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-          <div style={{ position: 'absolute', inset: 0, boxShadow: `inset 0 0 ${60 * s}px ${10 * s}px rgba(0,0,0,0.3)` }} />
-        </div>
-        <div style={{ position: 'absolute', top: 0, left: '60%', width: 4, height: isVertical ? '60%' : '100%', background: GOLD, zIndex: 2 }} />
-        <div style={{ position: 'absolute', top: 0, right: 0, width: '40%', height: isVertical ? '30%' : '50%' }}>
-          <img src={img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-        </div>
-        <div style={{ position: 'absolute', top: isVertical ? '30%' : '50%', right: 0, width: '40%', height: 4, background: GOLD, zIndex: 2, transform: 'translateY(-2px)' }} />
-        <div style={{ position: 'absolute', top: isVertical ? '30%' : '50%', right: 0, width: '40%', height: isVertical ? '30%' : '50%' }}>
-          <img src={img3} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-        </div>
+        {hasExtra ? (
+          <>
+            {/* 4-5 image grid */}
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '50%', height: isVertical ? '40%' : '55%' }}>
+              <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+            </div>
+            <div style={{ position: 'absolute', top: 0, left: '50%', width: '50%', height: isVertical ? '20%' : '55%' }}>
+              <div style={{ display: 'flex', height: '100%' }}>
+                <div style={{ flex: 1 }}><img src={img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" /></div>
+              </div>
+            </div>
+            <div style={{ position: 'absolute', top: isVertical ? '20%' : 0, left: '50%', width: '50%', height: isVertical ? '20%' : '55%', display: fifthPhoto ? 'block' : 'none' }}>
+              {fifthPhoto && <img src={img5} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />}
+            </div>
+            <div style={{ position: 'absolute', top: isVertical ? '40%' : '55%', left: 0, width: '33.33%', height: isVertical ? '20%' : '45%' }}>
+              <img src={img3} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+            </div>
+            <div style={{ position: 'absolute', top: isVertical ? '40%' : '55%', left: '33.33%', width: '33.33%', height: isVertical ? '20%' : '45%' }}>
+              <img src={img4} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+            </div>
+            <div style={{ position: 'absolute', top: isVertical ? '40%' : '55%', left: '66.66%', width: '33.34%', height: isVertical ? '20%' : '45%' }}>
+              <img src={fifthPhoto ? img5 : img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+            </div>
+            {/* Gold grid lines */}
+            <div style={{ position: 'absolute', top: 0, left: '50%', width: 3, height: isVertical ? '40%' : '55%', background: GOLD, zIndex: 2 }} />
+            <div style={{ position: 'absolute', top: isVertical ? '40%' : '55%', left: '33.33%', width: 3, height: isVertical ? '20%' : '45%', background: GOLD, zIndex: 2 }} />
+            <div style={{ position: 'absolute', top: isVertical ? '40%' : '55%', left: '66.66%', width: 3, height: isVertical ? '20%' : '45%', background: GOLD, zIndex: 2 }} />
+            <div style={{ position: 'absolute', top: isVertical ? '40%' : '55%', left: 0, right: 0, height: 3, background: GOLD, zIndex: 2 }} />
+          </>
+        ) : (
+          <>
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '60%', height: isVertical ? '60%' : '100%' }}>
+              <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+              <div style={{ position: 'absolute', inset: 0, boxShadow: `inset 0 0 ${60 * s}px ${10 * s}px rgba(0,0,0,0.3)` }} />
+            </div>
+            <div style={{ position: 'absolute', top: 0, left: '60%', width: 4, height: isVertical ? '60%' : '100%', background: GOLD, zIndex: 2 }} />
+            <div style={{ position: 'absolute', top: 0, right: 0, width: '40%', height: isVertical ? '30%' : '50%' }}>
+              <img src={img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+            </div>
+            <div style={{ position: 'absolute', top: isVertical ? '30%' : '50%', right: 0, width: '40%', height: 4, background: GOLD, zIndex: 2, transform: 'translateY(-2px)' }} />
+            <div style={{ position: 'absolute', top: isVertical ? '30%' : '50%', right: 0, width: '40%', height: isVertical ? '30%' : '50%' }}>
+              <img src={img3} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+            </div>
+          </>
+        )}
         {showBadge && (
           <div style={{ position: 'absolute', top: 20 * s, right: 20 * s, zIndex: 6 }}>
             <FreeBadge s={s} />
