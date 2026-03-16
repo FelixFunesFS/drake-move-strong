@@ -55,7 +55,7 @@ export default function SocialGraphics() {
   };
 
   const [photoSearch, setPhotoSearch] = useState('');
-  const [pickingFor, setPickingFor] = useState<'primary' | 'secondary' | 'tertiary'>('primary');
+  const [pickingFor, setPickingFor] = useState<'primary' | 'secondary' | 'tertiary' | 'fourth' | 'fifth'>('primary');
   const [isExporting, setIsExporting] = useState(false);
   const previewRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
