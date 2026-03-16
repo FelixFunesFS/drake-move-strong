@@ -1,29 +1,19 @@
 
-# Plan: Domain Standardization + Welcome Page SEO — COMPLETED
 
-## What Was Done
+## Remove Nick References (Keep Images)
 
-Standardized all URLs from `https://drake.fitness` → `https://www.drake.fitness` across 31 files, added noindex to Welcome page, and updated robots.txt.
+All images stay — only text references to Nick get removed or neutralized.
 
-### Files Updated
+### Changes (8 files)
 
-| Category | Files | Change |
-|----------|-------|--------|
-| **SEO Core** | `SEO.tsx`, `StructuredData.tsx` | Default canonical, ogImage, toAbsoluteUrl(), business schema |
-| **Sitemap & Robots** | `sitemap.xml`, `robots.txt` | All URLs → www; added `Disallow: /welcome` |
-| **Welcome Page** | `Welcome.tsx` | Added `noindex, nofollow` meta tag + www canonical |
-| **Public Pages** | Home, Pricing, Schedule, Contact, About, Coaching, FAQ, Insights, SuccessStories, Ruckathon, NewYearChallenge, ResetWeekAlt | canonical → www |
-| **Service Pages** | ResetWeekCharleston, StrengthTraining, LowImpact, WestAshley | canonical → www |
-| **Blog** | InsightPost.tsx | canonical, articleSchema URL, social share URLs |
-| **Auth/Member** | Auth, Dashboard, Profile, MyBookings | canonical → www |
-| **Chatbot** | ChatMessage.tsx, chat-assistant edge function | Friendly link labels + system prompt URLs |
-| **Email** | emailTemplates.ts, send-nurture-previews | CTA button URLs |
-| **OG Redirect** | og-redirect edge function | SITE_URL constant |
+| File | Change |
+|------|--------|
+| `src/components/admin/ImageSelector.tsx` | Rename labels: "Coach Nick New" → "Studio Coaching", "Coach Nick Portrait" → "Studio Portrait", "Coach Nick" → "Studio Coach", "Nick Holistic Coaching" → "Holistic Coaching", "Nick Sandbag Lunge" → "Sandbag Lunge", "Nick & David Together" → "Studio Team". Change category comment from "Coaches - Nick" to "Studio" |
+| `src/components/admin/social/types.ts` | Remove `'Nick'` from `INSTRUCTOR_COLORS` |
+| `src/components/schedule/WeekDayColumn.tsx` | Remove `case 'nick'` color mapping |
+| `src/pages/Coaching.tsx` | Alt text: "David and Nick coaching" → "David coaching at Drake Fitness" |
+| `src/pages/About.tsx` | Alt text: "David Drake and coaching team" (already neutral-ish, but line 414 says "coaching team" — keep as is) |
+| `supabase/functions/generate-content-package/index.ts` | Remove Nick from coaches in AI prompt: "Coaches: David Drake (owner, kettlebells, strength), Misty (yoga, flexibility)" |
+| `supabase/functions/generate-social-content/index.ts` | Remove "Nick Poppa" line from coaches section |
+| `supabase/functions/sync-punchpass-schedule/index.ts` | Change `'kettlebell flow': 'Nick'` → `'kettlebell flow': 'David'` |
 
-### Google Search Console Checklist (Post-Deploy)
-
-1. Verify `www.drake.fitness` property in Search Console
-2. Submit updated sitemap: `https://www.drake.fitness/sitemap.xml`
-3. Use URL Inspection on top 5 pages to request re-indexing
-4. Update Google Business Profile website URL to `https://www.drake.fitness`
-5. Confirm non-www redirects to www via 301 in Lovable domain settings
