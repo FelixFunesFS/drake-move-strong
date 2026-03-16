@@ -116,7 +116,7 @@ ${emailImage("studio-kettlebells.jpg", "Kettlebells lined up at Drake Fitness st
 <p><strong style="color:${DARK};">Experienced lifters:</strong> expect smart programming and coaching cues that refine your technique, not just count your reps.</p>
 <p>Our brand promise is simple: <strong style="color:${DARK};">"Sign up and show up."</strong> We handle the rest.</p>
 ${ctaButton("Book Your First Class")}
-<p style="font-size:14px;">You've got this,<br/><strong style="color:${DARK};">David @ Drake Fitness</strong></p>
+${signatureBlock(`You've got this,<br/><strong style="color:${DARK};">David @ Drake Fitness</strong>`)}
   `, "No gear required. No experience needed. Just you."),
 
   "new-lead-Day 3": wrap(`
