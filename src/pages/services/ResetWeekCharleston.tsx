@@ -9,13 +9,13 @@ import { INTRO_URL, buildPunchPassUrl } from "@/data/pricing";
 import { trackPunchPassClick } from "@/hooks/useMetaPixel";
 import { TRUST_STATS } from "@/data/trustStats";
 
-import heroGroupClass from "@/assets/group-turkish-getup-class.jpg";
-import groupKettlebellTraining from "@/assets/group-kettlebell-training.jpg";
-import davidCoachingForm from "@/assets/david-coaching-form.jpg";
-import proofStrip1 from "@/assets/community-plank-rows-kettlebells-new.jpg";
-import proofStrip2 from "@/assets/members-overhead-press-group.jpg";
-import proofStrip3 from "@/assets/studio-large-group.jpg";
-import proofStrip4 from "@/assets/members-kettlebell-rack-hold.jpg";
+import heroGroupClass from "@/assets/group-turkish-getup-class.jpg?format=webp&w=1920";
+import groupKettlebellTraining from "@/assets/group-kettlebell-training.jpg?format=webp&w=768";
+import davidCoachingForm from "@/assets/david-coaching-form.jpg?format=webp&w=768";
+import proofStrip1 from "@/assets/community-plank-rows-kettlebells-new.jpg?format=webp&w=768";
+import proofStrip2 from "@/assets/members-overhead-press-group.jpg?format=webp&w=768";
+import proofStrip3 from "@/assets/studio-large-group.jpg?format=webp&w=768";
+import proofStrip4 from "@/assets/members-kettlebell-rack-hold.jpg?format=webp&w=768";
 
 const serviceSchema = {
   "@context": "https://schema.org",

@@ -64,6 +64,10 @@ const Schedule = () => {
         canonical="https://www.drake.fitness/schedule"
       />
       <StructuredData data={faqSchema} />
+      <StructuredData data={buildBreadcrumbSchema([
+        { name: "Home", url: "https://www.drake.fitness" },
+        { name: "Schedule", url: "https://www.drake.fitness/schedule" }
+      ])} />
       
       <main>
         {/* Weekly Schedule - Primary Focus */}

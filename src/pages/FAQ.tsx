@@ -122,6 +122,10 @@ const FAQ = () => {
         canonical="https://www.drake.fitness/faq"
       />
       <StructuredData data={faqSchema} />
+      <StructuredData data={buildBreadcrumbSchema([
+        { name: "Home", url: "https://www.drake.fitness" },
+        { name: "FAQ", url: "https://www.drake.fitness/faq" }
+      ])} />
       
       <main>
       <Hero

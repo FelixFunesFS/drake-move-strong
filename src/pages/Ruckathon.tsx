@@ -18,8 +18,8 @@ import {
 import AnimatedSection from "@/components/AnimatedSection";
 import { SEO } from "@/components/SEO";
 
-import heroImage from "@/assets/ruckathon-hero-group.jpg";
-import ruckathonImage from "@/assets/ruckathon-sandbag-lunge.jpg";
+import heroImage from "@/assets/ruckathon-hero-group.jpg?format=webp&w=1920";
+import ruckathonImage from "@/assets/ruckathon-sandbag-lunge.jpg?format=webp&w=768";
 import drakeLogo from "@/assets/drake-fitness-logo-kettlebell.png?format=webp&w=268";
 
 const RALLYUP_URL = "https://warriorsurf.rallyup.com/ruckathon2026/Campaign/Details";

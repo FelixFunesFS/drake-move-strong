@@ -88,9 +88,12 @@ const Contact = () => {
       <SEO
         title="Contact Drake Fitness Charleston | Start Today"
         description="Questions about getting started? Reach Drake Fitness in West Ashley — call, text, or drop in. 3 free classes, no commitment."
-        
         canonical="https://www.drake.fitness/contact"
       />
+      <StructuredData data={buildBreadcrumbSchema([
+        { name: "Home", url: "https://www.drake.fitness" },
+        { name: "Contact", url: "https://www.drake.fitness/contact" }
+      ])} />
       
       <main>
         {/* Condensed Header */}

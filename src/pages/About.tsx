@@ -36,9 +36,13 @@ const About = () => {
       <SEO
         title="Meet Our Expert Coaches | 25+ Years | Drake Fitness"
         description="David Drake: 25+ years coaching real people through pain, injury, and plateaus. Meet the team behind Charleston's most trusted small gym."
-        
         canonical="https://www.drake.fitness/about"
       />
+      <StructuredData data={organizationSchema} />
+      <StructuredData data={buildBreadcrumbSchema([
+        { name: "Home", url: "https://www.drake.fitness" },
+        { name: "About", url: "https://www.drake.fitness/about" }
+      ])} />
       
       <main>
       {/* Negative margin pulls hero up to header edge */}

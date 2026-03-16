@@ -41,6 +41,10 @@ const Pricing = () => {
       />
 
       <StructuredData data={faqSchema} />
+      <StructuredData data={buildBreadcrumbSchema([
+        { name: "Home", url: "https://www.drake.fitness" },
+        { name: "Pricing", url: "https://www.drake.fitness/pricing" }
+      ])} />
       
       <main>
         {/* SECTION HEADER */}

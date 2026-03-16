@@ -50,6 +50,10 @@ const Insights = () => {
         description="Evidence-based insights on movement, strength training, and sustainable fitness for real people. Learn from expert coaches at Drake Fitness in Charleston."
         canonical="https://www.drake.fitness/insights"
       />
+      <StructuredData data={buildBreadcrumbSchema([
+        { name: "Home", url: "https://www.drake.fitness" },
+        { name: "Insights", url: "https://www.drake.fitness/insights" }
+      ])} />
 
       {/* Hero Section */}
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">

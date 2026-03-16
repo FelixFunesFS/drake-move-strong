@@ -82,6 +82,10 @@ const Coaching = () => {
   return <>
       <SEO title="Personal Trainer Charleston SC | 1:1 Coaching | Drake Fitness" description="Top-rated personal trainer in Charleston, SC. Custom programs for mobility, strength, and injury recovery with 25+ years experience. Book your consultation." canonical="https://www.drake.fitness/coaching" />
       <StructuredData data={faqSchema} />
+      <StructuredData data={buildBreadcrumbSchema([
+        { name: "Home", url: "https://www.drake.fitness" },
+        { name: "Personal Training", url: "https://www.drake.fitness/coaching" }
+      ])} />
       
       <main>
       <Hero eyebrow="INDIVIDUAL ATTENTION" title={<>

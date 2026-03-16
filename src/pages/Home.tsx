@@ -39,6 +39,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
   return <>
       <SEO title="Drake Fitness Charleston | Gym & Mobility Training | Try 3 Classes Free" description="Charleston's coach-led gym for functional strength, mobility, and group fitness classes. Small groups, 25+ years experience. Try 3 classes free." canonical="https://www.drake.fitness" />
       <StructuredData data={localBusinessSchema} />
+      <StructuredData data={organizationSchema} />
       
       <main>
       <Hero 
