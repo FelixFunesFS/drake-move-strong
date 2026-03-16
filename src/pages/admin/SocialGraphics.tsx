@@ -424,7 +424,7 @@ export default function SocialGraphics() {
                 {/* Template Grid */}
                 <div>
                   <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2 block">Template</label>
-                  <div className="grid grid-cols-4 gap-2">
+                  <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
                     {TEMPLATES.map(t => (
                       <button
                         key={t.id}
