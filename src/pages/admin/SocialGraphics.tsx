@@ -285,8 +285,11 @@ export default function SocialGraphics() {
 
   const secondPhoto = slide.secondPhoto !== null ? photos[slide.secondPhoto]?.src : undefined;
   const thirdPhoto = slide.thirdPhoto !== null ? photos[slide.thirdPhoto]?.src : undefined;
+  const fourthPhoto = slide.fourthPhoto !== null ? photos[slide.fourthPhoto]?.src : undefined;
+  const fifthPhoto = slide.fifthPhoto !== null ? photos[slide.fifthPhoto]?.src : undefined;
   const needsMultiImage = MULTI_IMAGE_TEMPLATES.has(slide.template);
   const needsThirdImage = slide.template === 'photo-strip' || slide.template === 'collage';
+  const needsFourthFifth = slide.template === 'photo-strip' || slide.template === 'collage' || slide.template === 'overlap-cards';
 
   return (
     <AdminLayout>
