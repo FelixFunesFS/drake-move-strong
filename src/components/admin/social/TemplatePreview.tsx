@@ -489,8 +489,8 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
         }}>
           <img src={logo} alt="" style={{ height: 36 * s }} crossOrigin="anonymous" />
           <div style={{ marginLeft: 'auto' }}>
-            <div style={{ fontSize: 11 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s }}>{eyebrow}</div>
-            <div style={{ fontSize: 16 * s, fontWeight: 500, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: 1 * s }}>{programLine}</div>
+            <div style={{ fontSize: 14 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s }}>{eyebrow}</div>
+            <div style={{ fontSize: 18 * s, fontWeight: 500, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: 1 * s }}>{programLine}</div>
           </div>
         </div>
         {/* Gold accent line */}
