@@ -167,11 +167,38 @@ export default function SocialGraphics() {
   };
 
   const addPhotosFromFiles = (files: FileList | File[]) => {
-    Array.from(files).forEach(file => {
+    const fileArray = Array.from(files);
+    if (fileArray.length > 10) {
+      toast.error('Max 10 images at once. Only first 10 will be added.');
+    }
+    fileArray.slice(0, 10).forEach(file => {
+      if (file.type && !file.type.startsWith('image/')) {
+        toast.error(`${file.name} is not an image`);
+        return;
+      }
       const reader = new FileReader();
+      reader.onerror = () => toast.error(`Failed to read ${file.name}`);
       reader.onload = (ev) => {
         const dataUrl = ev.target?.result as string;
-        setPhotos(prev => [{ src: dataUrl, label: file.name.replace(/\.[^.]+$/, ''), isCustom: true }, ...prev]);
+        if (!dataUrl) { toast.error(`Failed to load ${file.name}`); return; }
+        const img = new Image();
+        img.onload = () => {
+          const MAX = 2048;
+          let { width, height } = img;
+          if (width > MAX || height > MAX) {
+            const ratio = Math.min(MAX / width, MAX / height);
+            width = Math.round(width * ratio);
+            height = Math.round(height * ratio);
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          canvas.getContext('2d')!.drawImage(img, 0, 0, width, height);
+          const compressed = canvas.toDataURL('image/jpeg', 0.85);
+          setPhotos(prev => [{ src: compressed, label: file.name.replace(/\.[^.]+$/, ''), isCustom: true }, ...prev]);
+        };
+        img.onerror = () => toast.error(`${file.name} format not supported. Try JPG or PNG.`);
+        img.src = dataUrl;
       };
       reader.readAsDataURL(file);
     });
