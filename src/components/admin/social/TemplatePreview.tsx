@@ -625,14 +625,14 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
       <div style={{ position: 'absolute', inset: 0, padding: `${H * (H / W > 1.5 ? 0.14 : H > W ? 0.06 : 0.05)}px ${W * (H / W > 1.5 ? 0.06 : 0.05)}px`, display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginBottom: 8 * s, flexShrink: 0 }}>
-          <img src={logo} alt="" style={{ height: 36 * s }} crossOrigin="anonymous" />
+          <img src={logo} alt="" style={{ height: 44 * s }} crossOrigin="anonymous" />
           <div>
-            <div style={{ fontSize: 10 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, fontWeight: 500 }}>{eyebrow}</div>
-            <div style={{ fontSize: Math.min(isVertical ? 28 * s : 22 * s, H * 0.03), fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1 }}>{headline || "This Week's Schedule"}</div>
+            <div style={{ fontSize: 14 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, fontWeight: 500 }}>{eyebrow}</div>
+            <div style={{ fontSize: Math.min(isVertical ? 28 * s : 22 * s, H * 0.04), fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1 }}>{headline || "This Week's Schedule"}</div>
           </div>
         </div>
-        <div style={{ width: '100%', height: 3 * s, background: `linear-gradient(90deg, ${GOLD}, transparent)`, marginBottom: 6 * s, borderRadius: 2, flexShrink: 0 }} />
-        {/* Schedule List — fills remaining space with dynamic row sizing */}
+        <div style={{ width: '100%', height: 4 * s, background: `linear-gradient(90deg, ${GOLD}, transparent)`, marginBottom: 6 * s, borderRadius: 2, flexShrink: 0 }} />
+        {/* Schedule List — fills remaining space with density-aware sizing */}
         {(() => {
           const isStoryCalc = H / W > 1.5;
           const isPortCalc = H > W && !isStoryCalc;
@@ -642,20 +642,33 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
           const footerH = 50 * s;
           const totalClassRows = days.reduce((sum, d) => sum + byDay[d].length, 0);
           const totalRows = days.length + totalClassRows;
+          const density = totalRows <= 6 ? 'sparse' : totalRows <= 12 ? 'normal' : 'dense';
           const rowGap = Math.max(2 * s, 3 * s);
           const gapCount = Math.max(0, totalRows - 1);
           const totalGapSpace = gapCount * rowGap;
           const availH = H - padTop - padBottom - headerH - footerH - totalGapSpace;
-          const rowH = totalRows > 0 ? availH / totalRows : 40 * s;
-          const dayFontSize = Math.min(28 * s, Math.max(13 * s, rowH * 0.32));
-          const classFontSize = Math.min(30 * s, Math.max(14 * s, rowH * 0.30));
-          const timeFontSize = Math.min(22 * s, Math.max(11 * s, rowH * 0.24));
-          const instructorFontSize = Math.min(20 * s, Math.max(10 * s, rowH * 0.22));
+          // Sparse: use 80% of available height and center content
+          const contentPadTop = density === 'sparse' ? availH * 0.1 : 0;
+          const effectiveAvailH = density === 'sparse' ? availH * 0.8 : availH;
+          const rowH = totalRows > 0 ? effectiveAvailH / totalRows : 40 * s;
+
+          const dayFontSize = density === 'sparse'
+            ? Math.min(44 * s, Math.max(18 * s, rowH * 0.38))
+            : Math.min(28 * s, Math.max(14 * s, rowH * 0.32));
+          const classFontSize = density === 'sparse'
+            ? Math.min(40 * s, Math.max(20 * s, rowH * 0.36))
+            : Math.min(30 * s, Math.max(16 * s, rowH * 0.30));
+          const timeFontSize = density === 'sparse'
+            ? Math.min(32 * s, Math.max(16 * s, rowH * 0.30))
+            : Math.min(22 * s, Math.max(13 * s, rowH * 0.24));
+          const instructorFontSize = density === 'sparse'
+            ? Math.min(28 * s, Math.max(14 * s, rowH * 0.28))
+            : Math.min(20 * s, Math.max(12 * s, rowH * 0.22));
           const rowPadY = Math.max(4 * s, rowH * 0.12);
           const rowPadX = 12 * s;
 
           return (
-            <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: rowGap }}>
+            <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: rowGap, paddingTop: contentPadTop }}>
               {days.map((day, dayIdx) => {
                 const dateObj = new Date(day + 'T12:00:00');
                 const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase();
@@ -677,11 +690,11 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
                         <div key={i} style={{
                           height: rowH, flexShrink: 1, display: 'flex', alignItems: 'center', gap: 12 * s,
                           background: 'rgba(255,255,255,0.10)',
-                          borderRadius: 6 * s,
+                          borderRadius: 8 * s,
                           padding: `${rowPadY}px ${rowPadX}px`,
-                          borderLeft: `${4 * s}px solid ${ic.border}`,
+                          borderLeft: `${5 * s}px solid ${ic.border}`,
                         }}>
-                          <div style={{ fontSize: timeFontSize, fontWeight: 600, color: 'rgba(255,255,255,0.7)', minWidth: 70 * s, textShadow: `0 1px ${3 * s}px rgba(0,0,0,0.5)` }}>
+                          <div style={{ fontSize: timeFontSize, fontWeight: 600, color: 'rgba(255,255,255,0.7)', minWidth: 80 * s, textShadow: `0 1px ${3 * s}px rgba(0,0,0,0.5)` }}>
                             {formatTime(cls.start_time)}
                           </div>
                           <div style={{ flex: 1, fontSize: classFontSize, fontWeight: 700, color: '#fff', textShadow: `0 1px ${4 * s}px rgba(0,0,0,0.5)` }}>
@@ -703,8 +716,8 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
         })()}
         {/* Footer */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: 8 * s, flexShrink: 0 }}>
-          <div style={{ fontSize: 10 * s, color: 'rgba(255,255,255,0.4)', letterSpacing: 1 * s }}>drake.fitness</div>
-          <CTAButton text={ctaText || 'Book Now →'} s={s * 0.8} />
+          <div style={{ fontSize: 13 * s, color: 'rgba(255,255,255,0.4)', letterSpacing: 1 * s }}>drake.fitness</div>
+          <CTAButton text={ctaText || 'Book Now →'} s={s * 0.9} />
         </div>
       </div>
     </div>
