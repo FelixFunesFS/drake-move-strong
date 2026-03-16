@@ -747,7 +747,7 @@ const ClassHighlightTemplate = React.forwardRef<HTMLDivElement, {
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 40%, rgba(11,74,82,0.3) 100%)' }} />
       <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' as const, padding: `${40 * s}px` }}>
         <img src={logo} alt="" style={{ height: 44 * s, marginBottom: 16 * s }} crossOrigin="anonymous" />
-        <div style={{ fontSize: 15 * s, color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, fontWeight: 500, marginBottom: 16 * s }}>{eyebrow}</div>
+        <div style={{ fontSize: Math.max(34, 15 * s), color: GOLD, textTransform: 'uppercase', letterSpacing: 4 * s, fontWeight: 500, marginBottom: 16 * s }}>{eyebrow}</div>
         {/* Class name — dominant element */}
         <div style={{ fontSize: 72 * s, fontWeight: 900, color: '#fff', textTransform: 'uppercase', lineHeight: 0.95, letterSpacing: 3 * s, textShadow: `0 ${4 * s}px ${40 * s}px rgba(0,0,0,0.8), 0 ${2 * s}px ${8 * s}px rgba(0,0,0,0.5)`, maxWidth: '95%' }}>{displayName}</div>
         <div style={{ width: 140 * s, height: 4 * s, background: GOLD, margin: `${24 * s}px 0`, borderRadius: 2 }} />
