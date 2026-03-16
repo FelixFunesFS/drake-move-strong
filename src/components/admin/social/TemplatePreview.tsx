@@ -631,53 +631,67 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
           </div>
         </div>
         <div style={{ width: '100%', height: 3 * s, background: `linear-gradient(90deg, ${GOLD}, transparent)`, marginBottom: 6 * s, borderRadius: 2, flexShrink: 0 }} />
-        {/* Schedule List — fills remaining space */}
-        <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: 2 * s }}>
-          {days.map((day, dayIdx) => {
-            const dateObj = new Date(day + 'T12:00:00');
-            const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase();
-            const monthDay = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toUpperCase();
-            return (
-              <React.Fragment key={day}>
-                {/* Day separator */}
-                <div style={{ 
-                  fontSize: 13 * s, fontWeight: 800, color: GOLD, textTransform: 'uppercase', 
-                  letterSpacing: 2 * s, padding: `${dayIdx === 0 ? 0 : 6 * s}px 0 ${4 * s}px 0`,
-                  borderBottom: `1px solid rgba(242,181,68,0.3)`,
-                  marginBottom: 2 * s,
-                  textShadow: `0 1px ${3 * s}px rgba(0,0,0,0.6)`,
-                }}>
-                  {dayName} · {monthDay}
-                </div>
-                {/* Class rows */}
-                {byDay[day].map((cls, i) => {
-                  const ic = getInstructorColor(cls.instructor);
-                  return (
-                    <div key={i} style={{
-                      display: 'flex', alignItems: 'center', gap: 12 * s,
-                      background: 'rgba(255,255,255,0.10)',
-                      borderRadius: 6 * s,
-                      padding: `${6 * s}px ${12 * s}px`,
-                      borderLeft: `${4 * s}px solid ${ic.border}`,
+        {/* Schedule List — fills remaining space with dynamic row sizing */}
+        {(() => {
+          const totalClassRows = days.reduce((sum, d) => sum + byDay[d].length, 0);
+          const totalRows = days.length + totalClassRows;
+          const availH = H * 0.82;
+          const rowH = totalRows > 0 ? availH / totalRows : 40 * s;
+          const rowGap = Math.max(2 * s, rowH * 0.06);
+          const dayFontSize = Math.max(13 * s, rowH * 0.35);
+          const classFontSize = Math.max(14 * s, rowH * 0.35);
+          const timeFontSize = Math.max(12 * s, rowH * 0.28);
+          const instructorFontSize = Math.max(11 * s, rowH * 0.25);
+          const rowPadY = Math.max(4 * s, rowH * 0.12);
+          const rowPadX = 12 * s;
+
+          return (
+            <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: rowGap }}>
+              {days.map((day, dayIdx) => {
+                const dateObj = new Date(day + 'T12:00:00');
+                const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase();
+                const monthDay = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toUpperCase();
+                return (
+                  <React.Fragment key={day}>
+                    <div style={{ 
+                      minHeight: rowH, display: 'flex', alignItems: 'center',
+                      fontSize: dayFontSize, fontWeight: 800, color: GOLD, textTransform: 'uppercase', 
+                      letterSpacing: 2 * s,
+                      borderBottom: `1px solid rgba(242,181,68,0.3)`,
+                      textShadow: `0 1px ${3 * s}px rgba(0,0,0,0.6)`,
                     }}>
-                      <div style={{ fontSize: 12 * s, fontWeight: 600, color: 'rgba(255,255,255,0.7)', minWidth: 70 * s, textShadow: `0 1px ${3 * s}px rgba(0,0,0,0.5)` }}>
-                        {formatTime(cls.start_time)}
-                      </div>
-                      <div style={{ flex: 1, fontSize: 14 * s, fontWeight: 700, color: '#fff', textShadow: `0 1px ${4 * s}px rgba(0,0,0,0.5)` }}>
-                        {cls.class_name}
-                      </div>
-                      {cls.instructor && (
-                        <div style={{ fontSize: 11 * s, fontWeight: 600, color: ic.border, textTransform: 'uppercase', letterSpacing: 0.5 * s }}>
-                          {cls.instructor}
-                        </div>
-                      )}
+                      {dayName} · {monthDay}
                     </div>
-                  );
-                })}
-              </React.Fragment>
-            );
-          })}
-        </div>
+                    {byDay[day].map((cls, i) => {
+                      const ic = getInstructorColor(cls.instructor);
+                      return (
+                        <div key={i} style={{
+                          minHeight: rowH, display: 'flex', alignItems: 'center', gap: 12 * s,
+                          background: 'rgba(255,255,255,0.10)',
+                          borderRadius: 6 * s,
+                          padding: `${rowPadY}px ${rowPadX}px`,
+                          borderLeft: `${4 * s}px solid ${ic.border}`,
+                        }}>
+                          <div style={{ fontSize: timeFontSize, fontWeight: 600, color: 'rgba(255,255,255,0.7)', minWidth: 70 * s, textShadow: `0 1px ${3 * s}px rgba(0,0,0,0.5)` }}>
+                            {formatTime(cls.start_time)}
+                          </div>
+                          <div style={{ flex: 1, fontSize: classFontSize, fontWeight: 700, color: '#fff', textShadow: `0 1px ${4 * s}px rgba(0,0,0,0.5)` }}>
+                            {cls.class_name}
+                          </div>
+                          {cls.instructor && (
+                            <div style={{ fontSize: instructorFontSize, fontWeight: 600, color: ic.border, textTransform: 'uppercase', letterSpacing: 0.5 * s }}>
+                              {cls.instructor}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </React.Fragment>
+                );
+              })}
+            </div>
+          );
+        })()}
         {/* Footer */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: 8 * s, flexShrink: 0 }}>
           <div style={{ fontSize: 12 * s, color: 'rgba(255,255,255,0.4)', letterSpacing: 1 * s }}>drake.fitness</div>
