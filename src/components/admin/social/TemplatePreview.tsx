@@ -357,22 +357,22 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
   if (template === 'photo-strip') {
     const img2 = secondPhoto || photo;
     const img3 = thirdPhoto || secondPhoto || photo;
+    const img4 = fourthPhoto || null;
+    const img5 = fifthPhoto || null;
     const stripGap = 4 * s;
+    const allStrips = [photo, img2, img3, ...(img4 ? [img4] : []), ...(img5 ? [img5] : [])];
     return (
       <div ref={previewRef} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font, background: DARK }}>
-        {/* Three vertical strips */}
+        {/* Dynamic vertical strips */}
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: isVertical ? '35%' : 110 * s, display: 'flex', gap: stripGap }}>
-          <div style={{ flex: 1, overflow: 'hidden' }}>
-            <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-          </div>
-          <div style={{ width: stripGap, background: GOLD, flexShrink: 0 }} />
-          <div style={{ flex: 1, overflow: 'hidden' }}>
-            <img src={img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-          </div>
-          <div style={{ width: stripGap, background: GOLD, flexShrink: 0 }} />
-          <div style={{ flex: 1, overflow: 'hidden' }}>
-            <img src={img3} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
-          </div>
+          {allStrips.map((img, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && <div style={{ width: stripGap, background: GOLD, flexShrink: 0 }} />}
+              <div style={{ flex: 1, overflow: 'hidden' }}>
+                <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} crossOrigin="anonymous" />
+              </div>
+            </React.Fragment>
+          ))}
         </div>
         {/* Bottom content bar */}
         <div style={{
