@@ -621,7 +621,7 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
     <div ref={ref} style={{ width: W, height: H, position: 'relative', overflow: 'hidden', fontFamily: font }}>
       <img src={photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.12)' }} crossOrigin="anonymous" />
       <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(180deg, rgba(11,74,82,0.92) 0%, rgba(26,26,26,0.97) 100%)` }} />
-      <div style={{ position: 'absolute', inset: 0, padding: `${16 * s}px ${32 * s}px`, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ position: 'absolute', inset: 0, padding: `${(isVertical ? 60 : 24) * s}px ${36 * s}px`, display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 * s, marginBottom: 8 * s, flexShrink: 0 }}>
           <img src={logo} alt="" style={{ height: 36 * s }} crossOrigin="anonymous" />
@@ -635,13 +635,15 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
         {(() => {
           const totalClassRows = days.reduce((sum, d) => sum + byDay[d].length, 0);
           const totalRows = days.length + totalClassRows;
-          const availH = H * 0.82;
+          const paddingV = (isVertical ? 60 : 24) * s;
+          const headerFooterH = 80 * s;
+          const availH = H - paddingV * 2 - headerFooterH;
           const rowH = totalRows > 0 ? availH / totalRows : 40 * s;
           const rowGap = Math.max(2 * s, rowH * 0.06);
-          const dayFontSize = Math.max(13 * s, rowH * 0.35);
-          const classFontSize = Math.max(14 * s, rowH * 0.35);
-          const timeFontSize = Math.max(12 * s, rowH * 0.28);
-          const instructorFontSize = Math.max(11 * s, rowH * 0.25);
+          const dayFontSize = Math.max(11 * s, rowH * 0.28);
+          const classFontSize = Math.max(12 * s, rowH * 0.28);
+          const timeFontSize = Math.max(10 * s, rowH * 0.22);
+          const instructorFontSize = Math.max(9 * s, rowH * 0.20);
           const rowPadY = Math.max(4 * s, rowH * 0.12);
           const rowPadX = 12 * s;
 
