@@ -549,9 +549,9 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           textAlign: isVertical ? 'center' as const : undefined,
         }}>
           <div>
-            <div style={{ fontSize: 14 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 6 * s }}>{eyebrow}</div>
+            <div style={{ fontSize: Math.max(34, 14 * s), fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 6 * s }}>{eyebrow}</div>
             <div style={{ fontSize: 36 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.08, letterSpacing: 1.5 * s }}>{headline}</div>
-            {detailLine && <div style={{ fontSize: 17 * s, color: 'rgba(255,255,255,0.6)', marginTop: 4 * s }}>{detailLine}</div>}
+            {detailLine && <div style={{ fontSize: Math.max(36, 17 * s), color: 'rgba(255,255,255,0.6)', marginTop: 4 * s }}>{detailLine}</div>}
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 * s, flexShrink: 0 }}>
             <CTAButton text={ctaText} s={s * 0.9} />
