@@ -200,7 +200,7 @@ ${emailImage("group-kettlebell-training.jpg", "Group kettlebell training class a
 </td></tr>
 </table>
 ${ctaButton("Become a Member", "https://www.drake.fitness/pricing")}
-<p style="font-size:14px;">Questions? Just reply to this email.<br/><strong style="color:${DARK};">— David Drake</strong></p>
+${signatureBlock(`Questions? Just reply to this email.<br/><strong style="color:${DARK};">— David Drake</strong>`)}
   `, "You've put in the work. Let's keep the momentum going."),
 
   "new-lead-Day 30": wrap(`
