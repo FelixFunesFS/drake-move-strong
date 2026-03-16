@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 import { useIsMobile } from '@/hooks/use-mobile';
 import AdminLayout from '@/components/admin/AdminLayout';
 import { Input } from '@/components/ui/input';
@@ -229,10 +230,30 @@ export default function SocialGraphics() {
     setActiveSlide(Math.min(activeSlide, slides.length - 2));
   };
 
-  const applyCarouselSequence = (type: 'weekly-schedule' | 'class-spotlight' | 'custom') => {
-    if (type === 'weekly-schedule' && scheduleClasses.length > 0) {
+  const applyCarouselSequence = async (type: 'weekly-schedule' | 'class-spotlight' | 'custom') => {
+    if (type === 'weekly-schedule') {
+      // Fetch fresh week data directly from DB instead of relying on state
+      toast.info('Loading weekly schedule…');
+      const today = new Date().toISOString().split('T')[0];
+      const endDate = new Date();
+      endDate.setDate(endDate.getDate() + 7);
+      const end = endDate.toISOString().split('T')[0];
+
+      const { data: freshClasses, error } = await supabase
+        .from('punchpass_schedule')
+        .select('*')
+        .gte('class_date', today)
+        .lte('class_date', end)
+        .order('class_date', { ascending: true })
+        .order('start_time', { ascending: true });
+
+      if (error || !freshClasses || freshClasses.length === 0) {
+        toast.error('No schedule data found for this week');
+        return;
+      }
+
       const byDay: Record<string, ScheduleClass[]> = {};
-      scheduleClasses.forEach(c => {
+      freshClasses.forEach(c => {
         if (!byDay[c.class_date]) byDay[c.class_date] = [];
         byDay[c.class_date].push(c);
       });
