@@ -231,10 +231,10 @@ export default function TemplatePreview({ template, photo, secondPhoto, thirdPho
           <div style={{ display: 'flex', alignItems: isVertical ? 'center' : 'center', gap: 20 * s, flexDirection: isVertical ? 'column' : 'row', textAlign: isVertical ? 'center' as const : undefined }}>
             <img src={logo} alt="" style={{ height: 44 * s }} crossOrigin="anonymous" />
             <div>
-              <div style={{ fontSize: 14 * s, fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 4 * s }}>{eyebrow}</div>
+              <div style={{ fontSize: Math.max(34, 14 * s), fontWeight: 500, color: GOLD, textTransform: 'uppercase', letterSpacing: 3 * s, marginBottom: 4 * s }}>{eyebrow}</div>
               <div style={{ fontSize: 32 * s, fontWeight: 700, color: '#fff', textTransform: 'uppercase', lineHeight: 1.1, letterSpacing: 1 * s }}>{headline}</div>
               {detailLine && (
-                <div style={{ fontSize: 17 * s, color: 'rgba(255,255,255,0.55)', letterSpacing: 1 * s, marginTop: 2 * s }}>{detailLine}</div>
+                <div style={{ fontSize: Math.max(36, 17 * s), color: 'rgba(255,255,255,0.55)', letterSpacing: 1 * s, marginTop: 2 * s }}>{detailLine}</div>
               )}
             </div>
           </div>
