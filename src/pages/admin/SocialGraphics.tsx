@@ -626,7 +626,7 @@ export default function SocialGraphics() {
                     </div>
 
                     {/* Photo grid */}
-                    <div className="grid grid-cols-4 gap-1.5 max-h-64 overflow-y-auto">
+                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-1.5 max-h-64 overflow-y-auto">
                       {filteredPhotos.map((p, idx) => {
                         const realIdx = photos.indexOf(p);
                         const isPrimary = slide.photo === realIdx;
