@@ -642,15 +642,15 @@ const ScheduleGridTemplate = React.forwardRef<HTMLDivElement, {
           const footerH = 50 * s;
           const totalClassRows = days.reduce((sum, d) => sum + byDay[d].length, 0);
           const totalRows = days.length + totalClassRows;
-          const rowGap = Math.max(2 * s, 4 * s);
+          const rowGap = Math.max(2 * s, 3 * s);
           const gapCount = Math.max(0, totalRows - 1);
           const totalGapSpace = gapCount * rowGap;
           const availH = H - padTop - padBottom - headerH - footerH - totalGapSpace;
           const rowH = totalRows > 0 ? availH / totalRows : 40 * s;
-          const dayFontSize = Math.min(20 * s, Math.max(11 * s, rowH * 0.24));
-          const classFontSize = Math.min(22 * s, Math.max(12 * s, rowH * 0.24));
-          const timeFontSize = Math.min(16 * s, Math.max(10 * s, rowH * 0.18));
-          const instructorFontSize = Math.min(14 * s, Math.max(9 * s, rowH * 0.16));
+          const dayFontSize = Math.min(28 * s, Math.max(13 * s, rowH * 0.32));
+          const classFontSize = Math.min(30 * s, Math.max(14 * s, rowH * 0.30));
+          const timeFontSize = Math.min(22 * s, Math.max(11 * s, rowH * 0.24));
+          const instructorFontSize = Math.min(20 * s, Math.max(10 * s, rowH * 0.22));
           const rowPadY = Math.max(4 * s, rowH * 0.12);
           const rowPadX = 12 * s;
 
