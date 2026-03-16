@@ -287,7 +287,7 @@ ${signatureBlock(`— David Drake`)}
 <p>Whenever you're ready to move again — whether that's tomorrow or six months from now — we'll be here. Same studio, same crew, same energy.</p>
 <p>The door's always open.</p>
 ${emailImage("studio-nick-david-together.jpg", "Nick and David together at Drake Fitness")}
-<p style="margin-top:24px;">— David Drake<br/>Drake Fitness<br/>2 Avondale Ave, Charleston, SC 29407<br/>(843) 817-5420</p>
+${signatureBlock(`— David Drake<br/>Drake Fitness<br/>2 Avondale Ave, Charleston, SC 29407<br/>(843) 817-5420`)}
   `, "No pressure. Whenever you're ready, we'll be here."),
 };
 
