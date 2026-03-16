@@ -7,6 +7,8 @@ interface TemplatePreviewProps {
   photo: string;
   secondPhoto?: string;
   thirdPhoto?: string;
+  fourthPhoto?: string;
+  fifthPhoto?: string;
   eyebrow: string;
   headline: string;
   programLine: string;
@@ -18,7 +20,7 @@ interface TemplatePreviewProps {
   scheduleClasses?: ScheduleClass[];
 }
 
-export default function TemplatePreview({ template, photo, secondPhoto, thirdPhoto, eyebrow, headline, programLine, detailLine, ctaText, showBadge, previewRef, canvasSize, scheduleClasses }: TemplatePreviewProps) {
+export default function TemplatePreview({ template, photo, secondPhoto, thirdPhoto, fourthPhoto, fifthPhoto, eyebrow, headline, programLine, detailLine, ctaText, showBadge, previewRef, canvasSize, scheduleClasses }: TemplatePreviewProps) {
   const { width: W, height: H } = canvasSize;
   const s = W / 1200; // proportional scale factor
   const font = "'Oswald', sans-serif";
