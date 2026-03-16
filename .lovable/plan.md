@@ -1,29 +1,29 @@
 
-# Plan: Domain Standardization + Welcome Page SEO — COMPLETED
 
-## What Was Done
+## Fix: Weekly Carousel Only Showing One Day
 
-Standardized all URLs from `https://drake.fitness` → `https://www.drake.fitness` across 31 files, added noindex to Welcome page, and updated robots.txt.
+### Problem
+The "Weekly" carousel button uses `scheduleClasses` state, which only contains whatever the last SchedulePreset button loaded. If "Today's Classes" was clicked, it only has one day. The carousel generation code itself is correct — the data feeding it is wrong.
 
-### Files Updated
+### Solution
+Make `applyCarouselSequence('weekly-schedule')` fetch a full week of schedule data directly from the database instead of relying on the `scheduleClasses` state.
 
-| Category | Files | Change |
-|----------|-------|--------|
-| **SEO Core** | `SEO.tsx`, `StructuredData.tsx` | Default canonical, ogImage, toAbsoluteUrl(), business schema |
-| **Sitemap & Robots** | `sitemap.xml`, `robots.txt` | All URLs → www; added `Disallow: /welcome` |
-| **Welcome Page** | `Welcome.tsx` | Added `noindex, nofollow` meta tag + www canonical |
-| **Public Pages** | Home, Pricing, Schedule, Contact, About, Coaching, FAQ, Insights, SuccessStories, Ruckathon, NewYearChallenge, ResetWeekAlt | canonical → www |
-| **Service Pages** | ResetWeekCharleston, StrengthTraining, LowImpact, WestAshley | canonical → www |
-| **Blog** | InsightPost.tsx | canonical, articleSchema URL, social share URLs |
-| **Auth/Member** | Auth, Dashboard, Profile, MyBookings | canonical → www |
-| **Chatbot** | ChatMessage.tsx, chat-assistant edge function | Friendly link labels + system prompt URLs |
-| **Email** | emailTemplates.ts, send-nurture-previews | CTA button URLs |
-| **OG Redirect** | og-redirect edge function | SITE_URL constant |
+### Changes — `src/pages/admin/SocialGraphics.tsx`
 
-### Google Search Console Checklist (Post-Deploy)
+1. **Make `applyCarouselSequence` async** and add a direct database fetch when `type === 'weekly-schedule'`:
+   - Query `punchpass_schedule` for today through +7 days
+   - Use the fetched data (not `scheduleClasses` state) to build the carousel slides
+   - Show a loading toast while fetching
 
-1. Verify `www.drake.fitness` property in Search Console
-2. Submit updated sitemap: `https://www.drake.fitness/sitemap.xml`
-3. Use URL Inspection on top 5 pages to request re-indexing
-4. Update Google Business Profile website URL to `https://www.drake.fitness`
-5. Confirm non-www redirects to www via 301 in Lovable domain settings
+2. **Keep existing slide generation logic** (cover slide → day slides → CTA slide) but feed it the freshly fetched data instead of stale state.
+
+```text
+Before:  Weekly button → uses scheduleClasses state (possibly stale/partial)
+After:   Weekly button → fetches full week from DB → builds all day slides
+```
+
+### File
+| File | Change |
+|------|--------|
+| `src/pages/admin/SocialGraphics.tsx` | Lines 232-264: Make weekly-schedule branch async, fetch fresh week data from `punchpass_schedule` before building slides |
+
