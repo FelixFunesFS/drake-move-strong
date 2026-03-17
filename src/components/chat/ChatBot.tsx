@@ -29,12 +29,20 @@ const ChatBot = () => {
 
   // Hide chat while hero is in view
   useEffect(() => {
+    let rafId = 0;
     const handleScroll = () => {
-      setIsPastHero(window.scrollY > 400);
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        setIsPastHero(window.scrollY > 400);
+        rafId = 0;
+      });
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   // Auto-scroll to bottom when messages change - using RAF to prevent forced reflow

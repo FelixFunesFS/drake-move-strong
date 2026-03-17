@@ -6,16 +6,20 @@ const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    let rafId = 0;
     const toggleVisibility = () => {
-      if (window.scrollY > 400) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        setIsVisible(window.scrollY > 400);
+        rafId = 0;
+      });
     };
 
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", toggleVisibility);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const scrollToTop = () => {

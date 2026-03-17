@@ -12,11 +12,19 @@ const MobileContactBar = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    let rafId = 0;
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 400);
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        setIsVisible(window.scrollY > 400);
+        rafId = 0;
+      });
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
   
   if (!isMobile || HIDDEN_PATHS.includes(location.pathname)) return null;
