@@ -44,7 +44,8 @@ const Hero = ({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isMobileView, setIsMobileView] = useState(false);
   useEffect(() => {
-    setIsMobileView(window.innerWidth < 768);
+    const mql = window.matchMedia("(max-width: 767px)");
+    setIsMobileView(mql.matches);
   }, []);
   const images = backgroundImages || (backgroundImage ? [backgroundImage] : []);
   const mobileImages = backgroundImagesMobile || [];
