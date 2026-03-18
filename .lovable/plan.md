@@ -1,28 +1,29 @@
 
+# Plan: Domain Standardization + Welcome Page SEO — COMPLETED
 
-## Updated Plan: Punchpass Email Templates v2
+## What Was Done
 
-### Why drake.fitness Can't Host Email Images
-I just tested both `https://www.drake.fitness/images/email/studio-david-dog.jpg` and the lovable.app equivalent — both return a blank page. The SPA router intercepts all requests and serves the React app's `index.html` instead of the raw JPG. This is a fundamental limitation of how single-page apps work — static files in `/public` aren't guaranteed to be served as direct downloads when a client-side router catches all routes.
+Standardized all URLs from `https://drake.fitness` → `https://www.drake.fitness` across 31 files, added noindex to Welcome page, and updated robots.txt.
 
-### The Solution: Storage Bucket
-Upload all 13 images to a public storage bucket called `email-assets`. This gives each image a permanent, direct URL that serves the raw file — guaranteed to work in every email client.
+### Files Updated
 
-```
-https://ktktwcbvambkcrpfflxi.supabase.co/storage/v1/object/public/email-assets/studio-david-dog.jpg
-```
+| Category | Files | Change |
+|----------|-------|--------|
+| **SEO Core** | `SEO.tsx`, `StructuredData.tsx` | Default canonical, ogImage, toAbsoluteUrl(), business schema |
+| **Sitemap & Robots** | `sitemap.xml`, `robots.txt` | All URLs → www; added `Disallow: /welcome` |
+| **Welcome Page** | `Welcome.tsx` | Added `noindex, nofollow` meta tag + www canonical |
+| **Public Pages** | Home, Pricing, Schedule, Contact, About, Coaching, FAQ, Insights, SuccessStories, Ruckathon, NewYearChallenge, ResetWeekAlt | canonical → www |
+| **Service Pages** | ResetWeekCharleston, StrengthTraining, LowImpact, WestAshley | canonical → www |
+| **Blog** | InsightPost.tsx | canonical, articleSchema URL, social share URLs |
+| **Auth/Member** | Auth, Dashboard, Profile, MyBookings | canonical → www |
+| **Chatbot** | ChatMessage.tsx, chat-assistant edge function | Friendly link labels + system prompt URLs |
+| **Email** | emailTemplates.ts, send-nurture-previews | CTA button URLs |
+| **OG Redirect** | og-redirect edge function | SITE_URL constant |
 
-### Full Scope
+### Google Search Console Checklist (Post-Deploy)
 
-1. **Create `email-assets` public storage bucket** and upload all 12 existing images + 1 new square-cropped avatar (96x96 `david-avatar-96.jpg`)
-2. **Fix circular profile image** — pre-cropped square source, `<td>` with `border-radius: 50%; overflow: hidden`, VML `<v:oval>` for Outlook
-3. **Lock font sizes** — `-webkit-text-size-adjust: 100%` on body/td, explicit `px` font-size on every `<td>`, `mso-line-height-rule: exactly` on all text
-4. **Add mobile `@media` query** — padding and width overrides for screens under 600px
-5. **Text wrapping** — float images left on 5 editorial templates with MSO two-column fallback
-6. **Regenerate all 13 HTML files** to `/mnt/documents/` as `_v2` versions using storage bucket URLs
-
-### Deliverables
-- 1 new storage bucket with 13 uploaded images
-- 13 regenerated HTML files in `/mnt/documents/`
-- No changes to `emailTemplates.ts` or admin preview system
-
+1. Verify `www.drake.fitness` property in Search Console
+2. Submit updated sitemap: `https://www.drake.fitness/sitemap.xml`
+3. Use URL Inspection on top 5 pages to request re-indexing
+4. Update Google Business Profile website URL to `https://www.drake.fitness`
+5. Confirm non-www redirects to www via 301 in Lovable domain settings
