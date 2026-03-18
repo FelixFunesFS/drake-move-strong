@@ -1,29 +1,39 @@
 
-# Plan: Domain Standardization + Welcome Page SEO — COMPLETED
 
-## What Was Done
+## Generate Punchpass-Ready Email Templates
 
-Standardized all URLs from `https://drake.fitness` → `https://www.drake.fitness` across 31 files, added noindex to Welcome page, and updated robots.txt.
+### What needs to happen
+Export all 13 nurture email templates as standalone HTML files with production-ready URLs, optimized for maximum email client compatibility when pasted into Punchpass.
 
-### Files Updated
+### Key fixes for Punchpass compatibility
+1. **Hardcode production URLs** — Replace `window.location.origin` with `https://www.drake.fitness` so images work everywhere
+2. **Remove `@import` for Google Fonts** — Gmail strips it. Replace with a `<link>` tag (works in most clients; degrades gracefully to Arial/sans-serif in Gmail)
+3. **Add MSO conditionals** — Wrap the 600px container in `<!--[if mso]>` fixed-width table for Outlook desktop
+4. **Bulletproof CTA button** — Add VML fallback so the gold button renders with rounded corners in Outlook
 
-| Category | Files | Change |
-|----------|-------|--------|
-| **SEO Core** | `SEO.tsx`, `StructuredData.tsx` | Default canonical, ogImage, toAbsoluteUrl(), business schema |
-| **Sitemap & Robots** | `sitemap.xml`, `robots.txt` | All URLs → www; added `Disallow: /welcome` |
-| **Welcome Page** | `Welcome.tsx` | Added `noindex, nofollow` meta tag + www canonical |
-| **Public Pages** | Home, Pricing, Schedule, Contact, About, Coaching, FAQ, Insights, SuccessStories, Ruckathon, NewYearChallenge, ResetWeekAlt | canonical → www |
-| **Service Pages** | ResetWeekCharleston, StrengthTraining, LowImpact, WestAshley | canonical → www |
-| **Blog** | InsightPost.tsx | canonical, articleSchema URL, social share URLs |
-| **Auth/Member** | Auth, Dashboard, Profile, MyBookings | canonical → www |
-| **Chatbot** | ChatMessage.tsx, chat-assistant edge function | Friendly link labels + system prompt URLs |
-| **Email** | emailTemplates.ts, send-nurture-previews | CTA button URLs |
-| **OG Redirect** | og-redirect edge function | SITE_URL constant |
+### Deliverables
+13 individual HTML files saved to `/mnt/documents/`, named clearly for easy identification:
 
-### Google Search Console Checklist (Post-Deploy)
+**New Lead sequence (8 files):**
+- `new-lead-instant.html`
+- `new-lead-day-1.html`
+- `new-lead-day-3.html`
+- `new-lead-day-5.html`
+- `new-lead-day-10.html`
+- `new-lead-day-18.html`
+- `new-lead-day-24.html`
+- `new-lead-day-30.html`
 
-1. Verify `www.drake.fitness` property in Search Console
-2. Submit updated sitemap: `https://www.drake.fitness/sitemap.xml`
-3. Use URL Inspection on top 5 pages to request re-indexing
-4. Update Google Business Profile website URL to `https://www.drake.fitness`
-5. Confirm non-www redirects to www via 301 in Lovable domain settings
+**Win-Back sequence (5 files):**
+- `win-back-day-0.html`
+- `win-back-day-5.html`
+- `win-back-day-12.html`
+- `win-back-day-21.html`
+- `win-back-day-35.html`
+
+### How to use in Punchpass
+Open each HTML file, select all, copy, and paste into Punchpass's HTML email editor. Each file is a complete, self-contained document — no external dependencies except the image URLs hosted on drake.fitness.
+
+### No codebase changes
+This task generates downloadable files only. The existing `emailTemplates.ts` and admin preview system remain untouched.
+
