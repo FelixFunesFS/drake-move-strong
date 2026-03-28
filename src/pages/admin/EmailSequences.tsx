@@ -266,7 +266,16 @@ function ProviderTips() {
 
 function EmailPreviewDialog({ open, onOpenChange, sequenceKey, dayLabel, subject }: { open: boolean; onOpenChange: (o: boolean) => void; sequenceKey: 'new-lead' | 'win-back'; dayLabel: string; subject: string }) {
   const [device, setDevice] = useState<'desktop' | 'mobile'>('desktop');
+  const [htmlCopied, setHtmlCopied] = useState(false);
   const html = getEmailPreviewHtml(sequenceKey, dayLabel);
+
+  const handleCopyHtml = () => {
+    if (!html) return;
+    navigator.clipboard.writeText(html);
+    setHtmlCopied(true);
+    toast.success('Raw HTML copied — paste directly into PunchPass');
+    setTimeout(() => setHtmlCopied(false), 2500);
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -275,6 +284,16 @@ function EmailPreviewDialog({ open, onOpenChange, sequenceKey, dayLabel, subject
           <div className="flex items-center justify-between gap-4">
             <DialogTitle className="text-sm font-semibold truncate">{subject}</DialogTitle>
             <div className="flex items-center gap-1 shrink-0">
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-7 px-2 text-xs"
+                onClick={handleCopyHtml}
+                disabled={!html}
+              >
+                {htmlCopied ? <Check className="h-3.5 w-3.5 mr-1 text-primary" /> : <Copy className="h-3.5 w-3.5 mr-1" />}
+                {htmlCopied ? 'Copied!' : 'Copy HTML'}
+              </Button>
               <Button
                 variant={device === 'desktop' ? 'default' : 'ghost'}
                 size="sm"
