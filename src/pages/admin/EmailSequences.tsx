@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import AdminLayout from '@/components/admin/AdminLayout';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -268,6 +268,18 @@ function EmailPreviewDialog({ open, onOpenChange, sequenceKey, dayLabel, subject
   const [device, setDevice] = useState<'desktop' | 'mobile'>('desktop');
   const [htmlCopied, setHtmlCopied] = useState(false);
   const html = getEmailPreviewHtml(sequenceKey, dayLabel);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (!iframe || !html) return;
+    const doc = iframe.contentDocument;
+    if (doc) {
+      doc.open();
+      doc.write(html);
+      doc.close();
+    }
+  }, [html, device, open]);
 
   const handleCopyHtml = () => {
     if (!html) return;
@@ -316,9 +328,8 @@ function EmailPreviewDialog({ open, onOpenChange, sequenceKey, dayLabel, subject
         <div className="flex-1 overflow-auto bg-muted/30 flex justify-center p-4">
           {html ? (
             <iframe
-              srcDoc={html}
+              ref={iframeRef}
               title="Email Preview"
-              sandbox="allow-same-origin"
               className="border rounded-lg bg-background shadow-sm transition-all duration-300"
               style={{
                 width: device === 'desktop' ? 600 : 375,
