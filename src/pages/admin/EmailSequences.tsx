@@ -18,6 +18,7 @@ import { getEmailPreviewHtml } from '@/lib/emailTemplates';
 interface EmailStep {
   day: number;
   dayLabel: string;
+  stepName: string;
   subject: string;
   goal: string;
   psychology: string;
@@ -29,7 +30,7 @@ interface EmailStep {
 
 const newLeadSequence: EmailStep[] = [
   {
-    day: 0, dayLabel: 'Instant',
+    day: 0, dayLabel: 'Instant', stepName: '1. Welcome & What to Expect',
     subject: "You're in — here's what happens next",
     goal: 'Confirm & validate their decision',
     psychology: 'Confirmation bias. Validate immediately to reduce buyer\'s remorse in the highest drop-off window.',
@@ -38,7 +39,7 @@ const newLeadSequence: EmailStep[] = [
     previewText: "Welcome to Drake Fitness. Here's everything you need to know for your first class.",
   },
   {
-    day: 1, dayLabel: 'Day 1',
+    day: 1, dayLabel: 'Day 1', stepName: '2. Just Show Up',
     subject: "You're all set — just show up",
     goal: 'Remove all friction and anxiety',
     psychology: 'Friction removal. No prep, no gear list. Reinforce the brand promise: "Sign up and show up."',
@@ -47,7 +48,7 @@ const newLeadSequence: EmailStep[] = [
     previewText: "No gear required. No experience needed. Just you.",
   },
   {
-    day: 3, dayLabel: 'Day 3',
+    day: 3, dayLabel: 'Day 3', stepName: '3. Recovery & Reassurance',
     subject: "Feeling sore? Good — here's what to do next",
     goal: 'Normalize soreness & bridge to class 2',
     psychology: 'Recovery reassurance. The 48-72hr window after a first class is the highest dropout moment. Normalizing soreness and providing actionable tips positions David as their coach, not a salesperson.',
@@ -56,7 +57,7 @@ const newLeadSequence: EmailStep[] = [
     previewText: "Here's exactly what to do before your next class.",
   },
   {
-    day: 5, dayLabel: 'Day 5',
+    day: 5, dayLabel: 'Day 5', stepName: '4. Meet Your Coach',
     subject: "Meet David — 25 years of keeping people moving",
     goal: 'Build coach authority + warmth',
     psychology: 'Authority + warmth. One coach, one story. People train with people, not brands.',
@@ -65,7 +66,7 @@ const newLeadSequence: EmailStep[] = [
     previewText: "I've spent 25 years helping real people build real strength. Here's why.",
   },
   {
-    day: 10, dayLabel: 'Day 10',
+    day: 10, dayLabel: 'Day 10', stepName: '5. Member Success Stories',
     subject: "How Sarah went from back pain to deadlifts",
     goal: 'Social proof from someone like them',
     psychology: 'Social proof at the "should I actually go?" moment. Use a relatable member story that mirrors the reader.',
@@ -74,7 +75,7 @@ const newLeadSequence: EmailStep[] = [
     previewText: "She almost didn't come back after day one. Here's what changed.",
   },
   {
-    day: 18, dayLabel: 'Day 18',
+    day: 18, dayLabel: 'Day 18', stepName: '6. Personal Check-In',
     subject: "How's it going? (reply to this email)",
     goal: 'Open personal dialogue',
     psychology: 'Personal touch. Plain-text feel. This is the email that separates you from every automated funnel.',
@@ -83,7 +84,7 @@ const newLeadSequence: EmailStep[] = [
     previewText: "Just checking in — I'd love to hear how things are going.",
   },
   {
-    day: 24, dayLabel: 'Day 24',
+    day: 24, dayLabel: 'Day 24', stepName: '7. Membership Offer',
     subject: "Ready to keep going? Members-only offer inside",
     goal: 'First conversion ask',
     psychology: 'Conversion only after value is proven. By day 24, they\'ve experienced classes and built trust.',
@@ -92,7 +93,7 @@ const newLeadSequence: EmailStep[] = [
     previewText: "You've put in the work. Let's keep the momentum going.",
   },
   {
-    day: 30, dayLabel: 'Day 30',
+    day: 30, dayLabel: 'Day 30', stepName: '8. Final Reminder',
     subject: "Your free pass wraps up this week",
     goal: 'Urgency without pressure',
     psychology: 'Scarcity + recap. Not aggressive — just a clear deadline paired with a summary of benefits.',
@@ -104,7 +105,7 @@ const newLeadSequence: EmailStep[] = [
 
 const winBackSequence: EmailStep[] = [
   {
-    day: 0, dayLabel: 'Day 0',
+    day: 0, dayLabel: 'Day 0', stepName: '1. We Miss You',
     subject: "Hey — David here. We miss seeing you.",
     goal: 'Re-engage with warmth, no pitch',
     psychology: 'Personal from-line, warm, no pitch. Just a human reaching out.',
@@ -113,7 +114,7 @@ const winBackSequence: EmailStep[] = [
     previewText: "It's been a while — just wanted to say hey.",
   },
   {
-    day: 5, dayLabel: 'Day 5',
+    day: 5, dayLabel: 'Day 5', stepName: '2. What\'s New',
     subject: "What's new at the studio",
     goal: 'Spark curiosity',
     psychology: 'Curiosity. Show them what\'s changed — new classes, schedule updates, community growth.',
@@ -122,7 +123,7 @@ const winBackSequence: EmailStep[] = [
     previewText: "A few things have changed since you were last here.",
   },
   {
-    day: 12, dayLabel: 'Day 12',
+    day: 12, dayLabel: 'Day 12', stepName: '3. Comeback Story',
     subject: "Mike's comeback story",
     goal: 'Social proof for re-engagement',
     psychology: 'A member who came back and is glad they did. Normalizes returning after a break.',
@@ -131,7 +132,7 @@ const winBackSequence: EmailStep[] = [
     previewText: "He took 6 months off. Here's what happened when he came back.",
   },
   {
-    day: 21, dayLabel: 'Day 21',
+    day: 21, dayLabel: 'Day 21', stepName: '4. Free Week Offer',
     subject: "Come back for a week — on us",
     goal: 'Low-commitment return offer',
     psychology: 'Low barrier. A free week removes the financial and commitment objections.',
@@ -140,7 +141,7 @@ const winBackSequence: EmailStep[] = [
     previewText: "No commitment. No catch. Just come move with us for a week.",
   },
   {
-    day: 35, dayLabel: 'Day 35',
+    day: 35, dayLabel: 'Day 35', stepName: '5. Door\'s Always Open',
     subject: "The door's always open",
     goal: 'Soft close — plant the seed',
     psychology: 'No guilt, no pressure. The final touch that keeps the door open for whenever they\'re ready.',
@@ -183,12 +184,15 @@ function EmailCard({ step, index, total, sequenceKey, onPreview }: { step: Email
         {index < total - 1 && <div className="w-0.5 flex-1 bg-border mt-2" />}
       </div>
       <Card className="flex-1 p-4 md:p-6 mb-4 md:mb-6 border shadow-sm hover:shadow-md transition-shadow">
-        <div className="flex flex-wrap items-center gap-2 mb-3">
-          <Badge variant="outline" className="md:hidden text-xs font-mono">{step.dayLabel}</Badge>
-          <Badge variant="outline" className={cn('text-xs', config.badgeClass)}>
+        <div className="flex flex-wrap items-center gap-2 mb-1">
+          <span className="text-sm font-bold text-foreground">{step.stepName}</span>
+          <span className="text-xs text-muted-foreground">· {step.dayLabel}</span>
+          <Badge variant="outline" className={cn('text-xs ml-auto', config.badgeClass)}>
             <Icon className="h-3 w-3 mr-1" />{config.label}
           </Badge>
-          <span className="text-xs text-muted-foreground ml-auto">From: {step.fromLine}</span>
+        </div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-xs text-muted-foreground">From: {step.fromLine}</span>
         </div>
         <div className="flex items-start gap-2 mb-2">
           <Mail className="h-4 w-4 text-muted-foreground mt-0.5 shrink-0" />
