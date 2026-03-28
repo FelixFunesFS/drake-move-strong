@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import AdminLayout from '@/components/admin/AdminLayout';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -268,57 +268,23 @@ function EmailPreviewDialog({ open, onOpenChange, sequenceKey, dayLabel, subject
   const [device, setDevice] = useState<'desktop' | 'mobile'>('desktop');
   const [htmlCopied, setHtmlCopied] = useState(false);
   const html = getEmailPreviewHtml(sequenceKey, dayLabel);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  const handleCopyHtml = () => {
-    if (!html) return;
-    navigator.clipboard.writeText(html);
-    setHtmlCopied(true);
-    toast.success('Raw HTML copied — paste directly into PunchPass');
-    setTimeout(() => setHtmlCopied(false), 2500);
-  };
-
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl w-[95vw] h-[85vh] flex flex-col p-0 gap-0">
-        <DialogHeader className="px-4 py-3 border-b flex-shrink-0">
-          <div className="flex items-center justify-between gap-4">
-            <DialogTitle className="text-sm font-semibold truncate">{subject}</DialogTitle>
-            <div className="flex items-center gap-1 shrink-0">
-              <Button
-                variant="outline"
-                size="sm"
-                className="h-7 px-2 text-xs"
-                onClick={handleCopyHtml}
-                disabled={!html}
-              >
-                {htmlCopied ? <Check className="h-3.5 w-3.5 mr-1 text-primary" /> : <Copy className="h-3.5 w-3.5 mr-1" />}
-                {htmlCopied ? 'Copied!' : 'Copy HTML'}
-              </Button>
-              <Button
-                variant={device === 'desktop' ? 'default' : 'ghost'}
-                size="sm"
-                className="h-7 px-2 text-xs"
-                onClick={() => setDevice('desktop')}
-              >
-                <Monitor className="h-3.5 w-3.5 mr-1" />Desktop
-              </Button>
-              <Button
-                variant={device === 'mobile' ? 'default' : 'ghost'}
-                size="sm"
-                className="h-7 px-2 text-xs"
-                onClick={() => setDevice('mobile')}
-              >
-                <Smartphone className="h-3.5 w-3.5 mr-1" />Mobile
-              </Button>
-            </div>
-          </div>
-        </DialogHeader>
-        <div className="flex-1 overflow-auto bg-muted/30 flex justify-center p-4">
-          {html ? (
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (!iframe || !html) return;
+    const doc = iframe.contentDocument;
+    if (doc) {
+      doc.open();
+      doc.write(html);
+      doc.close();
+    }
+  }, [html, device, open]);
+...
+           {html ? (
             <iframe
-              srcDoc={html}
+              ref={iframeRef}
               title="Email Preview"
-              sandbox="allow-same-origin"
               className="border rounded-lg bg-background shadow-sm transition-all duration-300"
               style={{
                 width: device === 'desktop' ? 600 : 375,
