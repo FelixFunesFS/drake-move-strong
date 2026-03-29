@@ -36,14 +36,14 @@ const GOOGLE_MAPS_URL =
 const testimonials = [
   {
     quote:
-      "Better than any physical therapist or personal trainer I've ever had.",
-    author: "Cara S.",
+      "I came in with chronic knee pain and now live pain free thanks to their guidance.",
+    author: "Melissa F.",
     label: "Drake Fitness Member",
   },
   {
     quote:
-      "I came in with chronic knee pain and now live pain free thanks to their guidance.",
-    author: "Melissa F.",
+      "He opened my eyes on how to be strong, move properly, and avoid senseless injuries.",
+    author: "Chris P.",
     label: "Drake Fitness Member",
   },
 ];
