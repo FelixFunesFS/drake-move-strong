@@ -80,7 +80,7 @@ const CommunityClass = () => {
       />
 
       {/* ── Minimal Header ── */}
-      <header className="fixed top-0 inset-x-0 z-50 bg-drake-dark/90 backdrop-blur-sm">
+      <header className="fixed top-0 inset-x-0 z-50 bg-drake-primary/95 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
           <img
             src={drakeLogo}
@@ -149,12 +149,12 @@ const CommunityClass = () => {
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </a>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-white/40 text-white hover:bg-white/10 hover:text-white gap-2 w-full sm:w-auto"
-                onClick={scrollToExpect}
-              >
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-white text-white hover:bg-white hover:text-drake-dark shadow-[0_0_0_1px_rgba(255,255,255,0.3)] gap-2 w-full sm:w-auto"
+                  onClick={scrollToExpect}
+                >
                 SEE WHAT TO EXPECT
                 <ChevronDown className="w-4 h-4" />
               </Button>
@@ -164,7 +164,7 @@ const CommunityClass = () => {
       </section>
 
       {/* ── Event Detail Strip ── */}
-      <section className="bg-drake-dark border-t border-white/10">
+      <section className="bg-drake-primary border-t border-white/10">
         <div className="max-w-6xl mx-auto px-4 py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-6 md:gap-8">
             {[
@@ -232,8 +232,8 @@ const CommunityClass = () => {
               {/* Kettlebell Card */}
               <div className="bg-card border border-border rounded-lg p-6">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-full bg-drake-gold/15 flex items-center justify-center">
-                    <Dumbbell className="w-5 h-5 text-drake-gold" />
+                  <div className="w-10 h-10 rounded-full bg-drake-primary/15 flex items-center justify-center">
+                    <Dumbbell className="w-5 h-5 text-drake-primary" />
                   </div>
                   <h3 className="font-heading text-lg font-bold text-foreground">
                     Kettlebell Strength Training
@@ -250,8 +250,8 @@ const CommunityClass = () => {
               {/* OS Card */}
               <div className="bg-card border border-border rounded-lg p-6">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-full bg-drake-gold/15 flex items-center justify-center">
-                    <Activity className="w-5 h-5 text-drake-gold" />
+                  <div className="w-10 h-10 rounded-full bg-drake-primary/15 flex items-center justify-center">
+                    <Activity className="w-5 h-5 text-drake-primary" />
                   </div>
                   <h3 className="font-heading text-lg font-bold text-foreground">
                     Original Strength Mobility
@@ -275,7 +275,7 @@ const CommunityClass = () => {
             <div className="grid sm:grid-cols-2 gap-3 max-w-2xl mx-auto">
               {whoItsFor.map((item) => (
                 <div key={item} className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-5 h-5 text-drake-gold shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 text-drake-primary shrink-0 mt-0.5" />
                   <span className="text-sm text-muted-foreground">{item}</span>
                 </div>
               ))}
@@ -359,7 +359,7 @@ const CommunityClass = () => {
                 {credentials.map((c) => (
                   <span
                     key={c}
-                    className="text-[11px] font-medium tracking-wide text-muted-foreground bg-muted px-3 py-1.5 rounded-full"
+                    className="text-[11px] font-medium tracking-wide text-drake-primary bg-drake-primary/10 px-3 py-1.5 rounded-full"
                   >
                     {c}
                   </span>
@@ -402,7 +402,7 @@ const CommunityClass = () => {
             ].map((s, i) => (
               <AnimatedSection key={s.step} delay={i * 0.12}>
                 <div className="text-center">
-                  <div className="w-12 h-12 rounded-full bg-drake-gold text-drake-dark flex items-center justify-center font-hero text-xl font-bold mx-auto mb-4">
+                  <div className="w-12 h-12 rounded-full bg-drake-primary text-white flex items-center justify-center font-hero text-xl font-bold mx-auto mb-4">
                     {s.step}
                   </div>
                   <h3 className="font-heading text-lg font-bold text-foreground mb-2">
