@@ -101,7 +101,7 @@ const CommunityClass = () => {
       </header>
 
       {/* ── Hero ── */}
-      <section className="relative min-h-[90vh] flex items-center pt-16">
+      <section className="relative min-h-[70vh] sm:min-h-[90vh] flex items-center pt-16">
         <div className="absolute inset-0">
           <img
             src={heroImage}
@@ -112,7 +112,7 @@ const CommunityClass = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-drake-dark/90 via-drake-dark/70 to-drake-dark/40" />
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 py-20 md:py-32">
+        <div className="relative z-10 max-w-6xl mx-auto px-5 py-16 md:py-32">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -124,7 +124,7 @@ const CommunityClass = () => {
               AVONDALE · WEST ASHLEY · CHARLESTON
             </span>
 
-            <h1 className="font-hero text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold uppercase leading-[0.95] mb-6">
+            <h1 className="font-hero text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold uppercase leading-[0.95] mb-6">
               <span className="text-white">STRONG STARTS</span>
               <br />
               <span className="text-drake-gold">HERE.</span>
@@ -138,13 +138,13 @@ const CommunityClass = () => {
               No experience needed. No cost. No commitment.
             </p>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <a
                 href={getReserveUrl("hero-primary")}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button variant="gold" size="lg" className="gap-2">
+                <Button variant="gold" size="lg" className="gap-2 w-full sm:w-auto">
                   RESERVE YOUR FREE SPOT
                   <ArrowRight className="w-4 h-4" />
                 </Button>
@@ -152,7 +152,7 @@ const CommunityClass = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-white/40 text-white hover:bg-white/10 hover:text-white gap-2"
+                className="border-white/40 text-white hover:bg-white/10 hover:text-white gap-2 w-full sm:w-auto"
                 onClick={scrollToExpect}
               >
                 SEE WHAT TO EXPECT
@@ -166,7 +166,7 @@ const CommunityClass = () => {
       {/* ── Event Detail Strip ── */}
       <section className="bg-drake-dark border-t border-white/10">
         <div className="max-w-6xl mx-auto px-4 py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-6 md:gap-8">
             {[
               {
                 icon: Calendar,
@@ -329,7 +329,7 @@ const CommunityClass = () => {
               <img
                 src={coachImage}
                 alt="Coach David Drake with kettlebells"
-                className="rounded-lg w-full object-cover aspect-[3/4] max-h-[500px]"
+                className="rounded-lg w-full object-cover aspect-[3/4] max-h-[400px] md:max-h-[500px]"
                 loading="lazy"
               />
             </AnimatedSection>
@@ -351,8 +351,8 @@ const CommunityClass = () => {
                   whole life, David meets you exactly where you are.
                 </p>
                 <p>
-                  Every community class is led personally by David — no
-                  assistants, no guesswork.
+                  Every community class is coached by a Drake Fitness
+                  instructor — hands-on, expert-led, no guesswork.
                 </p>
               </div>
               <div className="flex flex-wrap gap-2 mt-6">
