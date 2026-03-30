@@ -368,7 +368,7 @@ const AppLayout = () => {
           </Suspense>
         )}
       </div>
-      <ScrollToTopButton />
+      {!hideNavFooter && <ScrollToTopButton />}
       <MobileContactBar />
     </>
   );
