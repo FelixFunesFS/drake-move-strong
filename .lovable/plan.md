@@ -1,29 +1,58 @@
 
 
-## Root Cause
+## Community Class Landing Page — Updated Plan
 
-The event detail strip uses `bg-drake-primary` (line 167), but **there is no `drake-primary` color in tailwind.config.ts**. The defined colors are `drake-teal`, `drake-teal-light`, `drake-gold`, etc. — no `drake-primary`.
+All changes in `src/pages/CommunityClass.tsx` only.
 
-Since `bg-drake-primary` doesn't resolve, the section gets **no background color** (defaults to white), and the text is `text-white` — hence white text on white background.
+### 1. White navbar
+- Line 83: `bg-drake-teal/95 backdrop-blur-sm` → `bg-white shadow-sm`
 
-This same issue affects the eyebrow text elsewhere on the page that uses `text-drake-primary`.
+### 2. Remove hero eyebrow
+- Lines 122-125: Delete the `<span>` with MapPin + "AVONDALE · WEST ASHLEY · CHARLESTON"
 
-## Fix (single file: `src/pages/CommunityClass.tsx`)
+### 3. Swipeable testimonials (mobile-first)
+- Add a 3rd testimonial for stronger social proof
+- Replace the static `grid md:grid-cols-2` (lines 302-313) with an embla `Carousel`
+- Mobile: single card per slide, swipeable with dot indicators
+- Desktop: show 2 cards side-by-side via `md:basis-1/2`
+- Style per brand memory: gold left-border accent on quote cards, `bg-drake-teal/10` tint
 
-Replace every `drake-primary` reference with `drake-teal` (the actual Tailwind token):
+### 4. Conversion/UX improvements (expert review additions)
 
-| Line | Current | Fixed |
-|------|---------|-------|
-| 167 | `bg-drake-primary` | `bg-drake-teal` |
-| 186 | `text-white` (icons) | `text-white` (keep — now visible on teal bg) |
-| 214 | `text-drake-primary` | `text-drake-teal` |
-| 236, 237 | `bg-drake-primary/15`, `text-drake-primary` | `bg-drake-teal/15`, `text-drake-teal` |
-| 254, 255 | same pattern | `bg-drake-teal/15`, `text-drake-teal` |
-| 278 | `text-drake-primary` | `text-drake-teal` |
-| 322 | `text-drake-primary` | `text-drake-teal` |
-| 362 | `text-drake-primary bg-drake-primary/10` | `text-drake-teal bg-drake-teal/10` |
-| 377 | `text-drake-primary` | `text-drake-teal` |
-| 405 | `bg-drake-primary` | `bg-drake-teal` |
+**A. Show the actual next class date (high impact)**
+- Compute the next 1st-Saturday dynamically using a helper function
+- Display it prominently in the event strip, e.g. "Next Class: Saturday, May 3"
+- Also surface it in the hero subtext to remove calendar guesswork
 
-**No other files changed.** This is a find-and-replace of `drake-primary` → `drake-teal` scoped to this one file.
+**B. Add urgency/scarcity to hero CTA area**
+- Add a small line below the primary CTA: "Only 12 spots per class — reserve yours before they fill"
+- Creates urgency without being pushy
+
+**C. Gold community block — add a CTA (dead zone fix)**
+- The gold section (lines 421-435) has emotional copy but no action
+- Add a "RESERVE YOUR FREE SPOT" button at the bottom of this section
+
+**D. Demote secondary hero button**
+- Change "SEE WHAT TO EXPECT" from a full outlined button to a subtle text link with down-arrow
+- Reduces decision fatigue; keeps the gold CTA as the clear primary action
+
+**E. Add a mini FAQ section (objection handling)**
+- Insert a 3-4 item accordion before the final CTA:
+  - "Do I need any experience?" — No, all levels welcome
+  - "What should I bring?" — Just comfortable clothes, we provide everything
+  - "Is parking available?" — Yes, free street parking on Avondale Ave
+  - "Can I bring a friend?" — Absolutely, just have them reserve a spot too
+- Uses the existing `Accordion` component from `@/components/ui/accordion`
+
+**F. Add Google review count to social proof header**
+- Change "Google Reviews" to "4.9 stars from 40+ reviews" for stronger proof
+
+---
+
+### Technical details
+
+- Carousel: import `Carousel, CarouselContent, CarouselItem` from `@/components/ui/carousel`; use `useCarousel` API for dot indicators
+- Next-date helper: simple function that computes the next 1st Saturday from `new Date()`
+- Accordion: import from `@/components/ui/accordion`
+- No new dependencies needed — all components already exist in the project
 
