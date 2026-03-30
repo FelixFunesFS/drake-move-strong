@@ -23,7 +23,7 @@ import { buildPunchPassUrl, PUNCHPASS_URLS } from "@/data/pricing";
 
 import heroImage from "@/assets/community-class-kettlebell-group.jpg?format=webp&w=1920";
 import coachImage from "@/assets/david-double-kb-storefront-new.jpg?format=webp&w=768";
-import drakeLogo from "@/assets/drake-fitness-logo-kettlebell.png?format=webp&w=268";
+import drakeLogo from "@/assets/drake-fitness-logo2.png?format=webp&w=268";
 
 const COMMUNITY_CLASS_URL = PUNCHPASS_URLS.communityClass;
 
