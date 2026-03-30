@@ -1,37 +1,39 @@
 
 
-## Plan: Add Teal Accents + Fix Hero Button Contrast
+## Plan: Replace Hero Image + Convert Gold Accents to Teal
 
-### 1. Fix "See What to Expect" Button Contrast
+### 1. Replace Hero Image
+Copy the uploaded image (`IMG_2452_1.JPG`) to `src/assets/community-class-kettlebell-group.jpg`, then update the import on line 24 to use it. Update the alt text to match the new image content (group kettlebell cleans).
 
-The current outline button uses `border-white/40 text-white hover:bg-white/10` — the 40% white border is too faint against the dark hero overlay, and the hover state barely changes.
+### 2. Convert Gold (`text-drake-gold`) to Teal (`text-drake-primary`) — Outside Hero Only
 
-**Fix:** Change to a solid white outline with better hover:
-- `border-white text-white hover:bg-white hover:text-drake-dark`
-- Add drop shadow for extra visibility: `shadow-[0_0_0_1px_rgba(255,255,255,0.3)]`
+The hero section (lines 103-164) keeps its gold accents untouched. Every other `text-drake-gold` instance on the page gets changed to teal:
 
-### 2. Add Teal (#0B4A52) as Complementary Color
+| Line | Section | Current | New |
+|------|---------|---------|-----|
+| 186 | Event Detail Strip icons | `text-drake-gold` | `text-white` (icons on teal bg look better white) |
+| 187 | Event Detail Strip labels | `text-drake-gold` | `text-white/80` |
+| 214 | "What to Expect" eyebrow | `text-drake-gold` | `text-drake-primary` |
+| 295 | Star icons fill | `text-drake-gold fill-drake-gold` | `text-drake-gold fill-drake-gold` (keep — Google stars should stay gold) |
+| 308 | Testimonial author | `text-drake-gold` | `text-drake-primary` (won't work on dark bg) → use `text-white` instead |
+| 322 | "Your Guide" eyebrow | `text-drake-gold` | `text-drake-primary` |
+| 377 | "How It Works" eyebrow | `text-drake-gold` | `text-drake-primary` |
+| 444 | Final CTA "Reserve It Now" | `text-drake-gold` | `text-drake-primary` won't show on dark → keep gold or use white. Keep gold for CTA emphasis. |
+| 468, 475 | Footer contact hovers | `hover:text-drake-gold` | `hover:text-drake-primary` won't show on dark → keep as-is |
+| 496, 505, 514 | Social icon hovers | `hover:text-drake-gold` | keep as-is (on dark bg) |
 
-Currently the page is all dark/gold/white. Introduce the brand teal in these spots:
-
-| Section | Current | New |
-|---------|---------|-----|
-| **Event Detail Strip** bg | `bg-drake-dark` | `bg-drake-primary` (teal) — differentiates it from the dark hero above |
-| **"What to Expect" feature cards** icon circle bg | `bg-drake-gold/15` | `bg-drake-primary/15` with teal icons (`text-drake-primary`) — creates variety vs. gold-only |
-| **"Who this is for" check icons** | `text-drake-gold` | `text-drake-primary` — teal checks complement the gold accents above |
-| **"How It Works" step circles** | `bg-drake-gold text-drake-dark` | `bg-drake-primary text-white` — teal numbered circles |
-| **Coach credentials badges** | `bg-muted text-muted-foreground` | `bg-drake-primary/10 text-drake-primary` — subtle teal badges |
-| **Minimal header** bg | `bg-drake-dark/90` | `bg-drake-primary/95` — teal header |
-
-### 3. Accessibility Notes
-
-- All teal-on-white and white-on-teal combinations pass WCAG AA (teal #0B4A52 is dark enough for white text, 7.5:1 ratio)
-- The hero button fix brings border contrast from ~2:1 to full white = clear visibility
-- Gold CTA button remains unchanged (already high contrast)
+**Refined approach** — change gold to teal only where it's on a light background:
+- Line 214: eyebrow → `text-drake-primary`
+- Line 322: eyebrow → `text-drake-primary`  
+- Line 377: eyebrow → `text-drake-primary`
+- Line 186: event strip icons → `text-white` (already on teal bg)
+- Line 187: event strip labels → `text-white/80`
+- Lines on dark backgrounds (social proof, final CTA, footer) stay gold for visibility
 
 ### Files Changed
 
 | File | Change |
 |------|--------|
-| `src/pages/CommunityClass.tsx` | Update button classes, swap bg colors / icon colors in ~6 sections |
+| `src/assets/community-class-kettlebell-group.jpg` | New file — copied from upload |
+| `src/pages/CommunityClass.tsx` | Update hero import, swap 3 eyebrows from gold→teal, update event strip icon/label colors |
 
