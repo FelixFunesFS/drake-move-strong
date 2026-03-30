@@ -21,7 +21,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { SEO } from "@/components/SEO";
 import { buildPunchPassUrl, PUNCHPASS_URLS } from "@/data/pricing";
 
-import heroImage from "@/assets/community-turkish-getup-class.jpg?format=webp&w=1920";
+import heroImage from "@/assets/community-class-kettlebell-group.jpg?format=webp&w=1920";
 import coachImage from "@/assets/david-double-kb-storefront-new.jpg?format=webp&w=768";
 import drakeLogo from "@/assets/drake-fitness-logo-kettlebell.png?format=webp&w=268";
 
@@ -105,7 +105,7 @@ const CommunityClass = () => {
         <div className="absolute inset-0">
           <img
             src={heroImage}
-            alt="Drake Fitness community class doing Turkish get-ups"
+            alt="Drake Fitness community kettlebell group class"
             className="w-full h-full object-cover"
             loading="eager"
           />
@@ -183,8 +183,8 @@ const CommunityClass = () => {
               { icon: DollarSign, label: "COST", value: "100% Free" },
             ].map((item) => (
               <div key={item.label} className="text-center">
-                <item.icon className="w-5 h-5 text-drake-gold mx-auto mb-2" />
-                <p className="text-[10px] font-bold tracking-[0.2em] text-drake-gold uppercase mb-1">
+                <item.icon className="w-5 h-5 text-white mx-auto mb-2" />
+                <p className="text-[10px] font-bold tracking-[0.2em] text-white/80 uppercase mb-1">
                   {item.label}
                 </p>
                 {item.href ? (
@@ -211,7 +211,7 @@ const CommunityClass = () => {
       <section id="what-to-expect" className="bg-background py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-4">
           <AnimatedSection>
-            <p className="text-xs font-bold tracking-[0.2em] text-drake-gold uppercase text-center mb-3">
+            <p className="text-xs font-bold tracking-[0.2em] text-drake-primary uppercase text-center mb-3">
               WHAT TO EXPECT
             </p>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground text-center mb-4">
@@ -319,7 +319,7 @@ const CommunityClass = () => {
       <section className="bg-background py-16 md:py-24">
         <div className="max-w-5xl mx-auto px-4">
           <AnimatedSection>
-            <p className="text-xs font-bold tracking-[0.2em] text-drake-gold uppercase text-center mb-3">
+            <p className="text-xs font-bold tracking-[0.2em] text-drake-primary uppercase text-center mb-3">
               YOUR GUIDE FOR THE DAY
             </p>
           </AnimatedSection>
@@ -374,7 +374,7 @@ const CommunityClass = () => {
       <section className="bg-muted py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-4">
           <AnimatedSection>
-            <p className="text-xs font-bold tracking-[0.2em] text-drake-gold uppercase text-center mb-3">
+            <p className="text-xs font-bold tracking-[0.2em] text-drake-primary uppercase text-center mb-3">
               HOW IT WORKS
             </p>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
