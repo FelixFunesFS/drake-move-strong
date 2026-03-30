@@ -28,6 +28,8 @@ const MobileContactBar = () => {
   }, []);
   
   if (!isMobile || HIDDEN_PATHS.includes(location.pathname)) return null;
+
+  const isCommunityPage = location.pathname === '/community-class';
   
   return (
     <div className={cn(
@@ -35,14 +37,18 @@ const MobileContactBar = () => {
       isVisible ? "translate-y-0" : "translate-y-full"
     )}>
       <div className="flex">
-        <Link 
-          to="/schedule" 
-          className="flex-1 flex items-center justify-center gap-2 py-4 text-white font-semibold hover:bg-primary/80 active:bg-primary/70 transition-colors"
-        >
-          <Calendar className="w-5 h-5" />
-          View Schedule
-        </Link>
-        <div className="w-px bg-white/20" />
+        {!isCommunityPage && (
+          <>
+            <Link 
+              to="/schedule" 
+              className="flex-1 flex items-center justify-center gap-2 py-4 text-white font-semibold hover:bg-primary/80 active:bg-primary/70 transition-colors"
+            >
+              <Calendar className="w-5 h-5" />
+              View Schedule
+            </Link>
+            <div className="w-px bg-white/20" />
+          </>
+        )}
         <a 
           href="sms:8438175420" 
           className="flex-1 flex items-center justify-center gap-2 py-4 text-white font-semibold hover:bg-primary/80 active:bg-primary/70 transition-colors"

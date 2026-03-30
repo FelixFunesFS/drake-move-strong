@@ -391,7 +391,7 @@ const CommunityClass = () => {
                 />
               ))}
               <span className="text-white/60 text-sm ml-2">
-                4.9 stars from 40+ reviews
+                5-star rating from 40+ reviews
               </span>
             </div>
 
