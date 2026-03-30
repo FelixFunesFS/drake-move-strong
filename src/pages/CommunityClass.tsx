@@ -152,7 +152,7 @@ const CommunityClass = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white hover:text-drake-dark shadow-[0_0_0_1px_rgba(255,255,255,0.3)] gap-2 w-full sm:w-auto"
+                  className="border-white bg-white text-drake-dark hover:bg-white/90 shadow-[0_0_0_1px_rgba(255,255,255,0.3)] gap-2 w-full sm:w-auto"
                   onClick={scrollToExpect}
                 >
                 SEE WHAT TO EXPECT
