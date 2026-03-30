@@ -21,7 +21,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { SEO } from "@/components/SEO";
 import { buildPunchPassUrl, PUNCHPASS_URLS } from "@/data/pricing";
 
-import heroImage from "@/assets/community-turkish-getup-class.jpg?format=webp&w=1920";
+import heroImage from "@/assets/community-class-kettlebell-group.jpg?format=webp&w=1920";
 import coachImage from "@/assets/david-double-kb-storefront-new.jpg?format=webp&w=768";
 import drakeLogo from "@/assets/drake-fitness-logo-kettlebell.png?format=webp&w=268";
 
