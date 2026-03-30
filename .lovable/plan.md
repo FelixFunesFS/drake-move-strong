@@ -1,39 +1,29 @@
 
 
-## Plan: Replace Hero Image + Convert Gold Accents to Teal
+## Root Cause
 
-### 1. Replace Hero Image
-Copy the uploaded image (`IMG_2452_1.JPG`) to `src/assets/community-class-kettlebell-group.jpg`, then update the import on line 24 to use it. Update the alt text to match the new image content (group kettlebell cleans).
+The event detail strip uses `bg-drake-primary` (line 167), but **there is no `drake-primary` color in tailwind.config.ts**. The defined colors are `drake-teal`, `drake-teal-light`, `drake-gold`, etc. — no `drake-primary`.
 
-### 2. Convert Gold (`text-drake-gold`) to Teal (`text-drake-primary`) — Outside Hero Only
+Since `bg-drake-primary` doesn't resolve, the section gets **no background color** (defaults to white), and the text is `text-white` — hence white text on white background.
 
-The hero section (lines 103-164) keeps its gold accents untouched. Every other `text-drake-gold` instance on the page gets changed to teal:
+This same issue affects the eyebrow text elsewhere on the page that uses `text-drake-primary`.
 
-| Line | Section | Current | New |
-|------|---------|---------|-----|
-| 186 | Event Detail Strip icons | `text-drake-gold` | `text-white` (icons on teal bg look better white) |
-| 187 | Event Detail Strip labels | `text-drake-gold` | `text-white/80` |
-| 214 | "What to Expect" eyebrow | `text-drake-gold` | `text-drake-primary` |
-| 295 | Star icons fill | `text-drake-gold fill-drake-gold` | `text-drake-gold fill-drake-gold` (keep — Google stars should stay gold) |
-| 308 | Testimonial author | `text-drake-gold` | `text-drake-primary` (won't work on dark bg) → use `text-white` instead |
-| 322 | "Your Guide" eyebrow | `text-drake-gold` | `text-drake-primary` |
-| 377 | "How It Works" eyebrow | `text-drake-gold` | `text-drake-primary` |
-| 444 | Final CTA "Reserve It Now" | `text-drake-gold` | `text-drake-primary` won't show on dark → keep gold or use white. Keep gold for CTA emphasis. |
-| 468, 475 | Footer contact hovers | `hover:text-drake-gold` | `hover:text-drake-primary` won't show on dark → keep as-is |
-| 496, 505, 514 | Social icon hovers | `hover:text-drake-gold` | keep as-is (on dark bg) |
+## Fix (single file: `src/pages/CommunityClass.tsx`)
 
-**Refined approach** — change gold to teal only where it's on a light background:
-- Line 214: eyebrow → `text-drake-primary`
-- Line 322: eyebrow → `text-drake-primary`  
-- Line 377: eyebrow → `text-drake-primary`
-- Line 186: event strip icons → `text-white` (already on teal bg)
-- Line 187: event strip labels → `text-white/80`
-- Lines on dark backgrounds (social proof, final CTA, footer) stay gold for visibility
+Replace every `drake-primary` reference with `drake-teal` (the actual Tailwind token):
 
-### Files Changed
+| Line | Current | Fixed |
+|------|---------|-------|
+| 167 | `bg-drake-primary` | `bg-drake-teal` |
+| 186 | `text-white` (icons) | `text-white` (keep — now visible on teal bg) |
+| 214 | `text-drake-primary` | `text-drake-teal` |
+| 236, 237 | `bg-drake-primary/15`, `text-drake-primary` | `bg-drake-teal/15`, `text-drake-teal` |
+| 254, 255 | same pattern | `bg-drake-teal/15`, `text-drake-teal` |
+| 278 | `text-drake-primary` | `text-drake-teal` |
+| 322 | `text-drake-primary` | `text-drake-teal` |
+| 362 | `text-drake-primary bg-drake-primary/10` | `text-drake-teal bg-drake-teal/10` |
+| 377 | `text-drake-primary` | `text-drake-teal` |
+| 405 | `bg-drake-primary` | `bg-drake-teal` |
 
-| File | Change |
-|------|--------|
-| `src/assets/community-class-kettlebell-group.jpg` | New file — copied from upload |
-| `src/pages/CommunityClass.tsx` | Update hero import, swap 3 eyebrows from gold→teal, update event strip icon/label colors |
+**No other files changed.** This is a find-and-replace of `drake-primary` → `drake-teal` scoped to this one file.
 
