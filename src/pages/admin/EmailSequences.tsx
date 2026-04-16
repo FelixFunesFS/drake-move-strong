@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { 
   Copy, Check, Mail, Clock, Heart, UserCheck, 
   TrendingUp, AlertCircle, Sparkles, ArrowRight,
-  Monitor, Smartphone, Moon, Send, Loader2, Eye, Upload
+  Monitor, Smartphone, Moon, Send, Loader2, Eye
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
@@ -347,28 +347,29 @@ function EmailPreviewDialog({ open, onOpenChange, sequenceKey, dayLabel, subject
 export default function EmailSequences() {
   const [sending, setSending] = useState(false);
   const [pushing, setPushing] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<{ open: boolean; seq: 'new-lead' | 'win-back'; dayLabel: string; subject: string }>({ open: false, seq: 'new-lead', dayLabel: '', subject: '' });
 
-  const handlePushToResend = async (file: File) => {
+  const handlePushToResend = async () => {
+    const ok = window.confirm(
+      'Push 37 cleaned win-back contacts + 4 broadcast drafts to Resend?\n\nThis will create or update the "Drake Fitness — Winback 2026" audience and generate 4 draft broadcasts (Day 0, 4, 7, 12). You\'ll review and schedule send times in the Resend dashboard.'
+    );
+    if (!ok) return;
     setPushing(true);
     try {
-      const csv = await file.text();
-      // Build template map: { "Day 0": "<html>...", ... }
-      const dayLabels = ['Day 0', 'Day 5', 'Day 12', 'Day 21', 'Day 35'];
+      const dayLabels = ['Day 0', 'Day 4', 'Day 7', 'Day 12'];
       const templates: Record<string, string> = {};
       for (const d of dayLabels) {
         const html = getEmailPreviewHtml('win-back', d);
         if (html) templates[d] = html;
       }
       const { data, error } = await supabase.functions.invoke('push-winback-to-resend', {
-        body: { csv, templates },
+        body: { templates },
       });
       if (error) throw error;
       const added = data?.contacts?.added ?? 0;
       const skipped = data?.contacts?.skipped ?? 0;
       const okBroadcasts = (data?.broadcasts ?? []).filter((b: { broadcast_id?: string }) => b.broadcast_id).length;
-      toast.success(`Audience updated: +${added} added, ${skipped} skipped. ${okBroadcasts}/5 broadcast drafts created. Review & schedule in Resend.`);
+      toast.success(`Audience updated: +${added} added, ${skipped} skipped. ${okBroadcasts}/4 broadcast drafts created. Review & schedule in Resend.`);
       console.log('push-winback-to-resend result:', data);
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Failed to push to Resend';
@@ -376,7 +377,6 @@ export default function EmailSequences() {
       console.error(err);
     } finally {
       setPushing(false);
-      if (fileInputRef.current) fileInputRef.current.value = '';
     }
   };
 
@@ -408,23 +408,13 @@ export default function EmailSequences() {
             <p className="text-muted-foreground mt-1 text-sm md:text-base">Proven sequences for converting leads and re-engaging lapsed members.</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-2 shrink-0">
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept=".csv,text/csv"
-              className="hidden"
-              onChange={(e) => {
-                const f = e.target.files?.[0];
-                if (f) handlePushToResend(f);
-              }}
-            />
             <Button
               variant="outline"
-              onClick={() => fileInputRef.current?.click()}
+              onClick={handlePushToResend}
               disabled={pushing}
-              title="Upload winback CSV → creates Resend Audience + 5 broadcast drafts"
+              title="Push 37 cleaned contacts + 4 broadcast drafts to Resend"
             >
-              {pushing ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Upload className="h-4 w-4 mr-2" />}
+              {pushing ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Send className="h-4 w-4 mr-2" />}
               {pushing ? 'Pushing…' : 'Push Winback to Resend'}
             </Button>
             <Button variant="gold" onClick={handleSendPreviews} disabled={sending}>
