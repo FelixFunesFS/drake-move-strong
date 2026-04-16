@@ -29,6 +29,48 @@ interface Contact {
   last_name?: string;
 }
 
+// Cleaned win-back list (37 eligible former members, audit Jan 2026).
+// Used when no CSV is provided in the request body.
+const WINBACK_CONTACTS: Contact[] = [
+  { email: "abfootdoc@comcast.net", first_name: "Adam", last_name: "Brown" },
+  { email: "aimeejoh@aol.com", first_name: "Amy", last_name: "Kirshtein" },
+  { email: "acomfort2683@yahoo.com", first_name: "Andre", last_name: "Hinds" },
+  { email: "angspitz@gmail.com", first_name: "Angela", last_name: "Yu" },
+  { email: "ashli.golden@c4tm.net", first_name: "Ashli", last_name: "Golden" },
+  { email: "rebeccaroberts775@yahoo.com", first_name: "Becca", last_name: "Roberts" },
+  { email: "billpkent@gmail.com", first_name: "Bill", last_name: "Kent" },
+  { email: "billpappas@palmettoford.com", first_name: "Bill", last_name: "Pappas" },
+  { email: "blakemiller@charlestonheatingandair.com", first_name: "Blake", last_name: "Miller" },
+  { email: "importautomotivesolutions@yahoo.com", first_name: "Brad", last_name: "Baker" },
+  { email: "brian@uniqueconstructors.com", first_name: "Brian", last_name: "Cruze" },
+  { email: "clhuffman4@gmail.com", first_name: "Coy", last_name: "Huffman" },
+  { email: "coachcrafton@gmail.com", first_name: "Crafton", last_name: "Dicus" },
+  { email: "danicat31@gmail.com", first_name: "Danielle", last_name: "Goldston" },
+  { email: "zachandme@gmail.com", first_name: "Darcy", last_name: "Nelson" },
+  { email: "drdave@letssimplify.com", first_name: "David", last_name: "Albenberg" },
+  { email: "truebalancebodywork@gmail.com", first_name: "David", last_name: "Stowers" },
+  { email: "diajohnson1@gmail.com", first_name: "Dia", last_name: "Johnson" },
+  { email: "docbassett@gmail.com", first_name: "Dr. Eric", last_name: "Bassett" },
+  { email: "edwardcmorrison@gmail.com", first_name: "Edward", last_name: "Morrison" },
+  { email: "fallonsposato@gmail.com", first_name: "Fallon", last_name: "Sposato" },
+  { email: "gingerbrewton@hotmail.com", first_name: "Ginger", last_name: "Brewton" },
+  { email: "holly.rickards@gmail.com", first_name: "Holly", last_name: "Rickards" },
+  { email: "rocketman.petitpain@gmail.com", first_name: "Jason", last_name: "Petitpain" },
+  { email: "jard880@gmail.com", first_name: "Jonathan", last_name: "Ard" },
+  { email: "jordannas24@gmail.com", first_name: "Jordanna", last_name: "Segal" },
+  { email: "kateblake360@gmail.com", first_name: "Kate", last_name: "Ellesworth" },
+  { email: "lacey.ivey@yahoo.com", first_name: "Lacey", last_name: "Ivey" },
+  { email: "lahaddon0013@gmail.com", first_name: "Laura", last_name: "Haddon" },
+  { email: "lee.manigault@gmail.com", first_name: "Lee", last_name: "Manigault" },
+  { email: "martichitwood@aol.com", first_name: "Marti", last_name: "Chitwood" },
+  { email: "gibsonville@earthlink.net", first_name: "Mary Ellen", last_name: "Gibson" },
+  { email: "paula.mullen@citcomm.com", first_name: "Paula", last_name: "Mullen" },
+  { email: "rory@mywellnessmentor.com", first_name: "Rory", last_name: "Thomas" },
+  { email: "sdolven@msn.com", first_name: "Sarah", last_name: "Dolven" },
+  { email: "scottsnider@usa.net", first_name: "Scott", last_name: "Snider" },
+  { email: "sleppard@companionassociates.com", first_name: "Sharon", last_name: "Leppard" },
+];
+
 async function gateway(path: string, init: RequestInit, lovableKey: string, resendKey: string) {
   const res = await fetch(`${GATEWAY_URL}${path}`, {
     ...init,
@@ -84,12 +126,12 @@ Deno.serve(async (req) => {
     const { data: isAdmin } = await supabase.rpc("has_role", { _user_id: userData.user.id, _role: "admin" });
     if (!isAdmin) return new Response(JSON.stringify({ error: "Admin access required" }), { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } });
 
-    const { csv, templates } = await req.json() as { csv: string; templates: Record<string, string> };
-    if (!csv) throw new Error("CSV body is required");
+    const { csv, templates } = await req.json() as { csv?: string; templates: Record<string, string> };
     if (!templates) throw new Error("Templates object is required");
 
-    const contacts = parseCsv(csv);
-    if (contacts.length === 0) throw new Error("No valid contacts in CSV");
+    // If CSV is provided, parse it. Otherwise fall back to embedded cleaned list.
+    const contacts = csv ? parseCsv(csv) : WINBACK_CONTACTS;
+    if (contacts.length === 0) throw new Error("No valid contacts available");
 
     // 1. Find or create the audience
     const audiencesRes = await gateway("/audiences", { method: "GET" }, lovableKey, resendKey) as { data: Array<{ id: string; name: string }> };
