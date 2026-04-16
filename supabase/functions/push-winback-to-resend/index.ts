@@ -17,11 +17,10 @@ const AUDIENCE_NAME = "Drake Fitness — Winback 2026";
 
 // Win-back sequence definitions: subject + day label that maps to emailTemplates.ts
 const WINBACK_BROADCASTS = [
-  { dayLabel: "Day 0",  subject: "Hey — David here. We miss seeing you." },
-  { dayLabel: "Day 5",  subject: "What's new at the studio" },
-  { dayLabel: "Day 12", subject: "Mike's comeback story" },
-  { dayLabel: "Day 21", subject: "3 free classes + 50% off — on us" },
-  { dayLabel: "Day 35", subject: "The door's always open" },
+  { dayLabel: "Day 0",  subject: "We miss you at Drake Fitness" },
+  { dayLabel: "Day 4",  subject: "Let's make your comeback simple" },
+  { dayLabel: "Day 7",  subject: "From 'I fell off' to 'I'm back'" },
+  { dayLabel: "Day 12", subject: "Last call for your 3 free classes" },
 ];
 
 interface Contact {
