@@ -254,7 +254,7 @@ ${emailImage("studio-david-storefront.jpg", "David Drake at the Drake Fitness st
 </td></tr>
 </table>
 <p>No pressure, no contracts — just a chance to see how good it feels to train again with coaching you already know and trust.</p>
-${ctaButton("Claim My 3 Free Classes + 50% Off", "https://www.drake.fitness/welcome-back?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day0-saved-spot")}
+${ctaButton("Claim My 3 Free Classes + 50% Off", "https://www.drake.fitness/try-free-charleston?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day0-saved-spot")}
 <p>If you're not sure where to start, reply with your schedule and we'll recommend the best times.</p>
 ${signatureBlock(`See you soon,<br/><strong style="color:${DARK};">David &amp; the Drake Fitness team</strong>`)}
   `, "We saved you a spot — 3 free classes + 50% off your first month back."),
@@ -271,7 +271,7 @@ ${emailImage("david-coaching-form.jpg", "David Drake coaching a member on proper
 <li style="margin-bottom:10px;"><strong style="color:${DARK};">Then 50% off</strong> your first month back or your first package if it feels right</li>
 </ul>
 <p>You already know what it's like to train here — this is just your on-ramp back.</p>
-${ctaButton("Grab My 3 Free Classes + 50% Off", "https://www.drake.fitness/welcome-back?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day4-easy-comeback")}
+${ctaButton("Grab My 3 Free Classes + 50% Off", "https://www.drake.fitness/try-free-charleston?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day4-easy-comeback")}
 <p>Hit reply if you want us to recommend 2–3 specific class times based on your schedule.</p>
 ${signatureBlock(`— David`)}
   `, "You don't have to start over from zero. Here's your low-stress on-ramp back."),
@@ -292,7 +292,7 @@ ${emailImage("community-kettlebell-rack-pair.jpg", "Members training together wi
 </ul>
 <p>And remember, if you decide to stay, you still have <strong style="color:${DARK};">50% off your first month back or your first package</strong> waiting.</p>
 <p>This win-back offer is only for former members and won't be around forever.</p>
-${ctaButton("Use My 3 Free Classes + 50% Off", "https://www.drake.fitness/welcome-back?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day7-social-proof")}
+${ctaButton("Use My 3 Free Classes + 50% Off", "https://www.drake.fitness/try-free-charleston?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day7-social-proof")}
 <p>We'd genuinely love to see you in the studio again.</p>
 ${signatureBlock(`— David`)}
   `, "What other returning members are saying — and how to use your offer."),
@@ -318,7 +318,7 @@ ${emailImage("studio-nick-david-together.jpg", "Nick and David together at Drake
 <li style="margin-bottom:8px;">Pick your first class time</li>
 <li style="margin-bottom:8px;">Show up — we'll handle the coaching and the plan</li>
 </ol>
-${ctaButton("Activate My Offer Before It Expires", "https://www.drake.fitness/welcome-back?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day12-last-call")}
+${ctaButton("Activate My Offer Before It Expires", "https://www.drake.fitness/try-free-charleston?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day12-last-call")}
 <p>If it's truly not the season for you, no worries. But if a small part of you misses feeling strong and capable, we'd be honored to help you get that back.</p>
 ${signatureBlock(`— David &amp; the Drake Fitness team`)}
   `, "Last call — your 3 free classes + 50% off comeback offer expires soon."),
