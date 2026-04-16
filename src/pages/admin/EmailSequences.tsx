@@ -416,10 +416,31 @@ export default function EmailSequences() {
             <h1 className="text-2xl md:text-3xl font-hero font-bold text-foreground uppercase tracking-tight">Email Nurture Playbook</h1>
             <p className="text-muted-foreground mt-1 text-sm md:text-base">Proven sequences for converting leads and re-engaging lapsed members.</p>
           </div>
-          <Button variant="gold" onClick={handleSendPreviews} disabled={sending} className="shrink-0">
-            {sending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Send className="h-4 w-4 mr-2" />}
-            {sending ? 'Sending…' : 'Send Preview Emails'}
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-2 shrink-0">
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".csv,text/csv"
+              className="hidden"
+              onChange={(e) => {
+                const f = e.target.files?.[0];
+                if (f) handlePushToResend(f);
+              }}
+            />
+            <Button
+              variant="outline"
+              onClick={() => fileInputRef.current?.click()}
+              disabled={pushing}
+              title="Upload winback CSV → creates Resend Audience + 5 broadcast drafts"
+            >
+              {pushing ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Upload className="h-4 w-4 mr-2" />}
+              {pushing ? 'Pushing…' : 'Push Winback to Resend'}
+            </Button>
+            <Button variant="gold" onClick={handleSendPreviews} disabled={sending}>
+              {sending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Send className="h-4 w-4 mr-2" />}
+              {sending ? 'Sending…' : 'Send Preview Emails'}
+            </Button>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
