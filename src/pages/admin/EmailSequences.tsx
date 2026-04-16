@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { 
   Copy, Check, Mail, Clock, Heart, UserCheck, 
   TrendingUp, AlertCircle, Sparkles, ArrowRight,
-  Monitor, Smartphone, Moon, Send, Loader2, Eye, Upload
+  Monitor, Smartphone, Moon, Send, Loader2, Eye
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
@@ -347,7 +347,6 @@ function EmailPreviewDialog({ open, onOpenChange, sequenceKey, dayLabel, subject
 export default function EmailSequences() {
   const [sending, setSending] = useState(false);
   const [pushing, setPushing] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<{ open: boolean; seq: 'new-lead' | 'win-back'; dayLabel: string; subject: string }>({ open: false, seq: 'new-lead', dayLabel: '', subject: '' });
 
   const handlePushToResend = async () => {
