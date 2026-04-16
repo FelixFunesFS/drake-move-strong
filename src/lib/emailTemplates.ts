@@ -235,6 +235,8 @@ ${signatureBlock(`— David &amp; the Drake Fitness crew`)}
   `, "Your 3-class pass expires soon. Here's what members get next."),
 
   // ═══ WIN-BACK ═══
+  // UTM-tagged URLs for attribution
+  // Schedule: utm_campaign=winback-2026, utm_content varies per email
   "win-back-Day 0": wrap(`
 <p>Hey —</p>
 <p>It's David. I noticed it's been a while since we've seen you at the studio.</p>
