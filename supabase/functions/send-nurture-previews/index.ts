@@ -439,7 +439,6 @@ serve(async (req) => {
           subject: `[${email.sequence}] ${email.subject}`,
           html: email.html,
         }, lovableKey, resendKey);
-        });
         results.push({ subject: email.subject, sequence: email.sequence, status: "sent" });
       } catch (err) {
         const msg = err instanceof Error ? err.message : "Unknown error";
