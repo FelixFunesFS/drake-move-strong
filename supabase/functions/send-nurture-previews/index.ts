@@ -264,101 +264,111 @@ ${ctaButton("View Membership Options", "https://www.drake.fitness/pricing")}
     `, "Your 3-class pass expires soon. Here's what members get next."),
   },
 
-  // ═══ WIN-BACK SEQUENCE ═══
-  // 8. Day 0 — Warm re-engagement (plain text)
+  // ═══ WIN-BACK SEQUENCE (4-email) ═══
+  // Day 0 — We saved you a spot
   {
-    subject: "Hey — David here. We miss seeing you.",
-    previewText: "It's been a while — just wanted to say hey.",
+    subject: "We miss you at Drake Fitness",
+    previewText: "We saved you a spot — 3 free classes + 50% off your first month back.",
     sequence: "Win-Back",
     html: wrap(`
-<p>Hey —</p>
-<p>It's David. I noticed it's been a while since we've seen you at the studio.</p>
-<p>No pitch, no offer. I just wanted to say: the studio isn't the same without you. The crew asks about you.</p>
-<p>Whenever you're ready, we're here. Same address, same vibe, same community.</p>
+${sectionHeading("We Saved You a Spot")}
 ${emailImage("studio-david-storefront.jpg", "David Drake at the Drake Fitness storefront")}
-<p style="margin-top:24px;">— David Drake<br/>Drake Fitness<br/>(843) 817-5420</p>
-    `, "It's been a while — just wanted to say hey."),
-  },
-  // 9. Day 5 — What's new
-  {
-    subject: "What's new at the studio",
-    previewText: "A few things have changed since you were last here.",
-    sequence: "Win-Back",
-    html: wrap(`
-${sectionHeading("A Lot Has Happened")}
-${emailImage("studio-group-overhead.jpg", "Group overhead press class at Drake Fitness")}
-<p>Since you were last at the studio, we've been busy:</p>
-<ul style="padding-left:20px;margin:16px 0;">
-<li style="margin-bottom:10px;"><strong style="color:${DARK};">New class times</strong> — we added early morning and Saturday slots based on member feedback</li>
-<li style="margin-bottom:10px;"><strong style="color:${DARK};">Mobility programming</strong> — dedicated sessions to help you move better, not just harder</li>
-<li style="margin-bottom:10px;"><strong style="color:${DARK};">Advanced programming tracks</strong> — heavier loads, complex movements, periodized progression</li>
-<li style="margin-bottom:10px;"><strong style="color:${DARK};">Community events</strong> — monthly ruck walks, partner workouts, and more</li>
-<li style="margin-bottom:10px;"><strong style="color:${DARK};">Studio upgrades</strong> — new equipment and a refreshed training floor</li>
-</ul>
-<p>Come see for yourself.</p>
-${ctaButton("Check the New Schedule")}
-    `, "A few things have changed since you were last here."),
-  },
-  // 10. Day 12 — Comeback social proof
-  {
-    subject: "Mike's comeback story",
-    previewText: "He took 6 months off. Here's what happened when he came back.",
-    sequence: "Win-Back",
-    html: wrap(`
-${sectionHeading("He Almost Didn't Come Back")}
-${emailImage("community-kettlebell-rack-pair.jpg", "Members training together with kettlebells at Drake Fitness")}
-<p>Mike had been a regular — three classes a week, never missed a Saturday.</p>
-<p>Then life happened. A new job, a move across town, a few weeks that turned into six months.</p>
-<p>When he finally walked back in, he was nervous. "I thought everyone would be way ahead of me," he said.</p>
-<p>His first class back? He was winded. His grip gave out on the kettlebell swings. He scaled everything.</p>
-<p>And he loved it.</p>
-<p>Within two weeks, he was back to his working weights. Within a month, he hit a PR he'd been chasing before the break.</p>
-<blockquote style="border-left:4px solid ${GOLD};padding:12px 16px;margin:20px 0;background:#f9f7f2;border-radius:0 8px 8px 0;">
-<p style="color:${DARK};font-style:italic;margin:0;">"Walking back in was the hardest part. Once I was on the floor, it felt like I never left. David just said 'welcome back' and handed me a kettlebell."</p>
-<p style="font-size:13px;margin:8px 0 0;">— Mike R.</p>
-</blockquote>
-<p><strong style="color:${DARK};">It's never too late to walk back in.</strong></p>
-${ctaButton("Book a Class")}
-    `, "He took 6 months off. Here's what happened when he came back."),
-  },
-  // 11. Day 21 — Win-back offer
-  {
-    subject: "Come back for a week — on us",
-    previewText: "No commitment. No catch. Just come move with us for a week.",
-    sequence: "Win-Back",
-    html: wrap(`
-${sectionHeading("One Week. On the House.")}
-${emailImage("members-overhead-press-group.jpg", "Members doing overhead press in group class")}
-<p>I get it — coming back after a break feels like starting over. It's not. Your body remembers more than you think.</p>
+<p>Hi there —</p>
+<p>It's been a while since we've seen you at Drake Fitness in Avondale, but we still remember how hard you worked on those kettlebell and strength sessions.</p>
+<p>Because you've been part of our community before, we set aside something just for former members:</p>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:24px 0;border:2px solid ${GOLD};border-radius:12px;overflow:hidden;">
 <tr><td style="background:${GOLD};padding:12px 20px;">
-<h3 style="font-family:'Oswald',Arial,sans-serif;color:${DARK};margin:0;font-size:18px;">FREE COMEBACK WEEK</h3>
+<h3 style="font-family:'Oswald',Arial,sans-serif;color:${DARK};margin:0;font-size:18px;">FORMER MEMBER OFFER</h3>
 </td></tr>
 <tr><td style="padding:20px;">
-<p style="margin:0 0 8px;"><strong style="color:${DARK};">Unlimited classes for 7 days — no strings attached.</strong></p>
-<p style="margin:0 0 8px;font-size:14px;">✓ All group classes &bull; ✓ All skill levels &bull; ✓ No commitment</p>
-<p style="margin:0;font-size:13px;color:${MUTED};">Offer valid for 10 days from this email.</p>
+<p style="margin:0 0 8px;"><strong style="color:${DARK};">&#x2705; 3 free classes</strong> to ease back in</p>
+<p style="margin:0;"><strong style="color:${DARK};">&#x2705; 50% off your first month back or your first package</strong></p>
 </td></tr>
 </table>
-<p>Just one class. See how it feels.</p>
-${ctaButton("Claim Your Free Week")}
-<p style="font-size:14px;">— David Drake</p>
-    `, "No commitment. No catch. Just come move with us for a week."),
+<p>No pressure, no contracts — just a chance to see how good it feels to train again with coaching you already know and trust.</p>
+${ctaButton("Claim My 3 Free Classes + 50% Off", "https://www.drake.fitness/welcome-back?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day0-saved-spot")}
+<p>If you're not sure where to start, reply with your schedule and we'll recommend the best times.</p>
+<p style="font-size:14px;">See you soon,<br/>David &amp; the Drake Fitness team</p>
+    `, "We saved you a spot — 3 free classes + 50% off your first month back."),
   },
-  // 12. Day 35 — Soft close (plain text)
+  // Day 4 — Make it easy
   {
-    subject: "The door's always open",
-    previewText: "No pressure. Whenever you're ready, we'll be here.",
+    subject: "Let's make your comeback simple",
+    previewText: "You don't have to start over from zero. Here's your low-stress on-ramp back.",
     sequence: "Win-Back",
     html: wrap(`
-<p>Hey —</p>
-<p>This is the last email in this series, and I'll keep it short.</p>
-<p>There's no guilt trip. No countdown timer. No "last chance" gimmick.</p>
-<p>Whenever you're ready to move again — whether that's tomorrow or six months from now — we'll be here. Same studio, same crew, same energy.</p>
-<p>The door's always open.</p>
+${sectionHeading("Let's Make Your Comeback Simple")}
+${emailImage("david-coaching-form.jpg", "David Drake coaching a member on proper form")}
+<p>Hi there —</p>
+<p>Coming back to the gym can feel intimidating — especially if life, work, or injuries got in the way. At Drake Fitness, most of our members are 30–65 and juggling real-world stress, family, and careers, just like you.</p>
+<p>That's why your win-back offer is built to be low-stress and high-support:</p>
+<ul style="padding-left:20px;margin:16px 0;">
+<li style="margin-bottom:10px;"><strong style="color:${DARK};">3 free classes</strong> to reconnect with kettlebell strength + mobility</li>
+<li style="margin-bottom:10px;"><strong style="color:${DARK};">Plenty of coaching</strong> to modify around old aches, stiffness, or injuries</li>
+<li style="margin-bottom:10px;"><strong style="color:${DARK};">Then 50% off</strong> your first month back or your first package if it feels right</li>
+</ul>
+<p>You already know what it's like to train here — this is just your on-ramp back.</p>
+${ctaButton("Grab My 3 Free Classes + 50% Off", "https://www.drake.fitness/welcome-back?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day4-easy-comeback")}
+<p>Hit reply if you want us to recommend 2–3 specific class times based on your schedule.</p>
+<p style="font-size:14px;">— David</p>
+    `, "You don't have to start over from zero. Here's your low-stress on-ramp back."),
+  },
+  // Day 7 — Social proof + urgency
+  {
+    subject: "From 'I fell off' to 'I'm back'",
+    previewText: "What other returning members are saying — and how to use your offer.",
+    sequence: "Win-Back",
+    html: wrap(`
+${sectionHeading("From &ldquo;I Fell Off&rdquo; to &ldquo;I'm Back&rdquo;")}
+${emailImage("community-kettlebell-rack-pair.jpg", "Members training together with kettlebells at Drake Fitness")}
+<p>Hi there —</p>
+<p>A lot of our returning members in West Ashley and Avondale tell us the same thing:</p>
+<blockquote style="border-left:4px solid ${GOLD};padding:12px 16px;margin:20px 0;background:#f9f7f2;border-radius:0 8px 8px 0;">
+<p style="color:${DARK};font-style:italic;margin:0;">"I thought I'd be too out of shape to come back… but within a couple of classes I felt like myself again."</p>
+</blockquote>
+<p>When you use your 3 free classes, we'll help you:</p>
+<ul style="padding-left:20px;margin:16px 0;">
+<li style="margin-bottom:8px;"><strong style="color:${DARK};">Rebuild strength safely</strong> with kettlebell fundamentals</li>
+<li style="margin-bottom:8px;"><strong style="color:${DARK};">Improve mobility</strong> so daily life (stairs, kids, yardwork, travel) feels easier</li>
+<li style="margin-bottom:8px;"><strong style="color:${DARK};">Set a realistic plan</strong> that fits your current season of life</li>
+</ul>
+<p>And remember, if you decide to stay, you still have <strong style="color:${DARK};">50% off your first month back or your first package</strong> waiting.</p>
+<p>This win-back offer is only for former members and won't be around forever.</p>
+${ctaButton("Use My 3 Free Classes + 50% Off", "https://www.drake.fitness/welcome-back?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day7-social-proof")}
+<p>We'd genuinely love to see you in the studio again.</p>
+<p style="font-size:14px;">— David</p>
+    `, "What other returning members are saying — and how to use your offer."),
+  },
+  // Day 12 — Last-chance push
+  {
+    subject: "Last call for your 3 free classes",
+    previewText: "Last call — your 3 free classes + 50% off comeback offer expires soon.",
+    sequence: "Win-Back",
+    html: wrap(`
+${sectionHeading("Last Call for Your Comeback Offer")}
 ${emailImage("studio-nick-david-together.jpg", "Nick and David together at Drake Fitness")}
-<p style="margin-top:24px;">— David Drake<br/>Drake Fitness<br/>2 Avondale Ave, Charleston, SC 29407<br/>(843) 817-5420</p>
-    `, "No pressure. Whenever you're ready, we'll be here."),
+<p>Hi there —</p>
+<p>Quick reminder: your former-member comeback offer is about to expire:</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:24px 0;border:2px solid ${GOLD};border-radius:12px;overflow:hidden;">
+<tr><td style="background:${GOLD};padding:12px 20px;">
+<h3 style="font-family:'Oswald',Arial,sans-serif;color:${DARK};margin:0;font-size:18px;">&#x1F381; EXPIRES SOON</h3>
+</td></tr>
+<tr><td style="padding:20px;">
+<p style="margin:0 0 8px;"><strong style="color:${DARK};">3 free classes</strong></p>
+<p style="margin:0;"><strong style="color:${DARK};">+ 50% off your first month back or first package</strong></p>
+</td></tr>
+</table>
+<p>If you've been waiting for the "right time," this is it. <strong style="color:${DARK};">You don't need to be in shape first</strong> — that's what we're here for. You just need to take the first step back through the door.</p>
+<p>Here's how to use it:</p>
+<ol style="padding-left:20px;margin:16px 0;">
+<li style="margin-bottom:8px;">Click the link below</li>
+<li style="margin-bottom:8px;">Pick your first class time</li>
+<li style="margin-bottom:8px;">Show up — we'll handle the coaching and the plan</li>
+</ol>
+${ctaButton("Activate My Offer Before It Expires", "https://www.drake.fitness/welcome-back?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day12-last-call")}
+<p>If it's truly not the season for you, no worries. But if a small part of you misses feeling strong and capable, we'd be honored to help you get that back.</p>
+<p style="font-size:14px;">— David &amp; the Drake Fitness team</p>
+    `, "Last call — your 3 free classes + 50% off comeback offer expires soon."),
   },
 ];
 
