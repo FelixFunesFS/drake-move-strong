@@ -40,7 +40,7 @@ const RECIPIENTS = [
   "envision@mkqconsulting.com",
   "felixfunes2001.ff@gmail.com",
 ];
-const FROM = "Drake Fitness <noreply@www.drake.fitness>";
+const FROM = "Drake Fitness <onboarding@resend.dev>";
 
 const EMAIL_IMAGE_BASE = "https://drake-move-strong.lovable.app/images/email";
 
