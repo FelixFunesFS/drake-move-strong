@@ -1,5 +1,27 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { Resend } from "@lovable.dev/email-js";
+
+const GATEWAY_URL = "https://connector-gateway.lovable.dev/resend";
+
+async function sendViaGateway(
+  payload: { from: string; to: string[]; subject: string; html: string },
+  lovableKey: string,
+  resendKey: string,
+) {
+  const res = await fetch(`${GATEWAY_URL}/emails`, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${lovableKey}`,
+      "X-Connection-Api-Key": resendKey,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(`Resend send failed [${res.status}]: ${JSON.stringify(body)}`);
+  }
+  return body;
+}
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
