@@ -258,7 +258,7 @@ ${emailImage("studio-group-overhead.jpg", "Group overhead press class at Drake F
 <li style="margin-bottom:10px;"><strong style="color:${DARK};">Studio upgrades</strong> — new equipment and a refreshed training floor</li>
 </ul>
 <p>Come see for yourself.</p>
-${ctaButton("Check the New Schedule")}
+${ctaButton("Check the New Schedule", "https://www.drake.fitness/schedule?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day5-whats-new")}
   `, "A few things have changed since you were last here."),
 
   "win-back-Day 12": wrap(`
