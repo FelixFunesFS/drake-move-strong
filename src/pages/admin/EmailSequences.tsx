@@ -436,6 +436,10 @@ export default function EmailSequences() {
               {pushing ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Send className="h-4 w-4 mr-2" />}
               {pushing ? 'Pushing…' : 'Push Winback to Resend'}
             </Button>
+            <Button variant="outline" onClick={handleSendWinbackPreview} disabled={sending} title="Send the 4 win-back drafts to a single address">
+              {sending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Heart className="h-4 w-4 mr-2" />}
+              Send Win-Back Preview
+            </Button>
             <Button variant="gold" onClick={handleSendPreviews} disabled={sending}>
               {sending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Send className="h-4 w-4 mr-2" />}
               {sending ? 'Sending…' : 'Send Preview Emails'}
