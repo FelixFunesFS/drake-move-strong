@@ -1,31 +1,52 @@
 
 
-## Generate Drake Fitness Brand Style Guide (PDF)
+## Re-aligning the win-back plan to your actual list
 
-A professionally designed PDF document showcasing all brand design tokens, typography, color palette, component standards, and usage guidelines — extracted from the live homepage and codebase.
+### What you're telling me
+- The CSV has **67 rows with real data**, not 281
+- My earlier read of "281 rows" likely included blank/spacer rows, header artifacts, or a system export footer
+- You want to know: **what is the previous tool actually counting, and is anything else being included that shouldn't be?**
 
-### Contents (Pages)
+### Likely sources of the 281 vs. 67 gap
+1. **Empty rows** — PunchPass/Google Contacts exports often pad with hundreds of blank rows
+2. **Rows with only a phone number** (no email) — useless for an email campaign
+3. **Rows tagged `Current clients` / `KB Strong Membership`** — active members, must be excluded
+4. **Rows with `Email Marketing Permission: false` or `Do Not Email: true`** — legally excluded
+5. **Duplicate emails** across `E-mail Address`, `E-mail 2`, `E-mail 3` columns
+6. **Non-contact rows** — e.g. business contacts, vendors, family members mixed into the export
 
-1. **Cover** — Drake Fitness logo area, "Brand Style Guide", tagline, date
-2. **Color Palette** — All brand colors with hex/HSL values, usage notes:
-   - Primary Teal #0B4A52, Soft Teal #10757E, Accent Gold #F2B544
-   - Dark #1A1A1A, Light #F4F4F4, Cool Gray #DDE1E4, Slate Gray #6A6A6A, White
-   - Gradient definitions (hero, CTA)
-3. **Typography** — Font families and usage rules:
-   - Oswald (font-hero): uppercase headings, hero titles
-   - Montserrat (font-heading): mixed-case headings
-   - Inter (font-body): body text, UI
-   - Size scale from hero (5xl–8xl) down to body (base)
-4. **Button & CTA Styles** — Primary (gold), default (teal), outline, ghost variants with border-radius 10px, uppercase tracking
-5. **Card & Component Standards** — White bg, rounded-xl, shadow-card, icon boxes in Cool Gray with teal icons
-6. **Spacing & Layout** — Container max-width 1240px, section padding, slanted dividers, mobile-first grid patterns
-7. **Photography & Imagery** — Ken Burns animation, dark overlays (75–85%), object positioning rules, WebP format
-8. **Brand Voice & Messaging** — Key phrases (Move Better, Live Stronger, Stay Pain-Free), eyebrow style, CTA copy patterns
+### What I'll do (once approved → default mode)
 
-### Technical approach
-- Use Python `reportlab` to generate a multi-page PDF
-- Render color swatches as drawn rectangles with hex labels
-- Use system-safe fonts (Helvetica Bold for headings, Helvetica for body) since brand fonts aren't available in reportlab
-- Output to `/mnt/documents/drake-fitness-style-guide.pdf`
-- QA: convert to images and inspect each page
+**Step 1 — Audit script (read-only, ~1 min)**
+Run a Python audit on `/tmp/contacts.csv` that prints a clear breakdown:
+```
+Total rows in file:          XXX
+  - Completely empty rows:   XXX
+  - Rows with no email:      XXX
+  - Rows with email:         XXX
+    - Tagged "Current":      XXX  (excluded)
+    - Marketing opt-out:     XXX  (excluded)
+    - Duplicates:            XXX  (deduped)
+    - ✅ Eligible for winback: XXX
+```
+This confirms whether your "67 with data" matches what I count, and tells us exactly how many people the campaign actually reaches.
+
+**Step 2 — Segment the eligible list**
+Bucket the eligible contacts by recency of last attendance:
+- **Hot** (visited in last 12 mo)
+- **Warm** (1–3 yrs ago)
+- **Cold** (3+ yrs or unknown)
+
+**Step 3 — Output cleaned CSV**
+Save `/mnt/documents/winback-list-cleaned.csv` with: `email, first_name, last_name, last_attendance, attendances_count, segment` — ready to upload to Resend Audiences.
+
+**Step 4 — Show you the audit summary in chat**
+You'll see exactly how many people are in each bucket before we move on to template updates and the landing page.
+
+### Revised conversion expectation
+- If true eligible list is ~50–60 people, **10% = 5–6 conversions** is still realistic
+- If it's smaller (e.g. 30), you'll want to combine with paid retargeting or SMS to hit a meaningful number
+
+### Recommendation
+Approve this and I'll run the audit first — no template or page changes yet. Once we know the real eligible count, we'll decide whether to proceed with the full 5-email sequence or a tighter 2–3 email blast (better fit for a small warm list).
 
