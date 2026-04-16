@@ -1,5 +1,5 @@
 // Pushes the cleaned winback contact list into a Resend Audience and creates
-// 5 broadcast drafts (one per win-back template). Drafts are NOT scheduled —
+// 4 broadcast drafts (one per win-back template). Drafts are NOT scheduled —
 // the admin reviews and schedules send times in the Resend dashboard.
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
