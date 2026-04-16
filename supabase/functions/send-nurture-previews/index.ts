@@ -400,9 +400,10 @@ serve(async (req) => {
   }
 
   try {
-    const apiKey = Deno.env.get("LOVABLE_API_KEY");
-    if (!apiKey) {
-      throw new Error("LOVABLE_API_KEY is not configured");
+    const lovableKey = Deno.env.get("LOVABLE_API_KEY");
+    const resendKey = Deno.env.get("RESEND_API_KEY");
+    if (!lovableKey || !resendKey) {
+      throw new Error("LOVABLE_API_KEY or RESEND_API_KEY is not configured");
     }
 
     // Optional body: { to?: string, sequence?: "welcome" | "win-back" | "new-lead" }
@@ -428,16 +429,16 @@ serve(async (req) => {
       }
     }
 
-    const resend = new Resend(apiKey);
     const results: { subject: string; sequence: string; status: string; error?: string }[] = [];
 
     for (const email of filtered) {
       try {
-        await resend.emails.send({
+        await sendViaGateway({
           from: FROM,
           to,
           subject: `[${email.sequence}] ${email.subject}`,
           html: email.html,
+        }, lovableKey, resendKey);
         });
         results.push({ subject: email.subject, sequence: email.sequence, status: "sent" });
       } catch (err) {
