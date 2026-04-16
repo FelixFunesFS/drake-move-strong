@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { 
   Copy, Check, Mail, Clock, Heart, UserCheck, 
   TrendingUp, AlertCircle, Sparkles, ArrowRight,
-  Monitor, Smartphone, Moon, Send, Loader2, Eye
+  Monitor, Smartphone, Moon, Send, Loader2, Eye, Upload
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
@@ -355,7 +355,39 @@ function EmailPreviewDialog({ open, onOpenChange, sequenceKey, dayLabel, subject
 
 export default function EmailSequences() {
   const [sending, setSending] = useState(false);
+  const [pushing, setPushing] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<{ open: boolean; seq: 'new-lead' | 'win-back'; dayLabel: string; subject: string }>({ open: false, seq: 'new-lead', dayLabel: '', subject: '' });
+
+  const handlePushToResend = async (file: File) => {
+    setPushing(true);
+    try {
+      const csv = await file.text();
+      // Build template map: { "Day 0": "<html>...", ... }
+      const dayLabels = ['Day 0', 'Day 5', 'Day 12', 'Day 21', 'Day 35'];
+      const templates: Record<string, string> = {};
+      for (const d of dayLabels) {
+        const html = getEmailPreviewHtml('win-back', d);
+        if (html) templates[d] = html;
+      }
+      const { data, error } = await supabase.functions.invoke('push-winback-to-resend', {
+        body: { csv, templates },
+      });
+      if (error) throw error;
+      const added = data?.contacts?.added ?? 0;
+      const skipped = data?.contacts?.skipped ?? 0;
+      const okBroadcasts = (data?.broadcasts ?? []).filter((b: { broadcast_id?: string }) => b.broadcast_id).length;
+      toast.success(`Audience updated: +${added} added, ${skipped} skipped. ${okBroadcasts}/5 broadcast drafts created. Review & schedule in Resend.`);
+      console.log('push-winback-to-resend result:', data);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Failed to push to Resend';
+      toast.error(msg);
+      console.error(err);
+    } finally {
+      setPushing(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  };
 
   const handleSendPreviews = async () => {
     setSending(true);
