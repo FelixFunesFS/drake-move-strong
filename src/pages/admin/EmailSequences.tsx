@@ -395,6 +395,25 @@ export default function EmailSequences() {
     }
   };
 
+  const handleSendWinbackPreview = async () => {
+    const to = window.prompt('Send 4 win-back previews to:', 'felixfunes2001.ff@gmail.com');
+    if (!to || !to.includes('@')) return;
+    setSending(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('send-nurture-previews', {
+        body: { to, sequence: 'win-back' },
+      });
+      if (error) throw error;
+      toast.success(`${data.sent} win-back previews sent to ${to}`);
+      if (data.failed > 0) toast.warning(`${data.failed} emails failed to send.`);
+    } catch (err) {
+      toast.error('Failed to send win-back previews.');
+      console.error(err);
+    } finally {
+      setSending(false);
+    }
+  };
+
   const handlePreview = (seq: 'new-lead' | 'win-back', dayLabel: string, subject: string) => {
     setPreview({ open: true, seq, dayLabel, subject });
   };
