@@ -395,6 +395,25 @@ export default function EmailSequences() {
     }
   };
 
+  const handleSendWinbackPreview = async () => {
+    const to = window.prompt('Send 4 win-back previews to:', 'felixfunes2001.ff@gmail.com');
+    if (!to || !to.includes('@')) return;
+    setSending(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('send-nurture-previews', {
+        body: { to, sequence: 'win-back' },
+      });
+      if (error) throw error;
+      toast.success(`${data.sent} win-back previews sent to ${to}`);
+      if (data.failed > 0) toast.warning(`${data.failed} emails failed to send.`);
+    } catch (err) {
+      toast.error('Failed to send win-back previews.');
+      console.error(err);
+    } finally {
+      setSending(false);
+    }
+  };
+
   const handlePreview = (seq: 'new-lead' | 'win-back', dayLabel: string, subject: string) => {
     setPreview({ open: true, seq, dayLabel, subject });
   };
@@ -416,6 +435,10 @@ export default function EmailSequences() {
             >
               {pushing ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Send className="h-4 w-4 mr-2" />}
               {pushing ? 'Pushing…' : 'Push Winback to Resend'}
+            </Button>
+            <Button variant="outline" onClick={handleSendWinbackPreview} disabled={sending} title="Send the 4 win-back drafts to a single address">
+              {sending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Heart className="h-4 w-4 mr-2" />}
+              Send Win-Back Preview
             </Button>
             <Button variant="gold" onClick={handleSendPreviews} disabled={sending}>
               {sending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Send className="h-4 w-4 mr-2" />}

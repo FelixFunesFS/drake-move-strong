@@ -1,5 +1,27 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { Resend } from "@lovable.dev/email-js";
+
+const GATEWAY_URL = "https://connector-gateway.lovable.dev/resend";
+
+async function sendViaGateway(
+  payload: { from: string; to: string[]; subject: string; html: string },
+  lovableKey: string,
+  resendKey: string,
+) {
+  const res = await fetch(`${GATEWAY_URL}/emails`, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${lovableKey}`,
+      "X-Connection-Api-Key": resendKey,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(`Resend send failed [${res.status}]: ${JSON.stringify(body)}`);
+  }
+  return body;
+}
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -18,7 +40,7 @@ const RECIPIENTS = [
   "envision@mkqconsulting.com",
   "felixfunes2001.ff@gmail.com",
 ];
-const FROM = "Drake Fitness <noreply@www.drake.fitness>";
+const FROM = "Drake Fitness <onboarding@resend.dev>";
 
 const EMAIL_IMAGE_BASE = "https://drake-move-strong.lovable.app/images/email";
 
@@ -378,22 +400,45 @@ serve(async (req) => {
   }
 
   try {
-    const apiKey = Deno.env.get("LOVABLE_API_KEY");
-    if (!apiKey) {
-      throw new Error("LOVABLE_API_KEY is not configured");
+    const lovableKey = Deno.env.get("LOVABLE_API_KEY");
+    const resendKey = Deno.env.get("RESEND_API_KEY");
+    if (!lovableKey || !resendKey) {
+      throw new Error("LOVABLE_API_KEY or RESEND_API_KEY is not configured");
     }
 
-    const resend = new Resend(apiKey);
+    // Optional body: { to?: string, sequence?: "welcome" | "win-back" | "new-lead" }
+    let to: string[] = RECIPIENTS;
+    let filtered = emails;
+
+    if (req.method === "POST") {
+      try {
+        const body = await req.json().catch(() => ({}));
+        if (body && typeof body.to === "string" && body.to.includes("@")) {
+          to = [body.to];
+        }
+        if (body && typeof body.sequence === "string") {
+          const s = body.sequence.toLowerCase();
+          if (s === "win-back" || s === "winback") {
+            filtered = emails.filter((e) => e.sequence === "Win-Back");
+          } else if (s === "welcome" || s === "new-lead" || s === "newlead") {
+            filtered = emails.filter((e) => e.sequence === "New Lead");
+          }
+        }
+      } catch (_) {
+        // ignore body parse errors, use defaults
+      }
+    }
+
     const results: { subject: string; sequence: string; status: string; error?: string }[] = [];
 
-    for (const email of emails) {
+    for (const email of filtered) {
       try {
-        await resend.emails.send({
+        await sendViaGateway({
           from: FROM,
-          to: RECIPIENTS,
+          to,
           subject: `[${email.sequence}] ${email.subject}`,
           html: email.html,
-        });
+        }, lovableKey, resendKey);
         results.push({ subject: email.subject, sequence: email.sequence, status: "sent" });
       } catch (err) {
         const msg = err instanceof Error ? err.message : "Unknown error";
@@ -405,7 +450,7 @@ serve(async (req) => {
     const failed = results.filter((r) => r.status === "failed").length;
 
     return new Response(
-      JSON.stringify({ sent, failed, total: emails.length, results }),
+      JSON.stringify({ sent, failed, total: filtered.length, recipients: to, results }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (error) {
