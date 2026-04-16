@@ -275,7 +275,7 @@ ${emailImage("community-kettlebell-rack-pair.jpg", "Members training together wi
 <p style="font-size:13px;margin:8px 0 0;">— Mike R.</p>
 </blockquote>
 <p><strong style="color:${DARK};">It's never too late to walk back in.</strong></p>
-${ctaButton("Book a Class")}
+${ctaButton("Book a Class", "https://www.drake.fitness/schedule?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day12-comeback-story")}
   `, "He took 6 months off. Here's what happened when he came back."),
 
   "win-back-Day 21": wrap(`
