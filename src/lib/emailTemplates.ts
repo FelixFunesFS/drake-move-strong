@@ -235,6 +235,8 @@ ${signatureBlock(`— David &amp; the Drake Fitness crew`)}
   `, "Your 3-class pass expires soon. Here's what members get next."),
 
   // ═══ WIN-BACK ═══
+  // UTM-tagged URLs for attribution
+  // Schedule: utm_campaign=winback-2026, utm_content varies per email
   "win-back-Day 0": wrap(`
 <p>Hey —</p>
 <p>It's David. I noticed it's been a while since we've seen you at the studio.</p>
@@ -256,7 +258,7 @@ ${emailImage("studio-group-overhead.jpg", "Group overhead press class at Drake F
 <li style="margin-bottom:10px;"><strong style="color:${DARK};">Studio upgrades</strong> — new equipment and a refreshed training floor</li>
 </ul>
 <p>Come see for yourself.</p>
-${ctaButton("Check the New Schedule")}
+${ctaButton("Check the New Schedule", "https://www.drake.fitness/schedule?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day5-whats-new")}
   `, "A few things have changed since you were last here."),
 
   "win-back-Day 12": wrap(`
@@ -273,27 +275,28 @@ ${emailImage("community-kettlebell-rack-pair.jpg", "Members training together wi
 <p style="font-size:13px;margin:8px 0 0;">— Mike R.</p>
 </blockquote>
 <p><strong style="color:${DARK};">It's never too late to walk back in.</strong></p>
-${ctaButton("Book a Class")}
+${ctaButton("Book a Class", "https://www.drake.fitness/schedule?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day12-comeback-story")}
   `, "He took 6 months off. Here's what happened when he came back."),
 
   "win-back-Day 21": wrap(`
-${sectionHeading("One Week. On the House.")}
+${sectionHeading("3 Free Classes + 50% Off — On Us")}
 ${emailImage("members-overhead-press-group.jpg", "Members doing overhead press in group class")}
 <p>I get it — coming back after a break feels like starting over. It's not. Your body remembers more than you think.</p>
+<p>So here's an offer to make the first step easy. <strong style="color:${DARK};">Charleston locals only.</strong></p>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:24px 0;border:2px solid ${GOLD};border-radius:12px;overflow:hidden;">
 <tr><td style="background:${GOLD};padding:12px 20px;">
-<h3 style="font-family:'Oswald',Helvetica,Arial,sans-serif;color:${DARK};margin:0;font-size:18px;">FREE COMEBACK WEEK</h3>
+<h3 style="font-family:'Oswald',Helvetica,Arial,sans-serif;color:${DARK};margin:0;font-size:18px;">YOUR COMEBACK OFFER</h3>
 </td></tr>
 <tr><td style="padding:20px;font-size:16px;line-height:1.6;color:${MUTED};mso-line-height-rule:exactly;">
-<p style="margin:0 0 8px;"><strong style="color:${DARK};">Unlimited classes for 7 days — no strings attached.</strong></p>
-<p style="margin:0 0 8px;font-size:14px;">&#x2713; All group classes &bull; &#x2713; All skill levels &bull; &#x2713; No commitment</p>
-<p style="margin:0;font-size:13px;color:${MUTED};">Offer valid for 10 days from this email.</p>
+<p style="margin:0 0 12px;"><strong style="color:${DARK};font-size:18px;">3 Free Classes</strong><br/><span style="font-size:14px;">Come move with us — no commitment, no catch.</span></p>
+<p style="margin:0 0 12px;"><strong style="color:${DARK};font-size:18px;">Then 50% Off</strong><br/><span style="font-size:14px;">Your first month of membership <strong>OR</strong> any class package.</span></p>
+<p style="margin:12px 0 0;font-size:13px;color:${DARK};"><strong>⏰ Expires in 10 days.</strong> Charleston locals only.</p>
 </td></tr>
 </table>
-<p>Just one class. See how it feels.</p>
-${ctaButton("Claim Your Free Week")}
+<p>Just one class. See how it feels. The rest takes care of itself.</p>
+${ctaButton("Claim My 3 Free Classes", "https://www.drake.fitness/welcome-back?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day21-offer")}
 ${signatureBlock(`— David Drake`)}
-  `, "No commitment. No catch. Just come move with us for a week."),
+  `, "3 free classes + 50% off your first month or package. Expires in 10 days."),
 
   "win-back-Day 35": wrap(`
 <p>Hey —</p>
