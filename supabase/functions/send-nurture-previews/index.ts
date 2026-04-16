@@ -383,14 +383,37 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
+    // Optional body: { to?: string, sequence?: "welcome" | "win-back" | "new-lead" }
+    let to: string[] = RECIPIENTS;
+    let filtered = emails;
+
+    if (req.method === "POST") {
+      try {
+        const body = await req.json().catch(() => ({}));
+        if (body && typeof body.to === "string" && body.to.includes("@")) {
+          to = [body.to];
+        }
+        if (body && typeof body.sequence === "string") {
+          const s = body.sequence.toLowerCase();
+          if (s === "win-back" || s === "winback") {
+            filtered = emails.filter((e) => e.sequence === "Win-Back");
+          } else if (s === "welcome" || s === "new-lead" || s === "newlead") {
+            filtered = emails.filter((e) => e.sequence === "New Lead");
+          }
+        }
+      } catch (_) {
+        // ignore body parse errors, use defaults
+      }
+    }
+
     const resend = new Resend(apiKey);
     const results: { subject: string; sequence: string; status: string; error?: string }[] = [];
 
-    for (const email of emails) {
+    for (const email of filtered) {
       try {
         await resend.emails.send({
           from: FROM,
-          to: RECIPIENTS,
+          to,
           subject: `[${email.sequence}] ${email.subject}`,
           html: email.html,
         });
@@ -405,7 +428,7 @@ serve(async (req) => {
     const failed = results.filter((r) => r.status === "failed").length;
 
     return new Response(
-      JSON.stringify({ sent, failed, total: emails.length, results }),
+      JSON.stringify({ sent, failed, total: filtered.length, recipients: to, results }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (error) {
