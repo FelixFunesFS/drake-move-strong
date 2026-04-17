@@ -29,20 +29,28 @@ interface Contact {
   last_name?: string;
 }
 
-// Cleaned win-back list (37 eligible former members, audit Jan 2026).
+// Cleaned win-back list (55 eligible former members, audit re-run from contacts_1-2.csv col J).
+// Excluded: 6 contacts tagged "Current clients" + 5 phone-only contacts (SMS sequence).
 // Used when no CSV is provided in the request body.
 const WINBACK_CONTACTS: Contact[] = [
   { email: "abfootdoc@comcast.net", first_name: "Adam", last_name: "Brown" },
+  { email: "alison@liollio.com", first_name: "Alison", last_name: "Dawson" },
   { email: "aimeejoh@aol.com", first_name: "Amy", last_name: "Kirshtein" },
   { email: "acomfort2683@yahoo.com", first_name: "Andre", last_name: "Hinds" },
   { email: "angspitz@gmail.com", first_name: "Angela", last_name: "Yu" },
+  { email: "paradiseannie@yahoo.com", first_name: "Annie", last_name: "Paradise" },
   { email: "ashli.golden@c4tm.net", first_name: "Ashli", last_name: "Golden" },
+  { email: "bdsilveston@gmail.com", first_name: "Barbara", last_name: "Silveston" },
   { email: "rebeccaroberts775@yahoo.com", first_name: "Becca", last_name: "Roberts" },
   { email: "billpkent@gmail.com", first_name: "Bill", last_name: "Kent" },
   { email: "billpappas@palmettoford.com", first_name: "Bill", last_name: "Pappas" },
   { email: "blakemiller@charlestonheatingandair.com", first_name: "Blake", last_name: "Miller" },
   { email: "importautomotivesolutions@yahoo.com", first_name: "Brad", last_name: "Baker" },
+  { email: "duddycriscuolo@gmail.com", first_name: "Brian", last_name: "Criscuolo" },
   { email: "brian@uniqueconstructors.com", first_name: "Brian", last_name: "Cruze" },
+  { email: "crleepson@gmail.com", first_name: "Cara", last_name: "Leepson" },
+  { email: "casey_vanvalkenburgh@hotmail.com", first_name: "Casey", last_name: "Van Valkenburgh" },
+  { email: "christinemary12@gmail.com", first_name: "Christine", last_name: "Whiteley" },
   { email: "clhuffman4@gmail.com", first_name: "Coy", last_name: "Huffman" },
   { email: "coachcrafton@gmail.com", first_name: "Crafton", last_name: "Dicus" },
   { email: "danicat31@gmail.com", first_name: "Danielle", last_name: "Goldston" },
@@ -51,24 +59,35 @@ const WINBACK_CONTACTS: Contact[] = [
   { email: "truebalancebodywork@gmail.com", first_name: "David", last_name: "Stowers" },
   { email: "diajohnson1@gmail.com", first_name: "Dia", last_name: "Johnson" },
   { email: "docbassett@gmail.com", first_name: "Dr. Eric", last_name: "Bassett" },
+  { email: "dylan.mauerhan@advintagedistributing.com", first_name: "Dylan", last_name: "Mauerhan" },
   { email: "edwardcmorrison@gmail.com", first_name: "Edward", last_name: "Morrison" },
   { email: "fallonsposato@gmail.com", first_name: "Fallon", last_name: "Sposato" },
+  { email: "gerry.lee.schmidt@gmail.com", first_name: "Gerry", last_name: "Schmidt" },
   { email: "gingerbrewton@hotmail.com", first_name: "Ginger", last_name: "Brewton" },
   { email: "holly.rickards@gmail.com", first_name: "Holly", last_name: "Rickards" },
   { email: "rocketman.petitpain@gmail.com", first_name: "Jason", last_name: "Petitpain" },
+  { email: "follybeach@shakasurfschool.com", first_name: "Jenny", last_name: "Brown" },
+  { email: "john.gaskins@mac.com", first_name: "John", last_name: "Gaskins" },
   { email: "jard880@gmail.com", first_name: "Jonathan", last_name: "Ard" },
   { email: "jordannas24@gmail.com", first_name: "Jordanna", last_name: "Segal" },
   { email: "kateblake360@gmail.com", first_name: "Kate", last_name: "Ellesworth" },
+  { email: "kelly.hylton@gmail.com", first_name: "Kelly", last_name: "Hylton" },
   { email: "lacey.ivey@yahoo.com", first_name: "Lacey", last_name: "Ivey" },
   { email: "lahaddon0013@gmail.com", first_name: "Laura", last_name: "Haddon" },
   { email: "lee.manigault@gmail.com", first_name: "Lee", last_name: "Manigault" },
+  { email: "mark_gillispie@yahoo.com", first_name: "Mark", last_name: "Gillispie" },
   { email: "martichitwood@aol.com", first_name: "Marti", last_name: "Chitwood" },
   { email: "gibsonville@earthlink.net", first_name: "Mary Ellen", last_name: "Gibson" },
+  { email: "mikesnowfilms@gmail.com", first_name: "Mike", last_name: "Snow" },
+  { email: "n.roskill@icloud.com", first_name: "Nicole", last_name: "Roskill" },
   { email: "paula.mullen@citcomm.com", first_name: "Paula", last_name: "Mullen" },
   { email: "rory@mywellnessmentor.com", first_name: "Rory", last_name: "Thomas" },
+  { email: "rwballou@me.com", first_name: "Ruth", last_name: "Ballou" },
+  { email: "sl.chekansky@gmail.com", first_name: "Sarah", last_name: "Chekansky" },
   { email: "sdolven@msn.com", first_name: "Sarah", last_name: "Dolven" },
   { email: "scottsnider@usa.net", first_name: "Scott", last_name: "Snider" },
   { email: "sleppard@companionassociates.com", first_name: "Sharon", last_name: "Leppard" },
+  { email: "taylor@hometeambbq.com", first_name: "Taylor", last_name: "Garrigan" },
 ];
 
 async function gateway(path: string, init: RequestInit, lovableKey: string, resendKey: string) {
