@@ -29,10 +29,16 @@ interface Contact {
   last_name?: string;
 }
 
-// Cleaned win-back list (55 eligible former members, audit re-run from contacts_1-2.csv col J).
-// Excluded: 6 contacts tagged "Current clients" + 5 phone-only contacts (SMS sequence).
+// Cleaned win-back list (61 eligible former members, current-client filter removed per user request).
+// Excluded: 5 phone-only contacts (SMS sequence): Brian Vaughn, Lorraine Jeter, Rhett Thomas, Susan Lozier, Tina Campbell.
 // Used when no CSV is provided in the request body.
 const WINBACK_CONTACTS: Contact[] = [
+  { email: "halanford@gmail.com", first_name: "Allison", last_name: "Lanford" },
+  { email: "lancaster.carolyn@gmail.com", first_name: "Carolyn", last_name: "Lancaster" },
+  { email: "jholtproperties@gmail.com", first_name: "Jonathan", last_name: "Holt" },
+  { email: "nmontgomery.sportsmassage@gmail.com", first_name: "Nancy", last_name: "Montgomery" },
+  { email: "sarahokelley@yahoo.com", first_name: "Sarah", last_name: "O'Kelley" },
+  { email: "rolfersue@gmail.com", first_name: "Sue", last_name: "Boatwright" },
   { email: "abfootdoc@comcast.net", first_name: "Adam", last_name: "Brown" },
   { email: "alison@liollio.com", first_name: "Alison", last_name: "Dawson" },
   { email: "aimeejoh@aol.com", first_name: "Amy", last_name: "Kirshtein" },
