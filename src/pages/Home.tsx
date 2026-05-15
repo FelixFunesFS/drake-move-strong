@@ -23,6 +23,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import TestimonialCard from "@/components/TestimonialCard";
 import { getStaggerDelay } from "@/lib/motionConfig";
 import CommunityReasonsSection from "@/components/CommunityReasonsSection";
+import CommunityClassInvite from "@/components/CommunityClassInvite";
 import { FEATURED_REVIEWS } from "@/data/reviews";
 import { TodayClassesBanner } from "@/components/schedule/TodayClassesBanner";
 // New authentic training photos
