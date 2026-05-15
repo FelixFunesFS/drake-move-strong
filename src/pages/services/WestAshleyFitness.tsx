@@ -299,7 +299,7 @@ export default function WestAshleyFitness() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 mt-6 md:mt-8 text-primary-foreground/80 text-sm md:text-base">
                 <div className="flex items-center gap-2">
                   <Check className="text-accent h-4 w-4 md:h-5 md:w-5" />
-                  <span>No Commitment</span>
+                  <span>50% Off Month One</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="text-accent h-4 w-4 md:h-5 md:w-5" />
