@@ -44,33 +44,7 @@ const getReserveUrl = (content: string) =>
 const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/place/?q=place_id:ChIJxVcMH1x5_ogR0ZGJ9vE38KA";
 
-/** Compute the next 1st Saturday of the month */
-function getNextFirstSaturday(): Date {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth();
-
-  // Find 1st Saturday of current month
-  const first = new Date(year, month, 1);
-  const dayOfWeek = first.getDay();
-  const firstSat = new Date(year, month, 1 + ((6 - dayOfWeek + 7) % 7));
-
-  // If it's still in the future (or today), use it; otherwise next month
-  if (firstSat >= new Date(year, month, now.getDate())) {
-    return firstSat;
-  }
-  const nextMonth = new Date(year, month + 1, 1);
-  const nextDow = nextMonth.getDay();
-  return new Date(year, month + 1, 1 + ((6 - nextDow + 7) % 7));
-}
-
-function formatDate(d: Date): string {
-  return d.toLocaleDateString("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-  });
-}
+import { getNextFirstSaturday, formatCommunityClassDate as formatDate } from "@/lib/communityClassDate";
 
 const testimonials = [
   {
