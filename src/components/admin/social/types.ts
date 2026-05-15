@@ -111,7 +111,7 @@ export const CONTENT_PRESETS: ContentPreset[] = [
     eyebrow: 'WEST ASHLEY · CHARLESTON',
     headline: 'Strength & Mobility',
     programLine: 'KB Strong Classes',
-    detailLine: 'Mon · Wed · Fri | 8am & 11am',
+    detailLine: 'Mon · Wed · Fri | 8am & 11am · Wed 6:45am',
     ctaText: 'View Schedule',
     showBadge: false,
   },

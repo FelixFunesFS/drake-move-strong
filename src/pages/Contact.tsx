@@ -87,7 +87,7 @@ const Contact = () => {
     <>
       <SEO
         title="Contact Drake Fitness Charleston | Start Today"
-        description="Questions about getting started? Reach Drake Fitness in West Ashley — call, text, or drop in. 3 free classes, no commitment."
+        description="Questions about getting started? Reach Drake Fitness in West Ashley — call, text, or drop in. 3 free classes, then $110 first month unlimited."
         canonical="https://www.drake.fitness/contact"
       />
       <StructuredData data={buildBreadcrumbSchema([

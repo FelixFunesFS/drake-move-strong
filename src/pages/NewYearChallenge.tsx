@@ -290,7 +290,7 @@ const NewYearChallenge = () => {
                     <Link to="/contact">Start My Challenge</Link>
                   </Button>
                   <p className="text-drake-slate-gray text-sm mt-4">
-                    Limited spots available • No commitment required
+                    Limited spots available • Members save 50% on month one
                   </p>
                 </div>
               </Card>

@@ -495,7 +495,7 @@ export default function LowImpactFitnessCharleston() {
                 Train Again Without Fear
               </h2>
               <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 md:mb-10">
-                Spots are limited to keep coaching quality high. Experience joint-friendly training with no commitment.
+                Spots are limited to keep coaching quality high. Experience joint-friendly training — members save 50% on month one.
               </p>
             </div>
           </AnimatedSection>

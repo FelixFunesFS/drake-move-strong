@@ -181,7 +181,7 @@ const FAQ = () => {
       <CTASection
         eyebrow="GET STARTED"
         title="Ready to Get Started?"
-        subtitle="Try 3 classes free — no commitment, no cost. See if Drake Fitness is right for you."
+        subtitle="3 free classes over 30 days — then unlock your first month for $110."
         ctaText="Try 3 Classes Free"
         ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034"
         variant="primary"
