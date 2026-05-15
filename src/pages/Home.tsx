@@ -171,6 +171,9 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         }}
       />
 
+      {/* 1st-Saturday Community Class invite */}
+      <CommunityClassInvite image={communityGroupClass} />
+
       {/* MEET THE TEAM */}
       <section className="py-16 md:py-24 bg-muted section-slant-top-reverse">
         <div className="container mx-auto px-4">
