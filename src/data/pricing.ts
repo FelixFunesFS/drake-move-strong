@@ -11,7 +11,7 @@ export const PRICING = {
     classes: 3,
     label: "3-Class Intro Experience",
     description: "3 free classes over 30 days",
-    schedule: "KB Strong — Strength & Mobility: Mon/Wed/Fri 8am & 11am, Thu 6pm",
+    schedule: "KB Strong — Strength & Mobility: Mon/Wed/Fri 8am & 11am, Wed 6:45am, Thu 6pm",
     upsell: {
       price: 110,
       originalPrice: 225,
@@ -63,7 +63,7 @@ export const PUNCHPASS_URLS = {
   // Keep resetWeek as alias for backward compatibility
   resetWeek: INTRO_URL,
   // Community Class — replace with real PunchPass event URL when ready
-  communityClass: "https://drakefitness.punchpass.com/classes/19802794",
+  communityClass: "https://drakefitness.punchpass.com/classes/19998310",
   foundation: "https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784",
   unlimited: "https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211",
   remoteSupport: "https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776",

@@ -59,7 +59,7 @@ const whoItsFor = [
 
 const whatsIncluded = [
   "3 free classes over 30 days",
-  "Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Thu 6pm",
+  "Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Wed 6:45am, Thu 6pm",
   "Coach-guided introduction",
   "Mobility-focused, joint-friendly workouts",
   "Small group environment",
@@ -124,7 +124,7 @@ export default function ResetWeekCharleston() {
 
               {[
                 { step: "1", title: "Claim Your Free Pass", desc: "Sign up in 30 seconds — no card required", hasClaimLink: true },
-                { step: "2", title: "Pick Your Class", desc: "Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Thu 6pm", hasScheduleLink: true },
+                { step: "2", title: "Pick Your Class", desc: "Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Wed 6:45am, Thu 6pm", hasScheduleLink: true },
                 { step: "3", title: "Sign Up & Show Up", desc: "We handle the rest — coaching, form, and encouragement. Questions? Call or text (843) 817-5420", hasClaimLink: true }
               ].map((item) => (
                 <div key={item.step} className="flex flex-col items-center text-center">
@@ -152,7 +152,7 @@ export default function ResetWeekCharleston() {
 
               {[
                 { step: "1", title: "Claim Your Free Pass", desc: "Sign up in 30 seconds — no card required", hasClaimLink: true },
-                { step: "2", title: "Pick Your Class", desc: "Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Thu 6pm", hasScheduleLink: true },
+                { step: "2", title: "Pick Your Class", desc: "Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Wed 6:45am, Thu 6pm", hasScheduleLink: true },
                 { step: "3", title: "Sign Up & Show Up", desc: "We handle the rest — coaching, form, and encouragement. Questions? Call or text (843) 817-5420", hasClaimLink: true }
               ].map((item) => (
                 <div key={item.step} className="flex items-start gap-4">

@@ -202,7 +202,7 @@ const CommunityClass = () => {
               <br />
               Kettlebell strength + Original Strength mobility.
               <br />
-              No experience needed. No cost. No commitment.
+              No experience needed. All levels welcome. Free monthly community class.
             </p>
 
             <div className="flex flex-col sm:flex-row items-start gap-3 mb-3">

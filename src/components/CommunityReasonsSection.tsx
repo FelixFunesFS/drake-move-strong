@@ -89,7 +89,7 @@ const CommunityReasonsSection = ({ images }: CommunityReasonsSectionProps) => {
                   3-Class Intro — <span className="text-drake-gold">Free</span>
                 </h3>
                 <p className="text-gray-200 mb-6 text-base md:text-lg max-w-lg">
-                  3 free classes over 30 days. No commitment. No experience needed. See what mobility-first training feels like.
+                  3 free classes over 30 days. No experience needed. Members save 50% on month one. See what mobility-first training feels like.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button

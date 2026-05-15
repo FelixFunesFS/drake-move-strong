@@ -96,7 +96,7 @@ const Pricing = () => {
                     </li>
                     <li className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-primary" />
-                      <span className="text-foreground">KB Strong — Strength & Mobility: Mon/Wed/Fri 8am & 11am, Thu 6pm</span>
+                      <span className="text-foreground">KB Strong — Strength & Mobility: Mon/Wed/Fri 8am & 11am, Wed 6:45am, Thu 6pm</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-primary" />
@@ -104,7 +104,7 @@ const Pricing = () => {
                     </li>
                     <li className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-primary" />
-                      <span className="text-foreground">No commitment required</span>
+                      <span className="text-foreground">First month 50% off after your 3rd class</span>
                     </li>
                   </ul>
                   <div className="flex flex-col sm:flex-row items-center gap-6">
