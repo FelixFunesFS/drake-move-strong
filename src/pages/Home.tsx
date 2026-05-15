@@ -23,6 +23,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import TestimonialCard from "@/components/TestimonialCard";
 import { getStaggerDelay } from "@/lib/motionConfig";
 import CommunityReasonsSection from "@/components/CommunityReasonsSection";
+import CommunityClassInvite from "@/components/CommunityClassInvite";
 import { FEATURED_REVIEWS } from "@/data/reviews";
 import { TodayClassesBanner } from "@/components/schedule/TodayClassesBanner";
 // New authentic training photos
@@ -169,6 +170,9 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
           communityGroup: communityGroupClass,
         }}
       />
+
+      {/* 1st-Saturday Community Class invite */}
+      <CommunityClassInvite image={communityGroupClass} />
 
       {/* MEET THE TEAM */}
       <section className="py-16 md:py-24 bg-muted section-slant-top-reverse">
