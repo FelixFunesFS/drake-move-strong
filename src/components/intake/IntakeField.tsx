@@ -4,7 +4,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
-import SignaturePad from '@/components/contracts/SignaturePad';
+import ResponsiveSignaturePad from './ResponsiveSignaturePad';
 import { cn } from '@/lib/utils';
 import { IntakeField as Field, IntakeAnswers, detailKey } from './schema';
 
@@ -100,7 +100,7 @@ export default function IntakeField({ field, answers, errors, onChange }: Props)
         <QuestionLabel />
         <Hint />
         <div className="rounded-lg border bg-card p-2 overflow-hidden">
-          <SignaturePad onSignatureChange={(data) => onChange(field.k, data ?? '')} />
+          <ResponsiveSignaturePad onSignatureChange={(data) => onChange(field.k, data ?? '')} />
         </div>
         <Error />
       </div>
