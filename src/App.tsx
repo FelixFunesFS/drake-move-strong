@@ -105,7 +105,7 @@ const ChatBot = lazy(() => import("./components/chat/ChatBot"));
 // QueryClient is now defined at the top of the file with optimized settings
 
 // Routes that should not show the standard navigation and footer
-const STANDALONE_ROUTES = ['/new-year', '/intro', '/reset', '/ruckathon', '/auth', '/community-class'];
+const STANDALONE_ROUTES = ['/new-year', '/intro', '/reset', '/ruckathon', '/auth', '/community-class', '/intake'];
 
 // Route prefixes that use custom layouts (no standard nav/footer)
 const CUSTOM_LAYOUT_PREFIXES = ['/member/', '/admin/', '/coach/'];
