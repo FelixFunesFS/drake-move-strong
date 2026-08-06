@@ -7,6 +7,7 @@ interface SEOProps {
   canonical?: string;
   ogImage?: string;
   ogType?: 'website' | 'article';
+  noindex?: boolean;
   article?: {
     publishedAt: string;
     author: string;
@@ -25,6 +26,7 @@ export function SEO({
   canonical = 'https://www.drake.fitness',
   ogImage = 'https://www.drake.fitness/og-image.png',
   ogType = 'website',
+  noindex = false,
   article,
 }: SEOProps) {
   const absoluteOgImage = toAbsoluteUrl(ogImage);
@@ -39,6 +41,7 @@ export function SEO({
       <meta name="title" content={fullTitle} />
       <meta name="description" content={description} />
       <link rel="canonical" href={canonical} />
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={ogType} />

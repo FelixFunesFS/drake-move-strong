@@ -54,6 +54,7 @@ const ResetWeekAlt = lazy(() => import("./pages/ResetWeekAlt"));
 const Ruckathon = lazy(() => import("./pages/Ruckathon"));
 const Welcome = lazy(() => import("./pages/Welcome"));
 const CommunityClass = lazy(() => import("./pages/CommunityClass"));
+const Intake = lazy(() => import("./pages/Intake"));
 
 // Service pages
 const LowImpactFitnessCharleston = lazy(() => import("./pages/services/LowImpactFitnessCharleston"));
@@ -104,7 +105,7 @@ const ChatBot = lazy(() => import("./components/chat/ChatBot"));
 // QueryClient is now defined at the top of the file with optimized settings
 
 // Routes that should not show the standard navigation and footer
-const STANDALONE_ROUTES = ['/new-year', '/intro', '/reset', '/ruckathon', '/auth', '/community-class'];
+const STANDALONE_ROUTES = ['/new-year', '/intro', '/reset', '/ruckathon', '/auth', '/community-class', '/intake'];
 
 // Route prefixes that use custom layouts (no standard nav/footer)
 const CUSTOM_LAYOUT_PREFIXES = ['/member/', '/admin/', '/coach/'];
@@ -185,6 +186,7 @@ const AppLayout = () => {
             <Route path="/ruckathon" element={<Ruckathon />} />
             <Route path="/welcome" element={<Welcome />} />
             <Route path="/community-class" element={<CommunityClass />} />
+            <Route path="/intake" element={<Intake />} />
             
             {/* Local SEO Service Pages */}
             <Route path="/low-impact-fitness-charleston" element={<LowImpactFitnessCharleston />} />
