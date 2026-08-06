@@ -115,16 +115,21 @@ export function buildIntakePdf(answers: IntakeAnswers): jsPDF {
         text(f.q, { size: 9, color: MUTED });
         if (typeof data === 'string' && data.startsWith('data:image')) {
           const w = 220;
-          const h = 88;
+          let h = 70;
           try {
-            doc.addImage(data, 'PNG', MARGIN + 10, y - 4, w, h);
+            const props = doc.getImageProperties(data);
+            if (props?.width && props?.height) {
+              h = Math.min(80, Math.max(34, (props.height / props.width) * w));
+            }
+            doc.addImage(data, 'PNG', MARGIN + 10, y - 2, w, h);
           } catch {
             /* ignore malformed signature data */
           }
           doc.setDrawColor(200, 200, 200);
-          doc.line(MARGIN + 10, y + h - 2, MARGIN + 10 + w, y + h - 2);
+          doc.line(MARGIN + 10, y + h, MARGIN + 10 + w, y + h);
           y += h + 8;
           text(`Signed ${submittedAt.toLocaleDateString('en-US')}`, { size: 8.5, color: MUTED, indent: 10 });
+
         } else {
           text('—', { size: 10.5, style: 'bold', indent: 10 });
         }
