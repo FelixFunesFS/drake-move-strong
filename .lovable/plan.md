@@ -1,83 +1,38 @@
-## Goals
+# Drake Fitness Client Intake Form
 
-1. Kill the "no commitment / no cost" language — it undersells and undercuts the membership upsell.
-2. Replace it with copy that frames the 3 free classes as a **try-before-you-join** experience leading into Foundation / Longevity Unlimited.
-3. Add the **Wednesday 6:45 AM** KB Strong class everywhere the schedule is listed.
-4. Update the Community Class PunchPass URL to `https://drakefitness.punchpass.com/classes/19998310`.
+Rebuild the uploaded single-file intake form as a native, on-brand page at `/intake` — public (no login), submissions delivered to David as email + PDF, nothing stored in the database.
 
----
+## What gets built
 
-## Part 1 — New copy direction
+**1. Public intake page — `/intake`**
+- Multi-step wizard (7 steps): Contact → Medical history → Injuries & therapies → Nutrition & habits → Lifestyle & fitness → Goals → Agreement & waiver.
+- Sticky progress bar with "Step 3 of 7" and percentage, same as the uploaded form.
+- All conditional logic preserved: female-only questions appear only when Sex = Female; "Yes" answers reveal their detail field; the "exercised in the past" question appears only when currently not exercising.
+- Per-step validation — the user can't advance with a required field blank; the first invalid field is focused and announced.
+- Review-free flow ending in the two legal documents (Client Agreement + Liability Waiver) with typed name, date, and a drawn signature.
+- Page is `noindex` (it's a private form, not an SEO page) and excluded from the sitemap.
 
-Recommended replacement language (pick per-context, not one phrase everywhere):
+**2. Brand + accessibility treatment**
+- Rebuilt with the project's shadcn components (Input, Textarea, RadioGroup, Checkbox, Select, Button, Card) and Drake tokens — Oswald headings, Montserrat/Inter body, teal/gold accents — replacing the uploaded red/gray palette.
+- Reuses the existing `SignaturePad` component already used for member contracts (Fabric canvas, touch-friendly, clear/undo), sized responsively instead of a fixed 500px.
+- Mobile-first: single-column below `md`, two-up for City/State/ZIP on larger screens, 16px input font (prevents iOS zoom), 44px minimum tap targets, `h-dvh`-safe sticky footer nav with Back/Next, safe-area padding for notched phones.
+- Accessibility: every field has a real `<label>`, radio/checkbox groups use fieldset + legend, error messages tied via `aria-describedby`, step changes announced through an `aria-live` region, 1–10 scale rendered as an accessible radio group (not a bare slider), full keyboard path end to end, one `<main>`.
 
-- **Short headline / chip variants:**
-  - `Try us free · Find your fit`
-  - `3 classes. Real coaching. Then decide.`
-  - `Start free. Stay strong.`
+**3. Submission — email + PDF, no storage**
+- On submit, the browser generates a clean multi-page PDF of all answers plus the signature image and legal text.
+- The PDF (base64) is posted to a new `send-intake-form` edge function, which emails it as an attachment to `david@drake.fitness` with the client's name/phone/email in the body, and sends the client a copy of their own submission.
+- The client also gets an immediate "Download your copy" button on the confirmation screen, so the PDF is never lost even if email fails.
+- No `intake_submissions` table, no admin list view — nothing is written to the database, matching your choice.
 
-- **Subheads (longer):**
-  - `3 free classes over 30 days — experience real coaching, then choose the membership that fits.`
-  - `Try 3 classes free, then unlock your first month for $110.`
-  - `Coach-led classes. Real results. Members save up to 50% on month one.`
+## Technical notes
 
-- **Microcopy under CTAs (replaces "No commitment, no cost"):**
-  - `Members save up to 50% on month one`
-  - `3 classes free · Then $110 first month unlimited`
-  - `No card required to start · Upgrade after class 3`
+- New files: `src/pages/Intake.tsx`, `src/components/intake/` (step renderer, field components, schema), `src/lib/intakePdf.ts`, `supabase/functions/send-intake-form/index.ts`.
+- The question schema from the uploaded HTML is ported verbatim into a typed TS file, so wording changes later are a one-line edit.
+- Validation with `zod` (already in the project) — client-side, plus a required-field and email/phone shape check in the edge function before it sends.
+- PDF built with `jspdf` (added as a dependency) rather than the CDN script the upload used, so it's bundled and works offline/CSP-safe.
+- Email goes through the existing Resend connector used by the win-back sequence.
+- Route added to `App.tsx` in the public group, outside `ProtectedRoute`.
 
-This keeps the friction-free entry point ("no card required to start") while clearly signaling that the path forward is a membership — eliminating the "we don't expect you to buy" tone.
+## One thing to be aware of
 
----
-
-## Part 2 — Files to update
-
-### Copy replacements
-
-| File | Current | New |
-|---|---|---|
-| `src/pages/Home.tsx` (Hero subtitle) | "...in Avondale. No commitment, no cost." | "...in Avondale. Then unlock your first month for $110." |
-| `src/pages/Home.tsx` (offer card) | "No commitment required · Expert, joint-friendly coaching" | "Members save up to 50% on month one · Expert, joint-friendly coaching" |
-| `src/pages/About.tsx` CTASection | "...with no commitment." | "...then choose the membership that fits." |
-| `src/pages/SuccessStories.tsx` | same | same |
-| `src/pages/Schedule.tsx` | same | same |
-| `src/pages/FAQ.tsx` | "...no commitment, no cost. See if Drake Fitness is right for you." | "3 free classes over 30 days — then unlock your first month for $110." |
-| `src/pages/Contact.tsx` SEO description | "...3 free classes, no commitment." | "...3 free classes, then $110 first month." |
-| `src/pages/CommunityClass.tsx` | "No experience needed. No cost. No commitment." | "No experience needed. All levels welcome. Free monthly community class." (the free Saturday is genuinely free — keep "free" but drop "no commitment") |
-| `src/pages/NewYearChallenge.tsx` | "Limited spots available • No commitment required" | "Limited spots available • Members save 50% on month one" |
-| `src/pages/ResetWeekAlt.tsx` | "...no rush, no commitment." | "...at your own pace, with a clear next step." |
-| `src/pages/services/LowImpactFitnessCharleston.tsx` | "...joint-friendly training with no commitment." | "...joint-friendly training. Members save 50% on month one." |
-| `src/components/CommunityReasonsSection.tsx` | "3 free classes over 30 days. No commitment. No experience needed..." | "3 free classes over 30 days. No experience needed. Members save 50% on month one." |
-| `src/pages/Pricing.tsx` checklist row | "No commitment required" | "First month 50% off after your 3rd class" |
-
-### Schedule update — add Wednesday 6:45 AM
-
-Update the canonical schedule string from `Mon/Wed/Fri 8am & 11am, Thu 6pm` to `Mon/Wed/Fri 8am & 11am, Wed 6:45am, Thu 6pm` in:
-
-- `src/data/pricing.ts` (`introExperience.schedule`)
-- `src/pages/Home.tsx` (How It Works step 2)
-- `src/pages/Pricing.tsx`
-- `src/pages/FAQ.tsx`
-- `src/pages/Welcome.tsx` (if listed)
-- `src/pages/ResetWeekAlt.tsx` (2 locations)
-- `src/pages/services/ResetWeekCharleston.tsx` (3 locations)
-- `src/pages/services/WestAshleyFitness.tsx`
-- `src/components/admin/social/types.ts` `detailLine` (optional — admin-only social template)
-
-Note: The actual class booking schedule is sourced from PunchPass via the sync system, so this is **copy only**. The 6:45 AM class will appear on the live `/schedule` page automatically once it exists in PunchPass.
-
-### PunchPass URL update
-
-- `src/data/pricing.ts` → `PUNCHPASS_URLS.communityClass`: `19802794` → `19998310`
-
----
-
-## Out of scope
-
-- Win-back catch-up edge function (deferred per earlier conversation).
-- Visual / layout changes — copy only.
-- Adding a 4th hero CTA or new components.
-
-## Validation
-
-After edits: grep for `no commitment`, `No commitment`, `no cost`, `No cost` to confirm zero remaining matches in `src/`. Verify `19802794` is fully replaced.
+Sending from `david@drake.fitness` requires the `drake.fitness` domain to be verified in Resend — the same blocker hit during the win-back preview sends. Until that's verified, David's copy will deliver but the client-copy email to outside addresses will fail. The download button means no submission is ever lost regardless.
