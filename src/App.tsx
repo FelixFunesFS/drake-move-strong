@@ -54,6 +54,7 @@ const ResetWeekAlt = lazy(() => import("./pages/ResetWeekAlt"));
 const Ruckathon = lazy(() => import("./pages/Ruckathon"));
 const Welcome = lazy(() => import("./pages/Welcome"));
 const CommunityClass = lazy(() => import("./pages/CommunityClass"));
+const Intake = lazy(() => import("./pages/Intake"));
 
 // Service pages
 const LowImpactFitnessCharleston = lazy(() => import("./pages/services/LowImpactFitnessCharleston"));
@@ -185,6 +186,7 @@ const AppLayout = () => {
             <Route path="/ruckathon" element={<Ruckathon />} />
             <Route path="/welcome" element={<Welcome />} />
             <Route path="/community-class" element={<CommunityClass />} />
+            <Route path="/intake" element={<Intake />} />
             
             {/* Local SEO Service Pages */}
             <Route path="/low-impact-fitness-charleston" element={<LowImpactFitnessCharleston />} />
