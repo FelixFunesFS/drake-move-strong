@@ -291,7 +291,7 @@ export default function Intake() {
 
         <main className="mx-auto max-w-3xl px-4 pb-32 pt-8 md:pb-0">
           <p aria-live="polite" className="sr-only">
-            {`Step ${stepIndex + 1} of ${total}: ${step.title}`}
+            {`Step ${stepIndex + 1} of ${total}: ${step.title ?? step.name}`}
           </p>
 
           {/* Masthead — full on step 1, compact after */}
@@ -317,16 +317,18 @@ export default function Intake() {
             )}
           </div>
 
-          <header className="mb-6">
-            <h2
-              ref={headingRef}
-              tabIndex={-1}
-              className="font-hero text-2xl uppercase leading-tight outline-none md:text-3xl"
-            >
-              {step.title}
-            </h2>
-            {step.sub && <p className="mt-2 text-muted-foreground">{step.sub}</p>}
-          </header>
+          {step.title && (
+            <header className="mb-6">
+              <h2
+                ref={headingRef}
+                tabIndex={-1}
+                className="font-hero text-2xl uppercase leading-tight outline-none md:text-3xl"
+              >
+                {step.title}
+              </h2>
+              {step.sub && <p className="mt-2 text-muted-foreground">{step.sub}</p>}
+            </header>
+          )}
 
 
 
