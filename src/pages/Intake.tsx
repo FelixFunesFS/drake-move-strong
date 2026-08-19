@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { z } from 'zod';
 import { supabase } from '@/integrations/supabase/client';
 import { SEO } from '@/components/SEO';
@@ -15,6 +15,9 @@ import {
 } from '@/components/intake/schema';
 import { buildIntakePdf, intakeFileName } from '@/lib/intakePdf';
 
+const STUDIO_EMAIL = 'david@drake.fitness';
+const DRAFT_KEY = 'drake-intake-draft-v1';
+
 const emailSchema = z.string().trim().email('Please enter a valid email address').max(255);
 const phoneSchema = z
   .string()
@@ -30,16 +33,44 @@ export default function Intake() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const [emailed, setEmailed] = useState(false);
+  const [honeypot, setHoneypot] = useState('');
   const topRef = useRef<HTMLDivElement>(null);
 
   const step = INTAKE_SCHEMA[stepIndex];
   const total = INTAKE_SCHEMA.length;
   const progress = Math.round(((stepIndex + (isDone ? 1 : 0)) / total) * 100);
 
+  /* Restore an in-progress draft after an accidental refresh. */
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem(DRAFT_KEY);
+      if (!raw) return;
+      const saved = JSON.parse(raw) as { stepIndex?: number; answers?: IntakeAnswers };
+      if (saved.answers && Object.keys(saved.answers).length) {
+        setAnswers(saved.answers);
+        setStepIndex(Math.min(Math.max(saved.stepIndex ?? 0, 0), INTAKE_SCHEMA.length - 1));
+        toast.info('We restored your answers from earlier.');
+      }
+    } catch {
+      /* ignore malformed drafts */
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isDone) return;
+    if (!Object.keys(answers).length) return;
+    try {
+      sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ stepIndex, answers }));
+    } catch {
+      /* storage may be full or blocked — draft saving is best-effort */
+    }
+  }, [answers, stepIndex, isDone]);
+
   const visibleFields = useMemo(
     () => step.fields.filter((f) => isFieldVisible(f, answers)),
     [step, answers],
   );
+
 
   const handleChange = (key: string, value: string | string[]) => {
     setAnswers((prev) => ({ ...prev, [key]: value }));
