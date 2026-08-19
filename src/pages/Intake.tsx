@@ -346,9 +346,9 @@ export default function Intake() {
 
         </main>
 
-        {/* Sticky nav */}
-        <div className="fixed inset-x-0 bottom-0 z-30 border-t bg-background/95 pb-[env(safe-area-inset-bottom)] backdrop-blur">
-          <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-3">
+        {/* Nav — sticky footer on mobile, inline under the form on desktop */}
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t bg-background/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:static md:border-0 md:bg-transparent md:pb-0 md:backdrop-blur-none">
+          <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-3 md:justify-end md:pb-16 md:pt-0">
             <Button
               type="button"
               variant="outline"
