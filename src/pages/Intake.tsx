@@ -276,7 +276,7 @@ export default function Intake() {
           <div className="mx-auto max-w-3xl px-4 py-3">
             <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
               <div
-                className="h-full rounded-full bg-accent transition-all duration-300"
+                className="h-full rounded-full bg-primary transition-all duration-300"
                 style={{ width: `${Math.max(progress, 4)}%` }}
               />
             </div>
@@ -297,7 +297,7 @@ export default function Intake() {
           {/* Masthead — full on step 1, compact after */}
           <div className={stepIndex === 0 ? 'mb-8 text-center' : 'mb-5'}>
             {stepIndex === 0 && (
-              <p className="font-heading text-xs font-bold uppercase tracking-[0.16em] text-accent">
+              <p className="font-heading text-xs font-bold uppercase tracking-[0.16em] text-primary">
                 Drake Fitness
               </p>
             )}

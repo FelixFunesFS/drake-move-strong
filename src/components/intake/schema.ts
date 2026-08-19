@@ -51,7 +51,7 @@ export interface IntakeField {
 
 export interface IntakeStep {
   name: string;
-  title: string;
+  title?: string;
   sub?: string;
   fields: IntakeField[];
 }
