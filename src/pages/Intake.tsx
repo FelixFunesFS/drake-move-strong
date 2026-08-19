@@ -228,8 +228,8 @@ export default function Intake() {
     return (
       <>
         <SEO
-          title="Client Intake"
-          description="Complete your Drake Fitness client intake, health history and training agreement."
+          title="Client History & Agreement"
+          description="Drake Fitness client history and training agreement. Takes about 8–10 minutes."
           canonical="https://www.drake.fitness/intake"
           noindex
         />
