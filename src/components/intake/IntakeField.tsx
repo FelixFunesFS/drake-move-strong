@@ -343,7 +343,7 @@ export default function IntakeField({ field, answers, errors, onChange }: Props)
         onChange={(e) => onChange(field.k, e.target.value)}
         aria-describedby={describedBy}
         aria-invalid={!!error}
-        className="h-12 text-base"
+        className="h-12 min-w-0 text-base"
       />
       <Error />
     </div>

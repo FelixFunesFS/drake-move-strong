@@ -338,7 +338,10 @@ export default function Intake() {
                 {visibleFields.map((field) => (
                   <div
                     key={field.k}
-                    className={field.half ? 'md:col-span-1' : 'md:col-span-2'}
+                    className={cn(
+                      field.half ? 'md:col-span-1' : 'md:col-span-2',
+                      'min-w-0',
+                    )}
                   >
                     <IntakeFieldRenderer
                       field={field}
