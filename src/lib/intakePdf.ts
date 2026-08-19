@@ -87,7 +87,7 @@ export function buildIntakePdf(answers: IntakeAnswers): jsPDF {
   INTAKE_SCHEMA.forEach((step) => {
     const visible = step.fields.filter((f) => isFieldVisible(f, answers));
     if (!visible.length) return;
-    sectionHeading(step.title);
+    if (step.title) sectionHeading(step.title);
 
     visible.forEach((f) => {
       if (f.t === 'legal') {
