@@ -11,18 +11,25 @@ Audit the current `/intake` wizard and fix the edge cases most likely to break r
 
 Emailing is already wired up (the `/intake` page builds the PDF in the browser and posts it to a backend function that sends it through Resend). The problem is the sender address, not the code.
 
-- The function currently sends from Resend's shared test address. Resend only delivers that address to the Resend account owner — every other recipient is rejected with a 403. So David's copy may land, and the client's copy silently fails.
+- The function sends from Resend's shared test address, which Resend only delivers to the Resend account owner (`david@drake.fitness`). Every other recipient is rejected with a 403.
+- The function currently sends David's copy to `ddrake311@gmail.com` — not the account owner address — so that send is being rejected too. Switching the studio recipient to `david@drake.fitness` makes the important email (the one carrying the signed PDF) work immediately, with no DNS work.
+- That fix does not cover the client's own copy. The client's address is by definition not the account owner, so their copy keeps failing until a Drake domain is verified in Resend. The confirmation screen's "Download my copy" button covers them in the meantime.
 - `mailto:` is not a workable answer. A `mailto:` link cannot attach a generated file — browsers ignore attachment parameters — so the client would have to manually save the PDF and attach it. That turns a finished form into homework and loses submissions.
 - Lovable's built-in email is verified on `notify.www.drake.fitness`, but it does not support file attachments, so it can't carry the intake PDF as-is.
 
-### Recommended fix: verify a Drake sender domain in Resend
-1. Verify a sending subdomain in Resend that is not `notify.www.drake.fitness` (that one is delegated to Lovable's nameservers and would conflict) — for example `mail.drake.fitness`.
-2. Change the send function's `from` to `Drake Fitness <intake@mail.drake.fitness>`, keep `reply_to` pointed at the client for David's copy and at David for the client's copy.
-3. Both emails then deliver: David gets the signed PDF attachment, the client gets their own copy.
-4. Keep the "Download my copy" button on the confirmation screen as the permanent safety net.
+### Step 1 — immediate fix (no DNS, do this now)
+1. Change the studio recipient in the send function from `ddrake311@gmail.com` to `david@drake.fitness`.
+2. Keep `reply_to` on David's copy set to the client's address so he can reply straight to them.
+3. Make the client-copy send explicitly best-effort: log the failure, return `clientCopySent: false`, and have the confirmation screen tell the client to use the download button.
 
-### Fallback if the domain can't be verified
-Store the PDF in a private storage bucket, generate a 30-day signed link, and send that link through Lovable's built-in email instead of an attachment. This changes the earlier "no storage" decision, so it is only worth doing if Resend domain verification is off the table.
+Result: David reliably receives every signed intake PDF.
+
+### Step 2 — full fix (optional, unlocks the client copy)
+1. Verify a sending subdomain in Resend that is not `notify.www.drake.fitness` (that one is delegated to Lovable's nameservers and would conflict) — for example `mail.drake.fitness`.
+2. Change the send function's `from` to `Drake Fitness <intake@mail.drake.fitness>`.
+3. Both emails then deliver: David gets the signed PDF attachment, the client gets their own copy.
+4. Keep the "Download my copy" button as the permanent safety net either way.
+
 
 ## Proposed changes
 
