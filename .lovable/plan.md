@@ -7,7 +7,25 @@ Audit the current `/intake` wizard and fix the edge cases most likely to break r
 - Improve mobile accessibility and recovery from errors.
 - Keep the form email/PDF-only (no backend storage) per the prior decision.
 
+## Email delivery — what's actually broken
+
+Emailing is already wired up (the `/intake` page builds the PDF in the browser and posts it to a backend function that sends it through Resend). The problem is the sender address, not the code.
+
+- The function currently sends from Resend's shared test address. Resend only delivers that address to the Resend account owner — every other recipient is rejected with a 403. So David's copy may land, and the client's copy silently fails.
+- `mailto:` is not a workable answer. A `mailto:` link cannot attach a generated file — browsers ignore attachment parameters — so the client would have to manually save the PDF and attach it. That turns a finished form into homework and loses submissions.
+- Lovable's built-in email is verified on `notify.www.drake.fitness`, but it does not support file attachments, so it can't carry the intake PDF as-is.
+
+### Recommended fix: verify a Drake sender domain in Resend
+1. Verify a sending subdomain in Resend that is not `notify.www.drake.fitness` (that one is delegated to Lovable's nameservers and would conflict) — for example `mail.drake.fitness`.
+2. Change the send function's `from` to `Drake Fitness <intake@mail.drake.fitness>`, keep `reply_to` pointed at the client for David's copy and at David for the client's copy.
+3. Both emails then deliver: David gets the signed PDF attachment, the client gets their own copy.
+4. Keep the "Download my copy" button on the confirmation screen as the permanent safety net.
+
+### Fallback if the domain can't be verified
+Store the PDF in a private storage bucket, generate a 30-day signed link, and send that link through Lovable's built-in email instead of an attachment. This changes the earlier "no storage" decision, so it is only worth doing if Resend domain verification is off the table.
+
 ## Proposed changes
+
 
 ### 1. Validation hardening
 - Add future-date guard to `dob`.
