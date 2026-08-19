@@ -289,15 +289,22 @@ export default function Intake() {
           </div>
         </div>
 
-        <main className="mx-auto max-w-3xl px-4 pb-32 pt-8">
+        <main className="mx-auto max-w-3xl px-4 pb-32 pt-8 md:pb-16">
           <p aria-live="polite" className="sr-only">
             {`Step ${stepIndex + 1} of ${total}: ${step.title}`}
           </p>
 
           <header className="mb-6">
-            <h1 className="font-hero text-3xl uppercase leading-tight md:text-4xl">{step.title}</h1>
+            <h1
+              ref={headingRef}
+              tabIndex={-1}
+              className="font-hero text-3xl uppercase leading-tight outline-none md:text-4xl"
+            >
+              {step.title}
+            </h1>
             {step.sub && <p className="mt-2 text-muted-foreground">{step.sub}</p>}
           </header>
+
 
           <Card className="shadow-card">
             <CardContent className="space-y-7 p-5 md:p-8">
