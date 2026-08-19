@@ -6,8 +6,10 @@ const corsHeaders = {
 };
 
 const GATEWAY_URL = "https://connector-gateway.lovable.dev/resend";
-const STUDIO_EMAIL = "ddrake311@gmail.com";
-const FROM = "Drake Fitness <onboarding@resend.dev>";
+const STUDIO_EMAIL = "david@drake.fitness";
+// drake.fitness is a verified sending domain in Resend, so both the studio
+// and the client copies deliver (the shared test sender only reached the owner).
+const FROM = "Drake Fitness <intake@drake.fitness>";
 
 interface Payload {
   name?: string;
