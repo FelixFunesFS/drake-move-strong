@@ -264,8 +264,8 @@ export default function Intake() {
   return (
     <>
       <SEO
-        title="Client Intake"
-        description="Complete your Drake Fitness client intake, health history and training agreement."
+        title="Client History & Agreement"
+        description="Drake Fitness client history and training agreement. Takes about 8–10 minutes."
         canonical="https://www.drake.fitness/intake"
         noindex
       />
@@ -294,16 +294,40 @@ export default function Intake() {
             {`Step ${stepIndex + 1} of ${total}: ${step.title}`}
           </p>
 
-          <header className="mb-6">
+          {/* Masthead — full on step 1, compact after */}
+          <div className={stepIndex === 0 ? 'mb-8 text-center' : 'mb-5'}>
+            {stepIndex === 0 && (
+              <p className="font-heading text-xs font-bold uppercase tracking-[0.16em] text-accent">
+                Drake Fitness
+              </p>
+            )}
             <h1
+              className={
+                stepIndex === 0
+                  ? 'font-hero mt-2 text-3xl uppercase leading-tight md:text-4xl'
+                  : 'font-heading text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground'
+              }
+            >
+              Client History &amp; Agreement
+            </h1>
+            {stepIndex === 0 && (
+              <p className="mt-3 text-muted-foreground">
+                Takes about 8–10 minutes. Your answers go directly to David Drake.
+              </p>
+            )}
+          </div>
+
+          <header className="mb-6">
+            <h2
               ref={headingRef}
               tabIndex={-1}
-              className="font-hero text-3xl uppercase leading-tight outline-none md:text-4xl"
+              className="font-hero text-2xl uppercase leading-tight outline-none md:text-3xl"
             >
               {step.title}
-            </h1>
+            </h2>
             {step.sub && <p className="mt-2 text-muted-foreground">{step.sub}</p>}
           </header>
+
 
 
           <Card className="shadow-card">
