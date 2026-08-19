@@ -235,16 +235,17 @@ export default function Intake() {
               <h1 className="font-hero text-3xl uppercase">Thank you</h1>
               <p className="text-muted-foreground">
                 {emailed
-                  ? 'Your intake form is on its way to David. He reviews every form before your first session — expect a note back shortly.'
-                  : 'Your form is complete, but the email didn\u2019t go through. Download your copy below and send it to ddrake311@gmail.com and David will take it from there.'}
+                  ? 'Your intake form is on its way to David, and a copy has been emailed to you. He reviews every form before your first session — expect a note back shortly.'
+                  : `Your form is complete, but the email didn\u2019t go through. Download your copy below and send it to ${STUDIO_EMAIL} and David will take it from there.`}
               </p>
               <Button onClick={downloadPdf} size="lg" className="min-h-11 w-full sm:w-auto">
                 <Download className="mr-2 h-4 w-4" aria-hidden="true" />
                 Download my copy (PDF)
               </Button>
               <p className="text-xs text-muted-foreground">
-                Questions? Call (843) 817-5420 or email ddrake311@gmail.com.
+                Questions? Call (843) 817-5420 or email {STUDIO_EMAIL}.
               </p>
+
             </CardContent>
           </Card>
         </main>
