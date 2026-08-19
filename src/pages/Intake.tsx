@@ -171,12 +171,19 @@ export default function Intake() {
       return;
     }
 
+    if (honeypot) {
+      // Bot filled the hidden field — pretend success without sending.
+      setIsDone(true);
+      return;
+    }
+
     setIsSubmitting(true);
+    let clientCopySent = false;
     try {
       const doc = buildIntakePdf(answers);
       const base64 = doc.output('datauristring').split(',')[1];
 
-      const { error } = await supabase.functions.invoke('send-intake-form', {
+      const { data, error } = await supabase.functions.invoke('send-intake-form', {
         body: {
           name: String(answers.name || '').trim(),
           email: String(answers.email || '').trim(),
@@ -187,7 +194,16 @@ export default function Intake() {
       });
 
       if (error) throw error;
+      clientCopySent = Boolean((data as { clientCopySent?: boolean } | null)?.clientCopySent);
       setEmailed(true);
+      try {
+        sessionStorage.removeItem(DRAFT_KEY);
+      } catch {
+        /* ignore */
+      }
+      if (!clientCopySent) {
+        toast.info('Sent to David. Download your own copy below for your records.');
+      }
     } catch (err) {
       console.error('Intake submission failed:', err);
       setEmailed(false);
@@ -198,6 +214,7 @@ export default function Intake() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
 
   /* ------------------------------------------------------------ complete */
   if (isDone) {
