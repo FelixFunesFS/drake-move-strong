@@ -115,7 +115,23 @@ export default function Intake() {
           const result = phoneSchema.safeParse(value);
           if (!result.success) next[field.k] = result.error.issues[0].message;
         }
+        if (field.t === 'date' && field.k === 'dob') {
+          const dob = new Date(`${value}T00:00:00`);
+          const now = new Date();
+          if (Number.isNaN(dob.getTime()) || dob > now) {
+            next[field.k] = 'Please enter a valid date of birth.';
+          } else if (now.getFullYear() - dob.getFullYear() > 120) {
+            next[field.k] = 'Please check the year on your date of birth.';
+          }
+        }
+        if (field.k === 'zip' && !/^\d{5}(-\d{4})?$/.test(value)) {
+          next[field.k] = 'Please enter a 5-digit ZIP code.';
+        }
+        if (field.k === 'state' && !/^[A-Za-z]{2}$|^[A-Za-z][A-Za-z .'-]{2,24}$/.test(value)) {
+          next[field.k] = 'Please enter a state (e.g. SC).';
+        }
       }
+
 
       if (field.t === 'yn' && value === 'Yes' && field.ynDetail) {
         const dk = detailKey(field.k);
