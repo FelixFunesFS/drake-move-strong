@@ -36,6 +36,9 @@ const Navigation = ({ transparent = false, isScrolled = false }: NavigationProps
   }, {
     name: "Contact",
     path: "/contact"
+  }, {
+    name: "Intake",
+    path: "/intake"
   }];
   const isActive = (path: string) => location.pathname === path;
   
