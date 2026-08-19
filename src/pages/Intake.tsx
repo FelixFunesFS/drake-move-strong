@@ -366,7 +366,7 @@ export default function Intake() {
             </CardContent>
           </Card>
 
-          <p className="mt-6 text-center text-xs text-muted-foreground">
+          <p className="mt-8 border-t border-border/40 pt-6 text-center text-xs text-muted-foreground">
             Your answers are sent directly to David over an encrypted connection and are only kept in this browser until you submit.
           </p>
 
