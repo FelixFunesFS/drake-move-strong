@@ -277,25 +277,23 @@ Deno.serve(async (req) => {
     let body: { source?: string; cron_secret?: string } = {};
     try { if (bodyText) body = JSON.parse(bodyText); } catch { /* ignore */ }
     
-    // Bypass 2: cron_secret in body
-    if (!isCronRequest) {
-      const cronSecret = Deno.env.get('CRON_SECRET');
-      if (body.cron_secret && cronSecret && body.cron_secret === cronSecret) {
-        isCronRequest = true;
-      }
-    }
-    
-    // Bypass 3: x-cron-secret header
-    if (!isCronRequest) {
-      const cronSecret = Deno.env.get('CRON_SECRET');
-      const headerSecret = req.headers.get('x-cron-secret');
-      if (headerSecret && cronSecret && headerSecret === cronSecret) {
-        isCronRequest = true;
-      }
-    }
-    
     // Create service role client for database operations
     const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey);
+
+    // Rotatable cron key, stored in the database (never in source control).
+    // Falls back to the CRON_SECRET function secret if the row is missing.
+    const presentedSecret = body.cron_secret || req.headers.get('x-cron-secret') || '';
+    if (!isCronRequest && presentedSecret) {
+      const { data: keyRow } = await supabaseAdmin
+        .from('cron_keys')
+        .select('key')
+        .eq('name', 'punchpass-sync')
+        .maybeSingle();
+      const expected = keyRow?.key || Deno.env.get('CRON_SECRET') || '';
+      if (expected && presentedSecret === expected) {
+        isCronRequest = true;
+      }
+    }
     
     if (isCronRequest) {
       console.log('[sync-punchpass-schedule] Cron/bypass-triggered sync starting...');

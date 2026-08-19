@@ -36,26 +36,42 @@ serve(async (req) => {
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
+    // Service-role client: lead capture is written server-side only (table has no public INSERT policy)
+    const supabaseAdmin = createClient(supabaseUrl, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!);
 
     const { messages, captureLeadData }: ChatRequest = await req.json();
     console.log("Received chat request with", messages.length, "messages");
 
     // If lead data is provided, save it
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const clean = (v: unknown, max: number): string | null => {
+      if (typeof v !== 'string') return null;
+      const t = v.trim().slice(0, max);
+      return t.length ? t : null;
+    };
+
     if (captureLeadData?.email) {
-      console.log("Capturing lead:", captureLeadData.email);
+      const leadEmail = clean(captureLeadData.email, 254);
+      if (!leadEmail || !emailPattern.test(leadEmail)) {
+        return new Response(
+          JSON.stringify({ error: 'A valid email address is required' }),
+          { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
+      console.log("Capturing lead:", leadEmail);
       const conversationSummary = messages
         .filter(m => m.role !== 'system')
         .slice(-6)
         .map(m => `${m.role}: ${m.content.substring(0, 100)}`)
         .join('\n');
 
-      const { error: leadError } = await supabase
+      const { error: leadError } = await supabaseAdmin
         .from('leads')
         .insert({
-          name: captureLeadData.name || null,
-          email: captureLeadData.email,
-          phone: captureLeadData.phone || null,
-          interest: captureLeadData.interest || null,
+          name: clean(captureLeadData.name, 120),
+          email: leadEmail,
+          phone: clean(captureLeadData.phone, 40),
+          interest: clean(captureLeadData.interest, 200),
           source: 'chatbot',
           conversation_summary: conversationSummary,
         });

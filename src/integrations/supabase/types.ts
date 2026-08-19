@@ -375,6 +375,24 @@ export type Database = {
         }
         Relationships: []
       }
+      cron_keys: {
+        Row: {
+          created_at: string
+          key: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          key: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          key?: string
+          name?: string
+        }
+        Relationships: []
+      }
       exercises: {
         Row: {
           created_at: string
