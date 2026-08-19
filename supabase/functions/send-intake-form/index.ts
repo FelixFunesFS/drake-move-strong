@@ -7,6 +7,7 @@ const corsHeaders = {
 
 const GATEWAY_URL = "https://connector-gateway.lovable.dev/resend";
 const STUDIO_EMAIL = "david@drake.fitness";
+const COPY_EMAIL = "ddrake311@gmail.com";
 // drake.fitness is a verified sending domain in Resend, so both the studio
 // and the client copies deliver (the shared test sender only reached the owner).
 const FROM = "Drake Fitness <intake@drake.fitness>";
@@ -86,7 +87,7 @@ serve(async (req: Request): Promise<Response> => {
         </p>
       </div>`;
 
-    const send = async (to: string, subject: string, html: string) => {
+    const send = async (to: string, subject: string, html: string, cc?: string[]) => {
       const res = await fetch(`${GATEWAY_URL}/emails`, {
         method: "POST",
         headers: {
@@ -97,6 +98,7 @@ serve(async (req: Request): Promise<Response> => {
         body: JSON.stringify({
           from: FROM,
           to: [to],
+          cc,
           subject,
           html,
           reply_to: to === STUDIO_EMAIL ? email : STUDIO_EMAIL,
@@ -111,7 +113,7 @@ serve(async (req: Request): Promise<Response> => {
       return { ok: true };
     };
 
-    const studioResult = await send(STUDIO_EMAIL, `New client intake — ${name}`, studioHtml);
+    const studioResult = await send(STUDIO_EMAIL, `New client intake — ${name}`, studioHtml, [COPY_EMAIL]);
 
     if (!studioResult.ok) {
       return new Response(
