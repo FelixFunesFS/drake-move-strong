@@ -35,6 +35,8 @@ export default function Intake() {
   const [emailed, setEmailed] = useState(false);
   const [honeypot, setHoneypot] = useState('');
   const topRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
 
   const step = INTAKE_SCHEMA[stepIndex];
   const total = INTAKE_SCHEMA.length;
@@ -155,8 +157,13 @@ export default function Intake() {
   const goTo = (index: number) => {
     setStepIndex(index);
     setErrors({});
-    topRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    /* Instant, deterministic reset so the new step always opens at its heading. */
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      headingRef.current?.focus({ preventScroll: true });
+    });
   };
+
 
   const downloadPdf = () => {
     const doc = buildIntakePdf(answers);
@@ -282,15 +289,22 @@ export default function Intake() {
           </div>
         </div>
 
-        <main className="mx-auto max-w-3xl px-4 pb-32 pt-8">
+        <main className="mx-auto max-w-3xl px-4 pb-32 pt-8 md:pb-0">
           <p aria-live="polite" className="sr-only">
             {`Step ${stepIndex + 1} of ${total}: ${step.title}`}
           </p>
 
           <header className="mb-6">
-            <h1 className="font-hero text-3xl uppercase leading-tight md:text-4xl">{step.title}</h1>
+            <h1
+              ref={headingRef}
+              tabIndex={-1}
+              className="font-hero text-3xl uppercase leading-tight outline-none md:text-4xl"
+            >
+              {step.title}
+            </h1>
             {step.sub && <p className="mt-2 text-muted-foreground">{step.sub}</p>}
           </header>
+
 
           <Card className="shadow-card">
             <CardContent className="space-y-7 p-5 md:p-8">
@@ -332,9 +346,9 @@ export default function Intake() {
 
         </main>
 
-        {/* Sticky nav */}
-        <div className="fixed inset-x-0 bottom-0 z-30 border-t bg-background/95 pb-[env(safe-area-inset-bottom)] backdrop-blur">
-          <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-3">
+        {/* Nav — sticky footer on mobile, inline under the form on desktop */}
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t bg-background/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:static md:border-0 md:bg-transparent md:pb-0 md:backdrop-blur-none">
+          <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-3 md:justify-end md:pb-16 md:pt-0">
             <Button
               type="button"
               variant="outline"
