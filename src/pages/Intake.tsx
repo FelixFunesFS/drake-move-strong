@@ -235,7 +235,7 @@ export default function Intake() {
               <h1 className="font-hero text-3xl uppercase">Thank you</h1>
               <p className="text-muted-foreground">
                 {emailed
-                  ? 'Your intake form is on its way to David, and a copy has been emailed to you. He reviews every form before your first session — expect a note back shortly.'
+                  ? 'Your intake form is on its way to David, with a copy to ddrake311@gmail.com, and a copy has been emailed to you. He reviews every form before your first session — expect a note back shortly.'
                   : `Your form is complete, but the email didn\u2019t go through. Download your copy below and send it to ${STUDIO_EMAIL} and David will take it from there.`}
               </p>
               <Button onClick={downloadPdf} size="lg" className="min-h-11 w-full sm:w-auto">
