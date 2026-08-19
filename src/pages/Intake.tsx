@@ -276,7 +276,7 @@ export default function Intake() {
           <div className="mx-auto max-w-3xl px-4 py-3">
             <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
               <div
-                className="h-full rounded-full bg-accent transition-all duration-300"
+                className="h-full rounded-full bg-primary transition-all duration-300"
                 style={{ width: `${Math.max(progress, 4)}%` }}
               />
             </div>
@@ -291,13 +291,13 @@ export default function Intake() {
 
         <main className="mx-auto max-w-3xl px-4 pb-32 pt-8 md:pb-0">
           <p aria-live="polite" className="sr-only">
-            {`Step ${stepIndex + 1} of ${total}: ${step.title}`}
+            {`Step ${stepIndex + 1} of ${total}: ${step.title ?? step.name}`}
           </p>
 
           {/* Masthead — full on step 1, compact after */}
           <div className={stepIndex === 0 ? 'mb-8 text-center' : 'mb-5'}>
             {stepIndex === 0 && (
-              <p className="font-heading text-xs font-bold uppercase tracking-[0.16em] text-accent">
+              <p className="font-heading text-xs font-bold uppercase tracking-[0.16em] text-primary">
                 Drake Fitness
               </p>
             )}
@@ -317,16 +317,18 @@ export default function Intake() {
             )}
           </div>
 
-          <header className="mb-6">
-            <h2
-              ref={headingRef}
-              tabIndex={-1}
-              className="font-hero text-2xl uppercase leading-tight outline-none md:text-3xl"
-            >
-              {step.title}
-            </h2>
-            {step.sub && <p className="mt-2 text-muted-foreground">{step.sub}</p>}
-          </header>
+          {step.title && (
+            <header className="mb-6">
+              <h2
+                ref={headingRef}
+                tabIndex={-1}
+                className="font-hero text-2xl uppercase leading-tight outline-none md:text-3xl"
+              >
+                {step.title}
+              </h2>
+              {step.sub && <p className="mt-2 text-muted-foreground">{step.sub}</p>}
+            </header>
+          )}
 
 
 
