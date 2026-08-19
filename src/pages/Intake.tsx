@@ -289,7 +289,7 @@ export default function Intake() {
           </div>
         </div>
 
-        <main className="mx-auto max-w-3xl px-4 pb-32 pt-8 md:pb-16">
+        <main className="mx-auto max-w-3xl px-4 pb-32 pt-8 md:pb-0">
           <p aria-live="polite" className="sr-only">
             {`Step ${stepIndex + 1} of ${total}: ${step.title}`}
           </p>
