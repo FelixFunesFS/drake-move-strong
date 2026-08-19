@@ -155,8 +155,13 @@ export default function Intake() {
   const goTo = (index: number) => {
     setStepIndex(index);
     setErrors({});
-    topRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    /* Instant, deterministic reset so the new step always opens at its heading. */
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      headingRef.current?.focus({ preventScroll: true });
+    });
   };
+
 
   const downloadPdf = () => {
     const doc = buildIntakePdf(answers);
