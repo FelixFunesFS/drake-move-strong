@@ -124,7 +124,7 @@ serve(async (req: Request): Promise<Response> => {
       );
     }
 
-    // Client copy is best-effort — it fails while the sender domain is unverified.
+    // Client copy is best-effort — the studio copy is what matters.
     const clientResult = await send(email, "Your Drake Fitness intake form", clientHtml);
 
     return new Response(JSON.stringify({ success: true, clientCopySent: clientResult.ok }), {
