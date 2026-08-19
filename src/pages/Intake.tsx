@@ -14,6 +14,7 @@ import {
   detailKey,
 } from '@/components/intake/schema';
 import { buildIntakePdf, intakeFileName } from '@/lib/intakePdf';
+import { cn } from '@/lib/utils';
 
 const STUDIO_EMAIL = 'david@drake.fitness';
 const DRAFT_KEY = 'drake-intake-draft-v1';
