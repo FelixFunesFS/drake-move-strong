@@ -309,12 +309,27 @@ export default function Intake() {
                   </div>
                 ))}
               </div>
+
+              {/* Honeypot — hidden from people, tempting to bots */}
+              <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                <label htmlFor="company-website">Company website</label>
+                <input
+                  id="company-website"
+                  name="company-website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+              </div>
             </CardContent>
           </Card>
 
           <p className="mt-6 text-center text-xs text-muted-foreground">
-            Your answers are sent directly to David over an encrypted connection and are not stored in your browser.
+            Your answers are sent directly to David over an encrypted connection and are only kept in this browser until you submit.
           </p>
+
         </main>
 
         {/* Sticky nav */}
