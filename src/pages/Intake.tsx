@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { z } from 'zod';
 import { supabase } from '@/integrations/supabase/client';
 import { SEO } from '@/components/SEO';
@@ -15,6 +15,9 @@ import {
 } from '@/components/intake/schema';
 import { buildIntakePdf, intakeFileName } from '@/lib/intakePdf';
 
+const STUDIO_EMAIL = 'david@drake.fitness';
+const DRAFT_KEY = 'drake-intake-draft-v1';
+
 const emailSchema = z.string().trim().email('Please enter a valid email address').max(255);
 const phoneSchema = z
   .string()
@@ -30,16 +33,44 @@ export default function Intake() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const [emailed, setEmailed] = useState(false);
+  const [honeypot, setHoneypot] = useState('');
   const topRef = useRef<HTMLDivElement>(null);
 
   const step = INTAKE_SCHEMA[stepIndex];
   const total = INTAKE_SCHEMA.length;
   const progress = Math.round(((stepIndex + (isDone ? 1 : 0)) / total) * 100);
 
+  /* Restore an in-progress draft after an accidental refresh. */
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem(DRAFT_KEY);
+      if (!raw) return;
+      const saved = JSON.parse(raw) as { stepIndex?: number; answers?: IntakeAnswers };
+      if (saved.answers && Object.keys(saved.answers).length) {
+        setAnswers(saved.answers);
+        setStepIndex(Math.min(Math.max(saved.stepIndex ?? 0, 0), INTAKE_SCHEMA.length - 1));
+        toast.info('We restored your answers from earlier.');
+      }
+    } catch {
+      /* ignore malformed drafts */
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isDone) return;
+    if (!Object.keys(answers).length) return;
+    try {
+      sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ stepIndex, answers }));
+    } catch {
+      /* storage may be full or blocked — draft saving is best-effort */
+    }
+  }, [answers, stepIndex, isDone]);
+
   const visibleFields = useMemo(
     () => step.fields.filter((f) => isFieldVisible(f, answers)),
     [step, answers],
   );
+
 
   const handleChange = (key: string, value: string | string[]) => {
     setAnswers((prev) => ({ ...prev, [key]: value }));
@@ -84,7 +115,23 @@ export default function Intake() {
           const result = phoneSchema.safeParse(value);
           if (!result.success) next[field.k] = result.error.issues[0].message;
         }
+        if (field.t === 'date' && field.k === 'dob') {
+          const dob = new Date(`${value}T00:00:00`);
+          const now = new Date();
+          if (Number.isNaN(dob.getTime()) || dob > now) {
+            next[field.k] = 'Please enter a valid date of birth.';
+          } else if (now.getFullYear() - dob.getFullYear() > 120) {
+            next[field.k] = 'Please check the year on your date of birth.';
+          }
+        }
+        if (field.k === 'zip' && !/^\d{5}(-\d{4})?$/.test(value)) {
+          next[field.k] = 'Please enter a 5-digit ZIP code.';
+        }
+        if (field.k === 'state' && !/^[A-Za-z]{2}$|^[A-Za-z][A-Za-z .'-]{2,24}$/.test(value)) {
+          next[field.k] = 'Please enter a state (e.g. SC).';
+        }
       }
+
 
       if (field.t === 'yn' && value === 'Yes' && field.ynDetail) {
         const dk = detailKey(field.k);
@@ -124,12 +171,19 @@ export default function Intake() {
       return;
     }
 
+    if (honeypot) {
+      // Bot filled the hidden field — pretend success without sending.
+      setIsDone(true);
+      return;
+    }
+
     setIsSubmitting(true);
+    let clientCopySent = false;
     try {
       const doc = buildIntakePdf(answers);
       const base64 = doc.output('datauristring').split(',')[1];
 
-      const { error } = await supabase.functions.invoke('send-intake-form', {
+      const { data, error } = await supabase.functions.invoke('send-intake-form', {
         body: {
           name: String(answers.name || '').trim(),
           email: String(answers.email || '').trim(),
@@ -140,7 +194,16 @@ export default function Intake() {
       });
 
       if (error) throw error;
+      clientCopySent = Boolean((data as { clientCopySent?: boolean } | null)?.clientCopySent);
       setEmailed(true);
+      try {
+        sessionStorage.removeItem(DRAFT_KEY);
+      } catch {
+        /* ignore */
+      }
+      if (!clientCopySent) {
+        toast.info('Sent to David. Download your own copy below for your records.');
+      }
     } catch (err) {
       console.error('Intake submission failed:', err);
       setEmailed(false);
@@ -151,6 +214,7 @@ export default function Intake() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
 
   /* ------------------------------------------------------------ complete */
   if (isDone) {
@@ -171,16 +235,17 @@ export default function Intake() {
               <h1 className="font-hero text-3xl uppercase">Thank you</h1>
               <p className="text-muted-foreground">
                 {emailed
-                  ? 'Your intake form is on its way to David. He reviews every form before your first session — expect a note back shortly.'
-                  : 'Your form is complete, but the email didn\u2019t go through. Download your copy below and send it to ddrake311@gmail.com and David will take it from there.'}
+                  ? 'Your intake form is on its way to David, and a copy has been emailed to you. He reviews every form before your first session — expect a note back shortly.'
+                  : `Your form is complete, but the email didn\u2019t go through. Download your copy below and send it to ${STUDIO_EMAIL} and David will take it from there.`}
               </p>
               <Button onClick={downloadPdf} size="lg" className="min-h-11 w-full sm:w-auto">
                 <Download className="mr-2 h-4 w-4" aria-hidden="true" />
                 Download my copy (PDF)
               </Button>
               <p className="text-xs text-muted-foreground">
-                Questions? Call (843) 817-5420 or email ddrake311@gmail.com.
+                Questions? Call (843) 817-5420 or email {STUDIO_EMAIL}.
               </p>
+
             </CardContent>
           </Card>
         </main>
@@ -244,12 +309,27 @@ export default function Intake() {
                   </div>
                 ))}
               </div>
+
+              {/* Honeypot — hidden from people, tempting to bots */}
+              <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                <label htmlFor="company-website">Company website</label>
+                <input
+                  id="company-website"
+                  name="company-website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+              </div>
             </CardContent>
           </Card>
 
           <p className="mt-6 text-center text-xs text-muted-foreground">
-            Your answers are sent directly to David over an encrypted connection and are not stored in your browser.
+            Your answers are sent directly to David over an encrypted connection and are only kept in this browser until you submit.
           </p>
+
         </main>
 
         {/* Sticky nav */}
