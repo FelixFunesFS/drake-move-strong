@@ -59,8 +59,6 @@ export interface IntakeStep {
 export const INTAKE_SCHEMA: IntakeStep[] = [
   {
     name: 'Contact',
-    title: 'Contact information',
-    sub: 'So David can reach you and keep your file straight.',
     fields: [
       { k: 'name', t: 'text', q: 'Full name', req: true, ac: 'name' },
       { k: 'sex', t: 'choice', q: 'Sex', req: true, o: ['Female', 'Male', 'Prefer not to say'] },
