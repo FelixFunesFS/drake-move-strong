@@ -35,6 +35,8 @@ export default function Intake() {
   const [emailed, setEmailed] = useState(false);
   const [honeypot, setHoneypot] = useState('');
   const topRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
 
   const step = INTAKE_SCHEMA[stepIndex];
   const total = INTAKE_SCHEMA.length;
