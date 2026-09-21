@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { SEO } from '@/components/SEO';
 import AdminLayout from '@/components/admin/AdminLayout';
+import ScheduleSyncHealth from '@/components/admin/ScheduleSyncHealth';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -274,6 +275,10 @@ export default function ScheduleManager() {
               </Button>
             </div>
           </div>
+
+          <ScheduleSyncHealth />
+
+
 
           {/* Create Schedule Form */}
           {showCreateForm && (
