@@ -39,3 +39,4 @@ Once the refresh runs clean, pull the current PunchPass schedule so today forwar
 - New table `public.sync_status` (`name`, `last_attempt_at`, `last_success_at`, `rows_written`, `last_error`) with GRANTs: `select` to `authenticated`, `all` to `service_role`, RLS policy limiting reads to `has_role(auth.uid(),'admin')`. Written from the function with the service role.
 - `src/pages/Schedule.tsx` consumes the existing `useScheduleStaleness` hook and renders `ScheduleFallbackBanner`, matching the pattern already in `UpcomingClassesWidget.tsx`.
 - Auth model of the sync function is unchanged (cron key in `public.cron_keys`).
+- Failure alerts sent via the existing Resend key from `david@drake.fitness` to `envision@mkqconsulting.com`; throttle state (`last_alert_at`, `alerted`) stored on the `sync_status` row so at most one alert per 24h and one recovery notice.
