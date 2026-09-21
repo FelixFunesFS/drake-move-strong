@@ -23,6 +23,9 @@ Change the scheduled job so it stops waiting on the scrape:
 **3. Make failures visible instead of silent**
 Add a small sync-health record (last attempt, last success, rows written, error text) written on every run, surfaced on the admin schedule page with a manual "Sync now" button and a plain-language status line. Silent 18-day gaps become impossible to miss.
 
+**3b. Email an alert when a refresh fails**
+If a run fails (scrape error, no classes returned, or nothing written), send an alert email to envision@mkqconsulting.com with the date, the reason, and when the schedule was last successfully updated. Throttled to one alert per day so a repeated failure can't flood the inbox, plus a single "recovered" note when it starts working again.
+
 **4. Give the public page a safe fallback**
 On the main schedule page, when data is missing or older than 24 hours, show the existing amber banner with a "View live schedule on PunchPass" link instead of an empty grid. Same treatment for the today/tomorrow banner on the home page.
 
@@ -36,3 +39,4 @@ Once the refresh runs clean, pull the current PunchPass schedule so today forwar
 - New table `public.sync_status` (`name`, `last_attempt_at`, `last_success_at`, `rows_written`, `last_error`) with GRANTs: `select` to `authenticated`, `all` to `service_role`, RLS policy limiting reads to `has_role(auth.uid(),'admin')`. Written from the function with the service role.
 - `src/pages/Schedule.tsx` consumes the existing `useScheduleStaleness` hook and renders `ScheduleFallbackBanner`, matching the pattern already in `UpcomingClassesWidget.tsx`.
 - Auth model of the sync function is unchanged (cron key in `public.cron_keys`).
+- Failure alerts sent via the existing Resend key from `david@drake.fitness` to `envision@mkqconsulting.com`; throttle state (`last_alert_at`, `alerted`) stored on the `sync_status` row so at most one alert per 24h and one recovery notice.
