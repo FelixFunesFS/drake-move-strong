@@ -1038,7 +1038,9 @@ export type Database = {
           last_error: string | null
           last_success_at: string | null
           name: string
+          rows_expected: number
           rows_written: number
+          source: string | null
           updated_at: string
         }
         Insert: {
@@ -1049,7 +1051,9 @@ export type Database = {
           last_error?: string | null
           last_success_at?: string | null
           name: string
+          rows_expected?: number
           rows_written?: number
+          source?: string | null
           updated_at?: string
         }
         Update: {
@@ -1060,7 +1064,9 @@ export type Database = {
           last_error?: string | null
           last_success_at?: string | null
           name?: string
+          rows_expected?: number
           rows_written?: number
+          source?: string | null
           updated_at?: string
         }
         Relationships: []
