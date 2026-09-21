@@ -8,7 +8,10 @@ import { WeekDayColumn } from "./WeekDayColumn";
 import { ScheduleFilters } from "./ScheduleFilters";
 import { BookingModal } from "./BookingModal";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useScheduleStaleness } from "@/hooks/useScheduleStaleness";
+import { ScheduleFallbackBanner } from "./ScheduleFallbackBanner";
 import { cn } from "@/lib/utils";
+
 
 const getInstructorStyles = (instructor: string | null) => {
   switch (instructor?.toLowerCase()) {
@@ -56,6 +59,8 @@ export function NativeWeeklySchedule() {
   const [selectedDay, setSelectedDay] = useState<Date>(new Date());
   const [refreshing, setRefreshing] = useState(false);
   const isMobile = useIsMobile();
+  const staleness = useScheduleStaleness(24);
+
 
   const handleRefresh = async () => {
     setRefreshing(true);
@@ -137,6 +142,10 @@ export function NativeWeeklySchedule() {
   if (isMobile) {
     return (
       <div className="space-y-4">
+        {staleness.isStale && !staleness.isLoading && (
+          <ScheduleFallbackBanner hoursStale={staleness.hoursStale} isEmpty={staleness.isEmpty} />
+        )}
+
         {/* Week Navigation - Compact */}
         <div className="flex items-center justify-between gap-2">
           <Button
@@ -287,6 +296,10 @@ export function NativeWeeklySchedule() {
   // Desktop: Week grid view
   return (
     <div className="space-y-4">
+      {staleness.isStale && !staleness.isLoading && (
+        <ScheduleFallbackBanner hoursStale={staleness.hoursStale} isEmpty={staleness.isEmpty} />
+      )}
+
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <Button

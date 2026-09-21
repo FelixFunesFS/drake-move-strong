@@ -1,47 +1,10 @@
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.57.4';
+import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
-
-// Default instructor mapping for classes where PunchPass doesn't show the instructor
-const DEFAULT_INSTRUCTORS: Record<string, string> = {
-  'kettlebell flow': 'David',
-  'ruckathon': 'David',
-  'yoga': 'Misty',
-};
-
-function resolveInstructors(classes: ClassData[]): void {
-  // Pass 1: Copy instructor from ZOOM twin to in-studio twin (same date + time)
-  const grouped = new Map<string, ClassData[]>();
-  for (const c of classes) {
-    const key = `${c.class_date}|${c.start_time}`;
-    if (!grouped.has(key)) grouped.set(key, []);
-    grouped.get(key)!.push(c);
-  }
-  for (const group of grouped.values()) {
-    const withInstructor = group.find(c => c.instructor);
-    if (withInstructor) {
-      for (const c of group) {
-        if (!c.instructor) c.instructor = withInstructor.instructor;
-      }
-    }
-  }
-
-  // Pass 2: Apply default mapping for remaining nulls
-  for (const c of classes) {
-    if (!c.instructor) {
-      const nameLower = c.class_name.toLowerCase();
-      for (const [pattern, instructor] of Object.entries(DEFAULT_INSTRUCTORS)) {
-        if (nameLower.includes(pattern)) {
-          c.instructor = instructor;
-          break;
-        }
-      }
-    }
-  }
-}
+const SCHEDULE_URL = 'https://drakefitness.punchpass.com/classes';
+const ALERT_RECIPIENT = 'envision@mkqconsulting.com';
+const ALERT_FROM = 'Drake Fitness Alerts <intake@drake.fitness>';
+const GATEWAY_URL = 'https://connector-gateway.lovable.dev/resend';
 
 interface ClassData {
   class_name: string;
@@ -58,201 +21,189 @@ interface ClassData {
   raw_time_string: string | null;
 }
 
-function parseTime(timeStr: string): { hours: number; minutes: number } {
-  // Handle formats like "8:00 am", "11:00 amGMT-05:00", "6:45 am"
-  const match = timeStr.match(/(\d{1,2}):(\d{2})\s*(am|pm)?/i);
-  if (!match) return { hours: 0, minutes: 0 };
-  
-  let hours = parseInt(match[1]);
-  const minutes = parseInt(match[2]);
-  const period = match[3]?.toLowerCase();
-  
+// Instructors PunchPass sometimes omits — filled in by class name
+const DEFAULT_INSTRUCTORS: Record<string, string> = {
+  'kettlebell flow': 'David',
+  ruckathon: 'David',
+  yoga: 'Misty',
+};
+
+const decode = (s: string) =>
+  s
+    .replace(/&amp;/g, '&')
+    .replace(/&#39;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+function parseTime(raw: string): { hours: number; minutes: number } | null {
+  const m = raw.match(/(\d{1,2}):(\d{2})\s*(am|pm)?/i);
+  if (!m) return null;
+  let hours = parseInt(m[1]);
+  const minutes = parseInt(m[2]);
+  const period = m[3]?.toLowerCase();
   if (period === 'pm' && hours !== 12) hours += 12;
   if (period === 'am' && hours === 12) hours = 0;
-  
   return { hours, minutes };
 }
 
-function formatTimeForDb(hours: number, minutes: number): string {
-  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:00`;
+const fmt = (h: number, m: number) =>
+  `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:00`;
+
+function parseDuration(raw: string | null): number {
+  if (!raw) return 60;
+  let total = 0;
+  const hr = raw.match(/(\d+(?:\.\d+)?)\s*hour/i);
+  const min = raw.match(/(\d+)\s*min/i);
+  if (hr) total += Math.round(parseFloat(hr[1]) * 60);
+  if (min) total += parseInt(min[1]);
+  return total || 60;
 }
 
-function parseScheduleFromMarkdown(markdown: string): ClassData[] {
+/**
+ * Parses the PunchPass calendar-list markup.
+ * Each day is a <section id="date-YYYY-MM-DD"> holding
+ * <li class="calendar-list-instance-row"> entries.
+ */
+export function parseScheduleFromHtml(html: string): ClassData[] {
   const classes: ClassData[] = [];
-  const lines = markdown.split('\n');
-  
-  let currentDate: string | null = null;
-  let currentYear = new Date().getFullYear();
-  let i = 0;
-  
-  // Month name to number mapping
-  const monthMap: Record<string, number> = {
-    january: 0, february: 1, march: 2, april: 3, may: 4, june: 5,
-    july: 6, august: 7, september: 8, october: 9, november: 10, december: 11
-  };
-  
-  while (i < lines.length) {
-    const line = lines[i].trim();
-    
-    // Match date headers like "January 26" or "January 5" (with optional trailing whitespace)
-    const dateMatch = line.match(/^(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})\s*$/i);
-    if (dateMatch) {
-      const monthName = dateMatch[1];
-      const day = parseInt(dateMatch[2]);
-      const month = monthMap[monthName.toLowerCase()];
-      
-      // Handle year rollover (if we see January but we're past June, it's next year)
-      const today = new Date();
-      if (month < today.getMonth() - 6) {
-        currentYear = today.getFullYear() + 1;
-      }
-      
-      const dateObj = new Date(currentYear, month, day);
-      currentDate = dateObj.toISOString().split('T')[0];
-      i++;
-      continue;
+  const dateSections = html.split(/<section id="date-(\d{4}-\d{2}-\d{2})"/);
+
+  for (let i = 1; i < dateSections.length; i += 2) {
+    const classDate = dateSections[i];
+    const block = dateSections[i + 1] || '';
+    const rows = block.split(/<li class="calendar-list-instance-row/).slice(1);
+
+    for (const row of rows) {
+      const timeMatch = row.match(/<time[^>]*>([^<]+)<\/time>/i);
+      const titleMatch = row.match(/list-instance-row-title[^>]*>([\s\S]*?)<\/div>/i);
+      if (!timeMatch || !titleMatch) continue;
+
+      const parsed = parseTime(timeMatch[1]);
+      if (!parsed) continue;
+
+      const title = decode(titleMatch[1]);
+      if (!title) continue;
+
+      const hrefMatch = row.match(/href="(https:\/\/[^"]*\/classes\/\d+)"/i);
+      const instructorMatch = row.match(/name="user"[^>]*><\/wa-icon>([^<]*)/i);
+      const durationMatch = row.match(/name="clock"[\s\S]{0,160}?wa-text-nowrap">([^<]+)</i);
+      const locationMatch = row.match(/name="location-dot"[^>]*><\/wa-icon>([^<]*)/i);
+      const spotsMatch = row.match(/(\d+)\s*spots?\s*left/i);
+      const isFull = /\b(class is full|sold out|waitlist)\b/i.test(row);
+
+      const duration = parseDuration(durationMatch ? durationMatch[1] : null);
+      const endTotal = parsed.hours * 60 + parsed.minutes + duration;
+      const location = locationMatch ? decode(locationMatch[1]) || null : null;
+      const instructor = instructorMatch ? decode(instructorMatch[1]) || null : null;
+
+      classes.push({
+        class_name: title,
+        class_date: classDate,
+        start_time: fmt(parsed.hours, parsed.minutes),
+        end_time: fmt(Math.floor(endTotal / 60) % 24, endTotal % 60),
+        duration_minutes: duration,
+        location,
+        instructor,
+        spots_remaining: spotsMatch ? parseInt(spotsMatch[1]) : isFull ? 0 : null,
+        spots_total: null,
+        is_online:
+          /zoom|online|virtual/i.test(title) || /zoom|online|virtual/i.test(location || ''),
+        punchpass_url: hrefMatch ? hrefMatch[1] : null,
+        raw_time_string: decode(timeMatch[1]),
+      });
     }
-    
-    // Match time like "8:00 am", "6:45 am", or "8:00 amGMT-05:00" (ZOOM classes have timezone suffix)
-    const timeMatch = line.match(/^(\d{1,2}:\d{2}\s*(?:am|pm))(GMT[+-]\d{2}:\d{2})?$/i);
-    if (timeMatch && currentDate) {
-      const rawTimeString = timeMatch[1];
-      const hasTimezone = !!timeMatch[2]; // GMT suffix indicates ZOOM class
-      const { hours, minutes } = parseTime(rawTimeString);
-      const startTime = formatTimeForDb(hours, minutes);
-      
-      // Look ahead for class details
-      let className = '';
-      let punchpassUrl: string | null = null;
-      let duration = 60;
-      let location: string | null = null;
-      let instructor: string | null = null;
-      let isOnline = hasTimezone; // Pre-set for ZOOM classes detected via timezone
-      let spotsRemaining: number | null = null;
-      
-      // Check next lines for class info (up to 12 lines ahead for instructor capture)
-      for (let j = i + 1; j < Math.min(i + 12, lines.length); j++) {
-        const nextLine = lines[j].trim();
-        
-        // Skip empty lines
-        if (!nextLine) continue;
-        
-        // Skip day-of-week indicators like "Monday TODAY", "Tuesday", etc.
-        if (nextLine.match(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)/i)) {
-          continue;
-        }
-        
-        // Class name with URL - handles both relative and absolute URLs
-        // e.g., [KB STrong Group Fitness](/classes/18023313) or [KB STrong Group Fitness](https://drakefitness.punchpass.com/classes/18023313)
-        const classMatch = nextLine.match(/\[([^\]]+)\]\(((?:https:\/\/drakefitness\.punchpass\.com)?\/classes\/\d+)\)/);
-        if (classMatch && !className) {
-          className = classMatch[1];
-          punchpassUrl = classMatch[2];
-          // Normalize relative URLs to absolute
-          if (punchpassUrl && punchpassUrl.startsWith('/')) {
-            punchpassUrl = 'https://drakefitness.punchpass.com' + punchpassUrl;
-          }
-          // Check if class name indicates ZOOM/online
-          if (className.toLowerCase().includes('zoom')) {
-            isOnline = true;
-            location = 'Online (Zoom)';
-          }
-          continue;
-        }
-        
-        // ONLINE indicator
-        if (nextLine === 'ONLINE') {
-          isOnline = true;
-          continue;
-        }
-        
-        // Duration - "1 hour"
-        const durationMatch = nextLine.match(/^(\d+)\s*hour/i);
-        if (durationMatch) {
-          duration = parseInt(durationMatch[1]) * 60;
-          continue;
-        }
-        
-        // Location
-        if (nextLine.includes('Drake Fitness In Studio')) {
-          location = 'Drake Fitness Studio';
-          continue;
-        }
-        if (nextLine.includes('KB Strong Zoom Online') || nextLine.includes('Zoom')) {
-          location = 'Online (Zoom)';
-          isOnline = true;
-          continue;
-        }
-        
-        // Instructor (David, Misty, or Coach Misty) - normalize the name
-        if (/^(David|Misty|Coach\s*Misty)$/i.test(nextLine)) {
-          const normalized = nextLine.toLowerCase().trim();
-          if (normalized === 'david') {
-            instructor = 'David';
-          } else if (normalized === 'misty' || normalized.includes('misty')) {
-            instructor = 'Misty';
-          }
-          continue;
-        }
-        
-        // Spots - "5 SPOTS LEFT" or "9 SPOTS LEFT"
-        const spotsMatch = nextLine.match(/^(\d+)\s*SPOTS?\s*LEFT/i);
-        if (spotsMatch) {
-          spotsRemaining = parseInt(spotsMatch[1]);
-          continue;
-        }
-        
-        // Stop if we hit another time (next class entry)
-        if (nextLine.match(/^\d{1,2}:\d{2}\s*(?:am|pm)$/i)) {
-          break;
-        }
-        
-        // Stop if we hit a date header
-        if (nextLine.match(/^(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2}$/i)) {
-          break;
-        }
-        
-        // Stop if we hit month marker like "Jan"
-        if (nextLine.match(/^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)$/i)) {
-          break;
-        }
-      }
-      
-      // Only add if we found a valid class name
-      if (className && currentDate) {
-        // Final check: ensure ZOOM classes are always flagged correctly
-        if (className.toLowerCase().includes('zoom')) {
-          isOnline = true;
-          if (!location) location = 'Online (Zoom)';
-        }
-        // Calculate end time
-        const endHours = hours + Math.floor(duration / 60);
-        const endMinutes = minutes + (duration % 60);
-        const adjustedEndHours = endHours + Math.floor(endMinutes / 60);
-        const adjustedEndMinutes = endMinutes % 60;
-        const endTime = formatTimeForDb(adjustedEndHours, adjustedEndMinutes);
-        
-        classes.push({
-          class_name: className,
-          class_date: currentDate,
-          start_time: startTime,
-          end_time: endTime,
-          duration_minutes: duration,
-          location,
-          instructor,
-          spots_remaining: spotsRemaining,
-          spots_total: null,
-          is_online: isOnline,
-          punchpass_url: punchpassUrl,
-          raw_time_string: rawTimeString,
-        });
-      }
-    }
-    
-    i++;
   }
-  
+
   return classes;
+}
+
+function applyDefaultInstructors(classes: ClassData[]) {
+  for (const c of classes) {
+    if (c.instructor) continue;
+    const name = c.class_name.toLowerCase();
+    for (const [key, instructor] of Object.entries(DEFAULT_INSTRUCTORS)) {
+      if (name.includes(key)) {
+        c.instructor = instructor;
+        break;
+      }
+    }
+  }
+}
+
+async function sendAlert(subject: string, body: string) {
+  const lovableKey = Deno.env.get('LOVABLE_API_KEY');
+  const resendKey = Deno.env.get('RESEND_API_KEY');
+  if (!lovableKey || !resendKey) {
+    console.warn('Alert email skipped: email keys not configured');
+    return;
+  }
+  try {
+    const res = await fetch(`${GATEWAY_URL}/emails`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${lovableKey}`,
+        'X-Connection-Api-Key': resendKey,
+      },
+      body: JSON.stringify({
+        from: ALERT_FROM,
+        to: [ALERT_RECIPIENT],
+        subject,
+        html: `<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#1A1A1A">${body}</div>`,
+      }),
+    });
+    if (!res.ok) {
+      console.error(`Alert email failed [${res.status}]: ${await res.text()}`);
+    }
+  } catch (e) {
+    console.error('Alert email error:', e);
+  }
+}
+
+type AdminClient = ReturnType<typeof createClient>;
+
+async function recordStatus(
+  supabaseAdmin: AdminClient,
+  update: Record<string, unknown>,
+) {
+  const { error } = await supabaseAdmin
+    .from('sync_status')
+    .upsert({ name: 'punchpass-sync', ...update }, { onConflict: 'name' });
+  if (error) console.warn('sync_status write failed:', error);
+}
+
+async function handleFailure(supabaseAdmin: AdminClient, message: string) {
+  console.error('[sync-punchpass-schedule] FAILURE:', message);
+
+  const { data: status } = await supabaseAdmin
+    .from('sync_status')
+    .select('last_alert_at')
+    .eq('name', 'punchpass-sync')
+    .maybeSingle();
+
+  const lastAlert = status?.last_alert_at ? new Date(status.last_alert_at as string) : null;
+  const throttled = lastAlert ? Date.now() - lastAlert.getTime() < 24 * 60 * 60 * 1000 : false;
+
+  await recordStatus(supabaseAdmin, {
+    last_attempt_at: new Date().toISOString(),
+    last_error: message,
+    alerted: true,
+    ...(throttled ? {} : { last_alert_at: new Date().toISOString() }),
+  });
+
+  if (!throttled) {
+    await sendAlert(
+      'Drake Fitness: class schedule sync failed',
+      `<p>The automatic PunchPass schedule refresh failed.</p>
+       <p><strong>Details:</strong> ${message}</p>
+       <p>The website is showing a "check PunchPass for the latest times" notice until the next successful refresh. You will not get another alert for 24 hours.</p>
+       <p><a href="${SCHEDULE_URL}">View the PunchPass schedule</a></p>`,
+    );
+  }
 }
 
 Deno.serve(async (req) => {
@@ -260,28 +211,24 @@ Deno.serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
-  try {
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-    const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
-    const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-    
-    // --- Authentication: check bypasses first, then fall back to admin JWT ---
-    const authHeader = req.headers.get('Authorization');
-    
-    // Bypass 1: Service role key in Authorization header
-    let isCronRequest = authHeader === `Bearer ${serviceRoleKey}`;
-    
-    // Read body once (needed for cron_secret check)
-    let bodyText = '';
-    try { bodyText = await req.text(); } catch { /* ignore */ }
-    let body: { source?: string; cron_secret?: string } = {};
-    try { if (bodyText) body = JSON.parse(bodyText); } catch { /* ignore */ }
-    
-    // Create service role client for database operations
-    const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey);
+  const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+  const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+  const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey);
 
-    // Rotatable cron key, stored in the database (never in source control).
-    // Falls back to the CRON_SECRET function secret if the row is missing.
+  try {
+    // --- Authentication: service-role header or rotatable cron key ---
+    const authHeader = req.headers.get('Authorization');
+    let isCronRequest = authHeader === `Bearer ${serviceRoleKey}`;
+
+    let bodyText = '';
+    try {
+      bodyText = await req.text();
+    } catch { /* ignore */ }
+    let body: { source?: string; cron_secret?: string } = {};
+    try {
+      if (bodyText) body = JSON.parse(bodyText);
+    } catch { /* ignore */ }
+
     const presentedSecret = body.cron_secret || req.headers.get('x-cron-secret') || '';
     if (!isCronRequest && presentedSecret) {
       const { data: keyRow } = await supabaseAdmin
@@ -289,230 +236,149 @@ Deno.serve(async (req) => {
         .select('key')
         .eq('name', 'punchpass-sync')
         .maybeSingle();
-      const expected = keyRow?.key || Deno.env.get('CRON_SECRET') || '';
-      if (expected && presentedSecret === expected) {
-        isCronRequest = true;
-      }
-    }
-    
-    if (isCronRequest) {
-      console.log('[sync-punchpass-schedule] Cron/bypass-triggered sync starting...');
-    } else {
-      console.log('[sync-punchpass-schedule] Manual sync triggered (no auth required)');
+      const expected = (keyRow?.key as string) || Deno.env.get('CRON_SECRET') || '';
+      if (expected && presentedSecret === expected) isCronRequest = true;
     }
 
-    const firecrawlApiKey = Deno.env.get('FIRECRAWL_API_KEY');
-    if (!firecrawlApiKey) {
-      console.error('FIRECRAWL_API_KEY not configured');
-      return new Response(
-        JSON.stringify({ success: false, error: 'Firecrawl not configured' }),
-        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
-    }
+    console.log(
+      `[sync-punchpass-schedule] Starting sync (source: ${body.source || (isCronRequest ? 'cron' : 'manual')})`,
+    );
 
-    console.log('Extracting PunchPass schedule with Firecrawl...');
+    await recordStatus(supabaseAdmin, { last_attempt_at: new Date().toISOString() });
 
-    // Use Firecrawl scrape API to get fresh (non-cached) content
-    const extractResponse = await fetch('https://api.firecrawl.dev/v1/scrape', {
-      method: 'POST',
+    // --- Fetch the schedule page directly (server-rendered, no scraper needed) ---
+    const pageResponse = await fetch(SCHEDULE_URL, {
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${firecrawlApiKey}`,
+        'User-Agent': 'Mozilla/5.0 (compatible; DrakeFitnessSync/1.0)',
+        Accept: 'text/html',
+        'Cache-Control': 'no-cache',
       },
-      body: JSON.stringify({
-        url: 'https://drakefitness.punchpass.com/classes',
-        formats: ['markdown'],
-        waitFor: 3000, // Wait for JS-rendered content
-      }),
     });
 
-    const extractData = await extractResponse.json();
-
-    if (!extractResponse.ok || !extractData.success) {
-      console.error('Firecrawl scrape failed:', extractData);
-      return new Response(
-        JSON.stringify({ success: false, error: 'Failed to extract schedule', details: extractData }),
-        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+    if (!pageResponse.ok) {
+      const msg = `PunchPass returned HTTP ${pageResponse.status}`;
+      await handleFailure(supabaseAdmin, msg);
+      return new Response(JSON.stringify({ success: false, error: msg }), {
+        status: 502,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
-    // Firecrawl returns data.markdown
-    const content = extractData.data?.markdown || '';
-    console.log('Extracted content length:', content.length);
-    console.log('Content preview:', content.substring(0, 1000));
+    const html = await pageResponse.text();
+    console.log('Fetched schedule page, length:', html.length);
 
-    // Parse the schedule
-    const classes = parseScheduleFromMarkdown(content);
-    resolveInstructors(classes);
-    const resolvedCount = classes.filter(c => c.instructor).length;
-    console.log(`Parsed ${classes.length} classes, ${resolvedCount} with instructors after in-batch resolution`);
+    const classes = parseScheduleFromHtml(html);
+    applyDefaultInstructors(classes);
+    console.log(`Parsed ${classes.length} classes`);
 
     if (classes.length === 0) {
-      console.warn('No classes parsed from schedule. Content preview:', content.substring(0, 500));
+      const msg =
+        'No classes parsed from the PunchPass page — the page layout may have changed again.';
+      await handleFailure(supabaseAdmin, msg);
       return new Response(
-        JSON.stringify({ 
-          success: true, 
-          message: 'No classes found in schedule',
-          classes_synced: 0,
-          content_preview: content.substring(0, 500)
-        }),
-        { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        JSON.stringify({ success: false, error: msg, classes_synced: 0 }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
       );
     }
 
-    // --- Pass 3: DB-aware instructor resolution ---
-    // Query existing rows that already have instructors for the date range being synced
-    const uniqueDates = [...new Set(classes.map(c => c.class_date))];
+    const uniqueDates = [...new Set(classes.map((c) => c.class_date))].sort();
+
+    // Preserve instructors we already know for rows PunchPass left blank
     const { data: existingRows } = await supabaseAdmin
       .from('punchpass_schedule')
-      .select('class_date, start_time, class_name, is_online, instructor')
-      .in('class_date', uniqueDates)
-      .not('instructor', 'is', null);
+      .select('id, class_date, start_time, class_name, is_online, instructor')
+      .in('class_date', uniqueDates);
 
-    if (existingRows && existingRows.length > 0) {
-      let dbResolvedCount = 0;
+    if (existingRows?.length) {
       for (const c of classes) {
-        if (!c.instructor) {
-          // Look for any existing row at the same date+time that has an instructor
-          const twin = existingRows.find(
-            e => e.class_date === c.class_date && e.start_time === c.start_time && e.instructor
-          );
-          if (twin) {
-            c.instructor = twin.instructor;
-            dbResolvedCount++;
-          }
-        }
-      }
-      if (dbResolvedCount > 0) {
-        console.log(`Pass 3 (DB lookup): resolved ${dbResolvedCount} additional instructors`);
+        if (c.instructor) continue;
+        const twin = existingRows.find(
+          (e) => e.class_date === c.class_date && e.start_time === c.start_time && e.instructor,
+        );
+        if (twin) c.instructor = twin.instructor as string;
       }
     }
 
-    // --- Preserve existing instructors on upsert ---
-    // For any class still with null instructor, check if the DB already has one for the same conflict key
-    if (existingRows && existingRows.length > 0) {
-      let preservedCount = 0;
-      for (const c of classes) {
-        if (!c.instructor) {
-          const existing = existingRows.find(
-            e => e.class_date === c.class_date
-              && e.start_time === c.start_time
-              && e.class_name === c.class_name
-              && e.is_online === c.is_online
-              && e.instructor
-          );
-          if (existing) {
-            c.instructor = existing.instructor;
-            preservedCount++;
-          }
-        }
-      }
-      if (preservedCount > 0) {
-        console.log(`Preserved ${preservedCount} existing instructor values from DB`);
-      }
-    }
-
-    const finalResolvedCount = classes.filter(c => c.instructor).length;
-    console.log(`Final: ${finalResolvedCount}/${classes.length} classes have instructors`);
-
-    // Clear old entries (classes that have passed)
+    // Remove classes that have already passed
     const today = new Date().toISOString().split('T')[0];
-    const { error: deleteError } = await supabaseAdmin
-      .from('punchpass_schedule')
-      .delete()
-      .lt('class_date', today);
+    await supabaseAdmin.from('punchpass_schedule').delete().lt('class_date', today);
 
-    if (deleteError) {
-      console.warn('Error deleting old classes:', deleteError);
-    }
-
-    // Upsert new classes
     const { data: upsertData, error: upsertError } = await supabaseAdmin
       .from('punchpass_schedule')
       .upsert(
-        classes.map(c => ({
-          ...c,
-          last_synced_at: new Date().toISOString(),
-        })),
-        { 
-          onConflict: 'class_date,start_time,class_name,is_online',
-          ignoreDuplicates: false 
-        }
+        classes.map((c) => ({ ...c, last_synced_at: new Date().toISOString() })),
+        { onConflict: 'class_date,start_time,class_name,is_online', ignoreDuplicates: false },
       )
       .select();
 
     if (upsertError) {
-      console.error('Error upserting classes:', upsertError);
-      return new Response(
-        JSON.stringify({ success: false, error: 'Failed to save schedule', details: upsertError }),
-        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      const msg = `Failed to save schedule: ${upsertError.message}`;
+      await handleFailure(supabaseAdmin, msg);
+      return new Response(JSON.stringify({ success: false, error: msg }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Remove cancelled classes still sitting in the synced date range
+    const scrapedKeys = new Set(
+      classes.map((c) => `${c.class_date}|${c.start_time}|${c.class_name}|${c.is_online}`),
+    );
+    if (existingRows?.length) {
+      const idsToDelete = existingRows
+        .filter(
+          (r) =>
+            !scrapedKeys.has(`${r.class_date}|${r.start_time}|${r.class_name}|${r.is_online}`),
+        )
+        .map((r) => r.id);
+      if (idsToDelete.length > 0) {
+        await supabaseAdmin.from('punchpass_schedule').delete().in('id', idsToDelete);
+        console.log(`Removed ${idsToDelete.length} cancelled/removed classes`);
+      }
+    }
+
+    const rowsWritten = upsertData?.length || classes.length;
+
+    // Recovery notice if the previous run had alerted
+    const { data: prevStatus } = await supabaseAdmin
+      .from('sync_status')
+      .select('alerted')
+      .eq('name', 'punchpass-sync')
+      .maybeSingle();
+
+    await recordStatus(supabaseAdmin, {
+      last_success_at: new Date().toISOString(),
+      rows_written: rowsWritten,
+      last_error: null,
+      alerted: false,
+      last_alert_at: null,
+    });
+
+    if (prevStatus?.alerted) {
+      await sendAlert(
+        'Drake Fitness: class schedule sync recovered',
+        `<p>The PunchPass schedule refresh is working again — ${rowsWritten} classes were just synced.</p>`,
       );
     }
 
-    console.log(`Successfully synced ${upsertData?.length || classes.length} classes`);
-
-    // --- Cleanup: delete DB rows for synced dates that are no longer on PunchPass ---
-    const scrapedKeys = new Set(
-      classes.map(c => `${c.class_date}|${c.start_time}|${c.class_name}|${c.is_online}`)
-    );
-
-    const { data: existingForDates } = await supabaseAdmin
-      .from('punchpass_schedule')
-      .select('id, class_date, start_time, class_name, is_online')
-      .in('class_date', uniqueDates);
-
-    if (existingForDates && existingForDates.length > 0) {
-      const idsToDelete = existingForDates
-        .filter(row => !scrapedKeys.has(`${row.class_date}|${row.start_time}|${row.class_name}|${row.is_online}`))
-        .map(row => row.id);
-
-      if (idsToDelete.length > 0) {
-        const { error: cleanupError } = await supabaseAdmin
-          .from('punchpass_schedule')
-          .delete()
-          .in('id', idsToDelete);
-
-        if (cleanupError) {
-          console.warn('Cleanup delete error:', cleanupError);
-        } else {
-          console.log(`Cleanup: removed ${idsToDelete.length} cancelled/removed classes`);
-        }
-      }
-    }
-
-    // Cleanup 2: Remove rows for dates before the earliest scraped date
-    // (catches "today" rows when PunchPass no longer shows today's classes)
-    if (uniqueDates.length > 0) {
-      const earliestScrapedDate = uniqueDates.sort()[0];
-      const { error: staleError } = await supabaseAdmin
-        .from('punchpass_schedule')
-        .delete()
-        .lt('class_date', earliestScrapedDate);
-
-      if (staleError) {
-        console.warn('Stale date cleanup error:', staleError);
-      } else {
-        console.log(`Stale date cleanup: removed rows before ${earliestScrapedDate}`);
-      }
-    }
+    console.log(`Successfully synced ${rowsWritten} classes across ${uniqueDates.length} dates`);
 
     return new Response(
       JSON.stringify({
         success: true,
         message: 'Schedule synced successfully',
-        classes_synced: upsertData?.length || classes.length,
-        classes_parsed: classes.length,
+        classes_synced: rowsWritten,
+        dates: uniqueDates.length,
         last_synced: new Date().toISOString(),
       }),
-      { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      { headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
     );
-
   } catch (error) {
-    console.error('Error syncing schedule:', error);
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    return new Response(
-      JSON.stringify({ success: false, error: errorMessage }),
-      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-    );
+    const msg = error instanceof Error ? error.message : 'Unknown error';
+    await handleFailure(supabaseAdmin, msg);
+    return new Response(JSON.stringify({ success: false, error: msg }), {
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
   }
 });
