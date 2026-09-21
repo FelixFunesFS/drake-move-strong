@@ -275,6 +275,10 @@ export default function ScheduleManager() {
             </div>
           </div>
 
+          <ScheduleSyncHealth />
+
+
+
           {/* Create Schedule Form */}
           {showCreateForm && (
             <Card className="shadow-card border-primary">
