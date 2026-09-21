@@ -258,13 +258,10 @@ export async function fetchSchedulePage(): Promise<string> {
 export function validateParsedSchedule(
   classes: ClassData[],
   previousCount: number,
+  degraded = false,
 ): string | null {
   if (classes.length === 0) {
     return 'No classes parsed from the PunchPass page — the page layout may have changed again.';
-  }
-
-  if (previousCount >= 10 && classes.length < previousCount / 2) {
-    return `Only ${classes.length} classes parsed, down from ${previousCount} on the last successful refresh — refusing to overwrite the schedule.`;
   }
 
   const today = new Date();
@@ -281,9 +278,18 @@ export function validateParsedSchedule(
     return 'Every parsed class is missing an instructor — the reader only partially matched the page.';
   }
 
+  // Degraded mode = only the backup events reader worked. It legitimately covers
+  // fewer classes and carries no booking links, so the volume checks don't apply.
+  if (degraded) return null;
+
+  if (previousCount >= 10 && classes.length < previousCount / 2) {
+    return `Only ${classes.length} classes parsed, down from ${previousCount} on the last successful refresh — refusing to overwrite the schedule.`;
+  }
+
   if (classes.every((c) => !c.punchpass_url)) {
     return 'Every parsed class is missing a booking link — the reader only partially matched the page.';
   }
 
   return null;
 }
+
