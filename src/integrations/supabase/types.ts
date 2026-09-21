@@ -1029,6 +1029,42 @@ export type Database = {
         }
         Relationships: []
       }
+      sync_status: {
+        Row: {
+          alerted: boolean
+          created_at: string
+          last_alert_at: string | null
+          last_attempt_at: string | null
+          last_error: string | null
+          last_success_at: string | null
+          name: string
+          rows_written: number
+          updated_at: string
+        }
+        Insert: {
+          alerted?: boolean
+          created_at?: string
+          last_alert_at?: string | null
+          last_attempt_at?: string | null
+          last_error?: string | null
+          last_success_at?: string | null
+          name: string
+          rows_written?: number
+          updated_at?: string
+        }
+        Update: {
+          alerted?: boolean
+          created_at?: string
+          last_alert_at?: string | null
+          last_attempt_at?: string | null
+          last_error?: string | null
+          last_success_at?: string | null
+          name?: string
+          rows_written?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
