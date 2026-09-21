@@ -125,7 +125,7 @@ Deno.serve(async (req) => {
       );
     }
 
-    if (fromHtml.length === 0) {
+    if (degraded) {
       // Reader B kept us alive — flag it even though the sync itself succeeded.
       await sendScheduleAlert(
         'Drake Fitness: PunchPass layout changed (schedule still working)',
@@ -133,6 +133,7 @@ Deno.serve(async (req) => {
          <p>The backup reader saved ${classes.length} upcoming classes, so the website is still accurate for the next few days — but the reader needs updating soon.</p>`,
       );
     }
+
 
     const uniqueDates = [...new Set(classes.map((c) => c.class_date))].sort();
 
