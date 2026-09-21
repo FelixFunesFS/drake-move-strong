@@ -111,7 +111,10 @@ Deno.serve(async (req) => {
       .maybeSingle();
 
     const previousCount = (prior?.rows_written as number) || 0;
-    const problem = validateParsedSchedule(classes, previousCount);
+    // Degraded = only the backup events reader worked (PunchPass layout changed).
+    const degraded = fromHtml.length === 0;
+    const problem = validateParsedSchedule(classes, previousCount, degraded);
+
 
     if (problem) {
       await recordStatus(supabaseAdmin, { source, rows_expected: previousCount });
