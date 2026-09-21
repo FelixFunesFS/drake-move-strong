@@ -207,7 +207,7 @@ Deno.serve(async (req) => {
     });
 
 
-    if (prior?.alerted) {
+    if (prior?.alerted && !degraded) {
       await sendScheduleAlert(
         'Drake Fitness: class schedule sync recovered',
         `<p>The PunchPass schedule refresh is working again — ${rowsWritten} classes were just synced.</p>`,
