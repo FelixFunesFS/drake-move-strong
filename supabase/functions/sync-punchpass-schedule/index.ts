@@ -174,9 +174,11 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Remove cancelled classes still sitting in the synced date range
+    // Remove cancelled classes still sitting in the synced date range.
+    // Skipped in degraded mode: the backup reader only covers the next few
+    // classes, so anything it "misses" is still a real class.
     const scrapedKeys = new Set(classes.map(conflictKey));
-    if (existingRows?.length) {
+    if (!degraded && existingRows?.length) {
       const idsToDelete = existingRows
         .filter(
           (r) =>
@@ -193,13 +195,17 @@ Deno.serve(async (req) => {
 
     await recordStatus(supabaseAdmin, {
       last_success_at: new Date().toISOString(),
-      rows_written: rowsWritten,
+      // Keep the healthy baseline while degraded so the drop check stays meaningful
+      rows_written: degraded ? Math.max(previousCount, rowsWritten) : rowsWritten,
       rows_expected: previousCount,
       source,
-      last_error: null,
-      alerted: false,
-      last_alert_at: null,
+      last_error: degraded
+        ? 'Main layout reader found no classes — running on the backup events reader.'
+        : null,
+      alerted: degraded,
+      ...(degraded ? {} : { last_alert_at: null }),
     });
+
 
     if (prior?.alerted) {
       await sendScheduleAlert(
