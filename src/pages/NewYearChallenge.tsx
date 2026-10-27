@@ -153,7 +153,7 @@ const NewYearChallenge = () => {
             </h1>
             
             <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-              Start 2026 stronger with our January Challenge — unlimited classes for just <span className="text-drake-gold font-bold">$99</span> your first month
+              Start 2026 stronger with our January Challenge — unlimited classes for just <span className="text-drake-gold font-bold">$125</span> your first month
             </p>
 
             <div className="mb-8">
@@ -254,7 +254,7 @@ const NewYearChallenge = () => {
                   </h2>
                   <div className="flex items-center justify-center gap-4 mb-4">
                     <span className="text-drake-slate-gray line-through text-2xl">$250</span>
-                    <span className="text-5xl md:text-6xl font-hero font-bold text-drake-teal">$99</span>
+                    <span className="text-5xl md:text-6xl font-hero font-bold text-drake-teal">$125</span>
                   </div>
                   <p className="text-drake-slate-gray text-lg">First month unlimited access</p>
                 </div>
@@ -455,7 +455,7 @@ const NewYearChallenge = () => {
 
             <div className="flex items-center justify-center gap-4 mb-8">
               <span className="text-drake-dark/60 line-through text-xl">$250</span>
-              <span className="text-4xl md:text-5xl font-hero font-bold text-drake-dark">$99</span>
+              <span className="text-4xl md:text-5xl font-hero font-bold text-drake-dark">$125</span>
             </div>
 
             <Button
