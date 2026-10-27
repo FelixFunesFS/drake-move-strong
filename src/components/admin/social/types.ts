@@ -119,7 +119,7 @@ export const CONTENT_PRESETS: ContentPreset[] = [
     label: 'New Member',
     eyebrow: 'WEST ASHLEY · CHARLESTON',
     headline: 'New Member Special',
-    programLine: 'Unlimited Classes — $110/mo',
+    programLine: 'First Month Unlimited — $125',
     detailLine: 'First Month · No Contract',
     ctaText: 'Get Started →',
     showBadge: true,

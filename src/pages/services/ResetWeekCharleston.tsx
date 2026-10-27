@@ -185,7 +185,7 @@ export default function ResetWeekCharleston() {
               <div>
                 <span className="section-eyebrow text-primary">WHAT YOU'LL EXPERIENCE</span>
                 <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8 uppercase leading-tight">
-                  3 Classes That Prepare You<br className="hidden sm:block" />
+                  2 Classes That Prepare You<br className="hidden sm:block" />
                   <span className="text-primary">For Real Results</span>
                 </h2>
 
@@ -323,7 +323,7 @@ export default function ResetWeekCharleston() {
                   </a>
                 </Button>
                 <p className="text-muted-foreground text-xs md:text-sm mt-4">Available spots are limited to maintain small group sizes</p>
-                <p className="text-primary font-semibold text-sm mt-2">Love it? Get your first month of unlimited classes for just $110 when you join within 7 days</p>
+                <p className="text-primary font-semibold text-sm mt-2">Love it? Get your first month of unlimited classes for just $125 when you join within 7 days</p>
               </div>
             </div>
           </AnimatedSection>

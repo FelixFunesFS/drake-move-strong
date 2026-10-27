@@ -206,7 +206,7 @@ const Schedule = () => {
         <CTASection
           eyebrow="GET STARTED"
           title="Ready to Feel Stronger, Move Better, and Train Smarter?"
-          subtitle="Try 2 classes free — then unlock your first month for $110."
+          subtitle="Try 2 classes free — then unlock your first month for $125."
           ctaText="Claim 2 Free Classes"
            ctaLink={INTRO_URL}
            variant="primary"

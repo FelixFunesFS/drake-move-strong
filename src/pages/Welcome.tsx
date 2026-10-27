@@ -119,7 +119,7 @@ const Welcome = () => {
                 <div className="mt-8 bg-primary/5 border border-primary/20 p-6 rounded-xl text-center">
                   <p className="text-lg font-semibold mb-2">Love It? Keep Going for Less.</p>
                   <p className="text-muted-foreground">
-                    After your 2nd class, get your first month of unlimited classes for just <strong className="text-primary">$110</strong> — if you join within 7 days.
+                    After your 2nd class, get your first month of unlimited classes for just <strong className="text-primary">$125</strong> — if you join within 7 days.
                   </p>
                 </div>
               </AnimatedSection>
