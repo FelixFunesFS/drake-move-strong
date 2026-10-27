@@ -27,7 +27,7 @@ const DEFAULT_SLIDE: SlideContent = {
   fifthPhoto: null,
   template: 'full-bleed',
   eyebrow: 'WEST ASHLEY · CHARLESTON',
-  headline: 'Try 3 Classes Free',
+  headline: 'Try 2 Classes Free',
   programLine: 'Strength & Mobility Classes',
   detailLine: 'All Levels Welcome',
   ctaText: 'Book Your Free Class →',
@@ -317,7 +317,7 @@ export default function SocialGraphics() {
       const newSlides: SlideContent[] = [
         { ...DEFAULT_SLIDE, template: 'full-bleed', headline: "This Week at\nDrake Fitness", programLine: 'Swipe for the Full Schedule →', detailLine: '', ctaText: 'Swipe →', showBadge: false },
         ...middleSlides,
-        { ...DEFAULT_SLIDE, template: 'centered', headline: 'Book Your Spot', programLine: 'drake.fitness', detailLine: 'Try 3 Classes Free', ctaText: 'Book Now →', showBadge: true },
+        { ...DEFAULT_SLIDE, template: 'centered', headline: 'Book Your Spot', programLine: 'drake.fitness', detailLine: 'Try 2 Classes Free', ctaText: 'Book Now →', showBadge: true },
       ];
       setSlides(newSlides.slice(0, 10));
       setActiveSlide(0);

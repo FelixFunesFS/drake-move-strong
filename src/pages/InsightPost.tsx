@@ -231,7 +231,7 @@ const InsightPost = () => {
                 to="/try-free-charleston"
                 className="inline-flex items-center px-10 py-5 bg-drake-gold text-foreground font-bold text-lg rounded hover:bg-drake-gold/90 transition-all transform hover:-translate-y-1 shadow-xl uppercase tracking-wide"
               >
-                <ArrowRight className="mr-2 w-5 h-5" /> Try 3 Classes Free
+                <ArrowRight className="mr-2 w-5 h-5" /> Try 2 Classes Free
               </Link>
               <p className="text-gray-300 mt-6 text-sm">Charleston, SC • Limited Spots Available</p>
             </div>

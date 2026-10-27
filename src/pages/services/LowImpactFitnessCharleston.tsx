@@ -124,7 +124,7 @@ export default function LowImpactFitnessCharleston() {
                 Low-Impact Fitness for Joint Pain
               </h1>
               <p className="text-xl sm:text-2xl md:text-3xl text-primary-foreground/90 mb-4 font-semibold">
-                Try 3 Classes Free
+                Try 2 Classes Free
               </p>
               <p className="text-base md:text-lg text-accent font-semibold mb-3">
                 KB Strong — Coach-led strength & mobility classes in small groups.
@@ -285,7 +285,7 @@ export default function LowImpactFitnessCharleston() {
                   What Is the <span className="text-primary">2-Class Intro?</span>
                 </h2>
                 <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
-                  A low-pressure introduction to joint-friendly training at Drake Fitness — scaled to your level. Try 3 classes free over 30 days.
+                  A low-pressure introduction to joint-friendly training at Drake Fitness — scaled to your level. Try 2 classes free over 30 days.
                 </p>
 
                 <div className="space-y-4 md:space-y-5 mb-8 md:mb-10">

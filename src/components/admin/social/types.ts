@@ -100,7 +100,7 @@ export const CONTENT_PRESETS: ContentPreset[] = [
   {
     label: 'Intro Offer',
     eyebrow: 'WEST ASHLEY · CHARLESTON',
-    headline: 'Try 3 Classes Free',
+    headline: 'Try 2 Classes Free',
     programLine: 'Strength & Mobility Classes',
     detailLine: 'All Levels Welcome',
     ctaText: 'Book Your Free Class →',

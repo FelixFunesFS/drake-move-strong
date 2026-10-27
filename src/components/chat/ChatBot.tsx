@@ -323,7 +323,7 @@ const ChatBot = () => {
                       onClick={() => handleQuickAction('reset-week')}
                       className="text-xs h-8 bg-drake-gold text-drake-dark hover:bg-drake-gold/90"
                     >
-                      🎁 Try 3 Classes Free
+                      🎁 Try 2 Classes Free
                     </Button>
                     <Button
                       variant="outline"

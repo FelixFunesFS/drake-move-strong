@@ -35,7 +35,7 @@ const Pricing = () => {
     <>
       <SEO
         title="Gym Membership Charleston | Try Free | Simple Plans 2026"
-        description="Simple, transparent membership options. Try 3 classes free. Foundation $200/mo, Longevity Unlimited $225/mo. No contracts, real results at Drake Fitness Charleston."
+        description="Simple, transparent membership options. Try 2 classes free. Foundation $225/mo, Longevity Unlimited $250/mo. No contracts, real results at Drake Fitness Charleston."
         canonical="https://www.drake.fitness/pricing"
         
       />
@@ -110,7 +110,7 @@ const Pricing = () => {
                   <div className="flex flex-col sm:flex-row items-center gap-6">
                     <div className="text-center sm:text-left">
                       <span className="text-5xl md:text-6xl font-bold text-foreground">FREE</span>
-                      <span className="text-muted-foreground ml-2">/ 3 classes</span>
+                      <span className="text-muted-foreground ml-2">/ 2 classes</span>
                     </div>
                     <div className="flex-1 w-full sm:w-auto">
                       <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold w-full sm:w-auto">
@@ -153,7 +153,7 @@ const Pricing = () => {
                     Build strength and consistency—without overdoing it.
                   </p>
                   <div className="mt-4">
-                    <span className="text-5xl font-bold text-foreground">$200</span>
+                    <span className="text-5xl font-bold text-foreground">$225</span>
                     <span className="text-muted-foreground ml-1">/ month</span>
                   </div>
                 </CardHeader>
@@ -207,7 +207,7 @@ const Pricing = () => {
                     Train without limits. Protect your body for the long run.
                   </p>
                   <div className="mt-4">
-                    <span className="text-5xl font-bold text-white">$225</span>
+                    <span className="text-5xl font-bold text-white">$250</span>
                     <span className="text-gray-400 ml-1">/ month</span>
                   </div>
                 </CardHeader>
@@ -395,7 +395,7 @@ const Pricing = () => {
                 <tbody>
                   <tr className="border-b border-border bg-primary/5">
                     <td className="px-4 py-3 font-medium text-foreground">2-Class Intro</td>
-                    <td className="px-4 py-3 text-muted-foreground">3 classes (30 days)</td>
+                    <td className="px-4 py-3 text-muted-foreground">2 classes (30 days)</td>
                     <td className="px-4 py-3 text-muted-foreground">Safest place to start — Free</td>
                     <td className="px-4 py-3 text-muted-foreground">None</td>
                   </tr>
@@ -453,7 +453,7 @@ const Pricing = () => {
         <section className="py-12 md:py-16 bg-muted">
           <div className="container mx-auto px-4 text-center">
              <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-               Not sure which option fits you? Try 3 classes free — we'll help you decide which membership is right for your goals.
+               Not sure which option fits you? Try 2 classes free — we'll help you decide which membership is right for your goals.
              </p>
              <Button asChild variant="outline" size="lg">
                <a href={buildPunchPassUrl(INTRO_URL, 'pricing-not-sure-cta')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent" onClick={() => trackPunchPassClick('pricing-not-sure-cta')}>
@@ -507,8 +507,8 @@ const Pricing = () => {
         <CTASection
           eyebrow="GET STARTED"
           title="Ready to Move Better?"
-          subtitle="Try 3 classes free — see if Drake Fitness is the right fit for you."
-          ctaText="Try 3 Classes Free"
+          subtitle="Try 2 classes free — see if Drake Fitness is the right fit for you."
+          ctaText="Try 2 Classes Free"
            ctaLink={INTRO_URL}
            variant="primary"
            slanted={true}

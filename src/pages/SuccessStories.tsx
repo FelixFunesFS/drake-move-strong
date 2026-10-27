@@ -207,8 +207,8 @@ const SuccessStories = () => {
       <CTASection
         eyebrow="GET STARTED"
         title="Ready to Write Your Own Success Story?"
-        subtitle="Try 3 classes free — then choose the membership that fits."
-        ctaText="Try 3 Classes Free"
+        subtitle="Try 2 classes free — then choose the membership that fits."
+        ctaText="Try 2 Classes Free"
          ctaLink={INTRO_URL}
          variant="primary"
          slanted={true}

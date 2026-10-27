@@ -59,7 +59,7 @@ const FAQ = () => {
         },
         {
           q: "What membership should I choose?",
-          a: "Foundation Membership (8 classes/month, $200) is great for beginners or busy schedules. Longevity Unlimited ($225/month) is our most popular option for consistent training. Both include expert coaching and small group attention.",
+          a: "Foundation Membership (8 classes/month, $225) is great for beginners or busy schedules. Longevity Unlimited ($250/month) is our most popular option for consistent training. Both include expert coaching and small group attention.",
         },
         {
           q: "Can I pause my membership?",
@@ -182,7 +182,7 @@ const FAQ = () => {
         eyebrow="GET STARTED"
         title="Ready to Get Started?"
         subtitle="2 free classes over 30 days — then unlock your first month for $110."
-        ctaText="Try 3 Classes Free"
+        ctaText="Try 2 Classes Free"
         ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034"
         variant="primary"
         slanted={true}

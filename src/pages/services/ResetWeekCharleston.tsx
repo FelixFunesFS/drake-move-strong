@@ -45,7 +45,7 @@ const whatYoullExperience = [
   { icon: User, title: "Coach-Led Sessions", description: "Every class is guided by David and our coaching team — you're never left to figure it out on your own." },
   { icon: Dumbbell, title: "Mobility & Movement", description: "We fix how you move before adding weight — joints, posture, and range of motion come first." },
   { icon: Dumbbell, title: "Strength Basics", description: "Introduction to functional movements like squats, hinges, carries, and presses." },
-  { icon: Heart, title: "Confidence Building", description: "By the end of your 3 classes, you'll know you can do this — and you'll want to keep going." }
+  { icon: Heart, title: "Confidence Building", description: "By the end of your 2 classes, you'll know you can do this — and you'll want to keep going." }
 ];
 
 const whoItsFor = [
@@ -93,7 +93,7 @@ export default function ResetWeekCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-4xl mx-auto">
               <h1 className="font-hero text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
-                Try 3 Classes Free<br className="hidden sm:block" />
+                Try 2 Classes Free<br className="hidden sm:block" />
                 <span className="text-accent drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">Charleston Strength Training</span>
               </h1>
               <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-8 md:mb-10 leading-relaxed max-w-3xl mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">

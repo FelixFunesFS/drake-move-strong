@@ -86,7 +86,7 @@ export default function StrengthTrainingCharleston() {
     <>
       <SEO
         title="Mobility & Strength Training in Charleston, SC | Drake Fitness"
-        description="Train smarter, move better, and get strong without pain. Charleston's premier mobility and strength training studio. Try 3 classes free."
+        description="Train smarter, move better, and get strong without pain. Charleston's premier mobility and strength training studio. Try 2 classes free."
         canonical="https://www.drake.fitness/strength-training-charleston"
       />
       <StructuredData data={serviceSchema} />
@@ -114,7 +114,7 @@ export default function StrengthTrainingCharleston() {
                 Mobility & Strength Training in Charleston, SC
               </h1>
               <p className="text-xl sm:text-2xl md:text-3xl text-primary-foreground/90 mb-4 font-semibold">
-                Try 3 Classes Free
+                Try 2 Classes Free
               </p>
               <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 md:mb-10 leading-relaxed">
                 Train Smarter. Move Better. Get Strong Without Pain.
@@ -271,7 +271,7 @@ export default function StrengthTrainingCharleston() {
                   What Is the <span className="text-primary">2-Class Intro?</span>
                 </h2>
                 <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                  The 2-Class Intro is a low-pressure introduction to Drake Fitness — scaled to your level. Try 3 classes free over 30 days.
+                  The 2-Class Intro is a low-pressure introduction to Drake Fitness — scaled to your level. Try 2 classes free over 30 days.
                 </p>
 
                 <div className="space-y-5 mb-10">
@@ -510,7 +510,7 @@ export default function StrengthTrainingCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center mb-12 max-w-4xl mx-auto">
               <span className="text-accent font-bold uppercase tracking-wider text-sm mb-2 block">READY TO GET STARTED?</span>
-              <h2 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">Try 3 Classes Free Today</h2>
+              <h2 className="font-hero text-4xl md:text-5xl lg:text-6xl font-bold mb-6 uppercase leading-tight">Try 2 Classes Free Today</h2>
               <p className="text-xl text-primary-foreground/80 mb-10">Spots are limited to keep coaching quality high. Join Charleston's premier mobility and strength studio.</p>
             </div>
           </AnimatedSection>
