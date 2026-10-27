@@ -64,8 +64,8 @@ export const PUNCHPASS_URLS = {
   resetWeek: INTRO_URL,
   // Community Class — replace with real PunchPass event URL when ready
   communityClass: "https://drakefitness.punchpass.com/classes/19998310",
-  foundation: "https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784",
-  unlimited: "https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211",
+  foundation: "https://drakefitness.punchpass.com/catalogs/purchase/membership/272084",
+  unlimited: "https://drakefitness.punchpass.com/catalogs/purchase/membership/272085",
   remoteSupport: "https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776",
   flexPack: "https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/219932",
   schedule: "https://drakefitness.punchpass.com/classes",
