@@ -473,7 +473,7 @@ const NewYearChallenge = () => {
               </a>
               <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:underline">
                 <MapPin className="h-5 w-5" />
-                2 Avondale Ave, Charleston, SC
+                95 Tall Oak Ave, Suite 102, Charleston, SC
               </a>
             </div>
           </AnimatedSection>

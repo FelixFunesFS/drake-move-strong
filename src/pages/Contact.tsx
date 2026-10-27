@@ -87,7 +87,7 @@ const Contact = () => {
     <>
       <SEO
         title="Contact Drake Fitness Charleston | Start Today"
-        description="Questions about getting started? Reach Drake Fitness in West Ashley — call, text, or drop in. 3 free classes, then $110 first month unlimited."
+        description="Questions about getting started? Reach Drake Fitness in West Ashley — call, text, or drop in. 2 free classes, then $110 first month unlimited."
         canonical="https://www.drake.fitness/contact"
       />
       <StructuredData data={buildBreadcrumbSchema([
@@ -209,7 +209,7 @@ const Contact = () => {
                           <SelectValue placeholder="Select an option" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="intro-experience">3-Class Intro (Free)</SelectItem>
+                          <SelectItem value="intro-experience">2-Class Intro (Free)</SelectItem>
                           <SelectItem value="membership">Monthly Membership</SelectItem>
                           <SelectItem value="coaching">1:1 Coaching</SelectItem>
                           <SelectItem value="general">General Inquiry</SelectItem>
@@ -276,7 +276,7 @@ const Contact = () => {
                   <div className="flex items-start gap-3">
                     <MapPin className="text-primary h-5 w-5 flex-shrink-0 mt-0.5" />
                     <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                      2 Avondale Ave<br />Charleston, SC 29407
+                      95 Tall Oak Ave, Suite 102<br />Charleston, SC 29407
                     </a>
                   </div>
                   <div className="flex items-center gap-3">
@@ -347,7 +347,7 @@ const Contact = () => {
             },
             {
               q: "How do I get started at Drake Fitness?",
-              a: "Start with our 3-Class Intro Experience — 3 free classes over 30 days. It's the best way to experience our training style and find the right class for you.",
+              a: "Start with our 2-Class Intro Experience — 2 free classes over 30 days. It's the best way to experience our training style and find the right class for you.",
             },
           ];
           const faqSchema = buildFAQSchema(contactFAQs);
@@ -373,8 +373,8 @@ const Contact = () => {
                 },
                 {
                   q: "How do I get started at Drake Fitness?",
-                  a: "Try our 3-Class Intro Experience — 3 free classes over 30 days. It's the best way to experience our training style and find the right class for you.",
-                  cta: { label: "Claim 3 Free Classes", url: PUNCHPASS_URLS.introExperience },
+                  a: "Try our 2-Class Intro Experience — 2 free classes over 30 days. It's the best way to experience our training style and find the right class for you.",
+                  cta: { label: "Claim 2 Free Classes", url: PUNCHPASS_URLS.introExperience },
                 },
               ].map((faq, index) => (
                 <AnimatedSection key={index} animation="fadeInUp" delay={index * 0.1}>

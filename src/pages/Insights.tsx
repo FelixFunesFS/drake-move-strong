@@ -267,9 +267,9 @@ const Insights = () => {
 
       <CTASection
         eyebrow="Ready to Train Smarter?"
-        title="Try 3 Classes Free"
+        title="Try 2 Classes Free"
         subtitle="No pressure. No contracts. Just smart training that actually works for bodies over 40."
-        ctaText="Claim 3 Free Classes"
+        ctaText="Claim 2 Free Classes"
          ctaLink={INTRO_URL}
          variant="primary"
          utmContent="insights-bottom-cta"

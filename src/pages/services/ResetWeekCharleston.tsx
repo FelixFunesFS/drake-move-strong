@@ -20,8 +20,8 @@ import proofStrip4 from "@/assets/members-kettlebell-rack-hold.jpg?format=webp&w
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "3-Class Intro Experience - Charleston Strength Training",
-  "description": "Try Drake Fitness free with 3 classes over 30 days. A smarter way to start strength training in Charleston, SC.",
+  "name": "2-Class Intro Experience - Charleston Strength Training",
+  "description": "Try Drake Fitness free with 2 classes over 30 days. A smarter way to start strength training in Charleston, SC.",
   "provider": localBusinessSchema,
   "areaServed": {
     "@type": "City",
@@ -36,7 +36,7 @@ const serviceSchema = {
     "@type": "Offer",
     "price": "0",
     "priceCurrency": "USD",
-    "description": "3 free classes over 30 days"
+    "description": "2 free classes over 30 days"
   }
 };
 
@@ -45,7 +45,7 @@ const whatYoullExperience = [
   { icon: User, title: "Coach-Led Sessions", description: "Every class is guided by David and our coaching team — you're never left to figure it out on your own." },
   { icon: Dumbbell, title: "Mobility & Movement", description: "We fix how you move before adding weight — joints, posture, and range of motion come first." },
   { icon: Dumbbell, title: "Strength Basics", description: "Introduction to functional movements like squats, hinges, carries, and presses." },
-  { icon: Heart, title: "Confidence Building", description: "By the end of your 3 classes, you'll know you can do this — and you'll want to keep going." }
+  { icon: Heart, title: "Confidence Building", description: "By the end of your 2 classes, you'll know you can do this — and you'll want to keep going." }
 ];
 
 const whoItsFor = [
@@ -58,7 +58,7 @@ const whoItsFor = [
 ];
 
 const whatsIncluded = [
-  "3 free classes over 30 days",
+  "2 free classes over 30 days",
   "Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Wed 6:45am, Thu 6pm",
   "Coach-guided introduction",
   "Mobility-focused, joint-friendly workouts",
@@ -70,8 +70,8 @@ export default function ResetWeekCharleston() {
   return (
     <>
       <SEO
-        title="3-Class Intro Experience — Try Strength Training Free | Charleston, SC"
-        description="Strength & mobility training — scaled to your level. Try 3 free classes at Drake Fitness in Charleston. No card required."
+        title="2-Class Intro Experience — Try Strength Training Free | Charleston, SC"
+        description="Strength & mobility training — scaled to your level. Try 2 free classes at Drake Fitness in Charleston. No card required."
         canonical="https://www.drake.fitness/try-free-charleston"
       />
       <StructuredData data={serviceSchema} />
@@ -93,7 +93,7 @@ export default function ResetWeekCharleston() {
           <AnimatedSection animation="fadeInUp">
             <div className="max-w-4xl mx-auto">
               <h1 className="font-hero text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-primary-foreground uppercase tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
-                Try 3 Classes Free<br className="hidden sm:block" />
+                Try 2 Classes Free<br className="hidden sm:block" />
                 <span className="text-accent drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">Charleston Strength Training</span>
               </h1>
               <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-8 md:mb-10 leading-relaxed max-w-3xl mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">
@@ -291,7 +291,7 @@ export default function ResetWeekCharleston() {
                 Ready to Start the Right Way?
               </h2>
               <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-3 md:mb-4 leading-relaxed">
-                The 3-Class Intro gives you the foundation, confidence, and clarity you need to succeed.
+                The 2-Class Intro gives you the foundation, confidence, and clarity you need to succeed.
               </p>
               <p className="text-base md:text-lg text-primary-foreground/70 mb-8 md:mb-10">
                 No pressure. No intimidation. Just smart, guided training.
@@ -319,7 +319,7 @@ export default function ResetWeekCharleston() {
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal">
                   <a href={buildPunchPassUrl(INTRO_URL, 'reset-week-bottom-cta')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('reset-week-bottom-cta')}>
                     <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
-                    Claim 3 Free Classes
+                    Claim 2 Free Classes
                   </a>
                 </Button>
                 <p className="text-muted-foreground text-xs md:text-sm mt-4">Available spots are limited to maintain small group sizes</p>

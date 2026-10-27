@@ -8,28 +8,28 @@ export const PRICING = {
   introExperience: {
     price: 0,
     duration: "30 days",
-    classes: 3,
-    label: "3-Class Intro Experience",
-    description: "3 free classes over 30 days",
+    classes: 2,
+    label: "2-Class Intro Experience",
+    description: "2 free classes over 30 days",
     schedule: "KB Strong — Strength & Mobility: Mon/Wed/Fri 8am & 11am, Wed 6:45am, Thu 6pm",
     upsell: {
       price: 110,
-      originalPrice: 225,
+      originalPrice: 250,
       discount: "50%",
-      window: "7 days after 3rd class"
+      window: "7 days after 2nd class"
     }
   },
   
   // Monthly Memberships
   foundation: {
-    price: 200,
+    price: 225,
     frequency: "month",
     classes: "8 classes/month",
     label: "Foundation Membership",
     description: "8 classes per month, perfect for getting started or flexible schedules"
   },
   unlimited: {
-    price: 225,
+    price: 250,
     frequency: "month",
     classes: "Unlimited",
     label: "Longevity Unlimited",
@@ -64,8 +64,8 @@ export const PUNCHPASS_URLS = {
   resetWeek: INTRO_URL,
   // Community Class — replace with real PunchPass event URL when ready
   communityClass: "https://drakefitness.punchpass.com/classes/19998310",
-  foundation: "https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784",
-  unlimited: "https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211",
+  foundation: "https://drakefitness.punchpass.com/catalogs/purchase/membership/272084",
+  unlimited: "https://drakefitness.punchpass.com/catalogs/purchase/membership/272085",
   remoteSupport: "https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776",
   flexPack: "https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/219932",
   schedule: "https://drakefitness.punchpass.com/classes",

@@ -77,7 +77,7 @@ export function buildIntakePdf(answers: IntakeAnswers): jsPDF {
     size: 9,
     color: MUTED,
   });
-  text('2 Avondale Ave, Charleston, SC 29407  •  (843) 817-5420  •  ddrake311@gmail.com', {
+  text('95 Tall Oak Ave, Suite 102, Charleston, SC 29407  •  (843) 817-5420  •  ddrake311@gmail.com', {
     size: 9,
     color: MUTED,
   });

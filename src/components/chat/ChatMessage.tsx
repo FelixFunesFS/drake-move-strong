@@ -17,13 +17,13 @@ const friendlyLabels: Record<string, string> = {
   'https://drakefitness.punchpass.com': '📅 Book on PunchPass',
   
   // Intro offer links
-  'https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034': '🎁 Claim 3 Free Classes',
-  'https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219': '🎁 Claim 3 Free Classes',
-  'https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/46002': '🎁 Claim 3 Free Classes',
+  'https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034': '🎁 Claim 2 Free Classes',
+  'https://drakefitness.punchpass.com/catalogs/purchase/pass/46002?check=1538140219': '🎁 Claim 2 Free Classes',
+  'https://drakefitness.punchpass.com/org/5950/catalogs/purchase/pass/46002': '🎁 Claim 2 Free Classes',
   
   // Membership purchase links
-  'https://drakefitness.punchpass.com/catalogs/purchase/membership/219877?check=1735866784': '💪 Join Foundation Membership',
-  'https://drakefitness.punchpass.com/catalogs/purchase/membership/219881?check=1735867211': '⭐ Join Longevity Unlimited',
+  'https://drakefitness.punchpass.com/catalogs/purchase/membership/272084': '💪 Join Foundation Membership',
+  'https://drakefitness.punchpass.com/catalogs/purchase/membership/272085': '⭐ Join Longevity Unlimited',
   'https://drakefitness.punchpass.com/catalogs/purchase/membership/233268?check=1750796776': '🌐 Get Remote Support',
   
   // Drake Fitness website links
@@ -31,7 +31,7 @@ const friendlyLabels: Record<string, string> = {
   'https://www.drake.fitness/pricing': '💰 View Pricing',
   'https://www.drake.fitness/schedule': '📅 See Schedule',
   'https://www.drake.fitness/contact': '📞 Contact Us',
-  'https://www.drake.fitness/try-free-charleston': '🎁 3-Class Intro Experience',
+  'https://www.drake.fitness/try-free-charleston': '🎁 2-Class Intro Experience',
   'https://www.drake.fitness/about': '👋 About Us',
   'https://www.drake.fitness/coaching': '🎯 Personal Coaching',
   'https://www.drake.fitness/consultation': '📋 Book Consultation',

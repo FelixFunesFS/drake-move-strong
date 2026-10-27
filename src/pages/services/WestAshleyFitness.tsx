@@ -18,7 +18,7 @@ const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Strength & Mobility Training in West Ashley",
-  "description": "Try 3 free classes at Drake Fitness in the Avondale neighborhood of West Ashley — Your Path to Pain-Free Movement.",
+  "description": "Try 2 free classes at Drake Fitness in the Avondale neighborhood of West Ashley — Your Path to Pain-Free Movement.",
   "provider": localBusinessSchema,
   "areaServed": [
   { "@type": "Place", "name": "West Ashley" },
@@ -41,8 +41,8 @@ const whyIntroExperience = [
 
 
 const faqs = [
-{ question: "Where exactly is Drake Fitness located?", answer: "We're located at 2 Avondale Ave in the Avondale neighborhood of West Ashley, Charleston. We're right in the heart of the community — easy to access from anywhere in West Ashley, James Island, or downtown Charleston." },
-{ question: "What is the 3-Class Intro Experience?", answer: "It's our free intro program — 3 classes over 30 days designed to help you move better, build confidence, and see what makes Drake Fitness different. Strength & Mobility classes (KB Strong) run Mon/Wed/Fri at 8am & 11am, Wed at 6:45am, and Thu at 6pm." },
+{ question: "Where exactly is Drake Fitness located?", answer: "We're located at 95 Tall Oak Ave, Suite 102 in West Ashley, Charleston. We're right in the heart of the community — easy to access from anywhere in West Ashley, James Island, or downtown Charleston." },
+{ question: "What is the 2-Class Intro Experience?", answer: "It's our free intro program — 2 classes over 30 days designed to help you move better, build confidence, and see what makes Drake Fitness different. Strength & Mobility classes (KB Strong) run Mon/Wed/Fri at 8am & 11am, Wed at 6:45am, and Thu at 6pm." },
 { question: "Do I need experience?", answer: "Absolutely not. We specialize in helping people at every level — whether you're starting fresh or returning to fitness. Every movement is coached and scaled to your level." },
 { question: "What if I have pain or injuries?", answer: "That's our specialty. We work with people managing pain, recovering from injuries, or dealing with chronic tightness. Our mobility-first approach is designed for exactly that." }];
 
@@ -52,7 +52,7 @@ export default function WestAshleyFitness() {
     <>
       <SEO
         title="Strength & Mobility Training in West Ashley | Avondale | Drake Fitness"
-        description="West Ashley's coach-led gym in Avondale. Strength & mobility training for adults — small groups, real coaching. Try 3 classes free."
+        description="West Ashley's coach-led gym in Avondale. Strength & mobility training for adults — small groups, real coaching. Try 2 classes free."
         canonical="https://www.drake.fitness/west-ashley-fitness" />
       
       <StructuredData data={serviceSchema} />
@@ -82,12 +82,12 @@ export default function WestAshleyFitness() {
                 <span className="text-accent">In West Ashley</span>
               </h1>
               <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-6 md:mb-8 leading-relaxed">
-                Try 3 free classes at Drake Fitness — Your Path to Pain-Free Movement
+                Try 2 free classes at Drake Fitness — Your Path to Pain-Free Movement
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
                   <a href={buildPunchPassUrl(INTRO_URL, 'west-ashley-hero')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('west-ashley-hero')}>
-                    Claim 3 Free Classes
+                    Claim 2 Free Classes
                     <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                   </a>
                 </Button>
@@ -126,7 +126,7 @@ export default function WestAshleyFitness() {
                   )}
                 </ul>
                 <div className="bg-secondary border-l-4 border-accent p-4 md:p-6 rounded-r-lg">
-                  <p className="font-semibold text-base md:text-lg">Drake Fitness is in Avondale — and the 3-Class Intro Experience is the best place to start.</p>
+                  <p className="font-semibold text-base md:text-lg">Drake Fitness is in Avondale — and the 2-Class Intro Experience is the best place to start.</p>
                 </div>
               </div>
             </AnimatedSection>
@@ -190,7 +190,7 @@ export default function WestAshleyFitness() {
                     <div>
                       <h3 className="font-bold text-lg mb-1">Address</h3>
                       <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors block">
-                        2 Avondale Ave<br />Charleston, SC 29407
+                        95 Tall Oak Ave, Suite 102<br />Charleston, SC 29407
                       </a>
                     </div>
                   </div>
@@ -286,12 +286,12 @@ export default function WestAshleyFitness() {
           <AnimatedSection animation="fadeInUp">
             <div className="text-center max-w-4xl mx-auto">
               <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 uppercase leading-tight">Ready to Move Better?</h2>
-              <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-3 md:mb-4">Try 3 free classes — with coaching, community, and confidence.</p>
+              <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/90 mb-3 md:mb-4">Try 2 free classes — with coaching, community, and confidence.</p>
               <p className="text-base md:text-lg lg:text-xl text-primary-foreground/70 mb-8 md:mb-10">Avondale's choice for pain-free strength training.</p>
               
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
                 <a href={buildPunchPassUrl(INTRO_URL, 'west-ashley-bottom')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('west-ashley-bottom')}>
-                  Claim 3 Free Classes
+                  Claim 2 Free Classes
                   <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                 </a>
               </Button>

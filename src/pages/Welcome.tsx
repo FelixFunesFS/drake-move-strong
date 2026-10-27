@@ -12,7 +12,7 @@ const Welcome = () => {
     <>
       <SEO
         title="Welcome to Drake Fitness | Book Your First Class"
-        description="Your 3-Class Intro pass is active! Here's how to book your first class and what to expect at Drake Fitness."
+        description="Your 2-Class Intro pass is active! Here's how to book your first class and what to expect at Drake Fitness."
         canonical="https://www.drake.fitness/welcome"
       />
       <Helmet>
@@ -31,7 +31,7 @@ const Welcome = () => {
                   You're In! <span className="text-primary">Welcome to Drake Fitness</span>
                 </h1>
                 <p className="text-xl text-muted-foreground mb-8">
-                  Your 3-Class Intro pass is active. Here's how to get started.
+                  Your 2-Class Intro pass is active. Here's how to get started.
                 </p>
               </div>
             </AnimatedSection>
@@ -119,7 +119,7 @@ const Welcome = () => {
                 <div className="mt-8 bg-primary/5 border border-primary/20 p-6 rounded-xl text-center">
                   <p className="text-lg font-semibold mb-2">Love It? Keep Going for Less.</p>
                   <p className="text-muted-foreground">
-                    After your 3rd class, get your first month of unlimited classes for just <strong className="text-primary">$110</strong> — if you join within 7 days.
+                    After your 2nd class, get your first month of unlimited classes for just <strong className="text-primary">$110</strong> — if you join within 7 days.
                   </p>
                 </div>
               </AnimatedSection>

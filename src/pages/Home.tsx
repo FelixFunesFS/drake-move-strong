@@ -38,7 +38,7 @@ interface HomeProps {
 
 const Home = ({ bannerVisible = false }: HomeProps) => {
   return <>
-      <SEO title="Drake Fitness Charleston | Gym & Mobility Training | Try 3 Classes Free" description="Charleston's coach-led gym for functional strength, mobility, and group fitness classes. Small groups, 25+ years experience. Try 3 classes free." canonical="https://www.drake.fitness" />
+      <SEO title="Drake Fitness Charleston | Gym & Mobility Training | Try 2 Classes Free" description="Charleston's coach-led gym for functional strength, mobility, and group fitness classes. Small groups, 25+ years experience. Try 2 classes free." canonical="https://www.drake.fitness" />
       <StructuredData data={localBusinessSchema} />
       <StructuredData data={organizationSchema} />
       
@@ -52,8 +52,8 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
             <MapPin className="w-3 h-3" />
             Avondale • West Ashley • Charleston
           </span>
-} title={<>Move Better.<br /><span className="text-accent drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">Live Stronger.</span><br />Stay Pain-Free.</>} subtitle="Try 3 classes free — experience small-group, mobility-first training at Drake Fitness in Avondale. Then unlock your first month for $110." primaryCTA={{
-        text: "Try 3 Classes Free",
+} title={<>Move Better.<br /><span className="text-accent drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">Live Stronger.</span><br />Stay Pain-Free.</>} subtitle="Try 2 classes free — experience small-group, mobility-first training at Drake Fitness in Avondale. Then unlock your first month for $110." primaryCTA={{
+        text: "Try 2 Classes Free",
         link: "#intro-experience"
       }} secondaryCTA={{
         text: "View Schedule",
@@ -75,7 +75,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         <TodayClassesBanner />
       </div>
 
-      {/* START HERE - 3-Class Intro Experience */}
+      {/* START HERE - 2-Class Intro Experience */}
       <section id="intro-experience" className="py-16 md:py-24 bg-muted scroll-mt-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto bg-white rounded-none shadow-lg overflow-hidden">
@@ -127,13 +127,13 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                   <div>
                     <div className="flex items-baseline gap-2 mb-1">
                       <span className="text-3xl md:text-4xl font-hero font-bold text-primary">FREE</span>
-                      <span className="text-muted-foreground text-base md:text-lg">· 3 classes · 30 days</span>
+                      <span className="text-muted-foreground text-base md:text-lg">· 2 classes · 30 days</span>
                     </div>
                     <p className="text-sm text-muted-foreground">Members save up to 50% on month one · Expert, joint-friendly coaching</p>
                   </div>
                   <div className="flex flex-col items-stretch md:items-end gap-2 md:min-w-[260px]">
                     <Button asChild size="lg" className="w-full px-8 py-5 text-base min-h-[48px]">
-                      <a href={buildPunchPassUrl(INTRO_URL, 'home-start-here-cta')} target="_blank" rel="noopener noreferrer" className="text-center" onClick={() => trackPunchPassClick('home-start-here-cta')}>Claim Your 3 Free Classes</a>
+                      <a href={buildPunchPassUrl(INTRO_URL, 'home-start-here-cta')} target="_blank" rel="noopener noreferrer" className="text-center" onClick={() => trackPunchPassClick('home-start-here-cta')}>Claim Your 2 Free Classes</a>
                     </Button>
                     <p className="text-xs text-muted-foreground text-center md:text-right">
                       Love it? First month unlimited for just $110.
@@ -237,7 +237,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                 </div>
                 <div>
                   <p className="font-bold text-lg">Located in Avondale, Charleston</p>
-                  <p className="text-muted-foreground">2 Avondale Ave • 5 min from West Ashley</p>
+                  <p className="text-muted-foreground">95 Tall Oak Ave, Suite 102 • West Ashley</p>
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
@@ -254,7 +254,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
       </AnimatedSection>
 
       <AnimatedSection animation="fadeInUp">
-        <CTASection eyebrow="GET STARTED" title="Ready to Move Better, Feel Stronger?" ctaText="Try 3 Classes Free" ctaLink={INTRO_URL} variant="primary" slanted={true} utmContent="home-bottom-cta" />
+        <CTASection eyebrow="GET STARTED" title="Ready to Move Better, Feel Stronger?" ctaText="Try 2 Classes Free" ctaLink={INTRO_URL} variant="primary" slanted={true} utmContent="home-bottom-cta" />
       </AnimatedSection>
     </main>
     </>;

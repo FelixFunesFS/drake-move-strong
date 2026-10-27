@@ -29,7 +29,7 @@ export const localBusinessSchema = {
   "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "2 Avondale Ave",
+    "streetAddress": "95 Tall Oak Ave, Suite 102",
     "addressLocality": "Charleston",
     "addressRegion": "SC",
     "postalCode": "29407",

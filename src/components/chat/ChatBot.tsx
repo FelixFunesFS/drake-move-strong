@@ -187,7 +187,7 @@ const ChatBot = () => {
   const handleQuickAction = (action: string) => {
     switch (action) {
       case 'reset-week':
-        sendMessage("Tell me about the 3-Class Intro Experience - what is it and how do I get started?");
+        sendMessage("Tell me about the 2-Class Intro Experience - what is it and how do I get started?");
         break;
       case 'schedule':
         sendMessage("What classes do you offer and how can I book one?");
@@ -323,7 +323,7 @@ const ChatBot = () => {
                       onClick={() => handleQuickAction('reset-week')}
                       className="text-xs h-8 bg-drake-gold text-drake-dark hover:bg-drake-gold/90"
                     >
-                      🎁 Try 3 Classes Free
+                      🎁 Try 2 Classes Free
                     </Button>
                     <Button
                       variant="outline"

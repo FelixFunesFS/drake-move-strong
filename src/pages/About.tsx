@@ -74,7 +74,7 @@ const About = () => {
                     Our Mobility-First <span className="text-primary">Training Philosophy</span>
                   </h2>
                   <p className="text-base md:text-lg text-muted-foreground mb-8 border-l-4 border-drake-gold pl-6">
-                    We don't chase intensity, trends, or exhaustion. We chase <strong>movement quality</strong>, <strong>joint health</strong>, and <strong>sustainable strength</strong> that helps you feel better and perform better in real life. Experience our approach through <Link to="/schedule" className="text-primary underline underline-offset-2 hover:text-primary/80">group classes</Link> or our <Link to="/try-free-charleston" className="text-primary underline underline-offset-2 hover:text-primary/80">3-Class Intro</Link>.
+                    We don't chase intensity, trends, or exhaustion. We chase <strong>movement quality</strong>, <strong>joint health</strong>, and <strong>sustainable strength</strong> that helps you feel better and perform better in real life. Experience our approach through <Link to="/schedule" className="text-primary underline underline-offset-2 hover:text-primary/80">group classes</Link> or our <Link to="/try-free-charleston" className="text-primary underline underline-offset-2 hover:text-primary/80">2-Class Intro</Link>.
                   </p>
                   
                   {/* Info Boxes Grid */}
@@ -458,7 +458,7 @@ const About = () => {
         </section>
       </AnimatedSection>
 
-      <CTASection eyebrow="GET STARTED" title="Ready to Move Better?" subtitle="Try 3 classes free — then choose the membership that fits." ctaText="Try 3 Classes Free" ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" variant="primary" slanted={true} />
+      <CTASection eyebrow="GET STARTED" title="Ready to Move Better?" subtitle="Try 2 classes free — then choose the membership that fits." ctaText="Try 2 Classes Free" ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034" variant="primary" slanted={true} />
     </main>
     </>
   );
