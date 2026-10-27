@@ -34,7 +34,7 @@ const newLeadSequence: EmailStep[] = [
     subject: "You're in — here's what happens next",
     goal: 'Confirm & validate their decision',
     psychology: 'Confirmation bias. Validate immediately to reduce buyer\'s remorse in the highest drop-off window.',
-    keyElements: ['Warm welcome from David Drake', 'Studio address + parking info (2 Avondale Ave)', 'Link to class schedule', '"No experience needed — we meet you where you are"'],
+    keyElements: ['Warm welcome from David Drake', 'Studio address + parking info (95 Tall Oak Ave, Suite 102)', 'Link to class schedule', '"No experience needed — we meet you where you are"'],
     type: 'relationship', fromLine: 'David Drake — Drake Fitness',
     previewText: "Welcome to Drake Fitness. Here's everything you need to know for your first class.",
   },
@@ -99,7 +99,7 @@ const newLeadSequence: EmailStep[] = [
     psychology: 'Scarcity + recap. Not aggressive — just a clear deadline paired with a summary of benefits.',
     keyElements: ['Pass expiration reminder', 'Recap: classes attended, what they\'ve learned', 'Final membership offer', '"No pressure — but the door\'s open"'],
     type: 'conversion', fromLine: 'Drake Fitness',
-    previewText: "Your 3-class pass expires soon. Here's what members get next.",
+    previewText: "Your 2-class pass expires soon. Here's what members get next.",
   },
 ];
 
@@ -108,17 +108,17 @@ const winBackSequence: EmailStep[] = [
     day: 0, dayLabel: 'Day 0', stepName: '1. We Saved You a Spot',
     subject: "We miss you at Drake Fitness",
     goal: 'Re-engage + present the offer up front',
-    psychology: 'Warm, personal opener that immediately makes the value clear: 3 free classes + 50% off.',
-    keyElements: ['Warm acknowledgment of past membership', '3 free classes + 50% off first month/package', 'No pressure, no contracts framing', 'Reactivation CTA to /welcome-back'],
+    psychology: 'Warm, personal opener that immediately makes the value clear: 2 free classes + 50% off.',
+    keyElements: ['Warm acknowledgment of past membership', '2 free classes + 50% off first month/package', 'No pressure, no contracts framing', 'Reactivation CTA to /welcome-back'],
     type: 'conversion', fromLine: 'David Drake — Drake Fitness',
-    previewText: "We saved you a spot — 3 free classes + 50% off your first month back.",
+    previewText: "We saved you a spot — 2 free classes + 50% off your first month back.",
   },
   {
     day: 4, dayLabel: 'Day 4', stepName: '2. Make It Easy',
     subject: "Let's make your comeback simple",
     goal: 'Remove friction — address fear of starting over',
     psychology: 'Acknowledges life got in the way. Reframes return as low-stress, high-support.',
-    keyElements: ['Empathy for 30–65 demographic juggling life', 'Coaching modifies around aches/injuries', 'Reinforces 3 free + 50% off', 'Offer to recommend class times via reply'],
+    keyElements: ['Empathy for 30–65 demographic juggling life', 'Coaching modifies around aches/injuries', 'Reinforces 2 free + 50% off', 'Offer to recommend class times via reply'],
     type: 'relationship', fromLine: 'David Drake',
     previewText: "You don't have to start over from zero. Here's your low-stress on-ramp back.",
   },
@@ -133,12 +133,12 @@ const winBackSequence: EmailStep[] = [
   },
   {
     day: 12, dayLabel: 'Day 12', stepName: '4. Last-Chance Push',
-    subject: "Last call for your 3 free classes",
+    subject: "Last call for your 2 free classes",
     goal: 'Final urgency push before offer expires',
     psychology: 'Removes the "I need to get in shape first" objection. Simple 3-step path to use the offer.',
     keyElements: ['Expiration urgency on offer', '"You don\'t need to be in shape first"', '3-step instructions to claim', 'Graceful "no worries" if not the season'],
     type: 'conversion', fromLine: 'David Drake — Drake Fitness',
-    previewText: "Last call — your 3 free classes + 50% off comeback offer expires soon.",
+    previewText: "Last call — your 2 free classes + 50% off comeback offer expires soon.",
   },
 ];
 
@@ -473,7 +473,7 @@ export default function EmailSequences() {
           </TabsList>
           <TabsContent value="new-lead" className="mt-6">
             <Card className="p-4 md:p-5 border border-primary/20 bg-primary/5 mb-6">
-              <h3 className="font-semibold text-foreground text-sm mb-2">Strategy: Try 3 Free Classes → Member</h3>
+              <h3 className="font-semibold text-foreground text-sm mb-2">Strategy: Try 2 Free Classes → Member</h3>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-muted-foreground">
                 <div><strong className="text-foreground">Days 0–1:</strong> Reduce remorse + remove friction</div>
                 <div><strong className="text-foreground">Days 5–18:</strong> Build trust + social proof + check-in</div>

@@ -246,7 +246,7 @@ const CommunityClass = () => {
               {
                 icon: MapPin,
                 label: "WHERE",
-                value: "Drake Fitness — 2 Avondale Ave",
+                value: "Drake Fitness — 95 Tall Oak Ave, Suite 102",
                 href: GOOGLE_MAPS_URL,
               },
               { icon: DollarSign, label: "COST", value: "100% Free" },
@@ -469,7 +469,7 @@ const CommunityClass = () => {
               {
                 step: 2,
                 title: "Show Up Saturday at 10 AM",
-                desc: "Arrive at 2 Avondale Ave, Charleston at 10 AM. Wear comfortable workout clothes. No equipment needed — we provide everything.",
+                desc: "Arrive at 95 Tall Oak Ave, Suite 102, Charleston at 10 AM. Wear comfortable workout clothes. No equipment needed — we provide everything.",
               },
               {
                 step: 3,
@@ -564,7 +564,7 @@ const CommunityClass = () => {
             </h2>
 
             <p className="text-white/70 text-sm mb-8 leading-relaxed">
-              Next Class: {nextDateStr} · 10:00 AM · 2 Avondale Ave, Charleston, SC
+              Next Class: {nextDateStr} · 10:00 AM · 95 Tall Oak Ave, Suite 102, Charleston, SC
               <br />
               Beginner-friendly · Coach-led · No equipment needed
             </p>
@@ -604,7 +604,7 @@ const CommunityClass = () => {
       <footer className="bg-drake-dark border-t border-white/10 py-6">
         <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/40 text-xs">
-            © {new Date().getFullYear()} Drake Fitness · 2 Avondale Ave,
+            © {new Date().getFullYear()} Drake Fitness · 95 Tall Oak Ave, Suite 102,
             Charleston, SC 29407
           </p>
           <div className="flex items-center gap-4">

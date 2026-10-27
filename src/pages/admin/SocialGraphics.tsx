@@ -337,7 +337,7 @@ export default function SocialGraphics() {
           showBadge: false,
           scheduleClasses: [cls],
         })),
-        { ...DEFAULT_SLIDE, template: 'centered', headline: 'Try 3 Free', programLine: 'No Contract · All Levels', ctaText: 'Get Started →', showBadge: true },
+        { ...DEFAULT_SLIDE, template: 'centered', headline: 'Try 2 Free', programLine: 'No Contract · All Levels', ctaText: 'Get Started →', showBadge: true },
       ];
       setSlides(newSlides);
       setActiveSlide(0);

@@ -59,7 +59,7 @@ const audienceCards = [
 const whatHappens = [
   {
     icon: Gift,
-    title: "3 Free Classes Over 30 Days",
+    title: "2 Free Classes Over 30 Days",
     description: "Try Strength & Mobility classes at your own pace, with a clear next step.",
     iconBg: "bg-drake-gold",
     iconColor: "text-drake-dark"
@@ -128,7 +128,7 @@ const ifItFeelsRight = [
   },
   {
     title: "Get Your First Month of Unlimited Classes for Just $110",
-    description: "Join within 7 days of your 3rd class and get your first month of unlimited classes for just $110."
+    description: "Join within 7 days of your 2nd class and get your first month of unlimited classes for just $110."
   },
   {
     title: "Move Pain-Free Long Term",
@@ -146,8 +146,8 @@ const ResetWeekAlt = () => {
   return (
     <>
       <SEO
-        title="3-Class Intro Experience | Try Us Free | Drake Fitness Charleston"
-        description="Move better, feel stronger, stay pain-free. 3 free classes over 30 days — a safe, guided intro for people restarting fitness. Strength & Mobility classes (KB Strong): Mon/Wed/Fri 8am & 11am, Wed 6:45am, Thu 6pm."
+        title="2-Class Intro Experience | Try Us Free | Drake Fitness Charleston"
+        description="Move better, feel stronger, stay pain-free. 2 free classes over 30 days — a safe, guided intro for people restarting fitness. Strength & Mobility classes (KB Strong): Mon/Wed/Fri 8am & 11am, Wed 6:45am, Thu 6pm."
         canonical="https://www.drake.fitness/reset"
       />
 
@@ -166,7 +166,7 @@ const ResetWeekAlt = () => {
             </Link>
             <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
                <a href={buildPunchPassUrl(INTRO_URL, 'intro-nav-cta')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('intro-nav-cta')}>
-                Claim 3 Free Classes
+                Claim 2 Free Classes
               </a>
             </Button>
           </div>
@@ -179,7 +179,7 @@ const ResetWeekAlt = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-drake-dark/95 via-drake-dark/75 to-drake-dark/50 z-10" />
           <img
             src={heroImage}
-            alt="3-Class Intro Experience at Drake Fitness"
+            alt="2-Class Intro Experience at Drake Fitness"
             className="w-full h-full object-cover object-center"
           />
         </div>
@@ -227,7 +227,7 @@ const ResetWeekAlt = () => {
                 className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-bold text-lg px-10 py-6 h-auto shadow-[var(--shadow-gold)] hover:scale-105 transition-transform group"
               >
                  <a href={buildPunchPassUrl(INTRO_URL, 'intro-hero-cta')} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3" onClick={() => trackPunchPassClick('intro-hero-cta')}>
-                  Claim Your 3 Free Classes
+                  Claim Your 2 Free Classes
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </a>
               </Button>
@@ -490,7 +490,7 @@ const ResetWeekAlt = () => {
               Ready to <span className="text-drake-gold">Start</span>?
             </h2>
             <p className="text-xl text-gray-200 mb-10 max-w-2xl mx-auto">
-              Three free classes. Zero commitment. Just a chance to see if Drake Fitness is right for you.
+              Two free classes. Zero commitment. Just a chance to see if Drake Fitness is right for you.
             </p>
             
             <LongevityBlock variant="minimal" className="mb-10" />
@@ -501,7 +501,7 @@ const ResetWeekAlt = () => {
               className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-bold text-lg px-10 py-6 h-auto shadow-[var(--shadow-gold)] hover:scale-105 transition-transform group"
             >
               <a href={buildPunchPassUrl(INTRO_URL, 'intro-bottom-cta')} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3" onClick={() => trackPunchPassClick('intro-bottom-cta')}>
-                Claim Your 3 Free Classes
+                Claim Your 2 Free Classes
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </Button>
@@ -516,7 +516,7 @@ const ResetWeekAlt = () => {
           className="w-full bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-bold text-base py-4 h-auto"
         >
           <a href={buildPunchPassUrl(INTRO_URL, 'intro-sticky-mobile')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('intro-sticky-mobile')}>
-            Claim 3 Free Classes
+            Claim 2 Free Classes
           </a>
         </Button>
       </div>

@@ -75,7 +75,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
         <TodayClassesBanner />
       </div>
 
-      {/* START HERE - 3-Class Intro Experience */}
+      {/* START HERE - 2-Class Intro Experience */}
       <section id="intro-experience" className="py-16 md:py-24 bg-muted scroll-mt-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto bg-white rounded-none shadow-lg overflow-hidden">
@@ -133,7 +133,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                   </div>
                   <div className="flex flex-col items-stretch md:items-end gap-2 md:min-w-[260px]">
                     <Button asChild size="lg" className="w-full px-8 py-5 text-base min-h-[48px]">
-                      <a href={buildPunchPassUrl(INTRO_URL, 'home-start-here-cta')} target="_blank" rel="noopener noreferrer" className="text-center" onClick={() => trackPunchPassClick('home-start-here-cta')}>Claim Your 3 Free Classes</a>
+                      <a href={buildPunchPassUrl(INTRO_URL, 'home-start-here-cta')} target="_blank" rel="noopener noreferrer" className="text-center" onClick={() => trackPunchPassClick('home-start-here-cta')}>Claim Your 2 Free Classes</a>
                     </Button>
                     <p className="text-xs text-muted-foreground text-center md:text-right">
                       Love it? First month unlimited for just $110.
@@ -237,7 +237,7 @@ const Home = ({ bannerVisible = false }: HomeProps) => {
                 </div>
                 <div>
                   <p className="font-bold text-lg">Located in Avondale, Charleston</p>
-                  <p className="text-muted-foreground">2 Avondale Ave • 5 min from West Ashley</p>
+                  <p className="text-muted-foreground">95 Tall Oak Ave, Suite 102 • West Ashley</p>
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-3">

@@ -225,7 +225,7 @@ const InsightPost = () => {
             <div className="mt-16 bg-gradient-to-br from-primary to-primary/80 text-white rounded-3xl p-10 md:p-12 text-center">
               <h2 className="font-hero text-3xl md:text-4xl font-bold mb-6 uppercase">Ready to Train the Right Way?</h2>
               <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
-                The 3-Class Intro is where it starts. No pressure. No contracts. Just smart training that actually works for bodies over 40.
+                The 2-Class Intro is where it starts. No pressure. No contracts. Just smart training that actually works for bodies over 40.
               </p>
               <Link 
                 to="/try-free-charleston"

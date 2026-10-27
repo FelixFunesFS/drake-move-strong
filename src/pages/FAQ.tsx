@@ -17,7 +17,7 @@ const FAQ = () => {
         },
         {
           q: "How do I get started?",
-          a: "The best way to begin is with our 3-Class Intro Experience (free). This gives you 3 classes over 30 days so you can experience our coaching style and find the right class schedule for you.",
+          a: "The best way to begin is with our 2-Class Intro Experience (free). This gives you 2 classes over 30 days so you can experience our coaching style and find the right class schedule for you.",
         },
         {
           q: "What should I wear and bring?",
@@ -93,7 +93,7 @@ const FAQ = () => {
       questions: [
         {
           q: "Where are you located?",
-          a: "We're located at 2 Avondale Ave in the Avondale neighborhood of West Ashley, Charleston, SC 29407. We have ample parking and are easily accessible from downtown Charleston and surrounding areas.",
+          a: "We're located at 95 Tall Oak Ave, Suite 102 in West Ashley, Charleston, SC 29407. We have ample parking and are easily accessible from downtown Charleston and surrounding areas.",
         },
         {
           q: "What are your hours?",
@@ -181,7 +181,7 @@ const FAQ = () => {
       <CTASection
         eyebrow="GET STARTED"
         title="Ready to Get Started?"
-        subtitle="3 free classes over 30 days — then unlock your first month for $110."
+        subtitle="2 free classes over 30 days — then unlock your first month for $110."
         ctaText="Try 3 Classes Free"
         ctaLink="https://drakefitness.punchpass.com/catalogs/purchase/pass/254246?check=1773100034"
         variant="primary"

@@ -31,7 +31,7 @@ const PAGE_MAPPINGS: PageMapping[] = [
   { path: '/contact', label: 'Contact', suggestedSource: 'contact-hero-class-turkish-getup.jpg' },
   { path: '/success-stories', label: 'Success Stories', suggestedSource: 'testimonial-group-training.jpg' },
   { path: '/insights', label: 'Insights', suggestedSource: 'insights-hero-turkish-getup-class.jpg' },
-  { path: '/try-free-charleston', label: '3-Class Intro', suggestedSource: 'ruckathon-hero-group.jpg' },
+  { path: '/try-free-charleston', label: '2-Class Intro', suggestedSource: 'ruckathon-hero-group.jpg' },
   { path: '/intro', label: 'Intro (Referral)', suggestedSource: 'ruckathon-hero-group.jpg' },
   { path: '/strength-training-charleston', label: 'Strength Training Charleston', suggestedSource: 'hero-kettlebell-training.jpg' },
   { path: '/west-ashley-fitness', label: 'West Ashley Fitness', suggestedSource: 'david-double-kb-storefront-new.jpg' },

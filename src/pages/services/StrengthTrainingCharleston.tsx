@@ -122,7 +122,7 @@ export default function StrengthTrainingCharleston() {
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
                 <a href={buildPunchPassUrl(INTRO_URL, 'strength-hero')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('strength-hero')}>
                   <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
-                  Claim 3 Free Classes
+                  Claim 2 Free Classes
                 </a>
               </Button>
               <div className="mt-10 flex flex-wrap gap-6 text-sm text-primary-foreground">
@@ -169,7 +169,7 @@ export default function StrengthTrainingCharleston() {
 
                 <div className="bg-primary text-primary-foreground p-5 md:p-8 rounded-2xl">
                   <h3 className="font-hero text-xl md:text-2xl font-bold mb-3 uppercase">This Program Was Built for You</h3>
-                  <p className="text-primary-foreground/80 leading-relaxed text-sm md:text-base">Most of our members come to us after years of pushing through workouts that stopped helping. Our 3-Class Intro exists to change that — safely and intentionally.</p>
+                  <p className="text-primary-foreground/80 leading-relaxed text-sm md:text-base">Most of our members come to us after years of pushing through workouts that stopped helping. Our 2-Class Intro exists to change that — safely and intentionally.</p>
                 </div>
               </div>
             </AnimatedSection>
@@ -241,13 +241,13 @@ export default function StrengthTrainingCharleston() {
             <div className="bg-primary text-primary-foreground p-12 rounded-3xl max-w-4xl mx-auto text-center">
               <h3 className="font-hero text-3xl font-bold mb-4 uppercase">When These Foundations Are Missing...</h3>
               <p className="text-xl text-primary-foreground/80 mb-6">Progress slows and pain shows up — especially after 30 or 40.</p>
-              <p className="text-2xl font-bold text-accent">The 3-Class Intro rebuilds those basics so strength training actually works again.</p>
+              <p className="text-2xl font-bold text-accent">The 2-Class Intro rebuilds those basics so strength training actually works again.</p>
             </div>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* 3-Class Intro Offer Section */}
+      {/* 2-Class Intro Offer Section */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -268,10 +268,10 @@ export default function StrengthTrainingCharleston() {
               <div>
                 <span className="section-eyebrow text-primary">THE OFFER</span>
                 <h2 className="font-hero text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase leading-tight">
-                  What Is the <span className="text-primary">3-Class Intro?</span>
+                  What Is the <span className="text-primary">2-Class Intro?</span>
                 </h2>
                 <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                  The 3-Class Intro is a low-pressure introduction to Drake Fitness — scaled to your level. Try 3 classes free over 30 days.
+                  The 2-Class Intro is a low-pressure introduction to Drake Fitness — scaled to your level. Try 3 classes free over 30 days.
                 </p>
 
                 <div className="space-y-5 mb-10">
@@ -295,7 +295,7 @@ export default function StrengthTrainingCharleston() {
 
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-10 py-6 text-lg font-bold uppercase tracking-wide">
                   <a href={buildPunchPassUrl(INTRO_URL, 'strength-middle-cta')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('strength-middle-cta')}>
-                    Claim 3 Free Classes
+                    Claim 2 Free Classes
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
@@ -412,7 +412,7 @@ export default function StrengthTrainingCharleston() {
                 <div className="flex text-accent text-xl mb-6">
                   {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
                 </div>
-                <p className="text-muted-foreground text-lg italic mb-6 leading-relaxed">"The 3-Class Intro changed how my body feels."</p>
+                <p className="text-muted-foreground text-lg italic mb-6 leading-relaxed">"The 2-Class Intro changed how my body feels."</p>
                 <p className="font-semibold">— Jennifer L., Mount Pleasant</p>
               </div>
             </div>
@@ -468,7 +468,7 @@ export default function StrengthTrainingCharleston() {
                     <div>
                       <h4 className="font-bold text-lg mb-1">Address</h4>
                       <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                        2 Avondale Ave, Charleston, SC 29407
+                        95 Tall Oak Ave, Suite 102, Charleston, SC 29407
                       </a>
                     </div>
                   </div>
@@ -534,7 +534,7 @@ export default function StrengthTrainingCharleston() {
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-12 py-6 text-xl font-bold uppercase tracking-wide">
                   <a href={buildPunchPassUrl(INTRO_URL, 'strength-bottom-cta')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('strength-bottom-cta')}>
                     <ArrowRight className="mr-2 h-5 w-5" />
-                    Claim 3 Free Classes Now
+                    Claim 2 Free Classes Now
                   </a>
                 </Button>
                 <p className="text-primary-foreground/60 mt-6 text-sm">Limited to 12 spots per week • No credit card required</p>

@@ -78,10 +78,10 @@ const Pricing = () => {
                     Best Place to Start
                   </span>
                   <h2 className="font-hero text-3xl md:text-4xl font-bold uppercase text-foreground">
-                    3-Class Intro Experience
+                    2-Class Intro Experience
                   </h2>
                   <p className="text-lg text-muted-foreground mt-2">
-                    Three free opportunities to experience Drake Fitness and see if our mobility-first training is right for you.
+                    Two free opportunities to experience Drake Fitness and see if our mobility-first training is right for you.
                   </p>
                 </CardHeader>
                 <CardContent className="pb-6">
@@ -104,7 +104,7 @@ const Pricing = () => {
                     </li>
                     <li className="flex items-start">
                       <CheckCircle2 className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-primary" />
-                      <span className="text-foreground">First month 50% off after your 3rd class</span>
+                      <span className="text-foreground">First month 50% off after your 2nd class</span>
                     </li>
                   </ul>
                   <div className="flex flex-col sm:flex-row items-center gap-6">
@@ -115,7 +115,7 @@ const Pricing = () => {
                     <div className="flex-1 w-full sm:w-auto">
                       <Button asChild size="lg" className="bg-drake-gold hover:bg-drake-gold/90 text-drake-dark font-semibold w-full sm:w-auto">
                         <a href={buildPunchPassUrl(INTRO_URL, 'pricing-intro-card')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2" onClick={() => trackPunchPassClick('pricing-intro-card')}>
-                          Claim 3 Free Classes
+                          Claim 2 Free Classes
                           <ExternalLink className="h-4 w-4" />
                         </a>
                       </Button>
@@ -124,7 +124,7 @@ const Pricing = () => {
                 </CardContent>
                 <CardFooter className="bg-primary/5 border-t border-primary/10 py-4">
                   <p className="text-sm text-muted-foreground text-center w-full">
-                    Love it? Get your first month of unlimited classes for just $110 when you join within 7 days of your 3rd class.
+                    Love it? Get your first month of unlimited classes for just $110 when you join within 7 days of your 2nd class.
                   </p>
                 </CardFooter>
               </Card>
@@ -394,7 +394,7 @@ const Pricing = () => {
                 </thead>
                 <tbody>
                   <tr className="border-b border-border bg-primary/5">
-                    <td className="px-4 py-3 font-medium text-foreground">3-Class Intro</td>
+                    <td className="px-4 py-3 font-medium text-foreground">2-Class Intro</td>
                     <td className="px-4 py-3 text-muted-foreground">3 classes (30 days)</td>
                     <td className="px-4 py-3 text-muted-foreground">Safest place to start — Free</td>
                     <td className="px-4 py-3 text-muted-foreground">None</td>
@@ -457,7 +457,7 @@ const Pricing = () => {
              </p>
              <Button asChild variant="outline" size="lg">
                <a href={buildPunchPassUrl(INTRO_URL, 'pricing-not-sure-cta')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent" onClick={() => trackPunchPassClick('pricing-not-sure-cta')}>
-                 Claim 3 Free Classes
+                 Claim 2 Free Classes
                  <ExternalLink className="h-4 w-4" />
                </a>
              </Button>

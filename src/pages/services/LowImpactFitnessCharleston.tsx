@@ -136,7 +136,7 @@ export default function LowImpactFitnessCharleston() {
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
                    <a href={buildPunchPassUrl(INTRO_URL, 'low-impact-hero')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('low-impact-hero')}>
                     <ArrowRight className="mr-2 h-5 w-5 flex-shrink-0" />
-                    Claim 3 Free Classes
+                    Claim 2 Free Classes
                   </a>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-accent text-accent hover:bg-accent/10 px-6 md:px-8 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
@@ -189,7 +189,7 @@ export default function LowImpactFitnessCharleston() {
 
                 <div className="bg-primary text-primary-foreground p-5 md:p-8 rounded-2xl">
                   <h3 className="font-hero text-xl md:text-2xl font-bold mb-3 uppercase">This Program Was Built for You</h3>
-                  <p className="text-primary-foreground/80 leading-relaxed text-sm md:text-base">Joint pain doesn't mean you should stop moving. It means you need better guidance and smarter loading. Our 3-Class Intro exists to change that — safely and intentionally.</p>
+                  <p className="text-primary-foreground/80 leading-relaxed text-sm md:text-base">Joint pain doesn't mean you should stop moving. It means you need better guidance and smarter loading. Our 2-Class Intro exists to change that — safely and intentionally.</p>
                 </div>
               </div>
             </AnimatedSection>
@@ -261,7 +261,7 @@ export default function LowImpactFitnessCharleston() {
         </div>
       </section>
 
-      {/* 3-Class Intro Offer Section */}
+      {/* 2-Class Intro Offer Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -282,7 +282,7 @@ export default function LowImpactFitnessCharleston() {
               <div>
                 <span className="section-eyebrow text-primary">THE OFFER</span>
                 <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 uppercase leading-tight">
-                  What Is the <span className="text-primary">3-Class Intro?</span>
+                  What Is the <span className="text-primary">2-Class Intro?</span>
                 </h2>
                 <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
                   A low-pressure introduction to joint-friendly training at Drake Fitness — scaled to your level. Try 3 classes free over 30 days.
@@ -309,7 +309,7 @@ export default function LowImpactFitnessCharleston() {
 
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 md:px-10 py-4 md:py-6 text-base md:text-lg font-bold uppercase tracking-wide whitespace-normal text-center">
                    <a href={buildPunchPassUrl(INTRO_URL, 'low-impact-middle-cta')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('low-impact-middle-cta')}>
-                    Claim 3 Free Classes
+                    Claim 2 Free Classes
                     <ArrowRight className="ml-2 h-5 w-5 flex-shrink-0" />
                   </a>
                 </Button>
@@ -449,7 +449,7 @@ export default function LowImpactFitnessCharleston() {
                     <div>
                       <h4 className="font-bold text-base md:text-lg mb-1">Address</h4>
                       <a href="https://maps.app.goo.gl/opeP6dqsbidbY9GZ6" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors text-sm md:text-base">
-                        2 Avondale Ave, Charleston, SC 29407
+                        95 Tall Oak Ave, Suite 102, Charleston, SC 29407
                       </a>
                     </div>
                   </div>
@@ -519,7 +519,7 @@ export default function LowImpactFitnessCharleston() {
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 md:px-12 py-4 md:py-6 text-lg md:text-xl font-bold uppercase tracking-wide whitespace-normal text-center">
                   <a href={buildPunchPassUrl(INTRO_URL, 'low-impact-bottom-cta')} target="_blank" rel="noopener noreferrer" onClick={() => trackPunchPassClick('low-impact-bottom-cta')}>
                     <ArrowRight className="mr-2 h-5 w-5" />
-                    Claim 3 Free Classes Now
+                    Claim 2 Free Classes Now
                   </a>
                 </Button>
                 <p className="text-primary-foreground/60 mt-6 text-sm">Limited to 12 spots per week • No credit card required</p>

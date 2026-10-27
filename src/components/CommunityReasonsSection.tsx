@@ -70,7 +70,7 @@ const CommunityReasonsSection = ({ images }: CommunityReasonsSectionProps) => {
             <ReasonImageCard key={index} reason={reason} index={index} />
           ))}
 
-          {/* 3-Class Intro CTA Card - full width */}
+          {/* 2-Class Intro CTA Card - full width */}
           <AnimatedSection animation="fadeInUp" delay={0.3} className="md:col-span-2 lg:col-span-3">
             <div className="bg-primary rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-5 min-h-[220px]">
               {/* Image */}
@@ -86,10 +86,10 @@ const CommunityReasonsSection = ({ images }: CommunityReasonsSectionProps) => {
               <div className="md:col-span-3 p-6 md:p-8 flex flex-col justify-center order-2 md:order-1">
                 <p className="section-eyebrow text-drake-gold mb-1">YOUR FIRST STEP</p>
                 <h3 className="font-hero text-2xl md:text-3xl font-bold text-white uppercase mb-3">
-                  3-Class Intro — <span className="text-drake-gold">Free</span>
+                  2-Class Intro — <span className="text-drake-gold">Free</span>
                 </h3>
                 <p className="text-gray-200 mb-6 text-base md:text-lg max-w-lg">
-                  3 free classes over 30 days. No experience needed. Members save 50% on month one. See what mobility-first training feels like.
+                  2 free classes over 30 days. No experience needed. Members save 50% on month one. See what mobility-first training feels like.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button

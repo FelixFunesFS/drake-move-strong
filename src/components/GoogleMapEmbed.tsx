@@ -26,7 +26,7 @@ export function GoogleMapEmbed({ height = "400px", className = "" }: GoogleMapEm
         allowFullScreen
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
-        title="Drake Fitness Location - 2 Avondale Ave, Charleston, SC 29407"
+        title="Drake Fitness Location - 95 Tall Oak Ave, Suite 102, Charleston, SC 29407"
       />
     </div>
   );

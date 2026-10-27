@@ -30,7 +30,7 @@ const Footer = () => {
           <div>
             <h3 className="font-hero font-bold text-lg mb-4 uppercase text-accent">Start Here</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/try-free-charleston" className="text-drake-gold hover:text-drake-gold/80 transition-colors font-semibold">→ 3-Class Intro (Free)</Link></li>
+              <li><Link to="/try-free-charleston" className="text-drake-gold hover:text-drake-gold/80 transition-colors font-semibold">→ 2-Class Intro (Free)</Link></li>
               <li><Link to="/about" className="text-gray-300 hover:text-drake-gold transition-colors">About Us</Link></li>
               <li><Link to="/schedule" className="text-gray-300 hover:text-drake-gold transition-colors">Schedule</Link></li>
               <li><Link to="/coaching" className="text-gray-300 hover:text-drake-gold transition-colors">1:1 Coaching</Link></li>
@@ -60,7 +60,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="hover:text-drake-gold transition-colors"
                 >
-                  2 Avondale Ave<br />Charleston, SC 29407
+                  95 Tall Oak Ave, Suite 102<br />Charleston, SC 29407
                 </a>
               </li>
               <li className="pt-2">
