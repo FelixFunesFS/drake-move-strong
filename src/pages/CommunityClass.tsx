@@ -92,7 +92,7 @@ const faqs = [
   },
   {
     q: "Is parking available?",
-    a: "Yes! There's free street parking along Avondale Ave and the surrounding side streets. Most people find a spot within a block.",
+    a: "Yes! There's free on-site parking at the studio — 95 Tall Oak Ave, Suite 102.",
   },
   {
     q: "Can I bring a friend?",

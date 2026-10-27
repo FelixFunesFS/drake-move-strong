@@ -63,7 +63,7 @@ const Pricing = () => {
           </div>
         </section>
 
-        {/* STEP 1: 3-CLASS INTRO EXPERIENCE (VISUAL PRIORITY #1) */}
+        {/* STEP 1: 2-CLASS INTRO EXPERIENCE (VISUAL PRIORITY #1) */}
         <section className="py-12 md:py-16 bg-muted">
           <div className="container mx-auto px-4">
             {/* Trust Signal - Above Intro Card */}
@@ -124,7 +124,7 @@ const Pricing = () => {
                 </CardContent>
                 <CardFooter className="bg-primary/5 border-t border-primary/10 py-4">
                   <p className="text-sm text-muted-foreground text-center w-full">
-                    Love it? Get your first month of unlimited classes for just $110 when you join within 7 days of your 2nd class.
+                    Love it? Get your first month of unlimited classes for just $125 when you join within 7 days of your 2nd class.
                   </p>
                 </CardFooter>
               </Card>

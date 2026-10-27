@@ -127,8 +127,8 @@ const ifItFeelsRight = [
     description: "2x, 3x, or Unlimited weekly sessions — pick what fits your schedule."
   },
   {
-    title: "Get Your First Month of Unlimited Classes for Just $110",
-    description: "Join within 7 days of your 2nd class and get your first month of unlimited classes for just $110."
+    title: "Get Your First Month of Unlimited Classes for Just $125",
+    description: "Join within 7 days of your 2nd class and get your first month of unlimited classes for just $125."
   },
   {
     title: "Move Pain-Free Long Term",
@@ -192,7 +192,7 @@ const ResetWeekAlt = () => {
               transition={{ duration: 0.6 }}
               className="inline-block bg-drake-gold/20 backdrop-blur-sm border border-drake-gold/40 rounded-full px-6 py-2 mb-6"
             >
-              <span className="text-drake-gold font-bold uppercase tracking-wider text-sm">Free Intro • 3 Classes • 30 Days</span>
+              <span className="text-drake-gold font-bold uppercase tracking-wider text-sm">Free Intro • 2 Classes • 30 Days</span>
             </motion.div>
             
             <motion.h1
@@ -232,7 +232,7 @@ const ResetWeekAlt = () => {
                 </a>
               </Button>
               <div className="flex flex-col text-sm text-gray-300 mt-2 sm:mt-0 sm:ml-4">
-                <span className="font-semibold text-white">3 Classes, Completely Free</span>
+                <span className="font-semibold text-white">2 Classes, Completely Free</span>
                 <span>Strength & Mobility classes (KB Strong) — Mon/Wed/Fri 8am & 11am, Wed 6:45am, Thu 6pm</span>
               </div>
             </motion.div>
@@ -318,7 +318,7 @@ const ResetWeekAlt = () => {
                 <span className="text-drake-gold">Your Intro</span>
               </h2>
               <p className="text-xl text-gray-300 mb-12 leading-relaxed">
-                Three classes designed to help you move better, feel stronger, and build confidence in a supportive environment.
+                Two classes designed to help you move better, feel stronger, and build confidence in a supportive environment.
               </p>
 
               <div className="space-y-4">
@@ -410,7 +410,7 @@ const ResetWeekAlt = () => {
           <AnimatedSection className="text-center mb-16">
             <span className="section-eyebrow text-primary">What's Next?</span>
             <h2 className="font-hero text-4xl md:text-5xl font-bold text-foreground mb-6 uppercase">
-              What Happens <span className="text-primary">After</span> Your 3 Classes
+              What Happens <span className="text-primary">After</span> Your 2 Classes
             </h2>
           </AnimatedSection>
 

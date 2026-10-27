@@ -13,7 +13,7 @@ export const PRICING = {
     description: "2 free classes over 30 days",
     schedule: "KB Strong — Strength & Mobility: Mon/Wed/Fri 8am & 11am, Wed 6:45am, Thu 6pm",
     upsell: {
-      price: 110,
+      price: 125,
       originalPrice: 250,
       discount: "50%",
       window: "7 days after 2nd class"

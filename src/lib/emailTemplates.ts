@@ -208,8 +208,8 @@ ${emailImage("group-kettlebell-training.jpg", "Group kettlebell training class a
 <h3 style="font-family:'Oswald',Helvetica,Arial,sans-serif;color:${DARK};margin:0;font-size:18px;">INTRO MEMBER OFFER</h3>
 </td></tr>
 <tr><td style="padding:20px;font-size:16px;line-height:1.6;color:${MUTED};mso-line-height-rule:exactly;">
-<p style="margin:0 0 8px;"><strong style="color:${DARK};">Get your first month of unlimited classes for just $110</strong></p>
-<p style="margin:0 0 8px;font-size:14px;">That's over 50% off the normal $250/mo membership — available if you join within 7 days of your 2nd class.</p>
+<p style="margin:0 0 8px;"><strong style="color:${DARK};">Get your first month of unlimited classes for just $125</strong></p>
+<p style="margin:0 0 8px;font-size:14px;">That's 50% off the normal $250/mo membership — available if you join within 7 days of your 2nd class.</p>
 <p style="margin:0 0 8px;font-size:14px;">&#x2713; All group classes &bull; &#x2713; Open gym access &bull; &#x2713; Community events</p>
 <p style="margin:0;font-size:14px;">&#x2713; Yoga discount &bull; &#x2713; Cancel anytime</p>
 </td></tr>
