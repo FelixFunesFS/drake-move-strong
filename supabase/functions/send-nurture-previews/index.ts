@@ -85,7 +85,7 @@ ${body}
 <!-- FOOTER -->
 <tr><td style="background:${FOOTER_BG};padding:24px 30px;text-align:center;">
 <p style="font-family:'Oswald',Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.8);margin:0 0 4px;letter-spacing:1px;">DRAKE FITNESS</p>
-<p style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(255,255,255,0.6);margin:0;">2 Avondale Ave, Charleston, SC 29407 &bull; (843) 817-5420</p>
+<p style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(255,255,255,0.6);margin:0;">95 Tall Oak Ave, Suite 102, Charleston, SC 29407 &bull; (843) 817-5420</p>
 <p style="font-family:'Inter',sans-serif;font-size:11px;color:rgba(255,255,255,0.4);margin:8px 0 0;">Strength for every stage of life.</p>
 </td></tr>
 </table>
@@ -129,7 +129,7 @@ ${emailImage("studio-david-dog.jpg", "David Drake with his dog at Drake Fitness"
 <p>I'm David Drake, and I've been coaching people at every level — from first-timers to seasoned athletes — who want to move well and get stronger for over 25 years.</p>
 <p>Here's what you need to know:</p>
 <ul style="padding-left:20px;margin:16px 0;">
-<li style="margin-bottom:8px;"><strong style="color:${DARK};">Where:</strong> 2 Avondale Ave, Charleston, SC 29407 (free parking on-site)</li>
+<li style="margin-bottom:8px;"><strong style="color:${DARK};">Where:</strong> 95 Tall Oak Ave, Suite 102, Charleston, SC 29407 (free parking on-site)</li>
 <li style="margin-bottom:8px;"><strong style="color:${DARK};">What to bring:</strong> Nothing. Just you.</li>
 <li style="margin-bottom:8px;"><strong style="color:${DARK};">Experience needed:</strong> Zero. We meet you where you are.</li>
 <li style="margin-bottom:8px;"><strong style="color:${DARK};">Already experienced?</strong> We'll challenge you. Our coaching sharpens movement quality at every level.</li>
@@ -254,8 +254,8 @@ ${emailImage("group-kettlebell-training.jpg", "Group kettlebell training class a
 <h3 style="font-family:'Oswald',Arial,sans-serif;color:${DARK};margin:0;font-size:18px;">INTRO MEMBER OFFER</h3>
 </td></tr>
 <tr><td style="padding:20px;">
-<p style="margin:0 0 8px;"><strong style="color:${DARK};">Get your first month of unlimited classes for just $110</strong></p>
-<p style="margin:0 0 8px;font-size:14px;">That's over 50% off the normal $225/mo membership — available if you join within 7 days of your 3rd class.</p>
+<p style="margin:0 0 8px;"><strong style="color:${DARK};">Get your first month of unlimited classes for just $125</strong></p>
+<p style="margin:0 0 8px;font-size:14px;">That's 50% off the normal $250/mo unlimited membership — available if you join within 7 days of your 2nd class.</p>
 <p style="margin:0 0 8px;font-size:14px;">✓ All group classes &bull; ✓ Open gym access &bull; ✓ Community events</p>
 <p style="margin:0;font-size:14px;">✓ Yoga discount &bull; ✓ Cancel anytime</p>
 </td></tr>
@@ -267,7 +267,7 @@ ${ctaButton("Become a Member", "https://www.drake.fitness/pricing")}
   // 7. Day 30 — Final conversion / urgency
   {
     subject: "Your free pass wraps up this week",
-    previewText: "Your 3-class pass expires soon. Here's what members get next.",
+    previewText: "Your 2-class pass expires soon. Here's what members get next.",
     sequence: "New Lead",
     html: wrap(`
 ${sectionHeading("Your Pass Expires This Week")}
@@ -283,14 +283,14 @@ ${emailImage("studio-full-view.jpg", "Full view of Drake Fitness studio")}
 ${ctaButton("View Membership Options", "https://www.drake.fitness/pricing")}
 <p>No pressure. The door's always open.</p>
 <p style="font-size:14px;">— David &amp; the Drake Fitness crew</p>
-    `, "Your 3-class pass expires soon. Here's what members get next."),
+    `, "Your 2-class pass expires soon. Here's what members get next."),
   },
 
   // ═══ WIN-BACK SEQUENCE (4-email) ═══
   // Day 0 — We saved you a spot
   {
     subject: "We miss you at Drake Fitness",
-    previewText: "We saved you a spot — 3 free classes + 50% off your first month back.",
+    previewText: "We saved you a spot — 2 free classes + 50% off your first month back.",
     sequence: "Win-Back",
     html: wrap(`
 ${sectionHeading("We Saved You a Spot")}
@@ -303,15 +303,15 @@ ${emailImage("studio-david-storefront.jpg", "David Drake at the Drake Fitness st
 <h3 style="font-family:'Oswald',Arial,sans-serif;color:${DARK};margin:0;font-size:18px;">FORMER MEMBER OFFER</h3>
 </td></tr>
 <tr><td style="padding:20px;">
-<p style="margin:0 0 8px;"><strong style="color:${DARK};">&#x2705; 3 free classes</strong> to ease back in</p>
+<p style="margin:0 0 8px;"><strong style="color:${DARK};">&#x2705; 2 free classes</strong> to ease back in</p>
 <p style="margin:0;"><strong style="color:${DARK};">&#x2705; 50% off your first month back or your first package</strong></p>
 </td></tr>
 </table>
 <p>No pressure, no contracts — just a chance to see how good it feels to train again with coaching you already know and trust.</p>
-${ctaButton("Claim My 3 Free Classes + 50% Off", "https://www.drake.fitness/try-free-charleston?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day0-saved-spot")}
+${ctaButton("Claim My 2 Free Classes + 50% Off", "https://www.drake.fitness/try-free-charleston?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day0-saved-spot")}
 <p>If you're not sure where to start, reply with your schedule and we'll recommend the best times.</p>
 <p style="font-size:14px;">See you soon,<br/>David &amp; the Drake Fitness team</p>
-    `, "We saved you a spot — 3 free classes + 50% off your first month back."),
+    `, "We saved you a spot — 2 free classes + 50% off your first month back."),
   },
   // Day 4 — Make it easy
   {
@@ -325,12 +325,12 @@ ${emailImage("david-coaching-form.jpg", "David Drake coaching a member on proper
 <p>Coming back to the gym can feel intimidating — especially if life, work, or injuries got in the way. At Drake Fitness, most of our members are 30–65 and juggling real-world stress, family, and careers, just like you.</p>
 <p>That's why your win-back offer is built to be low-stress and high-support:</p>
 <ul style="padding-left:20px;margin:16px 0;">
-<li style="margin-bottom:10px;"><strong style="color:${DARK};">3 free classes</strong> to reconnect with kettlebell strength + mobility</li>
+<li style="margin-bottom:10px;"><strong style="color:${DARK};">2 free classes</strong> to reconnect with kettlebell strength + mobility</li>
 <li style="margin-bottom:10px;"><strong style="color:${DARK};">Plenty of coaching</strong> to modify around old aches, stiffness, or injuries</li>
 <li style="margin-bottom:10px;"><strong style="color:${DARK};">Then 50% off</strong> your first month back or your first package if it feels right</li>
 </ul>
 <p>You already know what it's like to train here — this is just your on-ramp back.</p>
-${ctaButton("Grab My 3 Free Classes + 50% Off", "https://www.drake.fitness/try-free-charleston?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day4-easy-comeback")}
+${ctaButton("Grab My 2 Free Classes + 50% Off", "https://www.drake.fitness/try-free-charleston?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day4-easy-comeback")}
 <p>Hit reply if you want us to recommend 2–3 specific class times based on your schedule.</p>
 <p style="font-size:14px;">— David</p>
     `, "You don't have to start over from zero. Here's your low-stress on-ramp back."),
@@ -348,7 +348,7 @@ ${emailImage("community-kettlebell-rack-pair.jpg", "Members training together wi
 <blockquote style="border-left:4px solid ${GOLD};padding:12px 16px;margin:20px 0;background:#f9f7f2;border-radius:0 8px 8px 0;">
 <p style="color:${DARK};font-style:italic;margin:0;">"I thought I'd be too out of shape to come back… but within a couple of classes I felt like myself again."</p>
 </blockquote>
-<p>When you use your 3 free classes, we'll help you:</p>
+<p>When you use your 2 free classes, we'll help you:</p>
 <ul style="padding-left:20px;margin:16px 0;">
 <li style="margin-bottom:8px;"><strong style="color:${DARK};">Rebuild strength safely</strong> with kettlebell fundamentals</li>
 <li style="margin-bottom:8px;"><strong style="color:${DARK};">Improve mobility</strong> so daily life (stairs, kids, yardwork, travel) feels easier</li>
@@ -356,15 +356,15 @@ ${emailImage("community-kettlebell-rack-pair.jpg", "Members training together wi
 </ul>
 <p>And remember, if you decide to stay, you still have <strong style="color:${DARK};">50% off your first month back or your first package</strong> waiting.</p>
 <p>This win-back offer is only for former members and won't be around forever.</p>
-${ctaButton("Use My 3 Free Classes + 50% Off", "https://www.drake.fitness/try-free-charleston?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day7-social-proof")}
+${ctaButton("Use My 2 Free Classes + 50% Off", "https://www.drake.fitness/try-free-charleston?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day7-social-proof")}
 <p>We'd genuinely love to see you in the studio again.</p>
 <p style="font-size:14px;">— David</p>
     `, "What other returning members are saying — and how to use your offer."),
   },
   // Day 12 — Last-chance push
   {
-    subject: "Last call for your 3 free classes",
-    previewText: "Last call — your 3 free classes + 50% off comeback offer expires soon.",
+    subject: "Last call for your 2 free classes",
+    previewText: "Last call — your 2 free classes + 50% off comeback offer expires soon.",
     sequence: "Win-Back",
     html: wrap(`
 ${sectionHeading("Last Call for Your Comeback Offer")}
@@ -376,7 +376,7 @@ ${emailImage("studio-nick-david-together.jpg", "Nick and David together at Drake
 <h3 style="font-family:'Oswald',Arial,sans-serif;color:${DARK};margin:0;font-size:18px;">&#x1F381; EXPIRES SOON</h3>
 </td></tr>
 <tr><td style="padding:20px;">
-<p style="margin:0 0 8px;"><strong style="color:${DARK};">3 free classes</strong></p>
+<p style="margin:0 0 8px;"><strong style="color:${DARK};">2 free classes</strong></p>
 <p style="margin:0;"><strong style="color:${DARK};">+ 50% off your first month back or first package</strong></p>
 </td></tr>
 </table>
@@ -390,7 +390,7 @@ ${emailImage("studio-nick-david-together.jpg", "Nick and David together at Drake
 ${ctaButton("Activate My Offer Before It Expires", "https://www.drake.fitness/try-free-charleston?utm_source=resend&utm_medium=email&utm_campaign=winback-2026&utm_content=day12-last-call")}
 <p>If it's truly not the season for you, no worries. But if a small part of you misses feeling strong and capable, we'd be honored to help you get that back.</p>
 <p style="font-size:14px;">— David &amp; the Drake Fitness team</p>
-    `, "Last call — your 3 free classes + 50% off comeback offer expires soon."),
+    `, "Last call — your 2 free classes + 50% off comeback offer expires soon."),
   },
 ];
 

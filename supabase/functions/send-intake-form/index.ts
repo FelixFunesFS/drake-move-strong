@@ -83,7 +83,7 @@ serve(async (req: Request): Promise<Response> => {
         <p>Your Drake Fitness intake form has been received. A copy of everything you signed is attached for your records.</p>
         <p>David reviews every form before your first session — he'll be in touch shortly.</p>
         <p style="margin-top:20px;color:#6e6e6e;font-size:13px">
-          Drake Fitness · 2 Avondale Ave, Charleston, SC 29407 · (843) 817-5420
+          Drake Fitness · 95 Tall Oak Ave, Suite 102, Charleston, SC 29407 · (843) 817-5420
         </p>
       </div>`;
 

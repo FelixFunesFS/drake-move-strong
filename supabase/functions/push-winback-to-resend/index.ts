@@ -20,7 +20,7 @@ const WINBACK_BROADCASTS = [
   { dayLabel: "Day 0",  subject: "We miss you at Drake Fitness" },
   { dayLabel: "Day 4",  subject: "Let's make your comeback simple" },
   { dayLabel: "Day 7",  subject: "From 'I fell off' to 'I'm back'" },
-  { dayLabel: "Day 12", subject: "Last call for your 3 free classes" },
+  { dayLabel: "Day 12", subject: "Last call for your 2 free classes" },
 ];
 
 interface Contact {

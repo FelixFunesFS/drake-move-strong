@@ -26,7 +26,7 @@ COACHES:
 - Misty: Yoga and flexibility specialist
 
 CONTACT INFO (use in CTAs when relevant):
-- Location: 2 Avondale Ave, Charleston, SC 29407
+- Location: 95 Tall Oak Ave, Suite 102, Charleston, SC 29407
 - Phone: (843) 817-5420
 - Website: drake.fitness
 - Instagram: @drakefitnesschs
