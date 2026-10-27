@@ -255,7 +255,7 @@ ${emailImage("group-kettlebell-training.jpg", "Group kettlebell training class a
 </td></tr>
 <tr><td style="padding:20px;">
 <p style="margin:0 0 8px;"><strong style="color:${DARK};">Get your first month of unlimited classes for just $125</strong></p>
-<p style="margin:0 0 8px;font-size:14px;">That's 50% off the normal $250/mo unlimited membership — available if you join within 7 days of your 3rd class.</p>
+<p style="margin:0 0 8px;font-size:14px;">That's 50% off the normal $250/mo unlimited membership — available if you join within 7 days of your 2nd class.</p>
 <p style="margin:0 0 8px;font-size:14px;">✓ All group classes &bull; ✓ Open gym access &bull; ✓ Community events</p>
 <p style="margin:0;font-size:14px;">✓ Yoga discount &bull; ✓ Cancel anytime</p>
 </td></tr>
