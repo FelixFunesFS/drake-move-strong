@@ -92,7 +92,7 @@ const faqs = [
   },
   {
     question: "What happens after the first month?",
-    answer: "After your challenge month, you can continue with our regular membership at $199/month (no contract), or choose a class pack that fits your schedule. No pressure—we want what's right for you.",
+    answer: "After your challenge month, you can continue with our regular membership at $250/month (no contract), or choose a class pack that fits your schedule. No pressure—we want what's right for you.",
   },
   {
     question: "How is this different from a regular gym?",
@@ -253,7 +253,7 @@ const NewYearChallenge = () => {
                     Your 2025 Transformation Starts Here
                   </h2>
                   <div className="flex items-center justify-center gap-4 mb-4">
-                    <span className="text-drake-slate-gray line-through text-2xl">$199</span>
+                    <span className="text-drake-slate-gray line-through text-2xl">$250</span>
                     <span className="text-5xl md:text-6xl font-hero font-bold text-drake-teal">$99</span>
                   </div>
                   <p className="text-drake-slate-gray text-lg">First month unlimited access</p>
@@ -454,7 +454,7 @@ const NewYearChallenge = () => {
             </div>
 
             <div className="flex items-center justify-center gap-4 mb-8">
-              <span className="text-drake-dark/60 line-through text-xl">$199</span>
+              <span className="text-drake-dark/60 line-through text-xl">$250</span>
               <span className="text-4xl md:text-5xl font-hero font-bold text-drake-dark">$99</span>
             </div>
 
