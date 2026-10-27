@@ -25,7 +25,7 @@ const STATIC_PAGES: Record<string, { title: string; description: string; image?:
   },
   '/pricing': {
     title: 'Membership & Pricing | Drake Fitness Charleston',
-    description: 'Flexible membership options for group classes and personal training. No long-term contracts. Try 3 classes free.',
+    description: 'Flexible membership options for group classes and personal training. No long-term contracts. Try 2 classes free.',
   },
   '/about': {
     title: 'About Drake Fitness | Our Story & Coaches',
@@ -37,19 +37,19 @@ const STATIC_PAGES: Record<string, { title: string; description: string; image?:
   },
   '/contact': {
     title: 'Contact Drake Fitness | Charleston, SC',
-    description: 'Get in touch with Drake Fitness. Located at 2 Avondale Ave, Charleston, SC 29407. Call (843) 817-5420.',
+    description: 'Get in touch with Drake Fitness. Located at 95 Tall Oak Ave, Suite 102, Charleston, SC 29407. Call (843) 817-5420.',
   },
   '/faq': {
     title: 'FAQ | Drake Fitness Charleston',
     description: 'Frequently asked questions about Drake Fitness memberships, classes, and training programs.',
   },
   '/try-free-charleston': {
-    title: '3-Class Intro Experience — Try Strength Training Free | Charleston, SC',
-    description: 'Try 3 free classes at Drake Fitness in Charleston over 30 days. No pressure, no contracts. A smarter way to start strength training.',
+    title: '2-Class Intro Experience — Try Strength Training Free | Charleston, SC',
+    description: 'Try 2 free classes at Drake Fitness in Charleston over 30 days. No pressure, no contracts. A smarter way to start strength training.',
   },
   '/intro': {
-    title: '3-Class Intro Experience | Drake Fitness Charleston',
-    description: 'Try Drake Fitness free with 3 classes over 30 days. No pressure, no contracts. Experience our strength and mobility classes in West Ashley.',
+    title: '2-Class Intro Experience | Drake Fitness Charleston',
+    description: 'Try Drake Fitness free with 2 classes over 30 days. No pressure, no contracts. Experience our strength and mobility classes in West Ashley.',
   },
   '/success-stories': {
     title: 'Success Stories | Drake Fitness Charleston',
@@ -60,16 +60,16 @@ const STATIC_PAGES: Record<string, { title: string; description: string; image?:
     description: 'Expert articles on strength training, mobility, longevity, and fitness for adults 35+. Evidence-based guidance from Charleston coaches.',
   },
   '/intro': {
-    title: '3-Class Intro Experience | Drake Fitness Charleston',
-    description: 'Try Drake Fitness free with 3 classes over 30 days. No pressure, no contracts. Experience our strength and mobility classes in West Ashley.',
+    title: '2-Class Intro Experience | Drake Fitness Charleston',
+    description: 'Try Drake Fitness free with 2 classes over 30 days. No pressure, no contracts. Experience our strength and mobility classes in West Ashley.',
   },
   '/strength-training-charleston': {
     title: 'Mobility & Strength Training in Charleston, SC | Drake Fitness',
-    description: "Train smarter, move better, and get strong without pain. Charleston's premier mobility and strength training studio. Try 3 classes free.",
+    description: "Train smarter, move better, and get strong without pain. Charleston's premier mobility and strength training studio. Try 2 classes free.",
   },
   '/west-ashley-fitness': {
     title: 'West Ashley Fitness Studio | Drake Fitness Charleston',
-    description: 'Small group strength and mobility training in West Ashley, Charleston. Located at 2 Avondale Ave. Try 3 classes free.',
+    description: 'Small group strength and mobility training in West Ashley, Charleston. Located at 95 Tall Oak Ave, Suite 102. Try 2 classes free.',
   },
   '/low-impact-fitness-charleston': {
     title: 'Low Impact Fitness Charleston SC | Drake Fitness',
